@@ -2,6 +2,6 @@
 public class test {
     public static void main(String[] a) {
 	System.out.println("Hello World!");
-	int a = 3;
+	int a = 4;
     }
 }

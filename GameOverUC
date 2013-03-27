@@ -1,0 +1,19 @@
+User case: Game over
+
+Summary: when the player is destroyed move to the game over screen
+
+Priority: low
+
+Normal flow 1: the player is destroyed
+	User action		|		System action
+	
+1.1							display "Game Over"
+
+1.2							show highScore screen and let
+							the player type a name if his/her
+							score is in the top 10	
+
+1.3	clicks "main menu"
+	button
+
+1.4							shows main menu				

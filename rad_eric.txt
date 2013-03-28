@@ -8,8 +8,6 @@ Table of Contents
 
   Author
 
-This version overrides all previous versions.
-
 1 Introduction
 
 This is a physics game where you as a black whole float around in space and
@@ -17,100 +15,36 @@ eat planets and other objects.
 
 1.1 Purpose of application
 
-This project aims to create a physics based game that provides
+The project aims to create a physics based game eat-em-up game that provides
 entertainment to the user.
 
 1.2 General characteristics of application
 
-The game is physics based android game, controllable to touch
+The game is a physics based android game, controllable by touch
 controllers. It is single player.
 
-The player moves the black hole eating swallowing objects until he
-dies. There are no time constraints. If the black hole dies it is respawned
-and a life is used up. This goes on until the player has run out
-lives, then it's game over. The black hole dies when it is eaten by an
-other black hole.
+The player moves a black hole swallowing objects until he dies. If the
+black hole dies, it is respawned and a life is used up. This goes on
+until the player has run out lives, then it's game over. The black
+hole dies when it is eaten by an other black hole. These other black
+holes are controlled by some kind of AI. There are no time constraints.
+
+Once the player has eaten enough objects, the next level will start.
 
 1.3 Scope of application
 
-IT is single player, but the enemy black holes are controlled by an
-AI.
+There is only one player, and enemies are controlled by an AI. The
+application saves the high scores. It is not possible for the player
+to edit and make their own levels.
 
 1.4 Objectives and success criteria of the project
 
   1. It should be possible to play the game for as long as the player
-  is still alive. Stages are generated to keep the game going.
+  is still alive, there is no "final level". Stages are generated
+  dynamically if necessary to keep the game going. The game should be
+  playable on an android mobile/pad of any size.
 
 1.5 Definitions, acronyms and abbreviations
 
-2 Requirements
-
-In this section we specify all requirements
-
-2.1 Functional requirements
-
-Create a list of high level functions here (from the use cases).
-
-2.2 Non-functional requirements
-
-Possible NA (not applicable).
-
-2.2.1 Usability
-
-2.2.2 Reliability
-
-2.2.3 Performance
-
-2.2.4 Supportability
-
-2.2.5 Implementation
-
-2.2.6 Packaging and installation
-
-2.2.7 Legal
-
-2.3 Application models
-
-2.3.1 Use case model
-
-UML and a list of UC names (text for all in appendix)
-
-2.3.2 Use cases priority
-
-A list
-
-2.3.3 Domain model
-
-UML, possible some text.
-
-2.3.4 User interface
-
-Text to motivate a picture.
-
-2.4 References
-
-  APPENDIX
-
-  GUI
-
-  Domain model
-
-  Use case texts
-
-example use cases
-
-move the player.
-
-     eat an enemy.(after which you grow)
-
-enemy tries to eat you
-
-eaten by enemy
-
-hit a ineditable item(rock)
-
-hit the corners of the map
-
-pick up some power up
-
-next level(how are the levels represented )
+Eat-em-up game - A game where the main goal for the player is to
+swallow objects in the level.

@@ -16,5 +16,3 @@ for dir in ${arr[@]}
 do
     $libre_office_path --headless --convert-to pdf --outdir $dir $dir/*.odt
 done
-
-#$libre_office_path --headless --convert-to pdf --outdir meeting/ meeting/*.odt

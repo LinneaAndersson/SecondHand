@@ -1,5 +1,0 @@
-syntax: glob
-bin/**
-doc/**
-.DS_Store
-Thumbs.db

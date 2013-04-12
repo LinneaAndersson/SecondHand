@@ -38,7 +38,8 @@ public class Level {
 	public void registerEntities(){
 	//TODO somehow connect enteties to physics	
 	//need factory?
-		
+	// or make every entety register itself?
+	// extend body?
 	}
 	
 	

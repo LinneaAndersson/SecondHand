@@ -5,9 +5,9 @@ import java.util.List;
 public class Level {
 
 	private List entities;
-	private final int PLAYER_MAX_SIZE = 0;
+	private int PLAYER_MAX_SIZE;
 	
-	public Level(){
-		
+	public Level(int maxSize){
+		PLAYER_MAX_SIZE = maxSize ;
 	}
 }

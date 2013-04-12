@@ -1,5 +1,5 @@
 package com.secondhand.twirl;
 
-public interface PowerUp extends Entity {
-
+public abstract class PowerUp extends Entity {
+	
 }

@@ -10,6 +10,8 @@ public class Level {
 	private int maxSize;
 	private PhysicsWorld pW;
 	
+	
+	// many constructors necessary?  
 	public Level(){
 		this(100);
 	}
@@ -35,11 +37,15 @@ public class Level {
 		entityList = list;
 	}
 	
+	public List<Entity> getEntityList(){
+		return entityList;
+	}
+	
 	public void registerEntities(){
-	//TODO somehow connect enteties to physics	
+	//TODO somehow connect entities to physics	
 	//need factory?
-	// or make every entety register itself?
-	// extend body?
+	//or make every entity register itself?
+	//entity extend body?
 	}
 	
 	

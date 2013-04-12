@@ -2,8 +2,11 @@ package com.secondhand.twirl;
 
 public class Universe {
 	private static Level currentLevel;
-	private static int levelNbr = 0;
 	
+	// what level the player is on
+	private static int levelNbr = 1;
+	
+	//perhaps create a tutorialLevel?
 	public Universe(){
 		currentLevel = new Level();
 	}
@@ -16,6 +19,7 @@ public class Universe {
 		return currentLevel;
 	}
 	
+	//TODO how to decide what to have on each successive level? 
 	public void NextLevel(){
 		currentLevel = new Level();
 	}

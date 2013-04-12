@@ -1,22 +1,37 @@
 package com.secondhand.twirl;
 
+import org.anddev.andengine.engine.Engine;
+import org.anddev.andengine.entity.scene.Scene;
+import org.anddev.andengine.ui.activity.BaseGameActivity;
+
 import android.os.Bundle;
 import android.app.Activity;
 import android.view.Menu;
 
-public class MainActivity extends Activity {
+public class MainActivity extends BaseGameActivity {
 
 	@Override
-	protected void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_main);
+	public Engine onLoadEngine() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.main, menu);
-		return true;
+	public void onLoadResources() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public Scene onLoadScene() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void onLoadComplete() {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

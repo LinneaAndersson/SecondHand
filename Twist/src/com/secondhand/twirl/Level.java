@@ -35,5 +35,11 @@ public class Level {
 		entityList = list;
 	}
 	
+	public void registerEntities(){
+	//TODO somehow connect enteties to physics	
+	//need factory?
+		
+	}
+	
 	
 }

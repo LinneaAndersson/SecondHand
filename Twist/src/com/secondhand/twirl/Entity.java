@@ -3,6 +3,9 @@ package com.secondhand.twirl;
 import com.badlogic.gdx.math.Vector2;
 
 public abstract class Entity {
+	protected enum Entity_enum{
+		PLAYER, ENEMY, OBSTACLE, PLANET
+	}
 	private Position pos;
 	private Vector2 vector;
 	private int radius;
@@ -30,5 +33,7 @@ public abstract class Entity {
 	public Vector2 getVector(){
 		return vector;
 	}
+	
+	public abstract Entity_enum getEnum();
 	
 }

@@ -14,5 +14,11 @@ public class Player extends BlackHole{
 	public void increment(int inc){
 		score=score+inc;
 	}
+
+	@Override
+	public Entity_enum getEnum() {
+		// TODO Auto-generated method stub
+		return Entity_enum.PLAYER;
+	}
 	
 }

@@ -1,8 +1,10 @@
 package com.secondhand.twirl;
 
+import com.badlogic.gdx.math.Vector2;
+
 public abstract class Entity {
 	private Position pos;
-	private Vector vector;
+	private Vector2 vector;
 	private int radius;
 	
 	public void setRadius(int r){
@@ -25,7 +27,7 @@ public abstract class Entity {
 		return pos;
 	}
 	
-	public Vector getVector(){
+	public Vector2 getVector(){
 		return vector;
 	}
 	

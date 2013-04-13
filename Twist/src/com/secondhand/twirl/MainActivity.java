@@ -30,6 +30,8 @@ public class MainActivity extends BaseGameActivity {
 	    
 	    // initialize loader classes:
 	    FontLoader.getInstance().initialize(this, engine);
+	    SoundLoader.getInstance().initialize(this, engine);
+	    TextureRegionLoader.getInstance().initialize(this, engine);
 	    
 	    mainMenuScene = new MainMenuScene(camera);
 	    

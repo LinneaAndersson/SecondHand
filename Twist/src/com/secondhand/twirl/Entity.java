@@ -10,6 +10,12 @@ public abstract class Entity {
 	private Vector2 vector;
 	private int radius;
 	
+	public Entity (Position pos, Vector2 vector, int radius) {
+		this.pos = new Position(pos.getX(),pos.getY());
+		this.vector = new Vector2(vector);
+		this.radius = radius;
+	}
+	
 	public void setRadius(int r){
 		radius=r;
 	}

@@ -9,7 +9,9 @@ import org.anddev.andengine.entity.scene.Scene;
 import org.anddev.andengine.entity.util.FPSLogger;
 import org.anddev.andengine.ui.activity.BaseGameActivity;
 
-import com.secondhand.controller.Controller;
+import android.view.KeyEvent;
+
+import com.secondhand.controller.SceneManager;
 import com.secondhand.loader.FontLoader;
 import com.secondhand.loader.SoundLoader;
 import com.secondhand.loader.TextureRegionLoader;
@@ -41,15 +43,13 @@ public class MainActivity extends BaseGameActivity {
 	    
 	    mainMenuScene = new MainMenuScene(camera);
 	    
-	    Controller.getInstance().initialize(engine);
-	   
-	    return engine;	
+	    SceneManager.getInstance().initialize(engine);
+	    
+	     return engine;	
 	}
 
 	@Override
 	public void onLoadResources() {
-		// TODO Auto-generated method stub
-		mainMenuScene.loadResources();
 	}
 
 	@Override
@@ -57,18 +57,24 @@ public class MainActivity extends BaseGameActivity {
 		// the FPS logger is useful for optimizing performance.(the FPS is shown in LogCat)
 		this.mEngine.registerUpdateHandler(new FPSLogger());
 		
-		mainMenuScene.loadScene();
-		this.mEngine.setScene(mainMenuScene);
-		
-		return mainMenuScene;
-		/*
-		Scene scene = new Scene();
-		scene.setBackground(new ColorBackground(1.0f, 0, 0));
-		return scene;*/
+		return SceneManager.getInstance().setCurrentSceneEnum(SceneManager.AllScenes.LOADING_SCENE).getScene();				
 	}
 
 	@Override
 	public void onLoadComplete() {
+
 		// nothing
 	}
+
+	@Override
+	public boolean onKeyDown(final int pKeyCode, final KeyEvent pEvent) {
+		if(SceneManager.getInstance().sendOnKeyDownToCurrentScene(pKeyCode, pEvent)) {
+			return true;
+		} else {
+			return super.onKeyDown(pKeyCode, pEvent);
+		}
+	}
+
+
 }
+

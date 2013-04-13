@@ -28,11 +28,13 @@ public class MainMenuScene extends GameMenuScene implements IOnMenuItemClickList
 		super(camera);
 	}
 
+	@Override
 	public void loadResources() {
 		this.font = FontLoader.getInstance().loadFont(
 				Typeface.create(Typeface.DEFAULT, Typeface.BOLD), 32, Color.WHITE);
 	}
 
+	@Override
 	public void loadScene() {
 		
 		this.setBackground(new ColorBackground(0, 0, 0));

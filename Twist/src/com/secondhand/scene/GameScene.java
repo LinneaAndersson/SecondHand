@@ -1,17 +1,33 @@
 package com.secondhand.scene;
 
-import java.util.List;
 
-import org.anddev.andengine.entity.IEntity;
+import org.anddev.andengine.engine.camera.Camera;
 import org.anddev.andengine.entity.scene.Scene;
-import org.anddev.andengine.entity.scene.background.ColorBackground;
 
-public class GameScene extends Scene {
+import com.secondhand.controller.IGameScene;
 
-	public GameScene (List<IEntity> entities, ColorBackground background) {
-		for (IEntity entity : entities)
-			attachChild(entity);
-		setBackground(background);
-	}
+import android.view.KeyEvent;
+
+/**
+ * Credit for the main idea behind this class goes to: 
+ * http://andengine.wikidot.com/loading-resources-in-the-background-with-a-loading-screen
+ */
+public abstract class GameScene extends Scene implements IGameScene {
+
+	protected final Camera camera;
 	
+    public GameScene(Camera camera) {
+        super();
+        this.camera = camera;
+    }
+
+    @Override
+	public boolean onKeyDown(final int pKeyCode, final KeyEvent pEvent) {
+		return false;
+	}
+
+	@Override
+	public Scene getScene() {
+		return this;
+	}
 }

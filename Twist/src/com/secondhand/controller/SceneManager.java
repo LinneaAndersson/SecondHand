@@ -15,10 +15,10 @@ public class SceneManager {
 	
 	private Engine engine;
 	
-	private IGameScene loadingScene, mainMenuScene, optionsMenuScene, gamePlayScene;
+	private IGameScene loadingScene, mainMenuScene, settingsMenuScene, gamePlayScene;
 
 	public enum AllScenes {
-		LOADING_SCENE, MAIN_MENU_SCENE, OPTIONS_MENU_SCENE, GAME_PLAY_SCENE
+		LOADING_SCENE, MAIN_MENU_SCENE, SETTINGS_MENU_SCENE, GAME_PLAY_SCENE
 	}	
 	
 	public static SceneManager getInstance() {
@@ -58,8 +58,8 @@ public class SceneManager {
 			scene = this.loadingScene;
 		} else if (sceneEnum == AllScenes.MAIN_MENU_SCENE) {
 			scene = this.mainMenuScene;
-		}else if (sceneEnum == AllScenes.OPTIONS_MENU_SCENE) {
-			scene = this.optionsMenuScene;
+		}else if (sceneEnum == AllScenes.SETTINGS_MENU_SCENE) {
+			scene = this.settingsMenuScene;
 		}else if (sceneEnum == AllScenes.GAME_PLAY_SCENE) {
 			scene = this.gamePlayScene;
 		}

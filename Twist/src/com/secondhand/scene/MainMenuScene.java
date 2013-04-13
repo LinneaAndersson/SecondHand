@@ -15,9 +15,9 @@ import com.secondhand.twirl.GlobalResources;
 
 public class MainMenuScene extends GameMenuScene implements IOnMenuItemClickListener {
 
-	final int MENU_START = 0;
-	final int MENU_HIGH_SCORE = 1;
-	final int MENU_OPTIONS = 2;
+	private static final int MENU_START = 0;
+	private static final int MENU_HIGH_SCORE = 1;
+	private static final int MENU_SETTINGS = 2;
 	
 	public MainMenuScene(Camera camera) {
 		super(camera);
@@ -35,7 +35,8 @@ public class MainMenuScene extends GameMenuScene implements IOnMenuItemClickList
 		// make a centered menu.
 		List<GameMenuScene.MenuItem> menuItems = new ArrayList<GameMenuScene.MenuItem>();
 		menuItems.add(new MenuItem(MENU_START, "start"));
-		menuItems.add(new MenuItem(MENU_OPTIONS, "options"));
+		menuItems.add(new MenuItem(MENU_SETTINGS, "options"));
+		menuItems.add(new MenuItem(MENU_HIGH_SCORE, "high score"));
 		
 		layoutCenteredMenu(menuItems, GlobalResources.getInstance().menuFont, 20);
 		this.setOnMenuItemClickListener(this);
@@ -49,8 +50,11 @@ public class MainMenuScene extends GameMenuScene implements IOnMenuItemClickList
 		case MENU_START:
 			MyDebug.i("now the game should start");
 			return true;
-		case MENU_OPTIONS:
+		case MENU_SETTINGS:
 			MyDebug.i("now a settings menu should appear");
+			return true;
+		case MENU_HIGH_SCORE:
+			MyDebug.i("now the high scores should appear");
 			return true;
 		default:
 			return false;

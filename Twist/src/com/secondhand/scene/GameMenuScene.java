@@ -13,6 +13,8 @@ import org.anddev.andengine.opengl.font.Font;
 import android.view.KeyEvent;
 
 import com.secondhand.controller.IGameScene;
+import com.secondhand.controller.SceneManager;
+import com.secondhand.controller.SceneManager.AllScenes;
 import com.secondhand.debug.MyDebug;
 import com.secondhand.twirl.GlobalResources;
 
@@ -32,9 +34,23 @@ public abstract class GameMenuScene extends MenuScene implements IGameScene{
 		return this;
 	}
 		
+	// All menu scenes should go back to its parent
+	@Override
 	public boolean onKeyDown(final int pKeyCode, final KeyEvent pEvent) {
-		return false;
+		if (pKeyCode == KeyEvent.KEYCODE_BACK && pEvent.getAction() == KeyEvent.ACTION_DOWN) {
+			AllScenes parent = get_parent();
+			if (parent != null)
+				SceneManager.getInstance().setCurrentSceneEnum(parent);
+			else
+				return false;
+			return true;
+		} else {
+			return false;
+		}
 	}
+	
+	// Returns the parent-scene, for example SettingsMenuScene returns AllScenes.MAIN_MENU_SCENE
+	public abstract AllScenes get_parent();
 	
 	/**
 	 * The separate menu items are laid out centered horizontally. All these items are stacked up on each

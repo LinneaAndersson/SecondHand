@@ -53,17 +53,10 @@ public class SettingsMenuScene extends GameMenuScene implements IOnMenuItemClick
 		}
 
 	}
-	
-	/* Fixed so that the SettingsMenuScene goes back to the MainMenuScene when
-	 * the user presses "back" on the phone.
-	 */
+
 	@Override
-	public boolean onKeyDown(final int pKeyCode, final KeyEvent pEvent) {
-		if (pKeyCode == KeyEvent.KEYCODE_BACK && pEvent.getAction() == KeyEvent.ACTION_DOWN) {
-			SceneManager.getInstance().setCurrentSceneEnum(AllScenes.MAIN_MENU_SCENE);
-			return true;
-		} else {
-			return false;
-		}
+	public AllScenes get_parent() {
+		return AllScenes.MAIN_MENU_SCENE;
 	}
+	
 }

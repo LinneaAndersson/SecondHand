@@ -9,7 +9,7 @@ import org.anddev.andengine.entity.scene.menu.item.TextMenuItem;
 import org.anddev.andengine.entity.text.Text;
 import org.anddev.andengine.opengl.font.Font;
 
-import com.secondhand.twirl.MyDebug;
+import com.secondhand.debug.MyDebug;
 
 /**
  * Base class for all menu scenes.

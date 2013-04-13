@@ -4,6 +4,7 @@ import org.anddev.andengine.engine.Engine;
 
 import android.view.KeyEvent;
 
+import com.secondhand.scene.GamePlayScene;
 import com.secondhand.scene.MainMenuScene;
 
 public class SceneManager {
@@ -38,7 +39,7 @@ public class SceneManager {
 		loadingScene = new LoadingScene(this.engine.getCamera());
 		mainMenuScene = new MainMenuScene(this.engine.getCamera());
 	//	this.mOptionsMenuScene = new OptionsMenuScene(this.mEngine);
-		this.gamePlayScene = new GamePlayScene(this.mEngine);
+		this.gamePlayScene = new GamePlayScene(this.engine.getCamera());
 	}
 
 	public AllScenes getCurrentSceneEnum() {

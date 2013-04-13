@@ -1,4 +1,4 @@
-package com.secondhand.twirl;
+package com.secondhand.scene;
 
 import java.util.List;
 
@@ -8,6 +8,8 @@ import org.anddev.andengine.entity.scene.menu.item.IMenuItem;
 import org.anddev.andengine.entity.scene.menu.item.TextMenuItem;
 import org.anddev.andengine.entity.text.Text;
 import org.anddev.andengine.opengl.font.Font;
+
+import com.secondhand.twirl.MyDebug;
 
 /**
  * Base class for all menu scenes.

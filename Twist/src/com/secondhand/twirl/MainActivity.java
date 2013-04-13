@@ -12,6 +12,7 @@ import org.anddev.andengine.ui.activity.BaseGameActivity;
 import com.secondhand.loader.FontLoader;
 import com.secondhand.loader.SoundLoader;
 import com.secondhand.loader.TextureRegionLoader;
+import com.secondhand.scene.MainMenuScene;
 
 public class MainActivity extends BaseGameActivity {
 

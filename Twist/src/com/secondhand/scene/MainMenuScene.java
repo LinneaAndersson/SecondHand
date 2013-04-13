@@ -1,4 +1,4 @@
-package com.secondhand.twirl;
+package com.secondhand.scene;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,6 +11,7 @@ import org.anddev.andengine.opengl.font.Font;
 import org.anddev.andengine.entity.scene.menu.MenuScene.IOnMenuItemClickListener;
 
 import com.secondhand.loader.FontLoader;
+import com.secondhand.twirl.MyDebug;
 
 import android.graphics.Color;
 import android.graphics.Typeface;

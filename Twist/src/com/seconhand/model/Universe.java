@@ -1,4 +1,5 @@
-package com.secondhand.twirl;
+package com.seconhand.model;
+
 
 public class Universe {
 	private static Level currentLevel;

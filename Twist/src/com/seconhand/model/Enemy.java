@@ -1,4 +1,4 @@
-package com.secondhand.twirl;
+package com.seconhand.model;
 
 import com.badlogic.gdx.math.Vector2;
 

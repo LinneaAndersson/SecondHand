@@ -39,8 +39,8 @@ public class MainActivity extends BaseGameActivity {
 	    
 	    mainMenuScene = new MainMenuScene(camera);
 	    
-	    // TODO: we should probably save the engine somewhere now for easy access(in the controller?)
-	    
+	    Controller.getInstance().initialize(engine);
+	   
 	    return engine;	
 	}
 

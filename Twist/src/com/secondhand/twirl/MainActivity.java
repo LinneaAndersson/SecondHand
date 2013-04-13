@@ -9,6 +9,10 @@ import org.anddev.andengine.entity.scene.Scene;
 import org.anddev.andengine.entity.util.FPSLogger;
 import org.anddev.andengine.ui.activity.BaseGameActivity;
 
+import com.secondhand.loader.FontLoader;
+import com.secondhand.loader.SoundLoader;
+import com.secondhand.loader.TextureRegionLoader;
+
 public class MainActivity extends BaseGameActivity {
 
 	private static final int CAMERA_WIDTH = 800;

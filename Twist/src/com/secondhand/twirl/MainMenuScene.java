@@ -10,9 +10,10 @@ import org.anddev.andengine.entity.scene.menu.item.IMenuItem;
 import org.anddev.andengine.opengl.font.Font;
 import org.anddev.andengine.entity.scene.menu.MenuScene.IOnMenuItemClickListener;
 
+import com.secondhand.loader.FontLoader;
+
 import android.graphics.Color;
 import android.graphics.Typeface;
-
 
 public class MainMenuScene extends GameMenuScene implements IOnMenuItemClickListener {
 

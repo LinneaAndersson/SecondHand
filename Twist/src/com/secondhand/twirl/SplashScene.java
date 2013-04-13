@@ -7,6 +7,8 @@ import org.anddev.andengine.entity.scene.background.ColorBackground;
 import org.anddev.andengine.entity.text.Text;
 import org.anddev.andengine.opengl.font.Font;
 
+import com.secondhand.loader.FontLoader;
+
 import android.graphics.Color;
 import android.graphics.Typeface;
 

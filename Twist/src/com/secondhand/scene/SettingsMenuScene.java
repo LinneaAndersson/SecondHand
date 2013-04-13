@@ -9,6 +9,10 @@ import org.anddev.andengine.entity.scene.menu.MenuScene;
 import org.anddev.andengine.entity.scene.menu.MenuScene.IOnMenuItemClickListener;
 import org.anddev.andengine.entity.scene.menu.item.IMenuItem;
 
+import android.view.KeyEvent;
+
+import com.secondhand.controller.SceneManager;
+import com.secondhand.controller.SceneManager.AllScenes;
 import com.secondhand.debug.MyDebug;
 
 public class SettingsMenuScene extends GameMenuScene implements IOnMenuItemClickListener {
@@ -49,5 +53,19 @@ public class SettingsMenuScene extends GameMenuScene implements IOnMenuItemClick
 		}
 
 	}
-
+	
+	/*
+	 * Fixed so that the SettingsMenuScene goes back to the MainMenuScene when
+	 * the user presses "back" on the phone.
+	 * @see com.secondhand.scene.GameMenuScene#onKeyDown(int, android.view.KeyEvent)
+	 */
+	@Override
+	public boolean onKeyDown(final int pKeyCode, final KeyEvent pEvent) {
+		if (pKeyCode == KeyEvent.KEYCODE_BACK && pEvent.getAction() == KeyEvent.ACTION_DOWN) { // User has pressed Down the Back key
+			SceneManager.getInstance().setCurrentSceneEnum(AllScenes.MAIN_MENU_SCENE); // Set Scene = MainMenuScene
+			return true;
+		} else {
+			return false; // Else: let super deal with it
+		}
+	}
 }

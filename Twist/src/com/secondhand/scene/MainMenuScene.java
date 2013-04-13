@@ -7,14 +7,11 @@ import org.anddev.andengine.engine.camera.Camera;
 import org.anddev.andengine.entity.scene.background.ColorBackground;
 import org.anddev.andengine.entity.scene.menu.MenuScene;
 import org.anddev.andengine.entity.scene.menu.item.IMenuItem;
-import org.anddev.andengine.opengl.font.Font;
+
 import org.anddev.andengine.entity.scene.menu.MenuScene.IOnMenuItemClickListener;
 
 import com.secondhand.debug.MyDebug;
-import com.secondhand.loader.FontLoader;
-
-import android.graphics.Color;
-import android.graphics.Typeface;
+import com.secondhand.twirl.GlobalResources;
 
 public class MainMenuScene extends GameMenuScene implements IOnMenuItemClickListener {
 
@@ -22,16 +19,12 @@ public class MainMenuScene extends GameMenuScene implements IOnMenuItemClickList
 	final int MENU_HIGH_SCORE = 1;
 	final int MENU_OPTIONS = 2;
 	
-	Font font;
-	
 	public MainMenuScene(Camera camera) {
 		super(camera);
 	}
 
 	@Override
 	public void loadResources() {
-		this.font = FontLoader.getInstance().loadFont(
-				Typeface.create(Typeface.DEFAULT, Typeface.BOLD), 32, Color.WHITE);
 	}
 
 	@Override
@@ -44,7 +37,7 @@ public class MainMenuScene extends GameMenuScene implements IOnMenuItemClickList
 		menuItems.add(new MenuItem(MENU_START, "start"));
 		menuItems.add(new MenuItem(MENU_OPTIONS, "options"));
 		
-		layoutCenteredMenu(menuItems, font, 20);
+		layoutCenteredMenu(menuItems, GlobalResources.getInstance().menuFont, 20);
 		this.setOnMenuItemClickListener(this);
 	}
 

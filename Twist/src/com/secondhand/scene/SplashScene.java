@@ -8,6 +8,7 @@ import org.anddev.andengine.entity.text.Text;
 import org.anddev.andengine.opengl.font.Font;
 
 import com.secondhand.loader.FontLoader;
+import com.secondhand.twirl.GlobalResources;
 
 import android.graphics.Color;
 import android.graphics.Typeface;
@@ -20,9 +21,8 @@ public class SplashScene extends Scene {
 		
 		setBackground(new ColorBackground(0,0,0));
 		
-		Font font = FontLoader.getInstance().loadFont(
-				Typeface.create(Typeface.DEFAULT, Typeface.BOLD), 32, Color.WHITE);
-		
+		Font font = GlobalResources.getInstance().menuFont;
+				
 		title1 = new Text(0, 0, font, "Second");
 		title2 = new Text(0, 0, font, "Hand");
 		

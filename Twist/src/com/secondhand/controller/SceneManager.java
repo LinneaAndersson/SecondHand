@@ -6,6 +6,7 @@ import android.view.KeyEvent;
 
 import com.secondhand.scene.GamePlayScene;
 import com.secondhand.scene.MainMenuScene;
+import com.secondhand.scene.SettingsMenuScene;
 
 public class SceneManager {
 	
@@ -38,7 +39,7 @@ public class SceneManager {
 		
 		loadingScene = new LoadingScene(this.engine.getCamera());
 		mainMenuScene = new MainMenuScene(this.engine.getCamera());
-	//	this.mOptionsMenuScene = new OptionsMenuScene(this.mEngine);
+		this.settingsMenuScene = new SettingsMenuScene(this.engine.getCamera());
 		this.gamePlayScene = new GamePlayScene(this.engine.getCamera());
 	}
 
@@ -87,7 +88,7 @@ public class SceneManager {
 	
 	public void loadAllResources() {
 		this.mainMenuScene.loadResources();
-		//this.mOptionsMenuScene.loadResources();
+		this.settingsMenuScene.loadResources();
 		this.gamePlayScene.loadResources();
 	}
 	

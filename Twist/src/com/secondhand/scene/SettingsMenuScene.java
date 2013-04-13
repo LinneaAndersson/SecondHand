@@ -6,21 +6,17 @@ import java.util.List;
 import org.anddev.andengine.engine.camera.Camera;
 import org.anddev.andengine.entity.scene.background.ColorBackground;
 import org.anddev.andengine.entity.scene.menu.MenuScene;
+import org.anddev.andengine.entity.scene.menu.MenuScene.IOnMenuItemClickListener;
 import org.anddev.andengine.entity.scene.menu.item.IMenuItem;
 
-import org.anddev.andengine.entity.scene.menu.MenuScene.IOnMenuItemClickListener;
-
-import com.secondhand.controller.SceneManager;
 import com.secondhand.debug.MyDebug;
 import com.secondhand.twirl.GlobalResources;
 
-public class MainMenuScene extends GameMenuScene implements IOnMenuItemClickListener {
+public class SettingsMenuScene extends GameMenuScene implements IOnMenuItemClickListener {
 
-	private static final int MENU_START = 0;
-	private static final int MENU_HIGH_SCORE = 1;
-	private static final int MENU_SETTINGS = 2;
+	private static final int MENU_VOLUME = 0;
 	
-	public MainMenuScene(Camera camera) {
+	public SettingsMenuScene(Camera camera) {
 		super(camera);
 	}
 
@@ -35,9 +31,7 @@ public class MainMenuScene extends GameMenuScene implements IOnMenuItemClickList
 		
 		// make a centered menu.
 		List<GameMenuScene.MenuItem> menuItems = new ArrayList<GameMenuScene.MenuItem>();
-		menuItems.add(new MenuItem(MENU_START, "start"));
-		menuItems.add(new MenuItem(MENU_SETTINGS, "options"));
-		menuItems.add(new MenuItem(MENU_HIGH_SCORE, "high score"));
+		menuItems.add(new MenuItem(MENU_VOLUME, "volume"));
 		
 		layoutCenteredMenu(menuItems, GlobalResources.getInstance().menuFont, 20);
 		this.setOnMenuItemClickListener(this);
@@ -48,15 +42,8 @@ public class MainMenuScene extends GameMenuScene implements IOnMenuItemClickList
 			float pMenuItemLocalX, float pMenuItemLocalY) {
 		
 		switch(pMenuItem.getID()) {
-		case MENU_START:
-			MyDebug.i("now the game should start");
-			return true;
-		case MENU_SETTINGS:
-			MyDebug.i("now a settings menu should appear");
-			SceneManager.getInstance().setCurrentSceneEnum(SceneManager.AllScenes.SETTINGS_MENU_SCENE);
-			return true;
-		case MENU_HIGH_SCORE:
-			MyDebug.i("now the high scores should appear");
+		case MENU_VOLUME:
+			MyDebug.i("volume!");
 			return true;
 		default:
 			return false;

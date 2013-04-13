@@ -18,7 +18,8 @@ import android.graphics.Typeface;
 public class MainMenuScene extends GameMenuScene implements IOnMenuItemClickListener {
 
 	final int MENU_START = 0;
-	final int MENU_OPTIONS = 1;
+	final int MENU_HIGH_SCORE = 1;
+	final int MENU_OPTIONS = 2;
 	
 	Font font;
 	

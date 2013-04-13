@@ -6,3 +6,5 @@
 *.ear
 Twist/gen
 Twist/bin
+
+*.snapshot

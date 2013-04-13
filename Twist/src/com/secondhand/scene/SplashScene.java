@@ -7,11 +7,8 @@ import org.anddev.andengine.entity.scene.background.ColorBackground;
 import org.anddev.andengine.entity.text.Text;
 import org.anddev.andengine.opengl.font.Font;
 
-import com.secondhand.loader.FontLoader;
 import com.secondhand.twirl.GlobalResources;
 
-import android.graphics.Color;
-import android.graphics.Typeface;
 
 public class SplashScene extends Scene {
 	private Text title1;

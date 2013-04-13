@@ -32,13 +32,15 @@ public class MainMenuScene extends GameMenuScene implements IOnMenuItemClickList
 		
 		this.setBackground(new ColorBackground(0, 0, 0));
 		
+		int menuStartX = layoutHeadline("Twirl");
+		
 		// make a centered menu.
 		List<GameMenuScene.MenuItem> menuItems = new ArrayList<GameMenuScene.MenuItem>();
 		menuItems.add(new MenuItem(MENU_START, "start"));
 		menuItems.add(new MenuItem(MENU_SETTINGS, "options"));
 		menuItems.add(new MenuItem(MENU_HIGH_SCORE, "high score"));
 		
-		layoutCenteredMenu(menuItems);
+		layoutCenteredMenu(menuStartX, menuItems);
 		this.setOnMenuItemClickListener(this);
 	}
 

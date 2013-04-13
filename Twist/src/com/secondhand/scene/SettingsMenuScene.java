@@ -28,12 +28,14 @@ public class SettingsMenuScene extends GameMenuScene implements IOnMenuItemClick
 		
 		this.setBackground(new ColorBackground(0, 0, 0));
 		
+		int menuStartX = layoutHeadline("Settings");	
+		
 		// make a centered menu.
-		List<GameMenuScene.MenuItem> menuItems = new ArrayList<GameMenuScene.MenuItem>();
+		/*List<GameMenuScene.MenuItem> menuItems = new ArrayList<GameMenuScene.MenuItem>();
 		menuItems.add(new MenuItem(MENU_VOLUME, "volume"));
 		
 		layoutCenteredMenu(menuItems);
-		this.setOnMenuItemClickListener(this);
+		this.setOnMenuItemClickListener(this);*/
 	}
 
 	@Override

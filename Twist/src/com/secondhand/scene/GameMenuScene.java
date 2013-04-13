@@ -36,26 +36,44 @@ public abstract class GameMenuScene extends MenuScene implements IGameScene{
 		return false;
 	}
 	
+	protected int layoutHeadline(String headline) {
+		// the vertical spacing around the headline.
+		final int headlineSpacing = 40;
+		
+		final Font menuHeadlineFont = GlobalResources.getInstance().menuHeadlineFont;
+		
+		final float fontHeight = new Text(0, 0, menuHeadlineFont, "lorem ipsum").getHeight();
+		
+		// y-coordinate of the menu item.
+		final float y = headlineSpacing;
+				
+		Text headlineText = new Text(0,y,menuHeadlineFont, headline);
+		
+		final float x = this.mCamera.getWidth() / 2.0f - headlineText.getWidth() / 2.0f;
+		headlineText.setPosition(x,y);
+		
+		this.attachChild(headlineText);
+		
+		return (int)fontHeight + headlineSpacing * 2 - 50;
+	}
+	
 	/**
 	 * The separate menu items are laid out centered horizontally. All these items are stacked up on each
 	 * other and this stack is centered vertically. 
 	 */
-	protected void layoutCenteredMenu(final List<GameMenuScene.MenuItem> menuItems) {
+	protected void layoutCenteredMenu(int startY, final List<GameMenuScene.MenuItem> menuItems) {
 	
 		final Font menuItemFont = GlobalResources.getInstance().menuItemFont;
-		final Font menuHeadlineFont = GlobalResources.getInstance().menuItemFont;
 		
 		// vertical spacing between separate menu items
 		final float spacingBetweenItems = 20;
 		
-		// the vertical spacing around the headline.
-		final float headlineSpacing = 40;
 		
 		final float fontHeight = new Text(0, 0, menuItemFont, "lorem ipsum").getHeight();
 		final float menuHeight = menuItems.size() * fontHeight + (menuItems.size() - 1)  * spacingBetweenItems;
 		
 		// y-coordinate of the menu item.
-		float y = this.mCamera.getHeight() / 2.0f - menuHeight / 2.0f;
+		float y = (this.mCamera.getHeight() - startY) / 2.0f - menuHeight / 2.0f + startY;
 				
 		for(GameMenuScene.MenuItem menuItem : menuItems) {
 			

@@ -47,8 +47,6 @@ public class MainMenuScene extends GameMenuScene implements IOnMenuItemClickList
 	public boolean onMenuItemClicked(final MenuScene pMenuScene, final IMenuItem pMenuItem,
 			float pMenuItemLocalX, float pMenuItemLocalY) {
 		
-		MyDebug.d("menu item clicked");
-		
 		switch(pMenuItem.getID()) {
 		case MENU_START:
 			MyDebug.i("now the game should start");

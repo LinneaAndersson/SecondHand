@@ -15,7 +15,6 @@ import org.anddev.andengine.opengl.font.Font;
  */
 public abstract class GameMenuScene extends MenuScene{
 
-	
 	public GameMenuScene(Camera camera) { 
 		super(camera);
 	}

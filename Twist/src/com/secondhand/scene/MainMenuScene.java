@@ -12,7 +12,6 @@ import org.anddev.andengine.entity.scene.menu.MenuScene.IOnMenuItemClickListener
 
 import com.secondhand.controller.SceneManager;
 import com.secondhand.debug.MyDebug;
-import com.secondhand.twirl.GlobalResources;
 
 public class MainMenuScene extends GameMenuScene implements IOnMenuItemClickListener {
 
@@ -56,7 +55,7 @@ public class MainMenuScene extends GameMenuScene implements IOnMenuItemClickList
 			SceneManager.getInstance().setCurrentSceneEnum(SceneManager.AllScenes.SETTINGS_MENU_SCENE);
 			return true;
 		case MENU_HIGH_SCORE:
-			MyDebug.i("now the high scores should appear");
+			SceneManager.getInstance().setCurrentSceneEnum(SceneManager.AllScenes.HIGH_SCORE_SCENE);
 			return true;
 		default:
 			return false;

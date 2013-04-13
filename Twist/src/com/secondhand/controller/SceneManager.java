@@ -5,6 +5,7 @@ import org.anddev.andengine.engine.Engine;
 import android.view.KeyEvent;
 
 import com.secondhand.scene.GamePlayScene;
+import com.secondhand.scene.HighScoreScene;
 import com.secondhand.scene.MainMenuScene;
 import com.secondhand.scene.SettingsMenuScene;
 
@@ -21,12 +22,12 @@ public class SceneManager {
 	
 	private Engine engine;
 	
-	private IGameScene loadingScene, mainMenuScene, settingsMenuScene, gamePlayScene;
+	private IGameScene loadingScene, mainMenuScene, settingsMenuScene, gamePlayScene, highScoreScene;
 
 	// IMPORTANT: when you want to add a new scene to the app, you MUST assign it
 	// a corresponding enum value.
 	public enum AllScenes {
-		LOADING_SCENE, MAIN_MENU_SCENE, SETTINGS_MENU_SCENE, GAME_PLAY_SCENE
+		LOADING_SCENE, MAIN_MENU_SCENE, SETTINGS_MENU_SCENE, GAME_PLAY_SCENE, HIGH_SCORE_SCENE
 	}	
 	
 	public static SceneManager getInstance() {
@@ -49,6 +50,8 @@ public class SceneManager {
 		mainMenuScene = new MainMenuScene(this.engine.getCamera());
 		this.settingsMenuScene = new SettingsMenuScene(this.engine.getCamera());
 		this.gamePlayScene = new GamePlayScene(this.engine.getCamera());
+		this.highScoreScene = new HighScoreScene(this.engine.getCamera());
+		
 	}
 
 	public AllScenes getCurrentSceneEnum() {
@@ -74,6 +77,8 @@ public class SceneManager {
 			scene = this.settingsMenuScene;
 		}else if (sceneEnum == AllScenes.GAME_PLAY_SCENE) {
 			scene = this.gamePlayScene;
+		}else if (sceneEnum == AllScenes.HIGH_SCORE_SCENE) {
+			scene = this.highScoreScene;
 		}
 		
 		return scene;
@@ -106,6 +111,7 @@ public class SceneManager {
 		this.mainMenuScene.loadResources();
 		this.settingsMenuScene.loadResources();
 		this.gamePlayScene.loadResources();
+		this.highScoreScene.loadResources();
 	}
 	
 	// called from MainActivity.

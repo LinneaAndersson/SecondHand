@@ -18,7 +18,7 @@ public interface IGameScene {
 
 	/**
 	 * Load and setup the scene for viewing(this basically means that all the child entities of 
-	 * the scene will be attached using attachChild)s
+	 * the scene will be attached using attachChild)
 	 */
     void loadScene();
     

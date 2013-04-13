@@ -10,7 +10,6 @@ import org.anddev.andengine.entity.scene.menu.MenuScene.IOnMenuItemClickListener
 import org.anddev.andengine.entity.scene.menu.item.IMenuItem;
 
 import com.secondhand.debug.MyDebug;
-import com.secondhand.twirl.GlobalResources;
 
 public class SettingsMenuScene extends GameMenuScene implements IOnMenuItemClickListener {
 

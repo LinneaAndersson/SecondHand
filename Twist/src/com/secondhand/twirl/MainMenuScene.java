@@ -10,9 +10,10 @@ import org.anddev.andengine.entity.scene.menu.item.IMenuItem;
 import org.anddev.andengine.opengl.font.Font;
 import org.anddev.andengine.entity.scene.menu.MenuScene.IOnMenuItemClickListener;
 
+import com.secondhand.loader.FontLoader;
+
 import android.graphics.Color;
 import android.graphics.Typeface;
-
 
 public class MainMenuScene extends GameMenuScene implements IOnMenuItemClickListener {
 
@@ -46,8 +47,6 @@ public class MainMenuScene extends GameMenuScene implements IOnMenuItemClickList
 	@Override
 	public boolean onMenuItemClicked(final MenuScene pMenuScene, final IMenuItem pMenuItem,
 			float pMenuItemLocalX, float pMenuItemLocalY) {
-		
-		MyDebug.d("menu item clicked");
 		
 		switch(pMenuItem.getID()) {
 		case MENU_START:

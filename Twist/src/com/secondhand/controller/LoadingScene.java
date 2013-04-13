@@ -10,6 +10,7 @@ import com.secondhand.twirl.GlobalResources;
 public class LoadingScene extends GameScene {
 
 	// specified in milliseconds.
+	// the minimum time the loading screen will be shown.
 	public static final int MINIMUM_LOADNG_TIME = 1000;
 
 	public LoadingScene(final Camera camera) {
@@ -24,7 +25,7 @@ public class LoadingScene extends GameScene {
 	private void placeOutLoadingText() {
 		Text loadingText = new Text(0, 0, GlobalResources.getInstance().menuItemFont, "Loading...");
 		
-		// center the text both horizontally and vertically. 
+		// center the "loading" text both horizontally and vertically. 
 		float x = this.camera.getWidth() / 2.0f - loadingText.getWidth() / 2.0f;
 		float y = this.camera.getHeight() / 2.0f - loadingText.getHeight() / 2.0f;
 		loadingText.setPosition(x, y);

@@ -8,6 +8,11 @@ import com.secondhand.scene.GamePlayScene;
 import com.secondhand.scene.MainMenuScene;
 import com.secondhand.scene.SettingsMenuScene;
 
+/**
+ * This manages all the scenes, is used to set the current scene,
+ *  and sends keyboard input from the MainActvity to the current scene.
+ *  So it's basically the controller of this app.
+ */
 public class SceneManager {
 	
 	private static SceneManager instance;
@@ -18,6 +23,8 @@ public class SceneManager {
 	
 	private IGameScene loadingScene, mainMenuScene, settingsMenuScene, gamePlayScene;
 
+	// IMPORTANT: when you want to add a new scene to the app, you MUST assign it
+	// a corresponding enum value.
 	public enum AllScenes {
 		LOADING_SCENE, MAIN_MENU_SCENE, SETTINGS_MENU_SCENE, GAME_PLAY_SCENE
 	}	
@@ -37,6 +44,7 @@ public class SceneManager {
 	public void initialize(final Engine engine) {
 		this.engine = engine;
 		
+		// IMPORTANT: when you want to add a new scene to the app, it's constructor MUST be called here.
 		loadingScene = new LoadingScene(this.engine.getCamera());
 		mainMenuScene = new MainMenuScene(this.engine.getCamera());
 		this.settingsMenuScene = new SettingsMenuScene(this.engine.getCamera());
@@ -53,6 +61,9 @@ public class SceneManager {
 	
 	public IGameScene getScene(AllScenes sceneEnum) {
 		IGameScene scene = null;
+		
+		// IMPORTANT: when you want to add a new scene to the app, you MUST make sure
+		// that it can be accessed be using this method.
 
 		// also change the scene in the game:
 		if (sceneEnum ==  AllScenes.LOADING_SCENE) {
@@ -73,6 +84,8 @@ public class SceneManager {
 		
 		IGameScene currentScene = getCurrentScene();
 			
+		// the loading scene is a special case. It handles the loading of all the
+		// other scene's resources, so its(the loading scenes) resources must be loaded here.
 		if (this.currentSceneEnum ==  AllScenes.LOADING_SCENE) {
 			currentScene.loadResources();
 		}
@@ -86,12 +99,16 @@ public class SceneManager {
 		return currentScene;
 	}
 	
+	// used by the loading scene to load all game resources.
 	public void loadAllResources() {
+		// IMPORTANT: when you want to add a new scene to the app, you MUST
+		// load its resources here.
 		this.mainMenuScene.loadResources();
 		this.settingsMenuScene.loadResources();
 		this.gamePlayScene.loadResources();
 	}
 	
+	// called from MainActivity.
 	public boolean sendOnKeyDownToCurrentScene(final int pKeyCode, final KeyEvent pEvent) {
 		IGameScene currentScene = getCurrentScene();
 		return currentScene.onKeyDown(pKeyCode, pEvent);

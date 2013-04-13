@@ -9,7 +9,7 @@ public abstract class Entity {
 	private Vector2 vector;
 	private int radius;
 	
-	public Entity (Position pos, Vector2 vector, int radius) {
+	public Entity (Vector2 vector, int radius) {
 		this.vector = new Vector2(vector);
 		this.radius = radius;
 	}

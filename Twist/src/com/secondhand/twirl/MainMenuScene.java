@@ -21,7 +21,7 @@ public class MainMenuScene extends GameMenuScene implements IOnMenuItemClickList
 	final int MENU_OPTIONS = 1;
 	
 	Font font;
-
+	
 	public MainMenuScene(Camera camera) {
 		super(camera);
 	}

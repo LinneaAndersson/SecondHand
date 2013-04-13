@@ -39,7 +39,7 @@ public class MainMenuScene extends GameMenuScene implements IOnMenuItemClickList
 		menuItems.add(new MenuItem(MENU_SETTINGS, "options"));
 		menuItems.add(new MenuItem(MENU_HIGH_SCORE, "high score"));
 		
-		layoutCenteredMenu(menuItems, GlobalResources.getInstance().menuFont, 20);
+		layoutCenteredMenu(menuItems);
 		this.setOnMenuItemClickListener(this);
 	}
 

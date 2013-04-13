@@ -13,7 +13,8 @@ import android.graphics.Typeface;
  */
 public class GlobalResources {
 	
-	public Font menuFont;
+	public Font menuItemFont;
+	public Font menuHeadlineFont;
 	
 	private static GlobalResources instance = null;
 	
@@ -25,7 +26,11 @@ public class GlobalResources {
 	}
 
 	public void load() {	
-		this.menuFont = FontLoader.getInstance().loadFont(
+		this.menuItemFont = FontLoader.getInstance().loadFont(
 				Typeface.create(Typeface.DEFAULT, Typeface.BOLD), 32, Color.WHITE);
+		this.menuHeadlineFont = FontLoader.getInstance().loadFont(
+				Typeface.create(Typeface.DEFAULT, Typeface.BOLD), 50, Color.WHITE);
+		
 	}
+	
 }

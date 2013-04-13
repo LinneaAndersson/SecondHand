@@ -18,7 +18,7 @@ public class SplashScene extends Scene {
 		
 		setBackground(new ColorBackground(0,0,0));
 		
-		Font font = GlobalResources.getInstance().menuFont;
+		Font font = GlobalResources.getInstance().menuItemFont;
 				
 		title1 = new Text(0, 0, font, "Second");
 		title2 = new Text(0, 0, font, "Hand");

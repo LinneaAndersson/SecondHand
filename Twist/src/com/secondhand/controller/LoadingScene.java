@@ -22,7 +22,7 @@ public class LoadingScene extends GameScene {
 	}
 
 	private void placeOutLoadingText() {
-		Text loadingText = new Text(0, 0, GlobalResources.getInstance().menuFont, "Loading...");
+		Text loadingText = new Text(0, 0, GlobalResources.getInstance().menuItemFont, "Loading...");
 		
 		// center the text both horizontally and vertically. 
 		float x = this.camera.getWidth() / 2.0f - loadingText.getWidth() / 2.0f;

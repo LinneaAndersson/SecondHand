@@ -33,7 +33,7 @@ public class SettingsMenuScene extends GameMenuScene implements IOnMenuItemClick
 		List<GameMenuScene.MenuItem> menuItems = new ArrayList<GameMenuScene.MenuItem>();
 		menuItems.add(new MenuItem(MENU_VOLUME, "volume"));
 		
-		layoutCenteredMenu(menuItems, GlobalResources.getInstance().menuFont, 20);
+		layoutCenteredMenu(menuItems);
 		this.setOnMenuItemClickListener(this);
 	}
 

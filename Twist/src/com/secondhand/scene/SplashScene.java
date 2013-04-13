@@ -1,4 +1,4 @@
-package com.secondhand.twirl;
+package com.secondhand.scene;
 
 import org.anddev.andengine.engine.camera.Camera;
 import org.anddev.andengine.entity.modifier.MoveXModifier;

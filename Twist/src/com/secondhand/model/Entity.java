@@ -18,8 +18,8 @@ public abstract class Entity {
 		radius=r;
 	}
 	
-	public void setVector(){
-		
+	public void setVector(Vector2 v){
+		vector = v;
 	}
 	
 	public int getRadius(){

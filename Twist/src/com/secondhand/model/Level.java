@@ -1,10 +1,10 @@
 package com.secondhand.model;
 
+import java.util.Iterator;
 import java.util.List;
 
 import org.anddev.andengine.engine.handler.physics.PhysicsHandler;
 import org.anddev.andengine.entity.shape.IShape;
-import org.anddev.andengine.entity.shape.Shape;
 import org.anddev.andengine.extension.physics.box2d.PhysicsConnector;
 import org.anddev.andengine.extension.physics.box2d.PhysicsFactory;
 import org.anddev.andengine.extension.physics.box2d.PhysicsWorld;
@@ -23,6 +23,7 @@ public class Level {
 	private Entity player;
 
 	// many constructors necessary?
+	// default maxsize?
 	public Level() {
 		this(100);
 	}
@@ -58,6 +59,7 @@ public class Level {
 	}
 
 	public void registerEntities() {
+		registerPlayer();
 		for(Entity e : entityList){
 			registerEntity(e);
 		}
@@ -76,7 +78,9 @@ public class Level {
 		Body body = PhysicsFactory.createCircleBody(pW, sh,
 				BodyType.DynamicBody,
 				PhysicsFactory.createFixtureDef(1, 0.5f, 0.5f));
-
+		// a connection between a body and an entity
+		body.setUserData(entity);
+		
 		pW.registerPhysicsConnector(new PhysicsConnector(sh, body, true, true));
 		
 	}
@@ -94,14 +98,26 @@ public class Level {
 		Body body = PhysicsFactory.createCircleBody(pW, sh,
 				BodyType.DynamicBody,
 				PhysicsFactory.createFixtureDef(1, 0.5f, 0.5f));
-
+		
+		// a connection between a body and an entity
+		body.setUserData(player);
+		
 		pW.registerPhysicsConnector(new PhysicsConnector(sh, body, true, true));
 	}
 	
+	// i wonder if all this is needed
 	public void moveEntitys(Vector2 v){
 		playerHandler.accelerate(v.x, v.y);
+		player.setVector(v);
 		
-		
+		Iterator<Body> bit = pW.getBodies();
+		Body tmp;
+		Entity e;
+		while(bit.hasNext()){
+			tmp = bit.next();
+			e = (Entity) tmp.getUserData();
+			e.setVector(tmp.getLinearVelocity());
+		}
 	}
 
 	public boolean checkPlayerSize() {

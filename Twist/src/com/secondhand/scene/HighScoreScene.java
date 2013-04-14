@@ -3,12 +3,14 @@ package com.secondhand.scene;
 import org.anddev.andengine.engine.Engine;
 import org.anddev.andengine.entity.text.Text;
 
+import android.content.Context;
+
 import com.secondhand.twirl.GlobalResources;
 
 public class HighScoreScene extends GameScene {
 
-	public HighScoreScene(Engine engine) {
-		super(engine);
+	public HighScoreScene(Engine engine, Context context) {
+		super(engine, context);
 	}
 
 	@Override

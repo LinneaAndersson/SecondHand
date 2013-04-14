@@ -41,7 +41,7 @@ public class MainActivity extends BaseGameActivity {
 	    TextureRegionLoader.getInstance().initialize(this, engine);
 	    
     
-	    SceneManager.getInstance().initialize(engine);
+	    SceneManager.getInstance().initialize(engine, this);
 	    
 	     return engine;	
 	}

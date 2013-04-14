@@ -3,6 +3,8 @@ package com.secondhand.controller;
 import org.anddev.andengine.engine.Engine;
 import org.anddev.andengine.entity.text.Text;
 
+import android.content.Context;
+
 import com.secondhand.debug.MyDebug;
 import com.secondhand.scene.GameScene;
 import com.secondhand.twirl.GlobalResources;
@@ -13,8 +15,8 @@ public class LoadingScene extends GameScene {
 	// the minimum time the loading screen will be shown.
 	public static final int MINIMUM_LOADNG_TIME = 1000;
 
-	public LoadingScene(final Engine engine) {
-		super(engine);
+	public LoadingScene(final Engine engine, Context context) {
+		super(engine, context);
 	}
 
 	@Override

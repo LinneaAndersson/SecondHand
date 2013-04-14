@@ -2,6 +2,7 @@ package com.secondhand.controller;
 
 import org.anddev.andengine.engine.Engine;
 
+import android.content.Context;
 import android.view.KeyEvent;
 
 import com.secondhand.scene.GamePlayScene;
@@ -42,16 +43,15 @@ public class SceneManager {
 	/**
 	 * Setup this singelton class for usage.
 	 * */
-	public void initialize(final Engine engine) {
+	public void initialize(final Engine engine, final Context context) {
 		this.engine = engine;
 		
 		// IMPORTANT: when you want to add a new scene to the app, it's constructor MUST be called here.
-		loadingScene = new LoadingScene(this.engine);
-		mainMenuScene = new MainMenuScene(this.engine);
-		this.settingsMenuScene = new SettingsMenuScene(this.engine);
-		this.gamePlayScene = new GamePlayScene(this.engine);
-		this.highScoreScene = new HighScoreScene(this.engine);
-		
+		loadingScene = new LoadingScene(this.engine, context);
+		mainMenuScene = new MainMenuScene(this.engine, context);
+		this.settingsMenuScene = new SettingsMenuScene(this.engine, context);
+		this.gamePlayScene = new GamePlayScene(this.engine, context);
+		this.highScoreScene = new HighScoreScene(this.engine, context);
 	}
 
 	public AllScenes getCurrentSceneEnum() {

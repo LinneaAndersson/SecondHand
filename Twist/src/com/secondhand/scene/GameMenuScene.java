@@ -11,6 +11,7 @@ import org.anddev.andengine.entity.scene.menu.item.TextMenuItem;
 import org.anddev.andengine.entity.text.Text;
 import org.anddev.andengine.opengl.font.Font;
 
+import android.content.Context;
 import android.view.KeyEvent;
 
 import com.secondhand.controller.IGameScene;
@@ -26,13 +27,14 @@ public abstract class GameMenuScene extends MenuScene implements IGameScene{
 
 	protected final Camera camera;
 	protected final Engine engine;
+	protected final Context context;
 	
-	public GameMenuScene(Engine engine) {
+	public GameMenuScene(Engine engine, Context context) {
 		super(engine.getCamera());
 		
 		// we do this to keep the API consistent
 		this.camera = this.mCamera;
-		
+		this.context = context;
 		this.engine = engine;
 	}
 

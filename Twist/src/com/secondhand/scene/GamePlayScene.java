@@ -2,6 +2,8 @@ package com.secondhand.scene;
 
 import org.anddev.andengine.engine.Engine;
 
+import android.content.Context;
+
 public class GamePlayScene extends GameScene {
 
 	// this way of doing things will not work with the SceneManager.
@@ -13,8 +15,8 @@ public class GamePlayScene extends GameScene {
 		setBackground(background);
 	}*/
 	
-	public GamePlayScene(Engine engine) {
-		super(engine);
+	public GamePlayScene(Engine engine, Context context) {
+		super(engine, context);
 	}
 
 	@Override

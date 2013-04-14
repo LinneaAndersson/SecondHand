@@ -7,6 +7,7 @@ import org.anddev.andengine.entity.scene.Scene;
 
 import com.secondhand.controller.IGameScene;
 
+import android.content.Context;
 import android.view.KeyEvent;
 
 /**
@@ -17,11 +18,13 @@ public abstract class GameScene extends Scene implements IGameScene {
 
 	protected final Camera camera;
 	protected final Engine engine;
+	protected final Context context;
 	
-    public GameScene(Engine engine) {
+    public GameScene(Engine engine, Context context) {
         super();
         this.camera = engine.getCamera();
         this.engine = engine;
+        this.context = context;
     }
 
     @Override

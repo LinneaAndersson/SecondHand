@@ -13,8 +13,9 @@ import org.anddev.andengine.entity.text.Text;
 import org.anddev.andengine.opengl.font.Font;
 
 
+import android.content.Context;
+
 import com.secondhand.controller.SceneManager.AllScenes;
-import com.secondhand.debug.MyDebug;
 import com.secondhand.twirl.GlobalResources;
 
 public class SettingsMenuScene extends GameMenuScene implements IOnMenuItemClickListener {
@@ -33,8 +34,8 @@ public class SettingsMenuScene extends GameMenuScene implements IOnMenuItemClick
 	
 	private ChangeableText volumeText;
 	
-	public SettingsMenuScene(Engine engine) {
-		super(engine);
+	public SettingsMenuScene(Engine engine, Context context) {
+		super(engine, context);
 		
 		// used for volume control:
 		this.soundManager =this.engine.getSoundManager();

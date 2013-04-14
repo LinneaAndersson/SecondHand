@@ -2,6 +2,8 @@ package com.secondhand.scene;
 
 import java.util.ArrayList;
 
+import android.content.Context;
+
 import com.secondhand.controller.SceneManager.AllScenes;
 import java.util.List;
 
@@ -20,8 +22,8 @@ public class MainMenuScene extends GameMenuScene implements IOnMenuItemClickList
 	private static final int MENU_HIGH_SCORE = 1;
 	private static final int MENU_SETTINGS = 2;
 	
-	public MainMenuScene(Engine engine) {
-		super(engine);
+	public MainMenuScene(Engine engine, Context context) {
+		super(engine, context);
 	}
 
 	@Override

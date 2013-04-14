@@ -34,4 +34,5 @@ public class HighScoreScene extends GameScene {
 		
 	}
 
+
 }

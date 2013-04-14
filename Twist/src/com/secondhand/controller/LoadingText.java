@@ -68,12 +68,9 @@ public class LoadingText extends ChangeableText {
 		
 		secondsPassedSinceLastUpdate += pSecondsElapsed;
 		
-		MyDebug.d("time: " + secondsPassedSinceLastUpdate);
-		
 		if(secondsPassedSinceLastUpdate >= SECONDS_PER_STRING) {
 			secondsPassedSinceLastUpdate = 0;
 			String next = getNextString();
-			MyDebug.d("next: " + next);
 			this.setText(next);
 		}
 		

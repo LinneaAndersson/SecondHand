@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import com.secondhand.controller.SceneManager.AllScenes;
 import java.util.List;
 
-import org.anddev.andengine.engine.camera.Camera;
+import org.anddev.andengine.engine.Engine;
 import org.anddev.andengine.entity.scene.menu.MenuScene;
 import org.anddev.andengine.entity.scene.menu.item.IMenuItem;
 
@@ -20,8 +20,8 @@ public class MainMenuScene extends GameMenuScene implements IOnMenuItemClickList
 	private static final int MENU_HIGH_SCORE = 1;
 	private static final int MENU_SETTINGS = 2;
 	
-	public MainMenuScene(Camera camera) {
-		super(camera);
+	public MainMenuScene(Engine engine) {
+		super(engine);
 	}
 
 	@Override

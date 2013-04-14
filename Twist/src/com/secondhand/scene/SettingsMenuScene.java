@@ -1,7 +1,7 @@
 package com.secondhand.scene;
 
 
-import org.anddev.andengine.engine.camera.Camera;
+import org.anddev.andengine.engine.Engine;
 import org.anddev.andengine.entity.scene.menu.MenuScene;
 import org.anddev.andengine.entity.scene.menu.MenuScene.IOnMenuItemClickListener;
 import org.anddev.andengine.entity.scene.menu.item.IMenuItem;
@@ -19,8 +19,8 @@ public class SettingsMenuScene extends GameMenuScene implements IOnMenuItemClick
 	private static final int MENU_HIGHER = 0;
 	private static final int MENU_LOWER = 1;
 	
-	public SettingsMenuScene(Camera camera) {
-		super(camera);
+	public SettingsMenuScene(Engine engine) {
+		super(engine);
 	}
 
 	@Override

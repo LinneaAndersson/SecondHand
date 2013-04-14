@@ -2,6 +2,7 @@ package com.secondhand.scene;
 
 import java.util.List;
 
+import org.anddev.andengine.engine.Engine;
 import org.anddev.andengine.engine.camera.Camera;
 import org.anddev.andengine.entity.scene.Scene;
 import org.anddev.andengine.entity.scene.menu.MenuScene;
@@ -23,8 +24,16 @@ import com.secondhand.twirl.GlobalResources;
  */
 public abstract class GameMenuScene extends MenuScene implements IGameScene{
 
-	public GameMenuScene(Camera camera) {
-		super(camera);
+	protected final Camera camera;
+	protected final Engine engine;
+	
+	public GameMenuScene(Engine engine) {
+		super(engine.getCamera());
+		
+		// we do this to keep the API consistent
+		this.camera = this.mCamera;
+		
+		this.engine = engine;
 	}
 
 	@Override
@@ -66,7 +75,7 @@ public abstract class GameMenuScene extends MenuScene implements IGameScene{
 
 		Text headlineText = new Text(0,y,menuHeadlineFont, headline);
 
-		final float x = this.mCamera.getWidth() / 2.0f - headlineText.getWidth() / 2.0f;
+		final float x = this.camera.getWidth() / 2.0f - headlineText.getWidth() / 2.0f;
 		headlineText.setPosition(x,y);
 
 		this.attachChild(headlineText);
@@ -90,7 +99,7 @@ public abstract class GameMenuScene extends MenuScene implements IGameScene{
 		final float menuHeight = menuItems.size() * fontHeight + (menuItems.size() - 1)  * spacingBetweenItems;
 
 		// y-coordinate of the menu item.
-		float y = (this.mCamera.getHeight() - startY) / 2.0f - menuHeight / 2.0f + startY;
+		float y = (this.camera.getHeight() - startY) / 2.0f - menuHeight / 2.0f + startY;
 
 		for(GameMenuScene.MenuItem menuItem : menuItems) {
 
@@ -98,7 +107,7 @@ public abstract class GameMenuScene extends MenuScene implements IGameScene{
 
 			IMenuItem item = new TextMenuItem(menuItem.id, menuItemFont, menuItem.text);
 
-			final float x = this.mCamera.getWidth() / 2.0f - item.getWidth() / 2.0f;
+			final float x = this.camera.getWidth() / 2.0f - item.getWidth() / 2.0f;
 
 			item.setPosition(x, y);
 			addMenuItem(item);

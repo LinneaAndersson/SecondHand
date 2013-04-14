@@ -1,6 +1,6 @@
 package com.secondhand.controller;
 
-import org.anddev.andengine.engine.camera.Camera;
+import org.anddev.andengine.engine.Engine;
 import org.anddev.andengine.entity.text.Text;
 
 import com.secondhand.debug.MyDebug;
@@ -13,8 +13,8 @@ public class LoadingScene extends GameScene {
 	// the minimum time the loading screen will be shown.
 	public static final int MINIMUM_LOADNG_TIME = 1000;
 
-	public LoadingScene(final Camera camera) {
-		super(camera);
+	public LoadingScene(final Engine engine) {
+		super(engine);
 	}
 
 	@Override

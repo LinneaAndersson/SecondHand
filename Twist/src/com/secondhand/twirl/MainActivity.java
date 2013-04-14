@@ -15,7 +15,6 @@ import com.secondhand.controller.SceneManager;
 import com.secondhand.loader.FontLoader;
 import com.secondhand.loader.SoundLoader;
 import com.secondhand.loader.TextureRegionLoader;
-import com.secondhand.scene.MainMenuScene;
 
 public class MainActivity extends BaseGameActivity {
 
@@ -24,7 +23,6 @@ public class MainActivity extends BaseGameActivity {
 	
 	SmoothCamera camera;
 	
-	MainMenuScene mainMenuScene;
 	
 	@Override
 	public Engine onLoadEngine() {
@@ -41,8 +39,7 @@ public class MainActivity extends BaseGameActivity {
 	    SoundLoader.getInstance().initialize(this, engine);
 	    TextureRegionLoader.getInstance().initialize(this, engine);
 	    
-	    mainMenuScene = new MainMenuScene(camera);
-	    
+    
 	    SceneManager.getInstance().initialize(engine);
 	    
 	     return engine;	

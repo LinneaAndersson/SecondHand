@@ -1,14 +1,14 @@
 package com.secondhand.scene;
 
-import org.anddev.andengine.engine.camera.Camera;
+import org.anddev.andengine.engine.Engine;
 import org.anddev.andengine.entity.text.Text;
 
 import com.secondhand.twirl.GlobalResources;
 
 public class HighScoreScene extends GameScene {
 
-	public HighScoreScene(Camera camera) {
-		super(camera);
+	public HighScoreScene(Engine engine) {
+		super(engine);
 	}
 
 	@Override

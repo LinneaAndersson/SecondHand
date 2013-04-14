@@ -1,6 +1,6 @@
 package com.secondhand.scene;
 
-import org.anddev.andengine.engine.camera.Camera;
+import org.anddev.andengine.engine.Engine;
 
 public class GamePlayScene extends GameScene {
 
@@ -13,8 +13,8 @@ public class GamePlayScene extends GameScene {
 		setBackground(background);
 	}*/
 	
-	public GamePlayScene(Camera camera) {
-		super(camera);
+	public GamePlayScene(Engine engine) {
+		super(engine);
 	}
 
 	@Override

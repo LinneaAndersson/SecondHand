@@ -1,10 +1,11 @@
-*.class
+
 
 # Package Files #
-*.jar
-*.war
+*.class
 *.ear
-Twist/gen
-Twist/bin
-
+*.jar
 *.snapshot
+*.war
+/TODO
+Twist/bin
+Twist/gen

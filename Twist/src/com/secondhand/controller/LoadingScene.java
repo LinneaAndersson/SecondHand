@@ -1,6 +1,7 @@
 package com.secondhand.controller;
 
 import org.anddev.andengine.engine.Engine;
+import org.anddev.andengine.entity.text.ChangeableText;
 import org.anddev.andengine.entity.text.Text;
 
 import android.content.Context;
@@ -14,7 +15,7 @@ public class LoadingScene extends GameScene {
 
 	// specified in milliseconds.
 	// the minimum time the loading screen will be shown.
-	public static final int MINIMUM_LOADNG_TIME = 1000;
+	public static final int MINIMUM_LOADNG_TIME = 3000;
 
 	public LoadingScene(final Engine engine, Context context) {
 		super(engine, context);
@@ -25,23 +26,11 @@ public class LoadingScene extends GameScene {
 		GlobalResources.getInstance().load();			
 	}
 
-	private void placeOutLoadingText() {
-		Text loadingText = new Text(0, 0, GlobalResources.getInstance().menuItemFont, 
-				LocalizationStrings.getInstance().getLocalizedString("loading") + "...");
-		
-		// center the "loading" text both horizontally and vertically. 
-		float x = this.camera.getWidth() / 2.0f - loadingText.getWidth() / 2.0f;
-		float y = this.camera.getHeight() / 2.0f - loadingText.getHeight() / 2.0f;
-		loadingText.setPosition(x, y);
-		
-		this.attachChild(loadingText);
-		
-	}
-
 	@Override
 	public void loadScene() {
 
-		placeOutLoadingText();
+		// add loading text
+		this.attachChild(new LoadingText(this.camera));
 		
 		// in the loading scene we will load all the resources of all the scenes.
 	

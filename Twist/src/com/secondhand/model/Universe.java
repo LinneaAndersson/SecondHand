@@ -12,6 +12,7 @@ public class Universe {
 	//perhaps create a tutorialLevel?
 	public Universe(){
 		currentLevel = new Level();
+		
 	}
 	
 	public int getlvlNbr(){
@@ -23,11 +24,15 @@ public class Universe {
 	}
 	
 	//TODO how to decide what to have on each successive level? 
-	public void NextLevel(){
+	public void nextLevel(){
 		currentLevel = new Level();
 	}
 	
 	public void Update(Vector2 v){
 		currentLevel.moveEntitys(v);
+		if(currentLevel.checkPlayerSize()){
+			
+			nextLevel();
+		}
 	}
 }

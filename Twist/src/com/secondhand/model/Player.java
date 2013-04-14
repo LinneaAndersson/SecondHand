@@ -21,6 +21,10 @@ public class Player extends BlackHole{
 	public void increment(int inc){
 		score=score+inc;
 	}
+	
+	public void increaseSize(int inc){
+		setRadius(getRadius()+inc);
+	}
 
 	@Override
 	public Entity_enum getEnum() {

@@ -20,6 +20,7 @@ public class Level {
 	private int maxSize;
 	private PhysicsWorld pW;
 	private PhysicsHandler playerHandler;
+	private Entity player;
 
 	// many constructors necessary?
 	public Level() {
@@ -33,6 +34,7 @@ public class Level {
 	public Level(int maxSize, PhysicsWorld pW) {
 		this.maxSize = maxSize;
 		this.pW = pW;
+		player = new Player(new Vector2(), 10);
 	}
 
 	public void addEntity(Entity entity) {
@@ -75,12 +77,13 @@ public class Level {
 				BodyType.DynamicBody,
 				PhysicsFactory.createFixtureDef(1, 0.5f, 0.5f));
 
-		pW.registerPhysicsConnector(new PhysicsConnector(sh, body));
+		pW.registerPhysicsConnector(new PhysicsConnector(sh, body, true, true));
 		
 	}
 	
-	public void registerPlayer(Entity entity){
-		IShape sh = new Circle(0, 0, entity.getRadius());
+	public void registerPlayer(){
+		
+		IShape sh = new Circle(0, 0, player.getRadius());
 		
 		playerHandler = new PhysicsHandler(sh);
 
@@ -92,11 +95,17 @@ public class Level {
 				BodyType.DynamicBody,
 				PhysicsFactory.createFixtureDef(1, 0.5f, 0.5f));
 
-		pW.registerPhysicsConnector(new PhysicsConnector(sh, body));
+		pW.registerPhysicsConnector(new PhysicsConnector(sh, body, true, true));
 	}
 	
 	public void moveEntitys(Vector2 v){
 		playerHandler.accelerate(v.x, v.y);
+		
+		
+	}
+
+	public boolean checkPlayerSize() {
+		return player.getRadius() >= maxSize;
 		
 	}
 

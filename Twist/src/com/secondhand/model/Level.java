@@ -1,4 +1,4 @@
-package com.seconhand.model;
+package com.secondhand.model;
 
 import java.util.List;
 

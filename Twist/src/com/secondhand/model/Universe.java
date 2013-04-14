@@ -1,4 +1,4 @@
-package com.seconhand.model;
+package com.secondhand.model;
 
 
 public class Universe {

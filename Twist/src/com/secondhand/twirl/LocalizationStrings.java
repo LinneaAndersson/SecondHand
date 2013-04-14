@@ -1,9 +1,5 @@
 package com.secondhand.twirl;
 
-import java.util.Locale;
-
-import com.secondhand.debug.MyDebug;
-
 import android.content.Context;
 
 /**

@@ -1,15 +1,12 @@
 package com.secondhand.controller;
 
 import org.anddev.andengine.engine.Engine;
-import org.anddev.andengine.entity.text.ChangeableText;
-import org.anddev.andengine.entity.text.Text;
 
 import android.content.Context;
 
 import com.secondhand.debug.MyDebug;
 import com.secondhand.scene.GameScene;
 import com.secondhand.twirl.GlobalResources;
-import com.secondhand.twirl.LocalizationStrings;
 
 public class LoadingScene extends GameScene {
 

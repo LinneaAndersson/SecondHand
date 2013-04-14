@@ -18,6 +18,7 @@ import android.preference.PreferenceManager;
 
 import com.secondhand.controller.SceneManager.AllScenes;
 import com.secondhand.twirl.GlobalResources;
+import com.secondhand.twirl.LocalizationStrings;
 
 public class SettingsMenuScene extends GameMenuScene implements IOnMenuItemClickListener {
 
@@ -61,8 +62,7 @@ public class SettingsMenuScene extends GameMenuScene implements IOnMenuItemClick
 	public void loadScene() {
 		
 		// layout headline
-		int menuStartY = layoutHeadline("Settings");	
-		
+		int menuStartY = layoutHeadline(LocalizationStrings.getInstance().getLocalizedString("menu_settings"));	
 		
 		// constants
 		
@@ -78,7 +78,7 @@ public class SettingsMenuScene extends GameMenuScene implements IOnMenuItemClick
 		int y = menuStartY;
 		
 		// volume subheading
-		this.attachChild(new Text(x,y, font, "volume"));
+		this.attachChild(new Text(x,y, font, LocalizationStrings.getInstance().getLocalizedString("menu_volume")));
 		y += fontHeight + subheadlineInbetweenSpacing;
 		
 		// the actual volume control:

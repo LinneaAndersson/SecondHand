@@ -9,4 +9,6 @@
     <!-- TODO: come up with a better translation for "high score" -->
     <string name="menu_high_score">Poänglista</string>
     
+    <string name="menu_volume">Volym</string>
+    
 </resources>

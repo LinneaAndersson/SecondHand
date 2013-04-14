@@ -24,6 +24,8 @@ public class GlobalResources {
 		}
 		return instance;
 	}
+	
+	private GlobalResources() {}
 
 	public void load() {	
 		this.menuItemFont = FontLoader.getInstance().loadFont(

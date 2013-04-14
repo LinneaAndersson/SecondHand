@@ -6,14 +6,12 @@ import com.secondhand.controller.SceneManager.AllScenes;
 import java.util.List;
 
 import org.anddev.andengine.engine.camera.Camera;
-import org.anddev.andengine.entity.scene.background.ColorBackground;
 import org.anddev.andengine.entity.scene.menu.MenuScene;
 import org.anddev.andengine.entity.scene.menu.item.IMenuItem;
 
 import org.anddev.andengine.entity.scene.menu.MenuScene.IOnMenuItemClickListener;
 
 import com.secondhand.controller.SceneManager;
-import com.secondhand.controller.SceneManager.AllScenes;
 import com.secondhand.debug.MyDebug;
 
 public class MainMenuScene extends GameMenuScene implements IOnMenuItemClickListener {
@@ -66,7 +64,7 @@ public class MainMenuScene extends GameMenuScene implements IOnMenuItemClickList
 	}
 
 	@Override
-	public AllScenes get_parent() {
+	public AllScenes getParentScene() {
 		return null;
 	}
 

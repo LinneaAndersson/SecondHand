@@ -1,10 +1,7 @@
 package com.secondhand.scene;
 
-import java.util.ArrayList;
-import java.util.List;
 
 import org.anddev.andengine.engine.camera.Camera;
-import org.anddev.andengine.entity.scene.background.ColorBackground;
 import org.anddev.andengine.entity.scene.menu.MenuScene;
 import org.anddev.andengine.entity.scene.menu.MenuScene.IOnMenuItemClickListener;
 import org.anddev.andengine.entity.scene.menu.item.IMenuItem;
@@ -12,9 +9,7 @@ import org.anddev.andengine.entity.scene.menu.item.TextMenuItem;
 import org.anddev.andengine.entity.text.Text;
 import org.anddev.andengine.opengl.font.Font;
 
-import android.view.KeyEvent;
 
-import com.secondhand.controller.SceneManager;
 import com.secondhand.controller.SceneManager.AllScenes;
 import com.secondhand.debug.MyDebug;
 import com.secondhand.twirl.GlobalResources;
@@ -96,7 +91,7 @@ public class SettingsMenuScene extends GameMenuScene implements IOnMenuItemClick
 	}
 
 	@Override
-	public AllScenes get_parent() {
+	public AllScenes getParentScene() {
 		return AllScenes.MAIN_MENU_SCENE;
 	}
 	

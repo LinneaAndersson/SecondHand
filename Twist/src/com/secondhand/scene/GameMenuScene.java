@@ -37,7 +37,7 @@ public abstract class GameMenuScene extends MenuScene implements IGameScene{
 	@Override
 	public boolean onKeyDown(final int pKeyCode, final KeyEvent pEvent) {
 		if (pKeyCode == KeyEvent.KEYCODE_BACK && pEvent.getAction() == KeyEvent.ACTION_DOWN) {
-			AllScenes parent = get_parent();
+			AllScenes parent = getParentScene();
 			if (parent != null)
 				SceneManager.getInstance().setCurrentSceneEnum(parent);
 			else
@@ -49,7 +49,7 @@ public abstract class GameMenuScene extends MenuScene implements IGameScene{
 	}
 
     	// Returns the parent-scene, for example SettingsMenuScene returns AllScenes.MAIN_MENU_SCENE
-	public abstract AllScenes get_parent();
+	public abstract AllScenes getParentScene();
 
 
 

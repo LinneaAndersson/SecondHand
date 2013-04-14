@@ -102,6 +102,7 @@ public class SettingsMenuScene extends GameMenuScene implements IOnMenuItemClick
 	}
 	
 	
+	
 	private void updateVolumeText() {
 		int volume = sharedPreferences.getInt(volumeSettingString, DEFAULT_VOLUME);
 		volumeText.setText(volume + "%");

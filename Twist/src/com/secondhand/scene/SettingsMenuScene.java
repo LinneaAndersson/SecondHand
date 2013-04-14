@@ -12,6 +12,10 @@ import org.anddev.andengine.entity.scene.menu.item.TextMenuItem;
 import org.anddev.andengine.entity.text.Text;
 import org.anddev.andengine.opengl.font.Font;
 
+import android.view.KeyEvent;
+
+import com.secondhand.controller.SceneManager;
+import com.secondhand.controller.SceneManager.AllScenes;
 import com.secondhand.debug.MyDebug;
 import com.secondhand.twirl.GlobalResources;
 
@@ -91,4 +95,9 @@ public class SettingsMenuScene extends GameMenuScene implements IOnMenuItemClick
 
 	}
 
+	@Override
+	public AllScenes get_parent() {
+		return AllScenes.MAIN_MENU_SCENE;
+	}
+	
 }

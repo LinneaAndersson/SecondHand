@@ -11,6 +11,7 @@ import org.anddev.andengine.entity.scene.menu.item.IMenuItem;
 import org.anddev.andengine.entity.scene.menu.MenuScene.IOnMenuItemClickListener;
 
 import com.secondhand.controller.SceneManager;
+import com.secondhand.controller.SceneManager.AllScenes;
 import com.secondhand.debug.MyDebug;
 
 public class MainMenuScene extends GameMenuScene implements IOnMenuItemClickListener {
@@ -60,6 +61,11 @@ public class MainMenuScene extends GameMenuScene implements IOnMenuItemClickList
 			return false;
 		}
 
+	}
+
+	@Override
+	public AllScenes get_parent() {
+		return null;
 	}
 
 }

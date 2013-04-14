@@ -9,6 +9,7 @@ import org.anddev.andengine.extension.physics.box2d.PhysicsConnector;
 import org.anddev.andengine.extension.physics.box2d.PhysicsFactory;
 import org.anddev.andengine.extension.physics.box2d.PhysicsWorld;
 
+import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.BodyDef.BodyType;
 import com.secondhand.opengl.Circle;
@@ -18,7 +19,7 @@ public class Level {
 	private List<Entity> entityList;
 	private int maxSize;
 	private PhysicsWorld pW;
-	private PhysicsHandler pH;
+	private PhysicsHandler playerHandler;
 
 	// many constructors necessary?
 	public Level() {
@@ -62,18 +63,40 @@ public class Level {
 
 	public void registerEntity(Entity entity) {
 
-		IShape sh = new Circle(0,0,entity.getRadius());
+		IShape sh = new Circle(0, 0, entity.getRadius());
+		
+		PhysicsHandler pH = new PhysicsHandler(sh);
 
-		pH = new PhysicsHandler(sh);
-
+		
 		sh.registerUpdateHandler(pH);
-		IShape p = new Circle(maxSize, maxSize, maxSize);
-		Body body = PhysicsFactory.createCircleBody(pW, p,
+		
+		
+		Body body = PhysicsFactory.createCircleBody(pW, sh,
 				BodyType.DynamicBody,
 				PhysicsFactory.createFixtureDef(1, 0.5f, 0.5f));
 
 		pW.registerPhysicsConnector(new PhysicsConnector(sh, body));
 		
+	}
+	
+	public void registerPlayer(Entity entity){
+		IShape sh = new Circle(0, 0, entity.getRadius());
+		
+		playerHandler = new PhysicsHandler(sh);
+
+		
+		sh.registerUpdateHandler(playerHandler);
+		
+		
+		Body body = PhysicsFactory.createCircleBody(pW, sh,
+				BodyType.DynamicBody,
+				PhysicsFactory.createFixtureDef(1, 0.5f, 0.5f));
+
+		pW.registerPhysicsConnector(new PhysicsConnector(sh, body));
+	}
+	
+	public void moveEntitys(Vector2 v){
+		playerHandler.accelerate(v.x, v.y);
 		
 	}
 

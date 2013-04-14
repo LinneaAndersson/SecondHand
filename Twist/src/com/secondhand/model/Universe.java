@@ -1,5 +1,7 @@
 package com.secondhand.model;
 
+import com.badlogic.gdx.math.Vector2;
+
 
 public class Universe {
 	private static Level currentLevel;
@@ -25,4 +27,7 @@ public class Universe {
 		currentLevel = new Level();
 	}
 	
+	public void Update(Vector2 v){
+		currentLevel.moveEntitys(v);
+	}
 }

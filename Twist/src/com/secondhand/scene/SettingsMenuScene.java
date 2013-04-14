@@ -12,8 +12,9 @@ import org.anddev.andengine.entity.text.ChangeableText;
 import org.anddev.andengine.entity.text.Text;
 import org.anddev.andengine.opengl.font.Font;
 
-
 import android.content.Context;
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 
 import com.secondhand.controller.SceneManager.AllScenes;
 import com.secondhand.twirl.GlobalResources;
@@ -28,11 +29,18 @@ public class SettingsMenuScene extends GameMenuScene implements IOnMenuItemClick
 	// the volume change when a button in the control is pressed.
 	private static final int VOLUME_CHANGE = 10;
 	
+	// the strings used to identify the volume setting in the settings.
+	private static final String volumeSettingString = "volume";
+	
+	private static final int DEFAULT_VOLUME = VOLUME_SCALE_MAX;
 	
 	private final SoundManager soundManager;
 	private final MusicManager musicManager;
 	
 	private ChangeableText volumeText;
+	
+	SharedPreferences sharedPreferences;
+	SharedPreferences.Editor sharedPreferencesEditor;
 	
 	public SettingsMenuScene(Engine engine, Context context) {
 		super(engine, context);
@@ -44,7 +52,9 @@ public class SettingsMenuScene extends GameMenuScene implements IOnMenuItemClick
 
 	@Override
 	public void loadResources() {
-		// TODO: load the saved volume settings from a file.
+		// load the preferences:
+		sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this.context);
+		sharedPreferencesEditor = sharedPreferences.edit();
 	}
 
 	@Override
@@ -74,7 +84,8 @@ public class SettingsMenuScene extends GameMenuScene implements IOnMenuItemClick
 		// the actual volume control:
 		// TODO: make it look prettier.
 		
-		volumeText = new ChangeableText(x,y, font, "100%");
+		volumeText = new ChangeableText(x,y, font, "iojiojo");
+		updateVolumeText();
 		this.attachChild(volumeText);
 		y += fontHeight + subheadlineInbetweenSpacing;
 		
@@ -90,6 +101,12 @@ public class SettingsMenuScene extends GameMenuScene implements IOnMenuItemClick
 		this.setOnMenuItemClickListener(this);
 	}
 	
+	
+	private void updateVolumeText() {
+		int volume = sharedPreferences.getInt(volumeSettingString, DEFAULT_VOLUME);
+		volumeText.setText(volume + "%");
+	}
+	
 	// set the music and sound volume(a scale of 0-100 is used.
 	private void setSoundAndMusicVolume(final int newVolume) {
 		// sanity checking:
@@ -99,6 +116,10 @@ public class SettingsMenuScene extends GameMenuScene implements IOnMenuItemClick
 		
 		this.soundManager.setMasterVolume((float)newVolume / (float)VOLUME_SCALE_MAX);
 		this.musicManager.setMasterVolume((float)newVolume / (float)VOLUME_SCALE_MAX);
+		
+		// also save it in the settings:
+		sharedPreferencesEditor.putInt(volumeSettingString, newVolume);
+		sharedPreferencesEditor.commit();
 	}
 	
 	private int getSoundAndMusicVolume() {
@@ -122,7 +143,7 @@ public class SettingsMenuScene extends GameMenuScene implements IOnMenuItemClick
 
 	private void changeVolumeAndUpdateVolumeText(int volumeChange) {
 		changeSoundAndMusicVolume(volumeChange);
-		volumeText.setText(getSoundAndMusicVolume() + "%");
+		updateVolumeText();
 	}
 	
 	@Override

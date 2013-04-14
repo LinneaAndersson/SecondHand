@@ -32,6 +32,7 @@ public class MainActivity extends BaseGameActivity {
 	    EngineOptions engineOptions = new EngineOptions(
 	    		true, ScreenOrientation.LANDSCAPE, new RatioResolutionPolicy(CAMERA_WIDTH, CAMERA_HEIGHT), camera);
 	    engineOptions.setNeedsSound(true);
+	    engineOptions.setNeedsMusic(true);
 	    Engine engine = new Engine(engineOptions);
 	    
 	    // initialize loader classes:

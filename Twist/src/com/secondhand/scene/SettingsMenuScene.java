@@ -2,6 +2,8 @@ package com.secondhand.scene;
 
 
 import org.anddev.andengine.audio.music.MusicManager;
+import org.anddev.andengine.audio.sound.Sound;
+import org.anddev.andengine.audio.sound.SoundLibrary;
 import org.anddev.andengine.audio.sound.SoundManager;
 import org.anddev.andengine.engine.Engine;
 import org.anddev.andengine.entity.scene.menu.MenuScene;
@@ -17,6 +19,7 @@ import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 
 import com.secondhand.controller.SceneManager.AllScenes;
+import com.secondhand.loader.SoundLoader;
 import com.secondhand.twirl.GlobalResources;
 import com.secondhand.twirl.LocalizationStrings;
 
@@ -29,7 +32,7 @@ public class SettingsMenuScene extends GameMenuScene implements IOnMenuItemClick
 	private static final int VOLUME_SCALE_MAX = 100;
 	// the volume change when a button in the control is pressed.
 	private static final int VOLUME_CHANGE = 10;
-	
+		
 	// the strings used to identify the volume setting in the settings.
 	private static final String volumeSettingString = "volume";
 	
@@ -42,6 +45,8 @@ public class SettingsMenuScene extends GameMenuScene implements IOnMenuItemClick
 	
 	SharedPreferences sharedPreferences;
 	SharedPreferences.Editor sharedPreferencesEditor;
+	
+	Sound beep;
 	
 	public SettingsMenuScene(Engine engine, Context context) {
 		super(engine, context);
@@ -56,6 +61,8 @@ public class SettingsMenuScene extends GameMenuScene implements IOnMenuItemClick
 		// load the preferences:
 		sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this.context);
 		sharedPreferencesEditor = sharedPreferences.edit();
+		
+		beep = SoundLoader.getInstance().loadSound("beep.wav");
 	}
 
 	@Override
@@ -86,6 +93,8 @@ public class SettingsMenuScene extends GameMenuScene implements IOnMenuItemClick
 		
 		volumeText = new ChangeableText(x,y, font, "iojiojo");
 		updateVolumeText();
+		setSoundAndMusicVolume(sharedPreferences.getInt(volumeSettingString, DEFAULT_VOLUME));
+		
 		this.attachChild(volumeText);
 		y += fontHeight + subheadlineInbetweenSpacing;
 		
@@ -147,6 +156,7 @@ public class SettingsMenuScene extends GameMenuScene implements IOnMenuItemClick
 		updateVolumeText();
 	}
 	
+	
 	@Override
 	public boolean onMenuItemClicked(final MenuScene pMenuScene, final IMenuItem pMenuItem,
 			float pMenuItemLocalX, float pMenuItemLocalY) {
@@ -154,9 +164,11 @@ public class SettingsMenuScene extends GameMenuScene implements IOnMenuItemClick
 		switch(pMenuItem.getID()) {
 		case MENU_HIGHER:
 			changeVolumeAndUpdateVolumeText(VOLUME_CHANGE);
+			beep.play();
 			return true;
 		case MENU_LOWER:
 			changeVolumeAndUpdateVolumeText(-VOLUME_CHANGE);
+			beep.play();
 			return true;
 		default:
 			return false;

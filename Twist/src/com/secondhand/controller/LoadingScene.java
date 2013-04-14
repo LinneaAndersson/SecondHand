@@ -12,7 +12,7 @@ public class LoadingScene extends GameScene {
 
 	// specified in milliseconds.
 	// the minimum time the loading screen will be shown.
-	public static final int MINIMUM_LOADNG_TIME = 3000;
+	public static final int MINIMUM_LOADNG_TIME = 2000;
 
 	public LoadingScene(final Engine engine, Context context) {
 		super(engine, context);

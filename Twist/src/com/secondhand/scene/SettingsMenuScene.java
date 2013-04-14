@@ -82,11 +82,11 @@ public class SettingsMenuScene extends GameMenuScene implements IOnMenuItemClick
 		
 		switch(pMenuItem.getID()) {
 		case MENU_HIGHER:
-			MyDebug.i("higher volume")
-			raiseVolume();
+			MyDebug.i("higher volume");
+		//	raiseVolume();
 			return true;
 		case MENU_LOWER:
-			lowerVolume();
+	//		lowerVolume();
 			MyDebug.i("Lower volume");
 			return true;
 		default:

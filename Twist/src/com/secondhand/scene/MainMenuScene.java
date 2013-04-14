@@ -1,6 +1,8 @@
 package com.secondhand.scene;
 
 import java.util.ArrayList;
+
+import com.secondhand.controller.SceneManager.AllScenes;
 import java.util.List;
 
 import org.anddev.andengine.engine.camera.Camera;

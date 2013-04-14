@@ -39,8 +39,8 @@ public class MainMenuScene extends GameMenuScene implements IOnMenuItemClickList
 		// make a centered menu.
 		List<GameMenuScene.MenuItem> menuItems = new ArrayList<GameMenuScene.MenuItem>();
 		menuItems.add(new MenuItem(MENU_START, LocalizationStrings.getInstance().getLocalizedString("menu_start")));
-		menuItems.add(new MenuItem(MENU_SETTINGS, "options"));
-		menuItems.add(new MenuItem(MENU_HIGH_SCORE, "high score"));
+		menuItems.add(new MenuItem(MENU_SETTINGS, LocalizationStrings.getInstance().getLocalizedString("menu_settings")));
+		menuItems.add(new MenuItem(MENU_HIGH_SCORE, LocalizationStrings.getInstance().getLocalizedString("menu_high_score")));
 		
 		layoutCenteredMenu(menuStartX, menuItems);
 		this.setOnMenuItemClickListener(this);

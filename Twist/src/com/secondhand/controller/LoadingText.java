@@ -3,7 +3,6 @@ package com.secondhand.controller;
 import org.anddev.andengine.engine.camera.Camera;
 import org.anddev.andengine.entity.text.ChangeableText;
 
-import com.secondhand.debug.MyDebug;
 import com.secondhand.twirl.GlobalResources;
 import com.secondhand.twirl.LocalizationStrings;
 

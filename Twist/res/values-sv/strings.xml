@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Twirl</string>
+    
+    <string name="menu_start">Starta</string>
+    <string name="menu_settings">Inställningar</string>
+    
+    <!-- TODO: come up with a better translation for "high score" -->
+    <string name="menu_high_score">Poänglista</string>
+    
+</resources>

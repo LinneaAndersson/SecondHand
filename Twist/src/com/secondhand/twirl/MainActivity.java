@@ -40,6 +40,7 @@ public class MainActivity extends BaseGameActivity {
 	    SoundLoader.getInstance().initialize(this, engine);
 	    TextureRegionLoader.getInstance().initialize(this, engine);
 	    
+	    LocalizationStrings.getInstance().initialize(this);
     
 	    SceneManager.getInstance().initialize(engine, this);
 	    

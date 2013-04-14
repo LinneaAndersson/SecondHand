@@ -15,6 +15,7 @@ import org.anddev.andengine.entity.scene.menu.MenuScene.IOnMenuItemClickListener
 
 import com.secondhand.controller.SceneManager;
 import com.secondhand.debug.MyDebug;
+import com.secondhand.twirl.LocalizationStrings;
 
 public class MainMenuScene extends GameMenuScene implements IOnMenuItemClickListener {
 
@@ -34,11 +35,12 @@ public class MainMenuScene extends GameMenuScene implements IOnMenuItemClickList
 	public void loadScene() {
 		int menuStartX = layoutHeadline("Twirl");
 		
+		
 		// make a centered menu.
 		List<GameMenuScene.MenuItem> menuItems = new ArrayList<GameMenuScene.MenuItem>();
-		menuItems.add(new MenuItem(MENU_START, "start"));
-		menuItems.add(new MenuItem(MENU_SETTINGS, "options"));
-		menuItems.add(new MenuItem(MENU_HIGH_SCORE, "high score"));
+		menuItems.add(new MenuItem(MENU_START, LocalizationStrings.getInstance().getLocalizedString("menu_start")));
+		menuItems.add(new MenuItem(MENU_SETTINGS, LocalizationStrings.getInstance().getLocalizedString("menu_settings")));
+		menuItems.add(new MenuItem(MENU_HIGH_SCORE, LocalizationStrings.getInstance().getLocalizedString("menu_high_score")));
 		
 		layoutCenteredMenu(menuStartX, menuItems);
 		this.setOnMenuItemClickListener(this);

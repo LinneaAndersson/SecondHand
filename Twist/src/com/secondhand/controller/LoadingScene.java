@@ -8,6 +8,7 @@ import android.content.Context;
 import com.secondhand.debug.MyDebug;
 import com.secondhand.scene.GameScene;
 import com.secondhand.twirl.GlobalResources;
+import com.secondhand.twirl.LocalizationStrings;
 
 public class LoadingScene extends GameScene {
 
@@ -25,7 +26,8 @@ public class LoadingScene extends GameScene {
 	}
 
 	private void placeOutLoadingText() {
-		Text loadingText = new Text(0, 0, GlobalResources.getInstance().menuItemFont, "Loading...");
+		Text loadingText = new Text(0, 0, GlobalResources.getInstance().menuItemFont, 
+				LocalizationStrings.getInstance().getLocalizedString("loading") + "...");
 		
 		// center the "loading" text both horizontally and vertically. 
 		float x = this.camera.getWidth() / 2.0f - loadingText.getWidth() / 2.0f;

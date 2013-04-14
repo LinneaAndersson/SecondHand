@@ -3,6 +3,9 @@
 
     <string name="app_name">Twirl</string>
     
+    <string name="loading">Laddar</string>
+    
+    
     <string name="menu_start">Starta</string>
     <string name="menu_settings">Inställningar</string>
     

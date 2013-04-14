@@ -3,14 +3,15 @@ package com.secondhand.model;
 import java.util.List;
 
 import org.anddev.andengine.engine.handler.physics.PhysicsHandler;
-import org.anddev.andengine.entity.sprite.Sprite;
+import org.anddev.andengine.entity.shape.IShape;
+import org.anddev.andengine.entity.shape.Shape;
 import org.anddev.andengine.extension.physics.box2d.PhysicsConnector;
 import org.anddev.andengine.extension.physics.box2d.PhysicsFactory;
 import org.anddev.andengine.extension.physics.box2d.PhysicsWorld;
 
 import com.badlogic.gdx.physics.box2d.Body;
-import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.BodyDef.BodyType;
+import com.secondhand.opengl.Circle;
 
 public class Level {
 
@@ -54,25 +55,26 @@ public class Level {
 	}
 
 	public void registerEntities() {
-		// TODO somehow connect entities to physics
-		// need factory?
-		// or make every entity register itself?
+		for(Entity e : entityList){
+			registerEntity(e);
+		}
 	}
 
 	public void registerEntity(Entity entity) {
 
-		Sprite sprite = new Sprite(0, 0, 0, 0, null);
+		IShape sh = new Circle(0,0,entity.getRadius());
 
-		pH = new PhysicsHandler(sprite);
+		pH = new PhysicsHandler(sh);
 
-		sprite.registerUpdateHandler(pH);
-
-		Body body = PhysicsFactory.createCircleBody(pW, sprite,
+		sh.registerUpdateHandler(pH);
+		IShape p = new Circle(maxSize, maxSize, maxSize);
+		Body body = PhysicsFactory.createCircleBody(pW, p,
 				BodyType.DynamicBody,
 				PhysicsFactory.createFixtureDef(1, 0.5f, 0.5f));
 
-		pW.registerPhysicsConnector(new PhysicsConnector(sprite, body));
-
+		pW.registerPhysicsConnector(new PhysicsConnector(sh, body));
+		
+		
 	}
 
 }

@@ -29,9 +29,6 @@ public class MainMenuScene extends GameMenuScene implements IOnMenuItemClickList
 
 	@Override
 	public void loadScene() {
-		
-		this.setBackground(new ColorBackground(0, 0, 0));
-		
 		int menuStartX = layoutHeadline("Twirl");
 		
 		// make a centered menu.

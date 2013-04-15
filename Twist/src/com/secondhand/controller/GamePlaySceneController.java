@@ -16,7 +16,7 @@ public class GamePlaySceneController {
 	private GameSceneTouchListener sceneListener;
 	
 	// Model
-	private Universe universe;
+	private Universe universe = Universe.getInstance();
 	
 	// Player sprite
 	private Circle player;
@@ -26,8 +26,7 @@ public class GamePlaySceneController {
 		scene.registerUpdateHandler(universe.getLevel().getPhysics());
 		sceneListener = new GameSceneTouchListener();
 		scene.setOnSceneTouchListener(sceneListener);
-		
-		universe = Universe.getInstance();
+
 		player = new Circle(0, 0, universe.getLevel().getPlayer().getRadius());
 		
 		scene.attachChild(player);

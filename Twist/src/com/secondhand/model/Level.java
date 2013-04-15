@@ -111,9 +111,10 @@ public class Level {
 	// Do we even use the vectors in entity?
 	// to me it seems that box2d works that out for us
 	public void moveEntitys(Vector2 v) {
-		if(v.x +v.y  == 0){
-		playerHandler.accelerate(v.x, v.y);
+		if (v.x + v.y == 0) {
+			playerHandler.accelerate(v.x, v.y);
 		}
+
 		Iterator<Body> bit = pW.getBodies();
 		Body tmp;
 		Entity e;
@@ -122,6 +123,7 @@ public class Level {
 			e = (Entity) tmp.getUserData();
 			e.setVector(tmp.getPosition());
 		}
+
 	}
 
 	public boolean checkPlayerSize() {

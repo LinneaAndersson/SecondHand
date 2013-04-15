@@ -3,7 +3,6 @@ package com.secondhand.scene;
 
 import org.anddev.andengine.audio.music.MusicManager;
 import org.anddev.andengine.audio.sound.Sound;
-import org.anddev.andengine.audio.sound.SoundLibrary;
 import org.anddev.andengine.audio.sound.SoundManager;
 import org.anddev.andengine.engine.Engine;
 import org.anddev.andengine.entity.scene.menu.MenuScene;

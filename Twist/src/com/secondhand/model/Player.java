@@ -3,10 +3,12 @@ package com.secondhand.model;
 import com.badlogic.gdx.math.Vector2;
 
 public class Player extends BlackHole{
-	private int score=0;
+	
+	private int score;
 	
 	public Player (Vector2 position, float radius) {
 		super(position,radius);
+		
 		this.score = 0;
 	}
 	
@@ -14,17 +16,12 @@ public class Player extends BlackHole{
 		return score;  
 	}
 	
-	public void increment(){
-		score++;
+	
+	public void increaseScore(int increase){
+		score += increase;
 	}
 	
-	public void increment(int inc){
-		score=score+inc;
+	public void increaseSize(float increase){
+		setRadius(getRadius()+increase);
 	}
-	
-	public void increaseSize(float inc){
-		setRadius(getRadius()+inc);
-	}
-
-	
 }

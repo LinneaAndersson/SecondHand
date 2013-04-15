@@ -11,7 +11,7 @@ import com.secondhand.loader.TextureRegionLoader;
 
 import android.content.Context;
 
-public class GamePlayScene extends GameScene implements PropertyChangeListener {
+public class GamePlayScene extends GameScene {
 	
 	Sprite player_sprite;
 	
@@ -30,10 +30,5 @@ public class GamePlayScene extends GameScene implements PropertyChangeListener {
 		// now load the scene(attach all the entities)
 		setBackground(new ColorBackground(1f, 1f, 1f));
 		attachChild(player_sprite);
-	}
-
-	@Override
-	public void propertyChange(PropertyChangeEvent event) {
-		
 	}
 }

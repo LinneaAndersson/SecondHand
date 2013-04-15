@@ -28,17 +28,10 @@ public class GamePlaySceneController {
 		scene.setOnSceneTouchListener(sceneListener);
 
 		player = universe.getLevel().getPlayer().getShape();
-
-		// I have no idea why the player needs to be detach but if not then an
-		// exception is thrown("pEntity already has a parent")
-		// I check player.getParent() but it returned null, so it shoulden't
-		// have one right?.
-
-		// A different problem is that the sprite/shape/circle does´t show up in
-		// the scene
 		
-		player.detachSelf();
-		scene.attachChild(player);
+		scene.setPlayer(player);
+		
+		
 
 	}
 

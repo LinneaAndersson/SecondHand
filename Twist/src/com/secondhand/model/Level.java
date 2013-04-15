@@ -15,7 +15,6 @@ public class Level {
 	private List<Entity> entityList;
 	private int maxSize;
 	private PhysicsWorld physicsWorld;
-	private PhysicsHandler playerPhysicsHandler;
 
 	private Player player;
 
@@ -27,7 +26,7 @@ public class Level {
 
 	public Level(int maxSize) {
 		this(maxSize, new PhysicsWorld(new Vector2(), true), new Player(
-				new Vector2(), 10));
+				new Vector2(50, 50), 10));
 	}
 
 	public Level(int maxSize, PhysicsWorld pW, Player p) {

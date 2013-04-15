@@ -132,7 +132,7 @@ public class Level {
 		}
 	}
 
-	public boolean checkPlayerSize() {
+	public boolean checkPlayerBigEnough() {
 		return player.getRadius() >= maxSize;
 
 	}

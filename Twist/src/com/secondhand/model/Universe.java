@@ -4,6 +4,9 @@ import org.anddev.andengine.entity.shape.IShape;
 
 import com.badlogic.gdx.math.Vector2;
 
+/**
+ * Singelton class for describing the universe.
+ */
 public class Universe {
 	private static Level currentLevel;
 
@@ -43,12 +46,12 @@ public class Universe {
 
 	public void update(Vector2 v) {
 
-		if (currentLevel.checkPlayerSize()) {
+		if (currentLevel.checkPlayerBigEnough()) {
 
 			nextLevel();
 
 		} else {
-			currentLevel.moveEntitys(v);
+			currentLevel.moveEntities(v);
 		}
 	}
 }

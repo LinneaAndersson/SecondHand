@@ -4,6 +4,7 @@ import org.anddev.andengine.engine.Engine;
 
 import android.content.Context;
 
+import com.secondhand.controller.SceneManager.AllScenes;
 import com.secondhand.debug.MyDebug;
 import com.secondhand.scene.GameScene;
 import com.secondhand.twirl.GlobalResources;
@@ -62,5 +63,11 @@ public class LoadingScene extends GameScene {
 		};
 
 		new AsyncTaskGameLoader().execute(callback);
+	}
+
+	@Override
+	public AllScenes getParentScene() {
+		// TODO don´t know what to have here
+		return null;
 	}	
 }

@@ -5,6 +5,7 @@ import org.anddev.andengine.entity.text.Text;
 
 import android.content.Context;
 
+import com.secondhand.controller.SceneManager.AllScenes;
 import com.secondhand.twirl.GlobalResources;
 
 public class HighScoreScene extends GameScene {
@@ -32,6 +33,11 @@ public class HighScoreScene extends GameScene {
 		
 		this.attachChild(highScoreText);
 		
+	}
+
+	@Override
+	public AllScenes getParentScene() {
+		return AllScenes.MAIN_MENU_SCENE;
 	}
 
 

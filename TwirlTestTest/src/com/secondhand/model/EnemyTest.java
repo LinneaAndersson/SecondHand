@@ -18,4 +18,15 @@ public class EnemyTest extends TestCase{
 		assertEquals(pos.y, enemy.getPosition().y);
 	}
 	
+	public void testIncreaseSize() {
+		Vector2 pos = new Vector2(2f, 4f);
+		float rad = 3.2f;
+		float inc = 0.3f;
+		
+		Enemy enemy = new Enemy(pos, rad);
+		enemy.increaseSize(inc);
+		
+		assertEquals(rad + inc, enemy.getRadius());
+	}
+	
 }

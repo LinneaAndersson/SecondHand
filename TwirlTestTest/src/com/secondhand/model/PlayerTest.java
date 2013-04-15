@@ -17,4 +17,15 @@ public class PlayerTest extends TestCase{
 		assertEquals(pos.y, player.getPosition().y);
 	}
 	
+	public void testIncreaseSize() {
+		Vector2 pos = new Vector2(2f, 4f);
+		float rad = 3.2f;
+		float inc = 0.3f;
+		
+		Player player = new Player(pos, rad);
+		player.increaseSize(inc);
+		
+		assertEquals(rad + inc, player.getRadius());
+	}
+	
 }

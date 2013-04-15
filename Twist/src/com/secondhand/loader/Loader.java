@@ -11,10 +11,7 @@ public abstract class Loader implements ILoader {
 	protected Engine engine;
 	protected Context context;
 		
-	protected Loader() {
-		setAssetBasePath(getDefaultAssetBasePath());
-	}
-	
+	protected Loader() { }
 
 	public void initialize(final Context context, final Engine engine) {
 		this.context = context;

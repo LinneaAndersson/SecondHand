@@ -21,16 +21,7 @@ public class SoundLoader extends Loader {
 		return instance;
 	}
 
-	@Override
-	public void setAssetBasePath(final String path) {
-		SoundFactory.setAssetBasePath(path);
-	}
 
-	@Override
-	public String getDefaultAssetBasePath() {
-		return "sfx/";
-	}
-	
 	public Sound loadSound(final String fileName) {
     	try {
     		Sound loadedSound = SoundFactory.createSoundFromAsset(

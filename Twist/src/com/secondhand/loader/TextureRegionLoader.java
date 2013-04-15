@@ -38,10 +38,4 @@ public class TextureRegionLoader extends Loader {
 	public TextureRegion loadTextureRegion(final String fileName, final int width, final int height) {
 		return loadTextureRegion(fileName, width, height, TextureOptions.BILINEAR_PREMULTIPLYALPHA);
 	}
-	
-
-	@Override
-	public String getDefaultAssetBasePath() {
-		return "gfx/";
-	}
 }

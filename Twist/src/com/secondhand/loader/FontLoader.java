@@ -22,17 +22,6 @@ public class FontLoader extends Loader {
 		return instance;
 	}
 
-	@Override
-	public void setAssetBasePath(final String path) {
-		FontFactory.setAssetBasePath(path);
-
-	}
-
-	@Override
-	public String getDefaultAssetBasePath() {
-		return "fonts/";
-	}
-	
 	public Font loadFont(final Typeface typeface, final float size, final int color) {
 		
 		BitmapTextureAtlas fontTexture = new BitmapTextureAtlas(256, 256, TextureOptions.BILINEAR_PREMULTIPLYALPHA);

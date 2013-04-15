@@ -72,41 +72,16 @@ public class Level {
 
 	public void registerEntity(Entity entity) {
 
-		// FIXME: you should probably use the coordinates of the player instead
-		// of (0,0), right?
-		IShape sh = new Circle(0, 0, entity.getRadius());
+		PhysicsHandler pH = new PhysicsHandler(entity.getShape());
 
-		PhysicsHandler pH = new PhysicsHandler(sh);
+		entity.getShape().registerUpdateHandler(pH);
 
-		sh.registerUpdateHandler(pH);
-
-		Body body = PhysicsFactory.createCircleBody(physicsWorld, sh,
-				BodyType.DynamicBody,
-				PhysicsFactory.createFixtureDef(1, 0.5f, 0.5f));
-
-		// a connection between a body and an entity
-		// TODO: do we really need this information in the body. Can't we access
-		// it from somewhere else?
-		body.setUserData(entity);
-
-		physicsWorld.registerPhysicsConnector(new PhysicsConnector(sh, body,
-				true, true));
-
-	}
-
-	// i separate player so that its easier to to reach it
-	public void registerPlayer(IShape s) {
-
-		playerPhysicsHandler = new PhysicsHandler(player.getShape());
-
-		player.getShape().registerUpdateHandler(playerPhysicsHandler);
-
-		player.setBody(PhysicsFactory.createCircleBody(physicsWorld,
-				player.getShape(), BodyType.DynamicBody,
+		entity.setBody(PhysicsFactory.createCircleBody(physicsWorld,
+				entity.getShape(), BodyType.DynamicBody,
 				PhysicsFactory.createFixtureDef(1, 0.5f, 0.5f)));
 
-		physicsWorld.registerPhysicsConnector(new PhysicsConnector(player
-				.getShape(), player.getBody(), true, true));
+		physicsWorld.registerPhysicsConnector(new PhysicsConnector(entity
+				.getShape(), entity.getBody(), true, true));
 
 	}
 

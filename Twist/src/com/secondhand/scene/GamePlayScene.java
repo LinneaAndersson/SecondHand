@@ -1,14 +1,8 @@
 package com.secondhand.scene;
 
-import java.beans.PropertyChangeEvent;
-import java.beans.PropertyChangeListener;
-
 import org.anddev.andengine.engine.Engine;
-import org.anddev.andengine.entity.IEntity;
 import org.anddev.andengine.entity.scene.background.ColorBackground;
-import org.anddev.andengine.entity.sprite.Sprite;
 
-import com.secondhand.loader.TextureRegionLoader;
 
 import android.content.Context;
 

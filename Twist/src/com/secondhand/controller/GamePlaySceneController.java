@@ -8,7 +8,6 @@ import org.anddev.andengine.input.touch.TouchEvent;
 import com.badlogic.gdx.math.Vector2;
 import com.secondhand.loader.TextureRegionLoader;
 import com.secondhand.model.Universe;
-import com.secondhand.opengl.Circle;
 import com.secondhand.scene.GamePlayScene;
 
 public class GamePlaySceneController {

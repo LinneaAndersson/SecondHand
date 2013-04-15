@@ -29,4 +29,16 @@ public class EnemyTest extends TestCase{
 		assertEquals(rad + inc, enemy.getRadius());
 	}
 	
+	public void testIsBiggerThan() {
+		Vector2 pos = new Vector2(2f, 4f);
+		float rad = 3.2f;
+		
+		Enemy enemy = new Enemy(pos, rad);
+	
+		Player other = new Player(pos, rad-1);
+		assertTrue(enemy.isBiggerThan(other));
+		other = new Player(pos, rad);
+		assertFalse(enemy.isBiggerThan(other));
+	}
+	
 }

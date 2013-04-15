@@ -34,9 +34,8 @@ public class GamePlaySceneController {
 	private class GameSceneTouchListener implements IOnSceneTouchListener{
 		@Override
 		public boolean onSceneTouchEvent(Scene pScene, TouchEvent pSceneTouchEvent) {
-			
-			float x = pScene.getX();
-			float y = pScene.getY();
+			float x = pSceneTouchEvent.getX();
+			float y = pSceneTouchEvent.getY();
 			universe.update(new Vector2(x, y));
 			return true;
 		}

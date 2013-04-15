@@ -23,6 +23,7 @@ public class GamePlaySceneController {
 		scene = (GamePlayScene) gamePlayScene;
 		universe = Universe.getInstance();
 		player = new Circle(0, 0, universe.getLevel().getPlayer().getRadius());
+		universe.setSprite(player);
 	}
 	
 	private class GameSceneTouchListener implements IOnSceneTouchListener{

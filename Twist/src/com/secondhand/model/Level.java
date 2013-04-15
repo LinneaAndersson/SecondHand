@@ -90,11 +90,15 @@ public class Level {
 	public void moveEntities(Vector2 v) {
 		// pBody.applyLinearImpulse(new Vector2(100,100),new
 		// Vector2(sh.getX(),sh.getY()));
-		
+
+		// By writing the values of the body position I can see that we have
+		// movement, somewhere we need to set the camera to follow the player
+
 		if (v.x + v.y != 0) {
 			player.getBody().applyLinearImpulse(
 					new Vector2(v.x - player.getPosition().x, v.y
-							- player.getPosition().y), player.getBody().getPosition());
+							- player.getPosition().y),
+					player.getBody().getWorldCenter());
 		}
 
 		// no, this is most definitely not necessary.

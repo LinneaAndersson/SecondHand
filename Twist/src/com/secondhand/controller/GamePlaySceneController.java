@@ -36,6 +36,7 @@ public class GamePlaySceneController {
 
 		// A different problem is that the sprite/shape/circle does´t show up in
 		// the scene
+		
 		player.detachSelf();
 		scene.attachChild(player);
 

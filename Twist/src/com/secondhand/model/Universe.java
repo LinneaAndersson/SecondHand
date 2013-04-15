@@ -34,6 +34,7 @@ public class Universe {
 	public void nextLevel() {
 		currentLevel = new Level();
 	}
+	
 
 	public void update(Vector2 v) {
 

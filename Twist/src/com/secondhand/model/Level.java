@@ -103,8 +103,9 @@ public class Level {
 
 		// a connection between a body and an entity
 		body.setUserData(player);
-
+		
 		pW.registerPhysicsConnector(new PhysicsConnector(sh, body, true, true));
+		
 	}
 
 	// I wonder if all this is needed
@@ -122,6 +123,7 @@ public class Level {
 			tmp = bit.next();
 			e = (Entity) tmp.getUserData();
 			e.setVector(tmp.getPosition());
+			
 		}
 
 	}

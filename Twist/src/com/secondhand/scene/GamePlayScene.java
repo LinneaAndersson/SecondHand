@@ -3,7 +3,6 @@ package com.secondhand.scene;
 import org.anddev.andengine.engine.Engine;
 import org.anddev.andengine.entity.scene.background.ColorBackground;
 
-
 import android.content.Context;
 
 public class GamePlayScene extends GameScene {

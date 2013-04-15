@@ -21,7 +21,7 @@ public class Level {
 	private PhysicsWorld pW;
 	private PhysicsHandler playerHandler;
 	private Player player;
-	
+	private Body pBody;
 
 	// many constructors necessary?
 	// default maxsize?
@@ -61,10 +61,10 @@ public class Level {
 	}
 
 	public void registerEntities() {
-		
-		/*for (Entity e : entityList) {
+
+		for (Entity e : entityList) {
 			registerEntity(e);
-		}*/
+		}
 	}
 
 	public Player getPlayer() {
@@ -82,7 +82,7 @@ public class Level {
 		Body body = PhysicsFactory.createCircleBody(pW, sh,
 				BodyType.DynamicBody,
 				PhysicsFactory.createFixtureDef(1, 0.5f, 0.5f));
-		
+
 		// a connection between a body and an entity
 		body.setUserData(entity);
 
@@ -99,23 +99,24 @@ public class Level {
 
 		sh.registerUpdateHandler(playerHandler);
 
-		Body body = PhysicsFactory.createCircleBody(pW, sh,
+		pBody = PhysicsFactory.createCircleBody(pW, sh,
 				BodyType.DynamicBody,
 				PhysicsFactory.createFixtureDef(1, 0.5f, 0.5f));
 
 		// a connection between a body and an entity
-		body.setUserData(player);
+		pBody.setUserData(player);
 		
-		pW.registerPhysicsConnector(new PhysicsConnector(sh, body, true, true));
-		
+		pW.registerPhysicsConnector(new PhysicsConnector(sh, pBody, true, true));
+
 	}
 
 	// I wonder if all this is needed
 	// Do we even use the vectors in entity?
 	// to me it seems that box2d works that out for us
 	public void moveEntitys(Vector2 v) {
-		if (v.x + v.y == 0) {
-			playerHandler.accelerate(v.x, v.y);
+		if (v.x + v.y != 0) {
+			pBody.applyLinearImpulse(new Vector2(v.x - player.getVector().x,v.y - player.getVector().y ), v);
+			
 		}
 
 		Iterator<Body> bit = pW.getBodies();
@@ -125,7 +126,7 @@ public class Level {
 			tmp = bit.next();
 			e = (Entity) tmp.getUserData();
 			e.setVector(tmp.getPosition());
-			
+
 		}
 
 	}
@@ -134,7 +135,5 @@ public class Level {
 		return player.getRadius() >= maxSize;
 
 	}
-
-	
 
 }

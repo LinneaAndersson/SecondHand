@@ -43,7 +43,7 @@ public class GamePlayScene extends GameScene {
 		}*/
 		engine.getCamera().setChaseEntity(player);
 		
-		setBackground(new ColorBackground(50f, 0f, 0f));
+		setBackground(new ColorBackground(1f, 0f, 0f));
 	}
 	
 	@Override

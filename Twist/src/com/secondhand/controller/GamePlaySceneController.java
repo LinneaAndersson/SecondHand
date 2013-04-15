@@ -30,9 +30,6 @@ public class GamePlaySceneController {
 		player = universe.getLevel().getPlayer().getShape();
 		
 		scene.setPlayer(player);
-		
-		
-
 	}
 
 	private class GameSceneTouchListener implements IOnSceneTouchListener {

@@ -12,20 +12,20 @@ public abstract class Entity {
 		this.radius = radius;
 	}
 	
-	public void setRadius(float r){
-		radius=r;
+	public void setRadius(float radius){
+		this.radius=radius;
 	}
 	
-	public void setVector(Vector2 v){
-		position = v;
+	public void setVector(Vector2 position){
+		this.position = position;
 	}
 	
 	public float getRadius(){
-		return radius;
+		return this.radius;
 	}
 	
 	public Vector2 getVector(){
-		return position;
+		return this.position;
 	}
 	
 	

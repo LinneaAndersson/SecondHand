@@ -11,4 +11,11 @@ public abstract class BlackHole extends Entity{
 	public void increaseSize(float increase){
 		setRadius(getRadius()+increase);
 	}
+	
+	/**
+	 * If sizes are equal then false is returned.
+	 */
+	public boolean isBiggerThan(Entity entity){
+		return this.getRadius() > entity.getRadius();
+	}
 }

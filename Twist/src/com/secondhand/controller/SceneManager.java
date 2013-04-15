@@ -54,7 +54,7 @@ public class SceneManager {
 		this.settingsMenuScene = new SettingsMenuScene(this.engine, context);
 		
 		this.gamePlayScene = new GamePlayScene(this.engine, context);
-		this.gameController = new GamePlaySceneController(gamePlayScene.getScene());
+		this.gameController = new GamePlaySceneController(this.gamePlayScene.getScene());
 		
 		this.highScoreScene = new HighScoreScene(this.engine, context);
 	}

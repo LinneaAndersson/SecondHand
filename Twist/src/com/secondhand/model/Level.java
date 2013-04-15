@@ -21,6 +21,7 @@ public class Level {
 	private PhysicsWorld pW;
 	private PhysicsHandler playerHandler;
 	private Player player;
+	
 
 	// many constructors necessary?
 	// default maxsize?
@@ -60,10 +61,10 @@ public class Level {
 	}
 
 	public void registerEntities() {
-		registerPlayer();
-		for (Entity e : entityList) {
+		
+		/*for (Entity e : entityList) {
 			registerEntity(e);
-		}
+		}*/
 	}
 
 	public Player getPlayer() {
@@ -81,6 +82,7 @@ public class Level {
 		Body body = PhysicsFactory.createCircleBody(pW, sh,
 				BodyType.DynamicBody,
 				PhysicsFactory.createFixtureDef(1, 0.5f, 0.5f));
+		
 		// a connection between a body and an entity
 		body.setUserData(entity);
 
@@ -89,9 +91,9 @@ public class Level {
 	}
 
 	// i separate player so that its easier to to reach it
-	public void registerPlayer() {
+	public void registerPlayer(IShape s) {
 
-		IShape sh = new Circle(0, 0, player.getRadius());
+		IShape sh = s;
 
 		playerHandler = new PhysicsHandler(sh);
 
@@ -132,5 +134,7 @@ public class Level {
 		return player.getRadius() >= maxSize;
 
 	}
+
+	
 
 }

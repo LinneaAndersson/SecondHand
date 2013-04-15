@@ -1,5 +1,7 @@
 package com.secondhand.model;
 
+import org.anddev.andengine.entity.shape.IShape;
+
 import com.badlogic.gdx.math.Vector2;
 
 public class Universe {
@@ -34,7 +36,9 @@ public class Universe {
 	public void nextLevel() {
 		currentLevel = new Level();
 	}
-	
+	 public void setSprite(IShape s){
+		 currentLevel.registerPlayer(s);
+	 }
 
 	public void update(Vector2 v) {
 

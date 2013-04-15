@@ -6,12 +6,12 @@ import org.anddev.andengine.input.touch.TouchEvent;
 
 import com.secondhand.scene.GamePlayScene;
 
-public class GamePlaySceneTouchListener implements IOnSceneTouchListener {
+public class GamePlaySceneController {
 
-	@Override
-	public boolean onSceneTouchEvent(Scene pScene, TouchEvent pSceneTouchEvent) {
-		
-		return false;
+	private class GameSceneTouchListener implements IOnSceneTouchListener{
+		@Override
+		public boolean onSceneTouchEvent(Scene pScene, TouchEvent pSceneTouchEvent) {	
+			return false;
+		}
 	}
-
 }

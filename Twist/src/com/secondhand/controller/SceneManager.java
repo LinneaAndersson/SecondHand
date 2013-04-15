@@ -25,7 +25,7 @@ public class SceneManager {
 	
 	private IGameScene loadingScene, mainMenuScene, settingsMenuScene, gamePlayScene, highScoreScene;
 
-	private GamePlaySceneTouchListener gameController;
+	private GamePlaySceneController gameController;
 	
 	// IMPORTANT: when you want to add a new scene to the app, you MUST assign it
 	// a corresponding enum value.
@@ -52,11 +52,7 @@ public class SceneManager {
 		loadingScene = new LoadingScene(this.engine, context);
 		mainMenuScene = new MainMenuScene(this.engine, context);
 		this.settingsMenuScene = new SettingsMenuScene(this.engine, context);
-		
 		this.gamePlayScene = new GamePlayScene(this.engine, context);
-		this.gameController = new GamePlaySceneTouchListener();
-		this.gamePlayScene.getScene().setOnSceneTouchListener(this.gameController);
-		
 		this.highScoreScene = new HighScoreScene(this.engine, context);
 	}
 

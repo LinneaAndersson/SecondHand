@@ -32,6 +32,10 @@ public abstract class Entity {
 	public void setBody(Body body){
 		this.body = body;
 	}
+	
+	public void setShape(IShape shape){
+		this.shape = shape;
+	}
 
 	public float getRadius() {
 		return this.radius;

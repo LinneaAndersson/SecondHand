@@ -19,14 +19,9 @@ public class Level {
 	private int maxSize;
 	private PhysicsWorld physicsWorld;
 	private PhysicsHandler playerPhysicsHandler;
-	
-	// TODO: this is the body of the player, but pretty much all entities need bodies for
-	//them to work with the physics engine, so put this in Entity instead.
-	private Body playerBody;
-	// and also put shape in Entity. 
-	IShape playerShape;
+
 	private Player player;
-	
+
 	// many constructors necessary?
 	// default maxsize?
 	public Level() {
@@ -77,7 +72,8 @@ public class Level {
 
 	public void registerEntity(Entity entity) {
 
-		// FIXME: you should probably use the coordinates of the player instead of (0,0), right?
+		// FIXME: you should probably use the coordinates of the player instead
+		// of (0,0), right?
 		IShape sh = new Circle(0, 0, entity.getRadius());
 
 		PhysicsHandler pH = new PhysicsHandler(sh);
@@ -89,30 +85,28 @@ public class Level {
 				PhysicsFactory.createFixtureDef(1, 0.5f, 0.5f));
 
 		// a connection between a body and an entity
-		// TODO: do we really need this information in the body. Can't we access it from somewhere else?
+		// TODO: do we really need this information in the body. Can't we access
+		// it from somewhere else?
 		body.setUserData(entity);
 
-		physicsWorld.registerPhysicsConnector(new PhysicsConnector(sh, body, true, true));
+		physicsWorld.registerPhysicsConnector(new PhysicsConnector(sh, body,
+				true, true));
 
 	}
 
 	// i separate player so that its easier to to reach it
 	public void registerPlayer(IShape s) {
 
-		playerShape = s;
+		playerPhysicsHandler = new PhysicsHandler(player.getShape());
 
-		playerPhysicsHandler = new PhysicsHandler(playerShape);
+		player.getShape().registerUpdateHandler(playerPhysicsHandler);
 
-		playerShape.registerUpdateHandler(playerPhysicsHandler);
+		player.setBody(PhysicsFactory.createCircleBody(physicsWorld,
+				player.getShape(), BodyType.DynamicBody,
+				PhysicsFactory.createFixtureDef(1, 0.5f, 0.5f)));
 
-		playerBody = PhysicsFactory.createCircleBody(physicsWorld, playerShape,
-				BodyType.DynamicBody,
-				PhysicsFactory.createFixtureDef(1, 0.5f, 0.5f));
-
-		// a connection between a body and an entity
-		playerBody.setUserData(player);
-		playerBody.setActive(true);
-		physicsWorld.registerPhysicsConnector(new PhysicsConnector(playerShape, playerBody, true, true));
+		physicsWorld.registerPhysicsConnector(new PhysicsConnector(player
+				.getShape(), player.getBody(), true, true));
 
 	}
 
@@ -121,33 +115,37 @@ public class Level {
 	// to me it seems that box2d works that out for us
 	// no you don't, read the comment below - Eric
 	public void moveEntities(Vector2 v) {
-		//pBody.applyLinearImpulse(new Vector2(100,100),new Vector2(sh.getX(),sh.getY()));
-		
+		// pBody.applyLinearImpulse(new Vector2(100,100),new
+		// Vector2(sh.getX(),sh.getY()));
+
 		if (v.x + v.y != 0) {
-			playerBody.applyLinearImpulse(new Vector2(v.x - player.getPosition().x,v.y - player.getPosition().y ), player.getPosition());
-			
+			player.getBody().applyLinearImpulse(
+					new Vector2(v.x - player.getPosition().x, v.y
+							- player.getPosition().y), player.getPosition());
+
 		}
 
-		// no, this is most definitely not necessary. 
-		// all you need to do is give Box2D an initial position and a body for each of the 
+		// no, this is most definitely not necessary.
+		// all you need to do is give Box2D an initial position and a body for
+		// each of the
 		// entities, and then Box2D will handle the rest.
-		// you basically want to talk with Box2D as little as possible, because it will handle
-		// most things for you. Only when you want to perform a manual intervention in the
+		// you basically want to talk with Box2D as little as possible, because
+		// it will handle
+		// most things for you. Only when you want to perform a manual
+		// intervention in the
 		// physics world(like moving the player) do you need to talk with Box2D
-		
-		// so the one other thing we will need to do in this method is the following:
-		// move the enemy black holes in the direction that their AI:s has determined.
-		// (obviously using applyLinearImpulse) 
-		
+
+		// so the one other thing we will need to do in this method is the
+		// following:
+		// move the enemy black holes in the direction that their AI:s has
+		// determined.
+		// (obviously using applyLinearImpulse)
+
 		/*
-		Iterator<Body> bit = pW.getBodies();
-		Body tmp;
-		Entity e;
-		while (bit.hasNext()) {
-			tmp = bit.next();
-			e = (Entity) tmp.getUserData();
-			e.setPosition(tmp.getPosition());
-		} */
+		 * Iterator<Body> bit = pW.getBodies(); Body tmp; Entity e; while
+		 * (bit.hasNext()) { tmp = bit.next(); e = (Entity) tmp.getUserData();
+		 * e.setPosition(tmp.getPosition()); }
+		 */
 	}
 
 	public boolean checkPlayerBigEnough() {

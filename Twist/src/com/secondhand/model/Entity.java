@@ -7,8 +7,8 @@ public abstract class Entity {
 	private Vector2 position;
 	private int radius;
 	
-	public Entity (Vector2 vector, int radius) {
-		this.position = new Vector2(vector);
+	public Entity (Vector2 position, int radius) {
+		this.position = position;
 		this.radius = radius;
 	}
 	

@@ -4,8 +4,8 @@ import com.badlogic.gdx.math.Vector2;
 
 public class Obstacle extends Entity {
 
-	public Obstacle(Vector2 vector, int radius) {
-		super(vector,radius);
+	public Obstacle(Vector2 position, int radius) {
+		super(position,radius);
 	}
 
 }

@@ -1,11 +1,9 @@
 package com.secondhand.model;
 
 import org.anddev.andengine.entity.shape.IShape;
-import org.anddev.andengine.extension.physics.box2d.PhysicsFactory;
 
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
-import com.badlogic.gdx.physics.box2d.BodyDef.BodyType;
 import com.secondhand.opengl.Circle;
 
 public abstract class Entity {
@@ -19,6 +17,12 @@ public abstract class Entity {
 		this.position = position;
 		this.radius = radius;
 		shape = new Circle(position.x, position.y, radius);
+	}
+	
+	public Entity(Vector2 position, float radius, IShape shape) {
+		this.position = position;
+		this.radius = radius;
+		this.shape = shape;
 	}
 
 	public void setRadius(float radius) {

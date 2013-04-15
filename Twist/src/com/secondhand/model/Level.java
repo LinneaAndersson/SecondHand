@@ -3,15 +3,12 @@ package com.secondhand.model;
 import java.util.List;
 
 import org.anddev.andengine.engine.handler.physics.PhysicsHandler;
-import org.anddev.andengine.entity.shape.IShape;
 import org.anddev.andengine.extension.physics.box2d.PhysicsConnector;
 import org.anddev.andengine.extension.physics.box2d.PhysicsFactory;
 import org.anddev.andengine.extension.physics.box2d.PhysicsWorld;
 
 import com.badlogic.gdx.math.Vector2;
-import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.BodyDef.BodyType;
-import com.secondhand.opengl.Circle;
 
 public class Level {
 

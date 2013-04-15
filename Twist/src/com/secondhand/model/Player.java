@@ -16,12 +16,9 @@ public class Player extends BlackHole{
 		return score;  
 	}
 	
-	
 	public void increaseScore(int increase){
 		score += increase;
 	}
 	
-	public void increaseSize(float increase){
-		setRadius(getRadius()+increase);
-	}
+	
 }

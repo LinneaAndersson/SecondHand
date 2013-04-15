@@ -7,6 +7,4 @@ public class Enemy extends BlackHole {
 	public Enemy (Vector2 vector, float radius) {
 		super(vector,radius);
 	}
-	
-
 }

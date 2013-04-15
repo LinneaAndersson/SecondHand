@@ -22,7 +22,7 @@ public class Level {
 	private PhysicsHandler playerHandler;
 	private Player player;
 	private Body pBody;
-
+	IShape sh;
 	// many constructors necessary?
 	// default maxsize?
 	public Level() {
@@ -93,7 +93,7 @@ public class Level {
 	// i separate player so that its easier to to reach it
 	public void registerPlayer(IShape s) {
 
-		IShape sh = s;
+		sh = s;
 
 		playerHandler = new PhysicsHandler(sh);
 
@@ -105,7 +105,7 @@ public class Level {
 
 		// a connection between a body and an entity
 		pBody.setUserData(player);
-		
+		pBody.setActive(true);
 		pW.registerPhysicsConnector(new PhysicsConnector(sh, pBody, true, true));
 
 	}
@@ -114,8 +114,10 @@ public class Level {
 	// Do we even use the vectors in entity?
 	// to me it seems that box2d works that out for us
 	public void moveEntitys(Vector2 v) {
+		//pBody.applyLinearImpulse(new Vector2(100,100),new Vector2(sh.getX(),sh.getY()));
+		
 		if (v.x + v.y != 0) {
-			pBody.applyLinearImpulse(new Vector2(v.x - player.getVector().x,v.y - player.getVector().y ), v);
+			pBody.applyLinearImpulse(new Vector2(v.x - player.getVector().x,v.y - player.getVector().y ), player.getVector());
 			
 		}
 
@@ -128,7 +130,6 @@ public class Level {
 			e.setVector(tmp.getPosition());
 
 		}
-
 	}
 
 	public boolean checkPlayerSize() {

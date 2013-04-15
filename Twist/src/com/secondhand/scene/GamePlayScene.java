@@ -1,5 +1,8 @@
 package com.secondhand.scene;
 
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
+
 import org.anddev.andengine.engine.Engine;
 import org.anddev.andengine.entity.scene.background.ColorBackground;
 import org.anddev.andengine.entity.sprite.Sprite;
@@ -8,7 +11,7 @@ import com.secondhand.loader.TextureRegionLoader;
 
 import android.content.Context;
 
-public class GamePlayScene extends GameScene {
+public class GamePlayScene extends GameScene implements PropertyChangeListener {
 	
 	Sprite player_sprite;
 	
@@ -29,4 +32,8 @@ public class GamePlayScene extends GameScene {
 		attachChild(player_sprite);
 	}
 
+	@Override
+	public void propertyChange(PropertyChangeEvent event) {
+		
+	}
 }

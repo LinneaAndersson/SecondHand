@@ -1,5 +1,8 @@
 package com.secondhand.scene;
 
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
+
 import org.anddev.andengine.engine.Engine;
 import org.anddev.andengine.entity.scene.background.ColorBackground;
 import org.anddev.andengine.entity.sprite.Sprite;
@@ -28,5 +31,4 @@ public class GamePlayScene extends GameScene {
 		setBackground(new ColorBackground(1f, 1f, 1f));
 		attachChild(player_sprite);
 	}
-
 }

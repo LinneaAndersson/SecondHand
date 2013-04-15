@@ -4,10 +4,13 @@ import org.anddev.andengine.entity.scene.Scene;
 import org.anddev.andengine.entity.scene.Scene.IOnSceneTouchListener;
 import org.anddev.andengine.input.touch.TouchEvent;
 
-public class GamePlaySceneTouchController implements IOnSceneTouchListener {
+import com.secondhand.scene.GamePlayScene;
+
+public class GamePlaySceneTouchListener implements IOnSceneTouchListener {
 
 	@Override
 	public boolean onSceneTouchEvent(Scene pScene, TouchEvent pSceneTouchEvent) {
+		
 		return false;
 	}
 

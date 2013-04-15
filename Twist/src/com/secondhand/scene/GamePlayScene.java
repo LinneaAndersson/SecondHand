@@ -26,6 +26,6 @@ public class GamePlayScene extends GameScene {
 	@Override
 	public void loadScene() {
 		// now load the scene(attach all the entities)
-		setBackground(new ColorBackground(0f, 0f, 0f));
+		setBackground(new ColorBackground(50f, 0f, 0f));
 	}
 }

@@ -28,6 +28,8 @@ public class GamePlaySceneController {
 		
 		universe = Universe.getInstance();
 		player = new Circle(0, 0, universe.getLevel().getPlayer().getRadius());
+		
+		scene.attachChild(player);
 		universe.setSprite(player);
 	}
 	

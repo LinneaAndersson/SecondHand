@@ -16,7 +16,7 @@ public abstract class Entity {
 		this.radius=radius;
 	}
 	
-	public void setVector(Vector2 position){
+	public void setPosition(Vector2 position){
 		this.position = position;
 	}
 	
@@ -24,7 +24,7 @@ public abstract class Entity {
 		return this.radius;
 	}
 	
-	public Vector2 getVector(){
+	public Vector2 getPosition(){
 		return this.position;
 	}
 	

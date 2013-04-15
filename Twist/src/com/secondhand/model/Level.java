@@ -117,7 +117,7 @@ public class Level {
 		//pBody.applyLinearImpulse(new Vector2(100,100),new Vector2(sh.getX(),sh.getY()));
 		
 		if (v.x + v.y != 0) {
-			pBody.applyLinearImpulse(new Vector2(v.x - player.getVector().x,v.y - player.getVector().y ), player.getVector());
+			pBody.applyLinearImpulse(new Vector2(v.x - player.getPosition().x,v.y - player.getPosition().y ), player.getPosition());
 			
 		}
 
@@ -127,7 +127,7 @@ public class Level {
 		while (bit.hasNext()) {
 			tmp = bit.next();
 			e = (Entity) tmp.getUserData();
-			e.setVector(tmp.getPosition());
+			e.setPosition(tmp.getPosition());
 
 		}
 	}

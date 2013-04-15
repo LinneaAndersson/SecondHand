@@ -20,7 +20,7 @@ public class Level {
 	private int maxSize;
 	private PhysicsWorld pW;
 	private PhysicsHandler playerHandler;
-	private Entity player;
+	private Player player;
 
 	// many constructors necessary?
 	// default maxsize?
@@ -29,13 +29,14 @@ public class Level {
 	}
 
 	public Level(int maxSize) {
-		this(maxSize, new PhysicsWorld(null, false));
+		this(maxSize, new PhysicsWorld(new Vector2(), true), new Player(
+				new Vector2(), 10));
 	}
 
-	public Level(int maxSize, PhysicsWorld pW) {
+	public Level(int maxSize, PhysicsWorld pW, Player p) {
 		this.maxSize = maxSize;
 		this.pW = pW;
-		player = new Player(new Vector2(), 10);
+		player = p;
 	}
 
 	public void addEntity(Entity entity) {
@@ -60,69 +61,72 @@ public class Level {
 
 	public void registerEntities() {
 		registerPlayer();
-		for(Entity e : entityList){
+		for (Entity e : entityList) {
 			registerEntity(e);
 		}
+	}
+
+	public Player getPlayer() {
+		return player;
 	}
 
 	public void registerEntity(Entity entity) {
 
 		IShape sh = new Circle(0, 0, entity.getRadius());
-		
+
 		PhysicsHandler pH = new PhysicsHandler(sh);
 
-		
 		sh.registerUpdateHandler(pH);
-		
-		
+
 		Body body = PhysicsFactory.createCircleBody(pW, sh,
 				BodyType.DynamicBody,
 				PhysicsFactory.createFixtureDef(1, 0.5f, 0.5f));
 		// a connection between a body and an entity
 		body.setUserData(entity);
-		
+
 		pW.registerPhysicsConnector(new PhysicsConnector(sh, body, true, true));
-		
+
 	}
-	
-	public void registerPlayer(){
-		
+
+	// i separate player so that its easier to to reach it
+	public void registerPlayer() {
+
 		IShape sh = new Circle(0, 0, player.getRadius());
-		
+
 		playerHandler = new PhysicsHandler(sh);
 
-		
 		sh.registerUpdateHandler(playerHandler);
-		
-		
+
 		Body body = PhysicsFactory.createCircleBody(pW, sh,
 				BodyType.DynamicBody,
 				PhysicsFactory.createFixtureDef(1, 0.5f, 0.5f));
-		
+
 		// a connection between a body and an entity
 		body.setUserData(player);
-		
+
 		pW.registerPhysicsConnector(new PhysicsConnector(sh, body, true, true));
 	}
-	
-	// i wonder if all this is needed
-	public void moveEntitys(Vector2 v){
+
+	// I wonder if all this is needed
+	// Do we even use the vectors in entity?
+	// to me it seems that box2d works that out for us
+	public void moveEntitys(Vector2 v) {
+		if(v.x +v.y  == 0){
 		playerHandler.accelerate(v.x, v.y);
-		player.setVector(v);
-		
+		}
 		Iterator<Body> bit = pW.getBodies();
 		Body tmp;
 		Entity e;
-		while(bit.hasNext()){
+		while (bit.hasNext()) {
 			tmp = bit.next();
 			e = (Entity) tmp.getUserData();
-			e.setVector(tmp.getLinearVelocity());
+			e.setVector(tmp.getPosition());
 		}
 	}
 
 	public boolean checkPlayerSize() {
 		return player.getRadius() >= maxSize;
-		
+
 	}
 
 }

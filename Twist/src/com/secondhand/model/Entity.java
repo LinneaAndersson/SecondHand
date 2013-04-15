@@ -6,11 +6,11 @@ public abstract class Entity {
 	protected enum Entity_enum{
 		PLAYER, ENEMY, OBSTACLE, PLANET
 	}
-	private Vector2 vector;
+	private Vector2 position;
 	private int radius;
 	
 	public Entity (Vector2 vector, int radius) {
-		this.vector = new Vector2(vector);
+		this.position = new Vector2(vector);
 		this.radius = radius;
 	}
 	
@@ -19,7 +19,7 @@ public abstract class Entity {
 	}
 	
 	public void setVector(Vector2 v){
-		vector = v;
+		position = v;
 	}
 	
 	public int getRadius(){
@@ -27,7 +27,7 @@ public abstract class Entity {
 	}
 	
 	public Vector2 getVector(){
-		return vector;
+		return position;
 	}
 	
 	public abstract Entity_enum getEnum();

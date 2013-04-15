@@ -62,7 +62,7 @@ public class SettingsMenuScene extends GameMenuScene implements IOnMenuItemClick
 		sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this.context);
 		sharedPreferencesEditor = sharedPreferences.edit();
 		
-		beep = SoundLoader.getInstance().loadSound("beep.wav");
+		beep = SoundLoader.getInstance().loadSound("sfx/beep.wav");
 	}
 
 	@Override

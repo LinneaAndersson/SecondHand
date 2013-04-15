@@ -35,7 +35,7 @@ public class Universe {
 		currentLevel = new Level();
 	}
 
-	public void Update(Vector2 v) {
+	public void update(Vector2 v) {
 
 		if (currentLevel.checkPlayerSize()) {
 

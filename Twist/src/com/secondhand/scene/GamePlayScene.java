@@ -9,15 +9,6 @@ import com.secondhand.loader.TextureRegionLoader;
 import android.content.Context;
 
 public class GamePlayScene extends GameScene {
-
-	// this way of doing things will not work with the SceneManager.
-	// the data(entities) to be used will be loaded from a file in loadResources().
-	/*
-	public GamePlayScene (List<IEntity> entities, ColorBackground background) {
-		for (IEntity entity : entities)
-			attachChild(entity);
-		setBackground(background);
-	}*/
 	
 	Sprite player_sprite;
 	

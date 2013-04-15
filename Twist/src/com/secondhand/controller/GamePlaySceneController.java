@@ -24,7 +24,7 @@ public class GamePlaySceneController {
 	
 	public GamePlaySceneController(Scene gamePlayScene) {
 		scene = (GamePlayScene) gamePlayScene;
-		scene.registerUpdateHandler(universe.getLevel().getPhysics());
+		scene.registerUpdateHandler(universe.getLevel().getPhysicsWorld());
 		sceneListener = new GameSceneTouchListener();
 		scene.setOnSceneTouchListener(sceneListener);
 

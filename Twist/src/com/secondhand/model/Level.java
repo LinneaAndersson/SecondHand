@@ -1,6 +1,5 @@
 package com.secondhand.model;
 
-import java.util.Iterator;
 import java.util.List;
 
 import org.anddev.andengine.engine.handler.physics.PhysicsHandler;
@@ -18,11 +17,16 @@ public class Level {
 
 	private List<Entity> entityList;
 	private int maxSize;
-	private PhysicsWorld pW;
-	private PhysicsHandler playerHandler;
+	private PhysicsWorld physicsWorld;
+	private PhysicsHandler playerPhysicsHandler;
+	
+	// TODO: this is the body of the player, but pretty much all entities need bodies for
+	//them to work with the physics engine, so put this in Entity instead.
+	private Body playerBody;
+	// and also put shape in Entity. 
+	IShape playerShape;
 	private Player player;
-	private Body pBody;
-	IShape sh;
+	
 	// many constructors necessary?
 	// default maxsize?
 	public Level() {
@@ -36,7 +40,7 @@ public class Level {
 
 	public Level(int maxSize, PhysicsWorld pW, Player p) {
 		this.maxSize = maxSize;
-		this.pW = pW;
+		this.physicsWorld = pW;
 		player = p;
 	}
 
@@ -48,7 +52,7 @@ public class Level {
 		entityList.remove(entity);
 	}
 
-	public void setEntetyList(List<Entity> list) {
+	public void setEntityList(List<Entity> list) {
 		entityList = list;
 	}
 
@@ -56,8 +60,8 @@ public class Level {
 		return entityList;
 	}
 
-	public PhysicsWorld getPhysics() {
-		return pW;
+	public PhysicsWorld getPhysicsWorld() {
+		return physicsWorld;
 	}
 
 	public void registerEntities() {
@@ -73,54 +77,69 @@ public class Level {
 
 	public void registerEntity(Entity entity) {
 
+		// FIXME: you should probably use the coordinates of the player instead of (0,0), right?
 		IShape sh = new Circle(0, 0, entity.getRadius());
 
 		PhysicsHandler pH = new PhysicsHandler(sh);
 
 		sh.registerUpdateHandler(pH);
 
-		Body body = PhysicsFactory.createCircleBody(pW, sh,
+		Body body = PhysicsFactory.createCircleBody(physicsWorld, sh,
 				BodyType.DynamicBody,
 				PhysicsFactory.createFixtureDef(1, 0.5f, 0.5f));
 
 		// a connection between a body and an entity
+		// TODO: do we really need this information in the body. Can't we access it from somewhere else?
 		body.setUserData(entity);
 
-		pW.registerPhysicsConnector(new PhysicsConnector(sh, body, true, true));
+		physicsWorld.registerPhysicsConnector(new PhysicsConnector(sh, body, true, true));
 
 	}
 
 	// i separate player so that its easier to to reach it
 	public void registerPlayer(IShape s) {
 
-		sh = s;
+		playerShape = s;
 
-		playerHandler = new PhysicsHandler(sh);
+		playerPhysicsHandler = new PhysicsHandler(playerShape);
 
-		sh.registerUpdateHandler(playerHandler);
+		playerShape.registerUpdateHandler(playerPhysicsHandler);
 
-		pBody = PhysicsFactory.createCircleBody(pW, sh,
+		playerBody = PhysicsFactory.createCircleBody(physicsWorld, playerShape,
 				BodyType.DynamicBody,
 				PhysicsFactory.createFixtureDef(1, 0.5f, 0.5f));
 
 		// a connection between a body and an entity
-		pBody.setUserData(player);
-		pBody.setActive(true);
-		pW.registerPhysicsConnector(new PhysicsConnector(sh, pBody, true, true));
+		playerBody.setUserData(player);
+		playerBody.setActive(true);
+		physicsWorld.registerPhysicsConnector(new PhysicsConnector(playerShape, playerBody, true, true));
 
 	}
 
 	// I wonder if all this is needed
 	// Do we even use the vectors in entity?
 	// to me it seems that box2d works that out for us
+	// no you don't, read the comment below - Eric
 	public void moveEntities(Vector2 v) {
 		//pBody.applyLinearImpulse(new Vector2(100,100),new Vector2(sh.getX(),sh.getY()));
 		
 		if (v.x + v.y != 0) {
-			pBody.applyLinearImpulse(new Vector2(v.x - player.getPosition().x,v.y - player.getPosition().y ), player.getPosition());
+			playerBody.applyLinearImpulse(new Vector2(v.x - player.getPosition().x,v.y - player.getPosition().y ), player.getPosition());
 			
 		}
 
+		// no, this is most definitely not necessary. 
+		// all you need to do is give Box2D an initial position and a body for each of the 
+		// entities, and then Box2D will handle the rest.
+		// you basically want to talk with Box2D as little as possible, because it will handle
+		// most things for you. Only when you want to perform a manual intervention in the
+		// physics world(like moving the player) do you need to talk with Box2D
+		
+		// so the one other thing we will need to do in this method is the following:
+		// move the enemy black holes in the direction that their AI:s has determined.
+		// (obviously using applyLinearImpulse) 
+		
+		/*
 		Iterator<Body> bit = pW.getBodies();
 		Body tmp;
 		Entity e;
@@ -128,8 +147,7 @@ public class Level {
 			tmp = bit.next();
 			e = (Entity) tmp.getUserData();
 			e.setPosition(tmp.getPosition());
-
-		}
+		} */
 	}
 
 	public boolean checkPlayerBigEnough() {

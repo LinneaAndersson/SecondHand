@@ -52,7 +52,10 @@ public class SceneManager {
 		loadingScene = new LoadingScene(this.engine, context);
 		mainMenuScene = new MainMenuScene(this.engine, context);
 		this.settingsMenuScene = new SettingsMenuScene(this.engine, context);
+		
 		this.gamePlayScene = new GamePlayScene(this.engine, context);
+		this.gameController = new GamePlaySceneController(gamePlayScene.getScene());
+		
 		this.highScoreScene = new HighScoreScene(this.engine, context);
 	}
 

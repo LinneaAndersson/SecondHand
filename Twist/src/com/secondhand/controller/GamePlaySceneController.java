@@ -13,8 +13,8 @@ public class GamePlaySceneController {
 	
 	private Universe universe;
 	
-	public GamePlaySceneController(GamePlayScene gamePlayScene) {
-		scene = gamePlayScene;
+	public GamePlaySceneController(Scene gamePlayScene) {
+		scene = (GamePlayScene) gamePlayScene;
 		universe = Universe.getInstance();
 	}
 	

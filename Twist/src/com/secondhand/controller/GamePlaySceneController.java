@@ -4,6 +4,7 @@ import org.anddev.andengine.entity.scene.Scene;
 import org.anddev.andengine.entity.scene.Scene.IOnSceneTouchListener;
 import org.anddev.andengine.input.touch.TouchEvent;
 
+import com.badlogic.gdx.math.Vector2;
 import com.secondhand.model.Universe;
 import com.secondhand.opengl.Circle;
 import com.secondhand.scene.GamePlayScene;
@@ -12,6 +13,7 @@ public class GamePlaySceneController {
 
 	// View
 	private GamePlayScene scene;
+	private GameSceneTouchListener sceneListener;
 	
 	// Model
 	private Universe universe;
@@ -21,6 +23,9 @@ public class GamePlaySceneController {
 	
 	public GamePlaySceneController(Scene gamePlayScene) {
 		scene = (GamePlayScene) gamePlayScene;
+		sceneListener = new GameSceneTouchListener();
+		scene.setOnSceneTouchListener(sceneListener);
+		
 		universe = Universe.getInstance();
 		player = new Circle(0, 0, universe.getLevel().getPlayer().getRadius());
 		universe.setSprite(player);
@@ -28,8 +33,11 @@ public class GamePlaySceneController {
 	
 	private class GameSceneTouchListener implements IOnSceneTouchListener{
 		@Override
-		public boolean onSceneTouchEvent(Scene pScene, TouchEvent pSceneTouchEvent) {	
-			return false;
+		public boolean onSceneTouchEvent(Scene pScene, TouchEvent pSceneTouchEvent) {
+			float x = pScene.getX();
+			float y = pScene.getY();
+			universe.update(new Vector2(x, y));
+			return true;
 		}
 	}
 }

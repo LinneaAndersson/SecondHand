@@ -113,7 +113,7 @@ public class Level {
 	// I wonder if all this is needed
 	// Do we even use the vectors in entity?
 	// to me it seems that box2d works that out for us
-	public void moveEntitys(Vector2 v) {
+	public void moveEntities(Vector2 v) {
 		//pBody.applyLinearImpulse(new Vector2(100,100),new Vector2(sh.getX(),sh.getY()));
 		
 		if (v.x + v.y != 0) {

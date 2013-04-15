@@ -8,7 +8,7 @@ public class Universe {
 	private static Level currentLevel;
 
 	// what level the player is on
-	private static int levelNbr = 1;
+	private static int levelNumber = 1;
 
 	private static Universe instance;
 
@@ -24,8 +24,8 @@ public class Universe {
 		return instance;
 	}
 
-	public int getlvlNbr() {
-		return levelNbr;
+	public int getLevelNumber() {
+		return levelNumber;
 	}
 
 	public Level getLevel() {

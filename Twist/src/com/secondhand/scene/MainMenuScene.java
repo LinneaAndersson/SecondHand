@@ -53,6 +53,7 @@ public class MainMenuScene extends GameMenuScene implements IOnMenuItemClickList
 		switch(pMenuItem.getID()) {
 		case MENU_START:
 			MyDebug.i("now the game should start");
+			SceneManager.getInstance().setCurrentSceneEnum(AllScenes.GAME_PLAY_SCENE);
 			return true;
 		case MENU_SETTINGS:
 			MyDebug.i("now a settings menu should appear");

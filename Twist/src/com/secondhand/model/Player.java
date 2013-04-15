@@ -5,7 +5,7 @@ import com.badlogic.gdx.math.Vector2;
 public class Player extends BlackHole{
 	private int score=0;
 	
-	public Player (Vector2 position, int radius) {
+	public Player (Vector2 position, float radius) {
 		super(position,radius);
 		this.score = 0;
 	}
@@ -22,7 +22,7 @@ public class Player extends BlackHole{
 		score=score+inc;
 	}
 	
-	public void increaseSize(int inc){
+	public void increaseSize(float inc){
 		setRadius(getRadius()+inc);
 	}
 

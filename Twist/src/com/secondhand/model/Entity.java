@@ -5,14 +5,14 @@ import com.badlogic.gdx.math.Vector2;
 public abstract class Entity {
 	
 	private Vector2 position;
-	private int radius;
+	private float radius;
 	
-	public Entity (Vector2 position, int radius) {
+	public Entity (Vector2 position, float radius) {
 		this.position = position;
 		this.radius = radius;
 	}
 	
-	public void setRadius(int r){
+	public void setRadius(float r){
 		radius=r;
 	}
 	
@@ -20,7 +20,7 @@ public abstract class Entity {
 		position = v;
 	}
 	
-	public int getRadius(){
+	public float getRadius(){
 		return radius;
 	}
 	

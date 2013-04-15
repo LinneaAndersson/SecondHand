@@ -4,7 +4,7 @@ import com.badlogic.gdx.math.Vector2;
 
 public abstract class BlackHole extends Entity{
 	
-	public BlackHole (Vector2 position, int radius) {
+	public BlackHole (Vector2 position, float radius) {
 		super(position,radius);
 	}
 }

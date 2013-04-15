@@ -3,9 +3,7 @@ package com.secondhand.model;
 import com.badlogic.gdx.math.Vector2;
 
 public abstract class Entity {
-	protected enum Entity_enum{
-		PLAYER, ENEMY, OBSTACLE, PLANET
-	}
+	
 	private Vector2 position;
 	private int radius;
 	
@@ -30,6 +28,5 @@ public abstract class Entity {
 		return position;
 	}
 	
-	public abstract Entity_enum getEnum();
 	
 }

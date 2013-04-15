@@ -26,10 +26,5 @@ public class Player extends BlackHole{
 		setRadius(getRadius()+inc);
 	}
 
-	@Override
-	public Entity_enum getEnum() {
-		// TODO Auto-generated method stub
-		return Entity_enum.PLAYER;
-	}
 	
 }

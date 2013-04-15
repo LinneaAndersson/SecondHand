@@ -7,7 +7,6 @@ import org.anddev.andengine.audio.sound.SoundFactory;
 
 import com.secondhand.debug.MyDebug;
 
-
 /**
  * Singleton Convenience class for simplifying the loading of sounds.
  */

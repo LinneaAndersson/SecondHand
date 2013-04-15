@@ -114,7 +114,6 @@ public class Circle extends Shape{
 		GLHelper.disableTexCoordArray(pGL);
 	}
 
-	
 	@Override
 	protected void drawVertices(GL10 pGL, Camera pCamera) {
 		pGL.glDrawArrays(GL10.GL_TRIANGLE_FAN, 0, this.mCircleVertexBuffer.getSegments());

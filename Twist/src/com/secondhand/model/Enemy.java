@@ -13,9 +13,4 @@ public class Enemy extends BlackHole {
 		return isBigger;
 	}
 
-	@Override
-	public Entity_enum getEnum() {
-		// TODO Auto-generated method stub
-		return null;
-	}
 }

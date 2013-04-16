@@ -94,7 +94,8 @@ public class Level {
         PhysicsFactory.createBoxBody(this.physicsWorld, worldBounds[1] , BodyType.StaticBody, wallFixtureDef);
         PhysicsFactory.createBoxBody(this.physicsWorld, worldBounds[2] , BodyType.StaticBody, wallFixtureDef);
         PhysicsFactory.createBoxBody(this.physicsWorld, worldBounds[3] , BodyType.StaticBody, wallFixtureDef);
-/*
+        
+        /*
         this.attachChild(ground);
         this.attachChild(roof);
         this.attachChild(left);
@@ -137,8 +138,8 @@ public class Level {
 
 		// TODO: wait, why is this necessary?
 		
-		// movement is not good test more
-		// position and stuff
+		// movement is not good needs test more
+		// it doesn't go in the right direction but seems to go where it wants to
 		if (v.x + v.y != 0) {
 
 			Vector2 movementVector = new Vector2(v.x - player.getPosition().x, v.y
@@ -161,26 +162,6 @@ public class Level {
 					movementVector, player.getBody().getWorldCenter());
 		}
 
-		// no, this is most definitely not necessary.
-		// all you need to do is give Box2D an initial position and a body for
-		// each of the
-		// entities, and then Box2D will handle the rest.
-		// you basically want to talk with Box2D as little as possible, because
-		// it will handle
-		// most things for you. Only when you want to perform a manual
-		// intervention in the
-		// physics world(like moving the player) do you need to talk with Box2D
-		// so the one other thing we will need to do in this method is the
-		// following:
-		// move the enemy black holes in the direction that their AI:s has
-		// determined.
-		// (obviously using applyLinearImpulse)
-
-		/*
-		 * Iterator<Body> bit = pW.getBodies(); Body tmp; Entity e; while
-		 * (bit.hasNext()) { tmp = bit.next(); e = (Entity) tmp.getUserData();
-		 * e.setPosition(tmp.getPosition()); }
-		 */
 	}
 
 	public boolean checkPlayerBigEnough() {

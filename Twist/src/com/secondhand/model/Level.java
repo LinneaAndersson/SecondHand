@@ -134,8 +134,6 @@ public class Level {
 		// pBody.applyLinearImpulse(new Vector2(100,100),new
 		// Vector2(sh.getX(),sh.getY()));
 
-		// By writing the values of the body position I can see that we have
-		// movement, somewhere we need to set the camera to follow the player
 
 		// TODO: wait, why is this necessary?
 		if (v.x + v.y != 0) {

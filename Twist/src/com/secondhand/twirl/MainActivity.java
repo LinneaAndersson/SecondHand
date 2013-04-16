@@ -49,6 +49,7 @@ public class MainActivity extends BaseGameActivity {
 
 	@Override
 	public void onLoadResources() {
+		// this is instead delegated to the separate scenes.
 	}
 
 	@Override

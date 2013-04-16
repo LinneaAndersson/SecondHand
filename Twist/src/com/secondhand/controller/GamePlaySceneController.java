@@ -19,6 +19,8 @@ public class GamePlaySceneController {
 	private Universe universe = Universe.getInstance();
 
 	// Player sprite
+	// TODO: why do we need this here? Should not instead the GamePlayScene handle both
+	// setting the player and moving it?
 	private IShape player;
 
 	public GamePlaySceneController(Scene gamePlayScene) {

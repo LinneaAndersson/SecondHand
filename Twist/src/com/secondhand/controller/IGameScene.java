@@ -3,6 +3,8 @@ package com.secondhand.controller;
 
 import org.anddev.andengine.entity.scene.Scene;
 
+import com.secondhand.controller.SceneManager.AllScenes;
+
 import android.view.KeyEvent;
 
 /**
@@ -31,4 +33,6 @@ public interface IGameScene {
      */
 	public boolean onKeyDown(final int pKeyCode, final KeyEvent pEvent);
 	
+	// Returns the parent-scene, for example SettingsMenuScene returns AllScenes.MAIN_MENU_SCENE
+	public AllScenes getParentScene();
 }

@@ -12,6 +12,7 @@ import org.anddev.andengine.util.HorizontalAlign;
 
 import android.content.Context;
 
+import com.secondhand.controller.SceneManager.AllScenes;
 import com.secondhand.twirl.GlobalResources;
 
 public class HighScoreScene extends GameScene {
@@ -28,6 +29,7 @@ public class HighScoreScene extends GameScene {
 
 	@Override
 	public void loadScene() {
+
 		int tmp = 0;
 
 		//The title
@@ -55,7 +57,7 @@ public class HighScoreScene extends GameScene {
 				Text playerScore = new Text(100, 120 +tmp*40, GlobalResources.getInstance().menuItemFont, mLine, HorizontalAlign.CENTER);
 				//increase the y-axis for every player. Max 5 players!
 				playerScore.setPosition(x,(int)(y*(0.35+tmp*0.3)));
-
+				
 				mLine = reader.readLine(); 
 
 				this.attachChild(playerScore);
@@ -70,8 +72,17 @@ public class HighScoreScene extends GameScene {
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+
 		}
-
-
 	}
+	//@Override
+	//public AllScenes getParentScene() {
+		//return AllScenes.MAIN_MENU_SCENE;
+	//}
+
+	// What? >>>>>>> 9de23cf4fdfeedc57370eaee741d0391abafea14
+
+	
 }
+
+

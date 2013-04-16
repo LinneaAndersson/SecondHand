@@ -1,14 +1,17 @@
 package com.secondhand.model;
 
-import org.anddev.andengine.entity.shape.IShape;
-
 import com.badlogic.gdx.math.Vector2;
 
+/**
+ * Singelton class for describing the universe.
+ */
 public class Universe {
 	private static Level currentLevel;
 
 	// what level the player is on
-	private static int levelNbr = 1;
+	// TODO: should not this be part of the Level class?
+	// then the universe can ask the current level of its level number.
+	private static int levelNumber = 1;
 
 	private static Universe instance;
 
@@ -24,8 +27,8 @@ public class Universe {
 		return instance;
 	}
 
-	public int getlvlNbr() {
-		return levelNbr;
+	public int getLevelNumber() {
+		return levelNumber;
 	}
 
 	public Level getLevel() {
@@ -36,19 +39,15 @@ public class Universe {
 	public void nextLevel() {
 		currentLevel = new Level();
 	}
-	
-	public void setSprite(IShape s){
-		 currentLevel.registerPlayer(s);
-	}
 
 	public void update(Vector2 v) {
 
-		if (currentLevel.checkPlayerSize()) {
+		if (currentLevel.checkPlayerBigEnough()) {
 
 			nextLevel();
 
 		} else {
-			currentLevel.moveEntitys(v);
+			currentLevel.moveEntities(v);
 		}
 	}
 }

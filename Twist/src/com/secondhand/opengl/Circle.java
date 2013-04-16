@@ -137,10 +137,10 @@ public class Circle extends Shape{
 				|| cx <= pCamera.getMinX() - r
 				|| cy <= pCamera.getMinY() - r;
 				
-				if(culled) {
+		/*		if(culled) {
 					MyDebug.d("circle is culled!");
 				}	
-			
+			*/
 				return culled;
 	}
 

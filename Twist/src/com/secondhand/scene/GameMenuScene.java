@@ -3,7 +3,7 @@ package com.secondhand.scene;
 import java.util.List;
 
 import org.anddev.andengine.engine.Engine;
-import org.anddev.andengine.engine.camera.Camera;
+import org.anddev.andengine.engine.camera.SmoothCamera;
 import org.anddev.andengine.entity.scene.Scene;
 import org.anddev.andengine.entity.scene.menu.MenuScene;
 import org.anddev.andengine.entity.scene.menu.item.IMenuItem;
@@ -25,7 +25,7 @@ import com.secondhand.twirl.GlobalResources;
  */
 public abstract class GameMenuScene extends MenuScene implements IGameScene{
 
-	protected final Camera camera;
+	protected final SmoothCamera smoothCamera;
 	protected final Engine engine;
 	protected final Context context;
 	
@@ -33,7 +33,7 @@ public abstract class GameMenuScene extends MenuScene implements IGameScene{
 		super(engine.getCamera());
 		
 		// we do this to keep the API consistent
-		this.camera = this.mCamera;
+		this.smoothCamera = (SmoothCamera)this.mCamera;
 		this.context = context;
 		this.engine = engine;
 	}
@@ -42,27 +42,22 @@ public abstract class GameMenuScene extends MenuScene implements IGameScene{
 	public Scene getScene() {
 		return this;
 	}
-
-
-	// All menu scenes should go back to its parent
+	
 	@Override
 	public boolean onKeyDown(final int pKeyCode, final KeyEvent pEvent) {
-		if (pKeyCode == KeyEvent.KEYCODE_BACK && pEvent.getAction() == KeyEvent.ACTION_DOWN) {
+		if (pKeyCode == KeyEvent.KEYCODE_BACK
+				&& pEvent.getAction() == KeyEvent.ACTION_DOWN) {
 			AllScenes parent = getParentScene();
-			if (parent != null)
+			if (parent != null) {
 				SceneManager.getInstance().setCurrentSceneEnum(parent);
+				return true;
+			}
 			else
 				return false;
-			return true;
 		} else {
 			return false;
 		}
 	}
-
-    	// Returns the parent-scene, for example SettingsMenuScene returns AllScenes.MAIN_MENU_SCENE
-	public abstract AllScenes getParentScene();
-
-
 
 	protected int layoutHeadline(String headline) {
 		// the vertical spacing around the headline.
@@ -77,7 +72,7 @@ public abstract class GameMenuScene extends MenuScene implements IGameScene{
 
 		Text headlineText = new Text(0,y,menuHeadlineFont, headline);
 
-		final float x = this.camera.getWidth() / 2.0f - headlineText.getWidth() / 2.0f;
+		final float x = this.smoothCamera.getWidth() / 2.0f - headlineText.getWidth() / 2.0f;
 		headlineText.setPosition(x,y);
 
 		this.attachChild(headlineText);
@@ -101,7 +96,7 @@ public abstract class GameMenuScene extends MenuScene implements IGameScene{
 		final float menuHeight = menuItems.size() * fontHeight + (menuItems.size() - 1)  * spacingBetweenItems;
 
 		// y-coordinate of the menu item.
-		float y = (this.camera.getHeight() - startY) / 2.0f - menuHeight / 2.0f + startY;
+		float y = (this.smoothCamera.getHeight() - startY) / 2.0f - menuHeight / 2.0f + startY;
 
 		for(GameMenuScene.MenuItem menuItem : menuItems) {
 
@@ -109,7 +104,7 @@ public abstract class GameMenuScene extends MenuScene implements IGameScene{
 
 			IMenuItem item = new TextMenuItem(menuItem.id, menuItemFont, menuItem.text);
 
-			final float x = this.camera.getWidth() / 2.0f - item.getWidth() / 2.0f;
+			final float x = this.smoothCamera.getWidth() / 2.0f - item.getWidth() / 2.0f;
 
 			item.setPosition(x, y);
 			addMenuItem(item);

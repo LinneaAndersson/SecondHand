@@ -7,5 +7,4 @@ public class Obstacle extends Entity {
 	public Obstacle(Vector2 position, float radius) {
 		super(position,radius);
 	}
-
 }

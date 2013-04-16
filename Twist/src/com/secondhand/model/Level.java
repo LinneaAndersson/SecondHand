@@ -1,43 +1,51 @@
 package com.secondhand.model;
 
-import java.util.Iterator;
 import java.util.List;
 
+import org.anddev.andengine.engine.camera.Camera;
 import org.anddev.andengine.engine.handler.physics.PhysicsHandler;
-import org.anddev.andengine.entity.shape.IShape;
+import org.anddev.andengine.entity.primitive.Rectangle;
+import org.anddev.andengine.entity.shape.Shape;
 import org.anddev.andengine.extension.physics.box2d.PhysicsConnector;
 import org.anddev.andengine.extension.physics.box2d.PhysicsFactory;
 import org.anddev.andengine.extension.physics.box2d.PhysicsWorld;
 
 import com.badlogic.gdx.math.Vector2;
-import com.badlogic.gdx.physics.box2d.Body;
+import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.BodyDef.BodyType;
-import com.secondhand.opengl.Circle;
+import com.secondhand.twirl.MainActivity;
 
 public class Level {
 
+	// TODO: The width and height of the current level is probably not the width and height of the
+	// the camera(that would make for a very small and boring level).
+	// so we will also need to store that.
+	
 	private List<Entity> entityList;
 	private int maxSize;
-	private PhysicsWorld pW;
-	private PhysicsHandler playerHandler;
+	private PhysicsWorld physicsWorld;
+
 	private Player player;
-	private Body pBody;
-	IShape sh;
+
+	private Shape[] worldBounds;
+
 	// many constructors necessary?
 	// default maxsize?
 	public Level() {
 		this(100);
 	}
 
+	// TODO: we do even need this constructor at all?
 	public Level(int maxSize) {
 		this(maxSize, new PhysicsWorld(new Vector2(), true), new Player(
-				new Vector2(), 10));
+				new Vector2(50, 50), 10));
 	}
 
 	public Level(int maxSize, PhysicsWorld pW, Player p) {
 		this.maxSize = maxSize;
-		this.pW = pW;
+		this.physicsWorld = pW;
 		player = p;
+		registerEntities();
 	}
 
 	public void addEntity(Entity entity) {
@@ -48,7 +56,7 @@ public class Level {
 		entityList.remove(entity);
 	}
 
-	public void setEntetyList(List<Entity> list) {
+	public void setEntityList(List<Entity> list) {
 		entityList = list;
 	}
 
@@ -56,83 +64,109 @@ public class Level {
 		return entityList;
 	}
 
-	public PhysicsWorld getPhysics() {
-		return pW;
+	public PhysicsWorld getPhysicsWorld() {
+		return physicsWorld;
 	}
 
 	public void registerEntities() {
-
-		for (Entity e : entityList) {
-			registerEntity(e);
-		}
+		registerEntity(player);
+		/*
+		 * for (Entity e : entityList) { registerEntity(e); }
+		 */
+		
+		
+		worldBounds = new Shape[4];
+		
+		
+        // put some invisible, static rectangles that keep the player within the world bounds:
+        // we do not do this using registerEntity, because these bodies are static.
+        
+		// TODO: set these to the level width and height instead.
+				final float width = MainActivity.CAMERA_WIDTH;
+				final float height = MainActivity.CAMERA_HEIGHT;
+		
+		worldBounds[0] = new Rectangle(0, height - 2, width, 2);
+		worldBounds[1]  = new Rectangle(0, 0, width, 2);
+		worldBounds[2]  = new Rectangle(0, 0, 2, height);
+		worldBounds[3]  = new Rectangle(width - 2, 0, 2, height);
+        final FixtureDef wallFixtureDef = PhysicsFactory.createFixtureDef(0, 0.5f, 0.5f);
+        PhysicsFactory.createBoxBody(this.physicsWorld, worldBounds[0] , BodyType.StaticBody, wallFixtureDef);
+        PhysicsFactory.createBoxBody(this.physicsWorld, worldBounds[1] , BodyType.StaticBody, wallFixtureDef);
+        PhysicsFactory.createBoxBody(this.physicsWorld, worldBounds[2] , BodyType.StaticBody, wallFixtureDef);
+        PhysicsFactory.createBoxBody(this.physicsWorld, worldBounds[3] , BodyType.StaticBody, wallFixtureDef);
+/*
+        this.attachChild(ground);
+        this.attachChild(roof);
+        this.attachChild(left);
+        this.attachChild(right);
+		*/
 	}
 
 	public Player getPlayer() {
 		return player;
 	}
+	
+	public Shape[] getWorldBounds() {
+		return this.worldBounds;
+	}
 
 	public void registerEntity(Entity entity) {
 
-		IShape sh = new Circle(0, 0, entity.getRadius());
+		PhysicsHandler pH = new PhysicsHandler(entity.getShape());
 
-		PhysicsHandler pH = new PhysicsHandler(sh);
+		entity.getShape().registerUpdateHandler(pH);
 
-		sh.registerUpdateHandler(pH);
+		entity.setBody(PhysicsFactory.createCircleBody(physicsWorld,
+				entity.getShape(), BodyType.DynamicBody,
+				PhysicsFactory.createFixtureDef(1, 0.5f, 0.5f)));
 
-		Body body = PhysicsFactory.createCircleBody(pW, sh,
-				BodyType.DynamicBody,
-				PhysicsFactory.createFixtureDef(1, 0.5f, 0.5f));
+		physicsWorld.registerPhysicsConnector(new PhysicsConnector(entity
+				.getShape(), entity.getBody(), true, true));
 
-		// a connection between a body and an entity
-		body.setUserData(entity);
-
-		pW.registerPhysicsConnector(new PhysicsConnector(sh, body, true, true));
-
-	}
-
-	// i separate player so that its easier to to reach it
-	public void registerPlayer(IShape s) {
-
-		sh = s;
-
-		playerHandler = new PhysicsHandler(sh);
-
-		sh.registerUpdateHandler(playerHandler);
-
-		pBody = PhysicsFactory.createCircleBody(pW, sh,
-				BodyType.DynamicBody,
-				PhysicsFactory.createFixtureDef(1, 0.5f, 0.5f));
-
-		// a connection between a body and an entity
-		pBody.setUserData(player);
-		pBody.setActive(true);
-		pW.registerPhysicsConnector(new PhysicsConnector(sh, pBody, true, true));
-
+		
 	}
 
 	// I wonder if all this is needed
 	// Do we even use the vectors in entity?
 	// to me it seems that box2d works that out for us
-	public void moveEntitys(Vector2 v) {
-		//pBody.applyLinearImpulse(new Vector2(100,100),new Vector2(sh.getX(),sh.getY()));
-		
+	// no you don't, read the comment below - Eric
+	public void moveEntities(Vector2 v) {
+		// pBody.applyLinearImpulse(new Vector2(100,100),new
+		// Vector2(sh.getX(),sh.getY()));
+
+		// By writing the values of the body position I can see that we have
+		// movement, somewhere we need to set the camera to follow the player
+
 		if (v.x + v.y != 0) {
-			pBody.applyLinearImpulse(new Vector2(v.x - player.getVector().x,v.y - player.getVector().y ), player.getVector());
-			
+			player.getBody().applyLinearImpulse(
+					new Vector2(v.x - player.getPosition().x, v.y
+							- player.getPosition().y),
+					player.getBody().getWorldCenter());
 		}
 
-		Iterator<Body> bit = pW.getBodies();
-		Body tmp;
-		Entity e;
-		while (bit.hasNext()) {
-			tmp = bit.next();
-			e = (Entity) tmp.getUserData();
-			e.setVector(tmp.getPosition());
+		// no, this is most definitely not necessary.
+		// all you need to do is give Box2D an initial position and a body for
+		// each of the
+		// entities, and then Box2D will handle the rest.
+		// you basically want to talk with Box2D as little as possible, because
+		// it will handle
+		// most things for you. Only when you want to perform a manual
+		// intervention in the
+		// physics world(like moving the player) do you need to talk with Box2D
+		// so the one other thing we will need to do in this method is the
+		// following:
+		// move the enemy black holes in the direction that their AI:s has
+		// determined.
+		// (obviously using applyLinearImpulse)
 
-		}
+		/*
+		 * Iterator<Body> bit = pW.getBodies(); Body tmp; Entity e; while
+		 * (bit.hasNext()) { tmp = bit.next(); e = (Entity) tmp.getUserData();
+		 * e.setPosition(tmp.getPosition()); }
+		 */
 	}
 
-	public boolean checkPlayerSize() {
+	public boolean checkPlayerBigEnough() {
 		return player.getRadius() >= maxSize;
 
 	}

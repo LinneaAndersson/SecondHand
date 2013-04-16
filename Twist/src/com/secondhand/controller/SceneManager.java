@@ -49,12 +49,12 @@ public class SceneManager {
 		this.engine = engine;
 		
 		// IMPORTANT: when you want to add a new scene to the app, it's constructor MUST be called here.
-		loadingScene = new LoadingScene(this.engine, context);
-		mainMenuScene = new MainMenuScene(this.engine, context);
+		this.loadingScene = new LoadingScene(this.engine, context);
+		this.mainMenuScene = new MainMenuScene(this.engine, context);
 		this.settingsMenuScene = new SettingsMenuScene(this.engine, context);
 		
 		this.gamePlayScene = new GamePlayScene(this.engine, context);
-		this.gameController = new GamePlaySceneController(gamePlayScene.getScene());
+		this.gameController = new GamePlaySceneController(this.gamePlayScene.getScene());
 		
 		this.highScoreScene = new HighScoreScene(this.engine, context);
 	}

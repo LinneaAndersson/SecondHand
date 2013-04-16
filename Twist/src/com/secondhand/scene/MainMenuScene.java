@@ -70,6 +70,8 @@ public class MainMenuScene extends GameMenuScene implements IOnMenuItemClickList
 
 	@Override
 	public AllScenes getParentScene() {
+		// see the getParentScene method of LoadingScene for a motivation of why null
+		// should be returned here.
 		return null;
 	}
 

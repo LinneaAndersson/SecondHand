@@ -29,6 +29,8 @@ public class HighScoreScene extends GameScene {
 
 	@Override
 	public void loadScene() {
+		
+		// TODO: we need to show the score as well, not only the name. 
 
 		int tmp = 0;
 

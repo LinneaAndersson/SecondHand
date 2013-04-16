@@ -1,5 +1,7 @@
 package com.secondhand.model;
 
+import static org.anddev.andengine.extension.physics.box2d.util.constants.PhysicsConstants.PIXEL_TO_METER_RATIO_DEFAULT;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,8 +18,11 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.BodyDef.BodyType;
+import com.secondhand.opengl.Polygon;
 import com.secondhand.loader.TextureRegionLoader;
+import com.secondhand.math.PolygonUtil;
 import com.secondhand.opengl.Circle;
+import com.secondhand.opengl.TexturedPolygon;
 import com.secondhand.twirl.MainActivity;
 
 public class Level {
@@ -50,7 +55,8 @@ public class Level {
     
 		testPlanets.add(new Planet(new Vector2(100, 100), 40, planetTexture));
 	
-		testPlanets.add(new Obstacle (new Vector2(200, 200), 40, planetTexture));
+		TexturedPolygon polygon = new TexturedPolygon(200, 200, PolygonUtil.getRandomPolygon(), planetTexture);
+		testPlanets.add(new Obstacle (new Vector2(200, 200), polygon));
 		
 		return testPlanets;
 	}
@@ -138,18 +144,41 @@ public class Level {
 		// TODO: should probably allow the possibility to create box bodies(rectangular) bodies as well
 		// we could store some enum value in Entity for this purpose.
 		
-		Body body = PhysicsFactory.createCircleBody(physicsWorld,
-				entity.getShape(), BodyType.DynamicBody,
-				PhysicsFactory.createFixtureDef(1, 0.5f, 0.5f));
+		//Body body2 = createPolygonBody(this.physicsWorld, polygon,  BodyType.StaticBody, FIXTURE_DEF);
+     	
+		FixtureDef fixture = PhysicsFactory.createFixtureDef(1, 0.5f, 0.5f);
+		Body body;
+		
+		// obstacles are polygons and not circles
+		if(entity instanceof Obstacle)
+			body = createPolygonBody(physicsWorld,
+					(Polygon)entity.getShape(), BodyType.DynamicBody,
+					fixture);
+		else
+			body = PhysicsFactory.createCircleBody(physicsWorld,
+					entity.getShape(), BodyType.DynamicBody,
+					fixture);
 		// we need this when doing collisions handling between entities and black holes:
 		body.setUserData(entity);
 		entity.setBody(body);
 
 		physicsWorld.registerPhysicsConnector(new PhysicsConnector(entity
 				.getShape(), entity.getBody(), true, true));
-
-		
 	}
+	
+	private static Body createPolygonBody(
+    		final PhysicsWorld physicsWorld, final Polygon polygon, final BodyType bodyType, final FixtureDef fixtureDef) {
+        com.badlogic.gdx.math.Vector2 vertices[] = new com.badlogic.gdx.math.Vector2[polygon.getPolygon().size()];
+        int i = 0;
+        for(Vector2 vector: polygon.getPolygon()) {
+        	vertices[i++] = new com.badlogic.gdx.math.Vector2(
+        			vector.x/PIXEL_TO_METER_RATIO_DEFAULT,
+        			vector.y/PIXEL_TO_METER_RATIO_DEFAULT);
+        }
+        
+     	return  PhysicsFactory.createPolygonBody(physicsWorld, polygon,vertices,  bodyType, fixtureDef);
+    }
+	
 
 	// I wonder if all this is needed
 	// Do we even use the vectors in entity?

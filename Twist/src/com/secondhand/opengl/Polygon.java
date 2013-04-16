@@ -8,16 +8,13 @@ import javax.microedition.khronos.opengles.GL11;
 import org.anddev.andengine.engine.camera.Camera;
 import org.anddev.andengine.entity.shape.IShape;
 import org.anddev.andengine.entity.shape.Shape;
-import org.anddev.andengine.extension.physics.box2d.PhysicsConnector;
 import org.anddev.andengine.opengl.util.GLHelper;
 import org.anddev.andengine.opengl.vertex.VertexBuffer;
 
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
-import com.badlogic.gdx.physics.box2d.BodyDef.BodyType;
 import com.badlogic.gdx.physics.box2d.Fixture;
 import com.badlogic.gdx.physics.box2d.PolygonShape;
-import com.secondhand.opengl.PolygonTextureRegionBuffer;
 
 import static org.anddev.andengine.extension.physics.box2d.util.constants.PhysicsConstants.PIXEL_TO_METER_RATIO_DEFAULT;
 
@@ -171,8 +168,8 @@ public class Polygon extends Shape {
 	
 	@Override
 	protected boolean isCulled(Camera pCamera) {
-		
-		
+		return false;
+		/*
 		for(int i = 0; i < this.mPolygonShape.getVertexCount(); ++i) {
 			Vector2 v = new Vector2(0,0);		
 			this.mPolygonShape.getVertex(i, v);
@@ -185,7 +182,7 @@ public class Polygon extends Shape {
 				return false;
 		}
 		return true;
-		
+		*/
 		/*
 		final float x = this.mX;
 		final float y = this.mY;

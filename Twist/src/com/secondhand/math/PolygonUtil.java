@@ -80,7 +80,7 @@ public class PolygonUtil {
     	return 1.0f / (float)rng.nextInt();
     }
     
-    private List<Vector2> getRandomStartingPolygon(Random rng) {
+    private static List<Vector2> getRandomStartingPolygon(Random rng) {
     	
     	
     	List<Vector2> polygonEdges = new ArrayList<Vector2>();
@@ -119,7 +119,7 @@ public class PolygonUtil {
         return polygonEdges;
     }
     
-    public List<Vector2> getRandomPolygon() {
+    public static List<Vector2> getRandomPolygon() {
     	
     	final int TRANSFORMATIONS = 200;
     	final float MAX_TRANSFORMATION = 20;

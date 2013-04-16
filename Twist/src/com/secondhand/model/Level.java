@@ -49,6 +49,8 @@ public class Level {
     					TextureOptions.REPEATING_NEAREST); 	 // we want a repeating texture. 
     
 		testPlanets.add(new Planet(new Vector2(100, 100), 40, planetTexture));
+	
+		testPlanets.add(new Obstacle (new Vector2(200, 200), 40, planetTexture));
 		
 		return testPlanets;
 	}
@@ -60,7 +62,6 @@ public class Level {
 		
 	}
 
-	
 	public Level(int maxSize, PhysicsWorld pW, Player p, List<Entity> otherEntities) {
 		this.maxSize = maxSize;
 		this.physicsWorld = pW;

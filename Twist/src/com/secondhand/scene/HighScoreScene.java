@@ -27,8 +27,8 @@ public class HighScoreScene extends GameScene {
 		Text highScoreText = new Text(0, 0, GlobalResources.getInstance().menuItemFont, "Welcome to high score!");
 		
 		// center the text both horizontally and vertically. 
-		float x = this.camera.getWidth() / 2.0f - highScoreText.getWidth() / 2.0f;
-		float y = this.camera.getHeight() / 2.0f - highScoreText.getHeight() / 2.0f;
+		float x = this.smoothCamera.getWidth() / 2.0f - highScoreText.getWidth() / 2.0f;
+		float y = this.smoothCamera.getHeight() / 2.0f - highScoreText.getHeight() / 2.0f;
 		highScoreText.setPosition(x, y);
 		
 		this.attachChild(highScoreText);

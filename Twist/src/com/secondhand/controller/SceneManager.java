@@ -1,6 +1,7 @@
 package com.secondhand.controller;
 
 import org.anddev.andengine.engine.Engine;
+import org.anddev.andengine.engine.camera.SmoothCamera;
 
 import android.content.Context;
 import android.view.KeyEvent;
@@ -49,8 +50,8 @@ public class SceneManager {
 		this.engine = engine;
 		
 		// IMPORTANT: when you want to add a new scene to the app, it's constructor MUST be called here.
-		loadingScene = new LoadingScene(this.engine, context);
-		mainMenuScene = new MainMenuScene(this.engine, context);
+		this.loadingScene = new LoadingScene(this.engine, context);
+		this.mainMenuScene = new MainMenuScene(this.engine, context);
 		this.settingsMenuScene = new SettingsMenuScene(this.engine, context);
 		
 		this.gamePlayScene = new GamePlayScene(this.engine, context);

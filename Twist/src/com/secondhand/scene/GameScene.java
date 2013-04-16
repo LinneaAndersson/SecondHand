@@ -2,6 +2,7 @@ package com.secondhand.scene;
 
 import org.anddev.andengine.engine.Engine;
 import org.anddev.andengine.engine.camera.Camera;
+import org.anddev.andengine.engine.camera.SmoothCamera;
 import org.anddev.andengine.entity.scene.Scene;
 
 import com.secondhand.controller.IGameScene;
@@ -18,13 +19,13 @@ import android.view.KeyEvent;
  */
 public abstract class GameScene extends Scene implements IGameScene {
 
-	protected final Camera camera;
+	protected final SmoothCamera smoothCamera;
 	protected final Engine engine;
 	protected final Context context;
 
 	public GameScene(Engine engine, Context context) {
 		super();
-		this.camera = engine.getCamera();
+		this.smoothCamera = (SmoothCamera)engine.getCamera();
 		this.engine = engine;
 		this.context = context;
 	}

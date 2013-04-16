@@ -13,6 +13,7 @@ import org.anddev.andengine.opengl.texture.TextureOptions;
 import org.anddev.andengine.opengl.texture.region.TextureRegion;
 
 import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.BodyDef.BodyType;
 import com.secondhand.loader.TextureRegionLoader;
@@ -59,11 +60,13 @@ public class Level {
 		
 	}
 
+	
 	public Level(int maxSize, PhysicsWorld pW, Player p, List<Entity> otherEntities) {
 		this.maxSize = maxSize;
 		this.physicsWorld = pW;
 		player = p;
 		entityList = otherEntities;
+		this.physicsWorld.setContactListener(new CollisionContactListener());	
 		registerEntities();
 	}
 
@@ -133,9 +136,13 @@ public class Level {
 
 		// TODO: should probably allow the possibility to create box bodies(rectangular) bodies as well
 		// we could store some enum value in Entity for this purpose.
-		entity.setBody(PhysicsFactory.createCircleBody(physicsWorld,
+		
+		Body body = PhysicsFactory.createCircleBody(physicsWorld,
 				entity.getShape(), BodyType.DynamicBody,
-				PhysicsFactory.createFixtureDef(1, 0.5f, 0.5f)));
+				PhysicsFactory.createFixtureDef(1, 0.5f, 0.5f));
+		// we need this when doing collisions handling between entities and black holes:
+		body.setUserData(entity);
+		entity.setBody(body);
 
 		physicsWorld.registerPhysicsConnector(new PhysicsConnector(entity
 				.getShape(), entity.getBody(), true, true));

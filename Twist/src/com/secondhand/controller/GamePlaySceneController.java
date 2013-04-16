@@ -7,6 +7,7 @@ import org.anddev.andengine.entity.shape.Shape;
 import org.anddev.andengine.input.touch.TouchEvent;
 
 import com.badlogic.gdx.math.Vector2;
+import com.secondhand.debug.MyDebug;
 import com.secondhand.model.Universe;
 import com.secondhand.scene.GamePlayScene;
 
@@ -46,6 +47,8 @@ public class GamePlaySceneController {
 		@Override
 		public boolean onSceneTouchEvent(Scene pScene,
 				TouchEvent pSceneTouchEvent) {
+			
+			MyDebug.i("TouchEvent");
 			float x = pSceneTouchEvent.getX();
 			float y = pSceneTouchEvent.getY();
 			universe.update(new Vector2(x, y));

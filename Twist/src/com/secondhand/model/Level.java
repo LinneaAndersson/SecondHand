@@ -140,7 +140,7 @@ public class Level {
 		
 		// movement is not good needs test more
 		// it doesn't go in the right direction but seems to go where it wants to
-		if (v.x + v.y != 0) {
+		
 
 			Vector2 movementVector = new Vector2(v.x - player.getPosition().x, v.y
 					- player.getPosition().y);
@@ -160,7 +160,7 @@ public class Level {
 
 			player.getBody().applyLinearImpulse(
 					movementVector, player.getBody().getWorldCenter());
-		}
+		
 
 	}
 

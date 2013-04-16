@@ -33,6 +33,7 @@ public class GamePlaySceneController {
 		
 		player = universe.getLevel().getPlayer().getShape();
 		
+		player.detachSelf();
 		scene.setPlayer(player);
 		
 		// add the world bounds
@@ -47,12 +48,15 @@ public class GamePlaySceneController {
 		@Override
 		public boolean onSceneTouchEvent(Scene pScene,
 				TouchEvent pSceneTouchEvent) {
-			
 			MyDebug.i("TouchEvent");
-			float x = pSceneTouchEvent.getX();
-			float y = pSceneTouchEvent.getY();
-			universe.update(new Vector2(x, y));
-			return true;
+			if (pSceneTouchEvent.getAction() == TouchEvent.ACTION_DOWN ||
+					pSceneTouchEvent.getAction() == TouchEvent.ACTION_MOVE) {
+				float x = pSceneTouchEvent.getX();
+				float y = pSceneTouchEvent.getY();
+				universe.update(new Vector2(x, y));
+				return true;
+			}
+			return false;
 		}
 	}
 }

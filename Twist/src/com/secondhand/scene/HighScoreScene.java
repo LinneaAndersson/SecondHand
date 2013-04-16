@@ -14,6 +14,7 @@ import android.content.Context;
 
 import com.secondhand.controller.SceneManager.AllScenes;
 import com.secondhand.twirl.GlobalResources;
+import com.secondhand.twirl.LocalizationStrings;
 
 public class HighScoreScene extends GameScene {
 	Font mFont;
@@ -30,12 +31,10 @@ public class HighScoreScene extends GameScene {
 	@Override
 	public void loadScene() {
 		
-		// TODO: we need to show the score as well, not only the name. 
-
 		int tmp = 0;
 
 		//The title
-		Text highScore = new Text(100, 60, mFont, "High score" , HorizontalAlign.CENTER);
+		Text highScore = new Text(100, 60, mFont, LocalizationStrings.getInstance().getLocalizedString("menu_high_score"), HorizontalAlign.CENTER);
 
 		//The coordinates for the text to bee in the middle of the screen
 		float x = this.smoothCamera.getWidth() / 2.0f - highScore.getWidth() / 2.0f;

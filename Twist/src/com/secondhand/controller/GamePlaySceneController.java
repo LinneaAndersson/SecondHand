@@ -35,7 +35,7 @@ public class GamePlaySceneController {
 		scene.setPlayer(player);
 		
 		// add the world bounds
-		// you can´t attachChild here! Exception("pEntity already has a parent")
+		// you canï¿½t attachChild here!
 		for(Shape shape: universe.getLevel().getWorldBounds()) {
 			shape.detachSelf();	
 			scene.attachChild(shape);

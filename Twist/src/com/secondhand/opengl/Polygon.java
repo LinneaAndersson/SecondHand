@@ -17,7 +17,7 @@ import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.BodyDef.BodyType;
 import com.badlogic.gdx.physics.box2d.Fixture;
 import com.badlogic.gdx.physics.box2d.PolygonShape;
-import com.example.utility.MyDebug;
+import com.secondhand.opengl.PolygonTextureRegionBuffer;
 
 import static org.anddev.andengine.extension.physics.box2d.util.constants.PhysicsConstants.PIXEL_TO_METER_RATIO_DEFAULT;
 
@@ -184,7 +184,6 @@ public class Polygon extends Shape {
 			if(isPointInCamera(pCamera, translatedPoint))
 				return false;
 		}
-		MyDebug.d("culled!");
 		return true;
 		
 		/*

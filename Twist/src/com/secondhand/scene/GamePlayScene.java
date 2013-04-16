@@ -9,11 +9,14 @@ import org.anddev.andengine.entity.shape.IShape;
 import android.content.Context;
 
 import com.secondhand.controller.SceneManager.AllScenes;
+import com.secondhand.opengl.StarsBackground;
 
 public class GamePlayScene extends GameScene {
 	
+	
 	private List<IShape> shapeList;
 	private IShape player;
+	
 	
 	public GamePlayScene(Engine engine, Context context) {
 		super(engine, context);
@@ -42,7 +45,12 @@ public class GamePlayScene extends GameScene {
 		}*/
 		engine.getCamera().setChaseEntity(player);
 		
-		setBackground(new ColorBackground(1f, 0f, 0f));
+		final float width = this.smoothCamera.getWidth();
+		final float height = this.smoothCamera.getHeight();
+		
+		this.attachChild(new StarsBackground(50, 5.0f, width, height));
+		this.attachChild(new StarsBackground(100, 3.0f, width, height));
+        this.attachChild(new StarsBackground(130, 1.0f, width, height));
 	}
 	
 	@Override

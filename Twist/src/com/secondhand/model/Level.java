@@ -12,11 +12,16 @@ import com.badlogic.gdx.physics.box2d.BodyDef.BodyType;
 
 public class Level {
 
+	// TODO: The width and height of the current level is probably not the width and height of the
+	// the camera(that would make for a very small and boring level).
+	// so we will also need to store that.
+	
 	private List<Entity> entityList;
 	private int maxSize;
 	private PhysicsWorld physicsWorld;
 
 	private Player player;
+	
 
 	// many constructors necessary?
 	// default maxsize?

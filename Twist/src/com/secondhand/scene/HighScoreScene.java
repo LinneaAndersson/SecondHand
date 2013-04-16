@@ -36,8 +36,8 @@ public class HighScoreScene extends GameScene {
 		Text highScore = new Text(100, 60, mFont, "High score" , HorizontalAlign.CENTER);
 
 		//The coordinates for the text to bee in the middle of the screen
-		float x = this.camera.getWidth() / 2.0f - highScore.getWidth() / 2.0f;
-		float y = this.camera.getHeight() / 2.0f - highScore.getHeight() / 2.0f;
+		float x = this.smoothCamera.getWidth() / 2.0f - highScore.getWidth() / 2.0f;
+		float y = this.smoothCamera.getHeight() / 2.0f - highScore.getHeight() / 2.0f;
 		highScore.setPosition(x,(int)(0.2*y));
 
 		this.attachChild(highScore);
@@ -49,8 +49,8 @@ public class HighScoreScene extends GameScene {
 
 			//to get the coordinates for position.
 			Text highScoreText=new Text(100, 120 +tmp*40, mFont, mLine, HorizontalAlign.CENTER);
-			x = this.camera.getWidth() / 2.0f - highScoreText.getWidth() / 2.0f;
-			y = this.camera.getHeight() / 2.0f - highScoreText.getHeight() / 2.0f;
+			x = this.smoothCamera.getWidth() / 2.0f - highScoreText.getWidth() / 2.0f;
+			y = this.smoothCamera.getHeight() / 2.0f - highScoreText.getHeight() / 2.0f;
 
 			while (mLine != null) {
 				tmp++;
@@ -75,10 +75,10 @@ public class HighScoreScene extends GameScene {
 
 		}
 	}
-	//@Override
-	//public AllScenes getParentScene() {
-		//return AllScenes.MAIN_MENU_SCENE;
-	//}
+	@Override
+	public AllScenes getParentScene() {
+		return AllScenes.MAIN_MENU_SCENE;
+	}
 
 	// What? >>>>>>> 9de23cf4fdfeedc57370eaee741d0391abafea14
 

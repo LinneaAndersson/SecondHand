@@ -5,7 +5,6 @@ import java.util.List;
 import org.anddev.andengine.engine.Engine;
 import org.anddev.andengine.entity.scene.background.ColorBackground;
 import org.anddev.andengine.entity.shape.IShape;
-import org.anddev.andengine.entity.shape.Shape;
 
 import android.content.Context;
 
@@ -48,6 +47,8 @@ public class GamePlayScene extends GameScene {
 	
 	@Override
 	public AllScenes getParentScene() {
+		// TODO: we should probably instead override onKeyDown and use custom back button handling,
+		// since we also need to somehow save the current state.
 		return AllScenes.MAIN_MENU_SCENE;
 	}
 }

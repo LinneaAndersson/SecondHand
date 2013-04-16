@@ -1,7 +1,6 @@
 package com.secondhand.controller;
 
 import org.anddev.andengine.engine.Engine;
-import org.anddev.andengine.engine.camera.SmoothCamera;
 
 import android.content.Context;
 import android.view.KeyEvent;

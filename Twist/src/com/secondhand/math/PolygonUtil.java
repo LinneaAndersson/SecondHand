@@ -1,6 +1,8 @@
 	package com.secondhand.math;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 import com.badlogic.gdx.math.Vector2;
 
@@ -68,4 +70,99 @@ public class PolygonUtil {
 		// now we've checked all the adjacent pairs of edges, so it must be convex.
 		return true;
 	}
+	
+	/**
+     * Random float in range -1 to 1
+     * @param rng
+     * @return
+     */
+    private static float nextFloat(Random rng) {
+    	return 1.0f / (float)rng.nextInt();
+    }
+    
+    private List<Vector2> getRandomStartingPolygon(Random rng) {
+    	
+    	
+    	List<Vector2> polygonEdges = new ArrayList<Vector2>();
+        
+    	int choice = rng.nextInt(3);
+    	
+    	if(choice == 2) {
+    		// 6 edges
+    		polygonEdges.add(new Vector2(50,-50));
+    		polygonEdges.add(new Vector2(100,0));
+    		polygonEdges.add(new Vector2(100,100));
+    		polygonEdges.add(new Vector2(50,150));
+    		polygonEdges.add(new Vector2(0,100));
+    		polygonEdges.add(new Vector2(0,0));
+    	} else if(choice == 1) {
+    		// 7 edges
+    		polygonEdges.add(new Vector2(50,-50));
+    		polygonEdges.add(new Vector2(100,0));
+    		polygonEdges.add(new Vector2(150,50));
+    		polygonEdges.add(new Vector2(100,100));
+    		polygonEdges.add(new Vector2(50,150));
+    		polygonEdges.add(new Vector2(0,100));
+    		polygonEdges.add(new Vector2(0,0));
+    	}  else if(choice == 0) {
+    		// 8 edges
+    		polygonEdges.add(new Vector2(50,-50));
+    		polygonEdges.add(new Vector2(100,0));
+    		polygonEdges.add(new Vector2(150,50));
+    		polygonEdges.add(new Vector2(100,100));
+    		polygonEdges.add(new Vector2(50,150));
+    		polygonEdges.add(new Vector2(0,100));
+    		polygonEdges.add(new Vector2(-50,50));
+    		polygonEdges.add(new Vector2(0,0));
+    	}
+        
+        return polygonEdges;
+    }
+    
+    public List<Vector2> getRandomPolygon() {
+    	
+    	final int TRANSFORMATIONS = 200;
+    	final float MAX_TRANSFORMATION = 20;
+    	
+    	Random rng = new Random();
+        
+    	List<Vector2> polygonEdges = getRandomStartingPolygon(rng);
+    	
+        for(int i = 0; i < TRANSFORMATIONS; ++i) {
+        	// get a random edge point of the polygon
+        	Vector2 v = polygonEdges.get(rng.nextInt(polygonEdges.size()));
+        	
+        	// randomly tranform it by some random vector.
+        	
+        	Vector2 transformation;
+        	if(i < TRANSFORMATIONS / 2) 
+        		transformation = new Vector2((float)rng.nextDouble() * MAX_TRANSFORMATION, (float)rng.nextDouble() * MAX_TRANSFORMATION);
+        	else
+        		transformation = new Vector2((float)nextFloat(rng) * MAX_TRANSFORMATION, (float)nextFloat(rng) * MAX_TRANSFORMATION);
+        	
+        	
+        	v.add(transformation);
+        	
+        	/*
+        	 * If this transformation the polygon non-convex, we'll have to undo it,
+        	 * since Box2D does not support non-convex polygons.
+        	 */
+        	if(!PolygonUtil.isConvex(polygonEdges)) {
+        		v.sub(transformation);
+        	}
+        }
+        
+        // now we have to make sure that the polygon ends up approximately at the touched position.
+        Vector2 firstV = polygonEdges.get(0);
+        for(int i = 1; i < polygonEdges.size(); ++i) {
+        	polygonEdges.get(i).sub(firstV);
+        }
+        // set the zero vector.
+        firstV.x = 0;
+        firstV.y = 0;
+        
+        
+        return polygonEdges;
+    }
+    
 }

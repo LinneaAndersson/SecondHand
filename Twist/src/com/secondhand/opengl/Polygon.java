@@ -169,6 +169,7 @@ public class Polygon extends Shape {
 	@Override
 	protected boolean isCulled(Camera pCamera) {
 		return false;
+		// TODO: get culling to work.	
 		/*
 		for(int i = 0; i < this.mPolygonShape.getVertexCount(); ++i) {
 			Vector2 v = new Vector2(0,0);		

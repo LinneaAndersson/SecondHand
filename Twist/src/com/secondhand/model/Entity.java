@@ -12,12 +12,6 @@ public abstract class Entity {
 	private float radius;
 	private Body body;
 	private IShape shape;
-
-	public Entity(Vector2 position, float radius) {
-		this.position = position;
-		this.radius = radius;
-		shape = new Circle(position.x, position.y, radius);
-	}
 	
 	public Entity(Vector2 position, float radius, IShape shape) {
 		this.position = position;

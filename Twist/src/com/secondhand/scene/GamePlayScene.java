@@ -3,17 +3,11 @@ package com.secondhand.scene;
 import java.util.List;
 
 import org.anddev.andengine.engine.Engine;
-import org.anddev.andengine.entity.primitive.Rectangle;
-import org.anddev.andengine.entity.scene.background.ColorBackground;
 import org.anddev.andengine.entity.shape.IShape;
-import org.anddev.andengine.entity.shape.Shape;
-import org.anddev.andengine.extension.physics.box2d.PhysicsFactory;
 
 import android.content.Context;
 import android.view.KeyEvent;
 
-import com.badlogic.gdx.physics.box2d.FixtureDef;
-import com.badlogic.gdx.physics.box2d.BodyDef.BodyType;
 import com.secondhand.controller.SceneManager;
 import com.secondhand.controller.SceneManager.AllScenes;
 import com.secondhand.opengl.StarsBackground;
@@ -61,7 +55,6 @@ public class GamePlayScene extends GameScene {
 		this.smoothCamera.setBoundsEnabled(true);
 		
 		engine.getCamera().setChaseEntity(player);
-		
 		
 		this.attachChild(new StarsBackground(50, 5.0f, width, height));
 		this.attachChild(new StarsBackground(100, 3.0f, width, height));

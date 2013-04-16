@@ -12,7 +12,6 @@ import org.anddev.andengine.opengl.util.GLHelper;
 import org.anddev.andengine.opengl.vertex.VertexBuffer;
 
 import com.badlogic.gdx.math.Vector2;
-import com.secondhand.debug.MyDebug;
 
 /**
  * A circle class used for drawing circles. 

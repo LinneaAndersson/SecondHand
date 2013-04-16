@@ -9,7 +9,8 @@ public abstract class PowerUp extends Entity {
 	private Effect effect;
 	
 	public PowerUp (Vector2 position, float radius, Effect effect ) {
-		super(position,radius);
+		// TODO: pass down the shape of the powerup(it will probably be a square, so probably a sprite)
+		super(position,radius, null);
 		this.effect = effect;
 	}
 	

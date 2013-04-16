@@ -1,11 +1,12 @@
 package com.secondhand.model;
 
 import com.badlogic.gdx.math.Vector2;
+import com.secondhand.opengl.Circle;
 
 public abstract class BlackHole extends Entity{
 	
 	public BlackHole (Vector2 position, float radius) {
-		super(position,radius);
+		super(position,radius, new Circle(position.x, position.y, radius));
 	}
 	
 	public void increaseSize(float increase){

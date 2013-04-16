@@ -42,27 +42,22 @@ public abstract class GameMenuScene extends MenuScene implements IGameScene{
 	public Scene getScene() {
 		return this;
 	}
-
-
-	// All menu scenes should go back to its parent
+	
 	@Override
 	public boolean onKeyDown(final int pKeyCode, final KeyEvent pEvent) {
-		if (pKeyCode == KeyEvent.KEYCODE_BACK && pEvent.getAction() == KeyEvent.ACTION_DOWN) {
+		if (pKeyCode == KeyEvent.KEYCODE_BACK
+				&& pEvent.getAction() == KeyEvent.ACTION_DOWN) {
 			AllScenes parent = getParentScene();
-			if (parent != null)
+			if (parent != null) {
 				SceneManager.getInstance().setCurrentSceneEnum(parent);
+				return true;
+			}
 			else
 				return false;
-			return true;
 		} else {
 			return false;
 		}
 	}
-
-    	// Returns the parent-scene, for example SettingsMenuScene returns AllScenes.MAIN_MENU_SCENE
-	public abstract AllScenes getParentScene();
-
-
 
 	protected int layoutHeadline(String headline) {
 		// the vertical spacing around the headline.

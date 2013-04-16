@@ -34,13 +34,17 @@ public abstract class GameScene extends Scene implements IGameScene {
 		if (pKeyCode == KeyEvent.KEYCODE_BACK
 				&& pEvent.getAction() == KeyEvent.ACTION_DOWN) {
 			AllScenes parent = getParentScene();
-			if (parent != null)
+			if (parent != null) {
 				// TODO needs to save game and have a continue option on the
 				// menuScene if the current scene is gamePlayScene
+				// but HighScoreScene also extends from GameScene, so we will probably want
+				// override this method in GamePlayScene and use custom handling for 
+				// that specific scene.
 				SceneManager.getInstance().setCurrentSceneEnum(parent);
+				return true;
+			}
 			else
 				return false;
-			return true;
 		} else {
 			return false;
 		}
@@ -50,6 +54,4 @@ public abstract class GameScene extends Scene implements IGameScene {
 	public Scene getScene() {
 		return this;
 	}
-
-	public abstract AllScenes getParentScene();
 }

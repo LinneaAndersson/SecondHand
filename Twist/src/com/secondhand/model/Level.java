@@ -137,11 +137,27 @@ public class Level {
 		// By writing the values of the body position I can see that we have
 		// movement, somewhere we need to set the camera to follow the player
 
+		// TODO: wait, why is this necessary?
 		if (v.x + v.y != 0) {
+
+			Vector2 movementVector = new Vector2(v.x - player.getPosition().x, v.y
+					- player.getPosition().y);
+			// scale the length of the vector some, so that it doesn't move too fast.
+			// and reverse the vector so that it  goes in the correct direction. 
+			
+			// the closer the touch is to the plauer, the more force do we need to apply.
+			movementVector.x = 1/ movementVector.x;
+			movementVector.y = 1/ movementVector.y;
+
+			// make it a bit faster
+			movementVector = movementVector.mul(10);
+
+			
+			// also reverse the vector so that it goes in the correct direction.
+			movementVector = movementVector.mul(-1);
+
 			player.getBody().applyLinearImpulse(
-					new Vector2(v.x - player.getPosition().x, v.y
-							- player.getPosition().y),
-					player.getBody().getWorldCenter());
+					movementVector, player.getBody().getWorldCenter());
 		}
 
 		// no, this is most definitely not necessary.

@@ -136,6 +136,9 @@ public class Level {
 
 
 		// TODO: wait, why is this necessary?
+		
+		// movement is not good test more
+		// position and stuff
 		if (v.x + v.y != 0) {
 
 			Vector2 movementVector = new Vector2(v.x - player.getPosition().x, v.y

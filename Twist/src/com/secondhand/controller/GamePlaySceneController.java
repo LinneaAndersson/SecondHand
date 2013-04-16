@@ -35,8 +35,9 @@ public class GamePlaySceneController {
 		scene.setPlayer(player);
 		
 		// add the world bounds
+		// you can´t attachChild here!
 		for(Shape shape: universe.getLevel().getWorldBounds()) {
-				scene.attachChild(shape);
+				//scene.attachChild(shape);
 		}
 	}
 

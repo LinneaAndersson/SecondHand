@@ -1,5 +1,8 @@
 package com.secondhand.controller;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.anddev.andengine.entity.scene.Scene;
 import org.anddev.andengine.entity.scene.Scene.IOnSceneTouchListener;
 import org.anddev.andengine.entity.shape.IShape;
@@ -8,6 +11,7 @@ import org.anddev.andengine.input.touch.TouchEvent;
 
 import com.badlogic.gdx.math.Vector2;
 import com.secondhand.debug.MyDebug;
+import com.secondhand.model.Entity;
 import com.secondhand.model.Universe;
 import com.secondhand.scene.GamePlayScene;
 
@@ -36,12 +40,25 @@ public class GamePlaySceneController {
 		player.detachSelf();
 		scene.setPlayer(player);
 		
+		List<IShape> shapes = new ArrayList<IShape>();
+		for(Entity entity: universe.getLevel().getEntityList()) {
+			shapes.add(entity.getShape());
+		}
+		scene.setShapes(shapes);
+		
 		// add the world bounds
-		// you can�t attachChild here! it can cause trouble
-		for(Shape shape: universe.getLevel().getWorldBounds()) {
+		// you can���t attachChild here! it can cause trouble
+		/*for(Shape shape: universe.getLevel().getWorldBounds()) {
 			shape.detachSelf();	
 			scene.attachChild(shape);
+		}*/
+		
+		for(Entity entity: universe.getLevel().getEntityList()) {
+			IShape shape = entity.getShape();
+		//	shape.detachSelf();	
+			scene.attachChild(shape);
 		}
+		
 	}
 
 	private class GameSceneTouchListener implements IOnSceneTouchListener {

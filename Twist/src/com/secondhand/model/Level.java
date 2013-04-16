@@ -1,5 +1,6 @@
 package com.secondhand.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.anddev.andengine.engine.handler.physics.PhysicsHandler;
@@ -8,10 +9,14 @@ import org.anddev.andengine.entity.shape.Shape;
 import org.anddev.andengine.extension.physics.box2d.PhysicsConnector;
 import org.anddev.andengine.extension.physics.box2d.PhysicsFactory;
 import org.anddev.andengine.extension.physics.box2d.PhysicsWorld;
+import org.anddev.andengine.opengl.texture.TextureOptions;
+import org.anddev.andengine.opengl.texture.region.TextureRegion;
 
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.BodyDef.BodyType;
+import com.secondhand.loader.TextureRegionLoader;
+import com.secondhand.opengl.Circle;
 import com.secondhand.twirl.MainActivity;
 
 public class Level {
@@ -33,17 +38,32 @@ public class Level {
 	public Level() {
 		this(100);
 	}
+	
+	public static List<Entity> createTestPlanets() {
+		List<Entity> testPlanets = new ArrayList<Entity>();
+		
+		// TODO: figure out how to access the texture loaded in game play scene instead. 
+		TextureRegion planetTexture = 
+    			TextureRegionLoader.getInstance().loadTextureRegion("gfx/planet.png", 32, 32,
+    					TextureOptions.REPEATING_NEAREST); 	 // we want a repeating texture. 
+    
+		testPlanets.add(new Planet(new Vector2(100, 100), 40, planetTexture));
+		
+		return testPlanets;
+	}
 
 	// TODO: we do even need this constructor at all?
 	public Level(int maxSize) {
 		this(maxSize, new PhysicsWorld(new Vector2(), true), new Player(
-				new Vector2(50, 50), 20));
+				new Vector2(50, 50), 20), createTestPlanets());
+		
 	}
 
-	public Level(int maxSize, PhysicsWorld pW, Player p) {
+	public Level(int maxSize, PhysicsWorld pW, Player p, List<Entity> otherEntities) {
 		this.maxSize = maxSize;
 		this.physicsWorld = pW;
 		player = p;
+		entityList = otherEntities;
 		registerEntities();
 	}
 
@@ -69,11 +89,12 @@ public class Level {
 
 	public void registerEntities() {
 		registerEntity(player);
-		/*
-		 * for (Entity e : entityList) { registerEntity(e); }
-		 */
 		
-		
+		// register all the other entities except for the player. 
+		 for (Entity e : entityList) { 
+			 registerEntity(e); 
+		 }
+		 	
 		worldBounds = new Shape[4];
 		
 		
@@ -94,12 +115,6 @@ public class Level {
         PhysicsFactory.createBoxBody(this.physicsWorld, worldBounds[2] , BodyType.StaticBody, wallFixtureDef);
         PhysicsFactory.createBoxBody(this.physicsWorld, worldBounds[3] , BodyType.StaticBody, wallFixtureDef);
         
-        /*
-        this.attachChild(ground);
-        this.attachChild(roof);
-        this.attachChild(left);
-        this.attachChild(right);
-		*/
 	}
 
 	public Player getPlayer() {
@@ -116,6 +131,8 @@ public class Level {
 
 		entity.getShape().registerUpdateHandler(pH);
 
+		// TODO: should probably allow the possibility to create box bodies(rectangular) bodies as well
+		// we could store some enum value in Entity for this purpose.
 		entity.setBody(PhysicsFactory.createCircleBody(physicsWorld,
 				entity.getShape(), BodyType.DynamicBody,
 				PhysicsFactory.createFixtureDef(1, 0.5f, 0.5f)));

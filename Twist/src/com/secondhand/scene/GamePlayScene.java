@@ -4,10 +4,13 @@ import java.util.List;
 
 import org.anddev.andengine.engine.Engine;
 import org.anddev.andengine.entity.shape.IShape;
+import org.anddev.andengine.opengl.texture.TextureOptions;
+import org.anddev.andengine.opengl.texture.region.TextureRegion;
 
 import android.content.Context;
 import android.view.KeyEvent;
 
+import com.secondhand.loader.TextureRegionLoader;
 import com.secondhand.controller.SceneManager;
 import com.secondhand.controller.SceneManager.AllScenes;
 import com.secondhand.opengl.StarsBackground;
@@ -18,6 +21,7 @@ public class GamePlayScene extends GameScene {
 	private List<IShape> shapeList;
 	private IShape player;
 	
+	private TextureRegion planetTexture;
 	
 	public GamePlayScene(Engine engine, Context context) {
 		super(engine, context);
@@ -34,20 +38,33 @@ public class GamePlayScene extends GameScene {
 	@Override
 	public void loadResources() {
 		// load the resources of this scene
+		this.planetTexture = 
+    			TextureRegionLoader.getInstance().loadTextureRegion("gfx/planet.png", 32, 32,
+    					TextureOptions.REPEATING_NEAREST); 	 // we want a repeating texture. 
+    
+		
 	}
 
 	@Override
 	public void loadScene() {
-		// now load the scene(attach all the entities)
-		
-		attachChild(player);
-		/*for(IShape s : shapeList){
-			attachChild(s);
-		}*/
-		
+	
 		// level width. it's the camera width and height for now.
 		final float width = this.smoothCamera.getWidth();
 		final float height = this.smoothCamera.getHeight();
+	
+		
+		this.attachChild(new StarsBackground(50, 5.0f, width, height));
+		this.attachChild(new StarsBackground(100, 3.0f, width, height));
+        this.attachChild(new StarsBackground(130, 1.0f, width, height));
+		
+		
+		// now load the scene(attach all the entities)
+		
+		attachChild(player);
+		for(IShape s : shapeList){
+			attachChild(s);
+		}
+		
 		
 		// set the level width here.
 		this.smoothCamera.setBounds(0, width, 0, height);
@@ -56,9 +73,6 @@ public class GamePlayScene extends GameScene {
 		
 		engine.getCamera().setChaseEntity(player);
 		
-		this.attachChild(new StarsBackground(50, 5.0f, width, height));
-		this.attachChild(new StarsBackground(100, 3.0f, width, height));
-        this.attachChild(new StarsBackground(130, 1.0f, width, height));
 	}
 	
 	@Override

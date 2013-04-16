@@ -18,8 +18,8 @@ import com.secondhand.loader.TextureRegionLoader;
 
 public class MainActivity extends BaseGameActivity {
 
-	private static final int CAMERA_WIDTH = 800;
-	private static final int CAMERA_HEIGHT = 480;
+	public static final int CAMERA_WIDTH = 800;
+	public static final int CAMERA_HEIGHT = 480;
 	
 	SmoothCamera camera;
 	

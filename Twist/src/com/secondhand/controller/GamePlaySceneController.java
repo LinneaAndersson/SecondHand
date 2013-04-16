@@ -3,6 +3,7 @@ package com.secondhand.controller;
 import org.anddev.andengine.entity.scene.Scene;
 import org.anddev.andengine.entity.scene.Scene.IOnSceneTouchListener;
 import org.anddev.andengine.entity.shape.IShape;
+import org.anddev.andengine.entity.shape.Shape;
 import org.anddev.andengine.input.touch.TouchEvent;
 
 import com.badlogic.gdx.math.Vector2;
@@ -32,6 +33,11 @@ public class GamePlaySceneController {
 		player = universe.getLevel().getPlayer().getShape();
 		
 		scene.setPlayer(player);
+		
+		// add the world bounds
+		for(Shape shape: universe.getLevel().getWorldBounds()) {
+				scene.attachChild(shape);
+		}
 	}
 
 	private class GameSceneTouchListener implements IOnSceneTouchListener {

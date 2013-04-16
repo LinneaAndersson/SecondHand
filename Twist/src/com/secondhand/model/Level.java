@@ -2,13 +2,18 @@ package com.secondhand.model;
 
 import java.util.List;
 
+import org.anddev.andengine.engine.camera.Camera;
 import org.anddev.andengine.engine.handler.physics.PhysicsHandler;
+import org.anddev.andengine.entity.primitive.Rectangle;
+import org.anddev.andengine.entity.shape.Shape;
 import org.anddev.andengine.extension.physics.box2d.PhysicsConnector;
 import org.anddev.andengine.extension.physics.box2d.PhysicsFactory;
 import org.anddev.andengine.extension.physics.box2d.PhysicsWorld;
 
 import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.BodyDef.BodyType;
+import com.secondhand.twirl.MainActivity;
 
 public class Level {
 
@@ -21,7 +26,8 @@ public class Level {
 	private PhysicsWorld physicsWorld;
 
 	private Player player;
-	
+
+	private Shape[] worldBounds;
 
 	// many constructors necessary?
 	// default maxsize?
@@ -29,6 +35,7 @@ public class Level {
 		this(100);
 	}
 
+	// TODO: we do even need this constructor at all?
 	public Level(int maxSize) {
 		this(maxSize, new PhysicsWorld(new Vector2(), true), new Player(
 				new Vector2(50, 50), 10));
@@ -66,10 +73,41 @@ public class Level {
 		/*
 		 * for (Entity e : entityList) { registerEntity(e); }
 		 */
+		
+		
+		worldBounds = new Shape[4];
+		
+		
+        // put some invisible, static rectangles that keep the player within the world bounds:
+        // we do not do this using registerEntity, because these bodies are static.
+        
+		// TODO: set these to the level width and height instead.
+				final float width = MainActivity.CAMERA_WIDTH;
+				final float height = MainActivity.CAMERA_HEIGHT;
+		
+		worldBounds[0] = new Rectangle(0, height - 2, width, 2);
+		worldBounds[1]  = new Rectangle(0, 0, width, 2);
+		worldBounds[2]  = new Rectangle(0, 0, 2, height);
+		worldBounds[3]  = new Rectangle(width - 2, 0, 2, height);
+        final FixtureDef wallFixtureDef = PhysicsFactory.createFixtureDef(0, 0.5f, 0.5f);
+        PhysicsFactory.createBoxBody(this.physicsWorld, worldBounds[0] , BodyType.StaticBody, wallFixtureDef);
+        PhysicsFactory.createBoxBody(this.physicsWorld, worldBounds[1] , BodyType.StaticBody, wallFixtureDef);
+        PhysicsFactory.createBoxBody(this.physicsWorld, worldBounds[2] , BodyType.StaticBody, wallFixtureDef);
+        PhysicsFactory.createBoxBody(this.physicsWorld, worldBounds[3] , BodyType.StaticBody, wallFixtureDef);
+/*
+        this.attachChild(ground);
+        this.attachChild(roof);
+        this.attachChild(left);
+        this.attachChild(right);
+		*/
 	}
 
 	public Player getPlayer() {
 		return player;
+	}
+	
+	public Shape[] getWorldBounds() {
+		return this.worldBounds;
 	}
 
 	public void registerEntity(Entity entity) {
@@ -85,6 +123,7 @@ public class Level {
 		physicsWorld.registerPhysicsConnector(new PhysicsConnector(entity
 				.getShape(), entity.getBody(), true, true));
 
+		
 	}
 
 	// I wonder if all this is needed

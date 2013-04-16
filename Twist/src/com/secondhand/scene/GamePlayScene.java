@@ -10,9 +10,11 @@ import org.anddev.andengine.entity.shape.Shape;
 import org.anddev.andengine.extension.physics.box2d.PhysicsFactory;
 
 import android.content.Context;
+import android.view.KeyEvent;
 
 import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.BodyDef.BodyType;
+import com.secondhand.controller.SceneManager;
 import com.secondhand.controller.SceneManager.AllScenes;
 import com.secondhand.opengl.StarsBackground;
 
@@ -64,7 +66,23 @@ public class GamePlayScene extends GameScene {
 		this.attachChild(new StarsBackground(50, 5.0f, width, height));
 		this.attachChild(new StarsBackground(100, 3.0f, width, height));
         this.attachChild(new StarsBackground(130, 1.0f, width, height));
-	}	
+	}
+	
+	@Override
+	public boolean onKeyDown(final int pKeyCode, final KeyEvent pEvent) {
+		if (pKeyCode == KeyEvent.KEYCODE_BACK
+				&& pEvent.getAction() == KeyEvent.ACTION_DOWN) {
+			AllScenes parent = getParentScene();
+			if (parent != null) {
+				SceneManager.getInstance().setCurrentSceneEnum(parent);
+				return true;
+			}
+			else
+				return false;
+		} else {
+			return false;
+		}
+	}
 	
 	@Override
 	public AllScenes getParentScene() {

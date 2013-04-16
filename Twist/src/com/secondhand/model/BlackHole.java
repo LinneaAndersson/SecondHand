@@ -15,6 +15,7 @@ public abstract class BlackHole extends Entity{
 	/**
 	 * If sizes are equal then false is returned.
 	 */
+	// if the other entity is a obstacle then should false be returned?
 	public boolean isBiggerThan(Entity entity){
 		return this.getRadius() > entity.getRadius();
 	}

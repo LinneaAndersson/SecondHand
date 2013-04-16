@@ -8,8 +8,7 @@ public class Player extends BlackHole {
 
 	public Player(Vector2 position, float radius) {
 		super(position, radius);
-		//setShape(new Sprite(0, 0, TextureRegionLoader.getInstance()
-			//	.loadTextureRegion("player.png", 512, 512)));
+		
 		this.score = 0;
 	}
 

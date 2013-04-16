@@ -29,13 +29,13 @@ public class GamePlaySceneController {
 		scene.registerUpdateHandler(universe.getLevel().getPhysicsWorld());
 		sceneListener = new GameSceneTouchListener();
 		scene.setOnSceneTouchListener(sceneListener);
-
+		
 		player = universe.getLevel().getPlayer().getShape();
 		
 		scene.setPlayer(player);
 		
 		// add the world bounds
-		// you can�t attachChild here!
+		// you can�t attachChild here! it can cause trouble
 		for(Shape shape: universe.getLevel().getWorldBounds()) {
 			shape.detachSelf();	
 			scene.attachChild(shape);

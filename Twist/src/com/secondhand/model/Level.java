@@ -38,7 +38,7 @@ public class Level {
 	// TODO: we do even need this constructor at all?
 	public Level(int maxSize) {
 		this(maxSize, new PhysicsWorld(new Vector2(), true), new Player(
-				new Vector2(50, 50), 10));
+				new Vector2(50, 50), 20));
 	}
 
 	public Level(int maxSize, PhysicsWorld pW, Player p) {
@@ -112,7 +112,7 @@ public class Level {
 	}
 
 	public void registerEntity(Entity entity) {
-
+		
 		PhysicsHandler pH = new PhysicsHandler(entity.getShape());
 
 		entity.getShape().registerUpdateHandler(pH);

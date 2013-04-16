@@ -132,34 +132,44 @@ public class Level {
 	// to me it seems that box2d works that out for us
 	// no you don't, read the comment below - Eric
 	public void moveEntities(Vector2 v) {
-		// pBody.applyLinearImpulse(new Vector2(100,100),new
-		// Vector2(sh.getX(),sh.getY()));
+		if(player.getBody().getLinearVelocity().len() > 100)
+			return;
 
-
-		// TODO: wait, why is this necessary?
+		Vector2 movementVector = new Vector2(player.getBody().getPosition().x-v.x, player.getBody().getPosition().y-v.y);
 		
-		// movement is not good needs test more
-		// it doesn't go in the right direction but seems to go where it wants to
 		
+		// the closer the touch is to the plauer, the more force do we need to apply.
+		//movementVector.x = movementVector.x;
+		//movementVector.y = 1/ movementVector.y;
 
-			Vector2 movementVector = new Vector2(v.x - player.getPosition().x, v.y
-					- player.getPosition().y);
-			// scale the length of the vector some, so that it doesn't move too fast.
-			// and reverse the vector so that it  goes in the correct direction. 
-			
-			// the closer the touch is to the plauer, the more force do we need to apply.
-			movementVector.x = 1/ movementVector.x;
-			movementVector.y = 1/ movementVector.y;
+		// make it a bit faster
+		movementVector = movementVector.mul(0.04f);
 
-			// make it a bit faster
-			movementVector = movementVector.mul(10);
 
-			
-			// also reverse the vector so that it goes in the correct direction.
-			movementVector = movementVector.mul(-1);
+		player.getBody().applyLinearImpulse(
+				movementVector, player.getBody().getWorldCenter());
 
-			player.getBody().applyLinearImpulse(
-					movementVector, player.getBody().getWorldCenter());
+	// no, this is most definitely not necessary.
+	// all you need to do is give Box2D an initial position and a body for
+	// each of the
+	// entities, and then Box2D will handle the rest.
+	// you basically want to talk with Box2D as little as possible, because
+	// it will handle
+	// most things for you. Only when you want to perform a manual
+	// intervention in the
+	// physics world(like moving the player) do you need to talk with Box2D
+	// so the one other thing we will need to do in this method is the
+	// following:
+	// move the enemy black holes in the direction that their AI:s has
+	// determined.
+	// (obviously using applyLinearImpulse)
+
+	/*
+	 * Iterator<Body> bit = pW.getBodies(); Body tmp; Entity e; while
+	 * (bit.hasNext()) { tmp = bit.next(); e = (Entity) tmp.getUserData();
+	 * e.setPosition(tmp.getPosition()); }
+	 */
+		
 		
 
 	}

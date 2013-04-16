@@ -67,7 +67,11 @@ public class LoadingScene extends GameScene {
 
 	@Override
 	public AllScenes getParentScene() {
-		// TODO don´t know what to have here
+		// If null is returned, then the MainActivity will handle the onKeyDown event.
+		// and since we only have one Activity, this means that the app will shut
+		// down when the user presses the back button.
+		// which is exactly what we want; if the back button is pressed during the loading 
+		// screen, then obviously the user didn't want to use the app in the first place.
 		return null;
 	}	
 }

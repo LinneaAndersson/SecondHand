@@ -33,7 +33,7 @@ public class Level {
 	// so we will also need to store that.
 	
 	private List<Entity> entityList;
-	private int maxSize;
+	private int playerMaxSize;
 	private PhysicsWorld physicsWorld;
 
 	private Player player;
@@ -70,7 +70,7 @@ public class Level {
 	}
 
 	public Level(int maxSize, PhysicsWorld pW, Player p, List<Entity> otherEntities) {
-		this.maxSize = maxSize;
+		this.playerMaxSize = maxSize;
 		this.physicsWorld = pW;
 		player = p;
 		entityList = otherEntities;
@@ -228,7 +228,7 @@ public class Level {
 	}
 
 	public boolean checkPlayerBigEnough() {
-		return player.getRadius() >= maxSize;
+		return player.getRadius() >= playerMaxSize;
 
 	}
 

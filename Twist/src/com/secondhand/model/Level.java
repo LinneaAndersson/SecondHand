@@ -88,10 +88,6 @@ public class Level {
 		entityList.remove(entity);
 	}
 
-	public void setEntityList(List<Entity> list) {
-		entityList = list;
-	}
-
 	public List<Entity> getEntityList() {
 		return entityList;
 	}
@@ -186,11 +182,6 @@ public class Level {
      	return  PhysicsFactory.createPolygonBody(physicsWorld, polygon,vertices,  bodyType, fixtureDef);
     }
 	
-
-	// I wonder if all this is needed
-	// Do we even use the vectors in entity?
-	// to me it seems that box2d works that out for us
-	// no you don't, read the comment below - Eric
 	public void moveEntities(Vector2 v) {
 
 		/*

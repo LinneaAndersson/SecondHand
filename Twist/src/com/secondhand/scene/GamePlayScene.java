@@ -4,13 +4,10 @@ import java.util.List;
 
 import org.anddev.andengine.engine.Engine;
 import org.anddev.andengine.entity.shape.IShape;
-import org.anddev.andengine.opengl.texture.TextureOptions;
-import org.anddev.andengine.opengl.texture.region.TextureRegion;
 
 import android.content.Context;
 import android.view.KeyEvent;
 
-import com.secondhand.loader.TextureRegionLoader;
 import com.secondhand.model.Universe;
 import com.secondhand.controller.SceneManager;
 import com.secondhand.controller.SceneManager.AllScenes;
@@ -21,8 +18,6 @@ public class GamePlayScene extends GameScene {
 	
 	private List<IShape> shapeList;
 	private IShape player;
-	
-	private TextureRegion planetTexture;
 	
 	private Universe universe = Universe.getInstance();
 	
@@ -63,7 +58,6 @@ public class GamePlayScene extends GameScene {
 			s.detachSelf();
 			attachChild(s);
 		}
-		
 		
 		// set the level width here.
 		this.smoothCamera.setBounds(0, width, 0, height);

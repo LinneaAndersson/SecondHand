@@ -7,12 +7,7 @@ import com.badlogic.gdx.math.Vector2;
  */
 public class Universe {
 	private static Level currentLevel;
-
-	// what level the player is on
-	// TODO: should not this be part of the Level class?
-	// then the universe can ask the current level of its level number.
-	private static int levelNumber = 1;
-
+	
 	private static Universe instance;
 
 	// perhaps create a tutorialLevel?
@@ -25,10 +20,6 @@ public class Universe {
 			instance = new Universe();
 		}
 		return instance;
-	}
-
-	public int getLevelNumber() {
-		return levelNumber;
 	}
 
 	public Level getLevel() {

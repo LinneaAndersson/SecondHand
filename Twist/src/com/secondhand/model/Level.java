@@ -36,6 +36,8 @@ public class Level {
 	private int levelWidth;
 	private int levelHeight;
 	
+	private static int levelNumber = 1;
+	
 	// many constructors necessary?
 	// default maxsize?
 	public Level() {
@@ -76,6 +78,10 @@ public class Level {
 		registerEntities();
 	}
 
+	public int getLevelNumber() {
+		return levelNumber;
+	}
+	
 	public List<Entity> getEntityList() {
 		return entityList;
 	}

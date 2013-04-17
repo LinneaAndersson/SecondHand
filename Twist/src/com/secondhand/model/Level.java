@@ -192,12 +192,7 @@ public class Level {
 	// to me it seems that box2d works that out for us
 	// no you don't, read the comment below - Eric
 	public void moveEntities(Vector2 v) {
-		
 
-		if(Math.abs(player.getBody().getLinearVelocity().len()) > 10)
-			return;
-		
-		
 		/*
 		 * The problem was that we got the coordinates of the player from the getBody().
 		 * This is a problem, since Box2D uses a coordinate system different from that of 
@@ -222,6 +217,14 @@ public class Level {
 		// make it a bit slower
 		movementVector = movementVector.mul(0.02f);
 
+		/* Made a better test, like I said the earlier test we did was not functional,
+		 * and since the length of a vector is always positive, the Math.abs() has no effect.
+		 * This runs rather smoothly. Try it! */
+		float max = 20;
+		if (Math.abs(player.getBody().getLinearVelocity().x + movementVector.x) > max ||
+			Math.abs(player.getBody().getLinearVelocity().y + movementVector.y) > max)
+			return;
+		
 		player.getBody().applyLinearImpulse(
 				movementVector, player.getBody().getWorldCenter());
 	}

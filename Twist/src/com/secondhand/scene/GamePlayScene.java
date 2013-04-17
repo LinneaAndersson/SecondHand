@@ -11,6 +11,7 @@ import android.content.Context;
 import android.view.KeyEvent;
 
 import com.secondhand.loader.TextureRegionLoader;
+import com.secondhand.model.Universe;
 import com.secondhand.controller.SceneManager;
 import com.secondhand.controller.SceneManager.AllScenes;
 import com.secondhand.opengl.StarsBackground;
@@ -22,6 +23,8 @@ public class GamePlayScene extends GameScene {
 	private IShape player;
 	
 	private TextureRegion planetTexture;
+	
+	private Universe universe = Universe.getInstance();
 	
 	public GamePlayScene(Engine engine, Context context) {
 		super(engine, context);
@@ -51,7 +54,6 @@ public class GamePlayScene extends GameScene {
 		// level width. it's the camera width and height for now.
 		final float width = this.smoothCamera.getWidth();
 		final float height = this.smoothCamera.getHeight();
-	
 		
 		this.attachChild(new StarsBackground(50, 5.0f, width, height));
 		this.attachChild(new StarsBackground(100, 3.0f, width, height));

@@ -40,6 +40,9 @@ public class Level {
 
 	private Shape[] worldBounds;
 
+	private int levelWidth;
+	private int levelHeight;
+	
 	// many constructors necessary?
 	// default maxsize?
 	public Level() {
@@ -65,15 +68,17 @@ public class Level {
 	// TODO: we do even need this constructor at all?
 	public Level(int maxSize) {
 		this(maxSize, new PhysicsWorld(new Vector2(), true), new Player(
-				new Vector2(50, 50), 20), createTestPlanets());
+				new Vector2(50, 50), 20), createTestPlanets(),2000,2000);
 		
 	}
 
-	public Level(int maxSize, PhysicsWorld pW, Player p, List<Entity> otherEntities) {
+	public Level(int maxSize, PhysicsWorld pW, Player p, List<Entity> otherEntities, int levelWidth, int levelHeight) {
 		this.playerMaxSize = maxSize;
 		this.physicsWorld = pW;
 		player = p;
 		entityList = otherEntities;
+		this.levelWidth = levelWidth;
+		this.levelHeight = levelHeight;
 		this.physicsWorld.setContactListener(new CollisionContactListener());	
 		registerEntities();
 	}
@@ -113,8 +118,8 @@ public class Level {
         // we do not do this using registerEntity, because these bodies are static.
         
 		// TODO: set these to the level width and height instead.
-				final float width = MainActivity.CAMERA_WIDTH;
-				final float height = MainActivity.CAMERA_HEIGHT;
+		final float width = MainActivity.CAMERA_WIDTH;
+		final float height = MainActivity.CAMERA_HEIGHT;
 		
 		worldBounds[0] = new Rectangle(0, height - 2, width, 2);
 		worldBounds[1]  = new Rectangle(0, 0, width, 2);

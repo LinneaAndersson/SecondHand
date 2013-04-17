@@ -45,8 +45,7 @@ public class GamePlaySceneController {
 		public boolean onSceneTouchEvent(Scene pScene,
 				TouchEvent pSceneTouchEvent) {
 			MyDebug.i("TouchEvent");
-			if (pSceneTouchEvent.getAction() == TouchEvent.ACTION_DOWN ||
-					pSceneTouchEvent.getAction() == TouchEvent.ACTION_MOVE) {
+			if (pSceneTouchEvent.getAction() == TouchEvent.ACTION_DOWN) {
 				float x = pSceneTouchEvent.getX();
 				float y = pSceneTouchEvent.getY();
 				universe.update(new Vector2(x, y));

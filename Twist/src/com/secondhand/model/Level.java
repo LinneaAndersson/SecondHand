@@ -218,7 +218,7 @@ public class Level {
 		movementVector = movementVector.mul(0.02f);
 
 		/* Made a better test, like I said the earlier test we did was not functional,
-		 * and since the length of a vector is always positive, the Math.abs() has no effect.
+		 * and since the length of a vector is always positive, the Math.abs(player.getBody().getLinearVelocity().len()) has no effect.
 		 * This runs rather smoothly. Try it! */
 		float max = 20;
 		if (Math.abs(player.getBody().getLinearVelocity().x + movementVector.x) > max ||

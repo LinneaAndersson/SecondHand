@@ -116,15 +116,11 @@ public class Level {
 		
         // put some invisible, static rectangles that keep the player within the world bounds:
         // we do not do this using registerEntity, because these bodies are static.
-        
-		// TODO: set these to the level width and height instead.
-		final float width = MainActivity.CAMERA_WIDTH;
-		final float height = MainActivity.CAMERA_HEIGHT;
 		
-		worldBounds[0] = new Rectangle(0, height - 2, width, 2);
-		worldBounds[1]  = new Rectangle(0, 0, width, 2);
-		worldBounds[2]  = new Rectangle(0, 0, 2, height);
-		worldBounds[3]  = new Rectangle(width - 2, 0, 2, height);
+		worldBounds[0] = new Rectangle(0, levelHeight - 2, levelWidth, 2);
+		worldBounds[1]  = new Rectangle(0, 0, levelWidth, 2);
+		worldBounds[2]  = new Rectangle(0, 0, 2, levelHeight);
+		worldBounds[3]  = new Rectangle(levelWidth - 2, 0, 2, levelHeight);
         final FixtureDef wallFixtureDef = PhysicsFactory.createFixtureDef(0, 0.5f, 0.5f);
         PhysicsFactory.createBoxBody(this.physicsWorld, worldBounds[0] , BodyType.StaticBody, wallFixtureDef);
         PhysicsFactory.createBoxBody(this.physicsWorld, worldBounds[1] , BodyType.StaticBody, wallFixtureDef);
@@ -139,6 +135,14 @@ public class Level {
 	
 	public Shape[] getWorldBounds() {
 		return this.worldBounds;
+	}
+	
+	public int getLevelWidth() {
+		return levelWidth;
+	}
+	
+	public int getLevelHeight() {
+		return levelHeight;
 	}
 
 	public void registerEntity(Entity entity) {

@@ -7,7 +7,7 @@ public abstract class BlackHole extends Entity{
 	
 	public BlackHole (Vector2 position, float radius) {
 		// TODO load texture instead of creating Circle
-		super(position,radius, new Circle(position.x, position.y, radius));
+		super(position,radius, new Circle(position.x, position.y, radius), true);
 	}
 	
 	public void increaseSize(float increase){
@@ -17,8 +17,9 @@ public abstract class BlackHole extends Entity{
 	/**
 	 * If sizes are equal then false is returned.
 	 */
-	// if the other entity is a obstacle then should false be returned?
 	public boolean isBiggerThan(Entity entity){
+		if(!entity.isEdible())
+			return false;
 		return this.getRadius() > entity.getRadius();
 	}
 }

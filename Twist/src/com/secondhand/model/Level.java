@@ -25,10 +25,6 @@ import com.secondhand.opengl.TexturedPolygon;
 
 public class Level {
 
-	// TODO: The width and height of the current level is probably not the width and height of the
-	// the camera(that would make for a very small and boring level).
-	// so we will also need to store that.
-	
 	private List<Entity> entityList;
 	private int playerMaxSize;
 	private PhysicsWorld physicsWorld;
@@ -78,14 +74,6 @@ public class Level {
 		this.levelHeight = levelHeight;
 		this.physicsWorld.setContactListener(new CollisionContactListener());	
 		registerEntities();
-	}
-
-	public void addEntity(Entity entity) {
-		entityList.add(entity);
-	}
-
-	public void removeEntity(Entity entity) {
-		entityList.remove(entity);
 	}
 
 	public List<Entity> getEntityList() {

@@ -17,7 +17,7 @@ public abstract class BlackHole extends Entity{
 	/**
 	 * If sizes are equal then false is returned.
 	 */
-	public boolean isBiggerThan(Entity entity){
+	public boolean canEat(Entity entity){
 		if(!entity.isEdible())
 			return false;
 		return this.getRadius() > entity.getRadius();

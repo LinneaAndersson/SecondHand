@@ -46,7 +46,24 @@ public class CollisionContactListener implements ContactListener{
 		if(
 				entityA instanceof BlackHole && entityB instanceof Planet ||		
 				entityB instanceof BlackHole && entityA instanceof Planet) {
-			MyDebug.d("collision between black hole and planet. black hole should now eat planet.");
+			
+			BlackHole blackHole;
+			if(entityA instanceof BlackHole) {
+				blackHole = (BlackHole)entityA;
+			} else
+				blackHole = (BlackHole)entityB;
+			
+			Planet planet;
+			if(entityA instanceof Planet) {
+				planet = (Planet)entityA;
+			} else
+				planet = (Planet)entityB;
+			
+			if(blackHole.canEat(planet)) {
+				MyDebug.d("black hole should now eat planet.");
+						
+			}
+			
 		}
 		
 		

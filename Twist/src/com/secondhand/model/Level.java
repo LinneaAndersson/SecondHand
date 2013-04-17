@@ -55,6 +55,10 @@ public class Level {
     
 		testPlanets.add(new Planet(new Vector2(100, 100), 40, planetTexture));
 	
+		
+		testPlanets.add(new Planet(new Vector2(300, 100), 10, planetTexture));
+		
+		
 		TexturedPolygon polygon = new TexturedPolygon(200, 200, PolygonUtil.getRandomPolygon(), planetTexture);
 		testPlanets.add(new Obstacle (new Vector2(200, 200), polygon));
 		

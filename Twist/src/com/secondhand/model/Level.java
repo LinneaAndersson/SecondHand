@@ -195,8 +195,26 @@ public class Level {
 	// to me it seems that box2d works that out for us
 	// no you don't, read the comment below - Eric
 	public void moveEntities(Vector2 v) {
-		if(player.getBody().getLinearVelocity().len() > 10)
-			return;
+		/* Checks the x and y value of the linear velocity vector instead 
+		 * TODO might be a better way, but works for now */
+		Vector2 playerLinearVelocity = player.getBody().linVelLoc;
+		float max = 5, min = -5;
+		if (playerLinearVelocity.x > max)
+			playerLinearVelocity.x = max;
+		if (playerLinearVelocity.x < min)
+			playerLinearVelocity.x = min;
+		
+		if (playerLinearVelocity.y > max)
+			playerLinearVelocity.y = max;
+		if (playerLinearVelocity.y < min)
+			playerLinearVelocity.y = min;
+		
+		/* This will not work since when the player has a speed greater than 10, 
+		 * the player will not be applied a linear impulse even though the user has
+		 * pressed the screen on the opposite side of the player. */
+//		if(player.getBody().getLinearVelocity().len() > 10)
+//			return;
+		
 		//TODO how to scale without constants??
 		//Scale the Vector v with 30 because v is much bigger than players vector.
 		Vector2 movementVector = new Vector2((player.getBody().getPosition().x*30-v.x), (player.getBody().getPosition().y*30-v.y));
@@ -207,33 +225,8 @@ public class Level {
 		// make it a bit slower
 		movementVector = movementVector.mul(0.02f);
 
-
 		player.getBody().applyLinearImpulse(
 				movementVector, player.getBody().getWorldCenter());
-
-	// no, this is most definitely not necessary.
-	// all you need to do is give Box2D an initial position and a body for
-	// each of the
-	// entities, and then Box2D will handle the rest.
-	// you basically want to talk with Box2D as little as possible, because
-	// it will handle
-	// most things for you. Only when you want to perform a manual
-	// intervention in the
-	// physics world(like moving the player) do you need to talk with Box2D
-	// so the one other thing we will need to do in this method is the
-	// following:
-	// move the enemy black holes in the direction that their AI:s has
-	// determined.
-	// (obviously using applyLinearImpulse)
-
-	/*
-	 * Iterator<Body> bit = pW.getBodies(); Body tmp; Entity e; while
-	 * (bit.hasNext()) { tmp = bit.next(); e = (Entity) tmp.getUserData();
-	 * e.setPosition(tmp.getPosition()); }
-	 */
-		
-		
-
 	}
 
 	public boolean checkPlayerBigEnough() {

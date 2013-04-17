@@ -1,10 +1,13 @@
-package com.secondhand.model;
+package com.secondhand.controller;
 
 import com.badlogic.gdx.physics.box2d.Contact;
 import com.badlogic.gdx.physics.box2d.ContactImpulse;
 import com.badlogic.gdx.physics.box2d.ContactListener;
 import com.badlogic.gdx.physics.box2d.Manifold;
 import com.secondhand.debug.MyDebug;
+import com.secondhand.model.BlackHole;
+import com.secondhand.model.Entity;
+import com.secondhand.model.Planet;
 
 public class CollisionContactListener implements ContactListener{
 

@@ -60,8 +60,10 @@ public class GamePlayScene extends GameScene {
 		
 		// now load the scene(attach all the entities)
 		
+        player.detachSelf();
 		attachChild(player);
 		for(IShape s : shapeList){
+			s.detachSelf();
 			attachChild(s);
 		}
 		

@@ -33,6 +33,8 @@ public class GamePlaySceneController {
 		for(Entity entity: universe.getLevel().getEntityList()) {
 			shapes.add(entity.getShape());
 		}		
+		
+		universe.getLevel().setContactListener(new CollisionContactListener(scene, universe.getLevel()));
 	}
 
 	private class GameSceneTouchListener implements IOnSceneTouchListener {

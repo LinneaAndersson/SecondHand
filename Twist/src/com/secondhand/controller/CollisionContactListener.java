@@ -7,10 +7,21 @@ import com.badlogic.gdx.physics.box2d.Manifold;
 import com.secondhand.debug.MyDebug;
 import com.secondhand.model.BlackHole;
 import com.secondhand.model.Entity;
+import com.secondhand.model.Level;
 import com.secondhand.model.Planet;
+import com.secondhand.scene.GamePlayScene;
 
 public class CollisionContactListener implements ContactListener{
 
+	GamePlayScene scene;
+	Level level;
+	
+	public CollisionContactListener(GamePlayScene scene, Level level) {
+		this.scene = scene;
+		this.level = level;
+	}
+	
+	
 	/**
      * Called when two fixtures begin to touch.
      * So this is the method that we are interested in for handling the collision between 

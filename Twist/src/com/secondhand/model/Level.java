@@ -75,8 +75,11 @@ public class Level {
 		entityList = otherEntities;
 		this.levelWidth = levelWidth;
 		this.levelHeight = levelHeight;
-		this.physicsWorld.setContactListener(new CollisionContactListener());	
 		registerEntities();
+	}
+	
+	public void setContactListener(CollisionContactListener listener) {
+		this.physicsWorld.setContactListener(listener);
 	}
 
 	public int getLevelNumber() {

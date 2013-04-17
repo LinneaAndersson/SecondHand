@@ -220,9 +220,8 @@ public class Level {
 		/* Made a better test, like I said the earlier test we did was not functional,
 		 * and since the length of a vector is always positive, the Math.abs(player.getBody().getLinearVelocity().len()) has no effect.
 		 * This runs rather smoothly. Try it! */
-		float max = 20;
-		if (Math.abs(player.getBody().getLinearVelocity().x + movementVector.x) > max ||
-			Math.abs(player.getBody().getLinearVelocity().y + movementVector.y) > max)
+		float maxSpeed = 20;
+		if (player.getBody().getLinearVelocity().add(movementVector).len() > maxSpeed) // Check if new velocity doesn't exceed maxSpeed!
 			return;
 		
 		player.getBody().applyLinearImpulse(

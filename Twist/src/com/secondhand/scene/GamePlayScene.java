@@ -49,7 +49,6 @@ public class GamePlayScene extends GameScene {
 		this.attachChild(new StarsBackground(100, 3.0f, width, height));
         this.attachChild(new StarsBackground(130, 1.0f, width, height));
 		
-		
 		// now load the scene(attach all the entities)
 		
         player.detachSelf();

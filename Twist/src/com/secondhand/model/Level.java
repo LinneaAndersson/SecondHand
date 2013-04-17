@@ -53,10 +53,11 @@ public class Level {
     			TextureRegionLoader.getInstance().loadTextureRegion("gfx/planet.png", 32, 32,
     					TextureOptions.REPEATING_NEAREST); 	 // we want a repeating texture. 
     
-		testPlanets.add(new Planet(new Vector2(100, 100), 40, planetTexture));
+		testPlanets.add(new Planet(new Vector2(100, 100), 30, planetTexture));
 	
-		
-		testPlanets.add(new Planet(new Vector2(300, 100), 10, planetTexture));
+		// add small planet, add a huge planet.
+		testPlanets.add(new Planet(new Vector2(300, 100), 15, planetTexture));
+		testPlanets.add(new Planet(new Vector2(400, 10), 300, planetTexture));
 		
 		
 		TexturedPolygon polygon = new TexturedPolygon(200, 200, PolygonUtil.getRandomPolygon(), planetTexture);

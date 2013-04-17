@@ -20,7 +20,7 @@ import com.badlogic.gdx.math.Vector2;
  */
 public class Circle extends Shape{
 	
-	protected final float mRadius;
+	protected float mRadius;
 	
 	protected final CircleVertexBuffer mCircleVertexBuffer;
 	
@@ -61,6 +61,11 @@ public class Circle extends Shape{
 	@Override
 	public float getWidth() {
 		return this.mRadius * 2;
+	}
+	
+	public void setRadius(float radius) {
+		this.mRadius = radius;
+		this.updateVertexBuffer();
 	}
 
 	@Override

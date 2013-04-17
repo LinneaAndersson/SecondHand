@@ -19,6 +19,7 @@ import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.BodyDef.BodyType;
 import com.secondhand.opengl.Polygon;
+import com.secondhand.debug.MyDebug;
 import com.secondhand.loader.TextureRegionLoader;
 import com.secondhand.math.PolygonUtil;
 import com.secondhand.opengl.Circle;
@@ -185,18 +186,17 @@ public class Level {
 	// to me it seems that box2d works that out for us
 	// no you don't, read the comment below - Eric
 	public void moveEntities(Vector2 v) {
-		if(player.getBody().getLinearVelocity().len() > 100)
+		if(player.getBody().getLinearVelocity().len() > 10)
 			return;
-
-		Vector2 movementVector = new Vector2(player.getBody().getPosition().x-v.x, player.getBody().getPosition().y-v.y);
-		
-		
-		// the closer the touch is to the plauer, the more force do we need to apply.
+		//TODO how to scale without constants??
+		//Scale the Vector v with 30 because v is much bigger than players vector.
+		Vector2 movementVector = new Vector2((player.getBody().getPosition().x*30-v.x), (player.getBody().getPosition().y*30-v.y));
+		// the closer the touch is to the player, the more force do we need to apply.
 		//movementVector.x = movementVector.x;
-		//movementVector.y = 1/ movementVector.y;
+		//movementVector.y = movementVector.y;
 
-		// make it a bit faster
-		movementVector = movementVector.mul(0.04f);
+		// make it a bit slower
+		movementVector = movementVector.mul(0.02f);
 
 
 		player.getBody().applyLinearImpulse(

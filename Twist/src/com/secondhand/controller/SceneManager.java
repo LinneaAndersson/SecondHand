@@ -23,8 +23,9 @@ public class SceneManager {
 	
 	private Engine engine;
 	
-	private IGameScene loadingScene, mainMenuScene, settingsMenuScene, gamePlayScene, highScoreScene;
-
+	private IGameScene loadingScene, mainMenuScene, settingsMenuScene, highScoreScene;
+	private GamePlayScene gamePlayScene;
+	
 	private GamePlaySceneController gameController;
 	
 	// IMPORTANT: when you want to add a new scene to the app, you MUST assign it
@@ -54,7 +55,7 @@ public class SceneManager {
 		this.settingsMenuScene = new SettingsMenuScene(this.engine, context);
 		
 		this.gamePlayScene = new GamePlayScene(this.engine, context);
-		this.gameController = new GamePlaySceneController(this.gamePlayScene.getScene());
+		this.gameController = new GamePlaySceneController(this.gamePlayScene);
 		
 		this.highScoreScene = new HighScoreScene(this.engine, context);
 	}
@@ -99,7 +100,7 @@ public class SceneManager {
 		if (this.currentSceneEnum ==  AllScenes.LOADING_SCENE) {
 			currentScene.loadResources();
 		}
-		
+			
 		// fully clear the scene before loading and then load it.
 		currentScene.getScene().detachChildren();
 		currentScene.loadScene();

@@ -77,23 +77,7 @@ public class GamePlayScene extends GameScene {
 		
 		engine.getCamera().setChaseEntity(player);
 		
-	}
-	
-	@Override
-	public boolean onKeyDown(final int pKeyCode, final KeyEvent pEvent) {
-		if (pKeyCode == KeyEvent.KEYCODE_BACK
-				&& pEvent.getAction() == KeyEvent.ACTION_DOWN) {
-			AllScenes parent = getParentScene();
-			if (parent != null) {
-				SceneManager.getInstance().setCurrentSceneEnum(parent);
-				return true;
-			}
-			else
-				return false;
-		} else {
-			return false;
-		}
-	}
+	}	
 	
 	@Override
 	public AllScenes getParentScene() {

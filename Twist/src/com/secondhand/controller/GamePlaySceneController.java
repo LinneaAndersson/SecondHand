@@ -24,11 +24,6 @@ public class GamePlaySceneController {
 	// Model
 	private Universe universe = Universe.getInstance();
 
-	// Player sprite
-	// TODO: why do we need this here? Should not instead the GamePlayScene handle both
-	// setting the player and moving it?
-	private IShape player;
-
 	public GamePlaySceneController(Scene gamePlayScene) {
 		scene = (GamePlayScene) gamePlayScene;
 		scene.registerUpdateHandler(universe.getLevel().getPhysicsWorld());
@@ -36,9 +31,8 @@ public class GamePlaySceneController {
 		scene.setOnSceneTouchListener(sceneListener);
 		
 		List<IShape> shapes = new ArrayList<IShape>();
-		player = universe.getLevel().getPlayer().getShape();
 		
-		scene.setPlayer(player);
+		scene.setPlayer(universe.getLevel().getPlayer().getShape());
 		scene.setShapes(shapes);
 		
 		for(Entity entity: universe.getLevel().getEntityList()) {

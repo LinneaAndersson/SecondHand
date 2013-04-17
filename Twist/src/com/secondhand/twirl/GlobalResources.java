@@ -1,8 +1,11 @@
 package com.secondhand.twirl;
 
 import org.anddev.andengine.opengl.font.Font;
+import org.anddev.andengine.opengl.texture.TextureOptions;
+import org.anddev.andengine.opengl.texture.region.TextureRegion;
 
 import com.secondhand.loader.FontLoader;
+import com.secondhand.loader.TextureRegionLoader;
 
 import android.graphics.Color;
 import android.graphics.Typeface;
@@ -15,6 +18,9 @@ public class GlobalResources {
 	
 	public Font menuItemFont;
 	public Font menuHeadlineFont;
+	
+	public TextureRegion playerSprite;
+	public TextureRegion planetTexture;
 	
 	private static GlobalResources instance = null;
 	
@@ -32,7 +38,9 @@ public class GlobalResources {
 				Typeface.create(Typeface.DEFAULT, Typeface.BOLD), 32, Color.WHITE);
 		this.menuHeadlineFont = FontLoader.getInstance().loadFont(
 				Typeface.create(Typeface.DEFAULT, Typeface.BOLD), 50, Color.WHITE);
-		
+		this.playerSprite = null; // TODO load the player sprite
+		this.planetTexture = TextureRegionLoader.getInstance().loadTextureRegion("gfx/planet.png", 32, 32,
+				TextureOptions.REPEATING_NEAREST);
 	}
 	
 }

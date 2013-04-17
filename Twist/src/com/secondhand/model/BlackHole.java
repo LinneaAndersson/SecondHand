@@ -6,6 +6,7 @@ import com.secondhand.opengl.Circle;
 public abstract class BlackHole extends Entity{
 	
 	public BlackHole (Vector2 position, float radius) {
+		// TODO load texture instead of creating Circle
 		super(position,radius, new Circle(position.x, position.y, radius));
 	}
 	

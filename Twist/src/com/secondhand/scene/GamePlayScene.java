@@ -52,8 +52,8 @@ public class GamePlayScene extends GameScene {
 	public void loadScene() {
 	
 		// level width. it's the camera width and height for now.
-		final float width = this.smoothCamera.getWidth();
-		final float height = this.smoothCamera.getHeight();
+		final float width = universe.getLevel().getLevelWidth();
+		final float height = universe.getLevel().getLevelHeight();
 		
 		this.attachChild(new StarsBackground(50, 5.0f, width, height));
 		this.attachChild(new StarsBackground(100, 3.0f, width, height));

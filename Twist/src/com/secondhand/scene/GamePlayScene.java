@@ -86,6 +86,9 @@ public class GamePlayScene extends GameScene {
 			AllScenes parent = getParentScene();
 			if (parent != null) {
 				SceneManager.getInstance().setCurrentSceneEnum(parent);
+				// Undo camera lock on player
+				smoothCamera.setChaseEntity(null);
+				engine.getCamera().setCenter(0, 0);
 				return true;
 			}
 			else

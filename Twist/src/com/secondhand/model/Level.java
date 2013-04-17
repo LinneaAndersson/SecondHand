@@ -19,12 +19,9 @@ import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.BodyDef.BodyType;
 import com.secondhand.opengl.Polygon;
-import com.secondhand.debug.MyDebug;
 import com.secondhand.loader.TextureRegionLoader;
 import com.secondhand.math.PolygonUtil;
-import com.secondhand.opengl.Circle;
 import com.secondhand.opengl.TexturedPolygon;
-import com.secondhand.twirl.MainActivity;
 
 public class Level {
 
@@ -195,29 +192,29 @@ public class Level {
 	// to me it seems that box2d works that out for us
 	// no you don't, read the comment below - Eric
 	public void moveEntities(Vector2 v) {
-		/* Checks the x and y value of the linear velocity vector instead 
-		 * TODO might be a better way, but works for now */
-		Vector2 playerLinearVelocity = player.getBody().linVelLoc;
-		float max = 5, min = -5;
-		if (playerLinearVelocity.x > max)
-			playerLinearVelocity.x = max;
-		if (playerLinearVelocity.x < min)
-			playerLinearVelocity.x = min;
 		
-		if (playerLinearVelocity.y > max)
-			playerLinearVelocity.y = max;
-		if (playerLinearVelocity.y < min)
-			playerLinearVelocity.y = min;
+
+		if(Math.abs(player.getBody().getLinearVelocity().len()) > 10)
+			return;
 		
-		/* This will not work since when the player has a speed greater than 10, 
-		 * the player will not be applied a linear impulse even though the user has
-		 * pressed the screen on the opposite side of the player. */
-//		if(player.getBody().getLinearVelocity().len() > 10)
-//			return;
 		
-		//TODO how to scale without constants??
-		//Scale the Vector v with 30 because v is much bigger than players vector.
-		Vector2 movementVector = new Vector2((player.getBody().getPosition().x*30-v.x), (player.getBody().getPosition().y*30-v.y));
+		/*
+		 * The problem was that we got the coordinates of the player from the getBody().
+		 * This is a problem, since Box2D uses a coordinate system different from that of 
+		 * AndEngine; in this system, all AndEngine coordinates are first divided by 32 before they're
+		 * feed into Box2D. So the body was using the coordinate system of Box2D, which was why we had to 
+		 * multiply the coordinates of the body coordintes with 30(with Linnea and Andreas found through trial and error)
+		 * But IShape on the other hand, is a AndEngine class and it therefore uses the coordinate system of 
+		 * AndEngine, which is why we should it instead of the body.
+		 * 
+		 * See section 1.7 in http://www.box2d.org/manual.html for an explanation of why AndEngine does this division by 32.
+		 */
+		
+		Vector2 movementVector = new Vector2((
+				player.getShape().getX() -v.x),
+				player.getShape().getY()-v.y);
+		
+		
 		// the closer the touch is to the player, the more force do we need to apply.
 		//movementVector.x = movementVector.x;
 		//movementVector.y = movementVector.y;

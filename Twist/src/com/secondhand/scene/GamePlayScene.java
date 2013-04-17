@@ -41,11 +41,6 @@ public class GamePlayScene extends GameScene {
 	@Override
 	public void loadResources() {
 		// load the resources of this scene
-		this.planetTexture = 
-    			TextureRegionLoader.getInstance().loadTextureRegion("gfx/planet.png", 32, 32,
-    					TextureOptions.REPEATING_NEAREST); 	 // we want a repeating texture. 
-    
-		
 	}
 
 	@Override

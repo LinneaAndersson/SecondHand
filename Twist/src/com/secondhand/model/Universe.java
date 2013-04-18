@@ -106,7 +106,8 @@ public final class Universe {
 				}	
 				player.setEffect(power.getEffect());
 				power.getShape().detachSelf();
-
+				
+				
 				// now we need a way to have the power up take effect and decide
 				// a way to have the effect for a duration
 				// Also need to destroy the powerups body
@@ -116,6 +117,7 @@ public final class Universe {
 		}
 
 	}
+	
 
 	public Level getLevel() {
 		return currentLevel;

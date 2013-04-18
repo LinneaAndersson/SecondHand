@@ -23,6 +23,7 @@ import com.secondhand.math.PolygonUtil;
 import com.secondhand.model.PowerUp.Effect;
 import com.secondhand.opengl.Polygon;
 import com.secondhand.opengl.TexturedPolygon;
+import com.secondhand.twirl.GlobalResources;
 
 public class Level {
 
@@ -68,9 +69,10 @@ public class Level {
 
 		// TODO: figure out how to access the texture loaded in game play scene
 		// instead.
-		TextureRegion planetTexture = TextureRegionLoader.getInstance()
-				.loadTextureRegion("gfx/planet.png", 32, 32,
-						TextureOptions.REPEATING_NEAREST); // we want a
+		TextureRegion planetTexture = GlobalResources.getInstance().planetTexture;
+//		TextureRegion planetTexture = TextureRegionLoader.getInstance()
+//				.loadTextureRegion("gfx/planet.png", 32, 32,
+//						TextureOptions.REPEATING_NEAREST); // we want a
 															// repeating
 															// texture.
 

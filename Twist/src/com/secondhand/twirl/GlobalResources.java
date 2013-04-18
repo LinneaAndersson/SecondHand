@@ -16,6 +16,8 @@ import android.graphics.Typeface;
  */
 public class GlobalResources {
 	
+	private final String BASEPATH = "gfx/";
+	
 	public Font menuItemFont;
 	public Font menuHeadlineFont;
 	
@@ -39,8 +41,19 @@ public class GlobalResources {
 		this.menuHeadlineFont = FontLoader.getInstance().loadFont(
 				Typeface.create(Typeface.DEFAULT, Typeface.BOLD), 50, Color.WHITE);
 		this.playerSprite = null; // TODO load the player sprite
-		this.planetTexture = TextureRegionLoader.getInstance().loadTextureRegion("gfx/planet.png", 32, 32,
+		this.planetTexture = TextureRegionLoader.getInstance().loadTextureRegion(BASEPATH+EntityTexture.PLANET.path, 32, 32,
 				TextureOptions.REPEATING_NEAREST);
 	}
 	
+	// To add a texture path, just add enum value ex: ENEMY ("enemy.png") in list.
+	enum EntityTexture {
+		PLANET ("planet.png"),
+		PLAYER ("player.png");
+		
+		private String path;
+		
+		private EntityTexture(String path) {
+			this.path = path;
+		}
+	}
 }

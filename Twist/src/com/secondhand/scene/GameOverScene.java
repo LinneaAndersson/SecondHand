@@ -24,8 +24,8 @@ public class GameOverScene extends GameMenuScene implements
 	private Player player;
 	private static final int NAME = 0;
 	private static final int SKIP = 1;
-	private int[] high_score;
-	private String[] high_score_name;
+	private int[] highScore;
+	private String[] highScoreName;
 
 	public GameOverScene(Engine engine, Context context) {
 		super(engine, context);
@@ -36,12 +36,11 @@ public class GameOverScene extends GameMenuScene implements
 	@Override
 	public void loadResources() {
 		mFont = GlobalResources.getInstance().menuItemFont;
-		int resId = context.getResources().getIdentifier(
-				"high_score_list", "high_score_list", context.getPackageName());
-		int resId1 = context.getResources().getIdentifier(
-				"high_score_name", "high_score_list", context.getPackageName());
-		high_score = context.getResources().getIntArray(resId);
-		high_score_name = context.getResources().getStringArray(resId1);
+		highScore=LocalizationStrings
+				.getInstance().getLocalizedIntArray("high_score");
+		highScoreName=LocalizationStrings
+				.getInstance().getLocalizedStringArray("high_score_name_list");
+		
 	}
 
 	@Override
@@ -50,7 +49,10 @@ public class GameOverScene extends GameMenuScene implements
 		Text textGameOver;
 
 		// The title
-		if(0 < high_score[4]){
+		//just trying to get this working. later this will check if
+		//you are top 5.(top 5 will be on the high-score-list).
+		if(0 < highScore[1]){
+
 				textGameOver = new Text(100, 60, mFont, LocalizationStrings
 					.getInstance().getLocalizedString("menu_game_over"),
 					HorizontalAlign.CENTER);

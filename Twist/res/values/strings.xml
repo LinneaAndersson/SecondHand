@@ -17,6 +17,10 @@
         <item >Jan</item>
         <item >Åke</item>
     </string-array>
+    <integer-array name="high_score_name_list">
+        <item >Jan</item>
+        <item >Åke</item>
+    </integer-array>
     
     
     

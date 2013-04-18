@@ -12,7 +12,6 @@ public class EntityTest extends TestCase {
 		float rad = 5;
 		Circle circle = new Circle(0, 0, 5);
 		Entity entityA = new Entity(vector, rad, circle,true) {};
-		Entity entityB = new Entity(vector, rad, circle,false) {};
 		
 		assertEquals(entityA.getRadius(), rad);
 		assertEquals(entityA.getShape(), circle);

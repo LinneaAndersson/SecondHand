@@ -18,8 +18,8 @@ import android.preference.PreferenceManager;
 
 import com.secondhand.controller.SceneManager.AllScenes;
 import com.secondhand.loader.SoundLoader;
+import com.secondhand.model.LocalizationStrings;
 import com.secondhand.twirl.GlobalResources;
-import com.secondhand.twirl.LocalizationStrings;
 
 public class SettingsMenuScene extends GameMenuScene implements
 		IOnMenuItemClickListener {

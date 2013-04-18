@@ -15,7 +15,7 @@ public abstract class PowerUp extends Entity {
 	}
 	
 	public enum Effect{
-		SPEED_UP, SCORE_UP, EAT_OBSTACLE, RANDOM_TELEPORT, SHIELD
+		NONE, SPEED_UP, SCORE_UP, EAT_OBSTACLE, RANDOM_TELEPORT, SHIELD
 	}
 	
 	public Effect getEffect(){

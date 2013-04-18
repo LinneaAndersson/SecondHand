@@ -3,10 +3,9 @@ package com.secondhand.scene;
 
 import org.anddev.andengine.entity.scene.Scene;
 
-import com.secondhand.controller.SceneManager;
-import com.secondhand.controller.SceneManager.AllScenes;
-
 import android.view.KeyEvent;
+
+import com.secondhand.controller.SceneManager.AllScenes;
 
 /**
  * All scenes in the game should implement this interface(but you will in most cases want to

@@ -28,7 +28,6 @@ public class SceneManager {
 			highScoreScene;
 	private GamePlayScene gamePlayScene;
 
-	private GamePlaySceneController gameController;
 
 	// IMPORTANT: when you want to add a new scene to the app, you MUST assign
 	// it
@@ -60,7 +59,7 @@ public class SceneManager {
 		this.settingsMenuScene = new SettingsMenuScene(this.engine, context);
 
 		this.gamePlayScene = new GamePlayScene(this.engine, context);
-		this.gameController = new GamePlaySceneController(this.gamePlayScene);
+		new GamePlaySceneController(this.gamePlayScene);
 
 		this.highScoreScene = new HighScoreScene(this.engine, context);
 	}

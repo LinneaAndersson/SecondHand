@@ -1,4 +1,4 @@
-package com.secondhand.twirl;
+package com.secondhand.controller;
 
 import org.anddev.andengine.engine.Engine;
 import org.anddev.andengine.engine.camera.SmoothCamera;
@@ -11,10 +11,10 @@ import org.anddev.andengine.ui.activity.BaseGameActivity;
 
 import android.view.KeyEvent;
 
-import com.secondhand.controller.SceneManager;
 import com.secondhand.loader.FontLoader;
 import com.secondhand.loader.SoundLoader;
 import com.secondhand.loader.TextureRegionLoader;
+import com.secondhand.model.LocalizationStrings;
 
 public class MainActivity extends BaseGameActivity {
 

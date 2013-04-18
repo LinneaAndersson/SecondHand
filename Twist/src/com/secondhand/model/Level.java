@@ -16,12 +16,11 @@ import org.anddev.andengine.opengl.texture.region.TextureRegion;
 
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
-import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.BodyDef.BodyType;
-import com.secondhand.opengl.Polygon;
-import com.secondhand.controller.CollisionContactListener;
+import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.secondhand.loader.TextureRegionLoader;
 import com.secondhand.math.PolygonUtil;
+import com.secondhand.opengl.Polygon;
 import com.secondhand.opengl.TexturedPolygon;
 
 public class Level {

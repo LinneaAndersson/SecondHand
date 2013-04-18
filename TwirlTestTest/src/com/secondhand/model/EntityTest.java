@@ -11,22 +11,24 @@ public class EntityTest extends TestCase {
 		Vector2 vector = new Vector2();
 		float rad = 5;
 		Circle circle = new Circle(0, 0, 5);
-		Entity entityA = new Entity(vector, rad, circle,true) {};
+		boolean isEdible = true;
+		Entity entity = new Entity(vector, rad, circle, isEdible) {};
 		
-		assertEquals(entityA.getRadius(), rad);
-		assertEquals(entityA.getShape(), circle);		
+		assertEquals(entity.getRadius(), rad);
+		assertEquals(entity.getShape(), circle);		
+		assertEquals(entity.isEdible(), isEdible);
 	}
 	
 	public void testSetRadius() {
 		Vector2 vector = new Vector2();
 		float rad = 5;
 		Circle circle = new Circle(0, 0, 5);
-		Entity entityA = new Entity(vector, rad, circle,true) {};
+		Entity entity = new Entity(vector, rad, circle,true) {};
 		
-		assertEquals(entityA.getRadius(), rad);
+		assertEquals(entity.getRadius(), rad);
 		rad = 3;
-		entityA.setRadius(rad);
-		assertEquals(entityA.getRadius(), rad);
+		entity.setRadius(rad);
+		assertEquals(entity.getRadius(), rad);
 	}
 	
 }

@@ -36,43 +36,22 @@ public class Level {
 
 	private int levelWidth;
 	private int levelHeight;
-	
+
 	private static int levelNumber = 1;
-	
+
 	// many constructors necessary?
 	// default maxsize?
 	public Level() {
 		this(100);
-	}
-	
-	public static List<Entity> createTestPlanets() {
-		List<Entity> testPlanets = new ArrayList<Entity>();
-		
-		// TODO: figure out how to access the texture loaded in game play scene instead. 
-		TextureRegion planetTexture = 
-    			TextureRegionLoader.getInstance().loadTextureRegion("gfx/planet.png", 32, 32,
-    					TextureOptions.REPEATING_NEAREST); 	 // we want a repeating texture. 
-    
-		testPlanets.add(new Planet(new Vector2(100, 100), 30, planetTexture));
-	
-		// add small planet, add a huge planet.
-		testPlanets.add(new Planet(new Vector2(300, 100), 15, planetTexture));
-		testPlanets.add(new Planet(new Vector2(400, 10), 300, planetTexture));
-		
-		
-		TexturedPolygon polygon = new TexturedPolygon(200, 200, PolygonUtil.getRandomPolygon(), planetTexture);
-		testPlanets.add(new Obstacle (new Vector2(200, 200), polygon));
-		
-		return testPlanets;
 	}
 
 	// TODO: we do even need this constructor at all?
 	public Level(int maxSize) {
 		this(maxSize, new PhysicsWorld(new Vector2(), true), new Player(
 				new Vector2(50, 50), 20), createTestPlanets(),2000,2000);
-		
-	}
 
+	}
+	
 	public Level(int maxSize, PhysicsWorld pW, Player p, List<Entity> otherEntities, int levelWidth, int levelHeight) {
 		this.playerMaxSize = maxSize;
 		this.physicsWorld = pW;
@@ -82,7 +61,28 @@ public class Level {
 		this.levelHeight = levelHeight;
 		registerEntities();
 	}
-	
+
+	public static List<Entity> createTestPlanets() {
+		List<Entity> testPlanets = new ArrayList<Entity>();
+
+		// TODO: figure out how to access the texture loaded in game play scene instead. 
+		TextureRegion planetTexture = 
+				TextureRegionLoader.getInstance().loadTextureRegion("gfx/planet.png", 32, 32,
+						TextureOptions.REPEATING_NEAREST); 	 // we want a repeating texture. 
+
+		testPlanets.add(new Planet(new Vector2(100, 100), 30, planetTexture));
+
+		// add small planet, add a huge planet.
+		testPlanets.add(new Planet(new Vector2(300, 100), 15, planetTexture));
+		testPlanets.add(new Planet(new Vector2(400, 10), 300, planetTexture));
+
+
+		TexturedPolygon polygon = new TexturedPolygon(200, 200, PolygonUtil.getRandomPolygon(), planetTexture);
+		testPlanets.add(new Obstacle (new Vector2(200, 200), polygon));
+
+		return testPlanets;
+	}
+
 	public void setContactListener(CollisionContactListener listener) {
 		this.physicsWorld.setContactListener(listener);
 	}
@@ -90,7 +90,7 @@ public class Level {
 	public int getLevelNumber() {
 		return levelNumber;
 	}
-	
+
 	public List<Entity> getEntityList() {
 		return entityList;
 	}
@@ -101,60 +101,60 @@ public class Level {
 
 	public void registerEntities() {
 		registerEntity(player);
-		
+
 		// register all the other entities except for the player. 
-		 for (Entity e : entityList) { 
-			 registerEntity(e); 
-		 }
-		 	
+		for (Entity e : entityList) { 
+			registerEntity(e); 
+		}
+
 		worldBounds = new Shape[4];
-		
-		
-        // put some invisible, static rectangles that keep the player within the world bounds:
-        // we do not do this using registerEntity, because these bodies are static.
-		
+
+
+		// put some invisible, static rectangles that keep the player within the world bounds:
+		// we do not do this using registerEntity, because these bodies are static.
+
 		worldBounds[0] = new Rectangle(0, levelHeight - 2, levelWidth, 2);
 		worldBounds[1]  = new Rectangle(0, 0, levelWidth, 2);
 		worldBounds[2]  = new Rectangle(0, 0, 2, levelHeight);
 		worldBounds[3]  = new Rectangle(levelWidth - 2, 0, 2, levelHeight);
-        final FixtureDef wallFixtureDef = PhysicsFactory.createFixtureDef(0, 0.5f, 0.5f);
-        PhysicsFactory.createBoxBody(this.physicsWorld, worldBounds[0] , BodyType.StaticBody, wallFixtureDef);
-        PhysicsFactory.createBoxBody(this.physicsWorld, worldBounds[1] , BodyType.StaticBody, wallFixtureDef);
-        PhysicsFactory.createBoxBody(this.physicsWorld, worldBounds[2] , BodyType.StaticBody, wallFixtureDef);
-        PhysicsFactory.createBoxBody(this.physicsWorld, worldBounds[3] , BodyType.StaticBody, wallFixtureDef);
-        
+		final FixtureDef wallFixtureDef = PhysicsFactory.createFixtureDef(0, 0.5f, 0.5f);
+		PhysicsFactory.createBoxBody(this.physicsWorld, worldBounds[0] , BodyType.StaticBody, wallFixtureDef);
+		PhysicsFactory.createBoxBody(this.physicsWorld, worldBounds[1] , BodyType.StaticBody, wallFixtureDef);
+		PhysicsFactory.createBoxBody(this.physicsWorld, worldBounds[2] , BodyType.StaticBody, wallFixtureDef);
+		PhysicsFactory.createBoxBody(this.physicsWorld, worldBounds[3] , BodyType.StaticBody, wallFixtureDef);
+
 	}
 
 	public Player getPlayer() {
 		return player;
 	}
-	
+
 	public Shape[] getWorldBounds() {
 		return this.worldBounds;
 	}
-	
+
 	public int getLevelWidth() {
 		return levelWidth;
 	}
-	
+
 	public int getLevelHeight() {
 		return levelHeight;
 	}
 
 	public void registerEntity(Entity entity) {
-		
+
 		PhysicsHandler pH = new PhysicsHandler(entity.getShape());
 
 		entity.getShape().registerUpdateHandler(pH);
 
 		// TODO: should probably allow the possibility to create box bodies(rectangular) bodies as well
 		// we could store some enum value in Entity for this purpose.
-		
+
 		//Body body2 = createPolygonBody(this.physicsWorld, polygon,  BodyType.StaticBody, FIXTURE_DEF);
-     	
+
 		FixtureDef fixture = PhysicsFactory.createFixtureDef(1, 0.5f, 0.5f);
 		Body body;
-		
+
 		// obstacles are polygons and not circles
 		if(entity instanceof Obstacle)
 			body = createPolygonBody(physicsWorld,
@@ -171,20 +171,20 @@ public class Level {
 		physicsWorld.registerPhysicsConnector(new PhysicsConnector(entity
 				.getShape(), entity.getBody(), true, true));
 	}
-	
+
 	private static Body createPolygonBody(
-    		final PhysicsWorld physicsWorld, final Polygon polygon, final BodyType bodyType, final FixtureDef fixtureDef) {
-        com.badlogic.gdx.math.Vector2 vertices[] = new com.badlogic.gdx.math.Vector2[polygon.getPolygon().size()];
-        int i = 0;
-        for(Vector2 vector: polygon.getPolygon()) {
-        	vertices[i++] = new com.badlogic.gdx.math.Vector2(
-        			vector.x/PIXEL_TO_METER_RATIO_DEFAULT,
-        			vector.y/PIXEL_TO_METER_RATIO_DEFAULT);
-        }
-        
-     	return  PhysicsFactory.createPolygonBody(physicsWorld, polygon,vertices,  bodyType, fixtureDef);
-    }
-	
+			final PhysicsWorld physicsWorld, final Polygon polygon, final BodyType bodyType, final FixtureDef fixtureDef) {
+		com.badlogic.gdx.math.Vector2 vertices[] = new com.badlogic.gdx.math.Vector2[polygon.getPolygon().size()];
+		int i = 0;
+		for(Vector2 vector: polygon.getPolygon()) {
+			vertices[i++] = new com.badlogic.gdx.math.Vector2(
+					vector.x/PIXEL_TO_METER_RATIO_DEFAULT,
+					vector.y/PIXEL_TO_METER_RATIO_DEFAULT);
+		}
+
+		return  PhysicsFactory.createPolygonBody(physicsWorld, polygon,vertices,  bodyType, fixtureDef);
+	}
+
 	public void moveEntities(Vector2 v) {
 
 		/*
@@ -198,12 +198,12 @@ public class Level {
 		 * 
 		 * See section 1.7 in http://www.box2d.org/manual.html for an explanation of why AndEngine does this division by 32.
 		 */
-		
+
 		Vector2 movementVector = new Vector2((
 				player.getShape().getX() -v.x),
 				player.getShape().getY()-v.y);
-		
-		
+
+
 		// the closer the touch is to the player, the more force do we need to apply.
 		//movementVector.x = movementVector.x;
 		//movementVector.y = movementVector.y;
@@ -218,7 +218,7 @@ public class Level {
 		Vector2 testVector = new Vector2(player.getBody().getLinearVelocity());
 		if (testVector.add(movementVector).len() > maxSpeed) // Check if new velocity doesn't exceed maxSpeed!
 			return;
-		
+
 		player.getBody().applyLinearImpulse(
 				movementVector, player.getBody().getWorldCenter());
 	}

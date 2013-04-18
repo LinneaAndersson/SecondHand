@@ -8,9 +8,11 @@ import com.secondhand.opengl.TexturedPolygon;
 public class ObstacleTest extends TestCase{
 
 	public void testConstructor() {
-
+		
 		Vector2 pos = new Vector2(2f, 4f);
 		float rad = 3.2f;
+		// reaserch the polygons variables
+		// before using this test
 		TexturedPolygon tp = new TexturedPolygon(rad, rad, null, null);
 		
 		Obstacle obstacle = new Obstacle(pos, tp);

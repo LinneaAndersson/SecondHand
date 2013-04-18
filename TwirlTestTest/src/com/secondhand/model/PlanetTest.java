@@ -11,11 +11,11 @@ public class PlanetTest extends TestCase{
 		Vector2 pos = new Vector2(2f, 4f);
 		float rad = 3.2f;
 		
-		Planet planet = new Planet(pos, rad);
+		Planet planet = new Planet(pos, rad, null);
 		
 		assertEquals(rad, planet.getRadius());
-		assertEquals(pos.x, planet.getPosition().x);
-		assertEquals(pos.y, planet.getPosition().y);
+		assertEquals(pos.x, planet.getShape().getX());
+		assertEquals(pos.y, planet.getShape().getY());
 	}
 	
 }

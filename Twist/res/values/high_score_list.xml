@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <integer-array name="high_score_list">
+        <item >3210</item>
+        <item >3200</item>
+        <item >2901</item>
+        <item >0</item>
+        <item >0</item>
+    </integer-array>
+    <string-array name="high_score_name">
+        <item >Jan åke</item>
+        <item >Per lars</item>
+        <item >Gunnar</item>
+        <item >null</item>
+        <item >null</item>
+    </string-array>
+    
+</resources>

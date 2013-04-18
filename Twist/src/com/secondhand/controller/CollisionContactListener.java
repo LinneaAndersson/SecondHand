@@ -20,7 +20,7 @@ public class CollisionContactListener implements ContactListener{
 
 	GamePlayScene scene;
 	Level level;
-	
+
 	public CollisionContactListener(GamePlayScene scene, Level level) {
 		this.scene = scene;
 		this.level = level;
@@ -28,14 +28,14 @@ public class CollisionContactListener implements ContactListener{
 
 	/**
 	 * Called when two fixtures begin to touch.
-	 * So this is the method that we are interested in for handling the collision between 
+	 * So this is the method that we are interested in for handling the collision between
 	 * black holes and other entities. You can simply ignore the other three
 	 */
 	@Override
 	public void beginContact(Contact contact) {
 
 		// if one or both is null, then we are dealing with a involving one or two non-entities
-		// (ie, a black hole collides with the wall), 
+		// (ie, a black hole collides with the wall),
 		//and we are not interested in handling such a collision
 		if(contact.getFixtureA().getBody().getUserData() == null ||
 				contact.getFixtureB().getBody().getUserData() == null) {
@@ -48,7 +48,7 @@ public class CollisionContactListener implements ContactListener{
 		Entity entityB = (Entity)contact.getFixtureB().getBody().getUserData();
 
 		if(
-				entityA instanceof BlackHole && entityB instanceof Planet ||		
+				entityA instanceof BlackHole && entityB instanceof Planet ||
 				entityB instanceof BlackHole && entityA instanceof Planet) {
 
 			BlackHole blackHole;
@@ -64,24 +64,25 @@ public class CollisionContactListener implements ContactListener{
 				planet = (Planet)entityB;
 
 			if(blackHole.canEat(planet)) {
-				
+
 				// remove the planet from physics handling.
 			// TODO: this crashes the physics engine. Figure out how to fix. See:
 			// http://stackoverflow.com/questions/10835349/crash-when-destroying-bodies
-				/*final Body planetBody = planet.getBody();
+                        // and maybe also http://www.box2d.org/forum/viewtopic.php?f=8&t=5601&p=26070#p26070
+                            /*final Body planetBody = planet.getBody();
 				PhysicsWorld pw = this.level.getPhysicsWorld();
 				pw.unregisterPhysicsConnector(
 						pw.getPhysicsConnectorManager().findPhysicsConnectorByShape(planet.getShape()));
 				pw.destroyBody(planetBody);*/
-				
+
 				// deattach the planet from AndEngine
 				planet.getShape().detachSelf();
-				
-				// increase the size of the black hole. 
+
+				// increase the size of the black hole.
 				Shape blackHoleShape = blackHole.getBody().getFixtureList().get(0).getShape();
 				blackHole.increaseSize(planet.getRadius());
 				blackHoleShape.setRadius(blackHole.getRadius() / PhysicsConstants.PIXEL_TO_METER_RATIO_DEFAULT);
-				
+
 				MyDebug.d("black hole should now eat planet.");
 
 			}
@@ -90,7 +91,7 @@ public class CollisionContactListener implements ContactListener{
 
 
 	}
-	
+
 	// ignore these
 	@Override
 	public void endContact(Contact contact) {}

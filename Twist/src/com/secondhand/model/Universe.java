@@ -41,7 +41,8 @@ public final class Universe {
 		}
 
 		// now we know both the bodies are entities.
-		MyDebug.d(contact.getFixtureA().getBody().getUserData().getClass() + " is the A class");
+		MyDebug.d(contact.getFixtureA().getBody().getUserData().getClass()
+				+ " is the A class");
 		Entity entityA = (Entity) contact.getFixtureA().getBody().getUserData();
 		Entity entityB = (Entity) contact.getFixtureB().getBody().getUserData();
 
@@ -54,7 +55,7 @@ public final class Universe {
 			} else {
 				blackHole = (BlackHole) entityB;
 			}
-			
+
 			Planet planet;
 			if (entityA instanceof Planet) {
 				planet = (Planet) entityA;
@@ -88,40 +89,36 @@ public final class Universe {
 						/ PhysicsConstants.PIXEL_TO_METER_RATIO_DEFAULT);
 
 				MyDebug.d("black hole should now eat planet.");
-
-			} else if (entityA instanceof Player && entityB instanceof PowerUp
-					|| entityB instanceof Player && entityA instanceof PowerUp) {
-
-				Player player;
-				if (entityA instanceof Player) {
-					player = (Player) entityA;
-				} else {
-					player = (Player) entityB;
-				}
-			
-				PowerUp power;
-				if (entityA instanceof PowerUp) {
-					power = (PowerUp) entityA;
-				} else {
-					power = (PowerUp) entityB;
-				}	
-				player.setEffect(power.getEffect());
-				power.getShape().detachSelf();
-				
-				
-				// now we need a way to have the power up take effect and decide
-				// a way to have the effect for a duration
-				// Also need to destroy the powerups body
-				// the effect should be visible on the players shape
-				
-				// lets level take care on what to do with the effect
-				currentLevel.activateEffect(power.getEffect());
-
 			}
-		}
+		} else if (entityA instanceof Player && entityB instanceof PowerUp
+				|| entityB instanceof Player && entityA instanceof PowerUp) {
 
+			Player player;
+			if (entityA instanceof Player) {
+				player = (Player) entityA;
+			} else {
+				player = (Player) entityB;
+			}
+
+			PowerUp power;
+			if (entityA instanceof PowerUp) {
+				power = (PowerUp) entityA;
+			} else {
+				power = (PowerUp) entityB;
+			}
+			power.getShape().detachSelf();
+			MyDebug.d("Now the powerup should dissapear");
+
+			// now we need a way to have the power up take effect and decide
+			// a way to have the effect for a duration
+			// Also need to destroy the powerups body
+			// the effect should be visible on the players shape
+
+			// lets level take care on what to do with the effect
+			currentLevel.activateEffect(power.getEffect());
+
+		}
 	}
-	
 
 	public Level getLevel() {
 		return currentLevel;

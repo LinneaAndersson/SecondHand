@@ -1,9 +1,8 @@
 package com.secondhand.model;
 
-import com.badlogic.gdx.math.Vector2;
-import com.secondhand.debug.MyDebug;
-
 import junit.framework.TestCase;
+
+import com.badlogic.gdx.math.Vector2;
 
 public class LevelTest extends TestCase {
 

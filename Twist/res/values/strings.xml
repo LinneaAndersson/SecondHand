@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+?xml version="1.0" encoding="utf-8"?>
 <resources>
 
     <string name="app_name">Twirl</string>
@@ -13,13 +13,13 @@
     <string name="menu_volume">Volume</string>
     <string name="menu_game_over">Game over!</string>
     <string name="congratulation">Congratulations!</string>
-    <string-array name="high_score">
+    <string-array name="high_score_name_list">
         <item >Jan</item>
-        <item >Åke</item>
+        <item >Linnea</item>
     </string-array>
-    <integer-array name="high_score_name_list">
-        <item >Jan</item>
-        <item >Åke</item>
+    <integer-array name="high_score">
+        <item >54</item>
+        <item >43</item>
     </integer-array>
     
     

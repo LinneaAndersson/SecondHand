@@ -8,9 +8,8 @@ import org.anddev.andengine.entity.shape.IShape;
 import android.content.Context;
 import android.view.KeyEvent;
 
-import com.secondhand.model.Universe;
 import com.secondhand.controller.SceneManager;
-import com.secondhand.controller.SceneManager.AllScenes;
+import com.secondhand.model.Universe;
 import com.secondhand.opengl.StarsBackground;
 
 public class GamePlayScene extends GameScene {

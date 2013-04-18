@@ -1,17 +1,14 @@
 package com.secondhand.scene;
 
 import java.util.ArrayList;
-
-import android.content.Context;
-
-import com.secondhand.controller.SceneManager.AllScenes;
 import java.util.List;
 
 import org.anddev.andengine.engine.Engine;
 import org.anddev.andengine.entity.scene.menu.MenuScene;
+import org.anddev.andengine.entity.scene.menu.MenuScene.IOnMenuItemClickListener;
 import org.anddev.andengine.entity.scene.menu.item.IMenuItem;
 
-import org.anddev.andengine.entity.scene.menu.MenuScene.IOnMenuItemClickListener;
+import android.content.Context;
 
 import com.secondhand.controller.SceneManager;
 import com.secondhand.debug.MyDebug;
@@ -57,10 +54,10 @@ public class MainMenuScene extends GameMenuScene implements IOnMenuItemClickList
 			return true;
 		case MENU_SETTINGS:
 			MyDebug.i("now a settings menu should appear");
-			SceneManager.getInstance().setCurrentSceneEnum(SceneManager.AllScenes.SETTINGS_MENU_SCENE);
+			SceneManager.getInstance().setCurrentSceneEnum(AllScenes.SETTINGS_MENU_SCENE);
 			return true;
 		case MENU_HIGH_SCORE:
-			SceneManager.getInstance().setCurrentSceneEnum(SceneManager.AllScenes.HIGH_SCORE_SCENE);
+			SceneManager.getInstance().setCurrentSceneEnum(AllScenes.HIGH_SCORE_SCENE);
 			return true;
 		default:
 			return false;

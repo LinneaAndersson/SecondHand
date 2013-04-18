@@ -15,6 +15,7 @@ import com.secondhand.loader.FontLoader;
 import com.secondhand.loader.SoundLoader;
 import com.secondhand.loader.TextureRegionLoader;
 import com.secondhand.model.LocalizationStrings;
+import com.secondhand.scene.IGameScene;
 
 public class MainActivity extends BaseGameActivity {
 
@@ -34,7 +35,7 @@ public class MainActivity extends BaseGameActivity {
 		// the FPS logger is useful for optimizing performance.(the FPS is shown in LogCat)
 		this.mEngine.registerUpdateHandler(new FPSLogger());
 		
-		return SceneManager.getInstance().setCurrentSceneEnum(SceneManager.AllScenes.LOADING_SCENE).getScene();				
+		return SceneManager.getInstance().setCurrentSceneEnum(IGameScene.AllScenes.LOADING_SCENE).getScene();				
 	}
 
 	@Override

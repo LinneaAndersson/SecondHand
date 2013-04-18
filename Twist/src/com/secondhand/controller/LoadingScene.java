@@ -4,9 +4,9 @@ import org.anddev.andengine.engine.Engine;
 
 import android.content.Context;
 
-import com.secondhand.controller.SceneManager.AllScenes;
 import com.secondhand.debug.MyDebug;
 import com.secondhand.scene.GameScene;
+import com.secondhand.scene.IGameScene;
 import com.secondhand.twirl.GlobalResources;
 
 public class LoadingScene extends GameScene {
@@ -59,7 +59,7 @@ public class LoadingScene extends GameScene {
 
 				// go to main menu once the loading is done.
 				SceneManager.getInstance().setCurrentSceneEnum(
-						SceneManager.AllScenes.MAIN_MENU_SCENE);
+						IGameScene.AllScenes.MAIN_MENU_SCENE);
 
 			}
 		};

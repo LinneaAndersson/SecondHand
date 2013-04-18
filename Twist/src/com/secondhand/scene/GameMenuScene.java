@@ -15,7 +15,6 @@ import android.content.Context;
 import android.view.KeyEvent;
 
 import com.secondhand.controller.SceneManager;
-import com.secondhand.controller.SceneManager.AllScenes;
 import com.secondhand.debug.MyDebug;
 import com.secondhand.twirl.GlobalResources;
 

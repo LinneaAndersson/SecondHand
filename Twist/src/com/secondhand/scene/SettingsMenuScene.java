@@ -16,7 +16,6 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 
-import com.secondhand.controller.SceneManager.AllScenes;
 import com.secondhand.loader.SoundLoader;
 import com.secondhand.model.LocalizationStrings;
 import com.secondhand.twirl.GlobalResources;

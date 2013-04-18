@@ -4,11 +4,10 @@ import org.anddev.andengine.engine.Engine;
 import org.anddev.andengine.engine.camera.SmoothCamera;
 import org.anddev.andengine.entity.scene.Scene;
 
-import com.secondhand.controller.SceneManager;
-import com.secondhand.controller.SceneManager.AllScenes;
-
 import android.content.Context;
 import android.view.KeyEvent;
+
+import com.secondhand.controller.SceneManager;
 
 /**
  * Credit for the main idea behind this class goes to:

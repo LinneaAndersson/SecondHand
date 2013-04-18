@@ -8,6 +8,7 @@ import android.view.KeyEvent;
 import com.secondhand.scene.GamePlayScene;
 import com.secondhand.scene.HighScoreScene;
 import com.secondhand.scene.IGameScene;
+import com.secondhand.scene.IGameScene.AllScenes;
 import com.secondhand.scene.MainMenuScene;
 import com.secondhand.scene.SettingsMenuScene;
 
@@ -28,13 +29,6 @@ public class SceneManager {
 			highScoreScene;
 	private GamePlayScene gamePlayScene;
 
-
-	// IMPORTANT: when you want to add a new scene to the app, you MUST assign
-	// it
-	// a corresponding enum value.
-	public enum AllScenes {
-		LOADING_SCENE, MAIN_MENU_SCENE, SETTINGS_MENU_SCENE, GAME_PLAY_SCENE, HIGH_SCORE_SCENE
-	}
 
 	public static SceneManager getInstance() {
 		if (instance == null) {

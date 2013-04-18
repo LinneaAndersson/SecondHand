@@ -213,8 +213,8 @@ public class Level {
 		//movementVector.x = movementVector.x;
 		//movementVector.y = movementVector.y;
 
-		// make it a bit slower
-		movementVector = movementVector.mul(0.02f);
+		// make it a bit slower depending on how big it is.
+		movementVector = movementVector.mul(player.getRadius()*0.001f);
 
 		/* Made a better test, like I said the earlier test we did was not functional,
 		 * and since the length of a vector is always positive, the Math.abs(player.getBody().getLinearVelocity().len()) has no effect.

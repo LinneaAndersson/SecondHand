@@ -18,8 +18,8 @@ import com.secondhand.scene.GamePlayScene;
 
 public class CollisionContactListener implements ContactListener{
 
-	GamePlayScene scene;
-	Level level;
+	private GamePlayScene scene;
+	private Level level;
 
 	public CollisionContactListener(GamePlayScene scene, Level level) {
 		this.scene = scene;
@@ -44,8 +44,8 @@ public class CollisionContactListener implements ContactListener{
 
 		// now we know both the bodies are entities.
 
-		Entity entityA = (Entity)contact.getFixtureA().getBody().getUserData();
-		Entity entityB = (Entity)contact.getFixtureB().getBody().getUserData();
+		final Entity entityA = (Entity)contact.getFixtureA().getBody().getUserData();
+		final Entity entityB = (Entity)contact.getFixtureB().getBody().getUserData();
 
 		if(
 				entityA instanceof BlackHole && entityB instanceof Planet ||
@@ -54,15 +54,17 @@ public class CollisionContactListener implements ContactListener{
 			BlackHole blackHole;
 			if(entityA instanceof BlackHole) {
 				blackHole = (BlackHole)entityA;
-			} else
+			} else {
 				blackHole = (BlackHole)entityB;
-
+			}
+			
 			Planet planet;
 			if(entityA instanceof Planet) {
 				planet = (Planet)entityA;
-			} else
+			} else {
 				planet = (Planet)entityB;
-
+			}
+				
 			if(blackHole.canEat(planet)) {
 
 				// remove the planet from physics handling.
@@ -79,7 +81,7 @@ public class CollisionContactListener implements ContactListener{
 				planet.getShape().detachSelf();
 
 				// increase the size of the black hole.
-				Shape blackHoleShape = blackHole.getBody().getFixtureList().get(0).getShape();
+				final Shape blackHoleShape = blackHole.getBody().getFixtureList().get(0).getShape();
 				blackHole.increaseSize(planet.getRadius());
 				blackHoleShape.setRadius(blackHole.getRadius() / PhysicsConstants.PIXEL_TO_METER_RATIO_DEFAULT);
 
@@ -94,10 +96,10 @@ public class CollisionContactListener implements ContactListener{
 
 	// ignore these
 	@Override
-	public void endContact(Contact contact) {}
+	public final void endContact(Contact contact) {}
 	@Override
-	public void preSolve(Contact contact, Manifold oldManifold) { }
+	public final void preSolve(Contact contact, Manifold oldManifold) { }
 	@Override
-	public void postSolve(Contact contact, ContactImpulse impulse) {}
+	public final void postSolve(Contact contact, ContactImpulse impulse) {}
 
 }

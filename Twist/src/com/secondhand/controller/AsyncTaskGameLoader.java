@@ -1,31 +1,30 @@
 package com.secondhand.controller;
 
-
 import android.os.AsyncTask;
 
 /**
  * Used to perform loading on a background thread in the loading scene.
  */
-public class AsyncTaskGameLoader extends AsyncTask<IAsyncCallback, Integer, Boolean> {
-	
-    IAsyncCallback[] params;
+public class AsyncTaskGameLoader extends
+		AsyncTask<IAsyncCallback, Integer, Boolean> {
 
-    
-    @Override
-    protected Boolean doInBackground(final IAsyncCallback... params) {
-        this.params = params;
-        int count = params.length;
-        for(int i = 0; i < count; i++){
-            params[i].work();
-        }
-        return true;
-    }
+	IAsyncCallback[] params;
 
-    @Override
-    protected void onPostExecute(final Boolean result) {
-        int count = this.params.length;
-        for(int i = 0; i < count; i++){
-            this.params[i].onWorkComplete();
-        }
-    }
+	@Override
+	protected Boolean doInBackground(final IAsyncCallback... params) {
+		this.params = params;
+		int count = params.length;
+		for (int i = 0; i < count; i++) {
+			params[i].work();
+		}
+		return true;
+	}
+
+	@Override
+	protected void onPostExecute(final Boolean result) {
+		int count = this.params.length;
+		for (int i = 0; i < count; i++) {
+			this.params[i].onWorkComplete();
+		}
+	}
 }

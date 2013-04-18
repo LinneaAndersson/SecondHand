@@ -15,25 +15,25 @@ import com.secondhand.model.Universe;
 import com.secondhand.scene.GamePlayScene;
 
 public class GamePlaySceneController {
-	
+
 	private final Universe universe;
 
 	public GamePlaySceneController(final GamePlayScene scene) {
-		
+
 		universe = Universe.getInstance();
 
 		scene.registerUpdateHandler(universe.getLevel().getPhysicsWorld());
 		scene.setOnSceneTouchListener(new GameSceneTouchListener());
-		
+
 		final List<IShape> shapes = new ArrayList<IShape>();
-		
+
 		scene.setPlayer(universe.getLevel().getPlayer().getShape());
 		scene.setShapes(shapes);
-		
-		for(Entity entity: universe.getLevel().getEntityList()) {
+
+		for (Entity entity : universe.getLevel().getEntityList()) {
 			shapes.add(entity.getShape());
-		}		
-		
+		}
+
 		universe.getLevel().setContactListener(new CollisionContactListener());
 	}
 

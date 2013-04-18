@@ -21,7 +21,6 @@ public class LoadingScene extends GameScene {
 
 	@Override
 	public void loadResources() {
-		GlobalResources.getInstance().load();
 	}
 
 	@Override

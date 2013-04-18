@@ -14,8 +14,8 @@ public class EnemyTest extends TestCase{
 		Enemy enemy = new Enemy(pos, rad);
 		
 		assertEquals(rad, enemy.getRadius());
-		assertEquals(pos.x, enemy.getPosition().x);
-		assertEquals(pos.y, enemy.getPosition().y);
+		assertEquals(pos.x, enemy.getShape().getX());
+		assertEquals(pos.y, enemy.getShape().getY());
 	}
 	
 	public void testIncreaseSize() {
@@ -36,9 +36,9 @@ public class EnemyTest extends TestCase{
 		Enemy enemy = new Enemy(pos, rad);
 	
 		Player other = new Player(pos, rad-1);
-		assertTrue(enemy.isBiggerThan(other));
+		assertTrue(enemy.canEat(other));
 		other = new Player(pos, rad);
-		assertFalse(enemy.isBiggerThan(other));
+		assertFalse(enemy.canEat(other));
 	}
 	
 }

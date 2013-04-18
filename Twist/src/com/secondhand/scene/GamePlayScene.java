@@ -53,9 +53,9 @@ public class GamePlayScene extends GameScene {
 		
         player.detachSelf();
 		attachChild(player);
-		for(IShape s : shapeList){
-			s.detachSelf();
-			attachChild(s);
+		for(IShape shape : shapeList){
+			shape.detachSelf();
+			attachChild(shape);
 		}
 		
 		// set the level width here.

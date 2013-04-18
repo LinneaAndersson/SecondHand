@@ -23,17 +23,17 @@ import com.secondhand.twirl.GlobalResources;
 /**
  * Base class for all menu scenes.
  */
-public abstract class GameMenuScene extends MenuScene implements IGameScene{
+public abstract class GameMenuScene extends MenuScene implements IGameScene {
 
 	protected final SmoothCamera smoothCamera;
 	protected final Engine engine;
 	protected final Context context;
-	
+
 	public GameMenuScene(Engine engine, Context context) {
 		super(engine.getCamera());
-		
+
 		// we do this to keep the API consistent
-		this.smoothCamera = (SmoothCamera)this.mCamera;
+		this.smoothCamera = (SmoothCamera) this.mCamera;
 		this.context = context;
 		this.engine = engine;
 	}
@@ -42,7 +42,7 @@ public abstract class GameMenuScene extends MenuScene implements IGameScene{
 	public Scene getScene() {
 		return this;
 	}
-	
+
 	@Override
 	public boolean onKeyDown(final int pKeyCode, final KeyEvent pEvent) {
 		if (pKeyCode == KeyEvent.KEYCODE_BACK
@@ -51,8 +51,7 @@ public abstract class GameMenuScene extends MenuScene implements IGameScene{
 			if (parent != null) {
 				SceneManager.getInstance().setCurrentSceneEnum(parent);
 				return true;
-			}
-			else
+			} else
 				return false;
 		} else {
 			return false;
@@ -65,46 +64,53 @@ public abstract class GameMenuScene extends MenuScene implements IGameScene{
 
 		final Font menuHeadlineFont = GlobalResources.getInstance().menuHeadlineFont;
 
-		final float fontHeight = new Text(0, 0, menuHeadlineFont, "lorem ipsum").getHeight();
+		final float fontHeight = new Text(0, 0, menuHeadlineFont, "lorem ipsum")
+				.getHeight();
 
 		// y-coordinate of the menu item.
 		final float y = headlineSpacing;
 
-		Text headlineText = new Text(0,y,menuHeadlineFont, headline);
+		Text headlineText = new Text(0, y, menuHeadlineFont, headline);
 
-		final float x = this.smoothCamera.getWidth() / 2.0f - headlineText.getWidth() / 2.0f;
-		headlineText.setPosition(x,y);
+		final float x = this.smoothCamera.getWidth() / 2.0f
+				- headlineText.getWidth() / 2.0f;
+		headlineText.setPosition(x, y);
 
 		this.attachChild(headlineText);
 
-		return (int)fontHeight + headlineSpacing * 2 - 50;
+		return (int) fontHeight + headlineSpacing * 2 - 50;
 	}
 
 	/**
-	 * The separate menu items are laid out centered horizontally. All these items are stacked up on each
-	 * other and this stack is centered vertically.
+	 * The separate menu items are laid out centered horizontally. All these
+	 * items are stacked up on each other and this stack is centered vertically.
 	 */
-	protected void layoutCenteredMenu(int startY, final List<GameMenuScene.MenuItem> menuItems) {
+	protected void layoutCenteredMenu(int startY,
+			final List<GameMenuScene.MenuItem> menuItems) {
 
 		final Font menuItemFont = GlobalResources.getInstance().menuItemFont;
 
 		// vertical spacing between separate menu items
 		final float spacingBetweenItems = 20;
 
-
-		final float fontHeight = new Text(0, 0, menuItemFont, "lorem ipsum").getHeight();
-		final float menuHeight = menuItems.size() * fontHeight + (menuItems.size() - 1)  * spacingBetweenItems;
+		final float fontHeight = new Text(0, 0, menuItemFont, "lorem ipsum")
+				.getHeight();
+		final float menuHeight = menuItems.size() * fontHeight
+				+ (menuItems.size() - 1) * spacingBetweenItems;
 
 		// y-coordinate of the menu item.
-		float y = (this.smoothCamera.getHeight() - startY) / 2.0f - menuHeight / 2.0f + startY;
+		float y = (this.smoothCamera.getHeight() - startY) / 2.0f - menuHeight
+				/ 2.0f + startY;
 
-		for(GameMenuScene.MenuItem menuItem : menuItems) {
+		for (GameMenuScene.MenuItem menuItem : menuItems) {
 
 			MyDebug.d("laying single menu item");
 
-			IMenuItem item = new TextMenuItem(menuItem.id, menuItemFont, menuItem.text);
+			IMenuItem item = new TextMenuItem(menuItem.id, menuItemFont,
+					menuItem.text);
 
-			final float x = this.smoothCamera.getWidth() / 2.0f - item.getWidth() / 2.0f;
+			final float x = this.smoothCamera.getWidth() / 2.0f
+					- item.getWidth() / 2.0f;
 
 			item.setPosition(x, y);
 			addMenuItem(item);

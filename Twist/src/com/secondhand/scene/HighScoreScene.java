@@ -17,7 +17,7 @@ import com.secondhand.twirl.GlobalResources;
 import com.secondhand.twirl.LocalizationStrings;
 
 public class HighScoreScene extends GameScene {
-	Font mFont;
+	private Font mFont;
 
 	public HighScoreScene(Engine engine, Context context) {
 		super(engine, context);

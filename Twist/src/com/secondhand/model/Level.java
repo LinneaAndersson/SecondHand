@@ -139,6 +139,10 @@ public class Level {
 	public int getLevelHeight() {
 		return levelHeight;
 	}
+	
+	public void activateEffect(Effect effect){
+		
+	}
 
 	public void registerEntity(Entity entity) {
 

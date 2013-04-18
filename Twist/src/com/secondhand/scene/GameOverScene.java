@@ -1,8 +1,5 @@
 package com.secondhand.scene;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import org.anddev.andengine.engine.Engine;
 import org.anddev.andengine.entity.scene.menu.MenuScene;
 import org.anddev.andengine.entity.scene.menu.MenuScene.IOnMenuItemClickListener;
@@ -13,10 +10,9 @@ import org.anddev.andengine.util.HorizontalAlign;
 
 import android.content.Context;
 
-import com.secondhand.controller.SceneManager.AllScenes;
 import com.secondhand.model.Player;
 import com.secondhand.twirl.GlobalResources;
-import com.secondhand.model.LocalizationStrings;
+import com.secondhand.twirl.LocalizationStrings;
 
 public class GameOverScene extends GameMenuScene implements
 		IOnMenuItemClickListener {

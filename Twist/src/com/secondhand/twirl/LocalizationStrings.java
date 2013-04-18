@@ -1,4 +1,4 @@
-package com.secondhand.model;
+package com.secondhand.twirl;
 
 import java.util.List;
 

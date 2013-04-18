@@ -12,7 +12,7 @@ import android.content.Context;
 
 import com.secondhand.controller.SceneManager;
 import com.secondhand.debug.MyDebug;
-import com.secondhand.model.LocalizationStrings;
+import com.secondhand.twirl.LocalizationStrings;
 
 public class MainMenuScene extends GameMenuScene implements IOnMenuItemClickListener {
 

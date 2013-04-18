@@ -14,8 +14,8 @@ import android.view.KeyEvent;
 import com.secondhand.loader.FontLoader;
 import com.secondhand.loader.SoundLoader;
 import com.secondhand.loader.TextureRegionLoader;
-import com.secondhand.model.LocalizationStrings;
 import com.secondhand.scene.IGameScene;
+import com.secondhand.twirl.LocalizationStrings;
 
 public class MainActivity extends BaseGameActivity {
 

@@ -12,8 +12,8 @@ import org.anddev.andengine.util.HorizontalAlign;
 
 import android.content.Context;
 
-import com.secondhand.model.LocalizationStrings;
 import com.secondhand.twirl.GlobalResources;
+import com.secondhand.twirl.LocalizationStrings;
 
 public class HighScoreScene extends GameScene {
 	private Font mFont;

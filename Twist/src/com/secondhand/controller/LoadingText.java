@@ -3,8 +3,8 @@ package com.secondhand.controller;
 import org.anddev.andengine.engine.camera.Camera;
 import org.anddev.andengine.entity.text.ChangeableText;
 
-import com.secondhand.model.LocalizationStrings;
 import com.secondhand.twirl.GlobalResources;
+import com.secondhand.twirl.LocalizationStrings;
 
 /*
  * Implements a loading animation that looks like this:

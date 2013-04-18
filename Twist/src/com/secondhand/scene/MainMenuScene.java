@@ -15,7 +15,7 @@ import org.anddev.andengine.entity.scene.menu.MenuScene.IOnMenuItemClickListener
 
 import com.secondhand.controller.SceneManager;
 import com.secondhand.debug.MyDebug;
-import com.secondhand.twirl.LocalizationStrings;
+import com.secondhand.model.LocalizationStrings;
 
 public class MainMenuScene extends GameMenuScene implements IOnMenuItemClickListener {
 

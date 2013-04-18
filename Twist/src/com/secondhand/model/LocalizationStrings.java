@@ -2,7 +2,9 @@ package com.secondhand.model;
 
 import java.util.List;
 
+import android.R;
 import android.content.Context;
+import android.content.res.Resources;
 
 /**
  * Singelton class for accessing the localization strings. 
@@ -33,17 +35,18 @@ public class LocalizationStrings {
 		int resId = context.getResources().getIdentifier(stringName, "string", packageName);
 		return context.getString(resId);
 	}
-
+	
+	// Don't know if this is correct
 	public String[] getLocalizedStringArray(String stringName){
 		String packageName = context.getPackageName();
 		int resId = context.getResources().getIdentifier(stringName, "string", packageName);
 		return context.getResources().getStringArray(resId);
 	}
-
-	public int[] getLocalizedIntArray(String stringName) {
+	
+	// Don't know if this is correct
+	public int[] getLocalizedIntArray(String stringName){
 		String packageName = context.getPackageName();
 		int resId = context.getResources().getIdentifier(stringName, "string", packageName);
 		return context.getResources().getIntArray(resId);
-
 	}
 }

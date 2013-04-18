@@ -25,6 +25,19 @@ public class MainActivity extends BaseGameActivity {
 	
 	
 	@Override
+	public void onLoadResources() {
+		// this is instead delegated to the separate scenes.
+	}
+
+	@Override
+	public Scene onLoadScene() {
+		// the FPS logger is useful for optimizing performance.(the FPS is shown in LogCat)
+		this.mEngine.registerUpdateHandler(new FPSLogger());
+		
+		return SceneManager.getInstance().setCurrentSceneEnum(SceneManager.AllScenes.LOADING_SCENE).getScene();				
+	}
+
+	@Override
 	public Engine onLoadEngine() {
 		
 	    camera = new SmoothCamera(0, 0, CAMERA_WIDTH, CAMERA_HEIGHT, Float.MAX_VALUE, Float.MAX_VALUE, 1.0f);
@@ -41,23 +54,10 @@ public class MainActivity extends BaseGameActivity {
 	    TextureRegionLoader.getInstance().initialize(this, engine);
 	    
 	    LocalizationStrings.getInstance().initialize(this);
-    
+	
 	    SceneManager.getInstance().initialize(engine, this);
 	    
 	     return engine;	
-	}
-
-	@Override
-	public void onLoadResources() {
-		// this is instead delegated to the separate scenes.
-	}
-
-	@Override
-	public Scene onLoadScene() {
-		// the FPS logger is useful for optimizing performance.(the FPS is shown in LogCat)
-		this.mEngine.registerUpdateHandler(new FPSLogger());
-		
-		return SceneManager.getInstance().setCurrentSceneEnum(SceneManager.AllScenes.LOADING_SCENE).getScene();				
 	}
 
 	@Override

@@ -15,6 +15,7 @@ import com.secondhand.loader.FontLoader;
 import com.secondhand.loader.SoundLoader;
 import com.secondhand.loader.TextureRegionLoader;
 import com.secondhand.scene.IGameScene;
+import com.secondhand.twirl.GlobalResources;
 import com.secondhand.twirl.LocalizationStrings;
 
 public class MainActivity extends BaseGameActivity {
@@ -53,7 +54,9 @@ public class MainActivity extends BaseGameActivity {
 	    FontLoader.getInstance().initialize(this, engine);
 	    SoundLoader.getInstance().initialize(this, engine);
 	    TextureRegionLoader.getInstance().initialize(this, engine);
-	    
+	    // IMPORTANT: Uses TextureRegionLoader, so this line must be executed after above line always
+		GlobalResources.getInstance().load();
+		
 	    LocalizationStrings.getInstance().initialize(this);
 	
 	    SceneManager.getInstance().initialize(engine, this);

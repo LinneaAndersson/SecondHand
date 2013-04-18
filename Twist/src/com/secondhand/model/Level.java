@@ -18,12 +18,12 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.BodyDef.BodyType;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
-import com.secondhand.controller.CollisionContactListener;
 import com.secondhand.loader.TextureRegionLoader;
 import com.secondhand.math.PolygonUtil;
 import com.secondhand.model.PowerUp.Effect;
 import com.secondhand.opengl.Polygon;
 import com.secondhand.opengl.TexturedPolygon;
+import com.secondhand.twirl.GlobalResources;
 
 public class Level {
 
@@ -69,11 +69,8 @@ public class Level {
 
 		// TODO: figure out how to access the texture loaded in game play scene
 		// instead.
-		TextureRegion planetTexture = TextureRegionLoader.getInstance()
-				.loadTextureRegion("gfx/planet.png", 32, 32,
-						TextureOptions.REPEATING_NEAREST); // we want a
-															// repeating
-															// texture.
+		// TODO: Understand why textures are not loaded properly
+		TextureRegion planetTexture = GlobalResources.getInstance().planetTexture;
 
 		testPlanets.add(new Planet(new Vector2(100, 100), 30, planetTexture));
 

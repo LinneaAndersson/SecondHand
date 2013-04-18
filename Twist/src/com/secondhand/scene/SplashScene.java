@@ -11,10 +11,11 @@ import com.secondhand.twirl.GlobalResources;
 
 
 public class SplashScene extends Scene {
-	private Text title1;
-	private Text title2;
+	private final Text title1;
+	private final Text title2;
 	
 	public SplashScene(Camera camera){
+		super();
 		
 		setBackground(new ColorBackground(0,0,0));
 		

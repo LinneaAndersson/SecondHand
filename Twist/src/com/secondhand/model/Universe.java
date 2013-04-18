@@ -10,7 +10,7 @@ import com.secondhand.debug.MyDebug;
 /**
  * Singelton class for describing the universe.
  */
-public class Universe {
+public final class Universe {
 	private static Level currentLevel;
 
 	private static Universe instance;

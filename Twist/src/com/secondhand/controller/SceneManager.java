@@ -7,6 +7,7 @@ import android.view.KeyEvent;
 
 import com.secondhand.scene.GamePlayScene;
 import com.secondhand.scene.HighScoreScene;
+import com.secondhand.scene.IGameScene;
 import com.secondhand.scene.MainMenuScene;
 import com.secondhand.scene.SettingsMenuScene;
 

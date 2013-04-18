@@ -1,8 +1,9 @@
-package com.secondhand.controller;
+package com.secondhand.scene;
 
 
 import org.anddev.andengine.entity.scene.Scene;
 
+import com.secondhand.controller.SceneManager;
 import com.secondhand.controller.SceneManager.AllScenes;
 
 import android.view.KeyEvent;

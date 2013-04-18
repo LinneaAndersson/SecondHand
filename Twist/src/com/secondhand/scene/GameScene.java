@@ -4,7 +4,6 @@ import org.anddev.andengine.engine.Engine;
 import org.anddev.andengine.engine.camera.SmoothCamera;
 import org.anddev.andengine.entity.scene.Scene;
 
-import com.secondhand.controller.IGameScene;
 import com.secondhand.controller.SceneManager;
 import com.secondhand.controller.SceneManager.AllScenes;
 

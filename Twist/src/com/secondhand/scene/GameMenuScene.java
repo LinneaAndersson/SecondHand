@@ -14,7 +14,6 @@ import org.anddev.andengine.opengl.font.Font;
 import android.content.Context;
 import android.view.KeyEvent;
 
-import com.secondhand.controller.IGameScene;
 import com.secondhand.controller.SceneManager;
 import com.secondhand.controller.SceneManager.AllScenes;
 import com.secondhand.debug.MyDebug;

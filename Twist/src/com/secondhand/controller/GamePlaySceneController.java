@@ -34,7 +34,7 @@ public class GamePlaySceneController {
 			shapes.add(entity.getShape());
 		}
 
-		universe.getLevel().setContactListener(new CollisionContactListener());
+		universe.getLevel().getPhysicsWorld().setContactListener(new CollisionContactListener());
 	}
 
 	private class GameSceneTouchListener implements IOnSceneTouchListener {

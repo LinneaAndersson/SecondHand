@@ -6,6 +6,7 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Contact;
 import com.badlogic.gdx.physics.box2d.Shape;
 import com.secondhand.debug.MyDebug;
+import com.secondhand.model.PowerUp.Effect;
 
 /**
  * Singelton class for describing the universe.
@@ -40,7 +41,7 @@ public final class Universe {
 		}
 
 		// now we know both the bodies are entities.
-
+		MyDebug.d(contact.getFixtureA().getBody().getUserData().getClass() + " is the A class");
 		Entity entityA = (Entity) contact.getFixtureA().getBody().getUserData();
 		Entity entityB = (Entity) contact.getFixtureB().getBody().getUserData();
 
@@ -112,6 +113,9 @@ public final class Universe {
 				// a way to have the effect for a duration
 				// Also need to destroy the powerups body
 				// the effect should be visible on the players shape
+				
+				// lets level take care on what to do with the effect
+				currentLevel.activateEffect(power.getEffect());
 
 			}
 		}

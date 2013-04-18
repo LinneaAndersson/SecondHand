@@ -16,7 +16,7 @@ import android.content.Context;
 import com.secondhand.controller.SceneManager.AllScenes;
 import com.secondhand.model.Player;
 import com.secondhand.twirl.GlobalResources;
-import com.secondhand.twirl.LocalizationStrings;
+import com.secondhand.model.LocalizationStrings;
 
 public class GameOverScene extends GameMenuScene implements
 		IOnMenuItemClickListener {

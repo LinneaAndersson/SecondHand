@@ -85,6 +85,10 @@ public class Level {
 		return testPlanets;
 	}
 
+	public void setContactListener(CollisionContactListener listener) {
+		this.physicsWorld.setContactListener(listener);
+	}
+
 	public int getLevelNumber() {
 		return levelNumber;
 	}

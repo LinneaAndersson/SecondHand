@@ -28,7 +28,7 @@ public final class Universe {
 	}
 
 	// Now there is alot of duplicated code in this method.
-	// Perhaps we could extract that code.
+	// Perhaps we could extract that code into a new method.
 	public void checkCollision(Contact contact) {
 		// if one or both is null, then we are dealing with a involving one or
 		// two non-entities
@@ -50,9 +50,10 @@ public final class Universe {
 			BlackHole blackHole;
 			if (entityA instanceof BlackHole) {
 				blackHole = (BlackHole) entityA;
-			} else
+			} else {
 				blackHole = (BlackHole) entityB;
-
+			}
+			
 			Planet planet;
 			if (entityA instanceof Planet) {
 				planet = (Planet) entityA;
@@ -93,15 +94,16 @@ public final class Universe {
 				Player player;
 				if (entityA instanceof Player) {
 					player = (Player) entityA;
-				} else
+				} else {
 					player = (Player) entityB;
-
+				}
+			
 				PowerUp power;
 				if (entityA instanceof PowerUp) {
 					power = (PowerUp) entityA;
-				} else
+				} else {
 					power = (PowerUp) entityB;
-
+				}	
 				player.setEffect(power.getEffect());
 				power.getShape().detachSelf();
 

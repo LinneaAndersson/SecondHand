@@ -21,6 +21,7 @@ import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.secondhand.controller.CollisionContactListener;
 import com.secondhand.loader.TextureRegionLoader;
 import com.secondhand.math.PolygonUtil;
+import com.secondhand.model.PowerUp.Effect;
 import com.secondhand.opengl.Polygon;
 import com.secondhand.opengl.TexturedPolygon;
 
@@ -79,7 +80,9 @@ public class Level {
 
 		TexturedPolygon polygon = new TexturedPolygon(200, 200, PolygonUtil.getRandomPolygon(), planetTexture);
 		testPlanets.add(new Obstacle (new Vector2(200, 200), polygon));
-
+		
+		testPlanets.add(new PowerUp(new Vector2(), 30, Effect.RANDOM_TELEPORT));
+		
 		return testPlanets;
 	}
 
@@ -163,9 +166,11 @@ public class Level {
 		// we need this when doing collisions handling between entities and black holes:
 		body.setUserData(entity);
 		entity.setBody(body);
-
+		
+		// setting the last boolean to false seems to prevent 
+		// the erratic movement of the player. needs testing. 
 		physicsWorld.registerPhysicsConnector(new PhysicsConnector(entity
-				.getShape(), entity.getBody(), true, true));
+				.getShape(), entity.getBody(), true, false));
 	}
 
 	private static Body createPolygonBody(

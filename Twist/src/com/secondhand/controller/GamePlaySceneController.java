@@ -30,7 +30,7 @@ public class GamePlaySceneController {
 		scene.setPlayer(universe.getLevel().getPlayer().getShape());
 		scene.setShapes(shapes);
 
-		for (Entity entity : universe.getLevel().getEntityList()) {
+		for (final Entity entity : universe.getLevel().getEntityList()) {
 			shapes.add(entity.getShape());
 		}
 		
@@ -41,13 +41,13 @@ public class GamePlaySceneController {
 
 	private class GameSceneTouchListener implements IOnSceneTouchListener {
 		@Override
-		public boolean onSceneTouchEvent(Scene pScene,
-				TouchEvent pSceneTouchEvent) {
+		public boolean onSceneTouchEvent(final Scene pScene,
+				final TouchEvent pSceneTouchEvent) {
 			MyDebug.i("TouchEvent");
 			if (pSceneTouchEvent.getAction() == TouchEvent.ACTION_DOWN) {
-				float x = pSceneTouchEvent.getX();
-				float y = pSceneTouchEvent.getY();
-				universe.update(new Vector2(x, y));
+				final float posX = pSceneTouchEvent.getX();
+				final float posY = pSceneTouchEvent.getY();
+				universe.update(new Vector2(posX, posY));
 				return true;
 			}
 			return false;

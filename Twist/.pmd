@@ -100,10 +100,6 @@
             <ruleset>Design Rules</ruleset>
         </rule>
         <rule>
-            <name>AvoidInstantiatingObjectsInLoops</name>
-            <ruleset>Optimization Rules</ruleset>
-        </rule>
-        <rule>
             <name>AvoidMultipleUnaryOperators</name>
             <ruleset>Basic Rules</ruleset>
         </rule>

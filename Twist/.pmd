@@ -652,10 +652,6 @@
             <ruleset>Migration Rules</ruleset>
         </rule>
         <rule>
-            <name>ShortMethodName</name>
-            <ruleset>Naming Rules</ruleset>
-        </rule>
-        <rule>
             <name>ShortVariable</name>
             <ruleset>Naming Rules</ruleset>
         </rule>

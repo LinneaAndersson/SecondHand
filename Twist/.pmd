@@ -512,10 +512,6 @@
             <ruleset>Migration Rules</ruleset>
         </rule>
         <rule>
-            <name>LongVariable</name>
-            <ruleset>Naming Rules</ruleset>
-        </rule>
-        <rule>
             <name>LooseCoupling</name>
             <ruleset>Type Resolution Rules</ruleset>
         </rule>

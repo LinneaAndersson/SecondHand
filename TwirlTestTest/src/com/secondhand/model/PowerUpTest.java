@@ -13,6 +13,5 @@ public class PowerUpTest extends TestCase {
 		
 		assertEquals(pu1.getEffect(), Effect.SCORE_UP);
 		assertEquals(pu2.getEffect(), Effect.SPEED_UP);
-	}
-	
+	}	
 }

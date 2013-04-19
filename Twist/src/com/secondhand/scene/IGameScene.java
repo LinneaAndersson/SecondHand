@@ -35,9 +35,9 @@ public interface IGameScene {
 	 * Override this method if you want to get keyboard input from the physical
 	 * buttons of an Android device.
 	 */
-	public boolean onKeyDown(final int pKeyCode, final KeyEvent pEvent);
+	boolean onKeyDown(final int pKeyCode, final KeyEvent pEvent);
 
 	// Returns the parent-scene, for example SettingsMenuScene returns
 	// AllScenes.MAIN_MENU_SCENE
-	public AllScenes getParentScene();
+	AllScenes getParentScene();
 }

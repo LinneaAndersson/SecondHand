@@ -28,7 +28,6 @@ public class TexturedCircle extends Circle {
 				// should these be the circle sizes or the texture sizes?
 				textureRegion.getWidth(), textureRegion.getHeight(),  GL11.GL_STATIC_DRAW, true);
 		
-		// TODO: we need to update when the size of the circle is changed?
 		this.mPolygonTextureRegionBuffer.update();
 		
 		this.mTextureRegion = textureRegion;

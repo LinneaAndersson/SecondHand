@@ -46,7 +46,6 @@ public class Level {
 		this(100);
 	}
 
-	// TODO: we do even need this constructor at all?
 	public Level(int maxSize) {
 		this(maxSize, new PhysicsWorld(new Vector2(), true), new Player(
 				new Vector2(50, 50), 20), createTestPlanets(), 2000, 2000);
@@ -67,8 +66,6 @@ public class Level {
 	public static List<Entity> createTestPlanets() {
 		List<Entity> testPlanets = new ArrayList<Entity>();
 
-		// TODO: figure out how to access the texture loaded in game play scene
-		// instead.
 		// TODO: Understand why textures are not loaded properly
 		TextureRegion planetTexture = GlobalResources.getInstance().planetTexture;
 
@@ -184,9 +181,6 @@ public class Level {
 		// TODO: should probably allow the possibility to create box
 		// bodies(rectangular) bodies as well
 		// we could store some enum value in Entity for this purpose.
-
-		// Body body2 = createPolygonBody(this.physicsWorld, polygon,
-		// BodyType.StaticBody, FIXTURE_DEF);
 
 		FixtureDef fixture = PhysicsFactory.createFixtureDef(1, 0.5f, 0.5f);
 		Body body;

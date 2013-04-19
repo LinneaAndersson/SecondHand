@@ -96,10 +96,6 @@
             <ruleset>Naming Rules</ruleset>
         </rule>
         <rule>
-            <name>AvoidFinalLocalVariable</name>
-            <ruleset>Controversial Rules</ruleset>
-        </rule>
-        <rule>
             <name>AvoidInstanceofChecksInCatchClause</name>
             <ruleset>Design Rules</ruleset>
         </rule>

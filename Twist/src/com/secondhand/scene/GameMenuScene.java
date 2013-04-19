@@ -69,7 +69,7 @@ public abstract class GameMenuScene extends MenuScene implements IGameScene {
 		// y-coordinate of the menu item.
 		final float y = headlineSpacing;
 
-		Text headlineText = new Text(0, y, menuHeadlineFont, headline);
+		final Text headlineText = new Text(0, y, menuHeadlineFont, headline);
 
 		final float x = this.smoothCamera.getWidth() / 2.0f
 				- headlineText.getWidth() / 2.0f;
@@ -84,7 +84,7 @@ public abstract class GameMenuScene extends MenuScene implements IGameScene {
 	 * The separate menu items are laid out centered horizontally. All these
 	 * items are stacked up on each other and this stack is centered vertically.
 	 */
-	protected void layoutCenteredMenu(int startY,
+	protected void layoutCenteredMenu(final int startY,
 			final List<GameMenuScene.MenuItem> menuItems) {
 
 		final Font menuItemFont = GlobalResources.getInstance().menuItemFont;
@@ -105,7 +105,7 @@ public abstract class GameMenuScene extends MenuScene implements IGameScene {
 
 			MyDebug.d("laying single menu item");
 
-			IMenuItem item = new TextMenuItem(menuItem.id, menuItemFont,
+			final IMenuItem item = new TextMenuItem(menuItem.id, menuItemFont,
 					menuItem.text);
 
 			final float x = this.smoothCamera.getWidth() / 2.0f

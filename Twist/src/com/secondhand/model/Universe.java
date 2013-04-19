@@ -78,20 +78,6 @@ public final class Universe {
 
 			if (blackHole.canEat(planet)) {
 
-				// remove the planet from physics handling.
-				// TODO: this crashes the physics engine. Figure out how to fix.
-				// See:
-				// http://stackoverflow.com/questions/10835349/crash-when-destroying-bodies
-				// and maybe also
-				// http://www.box2d.org/forum/viewtopic.php?f=8&t=5601&p=26070#p26070
-				/*
-				 * final Body planetBody = planet.getBody(); PhysicsWorld pw =
-				 * this.level.getPhysicsWorld(); pw.unregisterPhysicsConnector(
-				 * pw
-				 * .getPhysicsConnectorManager().findPhysicsConnectorByShape(planet
-				 * .getShape())); pw.destroyBody(planetBody);
-				 */
-
 				// Detach the planet from AndEngine
 				planet.getShape().detachSelf();
 
@@ -103,6 +89,7 @@ public final class Universe {
 				Shape blackHoleShape = blackHole.getBody().getFixtureList()
 						.get(0).getShape();
 				// perhaps we could divide radius by 2?
+				// otherwise i believe it would grow to fast
 				blackHole.increaseSize(planet.getRadius());
 				blackHoleShape.setRadius(blackHole.getRadius()
 						/ PhysicsConstants.PIXEL_TO_METER_RATIO_DEFAULT);
@@ -164,6 +151,7 @@ public final class Universe {
 							mPhysicsWorld
 									.unregisterPhysicsConnector(facePhysicsConnector);
 							// myFixture.getBody().destroyFixture(myFixture);
+							// don't know if the above is needed
 							if (bodyToo == true) {
 								MyDebug.i(facePhysicsConnector.getBody()
 										+ " will be destroyed");

@@ -20,7 +20,7 @@ public abstract class GameScene extends Scene implements IGameScene {
 	protected final Engine engine;
 	protected final Context context;
 
-	public GameScene(Engine engine, Context context) {
+	public GameScene(final Engine engine, final Context context) {
 		super();
 		this.smoothCamera = (SmoothCamera)engine.getCamera();
 		this.engine = engine;
@@ -31,7 +31,7 @@ public abstract class GameScene extends Scene implements IGameScene {
 	public boolean onKeyDown(final int pKeyCode, final KeyEvent pEvent) {
 		if (pKeyCode == KeyEvent.KEYCODE_BACK
 				&& pEvent.getAction() == KeyEvent.ACTION_DOWN) {
-			AllScenes parent = getParentScene();
+			final AllScenes parent = getParentScene();
 			if (parent != null) {
 				// TODO needs to save game and have a continue option on the
 				// menuScene if the current scene is gamePlayScene
@@ -41,8 +41,9 @@ public abstract class GameScene extends Scene implements IGameScene {
 				SceneManager.getInstance().setCurrentSceneEnum(parent);
 				return true;
 			}
-			else
+			else {
 				return false;
+			}
 		} else {
 			return false;
 		}

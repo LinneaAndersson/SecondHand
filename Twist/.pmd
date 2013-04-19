@@ -648,10 +648,6 @@
             <ruleset>Migration Rules</ruleset>
         </rule>
         <rule>
-            <name>ShortVariable</name>
-            <ruleset>Naming Rules</ruleset>
-        </rule>
-        <rule>
             <name>SignatureDeclareThrowsException</name>
             <ruleset>Type Resolution Rules</ruleset>
         </rule>

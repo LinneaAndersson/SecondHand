@@ -27,7 +27,7 @@ public abstract class GameMenuScene extends MenuScene implements IGameScene {
 	protected final Engine engine;
 	protected final Context context;
 
-	public GameMenuScene(Engine engine, Context context) {
+	public GameMenuScene(final Engine engine, final Context context) {
 		super(engine.getCamera());
 
 		// we do this to keep the API consistent
@@ -45,18 +45,19 @@ public abstract class GameMenuScene extends MenuScene implements IGameScene {
 	public boolean onKeyDown(final int pKeyCode, final KeyEvent pEvent) {
 		if (pKeyCode == KeyEvent.KEYCODE_BACK
 				&& pEvent.getAction() == KeyEvent.ACTION_DOWN) {
-			AllScenes parent = getParentScene();
+			final AllScenes parent = getParentScene();
 			if (parent != null) {
 				SceneManager.getInstance().setCurrentSceneEnum(parent);
 				return true;
-			} else
+			} else {
 				return false;
+			}
 		} else {
 			return false;
 		}
 	}
 
-	protected int layoutHeadline(String headline) {
+	protected int layoutHeadline(final String headline) {
 		// the vertical spacing around the headline.
 		final int headlineSpacing = 40;
 

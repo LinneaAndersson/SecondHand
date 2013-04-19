@@ -152,10 +152,6 @@
             <ruleset>Strict Exception Rules</ruleset>
         </rule>
         <rule>
-            <name>AvoidThrowingRawExceptionTypes</name>
-            <ruleset>Strict Exception Rules</ruleset>
-        </rule>
-        <rule>
             <name>AvoidUsingHardCodedIP</name>
             <ruleset>Basic Rules</ruleset>
         </rule>
@@ -226,10 +222,6 @@
         <rule>
             <name>CloneMethodMustImplementCloneable</name>
             <ruleset>Type Resolution Rules</ruleset>
-        </rule>
-        <rule>
-            <name>CloneMethodMustImplementCloneable</name>
-            <ruleset>Clone Implementation Rules</ruleset>
         </rule>
         <rule>
             <name>CloneThrowsCloneNotSupportedException</name>
@@ -528,10 +520,6 @@
             <ruleset>Type Resolution Rules</ruleset>
         </rule>
         <rule>
-            <name>LooseCoupling</name>
-            <ruleset>Coupling Rules</ruleset>
-        </rule>
-        <rule>
             <name>MDBAndSessionBeanNamingConvention</name>
             <ruleset>J2EE Rules</ruleset>
         </rule>
@@ -688,10 +676,6 @@
             <ruleset>Type Resolution Rules</ruleset>
         </rule>
         <rule>
-            <name>SignatureDeclareThrowsException</name>
-            <ruleset>Strict Exception Rules</ruleset>
-        </rule>
-        <rule>
             <name>SimpleDateFormatNeedsLocale</name>
             <ruleset>Design Rules</ruleset>
         </rule>
@@ -842,10 +826,6 @@
         <rule>
             <name>UnusedImports</name>
             <ruleset>Type Resolution Rules</ruleset>
-        </rule>
-        <rule>
-            <name>UnusedImports</name>
-            <ruleset>Import Statement Rules</ruleset>
         </rule>
         <rule>
             <name>UnusedLocalVariable</name>

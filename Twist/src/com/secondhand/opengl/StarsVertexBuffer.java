@@ -18,19 +18,12 @@ public class StarsVertexBuffer extends VertexBuffer {
 	// ===========================================================
 	// Fields
 	// ===========================================================
-	
-	private List<Vector2> mVertices;
 
 	private int mStars;
 
 	// ===========================================================
 	// Constructors
 	// ===========================================================
-	
-	
-	public List<Vector2> getVertices() {
-		return this.mVertices;
-	}
 	
 
 	public StarsVertexBuffer(final int stars, final int pDrawType, final boolean pManaged) {

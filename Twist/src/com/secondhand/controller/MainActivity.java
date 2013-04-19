@@ -24,9 +24,7 @@ public class MainActivity extends BaseGameActivity {
 	public static final int CAMERA_WIDTH = 800;
 	public static final int CAMERA_HEIGHT = 480;
 	
-	private SmoothCamera camera;
-	
-	
+
 	@Override
 	public void onLoadResources() {
 		// this is instead delegated to the separate scenes.
@@ -43,7 +41,7 @@ public class MainActivity extends BaseGameActivity {
 	@Override
 	public Engine onLoadEngine() {
 		
-	    camera = new SmoothCamera(0, 0, CAMERA_WIDTH, CAMERA_HEIGHT, Float.MAX_VALUE, Float.MAX_VALUE, 1.0f);
+	    final SmoothCamera camera = new SmoothCamera(0, 0, CAMERA_WIDTH, CAMERA_HEIGHT, Float.MAX_VALUE, Float.MAX_VALUE, 1.0f);
 	    
 	    final EngineOptions engineOptions = new EngineOptions(
 	    		true, ScreenOrientation.LANDSCAPE, new RatioResolutionPolicy(CAMERA_WIDTH, CAMERA_HEIGHT), camera);

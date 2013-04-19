@@ -20,7 +20,7 @@ public class MainMenuScene extends GameMenuScene implements IOnMenuItemClickList
 	private static final int MENU_HIGH_SCORE = 1;
 	private static final int MENU_SETTINGS = 2;
 	
-	public MainMenuScene(Engine engine, Context context) {
+	public MainMenuScene(final Engine engine, final Context context) {
 		super(engine, context);
 	}
 
@@ -30,11 +30,11 @@ public class MainMenuScene extends GameMenuScene implements IOnMenuItemClickList
 
 	@Override
 	public void loadScene() {
-		int menuStartX = layoutHeadline("Twirl");
+		final int menuStartX = layoutHeadline("Twirl");
 		
 		
 		// make a centered menu.
-		List<GameMenuScene.MenuItem> menuItems = new ArrayList<GameMenuScene.MenuItem>();
+		final List<GameMenuScene.MenuItem> menuItems = new ArrayList<GameMenuScene.MenuItem>();
 		menuItems.add(new MenuItem(MENU_START, LocalizationStrings.getInstance().getLocalizedString("menu_start")));
 		menuItems.add(new MenuItem(MENU_SETTINGS, LocalizationStrings.getInstance().getLocalizedString("menu_settings")));
 		menuItems.add(new MenuItem(MENU_HIGH_SCORE, LocalizationStrings.getInstance().getLocalizedString("menu_high_score")));
@@ -45,7 +45,8 @@ public class MainMenuScene extends GameMenuScene implements IOnMenuItemClickList
 
 	@Override
 	public boolean onMenuItemClicked(final MenuScene pMenuScene, final IMenuItem pMenuItem,
-			float pMenuItemLocalX, float pMenuItemLocalY) {
+			
+			final float pMenuItemLocalX, final float pMenuItemLocalY) {
 		
 		switch(pMenuItem.getID()) {
 		case MENU_START:

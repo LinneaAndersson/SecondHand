@@ -228,10 +228,6 @@
             <ruleset>Design Rules</ruleset>
         </rule>
         <rule>
-            <name>ConfusingTernary</name>
-            <ruleset>Design Rules</ruleset>
-        </rule>
-        <rule>
             <name>ConsecutiveLiteralAppends</name>
             <ruleset>String and StringBuffer Rules</ruleset>
         </rule>

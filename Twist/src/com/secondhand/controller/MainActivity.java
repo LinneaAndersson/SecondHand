@@ -24,7 +24,7 @@ public class MainActivity extends BaseGameActivity {
 	public static final int CAMERA_WIDTH = 800;
 	public static final int CAMERA_HEIGHT = 480;
 	
-	SmoothCamera camera;
+	private SmoothCamera camera;
 	
 	
 	@Override
@@ -45,11 +45,11 @@ public class MainActivity extends BaseGameActivity {
 		
 	    camera = new SmoothCamera(0, 0, CAMERA_WIDTH, CAMERA_HEIGHT, Float.MAX_VALUE, Float.MAX_VALUE, 1.0f);
 	    
-	    EngineOptions engineOptions = new EngineOptions(
+	    final EngineOptions engineOptions = new EngineOptions(
 	    		true, ScreenOrientation.LANDSCAPE, new RatioResolutionPolicy(CAMERA_WIDTH, CAMERA_HEIGHT), camera);
 	    engineOptions.setNeedsSound(true);
 	    engineOptions.setNeedsMusic(true);
-	    Engine engine = new Engine(engineOptions);
+	    final Engine engine = new Engine(engineOptions);
 	    
 	    // initialize loader classes:
 	    FontLoader.getInstance().initialize(this, engine);

@@ -14,21 +14,21 @@ public class CollisionContactListener implements ContactListener {
 	 * other entities. You can simply ignore the other three
 	 */
 	@Override
-	public void beginContact(Contact contact) {
+	public void beginContact(final Contact contact) {
 		Universe.getInstance().checkCollision(contact);
 	}
 
 	// ignore these
 	@Override
-	public void endContact(Contact contact) {
+	public void endContact(final Contact contact) {
 	}
 
 	@Override
-	public void preSolve(Contact contact, Manifold oldManifold) {
+	public void preSolve(final Contact contact, final Manifold oldManifold) {
 	}
 
 	@Override
-	public void postSolve(Contact contact, ContactImpulse impulse) {
+	public void postSolve(final Contact contact, final ContactImpulse impulse) {
 	}
 
 }

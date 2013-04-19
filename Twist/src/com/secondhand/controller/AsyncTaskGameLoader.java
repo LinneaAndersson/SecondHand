@@ -8,12 +8,12 @@ import android.os.AsyncTask;
 public class AsyncTaskGameLoader extends
 		AsyncTask<IAsyncCallback, Integer, Boolean> {
 
-	IAsyncCallback[] params;
+	private IAsyncCallback[] params;
 
 	@Override
 	protected Boolean doInBackground(final IAsyncCallback... params) {
 		this.params = params;
-		int count = params.length;
+		final int count = params.length;
 		for (int i = 0; i < count; i++) {
 			params[i].work();
 		}
@@ -22,7 +22,7 @@ public class AsyncTaskGameLoader extends
 
 	@Override
 	protected void onPostExecute(final Boolean result) {
-		int count = this.params.length;
+		final int count = this.params.length;
 		for (int i = 0; i < count; i++) {
 			this.params[i].onWorkComplete();
 		}

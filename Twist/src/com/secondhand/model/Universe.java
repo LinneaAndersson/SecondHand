@@ -102,6 +102,7 @@ public final class Universe {
 				// just be me)
 				Shape blackHoleShape = blackHole.getBody().getFixtureList()
 						.get(0).getShape();
+				// perhaps we could divide radius by 2?
 				blackHole.increaseSize(planet.getRadius());
 				blackHoleShape.setRadius(blackHole.getRadius()
 						/ PhysicsConstants.PIXEL_TO_METER_RATIO_DEFAULT);

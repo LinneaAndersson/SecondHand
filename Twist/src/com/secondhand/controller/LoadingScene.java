@@ -7,7 +7,6 @@ import android.content.Context;
 import com.secondhand.debug.MyDebug;
 import com.secondhand.scene.GameScene;
 import com.secondhand.scene.IGameScene;
-import com.secondhand.twirl.GlobalResources;
 
 public class LoadingScene extends GameScene {
 
@@ -15,7 +14,7 @@ public class LoadingScene extends GameScene {
 	// the minimum time the loading screen will be shown.
 	public static final int MINIMUM_LOADNG_TIME = 0;
 
-	public LoadingScene(final Engine engine, Context context) {
+	public LoadingScene(final Engine engine, final Context context) {
 		super(engine, context);
 	}
 
@@ -35,7 +34,7 @@ public class LoadingScene extends GameScene {
 		// this is simply done by using a background loading thread:
 		// (this allows us to use an animated loading screen)
 
-		IAsyncCallback callback = new IAsyncCallback() {
+		final IAsyncCallback callback = new IAsyncCallback() {
 
 			@Override
 			public void work() {
@@ -45,7 +44,7 @@ public class LoadingScene extends GameScene {
 					// time before we begin the actual loading.
 					Thread.sleep(MINIMUM_LOADNG_TIME);
 				} catch (InterruptedException e) {
-					e.printStackTrace();
+					MyDebug.e(e);
 				}
 
 				// load all resources of all scenes.

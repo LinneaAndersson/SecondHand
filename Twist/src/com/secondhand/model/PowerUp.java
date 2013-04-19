@@ -1,6 +1,7 @@
 package com.secondhand.model;
 
-import org.anddev.andengine.entity.primitive.Rectangle;
+import org.anddev.andengine.entity.sprite.Sprite;
+import org.anddev.andengine.opengl.texture.region.TextureRegion;
 
 import com.badlogic.gdx.math.Vector2;
 
@@ -10,10 +11,11 @@ public class PowerUp extends Entity {
 	
 	private Effect effect;
 	
-	public PowerUp (Vector2 position, float radius, Effect effect ) {
+	public PowerUp (Vector2 position, float radius, Effect effect, TextureRegion texture) {
 		// TODO: pass down the shape of the powerup(it will probably be a square, so probably a sprite)
-		super(position,radius, new Rectangle(300, 300, 40, 40), true);
+		super(position, radius, new Sprite(position.x, position.y, 40, 40, texture), true);
 		this.effect = effect;
+		
 	}
 	
 	public enum Effect{

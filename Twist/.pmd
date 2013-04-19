@@ -760,10 +760,6 @@
             <ruleset>Design Rules</ruleset>
         </rule>
         <rule>
-            <name>UncommentedEmptyMethod</name>
-            <ruleset>Design Rules</ruleset>
-        </rule>
-        <rule>
             <name>UnconditionalIfStatement</name>
             <ruleset>Basic Rules</ruleset>
         </rule>

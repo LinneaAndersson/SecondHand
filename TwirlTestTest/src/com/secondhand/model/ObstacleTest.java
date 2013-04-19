@@ -7,6 +7,8 @@ import com.secondhand.opengl.TexturedPolygon;
 
 public class ObstacleTest extends TestCase{
 
+	
+	
 	public void testConstructor() {
 		
 		Vector2 pos = new Vector2(2f, 4f);

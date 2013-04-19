@@ -40,7 +40,6 @@ public class GameOverScene extends GameMenuScene implements
 
 	@Override
 	public void loadScene() {
-		int tmp = 0;
 		Text textGameOver;
 
 		// The title

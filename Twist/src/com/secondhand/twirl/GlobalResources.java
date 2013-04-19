@@ -40,7 +40,7 @@ public final class GlobalResources {
 				Typeface.create(Typeface.DEFAULT, Typeface.BOLD), 32, Color.WHITE);
 		this.menuHeadlineFont = FontLoader.getInstance().loadFont(
 				Typeface.create(Typeface.DEFAULT, Typeface.BOLD), 50, Color.WHITE);
-		this.playerSprite = null; // TODO load the player sprite
+		//this.playerSprite = null; // TODO load the player sprite
 		this.planetTexture = TextureRegionLoader.getInstance().loadTextureRegion(BASEPATH+EntityTexture.PLANET.path, 32, 32,
 				TextureOptions.REPEATING_NEAREST);
 	}
@@ -52,7 +52,7 @@ public final class GlobalResources {
 		
 		private String path;
 		
-		private EntityTexture(String path) {
+		private EntityTexture(final String path) {
 			this.path = path;
 		}
 	}

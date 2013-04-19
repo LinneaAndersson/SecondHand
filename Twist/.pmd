@@ -584,10 +584,6 @@
             <ruleset>Design Rules</ruleset>
         </rule>
         <rule>
-            <name>NonThreadSafeSingleton</name>
-            <ruleset>Design Rules</ruleset>
-        </rule>
-        <rule>
             <name>NoPackage</name>
             <ruleset>Naming Rules</ruleset>
         </rule>

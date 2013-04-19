@@ -6,7 +6,7 @@ import java.util.Random;
 
 import com.badlogic.gdx.math.Vector2;
 
-public class PolygonUtil {
+public final class PolygonUtil {
 
 	private PolygonUtil() {}	
 	
@@ -15,11 +15,11 @@ public class PolygonUtil {
 	 * @param polygon
 	 * @return whether the poly is convex.
 	 */
-	public static boolean  isConvex(List<Vector2> polygon) {
+	public static boolean  isConvex(final List<Vector2> polygon) {
 		
-		if ( polygon.size() < 3 ) 
+		if ( polygon.size() < 3 ) {
 			throw new IllegalArgumentException("A polygon with less than 3 points is not a polygon!");
-
+		}
 		
 		boolean firstPairChecked = false;
 		boolean ensureAllPositive = false;
@@ -76,16 +76,16 @@ public class PolygonUtil {
      * @param rng
      * @return
      */
-    private static float nextFloat(Random rng) {
+    private static float nextFloat(final Random rng) {
     	return 1.0f / (float)rng.nextInt();
     }
     
-    private static List<Vector2> getRandomStartingPolygon(Random rng) {
+    private static List<Vector2> getRandomStartingPolygon(final Random rng) {
     	
     	
-    	List<Vector2> polygonEdges = new ArrayList<Vector2>();
+    	final List<Vector2> polygonEdges = new ArrayList<Vector2>();
         
-    	int choice = rng.nextInt(3);
+    	final int choice = rng.nextInt(3);
     	
     	if(choice == 2) {
     		// 6 edges
@@ -124,22 +124,22 @@ public class PolygonUtil {
     	final int TRANSFORMATIONS = 200;
     	final float MAX_TRANSFORMATION = 20;
     	
-    	Random rng = new Random();
+    	final Random rng = new Random();
         
     	List<Vector2> polygonEdges = getRandomStartingPolygon(rng);
     	
         for(int i = 0; i < TRANSFORMATIONS; ++i) {
         	// get a random edge point of the polygon
-        	Vector2 v = polygonEdges.get(rng.nextInt(polygonEdges.size()));
+        	final Vector2 v = polygonEdges.get(rng.nextInt(polygonEdges.size()));
         	
         	// randomly tranform it by some random vector.
         	
         	Vector2 transformation;
-        	if(i < TRANSFORMATIONS / 2) 
+        	if(i < TRANSFORMATIONS / 2) {
         		transformation = new Vector2((float)rng.nextDouble() * MAX_TRANSFORMATION, (float)rng.nextDouble() * MAX_TRANSFORMATION);
-        	else
+        	}else {
         		transformation = new Vector2((float)nextFloat(rng) * MAX_TRANSFORMATION, (float)nextFloat(rng) * MAX_TRANSFORMATION);
-        	
+        	}
         	
         	v.add(transformation);
         	

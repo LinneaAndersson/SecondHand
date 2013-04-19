@@ -18,12 +18,12 @@ public class LoadingText extends ChangeableText {
 	// "animation"
 	private static final float SECONDS_PER_STRING = 0.3f;
 
-	private String[] loadingStrings = null;
+	private String[] loadingStrings;
 	private int loadingStringsI;
 
-	private float secondsPassedSinceLastUpdate = 0;
+	private float secondsPassedSinceLastUpdate;
 
-	public LoadingText(Camera camera) {
+	public LoadingText(final Camera camera) {
 		super(0, 0, GlobalResources.getInstance().menuItemFont,
 		// TODO: ugly hack, fix(this string has to be longer than the presented
 		// string for some reason)
@@ -32,9 +32,9 @@ public class LoadingText extends ChangeableText {
 		this.setText(getNextString());
 
 		// center the "loading" text both horizontally and vertically.
-		float x = camera.getWidth() / 2.0f - this.getWidth() / 2.0f;
-		float y = camera.getHeight() / 2.0f - this.getHeight() / 2.0f;
-		this.setPosition(x, y);
+		final float posX = camera.getWidth() / 2.0f - this.getWidth() / 2.0f;
+		final float posY = camera.getHeight() / 2.0f - this.getHeight() / 2.0f;
+		this.setPosition(posX, posY);
 	}
 
 	// get next string in the animation
@@ -42,7 +42,7 @@ public class LoadingText extends ChangeableText {
 		if (loadingStrings == null) {
 			// create the loading strings.
 
-			String loadingString = LocalizationStrings.getInstance()
+			final String loadingString = LocalizationStrings.getInstance()
 					.getLocalizedString("loading");
 			loadingStrings = new String[] { loadingString + ".",
 					loadingString + "..", loadingString + "..." };
@@ -65,7 +65,7 @@ public class LoadingText extends ChangeableText {
 
 		if (secondsPassedSinceLastUpdate >= SECONDS_PER_STRING) {
 			secondsPassedSinceLastUpdate = 0;
-			String next = getNextString();
+			final String next = getNextString();
 			this.setText(next);
 		}
 

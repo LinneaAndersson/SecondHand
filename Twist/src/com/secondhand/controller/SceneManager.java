@@ -17,7 +17,7 @@ import com.secondhand.scene.SettingsMenuScene;
  * keyboard input from the MainActvity to the current scene. So it's basically
  * the controller of this app.
  */
-public class SceneManager {
+public final class SceneManager {
 
 	private static SceneManager instance;
 
@@ -66,7 +66,7 @@ public class SceneManager {
 		return getScene(currentSceneEnum);
 	}
 
-	public IGameScene getScene(AllScenes sceneEnum) {
+	public IGameScene getScene(final AllScenes sceneEnum) {
 		IGameScene scene = null;
 
 		// IMPORTANT: when you want to add a new scene to the app, you MUST make
@@ -89,10 +89,10 @@ public class SceneManager {
 		return scene;
 	}
 
-	public IGameScene setCurrentSceneEnum(AllScenes currentSceneEnum) {
+	public IGameScene setCurrentSceneEnum(final AllScenes currentSceneEnum) {
 		this.currentSceneEnum = currentSceneEnum;
 
-		IGameScene currentScene = getCurrentScene();
+		final IGameScene currentScene = getCurrentScene();
 
 		// the loading scene is a special case. It handles the loading of all
 		// the
@@ -124,7 +124,7 @@ public class SceneManager {
 	// called from MainActivity.
 	public boolean sendOnKeyDownToCurrentScene(final int pKeyCode,
 			final KeyEvent pEvent) {
-		IGameScene currentScene = getCurrentScene();
+		final IGameScene currentScene = getCurrentScene();
 		return currentScene.onKeyDown(pKeyCode, pEvent);
 	}
 

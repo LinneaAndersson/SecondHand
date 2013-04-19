@@ -96,6 +96,10 @@ public final class Universe {
 				planet.getShape().detachSelf();
 
 				// increase the size of the black hole.
+				// seems like there is something wrong here. after eating the
+				// contact area extends outside of the shape. it also seems like
+				// the screen area you can touch for movement decreases(could
+				// just be me)
 				Shape blackHoleShape = blackHole.getBody().getFixtureList()
 						.get(0).getShape();
 				blackHole.increaseSize(planet.getRadius());
@@ -103,7 +107,7 @@ public final class Universe {
 						/ PhysicsConstants.PIXEL_TO_METER_RATIO_DEFAULT);
 
 				MyDebug.d("black hole should now eat planet.");
-				
+
 				myDestroyer(planet.getShape(), true);
 			}
 		} else if (entityA instanceof Player && entityB instanceof PowerUp
@@ -118,7 +122,7 @@ public final class Universe {
 
 			power.getShape().detachSelf();
 			MyDebug.d("Now the powerup should dissappear");
-			
+
 			myDestroyer(power.getShape(), true);
 
 			// now we need a way to have the power up take effect and decide
@@ -132,9 +136,19 @@ public final class Universe {
 		}
 	}
 
+	/*
+	 * I found the following method on the AndEngine forum:
+	 * http://www.andengine.org/forums/physics-box2d-extension/body-removal-crashing-andengine-t9814.html 
+	 * (by RealMayo, a guy who knows lots of good stuff bout engine. keep a look out
+	 * for him if there is something you needs to know) and it seems to work well. I thought i
+	 * would get null value at the third debug but it seems that the body still
+	 * exist in the connector?
+	 */
 	private void myDestroyer(final IShape mySprite, final Boolean bodyToo) {
 		final PhysicsWorld mPhysicsWorld = currentLevel.getPhysicsWorld();
+
 		if (killingInProcess == false) {
+			MyDebug.i("commence destruction");
 			killingInProcess = true;
 			final PhysicsConnector facePhysicsConnector = mPhysicsWorld
 					.getPhysicsConnectorManager().findPhysicsConnectorByShape(
@@ -150,12 +164,16 @@ public final class Universe {
 									.unregisterPhysicsConnector(facePhysicsConnector);
 							// myFixture.getBody().destroyFixture(myFixture);
 							if (bodyToo == true) {
+								MyDebug.i(facePhysicsConnector.getBody()
+										+ " will be destroyed");
 								mPhysicsWorld.destroyBody(facePhysicsConnector
 										.getBody());
 							}
 							mySprite.detachSelf();
 							System.gc();
 							killingInProcess = false;
+							MyDebug.i(facePhysicsConnector.getBody()
+									+ " destruction complete");
 						}
 					});
 				}

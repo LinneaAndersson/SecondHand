@@ -41,12 +41,12 @@ public class SettingsMenuScene extends GameMenuScene implements
 
 	private ChangeableText volumeText;
 
-	SharedPreferences sharedPreferences;
-	SharedPreferences.Editor sharedPreferencesEditor;
+	private SharedPreferences sharedPreferences;
+	private SharedPreferences.Editor sharedPreferencesEditor;
 
-	Sound beep;
+	private Sound beep;
 
-	public SettingsMenuScene(Engine engine, Context context) {
+	public SettingsMenuScene(final Engine engine, final Context context) {
 		super(engine, context);
 
 		// used for volume control:
@@ -68,7 +68,7 @@ public class SettingsMenuScene extends GameMenuScene implements
 	public void loadScene() {
 
 		// layout headline
-		int menuStartY = layoutHeadline(LocalizationStrings.getInstance()
+		final int menuStartY = layoutHeadline(LocalizationStrings.getInstance()
 				.getLocalizedString("menu_settings"));
 
 		// constants
@@ -101,12 +101,12 @@ public class SettingsMenuScene extends GameMenuScene implements
 		this.attachChild(volumeText);
 		y += fontHeight + subheadlineInbetweenSpacing;
 
-		IMenuItem higherItem = new TextMenuItem(MENU_HIGHER, font, "Higher");
+		final IMenuItem higherItem = new TextMenuItem(MENU_HIGHER, font, "Higher");
 		higherItem.setPosition(x, y);
 		addMenuItem(higherItem);
 		y += fontHeight + subheadlineInbetweenSpacing;
 
-		IMenuItem lowerItem = new TextMenuItem(MENU_LOWER, font, "Lower");
+		final IMenuItem lowerItem = new TextMenuItem(MENU_LOWER, font, "Lower");
 		lowerItem.setPosition(x, y);
 		addMenuItem(lowerItem);
 
@@ -114,7 +114,7 @@ public class SettingsMenuScene extends GameMenuScene implements
 	}
 
 	private void updateVolumeText() {
-		int volume = sharedPreferences.getInt(VOLUME_SETTING_STRING,
+		final int volume = sharedPreferences.getInt(VOLUME_SETTING_STRING,
 				DEFAULT_VOLUME);
 		volumeText.setText(volume + "%");
 	}
@@ -149,23 +149,25 @@ public class SettingsMenuScene extends GameMenuScene implements
 		int newVolume = oldVolume + volumeChange;
 
 		// keep in range
-		if (newVolume < 0)
+		if (newVolume < 0) {
 			newVolume = 0;
-		if (newVolume > VOLUME_SCALE_MAX)
+		}
+		if (newVolume > VOLUME_SCALE_MAX) {
 			newVolume = VOLUME_SCALE_MAX;
+		}
 
 		setSoundAndMusicVolume(newVolume);
 	}
 
-	private void changeVolumeAndUpdateVolumeText(int volumeChange) {
+	private void changeVolumeAndUpdateVolumeText(final int volumeChange) {
 		changeSoundAndMusicVolume(volumeChange);
 		updateVolumeText();
 	}
 
 	@Override
 	public boolean onMenuItemClicked(final MenuScene pMenuScene,
-			final IMenuItem pMenuItem, float pMenuItemLocalX,
-			float pMenuItemLocalY) {
+			final IMenuItem pMenuItem, final float pMenuItemLocalX,
+			final float pMenuItemLocalY) {
 
 		switch (pMenuItem.getID()) {
 		case MENU_HIGHER:

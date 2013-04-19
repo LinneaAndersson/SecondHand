@@ -62,7 +62,4 @@ public class PolygonUtilTest extends TestCase {
 		assertFalse(PolygonUtil.isConvex(polygon));
 			
 	}
-	
-	/* We don't need to test the method area(), since that method is used as part of the computation 
-	 * of triangulate(). If triangulate() works, then area will as well. */
 }

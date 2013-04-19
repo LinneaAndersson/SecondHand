@@ -14,9 +14,9 @@ import android.graphics.Typeface;
  * Singelton class for managing the global resources of the app.
  * These are resources that are used in several scenes, ie, the menu font. 
  */
-public class GlobalResources {
+public final class GlobalResources {
 	
-	private final String BASEPATH = "gfx/";
+	private static final String BASEPATH = "gfx/";
 	
 	public Font menuItemFont;
 	public Font menuHeadlineFont;
@@ -24,7 +24,7 @@ public class GlobalResources {
 	public TextureRegion playerSprite;
 	public TextureRegion planetTexture;
 	
-	private static GlobalResources instance = null;
+	private static GlobalResources instance;
 	
 	public static GlobalResources getInstance() {
 		if(instance == null) {

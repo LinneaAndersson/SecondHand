@@ -10,7 +10,7 @@ import org.anddev.andengine.opengl.texture.region.TextureRegion;
  */
 public class TextureRegionLoader extends Loader {
 	
-	private static TextureRegionLoader instance = null;
+	private static TextureRegionLoader instance;
 	
 	public static TextureRegionLoader getInstance() {
 		if(instance == null) {
@@ -26,8 +26,8 @@ public class TextureRegionLoader extends Loader {
 	public TextureRegion loadTextureRegion(final String fileName, final int width, 
 			final int height, final TextureOptions textureOptions) {
 		
-		BitmapTextureAtlas texture = new BitmapTextureAtlas(width, height, textureOptions);
-    	TextureRegion textureRegion = BitmapTextureAtlasTextureRegionFactory.createFromAsset(
+		final BitmapTextureAtlas texture = new BitmapTextureAtlas(width, height, textureOptions);
+    	final TextureRegion textureRegion = BitmapTextureAtlasTextureRegionFactory.createFromAsset(
     			texture, this.context, fileName, 0, 0);
     	
     	this.engine.getTextureManager().loadTexture(texture);

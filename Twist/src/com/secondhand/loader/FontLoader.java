@@ -13,7 +13,7 @@ import android.graphics.Typeface;
  */
 public class FontLoader extends Loader {
 	
-	private static FontLoader instance = null;
+	private static FontLoader instance;
 	
 	public static FontLoader getInstance() {
 		if(instance == null) {
@@ -24,8 +24,8 @@ public class FontLoader extends Loader {
 
 	public Font loadFont(final Typeface typeface, final float size, final int color) {
 		
-		BitmapTextureAtlas fontTexture = new BitmapTextureAtlas(256, 256, TextureOptions.BILINEAR_PREMULTIPLYALPHA);
-		Font font = FontFactory.create(fontTexture, typeface, size, true, color);
+		final BitmapTextureAtlas fontTexture = new BitmapTextureAtlas(256, 256, TextureOptions.BILINEAR_PREMULTIPLYALPHA);
+		final Font font = FontFactory.create(fontTexture, typeface, size, true, color);
 		
 		this.engine.getTextureManager().loadTexture(fontTexture);	
 		this.engine.getFontManager().loadFont(font);

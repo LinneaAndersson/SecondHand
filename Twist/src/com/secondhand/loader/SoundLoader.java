@@ -12,7 +12,7 @@ import com.secondhand.debug.MyDebug;
  */
 public class SoundLoader extends Loader {
 	
-	private static SoundLoader instance = null;
+	private static SoundLoader instance;
 	
 	public static SoundLoader getInstance() {
 		if(instance == null) {
@@ -24,7 +24,7 @@ public class SoundLoader extends Loader {
 
 	public Sound loadSound(final String fileName) {
     	try {
-    		Sound loadedSound = SoundFactory.createSoundFromAsset(
+    		final Sound loadedSound = SoundFactory.createSoundFromAsset(
     				this.engine.getSoundManager(), this.context, fileName);
     		return loadedSound;
     	} 

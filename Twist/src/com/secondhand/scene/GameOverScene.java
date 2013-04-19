@@ -26,7 +26,6 @@ public class GameOverScene extends GameMenuScene implements
 	public GameOverScene(Engine engine, Context context) {
 		super(engine, context);
 		//this.player = player;
-		// TODO Auto-generated constructor stub
 	}
 
 	@Override

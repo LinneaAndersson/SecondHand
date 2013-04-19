@@ -24,7 +24,7 @@ public class LocalizationStrings {
 		return instance;
 	}
 
-
+	
 
 	public void initialize(Context context) {
 		this.context = context;

@@ -58,7 +58,7 @@ public class TriangulatorTest extends TestCase {
 			polygon.add(new Vector2(1,1));
 			polygon.add(new Vector2(2,2));
 			
-			Triangulator.Triangulate(polygon);
+			Triangulator.triangulate(polygon);
 			
 			fail("Expected Exception IllegalArgumentException");
 		} catch(IllegalArgumentException e) {
@@ -73,7 +73,7 @@ public class TriangulatorTest extends TestCase {
 			// some points in a straight line is not a valid polygon.
 			polygon.add(new Vector2(0,0));
 
-			Triangulator.Triangulate(polygon);
+			Triangulator.triangulate(polygon);
 			
 			fail("Expected Exception IllegalArgumentException");
 		} catch(IllegalArgumentException e) {
@@ -89,7 +89,7 @@ public class TriangulatorTest extends TestCase {
 			polygon.add(new Vector2(0,0));
 			polygon.add(new Vector2(1,1));
 
-			Triangulator.Triangulate(polygon);
+			Triangulator.triangulate(polygon);
 			
 			fail("Expected Exception IllegalArgumentException");
 		} catch(IllegalArgumentException e) {
@@ -105,7 +105,7 @@ public class TriangulatorTest extends TestCase {
 		polygon.add(new Vector2(1,3));
 		polygon.add(new Vector2(5,4));
 		
-		List<Vector2> triangulated = Triangulator.Triangulate(polygon);
+		List<Vector2> triangulated = Triangulator.triangulate(polygon);
 			
 		assertCollectionsEquals(polygon, triangulated);
 		
@@ -117,7 +117,7 @@ public class TriangulatorTest extends TestCase {
 		polygon.add(new Vector2(1,1));
 		polygon.add(new Vector2(0,1));
 		
-		triangulated = Triangulator.Triangulate(polygon);
+		triangulated = Triangulator.triangulate(polygon);
 			
 		// a rectangle can be divided into 2 triangles.
 		assertEquals(2 * 3, triangulated.size());
@@ -135,7 +135,7 @@ public class TriangulatorTest extends TestCase {
 		polygon.add(new Vector2(-3, -1));
 		polygon.add(new Vector2(-1, -1));
 		
-		triangulated = Triangulator.Triangulate(polygon);
+		triangulated = Triangulator.triangulate(polygon);
 		
 		assertEquals(6 * 3, triangulated.size());
 		

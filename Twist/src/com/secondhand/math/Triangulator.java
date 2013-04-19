@@ -18,7 +18,7 @@ public final class Triangulator {
 
 	private Triangulator() { }
 
-	public static List<Vector2> Triangulate(List<Vector2> polygon) {
+	public static List<Vector2> triangulate(List<Vector2> polygon) {
 
 		/* allocate and initialize list of Vertices in polygon */
 

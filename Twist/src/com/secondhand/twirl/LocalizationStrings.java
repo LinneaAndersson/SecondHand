@@ -1,15 +1,12 @@
 package com.secondhand.twirl;
 
-import java.util.List;
 
-import android.R;
 import android.content.Context;
-import android.content.res.Resources;
 
 /**
  * Singelton class for accessing the localization strings. 
  */
-public class LocalizationStrings {
+public final class LocalizationStrings {
 
 	private static LocalizationStrings instance = null;
 

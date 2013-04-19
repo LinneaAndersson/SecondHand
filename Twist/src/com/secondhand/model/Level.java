@@ -94,7 +94,7 @@ public class Level {
 		return physicsWorld;
 	}
 
-	public void registerEntities() {
+	public final void registerEntities() {
 		registerEntity(player);
 
 		// register all the other entities except for the player.

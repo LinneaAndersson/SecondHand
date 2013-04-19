@@ -48,8 +48,8 @@ public class Circle extends Shape{
 		this.mCircleVertexBuffer = new CircleVertexBuffer(100, GL11.GL_STATIC_DRAW, true);
 		this.updateVertexBuffer();
 
-		final float width = this.getWidth();
-		final float height = this.getHeight();
+		final float width = mRadius * 2;
+		final float height = mRadius * 2;
 
 		this.mRotationCenterX = width * 0.5f;
 		this.mRotationCenterY = height * 0.5f;

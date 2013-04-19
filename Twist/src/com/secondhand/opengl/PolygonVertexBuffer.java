@@ -70,7 +70,7 @@ public class PolygonVertexBuffer extends VertexBuffer {
 	    this.mVertices = new ArrayList<Vector2>();
 
 	    // the triangulated polygon
-	   List<Vector2> triangles = Triangulator.Triangulate(polygon);
+	   List<Vector2> triangles = Triangulator.triangulate(polygon);
 	   // List<Vector> triangles = polygon;
 
 	    // put the triangulated polygon in the vertex buffer

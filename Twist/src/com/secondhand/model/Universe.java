@@ -91,6 +91,8 @@ public final class Universe {
 				// perhaps we could divide radius by 2?
 				// otherwise i believe it would grow to fast
 				blackHole.increaseSize(planet.getRadius());
+				// see this for setting the correct radius:
+				// http://www.emanueleferonato.com/2009/12/12/scaling-objects-with-box2d/
 				blackHoleShape.setRadius(blackHole.getRadius()
 						/ PhysicsConstants.PIXEL_TO_METER_RATIO_DEFAULT);
 

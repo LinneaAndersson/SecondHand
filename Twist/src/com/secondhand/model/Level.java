@@ -17,6 +17,7 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.BodyDef.BodyType;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
+import com.secondhand.debug.MyDebug;
 import com.secondhand.model.PowerUp.Effect;
 import com.secondhand.opengl.Polygon;
 import com.secondhand.twirl.GlobalResources;
@@ -152,6 +153,7 @@ public class Level {
 			// add new player at new position
 			break;
 		case SHIELD:
+			MyDebug.d("shield powerup");
 			player.setEffect(effect);
 			break;
 		case SPEED_UP:

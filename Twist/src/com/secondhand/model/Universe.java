@@ -118,7 +118,6 @@ public final class Universe {
 			// Also need to destroy the powerups body
 			// the effect should be visible on the players shape
 
-			// lets level take care on what to do with the effect
 			currentLevel.activateEffect(power.getEffect());
 
 		}
@@ -126,11 +125,12 @@ public final class Universe {
 
 	/*
 	 * I found the following method on the AndEngine forum:
-	 * http://www.andengine.org/forums/physics-box2d-extension/body-removal-crashing-andengine-t9814.html 
-	 * (by RealMayo, a guy who knows lots of good stuff bout engine. keep a look out
-	 * for him if there is something you needs to know) and it seems to work well. I thought i
-	 * would get null value at the third debug but it seems that the body still
-	 * exist in the connector?
+	 * http://www.andengine.
+	 * org/forums/physics-box2d-extension/body-removal-crashing
+	 * -andengine-t9814.html (by RealMayo, a guy who knows lots of good stuff
+	 * bout engine. keep a look out for him if there is something you needs to
+	 * know) and it seems to work well. I thought i would get null value at the
+	 * third debug but it seems that the body still exist in the connector?
 	 */
 	private void myDestroyer(final IShape mySprite, final Boolean bodyToo) {
 		final PhysicsWorld mPhysicsWorld = currentLevel.getPhysicsWorld();

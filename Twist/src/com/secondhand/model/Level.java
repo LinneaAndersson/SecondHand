@@ -80,7 +80,7 @@ public class Level {
 				PolygonUtil.getRandomPolygon(), planetTexture);
 		testPlanets.add(new Obstacle(new Vector2(200, 200), polygon));
 
-		testPlanets.add(new PowerUp(new Vector2(20, 500), 30, Effect.RANDOM_TELEPORT,
+		testPlanets.add(new PowerUp(new Vector2(20, 500), 30, Effect.SHIELD,
 				planetTexture));
 
 		return testPlanets;
@@ -145,8 +145,7 @@ public class Level {
 	public int getLevelHeight() {
 		return levelHeight;
 	}
-
-	// if we dont want level to handle this we could just move it
+ // if we dont want level to handle this we could just move it
 	public void activateEffect(Effect effect) {
 		switch (effect) {
 		case RANDOM_TELEPORT:

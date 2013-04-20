@@ -77,7 +77,8 @@ public class Level {
 				PolygonUtil.getRandomPolygon(), planetTexture);
 		testPlanets.add(new Obstacle(new Vector2(200, 200), polygon));
 
-		testPlanets.add(new PowerUp(new Vector2(20, 500), 30, Effect.RANDOM_TELEPORT, planetTexture));
+		testPlanets.add(new PowerUp(new Vector2(20, 500), 30, Effect.RANDOM_TELEPORT,
+				planetTexture));
 
 		return testPlanets;
 	}
@@ -162,13 +163,12 @@ public class Level {
 		case SCORE_UP:
 			// random number here?
 			player.increaseScore(100);
-			break;		
-		
-			
-			
+			break;
+
 		}
 
 	}
+
 
 	public void registerEntity(Entity entity) {
 

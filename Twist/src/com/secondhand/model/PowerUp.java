@@ -9,7 +9,7 @@ import com.badlogic.gdx.math.Vector2;
 
 // I think that if we only want power-UP the
 // class doesn't need to be abstract
-public class PowerUp extends Entity {
+public class PowerUp extends RectangleEntity {
 	
 	private Effect effect;
 	
@@ -17,18 +17,18 @@ public class PowerUp extends Entity {
 	public final static float HEIGHT = 40;
 	
 	
-	public PowerUp(Vector2 position, float radius, Effect effect, BaseRectangle rectangle) {
-		super(position, radius, rectangle, true);
+	public PowerUp(Vector2 position, Effect effect, BaseRectangle rectangle) {
+		super(position, rectangle, true);
 		this.effect = effect;
 	}
 	
 	public PowerUp (Vector2 position, float radius, Effect effect, TextureRegion texture) {
-		this(position, radius, effect, new Sprite(position.x, position.y, WIDTH, HEIGHT, texture));
+		this(position, effect, new Sprite(position.x, position.y, WIDTH, HEIGHT, texture));
 	}
 	
 	// this constructor is easier to test. 
 	public PowerUp (Vector2 position, float radius, Effect effect) {
-		this(position, radius, effect, new Rectangle(position.x, position.y, WIDTH, HEIGHT));
+		this(position, effect, new Rectangle(position.x, position.y, WIDTH, HEIGHT));
 	}	
 	
 	public enum Effect{

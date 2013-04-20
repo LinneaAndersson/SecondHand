@@ -9,7 +9,7 @@ import com.badlogic.gdx.physics.box2d.BodyDef;
 import junit.framework.TestCase;
 
 public class EntityTest extends TestCase {
-
+/*
 	public void testConstructor() {
 		Vector2 vector = new Vector2();
 		float rad = 5;
@@ -42,5 +42,5 @@ public class EntityTest extends TestCase {
 		Body testBody = new PhysicsWorld(new Vector2(),true).createBody(new BodyDef());
 		entity.setBody(testBody);
 		assertEquals(entity.getBody(), testBody);
-	}
+	}*/
 }

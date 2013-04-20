@@ -17,7 +17,8 @@ public class ObstacleTest extends TestCase{
 		
 		Obstacle obstacle = new Obstacle(pos, tp);
 		
-		assertEquals(rad, obstacle.getRadius());
+		// TODO: test area
+		//assertEquals(rad, obstacle.getArea());
 		assertEquals(pos.x, obstacle.getX());
 		assertEquals(pos.y, obstacle.getY());
 	}

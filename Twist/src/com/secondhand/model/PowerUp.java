@@ -1,5 +1,7 @@
 package com.secondhand.model;
 
+import org.anddev.andengine.entity.primitive.BaseRectangle;
+import org.anddev.andengine.entity.primitive.Rectangle;
 import org.anddev.andengine.entity.sprite.Sprite;
 import org.anddev.andengine.opengl.texture.region.TextureRegion;
 
@@ -11,12 +13,23 @@ public class PowerUp extends Entity {
 	
 	private Effect effect;
 	
-	public PowerUp (Vector2 position, float radius, Effect effect, TextureRegion texture) {
-		// TODO: pass down the shape of the powerup(it will probably be a square, so probably a sprite)
-		super(position, radius, new Sprite(position.x, position.y, 40, 40, texture), true);
+	public final static float WIDTH = 40;
+	public final static float HEIGHT = 40;
+	
+	
+	public PowerUp(Vector2 position, float radius, Effect effect, BaseRectangle rectangle) {
+		super(position, radius, rectangle, true);
 		this.effect = effect;
-		
 	}
+	
+	public PowerUp (Vector2 position, float radius, Effect effect, TextureRegion texture) {
+		this(position, radius, effect, new Sprite(position.x, position.y, WIDTH, HEIGHT, texture));
+	}
+	
+	// this constructor is easier to test. 
+	public PowerUp (Vector2 position, float radius, Effect effect) {
+		this(position, radius, effect, new Rectangle(position.x, position.y, WIDTH, HEIGHT));
+	}	
 	
 	public enum Effect{
 		NONE, SPEED_UP, SCORE_UP, EAT_OBSTACLE, RANDOM_TELEPORT, SHIELD

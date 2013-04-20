@@ -7,7 +7,7 @@ import com.secondhand.opengl.TexturedPolygon;
 
 public class ObstacleTest extends TestCase{
 
-	public void testConstructor() {
+	/*public void testConstructor() {
 		
 		Vector2 pos = new Vector2(2f, 4f);
 		float rad = 3.2f;
@@ -21,6 +21,6 @@ public class ObstacleTest extends TestCase{
 		//assertEquals(rad, obstacle.getArea());
 		assertEquals(pos.x, obstacle.getX());
 		assertEquals(pos.y, obstacle.getY());
-	}
+	}*/
 	
 }

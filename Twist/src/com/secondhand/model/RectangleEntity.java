@@ -2,14 +2,13 @@ package com.secondhand.model;
 
 import org.anddev.andengine.entity.shape.RectangularShape;
 
-import com.badlogic.gdx.math.Vector2;
 
 public abstract class RectangleEntity extends Entity {
 	
 	protected RectangularShape rectangle;
 	
-	public RectangleEntity(Vector2 position, RectangularShape rectangle, boolean isEdible) {
-		super(position, rectangle, isEdible);
+	public RectangleEntity(final RectangularShape rectangle, final boolean isEdible) {
+		super(rectangle, isEdible);
 		this.rectangle = rectangle;
 	}
 	

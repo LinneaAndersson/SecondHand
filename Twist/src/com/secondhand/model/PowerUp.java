@@ -17,18 +17,18 @@ public class PowerUp extends RectangleEntity {
 	public final static float HEIGHT = 40;
 	
 	
-	public PowerUp(Vector2 position, Effect effect, BaseRectangle rectangle) {
-		super(position, rectangle, true);
+	public PowerUp(final Effect effect, final BaseRectangle rectangle) {
+		super(rectangle, true);
 		this.effect = effect;
 	}
 	
-	public PowerUp (Vector2 position, float radius, Effect effect, TextureRegion texture) {
-		this(position, effect, new Sprite(position.x, position.y, WIDTH, HEIGHT, texture));
+	public PowerUp (final Vector2 position, final Effect effect, final TextureRegion texture) {
+		this(effect, new Sprite(position.x, position.y, WIDTH, HEIGHT, texture));
 	}
 	
 	// this constructor is easier to test. 
-	public PowerUp (Vector2 position, float radius, Effect effect) {
-		this(position, effect, new Rectangle(position.x, position.y, WIDTH, HEIGHT));
+	public PowerUp (final Vector2 position, final Effect effect) {
+		this(effect, new Rectangle(position.x, position.y, WIDTH, HEIGHT));
 	}	
 	
 	public enum Effect{

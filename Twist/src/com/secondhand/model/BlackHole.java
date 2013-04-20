@@ -7,7 +7,7 @@ public abstract class BlackHole extends CircleEntity{
 	
 	public BlackHole (final Vector2 position, final float radius) {
 		// TODO load texture instead of creating Circle
-		super(position, new Circle(position.x, position.y, radius), true);
+		super(new Circle(position.x, position.y, radius), true);
 	}
 	
 	public void increaseSize(final float increase){

@@ -8,14 +8,14 @@ import com.secondhand.opengl.TexturedCircle;
 
 public class Planet extends CircleEntity {
 
-	public Planet (Vector2 position, float radius, TextureRegion textureRegion) {
-		super(position, new TexturedCircle(position.x, position.y, radius, textureRegion), true);
+	public Planet (final Vector2 position, final float radius, final TextureRegion textureRegion) {
+		super(new TexturedCircle(position.x, position.y, radius, textureRegion), true);
 	}
 	
 	/**
 	 * Create a colored planet. This constructor is much easier to test.
 	 */
-	public Planet (Vector2 position, float radius) {
-		super(position, new Circle(position.x, position.y, radius), true);
+	public Planet (final Vector2 position, final float radius) {
+		super(new Circle(position.x, position.y, radius), true);
 	}
 }

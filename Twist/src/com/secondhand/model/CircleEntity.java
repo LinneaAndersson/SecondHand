@@ -1,15 +1,13 @@
 package com.secondhand.model;
 
-
-import com.badlogic.gdx.math.Vector2;
 import com.secondhand.opengl.Circle;
 
 public abstract class CircleEntity extends Entity {
 	
-	protected Circle circle;
+	protected final Circle circle;
 	
-	public CircleEntity(final Vector2 position, final Circle circle, final boolean isEdible) {
-		super(position, circle, isEdible);
+	public CircleEntity(final Circle circle, final boolean isEdible) {
+		super(circle, isEdible);
 		this.circle = circle;
 	}
 	

@@ -76,12 +76,12 @@ public class Level {
 		// the obstacle body and shape isn't well connected in-game
 		// sometimes you pass trough the shape and sometimes you 
 		// hit an invisible body
-		TexturedPolygon polygon = new TexturedPolygon(200, 200,
+		/*TexturedPolygon polygon = new TexturedPolygon(200, 200,
 				PolygonUtil.getRandomPolygon(), planetTexture);
 		testPlanets.add(new Obstacle(new Vector2(200, 200), polygon));
 
 		testPlanets.add(new PowerUp(new Vector2(20, 500), 30, Effect.SHIELD,
-				planetTexture));
+				planetTexture));*/
 
 		return testPlanets;
 	}

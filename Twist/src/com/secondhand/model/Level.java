@@ -67,11 +67,11 @@ public class Level {
 		// TODO: Understand why textures are not loaded properly
 		TextureRegion planetTexture = GlobalResources.getInstance().planetTexture;
 
-		testPlanets.add(new Planet(new Vector2(100, 100), 30, planetTexture));
+		testPlanets.add(new Planet(new Vector2(130, 130), 30, planetTexture));
 
 		// add small planet, add a huge planet.
-		testPlanets.add(new Planet(new Vector2(300, 100), 15, planetTexture));
-		testPlanets.add(new Planet(new Vector2(400, 10), 300, planetTexture));
+		testPlanets.add(new Planet(new Vector2(315, 115), 15, planetTexture));
+		testPlanets.add(new Planet(new Vector2(700, 310), 300, planetTexture));
 
 		TexturedPolygon polygon = new TexturedPolygon(200, 200,
 				PolygonUtil.getRandomPolygon(), planetTexture);

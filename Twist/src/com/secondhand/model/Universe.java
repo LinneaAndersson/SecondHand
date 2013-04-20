@@ -45,7 +45,7 @@ public final class Universe {
 	// Now there is alot of duplicated code in this method.
 	// Perhaps we could extract that code into a new method.
 	public void checkCollision(final Contact contact) {
-		// if one or both is null, then we are dealing with a involving one or
+		// if one or both is null, then we are dealing with a collision involving one or
 		// two non-entities
 		// (ie, a black hole collides with the wall),
 		// and we are not interested in handling such a collision

@@ -4,7 +4,6 @@ import com.secondhand.debug.MyDebug;
 import com.secondhand.twirl.LocalizationStrings;
 
 import junit.framework.TestCase;
-import android.content.Context;
 
 public class LocalizationStringsTest extends TestCase{
 

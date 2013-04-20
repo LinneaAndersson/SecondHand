@@ -17,10 +17,8 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.BodyDef.BodyType;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
-import com.secondhand.math.PolygonUtil;
 import com.secondhand.model.PowerUp.Effect;
 import com.secondhand.opengl.Polygon;
-import com.secondhand.opengl.TexturedPolygon;
 import com.secondhand.twirl.GlobalResources;
 
 public class Level {
@@ -182,6 +180,7 @@ public class Level {
 		// bodies(rectangular) bodies as well
 		// we could store some enum value in Entity for this purpose.
 
+		
 		FixtureDef fixture = PhysicsFactory.createFixtureDef(1, 0.5f, 0.5f);
 		Body body;
 
@@ -237,14 +236,12 @@ public class Level {
 		 * explanation of why AndEngine does this division by 32.
 		 */
 
-		Vector2 movementVector = new Vector2((player.getX() - v.x),
-				player.getY() - v.y);
+		Vector2 movementVector = new Vector2((player.getCenterX() - v.x),
+				player.getCenterY() - v.y);
 
-		// the closer the touch is to the player, the more force do we need to
+		// TODO: the closer the touch is to the player, the more force do we need to
 		// apply.
-		// movementVector.x = movementVector.x;
-		// movementVector.y = movementVector.y;
-
+		
 		// make it a bit slower depending on how big it is.
 		movementVector = movementVector.mul(player.getRadius() * 0.001f);
 

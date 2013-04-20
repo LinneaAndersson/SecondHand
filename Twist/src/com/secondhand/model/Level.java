@@ -77,9 +77,9 @@ public class Level {
 		/*TexturedPolygon polygon = new TexturedPolygon(200, 200,
 				PolygonUtil.getRandomPolygon(), planetTexture);
 		testPlanets.add(new Obstacle(new Vector2(200, 200), polygon));
-
-		testPlanets.add(new PowerUp(new Vector2(20, 500), 30, Effect.SHIELD,
-				planetTexture));*/
+*/
+		testPlanets.add(new PowerUp(new Vector2(20, 500), Effect.SHIELD,
+				planetTexture));
 
 		return testPlanets;
 	}
@@ -239,9 +239,9 @@ public class Level {
 		Vector2 movementVector = new Vector2((player.getCenterX() - v.x),
 				player.getCenterY() - v.y);
 
-		// TODO: the closer the touch is to the player, the more force do we need to
+		// the closer the touch is to the player, the more force do we need to
 		// apply.
-		
+			
 		// make it a bit slower depending on how big it is.
 		movementVector = movementVector.mul(player.getRadius() * 0.001f);
 

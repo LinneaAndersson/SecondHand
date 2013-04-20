@@ -34,8 +34,8 @@ public class LevelTest extends TestCase {
 		assertEquals(level.checkPlayerBigEnough(),false);
 		
 		//Checks that the player gets the right vector
-		float xPosition = level.getPlayer().getShape().getX();
-		float yPosition = level.getPlayer().getShape().getY();
+		float xPosition = level.getPlayer().getX();
+		float yPosition = level.getPlayer().getY();
 		Vector2 v = new Vector2(5,0);
 		level.moveEntities(v);
 		float xDir = xPosition - 5;

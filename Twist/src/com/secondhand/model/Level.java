@@ -235,8 +235,8 @@ public class Level {
 		 * explanation of why AndEngine does this division by 32.
 		 */
 
-		Vector2 movementVector = new Vector2((player.getShape().getX() - v.x),
-				player.getShape().getY() - v.y);
+		Vector2 movementVector = new Vector2((player.getX() - v.x),
+				player.getY() - v.y);
 
 		// the closer the touch is to the player, the more force do we need to
 		// apply.

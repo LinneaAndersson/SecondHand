@@ -23,8 +23,8 @@ public class PlanetTest extends TestCase{
 		Planet planet = new Planet(pos, rad, null);
 		
 		assertEquals(rad, planet.getRadius());
-		assertEquals(pos.x, planet.getShape().getX());
-		assertEquals(pos.y, planet.getShape().getY());
+		assertEquals(pos.x, planet.getX());
+		assertEquals(pos.y, planet.getY());
 	}
 	
 }

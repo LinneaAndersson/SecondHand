@@ -17,6 +17,15 @@ public abstract class Entity {
 		this.shape = shape;
 		this.isEdible = isEdible;
 	}
+	
+	
+	public float getX() {
+		return shape.getX();
+	}
+	
+	public float getY() {
+		return shape.getY();
+	}
 
 	public void setRadius(float radius) {
 		this.radius = radius;

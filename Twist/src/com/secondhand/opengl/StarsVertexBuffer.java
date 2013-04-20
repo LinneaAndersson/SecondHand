@@ -1,12 +1,10 @@
 package com.secondhand.opengl;
 
-import java.util.List;
 import java.util.Random;
 
 import org.anddev.andengine.opengl.util.FastFloatBuffer;
 import org.anddev.andengine.opengl.vertex.VertexBuffer;
 
-import com.badlogic.gdx.math.Vector2;
 
 public class StarsVertexBuffer extends VertexBuffer {
 	

@@ -44,7 +44,7 @@ public final class Universe {
 
 	// Now there is alot of duplicated code in this method.
 	// Perhaps we could extract that code into a new method.
-	public void checkCollision(Contact contact) {
+	public void checkCollision(final Contact contact) {
 		// if one or both is null, then we are dealing with a involving one or
 		// two non-entities
 		// (ie, a black hole collides with the wall),
@@ -57,8 +57,8 @@ public final class Universe {
 		// now we know both the bodies are entities.
 		MyDebug.d(contact.getFixtureA().getBody().getUserData().getClass()
 				+ " is the A class");
-		Entity entityA = (Entity) contact.getFixtureA().getBody().getUserData();
-		Entity entityB = (Entity) contact.getFixtureB().getBody().getUserData();
+		final Entity entityA = (Entity) contact.getFixtureA().getBody().getUserData();
+		final Entity entityB = (Entity) contact.getFixtureB().getBody().getUserData();
 
 		if (entityA instanceof BlackHole && entityB instanceof Planet
 				|| entityB instanceof BlackHole && entityA instanceof Planet) {
@@ -73,9 +73,9 @@ public final class Universe {
 			Planet planet;
 			if (entityA instanceof Planet) {
 				planet = (Planet) entityA;
-			} else
+			} else {
 				planet = (Planet) entityB;
-
+			}
 			if (blackHole.canEat(planet)) {
 
 				// Detach the planet from AndEngine
@@ -86,7 +86,7 @@ public final class Universe {
 				// contact area extends outside of the shape. it also seems like
 				// the screen area you can touch for movement decreases(could
 				// just be me)
-				Shape blackHoleShape = blackHole.getBody().getFixtureList()
+				final Shape blackHoleShape = blackHole.getBody().getFixtureList()
 						.get(0).getShape();
 				// perhaps we could divide radius by 2?
 				// otherwise i believe it would grow to fast
@@ -135,7 +135,7 @@ public final class Universe {
 	private void myDestroyer(final IShape mySprite, final Boolean bodyToo) {
 		final PhysicsWorld mPhysicsWorld = currentLevel.getPhysicsWorld();
 
-		if (killingInProcess == false) {
+		if (!killingInProcess) {
 			MyDebug.i("commence destruction");
 			killingInProcess = true;
 			final PhysicsConnector facePhysicsConnector = mPhysicsWorld
@@ -183,7 +183,7 @@ public final class Universe {
 		currentLevel = new Level();
 	}
 
-	public void update(Vector2 v) {
+	public void update(final Vector2 v) {
 
 		if (currentLevel.checkPlayerBigEnough()) {
 

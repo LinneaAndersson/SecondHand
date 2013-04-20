@@ -23,8 +23,8 @@ public class EnemyTest extends TestCase{
 		Enemy enemy = new Enemy(pos, rad);
 		
 		assertEquals(rad, enemy.getRadius());
-		assertEquals(pos.x, enemy.getShape().getX());
-		assertEquals(pos.y, enemy.getShape().getY());
+		assertEquals(pos.x, enemy.getX());
+		assertEquals(pos.y, enemy.getY());
 	}
 	
 	public void testIncreaseSize() {

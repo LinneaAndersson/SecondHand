@@ -67,11 +67,11 @@ public class Level {
 		// TODO: Understand why textures are not loaded properly
 		TextureRegion planetTexture = GlobalResources.getInstance().planetTexture;
 
-		testPlanets.add(new Planet(new Vector2(100, 100), 30, planetTexture));
+		testPlanets.add(new Planet(new Vector2(130, 130), 30, planetTexture));
 
 		// add small planet, add a huge planet.
-		testPlanets.add(new Planet(new Vector2(300, 100), 15, planetTexture));
-		testPlanets.add(new Planet(new Vector2(400, 10), 300, planetTexture));
+		testPlanets.add(new Planet(new Vector2(315, 115), 15, planetTexture));
+		testPlanets.add(new Planet(new Vector2(700, 310), 300, planetTexture));
 
 		TexturedPolygon polygon = new TexturedPolygon(200, 200,
 				PolygonUtil.getRandomPolygon(), planetTexture);
@@ -235,8 +235,8 @@ public class Level {
 		 * explanation of why AndEngine does this division by 32.
 		 */
 
-		Vector2 movementVector = new Vector2((player.getShape().getX() - v.x),
-				player.getShape().getY() - v.y);
+		Vector2 movementVector = new Vector2((player.getX() - v.x),
+				player.getY() - v.y);
 
 		// the closer the touch is to the player, the more force do we need to
 		// apply.

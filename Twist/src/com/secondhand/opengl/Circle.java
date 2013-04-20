@@ -6,6 +6,7 @@ import javax.microedition.khronos.opengles.GL10;
 import javax.microedition.khronos.opengles.GL11;
 
 import org.anddev.andengine.engine.camera.Camera;
+import org.anddev.andengine.entity.primitive.Rectangle;
 import org.anddev.andengine.entity.shape.IShape;
 import org.anddev.andengine.entity.shape.Shape;
 import org.anddev.andengine.opengl.util.GLHelper;
@@ -16,6 +17,7 @@ import com.badlogic.gdx.math.Vector2;
 /**
  * A circle class used for drawing circles. 
  * @author erkastina
+ * IMPORTANT: the circle position is its upper left corner, not its center position. 
  *
  */
 public class Circle extends Shape{
@@ -39,7 +41,7 @@ public class Circle extends Shape{
 	 * @param radius the radius of the circle. 
 	 */
 	public Circle(final float pX, final float pY, final float radius, boolean cullingEnabled) {
-		super(pX + radius, pY + radius);
+		super(pX/* + radius*/, pY/* + radius*/);
 		
 		super.setCullingEnabled(cullingEnabled);
 		
@@ -126,26 +128,13 @@ public class Circle extends Shape{
 
 	@Override
 	protected boolean isCulled(Camera pCamera) {
-
-//		MyDebug.d("culling circle");
-
-		// center coordinates
-		final float cx = this.mX + this.mRadius;
-		final float cy = this.mY + this.mRadius;
 		
-		final float r = this.mRadius;
-		
-		boolean culled = 
-				cx >= pCamera.getMaxX() + r
-				|| cy >= pCamera.getMaxY() + r
-				|| cx <= pCamera.getMinX() - r
-				|| cy <= pCamera.getMinY() - r;
-				
-		/*		if(culled) {
-					MyDebug.d("circle is culled!");
-				}	
-			*/
-				return culled;
+		final float x = this.mX;
+		final float y = this.mY;
+		return x > pCamera.getMaxX()
+			|| y > pCamera.getMaxY()
+			|| x + this.getWidth() < pCamera.getMinX()
+			|| y + this.getHeight() < pCamera.getMinY();
 	}
 
 }

@@ -13,8 +13,8 @@ public class PlayerTest extends TestCase{
 		Player player = new Player(pos, rad);
 		
 		assertEquals(rad, player.getRadius());
-		assertEquals(pos.x, player.getShape().getX());
-		assertEquals(pos.y, player.getShape().getY());
+		assertEquals(pos.x, player.getX());
+		assertEquals(pos.y, player.getY());
 	}
 	
 	public void testIncreaseSize() {

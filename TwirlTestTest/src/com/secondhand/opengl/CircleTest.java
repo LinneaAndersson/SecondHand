@@ -1,6 +1,7 @@
 package com.secondhand.opengl;
 
 
+import org.anddev.andengine.engine.camera.Camera;
 import org.anddev.andengine.opengl.buffer.BufferObjectManager;
 
 import junit.framework.TestCase;
@@ -14,8 +15,7 @@ public class CircleTest extends TestCase {
 		BufferObjectManager.setActiveInstance(mBufferObjectManager);
 	}
 
-// TODO: get this test working.
-/*
+
 	public void testConstructor() {
 		final float x = 1.3f;
 		final float y = 5.1f;
@@ -35,11 +35,11 @@ public class CircleTest extends TestCase {
 		final int HEIGHT = 300;
 		final float radius = 10;
 
-
 		Camera camera = new Camera(0, 0, WIDTH, HEIGHT);
-		Circle circle = new Circle(WIDTH - radius - 1, HEIGHT - radius - 1, radius);
+		Circle circle = new Circle(WIDTH - radius*2, HEIGHT - radius*2, radius);
 		assertFalse(circle.isCulled(camera));
-		circle = new Circle(WIDTH - radius, HEIGHT - radius , radius);
-		assertFalse(circle.isCulled(camera));
-	}*/
+		
+		circle = new Circle(WIDTH+1, HEIGHT+1 , radius);
+		assertTrue(circle.isCulled(camera));
+	}
 }

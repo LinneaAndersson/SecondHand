@@ -1,10 +1,12 @@
 package com.secondhand.twirl;
 
+import org.anddev.andengine.audio.sound.Sound;
 import org.anddev.andengine.opengl.font.Font;
 import org.anddev.andengine.opengl.texture.TextureOptions;
 import org.anddev.andengine.opengl.texture.region.TextureRegion;
 
 import com.secondhand.loader.FontLoader;
+import com.secondhand.loader.SoundLoader;
 import com.secondhand.loader.TextureRegionLoader;
 
 import android.graphics.Color;
@@ -23,6 +25,9 @@ public final class GlobalResources {
 	
 	public TextureRegion playerSprite;
 	public TextureRegion planetTexture;
+	
+	public Sound powerUpSound;
+	public Sound growSound;
 	
 	private static GlobalResources instance;
 	
@@ -43,6 +48,9 @@ public final class GlobalResources {
 		//this.playerSprite = null; // TODO load the player sprite
 		this.planetTexture = TextureRegionLoader.getInstance().loadTextureRegion(BASEPATH+EntityTexture.PLANET.path, 32, 32,
 				TextureOptions.REPEATING_NEAREST);
+		
+		this.powerUpSound = SoundLoader.getInstance().loadSound("sfx/powerup.wav");
+		this.growSound = SoundLoader.getInstance().loadSound("sfx/grow.wav");
 	}
 	
 	// To add a texture path, just add enum value ex: ENEMY ("enemy.png") in list.

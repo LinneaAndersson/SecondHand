@@ -8,3 +8,4 @@ public interface ILoader {
 
 	void initialize(final Context context, final Engine engine);
 }
+

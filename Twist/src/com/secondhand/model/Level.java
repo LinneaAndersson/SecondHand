@@ -18,8 +18,10 @@ import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.BodyDef.BodyType;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.secondhand.debug.MyDebug;
+import com.secondhand.math.PolygonUtil;
 import com.secondhand.model.PowerUp.Effect;
 import com.secondhand.opengl.Polygon;
+import com.secondhand.opengl.TexturedPolygon;
 import com.secondhand.twirl.GlobalResources;
 
 public class Level {
@@ -72,13 +74,11 @@ public class Level {
 		testPlanets.add(new Planet(new Vector2(315, 115), 15, planetTexture));
 		testPlanets.add(new Planet(new Vector2(700, 310), 300, planetTexture));
 
-		// the obstacle body and shape isn't well connected in-game
-		// sometimes you pass trough the shape and sometimes you 
-		// hit an invisible body
-		/*TexturedPolygon polygon = new TexturedPolygon(200, 200,
-				PolygonUtil.getRandomPolygon(), planetTexture);
-		testPlanets.add(new Obstacle(new Vector2(200, 200), polygon));
-*/
+		TexturedPolygon polygon = new TexturedPolygon(200, 200,
+		PolygonUtil.getRandomPolygon(), planetTexture);
+		testPlanets.add(new Obstacle(polygon));
+		
+		
 		testPlanets.add(new PowerUp(new Vector2(20, 500), Effect.SHIELD,
 				planetTexture));
 
@@ -171,7 +171,6 @@ public class Level {
 
 	}
 
-
 	public void registerEntity(Entity entity) {
 
 		PhysicsHandler pH = new PhysicsHandler(entity.getShape());
@@ -182,7 +181,6 @@ public class Level {
 		// bodies(rectangular) bodies as well
 		// we could store some enum value in Entity for this purpose.
 
-		
 		FixtureDef fixture = PhysicsFactory.createFixtureDef(1, 0.5f, 0.5f);
 		Body body = null;
 
@@ -206,8 +204,10 @@ public class Level {
 
 		// setting the last boolean to false seems to prevent
 		// the erratic movement of the player. needs testing.
+		// no! the last parameter must be true, otherwise the polygon obstacles are not 
+		// able to rotate when you collide with them and that looks weird. 
 		physicsWorld.registerPhysicsConnector(new PhysicsConnector(entity
-				.getShape(), entity.getBody(), true, false));
+				.getShape(), entity.getBody(), true, true));
 	}
 
 	private static Body createPolygonBody(final PhysicsWorld physicsWorld,

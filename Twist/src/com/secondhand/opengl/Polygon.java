@@ -49,7 +49,7 @@ public class Polygon extends Shape {
 	 */
 	public Polygon(final float pX, final float pY, final List<Vector2> polygon, boolean cullingEnabled) {
 
-		super(pX/*+ radius*/, pY/* + radius*/);
+		super(pX, pY);
 		
 		this.mPolygon = polygon;
 		

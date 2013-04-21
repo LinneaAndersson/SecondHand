@@ -184,15 +184,21 @@ public class Level {
 
 		
 		FixtureDef fixture = PhysicsFactory.createFixtureDef(1, 0.5f, 0.5f);
-		Body body;
+		Body body = null;
 
 		// obstacles are polygons and not circles
-		if (entity instanceof Obstacle)
+		if (entity instanceof PolygonEntity) {
 			body = createPolygonBody(physicsWorld, (Polygon) entity.getShape(),
 					BodyType.DynamicBody, fixture);
-		else
+		}else if(entity instanceof CircleEntity) {
 			body = PhysicsFactory.createCircleBody(physicsWorld,
 					entity.getShape(), BodyType.DynamicBody, fixture);
+		} else if(entity instanceof RectangleEntity) {
+			body = PhysicsFactory.createBoxBody(physicsWorld,
+					entity.getShape(), BodyType.DynamicBody, fixture);
+		}
+		
+		
 		// we need this when doing collisions handling between entities and
 		// black holes:
 		body.setUserData(entity);

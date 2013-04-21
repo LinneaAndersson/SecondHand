@@ -11,6 +11,7 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Contact;
 import com.badlogic.gdx.physics.box2d.Shape;
 import com.secondhand.debug.MyDebug;
+import com.secondhand.twirl.GlobalResources;
 
 /**
  * Singelton class for describing the universe.
@@ -83,6 +84,8 @@ public final class Universe {
 				planet = (Planet) entityB;
 			}
 			if (blackHole.canEat(planet)) {
+				
+				GlobalResources.getInstance().growSound.play();
 
 				// Detach the planet from AndEngine
 				planet.getShape().detachSelf();
@@ -102,6 +105,7 @@ public final class Universe {
 				blackHoleShape.setRadius(blackHole.getRadius()
 						/ PhysicsConstants.PIXEL_TO_METER_RATIO_DEFAULT);
 
+				
 				MyDebug.d("black hole should now eat planet.");
 
 				myDestroyer(planet.getShape(), true);
@@ -111,6 +115,8 @@ public final class Universe {
 		} else if (entityA instanceof Player && entityB instanceof PowerUp
 				|| entityB instanceof Player && entityA instanceof PowerUp) {
 
+			GlobalResources.getInstance().powerUpSound.play();
+			
 			PowerUp power;
 			if (entityA instanceof PowerUp) {
 				power = (PowerUp) entityA;
@@ -129,7 +135,11 @@ public final class Universe {
 
 			currentLevel.activateEffect(power.getEffect());
 
+		} else if (entityA instanceof Player && entityB instanceof Obstacle
+				|| entityB instanceof Player && entityA instanceof Obstacle) {
+			GlobalResources.getInstance().obstacleCollisionSound.play();
 		}
+
 	}
 	
 	public boolean isGameOver(){

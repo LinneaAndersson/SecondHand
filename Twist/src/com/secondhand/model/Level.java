@@ -68,7 +68,7 @@ public class Level {
 		entityList = otherEntities;
 		this.levelWidth = levelWidth;
 		this.levelHeight = levelHeight;
-		registerEntities();
+		registerEntities(); // NOPMD
 	}
 	
 	// Preferable to at least change the entity list

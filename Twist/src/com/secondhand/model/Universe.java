@@ -188,7 +188,7 @@ public final class Universe {
 										.getBody());
 							}
 							mySprite.detachSelf();
-							System.gc();
+							System.gc(); //NOPMD
 							killingInProcess = false;
 							MyDebug.i(physicsConnector.getBody()
 									+ " destruction complete");

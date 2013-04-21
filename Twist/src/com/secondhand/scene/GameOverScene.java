@@ -31,11 +31,12 @@ public class GameOverScene extends GameMenuScene implements
 	@Override
 	public void loadResources() {
 		mFont = GlobalResources.getInstance().menuItemFont;
-		highScore=LocalizationStrings
+		// code throws exception
+		/*highScore=LocalizationStrings
 				.getInstance().getLocalizedIntArray("high_score");
 		highScoreName=LocalizationStrings
 				.getInstance().getLocalizedStringArray("high_score_name_list");
-		
+		*/
 	}
 
 	@Override
@@ -45,16 +46,16 @@ public class GameOverScene extends GameMenuScene implements
 		// The title
 		//just trying to get this working. later this will check if
 		//you are top 5.(top 5 will be on the high-score-list).
-		if(0 < highScore[1]){
+		//if(0 < highScore[1]){
 
 				textGameOver = new Text(100, 60, mFont, LocalizationStrings
 					.getInstance().getLocalizedString("menu_game_over"),
 					HorizontalAlign.CENTER);
-		} else {
+		/*} else { // not important yet
 				textGameOver = new Text(100, 60, mFont, LocalizationStrings
 					.getInstance().getLocalizedString("congratulations"),
 					HorizontalAlign.CENTER);
-		}
+		}*/
 		
 		float x = this.smoothCamera.getWidth() / 2.0f - textGameOver.getWidth()
 				/ 2.0f;

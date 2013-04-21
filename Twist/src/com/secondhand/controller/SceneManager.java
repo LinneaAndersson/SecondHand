@@ -5,6 +5,7 @@ import org.anddev.andengine.engine.Engine;
 import android.content.Context;
 import android.view.KeyEvent;
 
+import com.secondhand.scene.GameOverScene;
 import com.secondhand.scene.GamePlayScene;
 import com.secondhand.scene.HighScoreScene;
 import com.secondhand.scene.IGameScene;
@@ -26,7 +27,7 @@ public final class SceneManager {
 	private Engine engine;
 
 	private IGameScene loadingScene, mainMenuScene, settingsMenuScene,
-			highScoreScene;
+			highScoreScene, gameOverScene;
 	private GamePlayScene gamePlayScene;
 
 
@@ -51,7 +52,7 @@ public final class SceneManager {
 		this.loadingScene = new LoadingScene(this.engine, context);
 		this.mainMenuScene = new MainMenuScene(this.engine, context);
 		this.settingsMenuScene = new SettingsMenuScene(this.engine, context);
-
+		this.gameOverScene = new GameOverScene(this.engine, context);
 		this.gamePlayScene = new GamePlayScene(this.engine, context);
 		new GamePlaySceneController(this.gamePlayScene);
 
@@ -84,6 +85,8 @@ public final class SceneManager {
 			scene = this.gamePlayScene;
 		} else if (sceneEnum == AllScenes.HIGH_SCORE_SCENE) {
 			scene = this.highScoreScene;
+		} else if (sceneEnum == AllScenes.GAME_OVER_SCENE) {
+			scene = this.gameOverScene;
 		}
 
 		return scene;
@@ -119,6 +122,7 @@ public final class SceneManager {
 		this.settingsMenuScene.loadResources();
 		this.gamePlayScene.loadResources();
 		this.highScoreScene.loadResources();
+		this.gameOverScene.loadResources();
 	}
 
 	// called from MainActivity.

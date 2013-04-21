@@ -15,7 +15,8 @@ public interface IGameScene {
 	// it
 	// a corresponding enum value.
 	public enum AllScenes {
-		LOADING_SCENE, MAIN_MENU_SCENE, SETTINGS_MENU_SCENE, GAME_PLAY_SCENE, HIGH_SCORE_SCENE
+		LOADING_SCENE, MAIN_MENU_SCENE, SETTINGS_MENU_SCENE, GAME_PLAY_SCENE, HIGH_SCORE_SCENE,
+		GAME_OVER_SCENE
 	}
 
 	/**

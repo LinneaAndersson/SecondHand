@@ -9,6 +9,7 @@ import android.content.Context;
 import android.view.KeyEvent;
 
 import com.secondhand.controller.SceneManager;
+import com.secondhand.debug.MyDebug;
 import com.secondhand.model.Universe;
 import com.secondhand.opengl.StarsBackground;
 
@@ -90,5 +91,15 @@ public class GamePlayScene extends GameScene {
 		// TODO: we should probably instead override onKeyDown and use custom back button handling,
 		// since we also need to somehow save the current state.
 		return AllScenes.MAIN_MENU_SCENE;
+	}
+	
+	@Override
+	protected void onManagedUpdate(final float pSecondsElapsed){
+		super.onManagedUpdate(pSecondsElapsed);
+		if(universe.isGameOver()){
+			MyDebug.d("GameOver");
+			SceneManager.getInstance().setCurrentSceneEnum(AllScenes.GAME_OVER_SCENE);
+		}
+		
 	}
 }

@@ -22,12 +22,15 @@ public final class Universe {
 
 	private Engine engine;
 
+	private boolean gameOver;
+
 	private static Universe instance;
 
 	// perhaps create a tutorialLevel?
 	private Universe() {
 		currentLevel = new Level();
 		killingInProcess = false;
+		gameOver = false;
 	}
 
 	public static Universe getInstance() {
@@ -45,7 +48,8 @@ public final class Universe {
 	// Now there is alot of duplicated code in this method.
 	// Perhaps we could extract that code into a new method.
 	public void checkCollision(final Contact contact) {
-		// if one or both is null, then we are dealing with a collision involving one or
+		// if one or both is null, then we are dealing with a collision
+		// involving one or
 		// two non-entities
 		// (ie, a black hole collides with the wall),
 		// and we are not interested in handling such a collision
@@ -57,8 +61,10 @@ public final class Universe {
 		// now we know both the bodies are entities.
 		MyDebug.d(contact.getFixtureA().getBody().getUserData().getClass()
 				+ " is the A class");
-		final Entity entityA = (Entity) contact.getFixtureA().getBody().getUserData();
-		final Entity entityB = (Entity) contact.getFixtureB().getBody().getUserData();
+		final Entity entityA = (Entity) contact.getFixtureA().getBody()
+				.getUserData();
+		final Entity entityB = (Entity) contact.getFixtureB().getBody()
+				.getUserData();
 
 		if (entityA instanceof BlackHole && entityB instanceof Planet
 				|| entityB instanceof BlackHole && entityA instanceof Planet) {
@@ -86,8 +92,8 @@ public final class Universe {
 				// contact area extends outside of the shape. it also seems like
 				// the screen area you can touch for movement decreases(could
 				// just be me)
-				final Shape blackHoleShape = blackHole.getBody().getFixtureList()
-						.get(0).getShape();
+				final Shape blackHoleShape = blackHole.getBody()
+						.getFixtureList().get(0).getShape();
 				// perhaps we could divide radius by 2?
 				// otherwise i believe it would grow to fast
 				blackHole.increaseSize(planet.getRadius());
@@ -99,6 +105,8 @@ public final class Universe {
 				MyDebug.d("black hole should now eat planet.");
 
 				myDestroyer(planet.getShape(), true);
+			} else {
+				gameOver();
 			}
 		} else if (entityA instanceof Player && entityB instanceof PowerUp
 				|| entityB instanceof Player && entityA instanceof PowerUp) {
@@ -117,12 +125,22 @@ public final class Universe {
 
 			// now we need a way to have the power up take effect and decide
 			// a way to have the effect for a duration
-			// Also need to destroy the powerups body
 			// the effect should be visible on the players shape
 
 			currentLevel.activateEffect(power.getEffect());
 
 		}
+	}
+	
+	public boolean isGameOver(){
+		return gameOver;
+	}
+
+	private void gameOver() {
+		gameOver = true;
+		// gameOver flag that gameplayScene checks each update
+		// other gameOver stuff in this method
+		
 	}
 
 	/*
@@ -140,7 +158,7 @@ public final class Universe {
 		if (!killingInProcess) {
 			MyDebug.i("commence destruction");
 			killingInProcess = true;
-			final PhysicsConnector facePhysicsConnector = mPhysicsWorld
+			final PhysicsConnector physicsConnector = mPhysicsWorld
 					.getPhysicsConnectorManager().findPhysicsConnectorByShape(
 							mySprite);
 			engine.registerUpdateHandler(new IUpdateHandler() {
@@ -151,19 +169,19 @@ public final class Universe {
 						@Override
 						public void run() {
 							mPhysicsWorld
-									.unregisterPhysicsConnector(facePhysicsConnector);
+									.unregisterPhysicsConnector(physicsConnector);
 							// myFixture.getBody().destroyFixture(myFixture);
 							// don't know if the above is needed
 							if (bodyToo == true) {
-								MyDebug.i(facePhysicsConnector.getBody()
+								MyDebug.i(physicsConnector.getBody()
 										+ " will be destroyed");
-								mPhysicsWorld.destroyBody(facePhysicsConnector
+								mPhysicsWorld.destroyBody(physicsConnector
 										.getBody());
 							}
 							mySprite.detachSelf();
 							System.gc();
 							killingInProcess = false;
-							MyDebug.i(facePhysicsConnector.getBody()
+							MyDebug.i(physicsConnector.getBody()
 									+ " destruction complete");
 						}
 					});

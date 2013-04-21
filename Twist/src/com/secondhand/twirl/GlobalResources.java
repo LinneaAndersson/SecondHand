@@ -28,6 +28,7 @@ public final class GlobalResources {
 	
 	public Sound powerUpSound;
 	public Sound growSound;
+	public Sound obstacleCollisionSound;
 	
 	private static GlobalResources instance;
 	
@@ -51,6 +52,7 @@ public final class GlobalResources {
 		
 		this.powerUpSound = SoundLoader.getInstance().loadSound("sfx/powerup.wav");
 		this.growSound = SoundLoader.getInstance().loadSound("sfx/grow.wav");
+		this.obstacleCollisionSound = SoundLoader.getInstance().loadSound("sfx/obstacle_collision.wav");
 	}
 	
 	// To add a texture path, just add enum value ex: ENEMY ("enemy.png") in list.

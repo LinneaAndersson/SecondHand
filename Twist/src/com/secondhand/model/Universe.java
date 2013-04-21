@@ -135,7 +135,11 @@ public final class Universe {
 
 			currentLevel.activateEffect(power.getEffect());
 
+		} else if (entityA instanceof Player && entityB instanceof Obstacle
+				|| entityB instanceof Player && entityA instanceof Obstacle) {
+			GlobalResources.getInstance().obstacleCollisionSound.play();
 		}
+
 	}
 	
 	public boolean isGameOver(){

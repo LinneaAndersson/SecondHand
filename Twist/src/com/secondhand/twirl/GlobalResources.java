@@ -1,5 +1,7 @@
 package com.secondhand.twirl;
 
+import javax.microedition.khronos.opengles.GL10;
+
 import org.anddev.andengine.audio.sound.Sound;
 import org.anddev.andengine.opengl.font.Font;
 import org.anddev.andengine.opengl.texture.TextureOptions;
@@ -41,23 +43,31 @@ public final class GlobalResources {
 	
 	private GlobalResources() {}
 
+	
+	
 	public void load() {	
 		this.menuItemFont = FontLoader.getInstance().loadFont(
 				Typeface.create(Typeface.DEFAULT, Typeface.BOLD), 32, Color.WHITE);
 		this.menuHeadlineFont = FontLoader.getInstance().loadFont(
 				Typeface.create(Typeface.DEFAULT, Typeface.BOLD), 50, Color.WHITE);
 		//this.playerSprite = null; // TODO load the player sprite
-		this.planetTexture = TextureRegionLoader.getInstance().loadTextureRegion(BASEPATH+EntityTexture.PLANET.path, 32, 32,
-				TextureOptions.REPEATING_NEAREST);
+		
+
+		this.planetTexture = TextureRegionLoader.getInstance().loadTextureRegion(BASEPATH+EntityTexture.PLANET.path, 256, 256,
+				TextureOptions.REPEATING_BILINEAR);
 		
 		this.powerUpSound = SoundLoader.getInstance().loadSound("sfx/powerup.wav");
 		this.growSound = SoundLoader.getInstance().loadSound("sfx/grow.wav");
 		this.obstacleCollisionSound = SoundLoader.getInstance().loadSound("sfx/obstacle_collision.wav");
 	}
 	
+	
+	
+	
+	
 	// To add a texture path, just add enum value ex: ENEMY ("enemy.png") in list.
 	enum EntityTexture {
-		PLANET ("planet.png"),
+		PLANET ("planet_red.png"),
 		PLAYER ("player.png");
 		
 		private String path;

@@ -90,8 +90,9 @@ public class Level {
 		testPlanets.add(new Planet(new Vector2(315, 115), 15, planetTexture));
 		testPlanets.add(new Planet(new Vector2(700, 310), 300, planetTexture));
 
+		
 		TexturedPolygon polygon = new TexturedPolygon(200, 200,
-				PolygonUtil.getRandomPolygon(), planetTexture);
+				PolygonUtil.getRandomPolygon(),  GlobalResources.getInstance().obstacleTexture);
 		testPlanets.add(new Obstacle(polygon));
 
 		testPlanets.add(new PowerUp(new Vector2(20, 500), Effect.SHIELD,

@@ -28,6 +28,7 @@ public final class GlobalResources {
 	public TextureRegion playerSprite;
 	public TextureRegion planetTexture;
 	public TextureRegion powerUpTexture;
+	public TextureRegion obstacleTexture;
 	
 	
 	public Sound powerUpSound;
@@ -56,7 +57,11 @@ public final class GlobalResources {
 		
 
 		this.planetTexture = TextureRegionLoader.getInstance().loadTextureRegion(BASEPATH+EntityTexture.PLANET.path, 256, 256,
+			TextureOptions.REPEATING_BILINEAR);
+
+		this.obstacleTexture = TextureRegionLoader.getInstance().loadTextureRegion(BASEPATH+EntityTexture.OBSTACLE.path, 256, 256,
 				TextureOptions.REPEATING_BILINEAR);
+
 		
 		this.powerUpTexture = TextureRegionLoader.getInstance().loadTextureRegion(BASEPATH+EntityTexture.POWER_UP.path, 64, 64,
 				TextureOptions.REPEATING_BILINEAR);
@@ -71,7 +76,8 @@ public final class GlobalResources {
 	enum EntityTexture {
 		PLANET ("planet_red.png"),
 		PLAYER ("player.png"),
-		POWER_UP("powerup_box.png");
+		POWER_UP("powerup_box.png"),
+		OBSTACLE("obstacle.png");
 		
 		private String path;
 		

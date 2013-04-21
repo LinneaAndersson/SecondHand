@@ -21,11 +21,11 @@ public class PolygonTextureRegionBuffer extends BufferObject {
 	// ===========================================================
 
 	public PolygonTextureRegionBuffer(
-			List<Vector2> vertices, 
-			float width,
-			float height,
-			int pDrawType,
-			boolean pManaged) {
+			final List<Vector2> vertices, 
+			final float width,
+			final float height,
+			final int pDrawType,
+			final boolean pManaged) {
 		super(vertices.size() * 2, pDrawType, pManaged);
 
 		this.mWidth = width;

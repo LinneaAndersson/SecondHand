@@ -12,9 +12,6 @@ import org.anddev.andengine.opengl.util.GLHelper;
 import org.anddev.andengine.opengl.vertex.VertexBuffer;
 
 import com.badlogic.gdx.math.Vector2;
-import com.badlogic.gdx.physics.box2d.Body;
-import com.badlogic.gdx.physics.box2d.Fixture;
-import com.badlogic.gdx.physics.box2d.PolygonShape;
 
 
 /**
@@ -33,9 +30,9 @@ public class Polygon extends Shape {
 	protected final PolygonVertexBuffer mPolygonVertexBuffer;
 	
 	protected List<Vector2> mPolygon;
-	private Body mBody;
+	/*private Body mBody;
 	private PolygonShape mPolygonShape;
-	private final float mMaxLength;
+	private final float mMaxLength;*/
 
 	public Polygon(final Vector2 position, final List<Vector2> polygon) {
 		this(position.x, position.y, polygon);
@@ -57,7 +54,7 @@ public class Polygon extends Shape {
 	 * @param polygon the points that define the polygon. e.g., for a square these points will be its four corners.
 	 * @param cullingEnabled
 	 */
-	public Polygon(final float pX, final float pY, final List<Vector2> polygon, boolean cullingEnabled) {
+	public Polygon(final float pX, final float pY, final List<Vector2> polygon, final boolean cullingEnabled) {
 
 		super(pX, pY);
 		
@@ -69,18 +66,18 @@ public class Polygon extends Shape {
 		this.updateVertexBuffer();
 		
 		// used in the culling logic
-		this.mMaxLength = computeMaxLength(polygon);
+		//this.mMaxLength = computeMaxLength(polygon);
 	}
 	
-	private final float computeMaxLength(final List<Vector2> polygon) {
+	/*private final float computeMaxLength(final List<Vector2> polygon) {
 		// compute the maximum length between 2 points in the polygon.
 		float maxLength = 0;
 		
 		for(int i = 0; i < polygon.size(); ++i) {
 			for(int j = 0; j < polygon.size(); ++j) {
 				if(j != i) {
-					Vector2 p1 = polygon.get(i);
-					Vector2 p2 = polygon.get(j);
+					final Vector2 p1 = polygon.get(i);
+					final Vector2 p2 = polygon.get(j);
 					
 					final float length = (float)Math.sqrt(Math.pow(p1.x - p2.x, 2) + Math.pow(p1.y - p2.y, 2));
 					if(length > maxLength) {
@@ -91,7 +88,7 @@ public class Polygon extends Shape {
 		}
 		
 		return maxLength;
-	}
+	}*/
 	
 	
 	
@@ -103,21 +100,17 @@ public class Polygon extends Shape {
 	@Override
 	public float getWidth() {
 		return 0;
-		//throw new UnsupportedOperationException();
 	}
 
 	@Override
 	public float getHeight() {
-	return 0;
-		//	throw new UnsupportedOperationException();	
+		return 0;
 	}
 	
 	@Override
 	public float getBaseWidth() {
 		return getWidth();
 	}
-
-	
 	
 	@Override
 	public float getBaseHeight() {
@@ -125,12 +118,12 @@ public class Polygon extends Shape {
 	}
 
 	@Override
-	public boolean collidesWith(IShape pOtherShape) {
+	public boolean collidesWith(final IShape pOtherShape) {
 		throw new UnsupportedOperationException();
 	}
 
 	@Override
-	public boolean contains(float pX, float pY) {
+	public boolean contains(final float pX, final float pY) {
 		throw new UnsupportedOperationException();
 	}
 
@@ -157,10 +150,10 @@ public class Polygon extends Shape {
 
 	
 	@Override
-	protected void drawVertices(GL10 pGL, Camera pCamera) {
+	protected void drawVertices(final GL10 pGL, final Camera pCamera) {
 		pGL.glDrawArrays(GL10.GL_TRIANGLES, 0, this.mPolygonVertexBuffer.getVertices().size());
 	}	
-
+/*
 	
 	private static boolean isPointInCamera(Camera camera, Vector2 point) {
 		return camera.getMinX() < point.x && camera.getMaxX() > point.x &&
@@ -172,10 +165,10 @@ public class Polygon extends Shape {
 		
 		final Fixture fixture = body.getFixtureList().get(0);
 		this.mPolygonShape	 = (PolygonShape)fixture.getShape();
-	}
+	}*/
 	
 	@Override
-	protected boolean isCulled(Camera pCamera) {
+	protected boolean isCulled(final Camera pCamera) {
 		return false;
 		// TODO: get culling to work.	
 		/*

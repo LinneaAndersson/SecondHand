@@ -82,7 +82,7 @@ public final class Universe {
 				planet.getShape().detachSelf();
 
 				// increase the size of the black hole.
-				// seems like there is something wrong here. after eating the
+				// seems like there is something wrong here. after eating, the
 				// contact area extends outside of the shape. it also seems like
 				// the screen area you can touch for movement decreases(could
 				// just be me)

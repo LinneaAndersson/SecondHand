@@ -1,9 +1,7 @@
 package com.secondhand.scene;
 
 import java.io.BufferedReader;
-import java.io.IOException;
 import java.io.InputStreamReader;
-import java.io.UnsupportedEncodingException;
 
 import org.anddev.andengine.engine.Engine;
 import org.anddev.andengine.entity.text.Text;
@@ -12,13 +10,14 @@ import org.anddev.andengine.util.HorizontalAlign;
 
 import android.content.Context;
 
+import com.secondhand.debug.MyDebug;
 import com.secondhand.twirl.GlobalResources;
 import com.secondhand.twirl.LocalizationStrings;
 
 public class HighScoreScene extends GameScene {
 	private Font mFont;
 
-	public HighScoreScene(Engine engine, Context context) {
+	public HighScoreScene(final Engine engine, final Context context) {
 		super(engine, context);
 	}
 
@@ -33,7 +32,7 @@ public class HighScoreScene extends GameScene {
 		int tmp = 0;
 
 		// The title
-		Text highScore = new Text(100, 60, mFont, LocalizationStrings
+		final Text highScore = new Text(100, 60, mFont, LocalizationStrings
 				.getInstance().getLocalizedString("menu_high_score"),
 				HorizontalAlign.CENTER);
 
@@ -48,12 +47,12 @@ public class HighScoreScene extends GameScene {
 
 		// read from highScore-file in the asset-folder
 		try {
-			BufferedReader reader = new BufferedReader(new InputStreamReader(
+			final BufferedReader reader = new BufferedReader(new InputStreamReader(
 					context.getAssets().open("highScore")));
 			String mLine = reader.readLine();
 
 			// to get the coordinates for position.
-			Text highScoreText = new Text(100, 120 + tmp * 40, mFont, mLine,
+			final Text highScoreText = new Text(100, 120 + tmp * 40, mFont, mLine,
 					HorizontalAlign.CENTER);
 			x = this.smoothCamera.getWidth() / 2.0f - highScoreText.getWidth()
 					/ 2.0f;
@@ -62,7 +61,7 @@ public class HighScoreScene extends GameScene {
 
 			while (mLine != null) {
 				tmp++;
-				Text playerScore = new Text(100, 120 + tmp * 40,
+				final Text playerScore = new Text(100, 120 + tmp * 40,
 						GlobalResources.getInstance().menuItemFont, mLine,
 						HorizontalAlign.CENTER);
 				// increase the y-axis for every player. Max 5 players!
@@ -72,14 +71,10 @@ public class HighScoreScene extends GameScene {
 
 				this.attachChild(playerScore);
 
-				// else you can't set PlayerScore again.
-				playerScore = null;
 			}
 
-		} catch (UnsupportedEncodingException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
+		}catch (Exception e) {
+			MyDebug.e("could not load high score file",  e);
 		}
 	}
 

@@ -21,7 +21,7 @@ public class TexturedPolygon extends Polygon {
 
 	private final TextureRegion mTextureRegion;
 	
-	PolygonTextureRegionBuffer mPolygonTextureRegionBuffer;
+	private final PolygonTextureRegionBuffer mPolygonTextureRegionBuffer;
 	
 	public TexturedPolygon(final Vector2 position, final List<Vector2> polygon, final TextureRegion textureRegion) {
 		this(position.x, position.y, polygon, textureRegion);
@@ -41,11 +41,7 @@ public class TexturedPolygon extends Polygon {
 		
 		this.mTextureRegion = textureRegion;
 	}
-	
-	@Override
-	protected void onUpdateVertexBuffer() {
-		super.onUpdateVertexBuffer();
-	}
+
 	
 	public TextureRegion getTextureRegion() {
 		return this.mTextureRegion;
@@ -82,7 +78,7 @@ public class TexturedPolygon extends Polygon {
 	@Override
 	protected void finalize() throws Throwable {
 		super.finalize();
-		if(mPolygonTextureRegionBuffer.isManaged()) {
+		if(mPolygonTextureRegionBuffer.isManaged()) { // NOPMD
 			mPolygonTextureRegionBuffer.unloadFromActiveBufferObjectManager();
 		}
 	}

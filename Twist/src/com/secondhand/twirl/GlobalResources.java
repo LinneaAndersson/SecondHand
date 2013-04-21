@@ -1,6 +1,5 @@
 package com.secondhand.twirl;
 
-import javax.microedition.khronos.opengles.GL10;
 
 import org.anddev.andengine.audio.sound.Sound;
 import org.anddev.andengine.opengl.font.Font;
@@ -79,7 +78,7 @@ public final class GlobalResources {
 		POWER_UP("powerup_box.png"),
 		OBSTACLE("obstacle.png");
 		
-		private String path;
+		private String path; // NOPMD
 		
 		private EntityTexture(final String path) {
 			this.path = path;

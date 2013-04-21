@@ -23,27 +23,27 @@ public final class LocalizationStrings {
 
 	
 
-	public void initialize(Context context) {
+	public void initialize(final Context context) {
 		this.context = context;
 	}
 
-	public String getLocalizedString(String stringName) {
-		String packageName = context.getPackageName();
-		int resId = context.getResources().getIdentifier(stringName, "string", packageName);
+	public String getLocalizedString(final String stringName) {
+		final String packageName = context.getPackageName();
+		final int resId = context.getResources().getIdentifier(stringName, "string", packageName);
 		return context.getString(resId);
 	}
 	
 	// Don't know if this is correct
-	public String[] getLocalizedStringArray(String stringName){
-		String packageName = context.getPackageName();
-		int resId = context.getResources().getIdentifier(stringName, "string", packageName);
+	public String[] getLocalizedStringArray(final String stringName){
+		final String packageName = context.getPackageName();
+		final int resId = context.getResources().getIdentifier(stringName, "string", packageName);
 		return context.getResources().getStringArray(resId);
 	}
 	
 	// Don't know if this is correct
-	public int[] getLocalizedIntArray(String stringName){
-		String packageName = context.getPackageName();
-		int resId = context.getResources().getIdentifier(stringName, "string", packageName);
+	public int[] getLocalizedIntArray(final String stringName){
+		final String packageName = context.getPackageName();
+		final int resId = context.getResources().getIdentifier(stringName, "string", packageName);
 		return context.getResources().getIntArray(resId);
 	}
 }

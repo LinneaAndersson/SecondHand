@@ -50,7 +50,7 @@ public class Level {
 		levelNumber = 0;
 	}
 
-	public Level(int maxSize) {
+	public Level(final int maxSize) {
 		this(maxSize, new PhysicsWorld(new Vector2(), true), new Player(
 				new Vector2(50, 50), 20), createTestPlanets(), 2000, 2000);
 
@@ -59,8 +59,8 @@ public class Level {
 	// this constructor could be useful when creating
 	// new levels and want to keep player and physics
 	// from the last level
-	public Level(int maxSize, PhysicsWorld pW, Player p,
-			List<Entity> otherEntities, int levelWidth, int levelHeight) {
+	public Level(final int maxSize, final PhysicsWorld pW, final Player p,
+			final List<Entity> otherEntities, final int levelWidth, final int levelHeight) {
 		levelNumber += 1;
 		this.playerMaxSize = maxSize;
 		this.physicsWorld = pW;
@@ -72,17 +72,17 @@ public class Level {
 	}
 	
 	// Preferable to at least change the entity list
-	public Level(Level level) {
+	public Level(final Level level) {
 		this(level.getPlayerMaxSize(), level.getPhysicsWorld(), level
 				.getPlayer(), level.getEntityList(), level.getLevelWidth(),
 				level.getLevelHeight());
 	}
 
 	public static List<Entity> createTestPlanets() {
-		List<Entity> testPlanets = new ArrayList<Entity>();
+		final List<Entity> testPlanets = new ArrayList<Entity>();
 
 		// TODO: Understand why textures are not loaded properly
-		TextureRegion planetTexture = GlobalResources.getInstance().planetTexture;
+		final TextureRegion planetTexture = GlobalResources.getInstance().planetTexture;
 
 		testPlanets.add(new Planet(new Vector2(130, 130), 30, planetTexture));
 
@@ -91,7 +91,7 @@ public class Level {
 		testPlanets.add(new Planet(new Vector2(700, 310), 300, planetTexture));
 
 		
-		TexturedPolygon polygon = new TexturedPolygon(200, 200,
+		final TexturedPolygon polygon = new TexturedPolygon(200, 200,
 				PolygonUtil.getRandomPolygon(),  GlobalResources.getInstance().obstacleTexture);
 		testPlanets.add(new Obstacle(polygon));
 
@@ -166,7 +166,7 @@ public class Level {
 	}
 
 	// if we don't want level to handle this we could just move it
-	public void activateEffect(Effect effect) {
+	public void activateEffect(final Effect effect) {
 		switch (effect) {
 		case RANDOM_TELEPORT:
 			// remove old player
@@ -196,9 +196,9 @@ public class Level {
 
 	}
 
-	public void registerEntity(Entity entity) {
+	public void registerEntity(final Entity entity) {
 
-		PhysicsHandler pH = new PhysicsHandler(entity.getShape());
+		final PhysicsHandler pH = new PhysicsHandler(entity.getShape());
 
 		entity.getShape().registerUpdateHandler(pH);
 
@@ -206,7 +206,7 @@ public class Level {
 		// bodies(rectangular) bodies as well
 		// we could store some enum value in Entity for this purpose.
 
-		FixtureDef fixture = PhysicsFactory.createFixtureDef(1, 0.5f, 0.5f);
+		final FixtureDef fixture = PhysicsFactory.createFixtureDef(1, 0.5f, 0.5f);
 		Body body = null;
 
 		// obstacles are polygons and not circles
@@ -260,7 +260,7 @@ public class Level {
 				vertices, bodyType, fixtureDef);
 	}
 
-	public void moveEntities(Vector2 v) {
+	public void moveEntities(final Vector2 v) {
 
 		/*
 		 * The problem was that we got the coordinates of the player from the
@@ -293,8 +293,8 @@ public class Level {
 		 * Math.abs(player.getBody().getLinearVelocity().len()) has no effect.
 		 * This runs rather smoothly. Try it!
 		 */
-		float maxSpeed = 20;
-		Vector2 testVector = new Vector2(player.getBody().getLinearVelocity());
+		final float maxSpeed = 20;
+		final Vector2 testVector = new Vector2(player.getBody().getLinearVelocity());
 		if (testVector.add(movementVector).len() > maxSpeed) // Check if new
 																// velocity
 																// doesn't

@@ -14,6 +14,7 @@ import com.badlogic.gdx.math.Vector2;
 
 /**
  * This class is used when you want to apply a repeating texture on polygon. 
+ * See the base class for info on positioning polygons.
  *
  */
 public class TexturedPolygon extends Polygon {
@@ -21,6 +22,10 @@ public class TexturedPolygon extends Polygon {
 	private final TextureRegion mTextureRegion;
 	
 	PolygonTextureRegionBuffer mPolygonTextureRegionBuffer;
+	
+	public TexturedPolygon(final Vector2 position, final List<Vector2> polygon, final TextureRegion textureRegion) {
+		this(position.x, position.y, polygon, textureRegion);
+	}
 	
 	public TexturedPolygon(final float pX, final float pY, final List<Vector2> polygon, final TextureRegion textureRegion) {
 		super(pX, pY, polygon);

@@ -16,4 +16,8 @@ public abstract class PolygonEntity extends Entity {
 		return 1;
 		// TODO: figure out how to compute area of an arbitrary polygon. 
 	}
+	
+	public Polygon getPolygon() {
+		return this.polygon;
+	}
 }

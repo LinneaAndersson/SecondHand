@@ -21,7 +21,7 @@ import com.badlogic.gdx.physics.box2d.PolygonShape;
  * A circle class used for drawing circles.
  * The positioning for polygons works as follows: 
  * All the points of the polygon(the list polygon in the constructor)
- *  are positioned relatively to the position of the polygon(the position (pX, pY) specified in the constructor)
+ *  are positioned relatively to the position of the polygon(the position (pX, pY)	 specified in the constructor)
  * So a point point (0,0) in the polygon with position (x,y) will be placed at position (x,y)
  * Likewise, the point (10,11) in that same polygon will be at position (x+10,y+11) 
  * @author erkastina
@@ -36,6 +36,11 @@ public class Polygon extends Shape {
 	private Body mBody;
 	private PolygonShape mPolygonShape;
 	private final float mMaxLength;
+
+	public Polygon(final Vector2 position, final List<Vector2> polygon) {
+		this(position.x, position.y, polygon);
+		
+	}
 	
 	/**
 	 * Culling enabled by default. 

@@ -264,10 +264,6 @@
             <ruleset>Strict Exception Rules</ruleset>
         </rule>
         <rule>
-            <name>DoNotUseThreads</name>
-            <ruleset>J2EE Rules</ruleset>
-        </rule>
-        <rule>
             <name>DontImportJavaLang</name>
             <ruleset>Import Statement Rules</ruleset>
         </rule>

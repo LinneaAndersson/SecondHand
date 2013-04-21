@@ -42,7 +42,7 @@ public final class Universe {
 	}
 
 	// needs a better way to reach the engine than setting it
-	public void setEngine(Engine engine) {
+	public void setEngine(final Engine engine) {
 		this.engine = engine;
 	}
 
@@ -172,7 +172,7 @@ public final class Universe {
 							mySprite);
 			engine.registerUpdateHandler(new IUpdateHandler() {
 				@Override
-				public void onUpdate(float pSecondsElapsed) {
+				public void onUpdate(final float pSecondsElapsed) {
 					engine.unregisterUpdateHandler(this);
 					engine.runOnUpdateThread(new Runnable() {
 						@Override
@@ -181,7 +181,7 @@ public final class Universe {
 									.unregisterPhysicsConnector(physicsConnector);
 							// myFixture.getBody().destroyFixture(myFixture);
 							// don't know if the above is needed
-							if (bodyToo == true) {
+							if (bodyToo) {
 								MyDebug.i(physicsConnector.getBody()
 										+ " will be destroyed");
 								mPhysicsWorld.destroyBody(physicsConnector

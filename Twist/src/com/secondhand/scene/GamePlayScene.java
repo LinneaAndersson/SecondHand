@@ -19,17 +19,17 @@ public class GamePlayScene extends GameScene {
 	private List<IShape> shapeList;
 	private IShape player;
 	
-	private Universe universe = Universe.getInstance();
+	private final Universe universe = Universe.getInstance();
 	
-	public GamePlayScene(Engine engine, Context context) {
+	public GamePlayScene(final Engine engine, final Context context) {
 		super(engine, context);
 	}
 	
-	public void setShapes(List<IShape> list){
+	public void setShapes(final List<IShape> list){
 		shapeList = list;
 	}
 	
-	public void setPlayer(IShape player){
+	public void setPlayer(final IShape player){
 		this.player = player;
 	}
 
@@ -71,7 +71,7 @@ public class GamePlayScene extends GameScene {
 	public boolean onKeyDown(final int pKeyCode, final KeyEvent pEvent) {
 		if (pKeyCode == KeyEvent.KEYCODE_BACK
 				&& pEvent.getAction() == KeyEvent.ACTION_DOWN) {
-			AllScenes parent = getParentScene();
+			final AllScenes parent = getParentScene();
 			if (parent != null) {
 				SceneManager.getInstance().setCurrentSceneEnum(parent);
 				// Undo camera lock on player

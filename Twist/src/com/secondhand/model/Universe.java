@@ -208,10 +208,22 @@ public final class Universe {
 	}
 
 	// TODO how to decide what to have on each successive level?
-	public void nextLevel() {
-		currentLevel = new Level(currentLevel);
-	}
 	
+	// If after gameOver a new game should start, this method
+	// could be called. Also the case where the player starts
+	// a new game when there already is one saved could be
+	// handled here. In both cases there already is a Universe
+	// so everything having to do with new level could be handled here.
+
+	public void nextLevel() {
+		if (!gameOver) {
+			currentLevel = new Level(currentLevel);
+		} else {
+			gameOver = false;
+			currentLevel = new Level();
+		}
+	}
+
 	public void update(final Vector2 v) {
 
 		if (currentLevel.checkPlayerBigEnough()) {

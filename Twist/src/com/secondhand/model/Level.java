@@ -43,6 +43,11 @@ public class Level {
 	// default maxsize?
 	public Level() {
 		this(100);
+		
+		// the only time we should call this constructor
+		// is when starting a completely new game 
+		
+		levelNumber = 0;
 	}
 
 	public Level(int maxSize) {
@@ -65,6 +70,7 @@ public class Level {
 		this.levelHeight = levelHeight;
 		registerEntities();
 	}
+	
 	// Preferable to at least change the entity list
 	public Level(Level level) {
 		this(level.getPlayerMaxSize(), level.getPhysicsWorld(), level

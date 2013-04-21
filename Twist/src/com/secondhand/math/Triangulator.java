@@ -12,6 +12,7 @@ import com.badlogic.gdx.math.Vector2;
  * 
  * 
  */
+@SuppressWarnings("PMD")
 public final class Triangulator {
 
 	private static final float EPSILON=0.0000000001f;

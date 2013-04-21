@@ -126,7 +126,7 @@ public final class PolygonUtil {
     	
     	final Random rng = new Random();
         
-    	List<Vector2> polygonEdges = getRandomStartingPolygon(rng);
+    	final List<Vector2> polygonEdges = getRandomStartingPolygon(rng);
     	
         for(int i = 0; i < TRANSFORMATIONS; ++i) {
         	// get a random edge point of the polygon
@@ -153,7 +153,7 @@ public final class PolygonUtil {
         }
         
         // now we have to make sure that the polygon ends up approximately at the touched position.
-        Vector2 firstV = polygonEdges.get(0);
+        final Vector2 firstV = polygonEdges.get(0);
         for(int i = 1; i < polygonEdges.size(); ++i) {
         	polygonEdges.get(i).sub(firstV);
         }

@@ -37,12 +37,17 @@ public class Level {
 	private int levelWidth;
 	private int levelHeight;
 
-	private static int levelNumber = 1;
+	private static int levelNumber = 0;
 
 	// many constructors necessary?
 	// default maxsize?
 	public Level() {
 		this(100);
+		
+		// the only time we should call this constructor
+		// is when starting a completely new game 
+		
+		levelNumber = 0;
 	}
 
 	public Level(int maxSize) {
@@ -51,8 +56,12 @@ public class Level {
 
 	}
 
+	// this constructor could be useful when creating
+	// new levels and want to keep player and physics
+	// from the last level
 	public Level(int maxSize, PhysicsWorld pW, Player p,
 			List<Entity> otherEntities, int levelWidth, int levelHeight) {
+		levelNumber += 1;
 		this.playerMaxSize = maxSize;
 		this.physicsWorld = pW;
 		player = p;
@@ -60,6 +69,13 @@ public class Level {
 		this.levelWidth = levelWidth;
 		this.levelHeight = levelHeight;
 		registerEntities();
+	}
+	
+	// Preferable to at least change the entity list
+	public Level(Level level) {
+		this(level.getPlayerMaxSize(), level.getPhysicsWorld(), level
+				.getPlayer(), level.getEntityList(), level.getLevelWidth(),
+				level.getLevelHeight());
 	}
 
 	public static List<Entity> createTestPlanets() {
@@ -82,6 +98,10 @@ public class Level {
 				GlobalResources.getInstance().powerUpTexture));
 
 		return testPlanets;
+	}
+
+	public int getPlayerMaxSize() {
+		return playerMaxSize;
 	}
 
 	public int getLevelNumber() {
@@ -144,7 +164,7 @@ public class Level {
 		return levelHeight;
 	}
 
-	// if we dont want level to handle this we could just move it
+	// if we don't want level to handle this we could just move it
 	public void activateEffect(Effect effect) {
 		switch (effect) {
 		case RANDOM_TELEPORT:
@@ -165,6 +185,10 @@ public class Level {
 		case SCORE_UP:
 			// random number here?
 			player.increaseScore(100);
+			break;
+		case NONE:
+			break;
+		default:
 			break;
 
 		}
@@ -203,12 +227,12 @@ public class Level {
 
 		// setting the last boolean to false seems to prevent
 		// the erratic movement of the player. needs testing.
-		
+
 		// no! the last parameter must be true, otherwise the polygon obstacles
 		// are not
 		// able to rotate when you collide with them and that looks weird.
-		
-		// I repeat what i said above. Created an if() so that player 
+
+		// I repeat what i said above. Created an if() so that player
 		// doesn't have those weird movements
 		if (entity.getClass() == Player.class) {
 			physicsWorld.registerPhysicsConnector(new PhysicsConnector(entity

@@ -22,7 +22,11 @@ public class LevelTest extends TestCase {
 		
 	}
 	
-	public void TestcheckPlayerBigEnough(){
+	public void testActivateEffect(){
+		
+	}
+	
+	public void testcheckPlayerBigEnough(){
 		//I don't know why, but somehow I can 
 		// create a level-object in this method but no one else. ??
 		

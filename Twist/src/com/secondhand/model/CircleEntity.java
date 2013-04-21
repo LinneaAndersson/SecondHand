@@ -4,7 +4,7 @@ import com.secondhand.opengl.Circle;
 
 public abstract class CircleEntity extends Entity {
 	
-	protected final Circle circle;
+	private final Circle circle;
 	
 	public CircleEntity(final Circle circle, final boolean isEdible) {
 		super(circle, isEdible);
@@ -30,5 +30,9 @@ public abstract class CircleEntity extends Entity {
 	@Override 
 	public float getArea() {
 		return circle.getRadius() * circle.getRadius()  * (float)Math.PI;
+	}
+
+	public Circle getCircle() {
+		return circle;
 	}
 }

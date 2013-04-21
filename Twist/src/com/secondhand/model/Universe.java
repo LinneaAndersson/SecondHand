@@ -84,7 +84,7 @@ public final class Universe {
 				planet = (Planet) entityB;
 			}
 			if (blackHole.canEat(planet)) {
-				
+
 				GlobalResources.getInstance().growSound.play();
 
 				// Detach the planet from AndEngine
@@ -105,7 +105,6 @@ public final class Universe {
 				blackHoleShape.setRadius(blackHole.getRadius()
 						/ PhysicsConstants.PIXEL_TO_METER_RATIO_DEFAULT);
 
-				
 				MyDebug.d("black hole should now eat planet.");
 
 				myDestroyer(planet.getShape(), true);
@@ -116,7 +115,7 @@ public final class Universe {
 				|| entityB instanceof Player && entityA instanceof PowerUp) {
 
 			GlobalResources.getInstance().powerUpSound.play();
-			
+
 			PowerUp power;
 			if (entityA instanceof PowerUp) {
 				power = (PowerUp) entityA;
@@ -141,8 +140,8 @@ public final class Universe {
 		}
 
 	}
-	
-	public boolean isGameOver(){
+
+	public boolean isGameOver() {
 		return gameOver;
 	}
 
@@ -150,7 +149,7 @@ public final class Universe {
 		gameOver = true;
 		// gameOver flag that gameplayScene checks each update
 		// other gameOver stuff in this method
-		
+
 	}
 
 	/*
@@ -210,9 +209,9 @@ public final class Universe {
 
 	// TODO how to decide what to have on each successive level?
 	public void nextLevel() {
-		currentLevel = new Level();
+		currentLevel = new Level(currentLevel);
 	}
-
+	
 	public void update(final Vector2 v) {
 
 		if (currentLevel.checkPlayerBigEnough()) {

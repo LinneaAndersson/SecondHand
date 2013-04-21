@@ -27,6 +27,8 @@ public final class GlobalResources {
 	
 	public TextureRegion playerSprite;
 	public TextureRegion planetTexture;
+	public TextureRegion powerUpTexture;
+	
 	
 	public Sound powerUpSound;
 	public Sound growSound;
@@ -56,19 +58,20 @@ public final class GlobalResources {
 		this.planetTexture = TextureRegionLoader.getInstance().loadTextureRegion(BASEPATH+EntityTexture.PLANET.path, 256, 256,
 				TextureOptions.REPEATING_BILINEAR);
 		
+		this.powerUpTexture = TextureRegionLoader.getInstance().loadTextureRegion(BASEPATH+EntityTexture.POWER_UP.path, 64, 64,
+				TextureOptions.REPEATING_BILINEAR);
+		
 		this.powerUpSound = SoundLoader.getInstance().loadSound("sfx/powerup.wav");
 		this.growSound = SoundLoader.getInstance().loadSound("sfx/grow.wav");
 		this.obstacleCollisionSound = SoundLoader.getInstance().loadSound("sfx/obstacle_collision.wav");
 	}
-	
-	
-	
-	
+
 	
 	// To add a texture path, just add enum value ex: ENEMY ("enemy.png") in list.
 	enum EntityTexture {
 		PLANET ("planet_red.png"),
-		PLAYER ("player.png");
+		PLAYER ("player.png"),
+		POWER_UP("powerup_box.png");
 		
 		private String path;
 		

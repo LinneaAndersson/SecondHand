@@ -13,9 +13,8 @@ public class PowerUp extends RectangleEntity {
 	
 	private Effect effect;
 	
-	public final static float WIDTH = 40;
-	public final static float HEIGHT = 40;
-	
+	public final static float WIDTH = 64;
+	public final static float HEIGHT = 64;
 	
 	public PowerUp(final Effect effect, final BaseRectangle rectangle) {
 		super(rectangle, true);

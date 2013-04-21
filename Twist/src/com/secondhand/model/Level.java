@@ -79,7 +79,7 @@ public class Level {
 		testPlanets.add(new Obstacle(polygon));
 
 		testPlanets.add(new PowerUp(new Vector2(20, 500), Effect.SHIELD,
-				planetTexture));
+				GlobalResources.getInstance().powerUpTexture));
 
 		return testPlanets;
 	}

@@ -35,7 +35,7 @@ public class CircleVertexBuffer extends VertexBuffer {
 	}
 	
 
-	public CircleVertexBuffer(int segments, final int pDrawType, final boolean pManaged) {
+	public CircleVertexBuffer(final int segments, final int pDrawType, final boolean pManaged) {
 		super(segments * 2, pDrawType, pManaged);
 		this.mSegments = segments;
 	}
@@ -65,8 +65,8 @@ public class CircleVertexBuffer extends VertexBuffer {
 	    int count = 0;
 	    for (float i = 0; i < 360.0f; i += (360.0f / mSegments)) {
 
-	    	float x = (float) (radius +  Math.cos(MathUtils.degToRad(360 - i)) * radius);
-	    	float y = (float) (radius + Math.sin(MathUtils.degToRad(360 - i)) * radius);
+	    	final float x = (float) (radius +  Math.cos(MathUtils.degToRad(360 - i)) * radius);
+	    	final float y = (float) (radius + Math.sin(MathUtils.degToRad(360 - i)) * radius);
 	    	
 	    	vertices[count++] = Float.floatToRawIntBits(x);
 	    	vertices[count++] = Float.floatToRawIntBits(y);

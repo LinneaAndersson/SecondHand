@@ -120,10 +120,6 @@
             <ruleset>String and StringBuffer Rules</ruleset>
         </rule>
         <rule>
-            <name>AvoidSynchronizedAtMethodLevel</name>
-            <ruleset>Design Rules</ruleset>
-        </rule>
-        <rule>
             <name>AvoidThreadGroup</name>
             <ruleset>Basic Rules</ruleset>
         </rule>

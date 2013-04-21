@@ -6,7 +6,6 @@ import javax.microedition.khronos.opengles.GL10;
 import javax.microedition.khronos.opengles.GL11;
 
 import org.anddev.andengine.engine.camera.Camera;
-import org.anddev.andengine.entity.primitive.Rectangle;
 import org.anddev.andengine.entity.shape.IShape;
 import org.anddev.andengine.entity.shape.Shape;
 import org.anddev.andengine.opengl.util.GLHelper;
@@ -40,7 +39,7 @@ public class Circle extends Shape{
 	 * @param pY the y position of the top of the circle.
 	 * @param radius the radius of the circle. 
 	 */
-	public Circle(final float pX, final float pY, final float radius, boolean cullingEnabled) {
+	public Circle(final float pX, final float pY, final float radius, final boolean cullingEnabled) {
 		super(pX/* + radius*/, pY/* + radius*/);
 		
 		super.setCullingEnabled(cullingEnabled);
@@ -65,7 +64,7 @@ public class Circle extends Shape{
 		return this.mRadius * 2;
 	}
 	
-	public void setRadius(float radius) {
+	public void setRadius(final float radius) {
 		this.mRadius = radius;
 		this.updateVertexBuffer();
 	}
@@ -90,12 +89,12 @@ public class Circle extends Shape{
 	}
 
 	@Override
-	public boolean collidesWith(IShape pOtherShape) {
+	public boolean collidesWith(final IShape pOtherShape) {
 		throw new UnsupportedOperationException();
 	}
 
 	@Override
-	public boolean contains(float pX, float pY) {
+	public boolean contains(final float pX, final float pY) {
 		throw new UnsupportedOperationException();
 	}
 
@@ -121,13 +120,13 @@ public class Circle extends Shape{
 	}
 
 	@Override
-	protected void drawVertices(GL10 pGL, Camera pCamera) {
+	protected void drawVertices(final GL10 pGL, final Camera pCamera) {
 		pGL.glDrawArrays(GL10.GL_TRIANGLE_FAN, 0, this.mCircleVertexBuffer.getSegments());
 
 	}	
 
 	@Override
-	protected boolean isCulled(Camera pCamera) {
+	protected boolean isCulled(final Camera pCamera) {
 		
 		final float x = this.mX;
 		final float y = this.mY;

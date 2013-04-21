@@ -1,6 +1,5 @@
 package com.secondhand.model;
 
-import org.anddev.andengine.entity.primitive.Rectangle;
 import org.anddev.andengine.entity.shape.RectangularShape;
 
 
@@ -26,7 +25,7 @@ public abstract class RectangleEntity extends Entity {
 		return this.getWidth() * this.getHeight();
 	}
 
-	RectangularShape getRectangle() {
+	public RectangularShape getRectangle() {
 		return this.rectangle;
 	}
 }

@@ -119,6 +119,7 @@ public final class SceneManager {
 	// load it somewhere else if we reuse the old one then we need to remove 
 	// everything and add them again. Because we use a new level every time i 
 	// think we should also use a new gamePlayScene.
+	// This also applies when changing levels.
 	
 	// used by the loading scene to load all game resources.
 	public void loadAllResources() {

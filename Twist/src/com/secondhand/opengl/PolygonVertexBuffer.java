@@ -32,7 +32,7 @@ public class PolygonVertexBuffer extends VertexBuffer {
 		return this.mVertices;
 	}
 	
-	private static int computeVertexCount(int edges) {
+	private static int computeVertexCount(final int edges) {
 		//for the simple polygons we're dealing with,
 		// every polygon with n edges can be divided into n-2 triangles. 
 		final int triangles = edges - 2;
@@ -47,7 +47,7 @@ public class PolygonVertexBuffer extends VertexBuffer {
 	 * @param pDrawType
 	 * @param pManaged
 	 */
-	public PolygonVertexBuffer(int edges, final int pDrawType, final boolean pManaged) {
+	public PolygonVertexBuffer(final int edges, final int pDrawType, final boolean pManaged) {
 		super(computeVertexCount(edges), pDrawType, pManaged);
 	}
 	
@@ -70,7 +70,7 @@ public class PolygonVertexBuffer extends VertexBuffer {
 	    this.mVertices = new ArrayList<Vector2>();
 
 	    // the triangulated polygon
-	   List<Vector2> triangles = Triangulator.triangulate(polygon);
+	   final List<Vector2> triangles = Triangulator.triangulate(polygon);
 	   // List<Vector> triangles = polygon;
 
 	    // put the triangulated polygon in the vertex buffer

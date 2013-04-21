@@ -17,7 +17,7 @@ public class TexturedCircle extends Circle {
 
 	private final TextureRegion mTextureRegion;
 	
-	PolygonTextureRegionBuffer mPolygonTextureRegionBuffer;
+	private final PolygonTextureRegionBuffer mPolygonTextureRegionBuffer;
 	
 	public TexturedCircle(final float pX, final float pY, final float radius, final TextureRegion textureRegion) {
 		super(pX, pY, radius);
@@ -33,10 +33,6 @@ public class TexturedCircle extends Circle {
 		this.mTextureRegion = textureRegion;
 	}
 	
-	@Override
-	protected void onUpdateVertexBuffer() {
-		super.onUpdateVertexBuffer();
-	}
 	
 	public TextureRegion getTextureRegion() {
 		return this.mTextureRegion;
@@ -73,7 +69,7 @@ public class TexturedCircle extends Circle {
 	@Override
 	protected void finalize() throws Throwable {
 		super.finalize();
-		if(mPolygonTextureRegionBuffer.isManaged()) {
+		if(mPolygonTextureRegionBuffer.isManaged()) { //NOPMD
 			mPolygonTextureRegionBuffer.unloadFromActiveBufferObjectManager();
 		}
 	}

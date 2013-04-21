@@ -17,7 +17,7 @@ public class StarsVertexBuffer extends VertexBuffer {
 	// Fields
 	// ===========================================================
 
-	private int mStars;
+	private final int mStars;
 
 	// ===========================================================
 	// Constructors
@@ -50,11 +50,11 @@ public class StarsVertexBuffer extends VertexBuffer {
 		
 	    final int[] vertices = this.mBufferData;
 	    
-	    Random rng = new Random();
+	    final Random rng = new Random();
 	    int count = 0;
 	    for (int i = 0; i < this.getStars(); ++i) {
-	    	float x = (float) (rng.nextInt(Integer.MAX_VALUE) % (int)width);
-	    	float y = (float) (rng.nextInt(Integer.MAX_VALUE) % (int)height);
+	    	final float x = (float) (rng.nextInt(Integer.MAX_VALUE) % (int)width);
+	    	final float y = (float) (rng.nextInt(Integer.MAX_VALUE) % (int)height);
 	    	
 	    	vertices[count++] = Float.floatToRawIntBits(x);
 	    	vertices[count++] = Float.floatToRawIntBits(y);

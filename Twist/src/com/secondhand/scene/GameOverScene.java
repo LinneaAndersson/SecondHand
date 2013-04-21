@@ -10,20 +10,19 @@ import org.anddev.andengine.util.HorizontalAlign;
 
 import android.content.Context;
 
-import com.secondhand.model.Player;
 import com.secondhand.twirl.GlobalResources;
 import com.secondhand.twirl.LocalizationStrings;
 
 public class GameOverScene extends GameMenuScene implements
 		IOnMenuItemClickListener {
-	Font mFont;
-	private Player player;
+	private Font mFont;
+/*	private Player player;
 	private static final int NAME = 0;
 	private static final int SKIP = 1;
 	private int[] highScore;
-	private String[] highScoreName;
+	private String[] highScoreName;*/
 
-	public GameOverScene(Engine engine, Context context) {
+	public GameOverScene(final Engine engine, final Context context) {
 		super(engine, context);
 		//this.player = player;
 	}
@@ -57,9 +56,9 @@ public class GameOverScene extends GameMenuScene implements
 					HorizontalAlign.CENTER);
 		}*/
 		
-		float x = this.smoothCamera.getWidth() / 2.0f - textGameOver.getWidth()
+		final float x = this.smoothCamera.getWidth() / 2.0f - textGameOver.getWidth()
 				/ 2.0f;
-		float y = this.smoothCamera.getHeight() / 2.0f - textGameOver.getHeight()
+		final float y = this.smoothCamera.getHeight() / 2.0f - textGameOver.getHeight()
 				/ 2.0f;
 		textGameOver.setPosition(x, (int) (0.2 * y));
 
@@ -74,8 +73,8 @@ public class GameOverScene extends GameMenuScene implements
 	}
 
 	@Override
-	public boolean onMenuItemClicked(MenuScene pMenuScene, IMenuItem pMenuItem,
-			float pMenuItemLocalX, float pMenuItemLocalY) {
+	public boolean onMenuItemClicked(final MenuScene pMenuScene, final IMenuItem pMenuItem,
+			final float pMenuItemLocalX, final float pMenuItemLocalY) {
 		// TODO Auto-generated method stub
 		return false;
 	}

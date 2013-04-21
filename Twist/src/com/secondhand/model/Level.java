@@ -144,7 +144,7 @@ public class Level {
 		return levelHeight;
 	}
 
-	// if we dont want level to handle this we could just move it
+	// if we don't want level to handle this we could just move it
 	public void activateEffect(Effect effect) {
 		switch (effect) {
 		case RANDOM_TELEPORT:
@@ -165,6 +165,10 @@ public class Level {
 		case SCORE_UP:
 			// random number here?
 			player.increaseScore(100);
+			break;
+		case NONE:
+			break;
+		default:
 			break;
 
 		}

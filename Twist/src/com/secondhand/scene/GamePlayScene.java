@@ -98,6 +98,7 @@ public class GamePlayScene extends GameScene {
 		super.onManagedUpdate(pSecondsElapsed);
 		if(universe.isGameOver()){
 			MyDebug.d("GameOver");
+			
 			SceneManager.getInstance().setCurrentSceneEnum(AllScenes.GAME_OVER_SCENE);
 		}
 		

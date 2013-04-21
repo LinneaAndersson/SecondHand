@@ -25,6 +25,7 @@ public class PlanetTest extends TestCase{
 		assertEquals(rad, planet.getRadius());
 		assertEquals(pos.x, planet.getX());
 		assertEquals(pos.y, planet.getY());
+		assertEquals(true, planet.isEdible());
 	}
 	
 }

@@ -15,6 +15,8 @@ public class PlayerTest extends TestCase{
 		assertEquals(rad, player.getRadius());
 		assertEquals(pos.x, player.getX());
 		assertEquals(pos.y, player.getY());
+		assertEquals(true, player.isEdible());
+		
 	}
 	
 	public void testIncreaseSize() {

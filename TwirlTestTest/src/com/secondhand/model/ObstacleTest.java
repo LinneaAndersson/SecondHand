@@ -28,6 +28,7 @@ public class ObstacleTest extends TestCase{
 		//assertEquals(rad, obstacle.getArea());
 		assertEquals(pos.x, obstacle.getX());
 		assertEquals(pos.y, obstacle.getY());
+		assertEquals(false, obstacle.isEdible());
 		
 		assertEquals(0f, obstacle.getPolygon().getPolygon().get(0).x);
 		assertEquals(0f, obstacle.getPolygon().getPolygon().get(0).y);

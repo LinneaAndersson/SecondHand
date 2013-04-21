@@ -36,6 +36,8 @@ public class EnemyTest extends TestCase{
 		enemy.increaseSize(inc);
 		
 		assertEquals(rad + inc, enemy.getRadius());
+
+		assertEquals(true, enemy.isEdible());
 	}
 	
 	public void testIsBiggerThan() {

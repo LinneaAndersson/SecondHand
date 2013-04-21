@@ -75,10 +75,9 @@ public class Level {
 		testPlanets.add(new Planet(new Vector2(700, 310), 300, planetTexture));
 
 		TexturedPolygon polygon = new TexturedPolygon(200, 200,
-		PolygonUtil.getRandomPolygon(), planetTexture);
+				PolygonUtil.getRandomPolygon(), planetTexture);
 		testPlanets.add(new Obstacle(polygon));
-		
-		
+
 		testPlanets.add(new PowerUp(new Vector2(20, 500), Effect.SHIELD,
 				planetTexture));
 
@@ -144,7 +143,8 @@ public class Level {
 	public int getLevelHeight() {
 		return levelHeight;
 	}
- // if we dont want level to handle this we could just move it
+
+	// if we dont want level to handle this we could just move it
 	public void activateEffect(Effect effect) {
 		switch (effect) {
 		case RANDOM_TELEPORT:
@@ -188,15 +188,14 @@ public class Level {
 		if (entity instanceof PolygonEntity) {
 			body = createPolygonBody(physicsWorld, (Polygon) entity.getShape(),
 					BodyType.DynamicBody, fixture);
-		}else if(entity instanceof CircleEntity) {
+		} else if (entity instanceof CircleEntity) {
 			body = PhysicsFactory.createCircleBody(physicsWorld,
 					entity.getShape(), BodyType.DynamicBody, fixture);
-		} else if(entity instanceof RectangleEntity) {
+		} else if (entity instanceof RectangleEntity) {
 			body = PhysicsFactory.createBoxBody(physicsWorld,
 					entity.getShape(), BodyType.DynamicBody, fixture);
 		}
-		
-		
+
 		// we need this when doing collisions handling between entities and
 		// black holes:
 		body.setUserData(entity);
@@ -204,10 +203,20 @@ public class Level {
 
 		// setting the last boolean to false seems to prevent
 		// the erratic movement of the player. needs testing.
-		// no! the last parameter must be true, otherwise the polygon obstacles are not 
-		// able to rotate when you collide with them and that looks weird. 
-		physicsWorld.registerPhysicsConnector(new PhysicsConnector(entity
-				.getShape(), entity.getBody(), true, true));
+		
+		// no! the last parameter must be true, otherwise the polygon obstacles
+		// are not
+		// able to rotate when you collide with them and that looks weird.
+		
+		// I repeat what i said above. Created an if() so that player 
+		// doesn't have those weird movements
+		if (entity.getClass() == Player.class) {
+			physicsWorld.registerPhysicsConnector(new PhysicsConnector(entity
+					.getShape(), entity.getBody(), true, false));
+		} else {
+			physicsWorld.registerPhysicsConnector(new PhysicsConnector(entity
+					.getShape(), entity.getBody(), true, true));
+		}
 	}
 
 	private static Body createPolygonBody(final PhysicsWorld physicsWorld,
@@ -249,7 +258,7 @@ public class Level {
 
 		// the closer the touch is to the player, the more force do we need to
 		// apply.
-			
+
 		// make it a bit slower depending on how big it is.
 		movementVector = movementVector.mul(player.getRadius() * 0.001f);
 
@@ -276,7 +285,5 @@ public class Level {
 		return player.getRadius() >= playerMaxSize;
 
 	}
-	
-	
 
 }

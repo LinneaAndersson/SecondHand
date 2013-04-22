@@ -262,15 +262,24 @@ public class Level {
 		return PhysicsFactory.createPolygonBody(physicsWorld, polygon,
 				vertices, bodyType, fixtureDef);
 	}
-	
+
 	// responsible for moving the enemies
-	public void moveEnemies(Enemy enemy){
-		if(isCloseToPlayer(enemy)){
-			if(straightToPlayer(enemy)){
-			enemy.getBody().applyLinearImpulse(null, null);
+	// at first we only have them moving straight at the player,
+	// later we can add more functionality 
+	public void moveEnemies(Enemy enemy) {
+		if (isCloseToPlayer(enemy)) {
+			if (straightToPlayer(enemy)) {
+				
+				// the vector from enemy to the player
+				Vector2 movementVector = new Vector2((player.getCenterX()),
+						player.getCenterY());
+				
+				movementVector = movementVector.mul(enemy.getRadius() * 0.001f);
+				enemy.getBody().applyLinearImpulse(movementVector,
+						enemy.getBody().getWorldCenter());
 			}
 		}
-		
+
 	}
 
 	public void moveEntities(final Vector2 v) {
@@ -321,19 +330,18 @@ public class Level {
 		return player.getRadius() >= playerMaxSize;
 
 	}
-	
+
 	// checks if there is a straight line to player
 	// with nothing blocking
 	private boolean straightToPlayer(Enemy enemy) {
-		// TODO Auto-generated method stub
 		return false;
 	}
 
 	// checks if enemy is close enough to start chasing
 	// the player
-	private boolean isCloseToPlayer(Enemy enemy){
+	private boolean isCloseToPlayer(Enemy enemy) {
 		return false;
-		
+
 	}
 
 }

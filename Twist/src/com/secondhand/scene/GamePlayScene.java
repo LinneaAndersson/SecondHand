@@ -100,6 +100,7 @@ public class GamePlayScene extends GameScene {
 			MyDebug.d("GameOver");
 			setScene(AllScenes.GAME_OVER_SCENE);
 		}
+		universe.getLevel().moveEnemies();
 		
 	}
 }

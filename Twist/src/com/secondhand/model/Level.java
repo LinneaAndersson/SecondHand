@@ -99,6 +99,7 @@ public class Level {
 		testPlanets.add(new PowerUp(new Vector2(20, 500), Effect.SHIELD,
 				GlobalResources.getInstance().powerUpTexture));
 
+		testPlanets.add(new Enemy(new Vector2(500, 500), 20));
 		return testPlanets;
 	}
 
@@ -265,21 +266,31 @@ public class Level {
 
 	// responsible for moving the enemies
 	// at first we only have them moving straight at the player,
-	// later we can add more functionality 
-	public void moveEnemies(Enemy enemy) {
-		if (isCloseToPlayer(enemy)) {
-			if (straightToPlayer(enemy)) {
-				
-				// the vector from enemy to the player
-				Vector2 movementVector = new Vector2((player.getCenterX()),
-						player.getCenterY());
-				
-				movementVector = movementVector.mul(enemy.getRadius() * 0.001f);
-				enemy.getBody().applyLinearImpulse(movementVector,
-						enemy.getBody().getWorldCenter());
-				
-				
+	// later we can add more functionality
+	public void moveEnemies() {
+		Enemy enemy = null;
+		for (Entity entity : entityList) {
+			if (entity.getClass() == Enemy.class) {
+				enemy = (Enemy) entity;
+
+				if (isCloseToPlayer(enemy)) {
+					if (straightToPlayer(enemy)) {
+
+						// the vector from enemy to the player
+						Vector2 movementVector = new Vector2(
+								(enemy.getCenterX() - player.getCenterX()),
+								enemy.getCenterY() - player.getCenterY());
+
+						movementVector = movementVector
+								.mul(enemy.getRadius() * 0.001f);
+						enemy.getBody().applyLinearImpulse(movementVector,
+								enemy.getBody().getWorldCenter());
+
+					}
+
+				}
 			}
+
 		}
 
 	}
@@ -336,22 +347,19 @@ public class Level {
 	// checks if there is a straight line to player
 	// with nothing blocking
 	private boolean straightToPlayer(Enemy enemy) {
-		
-		
+
 		return true;
 	}
 
 	// checks if enemy is close enough to start chasing
 	// the player
-	private boolean isCloseToPlayer(Enemy enemy) {
-		
+	public boolean isCloseToPlayer(Enemy enemy) {
+
 		float dx = enemy.getCenterX() - player.getCenterX();
-		
+
 		float dy = enemy.getCenterY() - player.getCenterY();
-				
-		
-		
-		return dx*dx + dy*dy <= enemy.getArea()*2;
+
+		return dx * dx + dy * dy <= enemy.getArea() * 2;
 
 	}
 

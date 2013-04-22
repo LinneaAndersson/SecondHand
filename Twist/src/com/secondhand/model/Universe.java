@@ -63,8 +63,6 @@ public final class Universe {
 		}
 
 		// now we know both the bodies are entities.
-		MyDebug.d(contact.getFixtureA().getBody().getUserData().getClass()
-				+ " is the A class");
 		final Entity entityA = (Entity) contact.getFixtureA().getBody()
 				.getUserData();
 		final Entity entityB = (Entity) contact.getFixtureB().getBody()
@@ -132,7 +130,7 @@ public final class Universe {
 
 			myDestroyer(power.getShape(), true);
 
-			// TODO (in Level) now we need a way to have the power up take
+			// TODO (in Level?) now we need a way to have the power up take
 			// effect and decide a way to have the effect for a duration
 			// the effect should be visible on the players shape
 

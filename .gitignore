@@ -6,3 +6,6 @@
 *.ear
 
 .DS_Store
+
+# ignore those annoying lock files libreoffice/opeoffice creates.
+.~*

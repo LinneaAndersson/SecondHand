@@ -262,6 +262,11 @@ public class Level {
 		return PhysicsFactory.createPolygonBody(physicsWorld, polygon,
 				vertices, bodyType, fixtureDef);
 	}
+	
+	public void moveEnemies(){
+		
+		
+	}
 
 	public void moveEntities(final Vector2 v) {
 
@@ -310,6 +315,10 @@ public class Level {
 	public boolean checkPlayerBigEnough() {
 		return player.getRadius() >= playerMaxSize;
 
+	}
+	
+	public void checkPlayerCloseToEnemy(){
+		
 	}
 
 }

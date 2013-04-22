@@ -29,6 +29,8 @@ public final class MyDebug{ // NOPMD
 		return MyDebug.sDebugTag;
 	}
 
+	
+	
 	public static void setDebugTag(final String pDebugTag) {
 		MyDebug.sDebugTag = pDebugTag;
 	}
@@ -36,6 +38,7 @@ public final class MyDebug{ // NOPMD
 	public static DebugLevel getDebugLevel() {
 		return MyDebug.sDebugLevel;
 	}
+	
 
 	public static void setDebugLevel(final DebugLevel pDebugLevel) {
 		if(pDebugLevel == null) {

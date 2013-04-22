@@ -277,6 +277,8 @@ public class Level {
 				movementVector = movementVector.mul(enemy.getRadius() * 0.001f);
 				enemy.getBody().applyLinearImpulse(movementVector,
 						enemy.getBody().getWorldCenter());
+				
+				
 			}
 		}
 
@@ -334,13 +336,22 @@ public class Level {
 	// checks if there is a straight line to player
 	// with nothing blocking
 	private boolean straightToPlayer(Enemy enemy) {
-		return false;
+		
+		
+		return true;
 	}
 
 	// checks if enemy is close enough to start chasing
 	// the player
 	private boolean isCloseToPlayer(Enemy enemy) {
-		return false;
+		
+		float dx = enemy.getCenterX() - player.getCenterX();
+		
+		float dy = enemy.getCenterY() - player.getCenterY();
+				
+		
+		
+		return dx*dx + dy*dy <= enemy.getArea()*2;
 
 	}
 

@@ -99,7 +99,7 @@ public class Level {
 		testPlanets.add(new PowerUp(new Vector2(20, 500), Effect.SHIELD,
 				GlobalResources.getInstance().powerUpTexture));
 
-		//testPlanets.add(new Enemy(new Vector2(600, 600), 20));
+		testPlanets.add(new Enemy(new Vector2(800, 800), 20));
 		return testPlanets;
 	}
 
@@ -267,6 +267,8 @@ public class Level {
 	// responsible for moving the enemies
 	// at first we only have them moving straight at the player,
 	// later we can add more functionality
+	// TODO avoid larger stuff, chase smaller stuff 
+	// move in a smart way
 	public void moveEnemies() {
 		Enemy enemy = null;
 		for (Entity entity : entityList) {
@@ -280,9 +282,10 @@ public class Level {
 						Vector2 movementVector = new Vector2(
 								(player.getCenterX() - enemy.getCenterX()),
 								player.getCenterY() - enemy.getCenterY());
-
+						
+						
 						movementVector = movementVector
-								.mul(enemy.getRadius() * 0.001f);
+								.mul(0.001f);
 						enemy.getBody().applyLinearImpulse(movementVector,
 								enemy.getBody().getWorldCenter());
 

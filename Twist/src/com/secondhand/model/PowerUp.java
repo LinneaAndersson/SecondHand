@@ -32,14 +32,18 @@ public class PowerUp extends RectangleEntity {
 	}	
 	
 	public enum Effect{
-		NONE (0),
+		NONE (),
 		SPEED_UP (2),
-		SCORE_UP (0),
+		SCORE_UP (),
 		EAT_OBSTACLE (2),
-		RANDOM_TELEPORT (0),
+		RANDOM_TELEPORT (),
 		SHIELD (2);
 		
 		private int duration;
+		
+		private Effect() {
+			this.duration = 0;
+		}
 		
 		private Effect(int duration) {
 			this.duration = duration;

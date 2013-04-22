@@ -210,6 +210,7 @@ public class Level {
 			break;
 		case SCORE_UP:
 			// random number here?
+			// TODO also add animation for "+100"?
 			player.increaseScore(100);
 			break;
 		case NONE:

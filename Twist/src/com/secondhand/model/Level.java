@@ -96,7 +96,7 @@ public class Level {
 				GlobalResources.getInstance().obstacleTexture);
 		testPlanets.add(new Obstacle(polygon));
 
-		testPlanets.add(new PowerUp(new Vector2(20, 500), Effect.SHIELD,
+		testPlanets.add(new PowerUp(new Vector2(20, 500), Effect.RANDOM_TELEPORT,
 				GlobalResources.getInstance().powerUpTexture));
 
 		testPlanets.add(new Enemy(new Vector2(800, 800), 20));
@@ -270,9 +270,11 @@ public class Level {
 	// TODO avoid larger stuff, chase smaller stuff
 	// move in a smart way(no suicide)
 	public void moveEnemies() {
+		// could be worth it to place all enemies in a separate list
 		Enemy enemy = null;
 		for (Entity entity : entityList) {
 			if (entity.getClass() == Enemy.class) {
+				// in case we need some enemy specific ability
 				enemy = (Enemy) entity;
 
 				if (isCloseToPlayer(enemy)) {
@@ -290,10 +292,12 @@ public class Level {
 								enemy.getBody().getWorldCenter());
 
 					} else {
-						// somehow move the enemy around 
+						// (Avoid) somehow move the enemy around 
 						// larger entities
 					}
 
+				} else {
+					// some survival instincts here 
 				}
 			}
 

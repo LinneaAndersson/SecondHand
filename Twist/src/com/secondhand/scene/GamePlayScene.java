@@ -9,6 +9,7 @@ import android.content.Context;
 import android.view.KeyEvent;
 
 import com.secondhand.debug.MyDebug;
+import com.secondhand.model.PowerUp.Effect;
 import com.secondhand.model.Universe;
 import com.secondhand.opengl.StarsBackground;
 
@@ -19,6 +20,8 @@ public class GamePlayScene extends GameScene {
 	private IShape player;
 	
 	private final Universe universe = Universe.getInstance();
+	
+	private float powerUpCounter = 0;
 	
 	public GamePlayScene(final Engine engine, final Context context) {
 		super(engine, context);
@@ -104,6 +107,20 @@ public class GamePlayScene extends GameScene {
 			resetCamera();
 			setScene(AllScenes.GAME_OVER_SCENE);
 		}
-		universe.getLevel().moveEnemies();		
+		universe.getLevel().moveEnemies();
+		
+		// PowerUp timer
+		if (universe.getLevel().getPlayer().getEffect() != Effect.NONE) {
+			if (powerUpCounter <= 0)
+				powerUpCounter = 2; // TODO Should be accessed from current PowerUp
+			powerUpCounter -= pSecondsElapsed;
+			if (powerUpCounter <= 0) {
+				universe.getLevel().getPlayer().setEffect(Effect.NONE);
+				universe.getLevel().getPlayer().getCircle().setColor(1, 1, 1);
+			} 
+			else {
+				universe.getLevel().getPlayer().getCircle().setColor(1f, 0, 0);
+			}
+		}
 	}
 }

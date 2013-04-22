@@ -97,7 +97,8 @@ public class Level {
 				GlobalResources.getInstance().obstacleTexture);
 		testPlanets.add(new Obstacle(polygon));
 
-		testPlanets.add(new PowerUp(new Vector2(20, 500), Effect.RANDOM_TELEPORT,
+		testPlanets.add(new PowerUp(new Vector2(20, 500),
+				Effect.RANDOM_TELEPORT,
 				GlobalResources.getInstance().powerUpTexture));
 
 		testPlanets.add(new Enemy(new Vector2(800, 800), 20));
@@ -216,8 +217,8 @@ public class Level {
 
 		// obstacles are polygons and not circles
 		if (entity instanceof PolygonEntity) {
-			body = MyPhysicsFactory.createPolygonBody(physicsWorld, (Polygon) entity.getShape(),
-					BodyType.DynamicBody, fixture);
+			body = MyPhysicsFactory.createPolygonBody(physicsWorld,
+					(Polygon) entity.getShape(), BodyType.DynamicBody, fixture);
 		} else if (entity instanceof CircleEntity) {
 			body = PhysicsFactory.createCircleBody(physicsWorld,
 					entity.getShape(), BodyType.DynamicBody, fixture);
@@ -249,7 +250,6 @@ public class Level {
 		}
 	}
 
-
 	// responsible for moving the enemies
 	// at first we only have them moving straight at the player,
 	// later we can add more functionality
@@ -257,36 +257,13 @@ public class Level {
 	// move in a smart way(no suicide)
 	public void moveEnemies() {
 		// could be worth it to place all enemies in a separate list
-		Enemy enemy = null;
+		
 		for (Entity entity : entityList) {
 			if (entity.getClass() == Enemy.class) {
 				// in case we need some enemy specific ability
-				enemy = (Enemy) entity;
+				((Enemy) entity).moveEnemies(player);
 
-				if (isCloseToPlayer(enemy)) {
-					if (straightToPlayer(enemy)) {
-
-						// the vector from enemy to the player
-						Vector2 movementVector = new Vector2(
-								(player.getCenterX() - enemy.getCenterX()),
-								player.getCenterY() - enemy.getCenterY());
-
-						// need to slow them down, they are to dam fast
-						// otherwise
-						movementVector = movementVector.mul(0.0001f);
-						enemy.getBody().applyLinearImpulse(movementVector,
-								enemy.getBody().getWorldCenter());
-
-					} else {
-						// (Avoid) somehow move the enemy around 
-						// larger entities
-					}
-
-				} else {
-					// some survival instincts here 
-				}
 			}
-
 		}
 
 	}
@@ -339,28 +316,4 @@ public class Level {
 		return player.getRadius() >= playerMaxSize;
 
 	}
-
-	// checks if there is a straight line to player
-	// with nothing blocking
-
-	// if we only want them to chase the player then
-	// this isn't really necessary unless you increase
-	// the search area.
-	private boolean straightToPlayer(Enemy enemy) {
-
-		return true;
-	}
-
-	// checks if enemy is close enough to start chasing
-	// the player
-	public boolean isCloseToPlayer(Enemy enemy) {
-
-		float dx = enemy.getCenterX() - player.getCenterX();
-
-		float dy = enemy.getCenterY() - player.getCenterY();
-
-		return dx * dx + dy * dy <= enemy.getArea() * 100;
-
-	}
-
 }

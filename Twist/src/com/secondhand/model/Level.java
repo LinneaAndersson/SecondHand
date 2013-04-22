@@ -43,10 +43,10 @@ public class Level {
 	// default maxsize?
 	public Level() {
 		this(100);
-		
+
 		// the only time we should call this constructor
-		// is when starting a completely new game 
-		
+		// is when starting a completely new game
+
 		levelNumber = 0;
 	}
 
@@ -56,9 +56,9 @@ public class Level {
 
 	}
 
-	
 	public Level(final int maxSize, final PhysicsWorld pW, final Player p,
-			final List<Entity> otherEntities, final int levelWidth, final int levelHeight) {
+			final List<Entity> otherEntities, final int levelWidth,
+			final int levelHeight) {
 		levelNumber += 1;
 		this.playerMaxSize = maxSize;
 		this.physicsWorld = pW;
@@ -68,11 +68,11 @@ public class Level {
 		this.levelHeight = levelHeight;
 		registerEntities(); // NOPMD
 	}
-	
+
 	// this constructor could be useful when creating
 	// new levels and want to keep player and physics
 	// from the last level
-	// Preferable to at least change the entity list
+	// Preferable to at least change the entity list?
 	public Level(final Level level) {
 		this(level.getPlayerMaxSize(), level.getPhysicsWorld(), level
 				.getPlayer(), level.getEntityList(), level.getLevelWidth(),
@@ -91,9 +91,9 @@ public class Level {
 		testPlanets.add(new Planet(new Vector2(315, 115), 15, planetTexture));
 		testPlanets.add(new Planet(new Vector2(700, 310), 300, planetTexture));
 
-		
 		final TexturedPolygon polygon = new TexturedPolygon(200, 200,
-				PolygonUtil.getRandomPolygon(),  GlobalResources.getInstance().obstacleTexture);
+				PolygonUtil.getRandomPolygon(),
+				GlobalResources.getInstance().obstacleTexture);
 		testPlanets.add(new Obstacle(polygon));
 
 		testPlanets.add(new PowerUp(new Vector2(20, 500), Effect.SHIELD,
@@ -167,7 +167,7 @@ public class Level {
 	}
 
 	// if we don't want level to handle this we could just move it
-	// TODO PowerUP is high priority
+	// TODO PowerUP is high priority so we somehow have to fix it
 	public void activateEffect(final Effect effect) {
 		switch (effect) {
 		case RANDOM_TELEPORT:
@@ -208,7 +208,8 @@ public class Level {
 		// bodies(rectangular) bodies as well
 		// we could store some enum value in Entity for this purpose.
 
-		final FixtureDef fixture = PhysicsFactory.createFixtureDef(1, 0.5f, 0.5f);
+		final FixtureDef fixture = PhysicsFactory.createFixtureDef(1, 0.5f,
+				0.5f);
 		Body body = null;
 
 		// obstacles are polygons and not circles
@@ -229,11 +230,11 @@ public class Level {
 		entity.setBody(body);
 
 		// setting the last boolean to false seems to prevent
-		// the erratic movement of the player. needs testing.
+		// the erratic movement of the player.
 
 		// no! the last parameter must be true, otherwise the polygon obstacles
-		// are not
-		// able to rotate when you collide with them and that looks weird.
+		// are not able to rotate when you collide with them and that looks
+		// weird.
 
 		// I repeat what i said above. Created an if() so that player
 		// doesn't have those weird movements
@@ -296,12 +297,10 @@ public class Level {
 		 * This runs rather smoothly. Try it!
 		 */
 		final float maxSpeed = 20;
-		final Vector2 testVector = new Vector2(player.getBody().getLinearVelocity());
-		if (testVector.add(movementVector).len() > maxSpeed) // Check if new
-																// velocity
-																// doesn't
-																// exceed
-																// maxSpeed!
+		final Vector2 testVector = new Vector2(player.getBody()
+				.getLinearVelocity());
+		if (testVector.add(movementVector).len() > maxSpeed)
+			// Check if new velocity doesn't exceed maxSpeed!
 			return;
 
 		player.getBody().applyLinearImpulse(movementVector,

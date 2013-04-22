@@ -24,7 +24,8 @@ public final class Universe {
 
 	private Engine engine;
 
-	// flag forwhen the game is over
+	// flag for when the game is over
+	// check by update by gamePlayScene
 	private boolean gameOver;
 
 	private static Universe instance;
@@ -93,7 +94,8 @@ public final class Universe {
 				planet.getShape().detachSelf();
 
 				// increase the size of the black hole.
-				// seems like there is something wrong here. after eating, the
+				// TODO seems like there is something wrong here. after eating,
+				// the
 				// contact area extends outside of the shape. it also seems like
 				// the screen area you can touch for movement decreases(could
 				// just be me)
@@ -111,7 +113,7 @@ public final class Universe {
 
 				myDestroyer(planet.getShape(), true);
 			} else {
-				//gameOver();
+				// gameOver();
 			}
 		} else if (entityA instanceof Player && entityB instanceof PowerUp
 				|| entityB instanceof Player && entityA instanceof PowerUp) {
@@ -130,8 +132,8 @@ public final class Universe {
 
 			myDestroyer(power.getShape(), true);
 
-			// now we need a way to have the power up take effect and decide
-			// a way to have the effect for a duration
+			// TODO (in Level) now we need a way to have the power up take
+			// effect and decide a way to have the effect for a duration
 			// the effect should be visible on the players shape
 
 			currentLevel.activateEffect(power.getEffect());
@@ -147,7 +149,8 @@ public final class Universe {
 	public boolean isGameOver() {
 		return gameOver;
 	}
-
+	
+	// perhaps not needed if we only set gameover
 	private void gameOver() {
 		gameOver = true;
 		// gameOver flag that gameplayScene checks each update
@@ -191,7 +194,7 @@ public final class Universe {
 										.getBody());
 							}
 							mySprite.detachSelf();
-							System.gc(); //NOPMD
+							System.gc(); // NOPMD
 							killingInProcess = false;
 							MyDebug.i(physicsConnector.getBody()
 									+ " destruction complete");
@@ -211,7 +214,7 @@ public final class Universe {
 	}
 
 	// TODO how to decide what to have on each successive level?
-	
+
 	// If after gameOver a new game should start, this method
 	// could be called. Also the case where the player starts
 	// a new game when there already is one saved could be

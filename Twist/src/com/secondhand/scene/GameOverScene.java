@@ -15,6 +15,7 @@ import org.anddev.andengine.util.HorizontalAlign;
 import android.annotation.SuppressLint;
 import android.content.Context;
 
+import com.secondhand.debug.MyDebug;
 import com.secondhand.model.Player;
 import com.secondhand.model.Universe;
 import com.secondhand.twirl.GlobalResources;
@@ -55,16 +56,17 @@ public class GameOverScene extends GameMenuScene implements
 		try {
 			mLine = reader.readLine();
 			while (!mLine.isEmpty()) {
-				//for (int i = 1; i < 3; i++) {
-					mLine = reader.readLine();
-				//}
 				
+					mLine = reader.readLine().trim();
+					MyDebug.d(mLine);
 				if(player.getScore()>Integer.parseInt(mLine)){
 					textGameOver = new Text(100, 60, mFont, LocalizationStrings
 							.getInstance().getLocalizedString("menu_game_over"),
 							HorizontalAlign.CENTER);
 					break;
-				} else if(( reader.readLine().isEmpty())){
+				} 
+				mLine=reader.readLine();
+				if(mLine.isEmpty()){
 					textGameOver = new Text(100, 60, mFont, LocalizationStrings
 							.getInstance().getLocalizedString("congratulations"),
 							HorizontalAlign.CENTER);

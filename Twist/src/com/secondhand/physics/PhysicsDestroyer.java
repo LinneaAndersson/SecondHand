@@ -13,8 +13,15 @@ public final class PhysicsDestroyer {
 	// true when a body is being destroyed
 	private boolean killingInProcess;
 	
-	public PhysicsDestroyer() {
+	private final Engine engine;
+	private final PhysicsWorld physicsWorld;
+	private final Boolean bodyToo;
+	
+	public PhysicsDestroyer(final Engine engine, final PhysicsWorld physicsWorld) {
 		killingInProcess = false;
+		this.engine = engine;
+		this.physicsWorld = physicsWorld;
+		bodyToo = true;
 	}
 	
 	/*
@@ -26,8 +33,7 @@ public final class PhysicsDestroyer {
 	 * know) and it seems to work well. I thought i would get null value at the
 	 * third debug but it seems that the body still exist in the connector?
 	 */
-	public void destroy(final IShape mySprite, final Boolean bodyToo, final PhysicsWorld physicsWorld,
-			final Engine engine) {
+	public void destroy(final IShape mySprite) {
 		final PhysicsWorld mPhysicsWorld = physicsWorld;
 
 		if (!killingInProcess) {

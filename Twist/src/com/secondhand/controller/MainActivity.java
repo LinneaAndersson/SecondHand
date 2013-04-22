@@ -58,9 +58,11 @@ public class MainActivity extends BaseGameActivity {
 		
 	    LocalizationStrings.getInstance().initialize(this);
 	
+	    Universe.getInstance().initialize(engine);
+	    
+	    
 	    SceneManager.getInstance().initialize(engine, this);
 	    
-	    Universe.getInstance().setEngine(engine);
 	    
 	     return engine;	
 	}

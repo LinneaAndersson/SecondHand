@@ -1,11 +1,9 @@
 package com.secondhand.model;
 
 import org.anddev.andengine.engine.Engine;
-import org.anddev.andengine.extension.physics.box2d.util.constants.PhysicsConstants;
 
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Contact;
-import com.badlogic.gdx.physics.box2d.Shape;
 import com.secondhand.debug.MyDebug;
 import com.secondhand.physics.PhysicsDestroyer;
 import com.secondhand.twirl.GlobalResources;
@@ -17,7 +15,7 @@ import com.secondhand.twirl.GlobalResources;
 public final class Universe {
 	private Level currentLevel;
 
-	private final PhysicsDestroyer physicsDestroyer;
+	private PhysicsDestroyer physicsDestroyer;
 
 	private Engine engine;
 
@@ -27,11 +25,18 @@ public final class Universe {
 
 	private static Universe instance;
 
-	// perhaps create a tutorialLevel?
-	private Universe() {
+	private Universe() {}
+	
+	public void initialize(final Engine engine) {
+		this.engine = engine;
+		
 		currentLevel = new Level();
-		physicsDestroyer = new PhysicsDestroyer();
+		physicsDestroyer = new PhysicsDestroyer(this.engine, currentLevel.getPhysicsWorld());
 		gameOver = false;
+	}
+	
+	public PhysicsDestroyer getPhysicsDestroyer() {
+		return this.physicsDestroyer;
 	}
 
 	public static Universe getInstance() {
@@ -40,12 +45,6 @@ public final class Universe {
 		}
 		return instance;
 	}
-
-	// needs a better way to reach the engine than setting it
-	public void setEngine(final Engine engine) {
-		this.engine = engine;
-	}
-
 	
 	private void handlePlanetBlackHoleCollision(final Entity entityA, final Entity entityB) {
 
@@ -66,28 +65,7 @@ public final class Universe {
 
 			GlobalResources.getInstance().growSound.play();
 
-			// Detach the planet from AndEngine
-			planet.getShape().detachSelf();
-
-			// increase the size of the black hole.
-			// TODO seems like there is something wrong here. after eating,
-			// the
-			// contact area extends outside of the shape. it also seems like
-			// the screen area you can touch for movement decreases(could
-			// just be me)
-			final Shape blackHoleShape = blackHole.getBody()
-					.getFixtureList().get(0).getShape();
-			// perhaps we could divide radius by 2?
-			// otherwise i believe it would grow to fast
-			blackHole.increaseSize(planet.getRadius());
-			// see this for setting the correct radius:
-			// http://www.emanueleferonato.com/2009/12/12/scaling-objects-with-box2d/
-			blackHoleShape.setRadius(blackHole.getRadius()
-					/ PhysicsConstants.PIXEL_TO_METER_RATIO_DEFAULT);
-
-			MyDebug.d("black hole should now eat planet.");
-
-			physicsDestroyer.destroy(planet.getShape(), true, this.currentLevel.getPhysicsWorld(), this.engine);
+			blackHole.eatEntity(planet);	
 		}
 
 	}
@@ -107,7 +85,7 @@ public final class Universe {
 		power.getShape().detachSelf();
 		MyDebug.d("Now the powerup should dissappear");
 
-		physicsDestroyer.destroy(power.getShape(), true, this.currentLevel.getPhysicsWorld(), this.engine);
+		physicsDestroyer.destroy(power.getShape());
 
 		// TODO (in Level?) now we need a way to have the power up take
 		// effect and decide a way to have the effect for a duration

@@ -1,12 +1,14 @@
 package com.secondhand.model;
 
+import org.anddev.andengine.extension.physics.box2d.PhysicsWorld;
+
 import com.badlogic.gdx.math.Vector2;
 import com.secondhand.debug.MyDebug;
 
 public class Enemy extends BlackHole {
 
-	public Enemy(final Vector2 vector, final float radius) {
-		super(vector, radius);
+	public Enemy(final Vector2 vector, final float radius, final PhysicsWorld physicsWorld) {
+		super(vector, radius, physicsWorld, true);
 	}
 
 	// will be quite easy to change player to a list instead

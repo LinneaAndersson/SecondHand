@@ -51,12 +51,14 @@ public class Level {
 	}
 
 	public Level(final int maxSize) {
-		this(maxSize, new PhysicsWorld(new Vector2(), true), new Player(
-				new Vector2(50, 50), 20), createTestPlanets(), 2000, 2000);
+		
+		final PhysicsWorld pW  =new PhysicsWorld(new Vector2(), true);
+		
+		init(maxSize, pW, new Player(new Vector2(50, 50), 20, pW), createTestPlanets(pW), 2000, 2000); //NOPMD
 
 	}
-
-	public Level(final int maxSize, final PhysicsWorld pW, final Player p,
+	
+	public void init(final int maxSize, final PhysicsWorld pW, final Player p,
 			final List<Entity> otherEntities, final int levelWidth,
 			final int levelHeight) {
 		enemyList = new ArrayList<Enemy>();
@@ -67,8 +69,14 @@ public class Level {
 		entityList = otherEntities;
 		this.levelWidth = levelWidth;
 		this.levelHeight = levelHeight;
-		enemyList.add(new Enemy(new Vector2(800, 800), 30)); // tmp
+		enemyList.add(new Enemy(new Vector2(800, 800), 30, physicsWorld)); // tmp
 		registerEntities(); // NOPMD
+	}
+
+	public Level(final int maxSize, final PhysicsWorld pW, final Player p,
+			final List<Entity> otherEntities, final int levelWidth,
+			final int levelHeight) {
+		init(maxSize, pW, p, otherEntities, levelWidth, levelHeight); // NOPMD
 	}
 
 	// this constructor could be useful when creating
@@ -81,26 +89,26 @@ public class Level {
 				level.getLevelHeight());
 	}
 
-	public static List<Entity> createTestPlanets() {
+	public static List<Entity> createTestPlanets(final PhysicsWorld physicsWorld) {
 		final List<Entity> testPlanets = new ArrayList<Entity>();
 
 		// TODO: Understand why textures are not loaded properly
 		final TextureRegion planetTexture = GlobalResources.getInstance().planetTexture;
 
-		testPlanets.add(new Planet(new Vector2(130, 130), 30, planetTexture));
+		testPlanets.add(new Planet(new Vector2(130, 130), 30, planetTexture, physicsWorld));
 
 		// add small planet, add a huge planet.
-		testPlanets.add(new Planet(new Vector2(315, 115), 15, planetTexture));
-		testPlanets.add(new Planet(new Vector2(700, 310), 300, planetTexture));
+		testPlanets.add(new Planet(new Vector2(315, 115), 15, planetTexture, physicsWorld));
+		testPlanets.add(new Planet(new Vector2(700, 310), 300, planetTexture, physicsWorld));
 
 		final TexturedPolygon polygon = new TexturedPolygon(200, 200,
 				PolygonUtil.getRandomPolygon(),
 				GlobalResources.getInstance().obstacleTexture);
-		testPlanets.add(new Obstacle(polygon));
+		testPlanets.add(new Obstacle(polygon, physicsWorld));
 
 		testPlanets.add(new PowerUp(new Vector2(20, 500),
 				Effect.RANDOM_TELEPORT,
-				GlobalResources.getInstance().powerUpTexture));
+				GlobalResources.getInstance().powerUpTexture, physicsWorld));
 
 		return testPlanets;
 	}
@@ -122,14 +130,9 @@ public class Level {
 	}
 
 	public final void registerEntities() {
-		registerEntity(player);
 
 		for (Enemy enemy : enemyList) {
 			entityList.add(enemy);
-		}
-		// register all the other entities except for the player.
-		for (Entity e : entityList) {
-			registerEntity(e);
 		}
 
 		worldBounds = new Shape[4];
@@ -160,9 +163,9 @@ public class Level {
 		return player;
 	}
 
-	public Shape[] getWorldBounds() {
+	/*public Shape[] getWorldBounds() {
 		return this.worldBounds;
-	}
+	}*/
 
 	public int getLevelWidth() {
 		return levelWidth;
@@ -203,56 +206,6 @@ public class Level {
 		}
 
 	}
-
-	public void registerEntity(final Entity entity) {
-
-		final PhysicsHandler pH = new PhysicsHandler(entity.getShape());
-
-		entity.getShape().registerUpdateHandler(pH);
-
-		// TODO: should probably allow the possibility to create box
-		// bodies(rectangular) bodies as well
-		// we could store some enum value in Entity for this purpose.
-
-		final FixtureDef fixture = PhysicsFactory.createFixtureDef(1, 0.5f,
-				0.5f);
-		Body body = null;
-
-		// obstacles are polygons and not circles
-		if (entity instanceof PolygonEntity) {
-			body = MyPhysicsFactory.createPolygonBody(physicsWorld,
-					(Polygon) entity.getShape(), BodyType.DynamicBody, fixture);
-		} else if (entity instanceof CircleEntity) {
-			body = PhysicsFactory.createCircleBody(physicsWorld,
-					entity.getShape(), BodyType.DynamicBody, fixture);
-		} else if (entity instanceof RectangleEntity) {
-			body = PhysicsFactory.createBoxBody(physicsWorld,
-					entity.getShape(), BodyType.DynamicBody, fixture);
-		}
-
-		// we need this when doing collisions handling between entities and
-		// black holes:
-		body.setUserData(entity);
-		entity.setBody(body);
-
-		// setting the last boolean to false seems to prevent
-		// the erratic movement of the player.
-
-		// no! the last parameter must be true, otherwise the polygon obstacles
-		// are not able to rotate when you collide with them and that looks
-		// weird.
-
-		// I repeat what i said above. Created an if() so that player
-		// doesn't have those weird movements
-		if (entity.getClass() == Player.class) {
-			physicsWorld.registerPhysicsConnector(new PhysicsConnector(entity
-					.getShape(), entity.getBody(), true, false));
-		} else {
-			physicsWorld.registerPhysicsConnector(new PhysicsConnector(entity
-					.getShape(), entity.getBody(), true, true));
-		}
-	}
-
 	public void moveEnemies() {
 		// enemies are in both lists because we want them
 		// for easy access and for the posibility of attacking

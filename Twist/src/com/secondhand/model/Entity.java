@@ -1,20 +1,44 @@
 package com.secondhand.model;
 
+import org.anddev.andengine.engine.handler.physics.PhysicsHandler;
 import org.anddev.andengine.entity.shape.IShape;
 import org.anddev.andengine.entity.shape.Shape;
+import org.anddev.andengine.extension.physics.box2d.PhysicsConnector;
+import org.anddev.andengine.extension.physics.box2d.PhysicsFactory;
+import org.anddev.andengine.extension.physics.box2d.PhysicsWorld;
 
 import com.badlogic.gdx.physics.box2d.Body;
+import com.badlogic.gdx.physics.box2d.FixtureDef;
+import com.badlogic.gdx.physics.box2d.BodyDef.BodyType;
+import com.secondhand.opengl.Polygon;
+import com.secondhand.physics.MyPhysicsFactory;
 
 public abstract class Entity {
 
-	private Body body;
+	private final Body body;
 	private final IShape shape;
 	private final boolean isEdible;
 	private String assetName;
 	
-	public Entity(final Shape shape, final boolean isEdible) {
+	// TODO: refactor out into a constructor paramater maybe?
+	public final static FixtureDef FIXTURE = PhysicsFactory.createFixtureDef(1, 0.5f,
+			0.5f);
+	
+	public Entity(final Shape shape, final boolean isEdible, final Body body,  final boolean updateRotation,
+			final PhysicsWorld physicsWorld) {
+		this.body = body;
 		this.shape = shape;
 		this.isEdible = isEdible;
+		
+		final PhysicsHandler pH = new PhysicsHandler(this.shape);
+
+		getShape().registerUpdateHandler(pH);
+
+		// we need this when doing collisions handling between entities and
+		// black holes:
+		body.setUserData(this);
+			physicsWorld.registerPhysicsConnector(new PhysicsConnector(this.shape, this.body, true, updateRotation));
+			
 	}
 	
 	public float getX() {
@@ -25,11 +49,6 @@ public abstract class Entity {
 		return shape.getY();
 	}
 
-	public void setBody(final Body body){
-		this.body = body;
-	}
-
-	
 	public Body getBody() {
 		return body;
 	}

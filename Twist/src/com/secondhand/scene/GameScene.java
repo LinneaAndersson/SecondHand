@@ -54,7 +54,7 @@ public abstract class GameScene extends Scene implements IGameScene {
 		return this;
 	}
 	
-	public void setScene(AllScenes sceneEnum){
+	public void setScene(final AllScenes sceneEnum){
 		SceneManager.getInstance().setCurrentSceneEnum(sceneEnum);
 	}
 }

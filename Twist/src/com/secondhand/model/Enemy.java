@@ -19,18 +19,18 @@ public class Enemy extends BlackHole {
 	// if we only want them to chase the player then
 	// this isn't really necessary unless you increase
 	// the search area.
-	private boolean straightToEntity(Entity entity) {
+	private boolean straightToEntity(final Entity entity) {
 
 		return true;
 	}
 
 	// checks if enemy is close enough to start chasing
 	// the player
-	public boolean isCloseToEntity(Entity entity) {
+	public boolean isCloseToEntity(final Entity entity) {
 
-		float dx = entity.getCenterX() - this.getCenterX();
+		final float dx = entity.getCenterX() - this.getCenterX();
 
-		float dy = entity.getCenterY() - this.getCenterY();
+		final float dy = entity.getCenterY() - this.getCenterY();
 
 		return dx * dx + dy * dy <= this.getArea() * 100;
 
@@ -41,7 +41,7 @@ public class Enemy extends BlackHole {
 	// later we can add more functionality
 	// TODO avoid larger stuff, chase smaller stuff
 	// move in a smart way(no suicide)
-	public void moveEnemy(Entity entity) {
+	public void moveEnemy(final Entity entity) {
 
 		if (isCloseToEntity(entity)) {
 			if (straightToEntity(entity) && canEat(entity)) {

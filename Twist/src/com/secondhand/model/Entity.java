@@ -9,9 +9,6 @@ import org.anddev.andengine.extension.physics.box2d.PhysicsWorld;
 
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
-import com.badlogic.gdx.physics.box2d.BodyDef.BodyType;
-import com.secondhand.opengl.Polygon;
-import com.secondhand.physics.MyPhysicsFactory;
 
 public abstract class Entity {
 
@@ -63,10 +60,6 @@ public abstract class Entity {
 	
 	public String getImageName(){
 		return assetName;
-	}
-	
-	public void setImageName(String assetName){
-		this.assetName=assetName;
 	}
 	
 	// TODO: we should probably cache the result of this computation, because it can 

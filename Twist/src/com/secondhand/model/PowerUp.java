@@ -20,7 +20,6 @@ public class PowerUp extends RectangleEntity {
 	public PowerUp(final Effect effect, final BaseRectangle rectangle, final PhysicsWorld physicsWorld) {
 		super(rectangle, true, physicsWorld, false);
 		this.effect = effect;
-		this.setAssetName();
 	}
 	
 	public PowerUp (final Vector2 position, final Effect effect, final TextureRegion texture, final PhysicsWorld physicsWorld) {
@@ -31,14 +30,6 @@ public class PowerUp extends RectangleEntity {
 	public PowerUp (final Vector2 position, final Effect effect, final PhysicsWorld physicsWorld) {
 		this(effect, new Rectangle(position.x, position.y, WIDTH, HEIGHT), physicsWorld);
 	}	
-	
-	public final void setAssetName(){
-		//switch(effect){
-		//case SPEED_UP:
-			setImageName("Speed_up.jpg");
-			//break;
-		//}
-	}
 	
 	public enum Effect{
 		NONE, SPEED_UP, SCORE_UP, EAT_OBSTACLE, RANDOM_TELEPORT, SHIELD

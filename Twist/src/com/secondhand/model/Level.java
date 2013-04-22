@@ -206,10 +206,11 @@ public class Level {
 		// if we can come up with  a better way
 		for (Enemy enemy : enemyList) {
 			enemy.moveEnemy(player);
-			for (Entity entity : entityList)
+			for (Entity entity : entityList) {
 				if (!(entity instanceof Enemy)) {
 					enemy.moveEnemy(entity);
 				}
+			}
 		}
 
 	}

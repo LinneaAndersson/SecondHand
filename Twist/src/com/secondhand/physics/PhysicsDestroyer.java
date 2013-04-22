@@ -33,9 +33,11 @@ public final class PhysicsDestroyer {
 	 * know) and it seems to work well. I thought i would get null value at the
 	 * third debug but it seems that the body still exist in the connector?
 	 */
-	public void destroy(final IShape mySprite) {
+	public void destroy(final IShape mySprite, 
+			final boolean detachSprite) {
 		final PhysicsWorld mPhysicsWorld = physicsWorld;
 
+		
 		if (!killingInProcess) {
 			MyDebug.i("commence destruction");
 			killingInProcess = true;
@@ -59,7 +61,10 @@ public final class PhysicsDestroyer {
 								mPhysicsWorld.destroyBody(physicsConnector
 										.getBody());
 							}
-							mySprite.detachSelf();
+							
+							if(detachSprite) {
+								mySprite.detachSelf();
+							}
 							System.gc(); // NOPMD
 							killingInProcess = false;
 							MyDebug.i(physicsConnector.getBody()
@@ -72,7 +77,8 @@ public final class PhysicsDestroyer {
 				public void reset() {
 				}
 			});
-		}
+		} else
+			MyDebug.d("killing already in process, ignored!");
 	}
 
 }

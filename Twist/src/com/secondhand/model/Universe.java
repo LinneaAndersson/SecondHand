@@ -85,7 +85,7 @@ public final class Universe {
 		power.getShape().detachSelf();
 		MyDebug.d("Now the powerup should dissappear");
 
-		physicsDestroyer.destroy(power.getShape());
+		physicsDestroyer.destroy(power.getShape(), true);
 
 		// TODO (in Level?) now we need a way to have the power up take
 		// effect and decide a way to have the effect for a duration

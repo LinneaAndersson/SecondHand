@@ -16,6 +16,9 @@ public abstract class Entity {
 	private final IShape shape;
 	private final boolean isEdible;
 	private String assetName;
+	private PhysicsWorld physicsWorld;
+	
+	protected final boolean updateRotation;
 	
 	// TODO: refactor out into a constructor paramater maybe?
 	public final static FixtureDef FIXTURE = PhysicsFactory.createFixtureDef(1, 0.5f,
@@ -26,16 +29,23 @@ public abstract class Entity {
 		this.body = body;
 		this.shape = shape;
 		this.isEdible = isEdible;
+		this.updateRotation = updateRotation;
+		this.physicsWorld = physicsWorld;
 		
+		registerBody(body); //NOPMD
+	}
+	
+	protected final void registerBody(Body body) {
 		final PhysicsHandler pH = new PhysicsHandler(this.shape);
 
+		
+		
 		getShape().registerUpdateHandler(pH);
 
 		// we need this when doing collisions handling between entities and
 		// black holes:
 		body.setUserData(this);
-			physicsWorld.registerPhysicsConnector(new PhysicsConnector(this.shape, this.body, true, updateRotation));
-			
+		physicsWorld.registerPhysicsConnector(new PhysicsConnector(this.shape, this.body, true, updateRotation));
 	}
 	
 	public float getX() {

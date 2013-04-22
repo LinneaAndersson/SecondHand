@@ -51,6 +51,8 @@ public class Enemy extends BlackHole {
 
 				// need to slow them down, they are to dam fast
 				// otherwise
+				// if(body is moving) we need mul(0.001)
+				// for better mobility
 				movementVector = movementVector.mul(0.0001f);
 				this.getBody().applyLinearImpulse(movementVector,
 						this.getBody().getWorldCenter());

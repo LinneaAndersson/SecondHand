@@ -125,7 +125,7 @@ public class Level {
 		registerEntity(player);
 
 		for (Enemy enemy : enemyList) {
-			registerEntity(enemy);
+			entityList.add(enemy);
 		}
 		// register all the other entities except for the player.
 		for (Entity e : entityList) {
@@ -254,13 +254,16 @@ public class Level {
 	}
 
 	public void moveEnemies() {
-		// could be worth it to place all enemies in a separate list
-		// we NEED to, to ..... otherwise
+		// enemies are in both lists because we want them
+		// for easy access and for the posibility of attacking
+		// each other. it would be preferable to change it later
+		// if we can come up with  a better way
 		for (Enemy enemy : enemyList) {
 			enemy.moveEnemy(player);
 			for (Entity entity : entityList)
-				enemy.moveEnemy(entity);
-
+				if (!(entity instanceof Enemy)) {
+					enemy.moveEnemy(entity);
+				}
 		}
 
 	}

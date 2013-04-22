@@ -1,5 +1,6 @@
 package com.secondhand.model;
 
+import org.anddev.andengine.extension.physics.box2d.PhysicsWorld;
 import org.anddev.andengine.opengl.buffer.BufferObjectManager;
 
 import com.badlogic.gdx.math.Vector2;
@@ -17,10 +18,13 @@ public class PlanetTest extends TestCase{
 	
 	public void testConstructor() {
 
+		final PhysicsWorld pw  =new PhysicsWorld(new Vector2(), true);
+		
+		
 		Vector2 pos = new Vector2(2f, 4f);
 		float rad = 3.2f;
 		
-		Planet planet = new Planet(pos, rad);
+		Planet planet = new Planet(pos, rad, pw);
 		
 		assertEquals(rad, planet.getRadius());
 		assertEquals(pos.x, planet.getX());

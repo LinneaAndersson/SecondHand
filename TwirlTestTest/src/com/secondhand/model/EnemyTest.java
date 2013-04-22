@@ -1,5 +1,6 @@
 package com.secondhand.model;
 
+import org.anddev.andengine.extension.physics.box2d.PhysicsWorld;
 import org.anddev.andengine.opengl.buffer.BufferObjectManager;
 
 import com.badlogic.gdx.math.Vector2;
@@ -17,10 +18,12 @@ public class EnemyTest extends TestCase{
 	
 	public void testConstructor() {
 
+		final PhysicsWorld pw  =new PhysicsWorld(new Vector2(), true);
+		
 		Vector2 pos = new Vector2(2f, 4f);
 		float rad = 3.2f;
 		
-		Enemy enemy = new Enemy(pos, rad);
+		Enemy enemy = new Enemy(pos, rad, pw);
 		
 		assertEquals(rad, enemy.getRadius());
 		assertEquals(pos.x, enemy.getX());
@@ -28,11 +31,15 @@ public class EnemyTest extends TestCase{
 	}
 	
 	public void testIncreaseSize() {
+		
+		final PhysicsWorld pw  =new PhysicsWorld(new Vector2(), true);
+		
+		
 		Vector2 pos = new Vector2(2f, 4f);
 		float rad = 3.2f;
 		float inc = 0.3f;
 		
-		Enemy enemy = new Enemy(pos, rad);
+		Enemy enemy = new Enemy(pos, rad, pw);
 		enemy.increaseSize(inc);
 		
 		assertEquals(rad + inc, enemy.getRadius());
@@ -41,14 +48,19 @@ public class EnemyTest extends TestCase{
 	}
 	
 	public void testIsBiggerThan() {
+		
+		
+		final PhysicsWorld pw  =new PhysicsWorld(new Vector2(), true);
+		
+		
 		Vector2 pos = new Vector2(2f, 4f);
 		float rad = 3.2f;
 		
-		Enemy enemy = new Enemy(pos, rad);
+		Enemy enemy = new Enemy(pos, rad, pw);
 	
-		Player other = new Player(pos, rad-1);
+		Player other = new Player(pos, rad-1, pw);
 		assertTrue(enemy.canEat(other));
-		other = new Player(pos, rad);
+		other = new Player(pos, rad, pw);
 		assertFalse(enemy.canEat(other));
 	}
 	

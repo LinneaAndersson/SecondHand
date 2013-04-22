@@ -64,7 +64,7 @@ public class Level {
 		this.levelWidth = levelWidth;
 		this.levelHeight = levelHeight;
 		enemyList.add(new Enemy(new Vector2(800, 800), 30, physicsWorld)); // tmp
-		
+			
 		for (Enemy enemy : enemyList) {
 			entityList.add(enemy);
 		}

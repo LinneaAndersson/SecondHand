@@ -3,6 +3,8 @@ package com.secondhand.model;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.anddev.andengine.extension.physics.box2d.PhysicsWorld;
+
 import junit.framework.TestCase;
 
 import com.badlogic.gdx.math.Vector2;
@@ -11,6 +13,9 @@ import com.secondhand.opengl.Polygon;
 public class ObstacleTest extends TestCase{
 
 	public void testConstructor() {
+		
+		final PhysicsWorld pw  =new PhysicsWorld(new Vector2(), true);
+		
 		
 		Vector2 pos = new Vector2(2f, 4f);
 		List<Vector2> points = new ArrayList<Vector2>();
@@ -22,7 +27,7 @@ public class ObstacleTest extends TestCase{
 		
 		Polygon p = new Polygon(pos, points);
 		
-		Obstacle obstacle = new Obstacle(p);
+		Obstacle obstacle = new Obstacle(p, pw);
 		
 		// TODO: test area
 		//assertEquals(rad, obstacle.getArea());

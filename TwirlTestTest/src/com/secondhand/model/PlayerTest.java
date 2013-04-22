@@ -25,20 +25,6 @@ public class PlayerTest extends TestCase{
 		
 	}
 	
-	public void testIncreaseSize() {
-		final PhysicsWorld pw  =new PhysicsWorld(new Vector2(), true);
-		
-		
-		Vector2 pos = new Vector2(2f, 4f);
-		float rad = 3.2f;
-		float inc = 0.3f;
-		
-		Player player = new Player(pos, rad, pw);
-		player.increaseSize(inc);
-		
-		assertEquals(rad + inc, player.getRadius());
-	}	
-	
 	public void testIsBiggerThan() {
 		final PhysicsWorld pw  =new PhysicsWorld(new Vector2(), true);
 		

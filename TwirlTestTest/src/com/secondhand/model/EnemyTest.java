@@ -30,22 +30,6 @@ public class EnemyTest extends TestCase{
 		assertEquals(pos.y, enemy.getY());
 	}
 	
-	public void testIncreaseSize() {
-		
-		final PhysicsWorld pw  =new PhysicsWorld(new Vector2(), true);
-		
-		
-		Vector2 pos = new Vector2(2f, 4f);
-		float rad = 3.2f;
-		float inc = 0.3f;
-		
-		Enemy enemy = new Enemy(pos, rad, pw);
-		enemy.increaseSize(inc);
-		
-		assertEquals(rad + inc, enemy.getRadius());
-
-		assertEquals(true, enemy.isEdible());
-	}
 	
 	public void testIsBiggerThan() {
 		

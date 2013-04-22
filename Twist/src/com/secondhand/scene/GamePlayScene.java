@@ -22,6 +22,7 @@ public class GamePlayScene extends GameScene {
 	private final Universe universe = Universe.getInstance();
 	
 	private float powerUpCounter = 0;
+	private Effect currentEffect = Effect.NONE;
 	
 	public GamePlayScene(final Engine engine, final Context context) {
 		super(engine, context);
@@ -110,16 +111,17 @@ public class GamePlayScene extends GameScene {
 		universe.getLevel().moveEnemies();
 		
 		// PowerUp timer
-		if (universe.getLevel().getPlayer().getEffect() != Effect.NONE) {
-			if (powerUpCounter <= 0)
+		Effect playerEffect = universe.getLevel().getPlayer().getEffect();
+		if (playerEffect != Effect.NONE) {
+			if (powerUpCounter <= 0 || currentEffect != playerEffect)
 				powerUpCounter = 2; // TODO Should be accessed from current PowerUp
+			currentEffect = playerEffect;
 			powerUpCounter -= pSecondsElapsed;
 			if (powerUpCounter <= 0) {
 				universe.getLevel().getPlayer().setEffect(Effect.NONE);
-				universe.getLevel().getPlayer().getCircle().setColor(1, 1, 1);
-			} 
-			else {
-				universe.getLevel().getPlayer().getCircle().setColor(1f, 0, 0);
+				universe.getLevel().getPlayer().getCircle().setColor(1, 1, 1); // Base color/sprite
+			} else {
+				universe.getLevel().getPlayer().getCircle().setColor(1f, 0, 0); // Color/Sprite for currentEffect
 			}
 		}
 	}

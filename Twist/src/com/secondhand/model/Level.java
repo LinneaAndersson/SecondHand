@@ -263,8 +263,13 @@ public class Level {
 				vertices, bodyType, fixtureDef);
 	}
 	
-	public void moveEnemies(){
-		
+	// responsible for moving the enemies
+	public void moveEnemies(Enemy enemy){
+		if(isCloseToPlayer(enemy)){
+			if(straightToPlayer(enemy)){
+			enemy.getBody().applyLinearImpulse(null, null);
+			}
+		}
 		
 	}
 
@@ -317,7 +322,17 @@ public class Level {
 
 	}
 	
-	public void checkPlayerCloseToEnemy(){
+	// checks if there is a straight line to player
+	// with nothing blocking
+	private boolean straightToPlayer(Enemy enemy) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	// checks if enemy is close enough to start chasing
+	// the player
+	private boolean isCloseToPlayer(Enemy enemy){
+		return false;
 		
 	}
 

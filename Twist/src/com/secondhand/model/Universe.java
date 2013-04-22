@@ -46,6 +46,78 @@ public final class Universe {
 		this.engine = engine;
 	}
 
+	
+	private void handlePlanetBlackHoleCollision(final Entity entityA, final Entity entityB) {
+
+		BlackHole blackHole;
+		if (entityA instanceof BlackHole) {
+			blackHole = (BlackHole) entityA;
+		} else {
+			blackHole = (BlackHole) entityB;
+		}
+
+		Planet planet;
+		if (entityA instanceof Planet) {
+			planet = (Planet) entityA;
+		} else {
+			planet = (Planet) entityB;
+		}
+		if (blackHole.canEat(planet)) {
+
+			GlobalResources.getInstance().growSound.play();
+
+			// Detach the planet from AndEngine
+			planet.getShape().detachSelf();
+
+			// increase the size of the black hole.
+			// TODO seems like there is something wrong here. after eating,
+			// the
+			// contact area extends outside of the shape. it also seems like
+			// the screen area you can touch for movement decreases(could
+			// just be me)
+			final Shape blackHoleShape = blackHole.getBody()
+					.getFixtureList().get(0).getShape();
+			// perhaps we could divide radius by 2?
+			// otherwise i believe it would grow to fast
+			blackHole.increaseSize(planet.getRadius());
+			// see this for setting the correct radius:
+			// http://www.emanueleferonato.com/2009/12/12/scaling-objects-with-box2d/
+			blackHoleShape.setRadius(blackHole.getRadius()
+					/ PhysicsConstants.PIXEL_TO_METER_RATIO_DEFAULT);
+
+			MyDebug.d("black hole should now eat planet.");
+
+			physicsDestroyer.destroy(planet.getShape(), true, this.currentLevel.getPhysicsWorld(), this.engine);
+		}
+
+	}
+	
+	
+	private void handlePowerUpPlayerCollision(final Entity entityA, final Entity entityB) {
+
+		GlobalResources.getInstance().powerUpSound.play();
+
+		PowerUp power;
+		if (entityA instanceof PowerUp) {
+			power = (PowerUp) entityA;
+		} else {
+			power = (PowerUp) entityB;
+		}
+
+		power.getShape().detachSelf();
+		MyDebug.d("Now the powerup should dissappear");
+
+		physicsDestroyer.destroy(power.getShape(), true, this.currentLevel.getPhysicsWorld(), this.engine);
+
+		// TODO (in Level?) now we need a way to have the power up take
+		// effect and decide a way to have the effect for a duration
+		// the effect should be visible on the players shape
+
+		currentLevel.activateEffect(power.getEffect());
+
+	}
+	
+	
 	// TODO Now there is alot of duplicated code in this method.
 	// Perhaps we could extract that code into a new method.
 	public void checkCollision(final Contact contact) {
@@ -67,76 +139,13 @@ public final class Universe {
 
 		if (entityA instanceof BlackHole && entityB instanceof Planet
 				|| entityB instanceof BlackHole && entityA instanceof Planet) {
-
-			BlackHole blackHole;
-			if (entityA instanceof BlackHole) {
-				blackHole = (BlackHole) entityA;
-			} else {
-				blackHole = (BlackHole) entityB;
-			}
-
-			Planet planet;
-			if (entityA instanceof Planet) {
-				planet = (Planet) entityA;
-			} else {
-				planet = (Planet) entityB;
-			}
-			if (blackHole.canEat(planet)) {
-
-				GlobalResources.getInstance().growSound.play();
-
-				// Detach the planet from AndEngine
-				planet.getShape().detachSelf();
-
-				// increase the size of the black hole.
-				// TODO seems like there is something wrong here. after eating,
-				// the
-				// contact area extends outside of the shape. it also seems like
-				// the screen area you can touch for movement decreases(could
-				// just be me)
-				final Shape blackHoleShape = blackHole.getBody()
-						.getFixtureList().get(0).getShape();
-				// perhaps we could divide radius by 2?
-				// otherwise i believe it would grow to fast
-				blackHole.increaseSize(planet.getRadius());
-				// see this for setting the correct radius:
-				// http://www.emanueleferonato.com/2009/12/12/scaling-objects-with-box2d/
-				blackHoleShape.setRadius(blackHole.getRadius()
-						/ PhysicsConstants.PIXEL_TO_METER_RATIO_DEFAULT);
-
-				MyDebug.d("black hole should now eat planet.");
-
-				physicsDestroyer.destroy(planet.getShape(), true, this.currentLevel.getPhysicsWorld(), this.engine);
-			} else {
-				gameOver();
-			}
+			handlePlanetBlackHoleCollision(entityA, entityB);
 		} else if (entityA instanceof Player && entityB instanceof PowerUp
 				|| entityB instanceof Player && entityA instanceof PowerUp) {
-
-			GlobalResources.getInstance().powerUpSound.play();
-
-			PowerUp power;
-			if (entityA instanceof PowerUp) {
-				power = (PowerUp) entityA;
-			} else {
-				power = (PowerUp) entityB;
-			}
-
-			power.getShape().detachSelf();
-			MyDebug.d("Now the powerup should dissappear");
-
-			physicsDestroyer.destroy(power.getShape(), true, this.currentLevel.getPhysicsWorld(), this.engine);
-
-			// TODO (in Level?) now we need a way to have the power up take
-			// effect and decide a way to have the effect for a duration
-			// the effect should be visible on the players shape
-
-			currentLevel.activateEffect(power.getEffect());
-
+			handlePowerUpPlayerCollision(entityA, entityB);
 		} else if (entityA instanceof Player && entityB instanceof Obstacle
 				|| entityB instanceof Player && entityA instanceof Obstacle) {
 			GlobalResources.getInstance().obstacleCollisionSound.play();
-			
 		}
 
 	}

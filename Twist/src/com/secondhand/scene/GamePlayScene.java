@@ -114,7 +114,7 @@ public class GamePlayScene extends GameScene {
 		Effect playerEffect = universe.getLevel().getPlayer().getEffect();
 		if (playerEffect != Effect.NONE) {
 			if (powerUpCounter <= 0 || currentEffect != playerEffect)
-				powerUpCounter = 2; // TODO Should be accessed from current PowerUp
+				powerUpCounter = playerEffect.getDuration();
 			currentEffect = playerEffect;
 			powerUpCounter -= pSecondsElapsed;
 			if (powerUpCounter <= 0) {

@@ -28,8 +28,6 @@ public final class MyDebug{ // NOPMD
 	public static String getDebugTag() {
 		return MyDebug.sDebugTag;
 	}
-
-	
 	
 	public static void setDebugTag(final String pDebugTag) {
 		MyDebug.sDebugTag = pDebugTag;

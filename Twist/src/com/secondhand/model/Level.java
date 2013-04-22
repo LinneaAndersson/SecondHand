@@ -11,6 +11,7 @@ import org.anddev.andengine.opengl.texture.region.TextureRegion;
 
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.BodyDef.BodyType;
+import com.badlogic.gdx.physics.box2d.CircleShape;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.secondhand.debug.MyDebug;
 import com.secondhand.math.PolygonUtil;
@@ -174,7 +175,26 @@ public class Level {
 		switch (effect) {
 		case RANDOM_TELEPORT:
 			// remove old player
+			// I think simply changing the position of the physics body is enough(I hope).
+			// You can get a circle shape from the entity using something like:
+			// final CircleShape shape = (CircleShape)player.getBody().getFixtureList().get(0).getShape();
+			// and then simply set the position of this shape. 
+			
 			// needs to confirm empty position
+			// how to implement this: 
+			/*
+			 * Use the QueryAABB method of the physicsworld.
+			 * See:   
+			 * http://www.iforce2d.net/b2dtut/world-querying		
+			 * Section "Area querying (aka AABB querying)" for a detailed explanation
+			 * The rectangular area we give to this method will have to be the smallest 
+			 * square that is able to contain the circle that represents the player. 
+			 * Now, if we receive no callback in the callback method registered in QueryAABB,
+			 * that basically means that the spot is free, and able to contain the circle without
+			 * any collisions. 	
+			 * - Eric
+			 */
+			
 			// add new player at new position
 			player.setEffect(effect);
 			break;

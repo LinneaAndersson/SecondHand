@@ -25,6 +25,7 @@ public class MainActivity extends BaseGameActivity {
 	public static final int CAMERA_HEIGHT = 480;
 	
 
+	
 	@Override
 	public void onLoadResources() {
 		// this is instead delegated to the separate scenes.

@@ -10,6 +10,7 @@ public abstract class Entity {
 	private Body body;
 	private final IShape shape;
 	private final boolean isEdible;
+	private String assetName;
 	
 	public Entity(final Shape shape, final boolean isEdible) {
 		this.shape = shape;
@@ -41,7 +42,16 @@ public abstract class Entity {
 		return this.isEdible;
 	}
 	
+	public String getImageName(){
+		return assetName;
+	}
+	
+	public void setImageName(String assetName){
+		this.assetName=assetName;
+	}
+	
 	// TODO: we should probably cache the result of this computation, because it can 
 	// get quite expensive, especially for polygons. 
 	public abstract float getArea();
 }
+

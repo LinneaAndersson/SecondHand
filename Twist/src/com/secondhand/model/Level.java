@@ -99,7 +99,7 @@ public class Level {
 		testPlanets.add(new PowerUp(new Vector2(20, 500), Effect.SHIELD,
 				GlobalResources.getInstance().powerUpTexture));
 
-		testPlanets.add(new Enemy(new Vector2(600, 600), 20));
+		//testPlanets.add(new Enemy(new Vector2(600, 600), 20));
 		return testPlanets;
 	}
 

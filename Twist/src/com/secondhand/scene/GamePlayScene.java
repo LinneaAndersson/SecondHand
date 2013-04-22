@@ -67,6 +67,12 @@ public class GamePlayScene extends GameScene {
 		
 	}
 	
+	// Undo camera lock on player
+	public void resetCamera() {
+		smoothCamera.setChaseEntity(null);
+		engine.getCamera().setCenter(0, 0);
+	}
+	
 	@Override
 	public boolean onKeyDown(final int pKeyCode, final KeyEvent pEvent) {
 		if (pKeyCode == KeyEvent.KEYCODE_BACK
@@ -74,9 +80,7 @@ public class GamePlayScene extends GameScene {
 			final AllScenes parent = getParentScene();
 			if (parent != null) {
 				setScene(parent);
-				// Undo camera lock on player
-				smoothCamera.setChaseEntity(null);
-				engine.getCamera().setCenter(0, 0);
+				resetCamera();
 				return true;
 			}
 			else
@@ -98,9 +102,9 @@ public class GamePlayScene extends GameScene {
 		super.onManagedUpdate(pSecondsElapsed);
 		if(universe.isGameOver()){
 			MyDebug.d("GameOver");
+			resetCamera();
 			setScene(AllScenes.GAME_OVER_SCENE);
 		}
-		universe.getLevel().moveEnemies();
-		
+		universe.getLevel().moveEnemies();		
 	}
 }

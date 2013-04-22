@@ -54,6 +54,9 @@ public class LoadingScene extends GameScene {
 			@Override
 			public void onWorkComplete() {
 				MyDebug.d("loaded all resources!");
+				
+				// see if this makes the textures load. 
+				//LoadingScene.this.engine.getTextureManager().reloadTextures();
 
 				// go to main menu once the loading is done.
 				SceneManager.getInstance().setCurrentSceneEnum(

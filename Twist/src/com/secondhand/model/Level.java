@@ -56,9 +56,7 @@ public class Level {
 
 	}
 
-	// this constructor could be useful when creating
-	// new levels and want to keep player and physics
-	// from the last level
+	
 	public Level(final int maxSize, final PhysicsWorld pW, final Player p,
 			final List<Entity> otherEntities, final int levelWidth, final int levelHeight) {
 		levelNumber += 1;
@@ -71,6 +69,9 @@ public class Level {
 		registerEntities(); // NOPMD
 	}
 	
+	// this constructor could be useful when creating
+	// new levels and want to keep player and physics
+	// from the last level
 	// Preferable to at least change the entity list
 	public Level(final Level level) {
 		this(level.getPlayerMaxSize(), level.getPhysicsWorld(), level
@@ -166,6 +167,7 @@ public class Level {
 	}
 
 	// if we don't want level to handle this we could just move it
+	// TODO PowerUP is high priority
 	public void activateEffect(final Effect effect) {
 		switch (effect) {
 		case RANDOM_TELEPORT:

@@ -19,10 +19,12 @@ import com.secondhand.twirl.GlobalResources;
 public final class Universe {
 	private Level currentLevel;
 
+	// true when a body is being destroyed
 	private boolean killingInProcess;
 
 	private Engine engine;
 
+	// flag forwhen the game is over
 	private boolean gameOver;
 
 	private static Universe instance;
@@ -46,7 +48,7 @@ public final class Universe {
 		this.engine = engine;
 	}
 
-	// Now there is alot of duplicated code in this method.
+	// TODO Now there is alot of duplicated code in this method.
 	// Perhaps we could extract that code into a new method.
 	public void checkCollision(final Contact contact) {
 		// if one or both is null, then we are dealing with a collision
@@ -109,7 +111,7 @@ public final class Universe {
 
 				myDestroyer(planet.getShape(), true);
 			} else {
-				gameOver();
+				//gameOver();
 			}
 		} else if (entityA instanceof Player && entityB instanceof PowerUp
 				|| entityB instanceof Player && entityA instanceof PowerUp) {
@@ -137,6 +139,7 @@ public final class Universe {
 		} else if (entityA instanceof Player && entityB instanceof Obstacle
 				|| entityB instanceof Player && entityA instanceof Obstacle) {
 			GlobalResources.getInstance().obstacleCollisionSound.play();
+			// gameOver()
 		}
 
 	}

@@ -267,8 +267,8 @@ public class Level {
 	// responsible for moving the enemies
 	// at first we only have them moving straight at the player,
 	// later we can add more functionality
-	// TODO avoid larger stuff, chase smaller stuff 
-	// move in a smart way
+	// TODO avoid larger stuff, chase smaller stuff
+	// move in a smart way(no suicide)
 	public void moveEnemies() {
 		Enemy enemy = null;
 		for (Entity entity : entityList) {
@@ -282,13 +282,16 @@ public class Level {
 						Vector2 movementVector = new Vector2(
 								(player.getCenterX() - enemy.getCenterX()),
 								player.getCenterY() - enemy.getCenterY());
-						
-						
-						movementVector = movementVector
-								.mul(0.001f);
+
+						// need to slow them down, they are to dam fast
+						// otherwise
+						movementVector = movementVector.mul(0.0001f);
 						enemy.getBody().applyLinearImpulse(movementVector,
 								enemy.getBody().getWorldCenter());
 
+					} else {
+						// somehow move the enemy around 
+						// larger entities
 					}
 
 				}
@@ -349,6 +352,10 @@ public class Level {
 
 	// checks if there is a straight line to player
 	// with nothing blocking
+
+	// if we only want them to chase the player then
+	// this isn't really necessary unless you increase
+	// the search area.
 	private boolean straightToPlayer(Enemy enemy) {
 
 		return true;
@@ -362,7 +369,7 @@ public class Level {
 
 		float dy = enemy.getCenterY() - player.getCenterY();
 
-		return dx * dx + dy * dy <= enemy.getArea() * 20;
+		return dx * dx + dy * dy <= enemy.getArea() * 100;
 
 	}
 

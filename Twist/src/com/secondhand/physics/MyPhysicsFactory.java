@@ -1,0 +1,33 @@
+package com.secondhand.physics;
+
+import static org.anddev.andengine.extension.physics.box2d.util.constants.PhysicsConstants.PIXEL_TO_METER_RATIO_DEFAULT;
+
+import org.anddev.andengine.extension.physics.box2d.PhysicsFactory;
+import org.anddev.andengine.extension.physics.box2d.PhysicsWorld;
+
+import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.physics.box2d.Body;
+import com.badlogic.gdx.physics.box2d.FixtureDef;
+import com.badlogic.gdx.physics.box2d.BodyDef.BodyType;
+import com.secondhand.opengl.Polygon;
+
+public final class MyPhysicsFactory {
+	
+	private MyPhysicsFactory() {} 
+
+	public static Body createPolygonBody(final PhysicsWorld physicsWorld,
+			final Polygon polygon, final BodyType bodyType,
+			final FixtureDef fixtureDef) {
+		com.badlogic.gdx.math.Vector2 vertices[] = new com.badlogic.gdx.math.Vector2[polygon
+				.getPolygon().size()];
+		int i = 0;
+		for (Vector2 vector : polygon.getPolygon()) {
+			vertices[i++] = new com.badlogic.gdx.math.Vector2(vector.x
+					/ PIXEL_TO_METER_RATIO_DEFAULT, vector.y
+					/ PIXEL_TO_METER_RATIO_DEFAULT);
+		}
+
+		return PhysicsFactory.createPolygonBody(physicsWorld, polygon,
+				vertices, bodyType, fixtureDef);
+	}	
+}

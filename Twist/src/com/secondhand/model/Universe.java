@@ -1,17 +1,15 @@
 package com.secondhand.model;
 
 import org.anddev.andengine.engine.Engine;
-import org.anddev.andengine.engine.handler.IUpdateHandler;
-import org.anddev.andengine.entity.shape.IShape;
-import org.anddev.andengine.extension.physics.box2d.PhysicsConnector;
-import org.anddev.andengine.extension.physics.box2d.PhysicsWorld;
 import org.anddev.andengine.extension.physics.box2d.util.constants.PhysicsConstants;
 
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Contact;
 import com.badlogic.gdx.physics.box2d.Shape;
 import com.secondhand.debug.MyDebug;
+import com.secondhand.physics.PhysicsDestroyer;
 import com.secondhand.twirl.GlobalResources;
+
 
 /**
  * Singelton class for describing the universe.
@@ -19,8 +17,7 @@ import com.secondhand.twirl.GlobalResources;
 public final class Universe {
 	private Level currentLevel;
 
-	// true when a body is being destroyed
-	private boolean killingInProcess;
+	private final PhysicsDestroyer physicsDestroyer;
 
 	private Engine engine;
 
@@ -33,7 +30,7 @@ public final class Universe {
 	// perhaps create a tutorialLevel?
 	private Universe() {
 		currentLevel = new Level();
-		killingInProcess = false;
+		physicsDestroyer = new PhysicsDestroyer();
 		gameOver = false;
 	}
 
@@ -109,7 +106,7 @@ public final class Universe {
 
 				MyDebug.d("black hole should now eat planet.");
 
-				myDestroyer(planet.getShape(), true);
+				physicsDestroyer.destroy(planet.getShape(), true, this.currentLevel.getPhysicsWorld(), this.engine);
 			} else {
 				gameOver();
 			}
@@ -128,7 +125,7 @@ public final class Universe {
 			power.getShape().detachSelf();
 			MyDebug.d("Now the powerup should dissappear");
 
-			myDestroyer(power.getShape(), true);
+			physicsDestroyer.destroy(power.getShape(), true, this.currentLevel.getPhysicsWorld(), this.engine);
 
 			// TODO (in Level?) now we need a way to have the power up take
 			// effect and decide a way to have the effect for a duration
@@ -156,56 +153,6 @@ public final class Universe {
 
 	}
 
-	/*
-	 * I found the following method on the AndEngine forum:
-	 * http://www.andengine.
-	 * org/forums/physics-box2d-extension/body-removal-crashing
-	 * -andengine-t9814.html (by RealMayo, a guy who knows lots of good stuff
-	 * bout engine. keep a look out for him if there is something you needs to
-	 * know) and it seems to work well. I thought i would get null value at the
-	 * third debug but it seems that the body still exist in the connector?
-	 */
-	private void myDestroyer(final IShape mySprite, final Boolean bodyToo) {
-		final PhysicsWorld mPhysicsWorld = currentLevel.getPhysicsWorld();
-
-		if (!killingInProcess) {
-			MyDebug.i("commence destruction");
-			killingInProcess = true;
-			final PhysicsConnector physicsConnector = mPhysicsWorld
-					.getPhysicsConnectorManager().findPhysicsConnectorByShape(
-							mySprite);
-			engine.registerUpdateHandler(new IUpdateHandler() {
-				@Override
-				public void onUpdate(final float pSecondsElapsed) {
-					engine.unregisterUpdateHandler(this);
-					engine.runOnUpdateThread(new Runnable() {
-						@Override
-						public void run() {
-							mPhysicsWorld
-									.unregisterPhysicsConnector(physicsConnector);
-							// myFixture.getBody().destroyFixture(myFixture);
-							// don't know if the above is needed
-							if (bodyToo) {
-								MyDebug.i(physicsConnector.getBody()
-										+ " will be destroyed");
-								mPhysicsWorld.destroyBody(physicsConnector
-										.getBody());
-							}
-							mySprite.detachSelf();
-							System.gc(); // NOPMD
-							killingInProcess = false;
-							MyDebug.i(physicsConnector.getBody()
-									+ " destruction complete");
-						}
-					});
-				}
-
-				@Override
-				public void reset() {
-				}
-			});
-		}
-	}
 
 	public Level getLevel() {
 		return currentLevel;

@@ -22,6 +22,7 @@ import com.secondhand.math.PolygonUtil;
 import com.secondhand.model.PowerUp.Effect;
 import com.secondhand.opengl.Polygon;
 import com.secondhand.opengl.TexturedPolygon;
+import com.secondhand.physics.MyPhysicsFactory;
 import com.secondhand.twirl.GlobalResources;
 
 public class Level {
@@ -215,7 +216,7 @@ public class Level {
 
 		// obstacles are polygons and not circles
 		if (entity instanceof PolygonEntity) {
-			body = createPolygonBody(physicsWorld, (Polygon) entity.getShape(),
+			body = MyPhysicsFactory.createPolygonBody(physicsWorld, (Polygon) entity.getShape(),
 					BodyType.DynamicBody, fixture);
 		} else if (entity instanceof CircleEntity) {
 			body = PhysicsFactory.createCircleBody(physicsWorld,
@@ -248,21 +249,6 @@ public class Level {
 		}
 	}
 
-	private static Body createPolygonBody(final PhysicsWorld physicsWorld,
-			final Polygon polygon, final BodyType bodyType,
-			final FixtureDef fixtureDef) {
-		com.badlogic.gdx.math.Vector2 vertices[] = new com.badlogic.gdx.math.Vector2[polygon
-				.getPolygon().size()];
-		int i = 0;
-		for (Vector2 vector : polygon.getPolygon()) {
-			vertices[i++] = new com.badlogic.gdx.math.Vector2(vector.x
-					/ PIXEL_TO_METER_RATIO_DEFAULT, vector.y
-					/ PIXEL_TO_METER_RATIO_DEFAULT);
-		}
-
-		return PhysicsFactory.createPolygonBody(physicsWorld, polygon,
-				vertices, bodyType, fixtureDef);
-	}
 
 	// responsible for moving the enemies
 	// at first we only have them moving straight at the player,

@@ -5,6 +5,8 @@ import org.anddev.andengine.opengl.texture.atlas.bitmap.BitmapTextureAtlas;
 import org.anddev.andengine.opengl.texture.atlas.bitmap.BitmapTextureAtlasTextureRegionFactory;
 import org.anddev.andengine.opengl.texture.region.TextureRegion;
 
+import com.secondhand.debug.MyDebug;
+
 /**
  * Singelton class that makes loading TextureRegions much more convenient. 
  */
@@ -31,6 +33,14 @@ public class TextureRegionLoader extends Loader {
     			texture, this.context, fileName, 0, 0);
     	
     	this.engine.getTextureManager().loadTexture(texture);
+    	
+    	try {
+			// force the loading thread to sleep the minimum loading
+			// time before we begin the actual loading.
+			Thread.sleep(1);
+		} catch (InterruptedException e) {
+			MyDebug.e(e);
+		}
     	
     	return textureRegion;
 	}

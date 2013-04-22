@@ -19,7 +19,8 @@ import android.graphics.Typeface;
  */
 public final class GlobalResources {
 	
-	private static final String BASEPATH = "gfx/";
+	private static final String TEXTURE_BASEPATH = "gfx/";
+	private static final String SOUND_BASEPATH = "sfx/";
 	
 	public Font menuItemFont;
 	public Font menuHeadlineFont;
@@ -55,19 +56,19 @@ public final class GlobalResources {
 		//this.playerSprite = null; // TODO load the player sprite
 		
 
-		this.planetTexture = TextureRegionLoader.getInstance().loadTextureRegion(BASEPATH+EntityTexture.PLANET.path, 256, 256,
+		this.planetTexture = TextureRegionLoader.getInstance().loadTextureRegion(TEXTURE_BASEPATH+EntityTexture.PLANET.path, 256, 256,
 			TextureOptions.REPEATING_BILINEAR);
 
-		this.obstacleTexture = TextureRegionLoader.getInstance().loadTextureRegion(BASEPATH+EntityTexture.OBSTACLE.path, 256, 256,
+		this.obstacleTexture = TextureRegionLoader.getInstance().loadTextureRegion(TEXTURE_BASEPATH+EntityTexture.OBSTACLE.path, 256, 256,
 				TextureOptions.REPEATING_BILINEAR);
 
 		
-		this.powerUpTexture = TextureRegionLoader.getInstance().loadTextureRegion(BASEPATH+EntityTexture.POWER_UP.path, 64, 64,
+		this.powerUpTexture = TextureRegionLoader.getInstance().loadTextureRegion(TEXTURE_BASEPATH+EntityTexture.POWER_UP.path, 64, 64,
 				TextureOptions.REPEATING_BILINEAR);
 		
-		this.powerUpSound = SoundLoader.getInstance().loadSound("sfx/powerup.wav");
-		this.growSound = SoundLoader.getInstance().loadSound("sfx/grow.wav");
-		this.obstacleCollisionSound = SoundLoader.getInstance().loadSound("sfx/obstacle_collision.wav");
+		this.powerUpSound = SoundLoader.getInstance().loadSound(SOUND_BASEPATH+"powerup.wav");
+		this.growSound = SoundLoader.getInstance().loadSound(SOUND_BASEPATH+"grow.wav");
+		this.obstacleCollisionSound = SoundLoader.getInstance().loadSound(SOUND_BASEPATH+"obstacle_collision.wav");
 	}
 
 	

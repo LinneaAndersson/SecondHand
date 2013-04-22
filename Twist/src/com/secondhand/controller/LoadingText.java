@@ -55,7 +55,9 @@ public class LoadingText extends ChangeableText {
 		loadingStringsI = (loadingStringsI + 1) % loadingStrings.length;
 		return loadingStrings[loadingStringsI];
 	}
-
+	
+	// to Johan. a method like this could be used to manage powerUps. 
+	// gamePlayScene would probably be the best place to control them.
 	@Override
 	protected void onManagedUpdate(final float pSecondsElapsed) {
 

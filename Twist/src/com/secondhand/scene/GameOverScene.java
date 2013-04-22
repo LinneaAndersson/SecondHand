@@ -53,17 +53,18 @@ public class GameOverScene extends GameMenuScene implements
 		String mLine = "0";
 		
 		try {
-			while (!reader.readLine().isEmpty()) {
-
-				for (int i = 1; i < 3; i++) {
+			mLine = reader.readLine();
+			while (!mLine.isEmpty()) {
+				//for (int i = 1; i < 3; i++) {
 					mLine = reader.readLine();
-				}
+				//}
 				
 				if(player.getScore()>Integer.parseInt(mLine)){
 					textGameOver = new Text(100, 60, mFont, LocalizationStrings
 							.getInstance().getLocalizedString("menu_game_over"),
 							HorizontalAlign.CENTER);
-				} else {
+					break;
+				} else if(( reader.readLine().isEmpty())){
 					textGameOver = new Text(100, 60, mFont, LocalizationStrings
 							.getInstance().getLocalizedString("congratulations"),
 							HorizontalAlign.CENTER);

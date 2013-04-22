@@ -278,8 +278,8 @@ public class Level {
 
 						// the vector from enemy to the player
 						Vector2 movementVector = new Vector2(
-								(enemy.getCenterX() - player.getCenterX()),
-								enemy.getCenterY() - player.getCenterY());
+								(player.getCenterX() - enemy.getCenterX()),
+								player.getCenterY() - enemy.getCenterY());
 
 						movementVector = movementVector
 								.mul(enemy.getRadius() * 0.001f);
@@ -359,7 +359,7 @@ public class Level {
 
 		float dy = enemy.getCenterY() - player.getCenterY();
 
-		return dx * dx + dy * dy <= enemy.getArea() * 2;
+		return dx * dx + dy * dy <= enemy.getArea() * 20;
 
 	}
 

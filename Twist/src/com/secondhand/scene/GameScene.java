@@ -38,7 +38,7 @@ public abstract class GameScene extends Scene implements IGameScene {
 				// but HighScoreScene also extends from GameScene, so we will probably want
 				// override this method in GamePlayScene and use custom handling for 
 				// that specific scene.
-				SceneManager.getInstance().setCurrentSceneEnum(parent);
+				setScene(parent);
 				return true;
 			}
 			else {
@@ -52,5 +52,9 @@ public abstract class GameScene extends Scene implements IGameScene {
 	@Override
 	public Scene getScene() {
 		return this;
+	}
+	
+	public void setScene(AllScenes sceneEnum){
+		setScene(sceneEnum);
 	}
 }

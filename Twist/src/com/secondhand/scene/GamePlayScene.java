@@ -73,7 +73,7 @@ public class GamePlayScene extends GameScene {
 				&& pEvent.getAction() == KeyEvent.ACTION_DOWN) {
 			final AllScenes parent = getParentScene();
 			if (parent != null) {
-				SceneManager.getInstance().setCurrentSceneEnum(parent);
+				setScene(parent);
 				// Undo camera lock on player
 				smoothCamera.setChaseEntity(null);
 				engine.getCamera().setCenter(0, 0);
@@ -98,8 +98,7 @@ public class GamePlayScene extends GameScene {
 		super.onManagedUpdate(pSecondsElapsed);
 		if(universe.isGameOver()){
 			MyDebug.d("GameOver");
-			
-			SceneManager.getInstance().setCurrentSceneEnum(AllScenes.GAME_OVER_SCENE);
+			setScene(AllScenes.GAME_OVER_SCENE);
 		}
 		
 	}

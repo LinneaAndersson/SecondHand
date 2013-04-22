@@ -41,4 +41,8 @@ public interface IGameScene {
 	// Returns the parent-scene, for example SettingsMenuScene returns
 	// AllScenes.MAIN_MENU_SCENE
 	AllScenes getParentScene();
+	
+	void setScene(AllScenes sceneEnum);
 }
+
+	

@@ -47,7 +47,7 @@ public abstract class GameMenuScene extends MenuScene implements IGameScene {
 				&& pEvent.getAction() == KeyEvent.ACTION_DOWN) {
 			final AllScenes parent = getParentScene();
 			if (parent != null) {
-				SceneManager.getInstance().setCurrentSceneEnum(parent);
+				setScene(parent);
 				return true;
 			} else {
 				return false;
@@ -128,5 +128,10 @@ public abstract class GameMenuScene extends MenuScene implements IGameScene {
 			this.id = id;
 			this.text = text;
 		}
+	}
+	
+	@Override
+	public void setScene(AllScenes sceneEnum){
+		SceneManager.getInstance().setCurrentSceneEnum(sceneEnum);
 	}
 }

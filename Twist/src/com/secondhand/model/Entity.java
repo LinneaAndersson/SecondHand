@@ -53,5 +53,15 @@ public abstract class Entity {
 	// TODO: we should probably cache the result of this computation, because it can 
 	// get quite expensive, especially for polygons. 
 	public abstract float getArea();
+
+	public float getCenterX() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	public float getCenterY() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
 }
 

@@ -101,7 +101,7 @@ public class Level {
 				Effect.RANDOM_TELEPORT,
 				GlobalResources.getInstance().powerUpTexture));
 
-		testPlanets.add(new Enemy(new Vector2(800, 800), 20));
+		testPlanets.add(new Enemy(new Vector2(800, 800), 30));
 		return testPlanets;
 	}
 
@@ -255,7 +255,7 @@ public class Level {
 		
 		for (Entity entity : entityList) {
 			if (entity.getClass() == Enemy.class) {
-				((Enemy) entity).moveEnemy(player);
+				((Enemy) entity).moveEnemy(entityList);
 
 			}
 		}

@@ -106,8 +106,12 @@ public class Level {
 				GlobalResources.getInstance().obstacleTexture);
 		testPlanets.add(new Obstacle(polygon, physicsWorld));
 
+		testPlanets.add(new PowerUp(new Vector2(100, 500),
+				Effect.SPEED_UP,
+				GlobalResources.getInstance().powerUpTexture, physicsWorld));
+		
 		testPlanets.add(new PowerUp(new Vector2(20, 500),
-				Effect.RANDOM_TELEPORT,
+				Effect.SHIELD,
 				GlobalResources.getInstance().powerUpTexture, physicsWorld));
 
 		return testPlanets;

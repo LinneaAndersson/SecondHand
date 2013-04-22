@@ -250,18 +250,12 @@ public class Level {
 		}
 	}
 
-	// responsible for moving the enemies
-	// at first we only have them moving straight at the player,
-	// later we can add more functionality
-	// TODO avoid larger stuff, chase smaller stuff
-	// move in a smart way(no suicide)
 	public void moveEnemies() {
 		// could be worth it to place all enemies in a separate list
 		
 		for (Entity entity : entityList) {
 			if (entity.getClass() == Enemy.class) {
-				// in case we need some enemy specific ability
-				((Enemy) entity).moveEnemies(player);
+				((Enemy) entity).moveEnemy(player);
 
 			}
 		}

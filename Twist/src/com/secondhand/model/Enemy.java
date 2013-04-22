@@ -7,6 +7,8 @@ public class Enemy extends BlackHole {
 	public Enemy(final Vector2 vector, final float radius) {
 		super(vector, radius);
 	}
+	
+	// will be quite easy to change player to a list instead
 
 	// checks if there is a straight line to player
 	// with nothing blocking
@@ -30,8 +32,13 @@ public class Enemy extends BlackHole {
 		return dx * dx + dy * dy <= this.getArea() * 100;
 
 	}
-
-	public void moveEnemies(Player player) {
+	
+	// responsible for moving the enemies
+	// at first we only have them moving straight at the player,
+	// later we can add more functionality
+	// TODO avoid larger stuff, chase smaller stuff
+	// move in a smart way(no suicide)
+	public void moveEnemy(Player player) {
 
 		if (isCloseToPlayer(player)) {
 			if (straightToPlayer(player)) {

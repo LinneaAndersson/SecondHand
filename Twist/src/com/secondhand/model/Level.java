@@ -3,24 +3,19 @@ package com.secondhand.model;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.anddev.andengine.engine.handler.physics.PhysicsHandler;
 import org.anddev.andengine.entity.primitive.Rectangle;
 import org.anddev.andengine.entity.shape.Shape;
-import org.anddev.andengine.extension.physics.box2d.PhysicsConnector;
 import org.anddev.andengine.extension.physics.box2d.PhysicsFactory;
 import org.anddev.andengine.extension.physics.box2d.PhysicsWorld;
 import org.anddev.andengine.opengl.texture.region.TextureRegion;
 
 import com.badlogic.gdx.math.Vector2;
-import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.BodyDef.BodyType;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.secondhand.debug.MyDebug;
 import com.secondhand.math.PolygonUtil;
 import com.secondhand.model.PowerUp.Effect;
-import com.secondhand.opengl.Polygon;
 import com.secondhand.opengl.TexturedPolygon;
-import com.secondhand.physics.MyPhysicsFactory;
 import com.secondhand.twirl.GlobalResources;
 
 public class Level {
@@ -32,7 +27,6 @@ public class Level {
 
 	private Player player;
 
-	private Shape[] worldBounds;
 
 	private int levelWidth;
 	private int levelHeight;
@@ -70,7 +64,12 @@ public class Level {
 		this.levelWidth = levelWidth;
 		this.levelHeight = levelHeight;
 		enemyList.add(new Enemy(new Vector2(800, 800), 30, physicsWorld)); // tmp
-		registerEntities(); // NOPMD
+		
+		for (Enemy enemy : enemyList) {
+			entityList.add(enemy);
+		}
+		
+		setupWorldBounds();
 	}
 
 	public Level(final int maxSize, final PhysicsWorld pW, final Player p,
@@ -129,13 +128,11 @@ public class Level {
 		return physicsWorld;
 	}
 
-	public final void registerEntities() {
+	public final void setupWorldBounds() {
 
-		for (Enemy enemy : enemyList) {
-			entityList.add(enemy);
-		}
+		
 
-		worldBounds = new Shape[4];
+		final Shape[] worldBounds = new Shape[4];
 
 		// put some invisible, static rectangles that keep the player within the
 		// world bounds:
@@ -162,10 +159,6 @@ public class Level {
 	public Player getPlayer() {
 		return player;
 	}
-
-	/*public Shape[] getWorldBounds() {
-		return this.worldBounds;
-	}*/
 
 	public int getLevelWidth() {
 		return levelWidth;

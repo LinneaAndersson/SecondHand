@@ -176,6 +176,7 @@ public class Level {
 			// remove old player
 			// needs to confirm empty position
 			// add new player at new position
+			player.setEffect(effect);
 			break;
 		case SHIELD:
 			MyDebug.d("shield powerup");

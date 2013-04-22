@@ -131,7 +131,7 @@ public abstract class GameMenuScene extends MenuScene implements IGameScene {
 	}
 	
 	@Override
-	public void setScene(AllScenes sceneEnum){
+	public void setScene(final AllScenes sceneEnum){
 		SceneManager.getInstance().setCurrentSceneEnum(sceneEnum);
 	}
 }

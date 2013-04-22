@@ -55,7 +55,7 @@ public class GameOverScene extends GameMenuScene implements
 		
 		try {
 			mLine = reader.readLine();
-			while (!mLine.isEmpty()) {
+			/*while (!mLine.isEmpty()) {
 				
 					mLine = reader.readLine().trim();
 					MyDebug.d(mLine);
@@ -68,15 +68,17 @@ public class GameOverScene extends GameMenuScene implements
 				mLine=reader.readLine();
 				if(mLine.isEmpty()){
 					textGameOver = new Text(100, 60, mFont, LocalizationStrings
-							.getInstance().getLocalizedString("congratulations"),
+							.getInstance().getLocalizedString("menu_game_over"),
 							HorizontalAlign.CENTER);
 				}
-
-			}
+			}*/
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		textGameOver = new Text(100, 60, mFont, LocalizationStrings
+				.getInstance().getLocalizedString("menu_game_over"),
+				HorizontalAlign.CENTER);
 
 		final float x = this.smoothCamera.getWidth() / 2.0f
 				- textGameOver.getWidth() / 2.0f;

@@ -33,17 +33,4 @@ public final class LocalizationStrings {
 		return context.getString(resId);
 	}
 	
-	// Don't know if this is correct
-	public String[] getLocalizedStringArray(final String stringName){
-		final String packageName = context.getPackageName();
-		final int resId = context.getResources().getIdentifier(stringName, "string", packageName);
-		return context.getResources().getStringArray(resId);
-	}
-	
-	// Don't know if this is correct
-	public int[] getLocalizedIntArray(final String stringName){
-		final String packageName = context.getPackageName();
-		final int resId = context.getResources().getIdentifier(stringName, "string", packageName);
-		return context.getResources().getIntArray(resId);
-	}
 }

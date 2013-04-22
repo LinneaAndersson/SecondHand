@@ -111,7 +111,7 @@ public final class Universe {
 
 				myDestroyer(planet.getShape(), true);
 			} else {
-				// gameOver();
+				gameOver();
 			}
 		} else if (entityA instanceof Player && entityB instanceof PowerUp
 				|| entityB instanceof Player && entityA instanceof PowerUp) {
@@ -139,7 +139,7 @@ public final class Universe {
 		} else if (entityA instanceof Player && entityB instanceof Obstacle
 				|| entityB instanceof Player && entityA instanceof Obstacle) {
 			GlobalResources.getInstance().obstacleCollisionSound.play();
-			// gameOver()
+			
 		}
 
 	}

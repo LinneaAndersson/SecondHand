@@ -1,5 +1,9 @@
 package com.secondhand.scene;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+
 import org.anddev.andengine.engine.Engine;
 import org.anddev.andengine.entity.scene.menu.MenuScene;
 import org.anddev.andengine.entity.scene.menu.MenuScene.IOnMenuItemClickListener;
@@ -8,62 +12,87 @@ import org.anddev.andengine.entity.text.Text;
 import org.anddev.andengine.opengl.font.Font;
 import org.anddev.andengine.util.HorizontalAlign;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 
+import com.secondhand.model.Player;
+import com.secondhand.model.Universe;
 import com.secondhand.twirl.GlobalResources;
 import com.secondhand.twirl.LocalizationStrings;
 
 public class GameOverScene extends GameMenuScene implements
 		IOnMenuItemClickListener {
 	private Font mFont;
-/*	private Player player;
+	private Player player;
 	private static final int NAME = 0;
 	private static final int SKIP = 1;
 	private int[] highScore;
-	private String[] highScoreName;*/
+	private String[] highScoreName;
+	private BufferedReader reader;
 
 	public GameOverScene(final Engine engine, final Context context) {
 		super(engine, context);
-		//this.player = player;
+		player=Universe.getInstance().getLevel().getPlayer();
 	}
-
+	
 	@Override
 	public void loadResources() {
 		mFont = GlobalResources.getInstance().menuItemFont;
-		// code throws exception
-		/*highScore=LocalizationStrings
-				.getInstance().getLocalizedIntArray("high_score");
-		highScoreName=LocalizationStrings
-				.getInstance().getLocalizedStringArray("high_score_name_list");
-		*/
+		try {
+			reader = new BufferedReader(new InputStreamReader(context
+					.getAssets().open("highScore")));
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
-	@Override
+	@SuppressLint("NewApi") @Override
 	public void loadScene() {
-		Text textGameOver;
-
-		// The title
-		//just trying to get this working. later this will check if
-		//you are top 5.(top 5 will be on the high-score-list).
-		//if(0 < highScore[1]){
-
-				textGameOver = new Text(100, 60, mFont, LocalizationStrings
-					.getInstance().getLocalizedString("menu_game_over"),
-					HorizontalAlign.CENTER);
-		/*} else { // not important yet
-				textGameOver = new Text(100, 60, mFont, LocalizationStrings
-					.getInstance().getLocalizedString("congratulations"),
-					HorizontalAlign.CENTER);
-		}*/
+		Text textGameOver = null;
+		String mLine = "0";
 		
-		final float x = this.smoothCamera.getWidth() / 2.0f - textGameOver.getWidth()
-				/ 2.0f;
-		final float y = this.smoothCamera.getHeight() / 2.0f - textGameOver.getHeight()
-				/ 2.0f;
+		try {
+			mLine = reader.readLine();
+			while (!mLine.isEmpty()) {
+				//for (int i = 1; i < 3; i++) {
+					mLine = reader.readLine();
+				//}
+				
+				if(player.getScore()>Integer.parseInt(mLine)){
+					textGameOver = new Text(100, 60, mFont, LocalizationStrings
+							.getInstance().getLocalizedString("menu_game_over"),
+							HorizontalAlign.CENTER);
+					break;
+				} else if(( reader.readLine().isEmpty())){
+					textGameOver = new Text(100, 60, mFont, LocalizationStrings
+							.getInstance().getLocalizedString("congratulations"),
+							HorizontalAlign.CENTER);
+				}
+
+			}
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		final float x = this.smoothCamera.getWidth() / 2.0f
+				- textGameOver.getWidth() / 2.0f;
+		final float y = this.smoothCamera.getHeight() / 2.0f
+				- textGameOver.getHeight() / 2.0f;
 		textGameOver.setPosition(x, (int) (0.2 * y));
 
 		this.attachChild(textGameOver);
+		// The title
+		
+		/*
+		 * } else { // not important yet textGameOver = new Text(100, 60, mFont,
+		 * LocalizationStrings
+		 * .getInstance().getLocalizedString("congratulations"),
+		 * HorizontalAlign.CENTER); }
+		 */
 
+		
 
 	}
 
@@ -73,8 +102,9 @@ public class GameOverScene extends GameMenuScene implements
 	}
 
 	@Override
-	public boolean onMenuItemClicked(final MenuScene pMenuScene, final IMenuItem pMenuItem,
-			final float pMenuItemLocalX, final float pMenuItemLocalY) {
+	public boolean onMenuItemClicked(final MenuScene pMenuScene,
+			final IMenuItem pMenuItem, final float pMenuItemLocalX,
+			final float pMenuItemLocalY) {
 		// TODO Auto-generated method stub
 		return false;
 	}

@@ -13,14 +13,6 @@
     <string name="menu_volume">Volume</string>
     <string name="menu_game_over">Game over!</string>
     <string name="congratulation">Congratulations!</string>
-    <string-array name="high_score_name_list">
-        <item >Jan</item>
-        <item >Linnea</item>
-    </string-array>
-    <integer-array name="high_score">
-        <item >54</item>
-        <item >43</item>
-    </integer-array>
     
     
     

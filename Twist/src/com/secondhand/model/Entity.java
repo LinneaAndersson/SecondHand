@@ -55,13 +55,11 @@ public abstract class Entity {
 	public abstract float getArea();
 
 	public float getCenterX() {
-		// TODO Auto-generated method stub
-		return 0;
+		return getX();
 	}
 
 	public float getCenterY() {
-		// TODO Auto-generated method stub
-		return 0;
+		return getY();
 	}
 }
 

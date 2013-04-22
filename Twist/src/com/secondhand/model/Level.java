@@ -1,7 +1,5 @@
 package com.secondhand.model;
 
-import static org.anddev.andengine.extension.physics.box2d.util.constants.PhysicsConstants.PIXEL_TO_METER_RATIO_DEFAULT;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -28,6 +26,7 @@ import com.secondhand.twirl.GlobalResources;
 public class Level {
 
 	private List<Entity> entityList;
+	private List<Enemy> enemyList;
 	private int playerMaxSize;
 	private PhysicsWorld physicsWorld;
 
@@ -60,6 +59,7 @@ public class Level {
 	public Level(final int maxSize, final PhysicsWorld pW, final Player p,
 			final List<Entity> otherEntities, final int levelWidth,
 			final int levelHeight) {
+		enemyList = new ArrayList<Enemy>();
 		levelNumber += 1;
 		this.playerMaxSize = maxSize;
 		this.physicsWorld = pW;
@@ -67,6 +67,7 @@ public class Level {
 		entityList = otherEntities;
 		this.levelWidth = levelWidth;
 		this.levelHeight = levelHeight;
+		enemyList.add(new Enemy(new Vector2(800, 800), 30)); // tmp
 		registerEntities(); // NOPMD
 	}
 
@@ -101,7 +102,6 @@ public class Level {
 				Effect.RANDOM_TELEPORT,
 				GlobalResources.getInstance().powerUpTexture));
 
-		testPlanets.add(new Enemy(new Vector2(800, 800), 30));
 		return testPlanets;
 	}
 
@@ -124,6 +124,9 @@ public class Level {
 	public final void registerEntities() {
 		registerEntity(player);
 
+		for (Enemy enemy : enemyList) {
+			registerEntity(enemy);
+		}
 		// register all the other entities except for the player.
 		for (Entity e : entityList) {
 			registerEntity(e);
@@ -252,12 +255,12 @@ public class Level {
 
 	public void moveEnemies() {
 		// could be worth it to place all enemies in a separate list
-		
-		for (Entity entity : entityList) {
-			if (entity.getClass() == Enemy.class) {
-				((Enemy) entity).moveEnemy(entityList);
+		// we NEED to, to ..... otherwise
+		for (Enemy enemy : enemyList) {
+			enemy.moveEnemy(player);
+			for (Entity entity : entityList)
+				enemy.moveEnemy(entity);
 
-			}
 		}
 
 	}

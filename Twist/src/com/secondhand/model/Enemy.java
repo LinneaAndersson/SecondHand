@@ -1,8 +1,7 @@
 package com.secondhand.model;
 
-import java.util.List;
-
 import com.badlogic.gdx.math.Vector2;
+import com.secondhand.debug.MyDebug;
 
 public class Enemy extends BlackHole {
 
@@ -40,30 +39,30 @@ public class Enemy extends BlackHole {
 	// later we can add more functionality
 	// TODO avoid larger stuff, chase smaller stuff
 	// move in a smart way(no suicide)
-	public void moveEnemy(List<Entity> list) {
-		for (Entity entity : list) {
-			if (isCloseToEntity(entity)) {
-				if (straightToEntity(entity) && canEat(entity)) {
+	public void moveEnemy(Entity entity) {
 
-					// the vector from enemy to the player
-					Vector2 movementVector = new Vector2(
-							(entity.getCenterX() - this.getCenterX()),
-							entity.getCenterY() - this.getCenterY());
+		if (isCloseToEntity(entity)) {
+			if (straightToEntity(entity) && canEat(entity)) {
+				MyDebug.d("Here we should get movement");
+				// the vector from enemy to the player
+				Vector2 movementVector = new Vector2(
+						(entity.getCenterX() - this.getCenterX()),
+						entity.getCenterY() - this.getCenterY());
 
-					// need to slow them down, they are to dam fast
-					// otherwise
-					movementVector = movementVector.mul(0.0001f);
-					this.getBody().applyLinearImpulse(movementVector,
-							this.getBody().getWorldCenter());
-
-				} else {
-					// (Avoid) somehow move the enemy around
-					// larger entities
-				}
+				// need to slow them down, they are to dam fast
+				// otherwise
+				movementVector = movementVector.mul(0.0001f);
+				this.getBody().applyLinearImpulse(movementVector,
+						this.getBody().getWorldCenter());
 
 			} else {
-				// some survival instincts here
+				// (Avoid) somehow move the enemy around
+				// larger entities
 			}
+
+		} else {
+			// some survival instincts here
 		}
+
 	}
 }

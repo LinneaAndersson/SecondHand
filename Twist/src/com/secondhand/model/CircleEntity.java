@@ -19,10 +19,12 @@ public abstract class CircleEntity extends Entity {
 		circle.setRadius(radius);
 	}	
 	
+	@Override
 	public float getCenterX() {
 		return this.getX() + this.getRadius();
 	}
 	
+	@Override
 	public float getCenterY() {
 		return this.getY() + this.getRadius();
 	}

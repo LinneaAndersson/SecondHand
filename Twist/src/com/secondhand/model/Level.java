@@ -28,7 +28,6 @@ public class Level {
 
 	private Player player;
 
-
 	private int levelWidth;
 	private int levelHeight;
 
@@ -46,13 +45,13 @@ public class Level {
 	}
 
 	public Level(final int maxSize) {
-		
-		final PhysicsWorld pW  =new PhysicsWorld(new Vector2(), true);
-		
-		init(maxSize, pW, new Player(new Vector2(50, 50), 20, pW), createTestPlanets(pW), 2000, 2000); //NOPMD
 
+		final PhysicsWorld pW = new PhysicsWorld(new Vector2(), true);
+
+		init(maxSize, pW, new Player(new Vector2(50, 50), 20, pW), // NOPMD
+				createTestPlanets(pW), 2000, 2000); // NOPMD
 	}
-	
+
 	public void init(final int maxSize, final PhysicsWorld pW, final Player p,
 			final List<Entity> otherEntities, final int levelWidth,
 			final int levelHeight) {
@@ -65,11 +64,11 @@ public class Level {
 		this.levelWidth = levelWidth;
 		this.levelHeight = levelHeight;
 		enemyList.add(new Enemy(new Vector2(800, 800), 30, physicsWorld)); // tmp
-			
+
 		for (Enemy enemy : enemyList) {
 			entityList.add(enemy);
 		}
-		
+
 		setupWorldBounds();
 	}
 
@@ -95,24 +94,25 @@ public class Level {
 		// TODO: Understand why textures are not loaded properly
 		final TextureRegion planetTexture = GlobalResources.getInstance().planetTexture;
 
-		testPlanets.add(new Planet(new Vector2(130, 130), 30, planetTexture, physicsWorld));
+		testPlanets.add(new Planet(new Vector2(130, 130), 30, planetTexture,
+				physicsWorld));
 
 		// add small planet, add a huge planet.
-		testPlanets.add(new Planet(new Vector2(315, 115), 15, planetTexture, physicsWorld));
-		testPlanets.add(new Planet(new Vector2(700, 310), 300, planetTexture, physicsWorld));
+		testPlanets.add(new Planet(new Vector2(315, 115), 15, planetTexture,
+				physicsWorld));
+		testPlanets.add(new Planet(new Vector2(700, 310), 300, planetTexture,
+				physicsWorld));
 
 		final TexturedPolygon polygon = new TexturedPolygon(200, 200,
 				PolygonUtil.getRandomPolygon(),
 				GlobalResources.getInstance().obstacleTexture);
 		testPlanets.add(new Obstacle(polygon, physicsWorld));
 
-		testPlanets.add(new PowerUp(new Vector2(100, 500),
-				Effect.SPEED_UP,
+		testPlanets.add(new PowerUp(new Vector2(100, 500), Effect.RANDOM_TELEPORT,
 				GlobalResources.getInstance().powerUpTexture, physicsWorld));
-		
-		testPlanets.add(new PowerUp(new Vector2(20, 500),
-				Effect.SHIELD,
-				GlobalResources.getInstance().powerUpTexture, physicsWorld));
+
+//		testPlanets.add(new PowerUp(new Vector2(20, 500), Effect.SHIELD,
+//				GlobalResources.getInstance().powerUpTexture, physicsWorld));
 
 		return testPlanets;
 	}
@@ -134,8 +134,6 @@ public class Level {
 	}
 
 	public final void setupWorldBounds() {
-
-		
 
 		final Shape[] worldBounds = new Shape[4];
 
@@ -179,26 +177,33 @@ public class Level {
 		switch (effect) {
 		case RANDOM_TELEPORT:
 			// remove old player
-			// I think simply changing the position of the physics body is enough(I hope).
+			// I think simply changing the position of the physics body is
+			// enough(I hope).
 			// You can get a circle shape from the entity using something like:
-			// final CircleShape shape = (CircleShape)player.getBody().getFixtureList().get(0).getShape();
-			// and then simply set the position of this shape. 
+			// final CircleShape shape =
+			// (CircleShape)player.getBody().getFixtureList().get(0).getShape();
+			// and then simply set the position of this shape.
 			
+			
+			final CircleShape shape = (CircleShape)player.getBody().getFixtureList().get(0).getShape();
+			player.getBody().setTransform(new Vector2(50/32f, 50/32f), 0);
+			shape.setPosition(new Vector2(50/32f, 50/32f));
+			player.getShape().setPosition(50, 50);
+
 			// needs to confirm empty position
-			// how to implement this: 
+			// how to implement this:
 			/*
-			 * Use the QueryAABB method of the physicsworld.
-			 * See:   
-			 * http://www.iforce2d.net/b2dtut/world-querying		
-			 * Section "Area querying (aka AABB querying)" for a detailed explanation
-			 * The rectangular area we give to this method will have to be the smallest 
-			 * square that is able to contain the circle that represents the player. 
-			 * Now, if we receive no callback in the callback method registered in QueryAABB,
-			 * that basically means that the spot is free, and able to contain the circle without
-			 * any collisions. 	
-			 * - Eric
+			 * Use the QueryAABB method of the physicsworld. See:
+			 * http://www.iforce2d.net/b2dtut/world-querying Section
+			 * "Area querying (aka AABB querying)" for a detailed explanation
+			 * The rectangular area we give to this method will have to be the
+			 * smallest square that is able to contain the circle that
+			 * represents the player. Now, if we receive no callback in the
+			 * callback method registered in QueryAABB, that basically means
+			 * that the spot is free, and able to contain the circle without any
+			 * collisions. - Eric
 			 */
-			
+
 			// add new player at new position
 			player.setEffect(effect);
 			break;
@@ -225,12 +230,13 @@ public class Level {
 		}
 
 	}
+
 	public void moveEnemies() {
 		// enemies are in both lists because we want them
 		// for easy access and for the posibility of attacking
 		// each other. it would be preferable to change it later
-		// if we can come up with  a better way
-		
+		// if we can come up with a better way
+
 		for (Enemy enemy : enemyList) {
 			enemy.moveEnemy(player);
 			for (Entity entity : entityList) {

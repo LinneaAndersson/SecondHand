@@ -230,6 +230,7 @@ public class Level {
 		// for easy access and for the posibility of attacking
 		// each other. it would be preferable to change it later
 		// if we can come up with  a better way
+		
 		for (Enemy enemy : enemyList) {
 			enemy.moveEnemy(player);
 			for (Entity entity : entityList) {

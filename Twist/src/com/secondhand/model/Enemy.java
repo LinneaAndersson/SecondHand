@@ -28,8 +28,8 @@ public class Enemy extends BlackHole {
 		final float dx = entity.getCenterX() - this.getCenterX();
 
 		final float dy = entity.getCenterY() - this.getCenterY();
-		
-		// the hunting area is tmp like this, don't know 
+
+		// the hunting area is tmp like this, don't know
 		// why i choose area*100
 		return dx * dx + dy * dy <= this.getArea() * 100;
 
@@ -55,12 +55,23 @@ public class Enemy extends BlackHole {
 				// if(body is moving) we need mul(0.001)
 				// for better mobility(so they won't just
 				// go forward)
+				// lower maxSpeed than player.
+
+				if (movementVector.len() > 0) {
+					// we want to apply larger force when enemy is
+					// turning (changing direction). so we need a better
+					// test than above
+					movementVector = movementVector.mul(0.0001f);
+				} else {
+					movementVector = movementVector.mul(0.00001f);
+				}
+
+				final float maxSpeed = 10;
 				final Vector2 testVector = new Vector2(this.getBody()
 						.getLinearVelocity());
-				if (testVector.add(movementVector).len() > 0) {
-					movementVector = movementVector.mul(0.001f);
-				} else {
-					movementVector = movementVector.mul(0.0001f);
+				if (testVector.add(movementVector).len() > maxSpeed) {
+					MyDebug.d("inside first if");
+					return;
 				}
 
 				this.getBody().applyLinearImpulse(movementVector,

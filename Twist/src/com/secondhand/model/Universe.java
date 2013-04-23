@@ -66,7 +66,7 @@ public final class Universe {
 			}
 			blackHole.eatEntity(planet);
 		} else {
-			gameOver=true;
+			gameOver=true; 
 		}
 
 	}

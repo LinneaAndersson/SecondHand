@@ -8,7 +8,6 @@ import com.secondhand.debug.MyDebug;
 import com.secondhand.physics.PhysicsDestroyer;
 import com.secondhand.twirl.GlobalResources;
 
-
 /**
  * Singelton class for describing the universe.
  */
@@ -25,16 +24,18 @@ public final class Universe {
 
 	private static Universe instance;
 
-	private Universe() {}
-	
+	private Universe() {
+	}
+
 	public void initialize(final Engine engine) {
 		this.engine = engine;
-		
+
 		currentLevel = new Level();
-		physicsDestroyer = new PhysicsDestroyer(this.engine, currentLevel.getPhysicsWorld());
+		physicsDestroyer = new PhysicsDestroyer(this.engine,
+				currentLevel.getPhysicsWorld());
 		gameOver = false;
 	}
-	
+
 	public PhysicsDestroyer getPhysicsDestroyer() {
 		return this.physicsDestroyer;
 	}
@@ -45,33 +46,31 @@ public final class Universe {
 		}
 		return instance;
 	}
-	
-	private void handlePlanetBlackHoleCollision(final Entity entityA, final Entity entityB) {
+
+	private void handlePlanetBlackHoleCollision(final Entity entityA,
+			final Entity entityB) {
 
 		BlackHole blackHole;
+		Planet planet;
 		if (entityA instanceof BlackHole) {
 			blackHole = (BlackHole) entityA;
+			planet = (Planet) entityB;
 		} else {
+			planet = (Planet) entityA;
 			blackHole = (BlackHole) entityB;
 		}
 
-		Planet planet;
-		if (entityA instanceof Planet) {
-			planet = (Planet) entityA;
-		} else {
-			planet = (Planet) entityB;
-		}
 		if (blackHole.canEat(planet)) {
-
-			GlobalResources.getInstance().growSound.play();
-
-			blackHole.eatEntity(planet);	
+			if (blackHole instanceof Player) {
+				GlobalResources.getInstance().growSound.play();
+			}
+			blackHole.eatEntity(planet);
 		}
 
 	}
-	
-	
-	private void handlePowerUpPlayerCollision(final Entity entityA, final Entity entityB) {
+
+	private void handlePowerUpPlayerCollision(final Entity entityA,
+			final Entity entityB) {
 
 		GlobalResources.getInstance().powerUpSound.play();
 
@@ -94,8 +93,30 @@ public final class Universe {
 		currentLevel.activateEffect(power.getEffect());
 
 	}
-	
-	
+
+	private void handleBlackHoleCollision(Entity entityA, Entity entityB) {
+		// TODO Auto-generated method stub
+		BlackHole blackHole1 = (BlackHole) entityA;
+		BlackHole blackHole2 = (BlackHole) entityB;
+
+		if (blackHole1.canEat(blackHole2)) {
+
+			if (blackHole1 instanceof Player) {
+				GlobalResources.getInstance().growSound.play();
+			}
+
+			blackHole1.eatEntity(blackHole2);
+
+		} else if (blackHole2.canEat(blackHole1)) {
+
+			if (blackHole1 instanceof Player) {
+				GlobalResources.getInstance().growSound.play();
+			}
+
+			blackHole2.eatEntity(blackHole1);
+		}
+	}
+
 	// TODO Now there is alot of duplicated code in this method.
 	// Perhaps we could extract that code into a new method.
 	public void checkCollision(final Contact contact) {
@@ -124,6 +145,8 @@ public final class Universe {
 		} else if (entityA instanceof Player && entityB instanceof Obstacle
 				|| entityB instanceof Player && entityA instanceof Obstacle) {
 			GlobalResources.getInstance().obstacleCollisionSound.play();
+		} else if (entityA instanceof BlackHole && entityB instanceof BlackHole) {
+			handleBlackHoleCollision(entityA, entityB);
 		}
 
 	}
@@ -131,7 +154,7 @@ public final class Universe {
 	public boolean isGameOver() {
 		return gameOver;
 	}
-	
+
 	// perhaps not needed if we only set gameover
 	private void gameOver() {
 		gameOver = true;
@@ -139,7 +162,6 @@ public final class Universe {
 		// other gameOver stuff in this method
 
 	}
-
 
 	public Level getLevel() {
 		return currentLevel;

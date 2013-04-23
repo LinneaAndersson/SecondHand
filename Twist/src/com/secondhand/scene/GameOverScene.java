@@ -22,7 +22,7 @@ import com.secondhand.twirl.GlobalResources;
 import com.secondhand.twirl.LocalizationStrings;
 
 public class GameOverScene extends GameMenuScene implements
-		IOnMenuItemClickListener {
+IOnMenuItemClickListener {
 	private Font mFont;
 	private Player player;
 	private static final int NAME = 0;
@@ -35,7 +35,7 @@ public class GameOverScene extends GameMenuScene implements
 		super(engine, context);
 		player=Universe.getInstance().getLevel().getPlayer();
 	}
-	
+
 	@Override
 	public void loadResources() {
 		mFont = GlobalResources.getInstance().menuItemFont;
@@ -52,33 +52,35 @@ public class GameOverScene extends GameMenuScene implements
 	public void loadScene() {
 		Text textGameOver = null;
 		String mLine = "0";
-		
+
 		try {
+			MyDebug.d(mLine);
 			mLine = reader.readLine();
-			/*while (!mLine.isEmpty()) {
+			MyDebug.d(mLine);
+			while (true) {
+				mLine = reader.readLine().trim();
+				MyDebug.d(mLine);
 				
-					mLine = reader.readLine().trim();
-					MyDebug.d(mLine);
 				if(player.getScore()>Integer.parseInt(mLine)){
 					textGameOver = new Text(100, 60, mFont, LocalizationStrings
 							.getInstance().getLocalizedString("menu_game_over"),
 							HorizontalAlign.CENTER);
 					break;
 				} 
+				
 				mLine=reader.readLine();
-				if(mLine.isEmpty()){
+				
+				if(mLine!=null){
 					textGameOver = new Text(100, 60, mFont, LocalizationStrings
-							.getInstance().getLocalizedString("menu_game_over"),
+							.getInstance().getLocalizedString("congratulation"),
 							HorizontalAlign.CENTER);
+					break;
 				}
-			}*/
+			}
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		textGameOver = new Text(100, 60, mFont, LocalizationStrings
-				.getInstance().getLocalizedString("menu_game_over"),
-				HorizontalAlign.CENTER);
 
 		final float x = this.smoothCamera.getWidth() / 2.0f
 				- textGameOver.getWidth() / 2.0f;
@@ -88,7 +90,7 @@ public class GameOverScene extends GameMenuScene implements
 
 		this.attachChild(textGameOver);
 		// The title
-		
+
 		/*
 		 * } else { // not important yet textGameOver = new Text(100, 60, mFont,
 		 * LocalizationStrings
@@ -96,7 +98,7 @@ public class GameOverScene extends GameMenuScene implements
 		 * HorizontalAlign.CENTER); }
 		 */
 
-		
+
 
 	}
 

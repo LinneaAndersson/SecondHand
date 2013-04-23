@@ -47,7 +47,6 @@ public final class GlobalResources {
 	private GlobalResources() {}
 
 	
-	
 	public void load() {	
 		this.menuItemFont = FontLoader.getInstance().loadFont(
 				Typeface.create(Typeface.DEFAULT, Typeface.BOLD), 32, Color.WHITE);
@@ -74,7 +73,7 @@ public final class GlobalResources {
 	
 	// To add a texture path, just add enum value ex: ENEMY ("enemy.png") in list.
 	enum EntityTexture {
-		PLANET ("planet_red.png"),
+		PLANET ("scary.png"),
 		PLAYER ("player.png"),
 		POWER_UP("powerup_box.png"),
 		OBSTACLE("obstacle.png");

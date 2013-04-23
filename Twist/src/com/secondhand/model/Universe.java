@@ -65,6 +65,8 @@ public final class Universe {
 				GlobalResources.getInstance().growSound.play();
 			}
 			blackHole.eatEntity(planet);
+		} else {
+			gameOver=true;
 		}
 
 	}
@@ -103,14 +105,18 @@ public final class Universe {
 
 			if (blackHole1 instanceof Player) {
 				GlobalResources.getInstance().growSound.play();
+			} else {
+				gameOver=true;
 			}
 
 			blackHole1.eatEntity(blackHole2);
 
 		} else if (blackHole2.canEat(blackHole1)) {
 
-			if (blackHole1 instanceof Player) {
+			if (blackHole2 instanceof Player) {
 				GlobalResources.getInstance().growSound.play();
+			} else {
+				gameOver=true;
 			}
 
 			blackHole2.eatEntity(blackHole1);

@@ -55,11 +55,9 @@ public class MainActivity extends BaseGameActivity {
 	    SoundLoader.getInstance().initialize(this, engine);
 	    TextureRegionLoader.getInstance().initialize(this, engine);
 	    // IMPORTANT: Uses TextureRegionLoader, so this line must be executed after above line always
-		GlobalResources.getInstance().load();
 		
 	    LocalizationStrings.getInstance().initialize(this);
 	
-	    Universe.getInstance().initialize(engine);
 	    
 	    
 	    SceneManager.getInstance().initialize(engine, this);

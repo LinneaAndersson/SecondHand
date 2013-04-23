@@ -16,6 +16,7 @@ import android.view.KeyEvent;
 
 import com.secondhand.controller.SceneManager;
 import com.secondhand.debug.MyDebug;
+import com.secondhand.resource.Fonts;
 import com.secondhand.twirl.GlobalResources;
 
 /**
@@ -61,7 +62,7 @@ public abstract class GameMenuScene extends MenuScene implements IGameScene {
 		// the vertical spacing around the headline.
 		final int headlineSpacing = 40;
 
-		final Font menuHeadlineFont = GlobalResources.getInstance().menuHeadlineFont;
+		final Font menuHeadlineFont = Fonts.getInstance().menuHeadlineFont;
 
 		final float fontHeight = new Text(0, 0, menuHeadlineFont, "lorem ipsum")
 				.getHeight();
@@ -87,7 +88,7 @@ public abstract class GameMenuScene extends MenuScene implements IGameScene {
 	protected void layoutCenteredMenu(final int startY,
 			final List<GameMenuScene.MenuItem> menuItems) {
 
-		final Font menuItemFont = GlobalResources.getInstance().menuItemFont;
+		final Font menuItemFont = Fonts.getInstance().menuItemFont;
 
 		// vertical spacing between separate menu items
 		final float spacingBetweenItems = 20;

@@ -17,6 +17,7 @@ import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 
 import com.secondhand.loader.SoundLoader;
+import com.secondhand.resource.Fonts;
 import com.secondhand.twirl.GlobalResources;
 import com.secondhand.twirl.LocalizationStrings;
 
@@ -78,7 +79,7 @@ public class SettingsMenuScene extends GameMenuScene implements
 		// ie, the spacing between volume and the actual volume control.
 		final int subheadlineInbetweenSpacing = 5;
 
-		final Font font = GlobalResources.getInstance().menuItemFont;
+		final Font font = Fonts.getInstance().menuItemFont;
 		final float fontHeight = new Text(0, 0, font, "lorem ipsum")
 				.getHeight();
 

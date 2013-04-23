@@ -18,6 +18,7 @@ import android.content.Context;
 import com.secondhand.debug.MyDebug;
 import com.secondhand.model.Player;
 import com.secondhand.model.Universe;
+import com.secondhand.resource.Fonts;
 import com.secondhand.twirl.GlobalResources;
 import com.secondhand.twirl.LocalizationStrings;
 
@@ -35,12 +36,13 @@ public class GameOverScene extends GameMenuScene implements
 
 	public GameOverScene(final Engine engine, final Context context) {
 		super(engine, context);
-		player = Universe.getInstance().getLevel().getPlayer();
+		// You do not need to do this in the constructor, do it in loadScene()
+	//	player = Universe.getInstance().getLevel().getPlayer();
 	}
 
 	@Override
 	public void loadResources() {
-		mFont = GlobalResources.getInstance().menuItemFont;
+		mFont = Fonts.getInstance().menuItemFont;
 		try {
 			reader = new BufferedReader(new InputStreamReader(context
 					.getAssets().open("highScore")));

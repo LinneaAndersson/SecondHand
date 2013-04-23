@@ -11,6 +11,7 @@ import org.anddev.andengine.util.HorizontalAlign;
 import android.content.Context;
 
 import com.secondhand.debug.MyDebug;
+import com.secondhand.resource.Fonts;
 import com.secondhand.twirl.GlobalResources;
 import com.secondhand.twirl.LocalizationStrings;
 
@@ -23,7 +24,7 @@ public class HighScoreScene extends GameScene {
 
 	@Override
 	public void loadResources() {
-		mFont = GlobalResources.getInstance().menuItemFont;
+		mFont = Fonts.getInstance().menuItemFont;
 	}
 
 	@Override
@@ -62,7 +63,7 @@ public class HighScoreScene extends GameScene {
 			while (mLine != null) {
 				tmp++;
 				final Text playerScore = new Text(100, 120 + tmp * 40,
-						GlobalResources.getInstance().menuItemFont, mLine,
+						Fonts.getInstance().menuItemFont, mLine,
 						HorizontalAlign.CENTER);
 				// increase the y-axis for every player. Max 5 players!
 				playerScore.setPosition(x, (int) (y * (0.35 + tmp * 0.3)));

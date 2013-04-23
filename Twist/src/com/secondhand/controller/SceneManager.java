@@ -5,6 +5,8 @@ import org.anddev.andengine.engine.Engine;
 import android.content.Context;
 import android.view.KeyEvent;
 
+import com.secondhand.model.Universe;
+import com.secondhand.resource.Fonts;
 import com.secondhand.scene.GameOverScene;
 import com.secondhand.scene.GamePlayScene;
 import com.secondhand.scene.HighScoreScene;
@@ -12,6 +14,7 @@ import com.secondhand.scene.IGameScene;
 import com.secondhand.scene.IGameScene.AllScenes;
 import com.secondhand.scene.MainMenuScene;
 import com.secondhand.scene.SettingsMenuScene;
+import com.secondhand.twirl.GlobalResources;
 
 /**
  * This manages all the scenes, is used to set the current scene, and sends
@@ -30,6 +33,7 @@ public final class SceneManager {
 			highScoreScene, gameOverScene;
 	private GamePlayScene gamePlayScene;
 
+	private GamePlaySceneController gamePlaySceneController;
 
 	public static SceneManager getInstance() {
 		if (instance == null) {
@@ -54,8 +58,7 @@ public final class SceneManager {
 		this.settingsMenuScene = new SettingsMenuScene(this.engine, context);
 		this.gameOverScene = new GameOverScene(this.engine, context);
 		this.gamePlayScene = new GamePlayScene(this.engine, context);
-		new GamePlaySceneController(this.gamePlayScene);
-
+		
 		this.highScoreScene = new HighScoreScene(this.engine, context);
 	}
 
@@ -104,7 +107,15 @@ public final class SceneManager {
 		if (this.currentSceneEnum == AllScenes.LOADING_SCENE) {
 			currentScene.loadResources();
 		}
-
+		
+		// start the controller of the game play scene.
+		
+		if (this.currentSceneEnum == AllScenes.GAME_PLAY_SCENE && gamePlaySceneController==null) {
+			Universe.getInstance().initialize(engine);
+			
+			gamePlaySceneController = new GamePlaySceneController(this.gamePlayScene);
+		}
+		
 		// fully clear the scene before loading and then load it.
 		currentScene.getScene().detachChildren();
 		currentScene.loadScene();
@@ -123,6 +134,9 @@ public final class SceneManager {
 	
 	// used by the loading scene to load all game resources.
 	public void loadAllResources() {
+		
+		GlobalResources.getInstance().load();
+		
 		// IMPORTANT: when you want to add a new scene to the app, you MUST
 		// load its resources here.
 		this.mainMenuScene.loadResources();

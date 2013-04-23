@@ -3,6 +3,7 @@ package com.secondhand.controller;
 import org.anddev.andengine.engine.camera.Camera;
 import org.anddev.andengine.entity.text.ChangeableText;
 
+import com.secondhand.resource.Fonts;
 import com.secondhand.twirl.GlobalResources;
 import com.secondhand.twirl.LocalizationStrings;
 
@@ -24,7 +25,7 @@ public class LoadingText extends ChangeableText {
 	private float secondsPassedSinceLastUpdate;
 
 	public LoadingText(final Camera camera) {
-		super(0, 0, GlobalResources.getInstance().menuItemFont,
+		super(0, 0, Fonts.getInstance().menuItemFont,
 		// TODO: ugly hack, fix(this string has to be longer than the presented
 		// string for some reason)
 				"frferffreferloading");

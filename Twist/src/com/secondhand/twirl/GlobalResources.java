@@ -22,9 +22,6 @@ public final class GlobalResources {
 	private static final String TEXTURE_BASEPATH = "gfx/";
 	private static final String SOUND_BASEPATH = "sfx/";
 	
-	public Font menuItemFont;
-	public Font menuHeadlineFont;
-	
 	public TextureRegion playerSprite;
 	public TextureRegion planetTexture;
 	public TextureRegion powerUpTexture;
@@ -48,10 +45,6 @@ public final class GlobalResources {
 
 	
 	public void load() {	
-		this.menuItemFont = FontLoader.getInstance().loadFont(
-				Typeface.create(Typeface.DEFAULT, Typeface.BOLD), 32, Color.WHITE);
-		this.menuHeadlineFont = FontLoader.getInstance().loadFont(
-				Typeface.create(Typeface.DEFAULT, Typeface.BOLD), 50, Color.WHITE);
 		//this.playerSprite = null; // TODO load the player sprite
 		
 
@@ -73,7 +66,7 @@ public final class GlobalResources {
 	
 	// To add a texture path, just add enum value ex: ENEMY ("enemy.png") in list.
 	enum EntityTexture {
-		PLANET ("scary.png"),
+		PLANET ("planet_blood.png"),
 		PLAYER ("player.png"),
 		POWER_UP("powerup_box.png"),
 		OBSTACLE("obstacle.png");

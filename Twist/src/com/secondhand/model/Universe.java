@@ -147,9 +147,9 @@ public final class Universe {
 		} else if (entityA instanceof Player && entityB instanceof Obstacle
 				|| entityB instanceof Player && entityA instanceof Obstacle) {
 			GlobalResources.getInstance().obstacleCollisionSound.play();
-		} else if (entityA instanceof BlackHole && entityB instanceof BlackHole) {
+		/*} else if (entityA instanceof BlackHole && entityB instanceof BlackHole) {
 			handleBlackHoleCollision(entityA, entityB);
-		}
+		}*/
 
 	}
 

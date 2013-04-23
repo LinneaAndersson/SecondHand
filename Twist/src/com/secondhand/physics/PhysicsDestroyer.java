@@ -24,7 +24,6 @@ public final class PhysicsDestroyer {
 
 	private PhysicsDestroyer() {
 		killingInProcess = false;
-		
 		//perhaps a normal linkedList would suffice
 		queue = new LinkedBlockingQueue<IShape>();
 	}
@@ -49,6 +48,7 @@ public final class PhysicsDestroyer {
 			queue.add(mySprite);
 		}
 	}
+	
 	
 	public void StartDestruction(){
 		while(!queue.isEmpty()){

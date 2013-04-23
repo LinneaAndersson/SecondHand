@@ -48,9 +48,8 @@ public class Level {
 
 		final PhysicsWorld pW = new PhysicsWorld(new Vector2(), true);
 
-		init(maxSize, pW, new Player(new Vector2(50, 50), 20, pW),
+		init(maxSize, pW, new Player(new Vector2(50, 50), 20, pW), // NOPMD
 				createTestPlanets(pW), 2000, 2000); // NOPMD
-
 	}
 
 	public void init(final int maxSize, final PhysicsWorld pW, final Player p,

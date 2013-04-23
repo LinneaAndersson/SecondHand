@@ -111,8 +111,8 @@ public class Level {
 		testPlanets.add(new PowerUp(new Vector2(100, 500), Effect.RANDOM_TELEPORT,
 				GlobalResources.getInstance().powerUpTexture, physicsWorld));
 
-//		testPlanets.add(new PowerUp(new Vector2(20, 500), Effect.SHIELD,
-//				GlobalResources.getInstance().powerUpTexture, physicsWorld));
+		testPlanets.add(new PowerUp(new Vector2(20, 500), Effect.SHIELD,
+			GlobalResources.getInstance().powerUpTexture, physicsWorld));
 
 		return testPlanets;
 	}
@@ -184,11 +184,12 @@ public class Level {
 			// (CircleShape)player.getBody().getFixtureList().get(0).getShape();
 			// and then simply set the position of this shape.
 			
-			
+			/*
 			final CircleShape shape = (CircleShape)player.getBody().getFixtureList().get(0).getShape();
 			player.getBody().setTransform(new Vector2(50/32f, 50/32f), 0);
 			shape.setPosition(new Vector2(50/32f, 50/32f));
 			player.getShape().setPosition(50, 50);
+			*/
 
 			// needs to confirm empty position
 			// how to implement this:

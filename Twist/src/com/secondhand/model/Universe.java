@@ -62,7 +62,12 @@ public final class Universe {
 			}
 			blackHole.eatEntity(planet);
 		} else {
-			gameOver=true; 
+			if (blackHole instanceof Player) {
+				gameOver = true;
+			} else {
+				PhysicsDestroyer.getInstance().destroy(blackHole.getShape(),
+						true);
+			}
 		}
 
 	}
@@ -102,7 +107,7 @@ public final class Universe {
 			if (blackHole1 instanceof Player) {
 				GlobalResources.getInstance().growSound.play();
 			} else {
-				gameOver=true;
+				gameOver = true;
 			}
 
 			blackHole1.eatEntity(blackHole2);
@@ -112,7 +117,7 @@ public final class Universe {
 			if (blackHole2 instanceof Player) {
 				GlobalResources.getInstance().growSound.play();
 			} else {
-				gameOver=true;
+				gameOver = true;
 			}
 
 			blackHole2.eatEntity(blackHole1);
@@ -147,9 +152,10 @@ public final class Universe {
 		} else if (entityA instanceof Player && entityB instanceof Obstacle
 				|| entityB instanceof Player && entityA instanceof Obstacle) {
 			GlobalResources.getInstance().obstacleCollisionSound.play();
-		}/* else if (entityA instanceof BlackHole && entityB instanceof BlackHole) {
-			handleBlackHoleCollision(entityA, entityB);
-		}*/
+		}/*
+		 * else if (entityA instanceof BlackHole && entityB instanceof
+		 * BlackHole) { handleBlackHoleCollision(entityA, entityB); }
+		 */
 
 	}
 

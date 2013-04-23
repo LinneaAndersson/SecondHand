@@ -1,15 +1,10 @@
 package com.secondhand.model;
 
-import org.anddev.andengine.extension.physics.box2d.PhysicsFactory;
 import org.anddev.andengine.extension.physics.box2d.PhysicsWorld;
 import org.anddev.andengine.extension.physics.box2d.util.constants.PhysicsConstants;
 
 import com.badlogic.gdx.math.Vector2;
-import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.CircleShape;
-import com.badlogic.gdx.physics.box2d.Shape;
-import com.badlogic.gdx.physics.box2d.BodyDef.BodyType;
-import com.secondhand.debug.MyDebug;
 import com.secondhand.opengl.Circle;
 
 public abstract class BlackHole extends CircleEntity{
@@ -43,6 +38,8 @@ public abstract class BlackHole extends CircleEntity{
 
 		// remove the eaten entity from the physics world:
 		// TODO: we should have a better way of accessing the destroyer
+		
+		// can't we make physicsDestroyer singleton? and get it like universe
 		Universe.getInstance().getPhysicsDestroyer().destroy(entity.getShape(), true);
 
 		// TODO: we should use general entities instead, but for debugging purposes we'll do this cast.

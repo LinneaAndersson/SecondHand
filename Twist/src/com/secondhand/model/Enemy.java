@@ -7,18 +7,15 @@ import com.secondhand.debug.MyDebug;
 
 public class Enemy extends BlackHole {
 
-	public Enemy(final Vector2 vector, final float radius, final PhysicsWorld physicsWorld) {
+	public Enemy(final Vector2 vector, final float radius,
+			final PhysicsWorld physicsWorld) {
 		super(vector, radius, physicsWorld, true);
 	}
 
-	// will be quite easy to change player to a list instead
-
-	// checks if there is a straight line to player
+	// checks if there is a straight line to entity
 	// with nothing blocking
 
-	// if we only want them to chase the player then
-	// this isn't really necessary unless you increase
-	// the search area.
+	// may not be needed if enemy should just go after anything edible
 	private boolean straightToEntity(final Entity entity) {
 
 		return true;
@@ -31,7 +28,9 @@ public class Enemy extends BlackHole {
 		final float dx = entity.getCenterX() - this.getCenterX();
 
 		final float dy = entity.getCenterY() - this.getCenterY();
-
+		
+		// the hunting area is tmp like this, don't know 
+		// why i choose area*100
 		return dx * dx + dy * dy <= this.getArea() * 100;
 
 	}
@@ -54,8 +53,16 @@ public class Enemy extends BlackHole {
 				// need to slow them down, they are to dam fast
 				// otherwise
 				// if(body is moving) we need mul(0.001)
-				// for better mobility
-				movementVector = movementVector.mul(0.0001f);
+				// for better mobility(so they won't just
+				// go forward)
+				final Vector2 testVector = new Vector2(this.getBody()
+						.getLinearVelocity());
+				if (testVector.add(movementVector).len() > 0) {
+					movementVector = movementVector.mul(0.001f);
+				} else {
+					movementVector = movementVector.mul(0.0001f);
+				}
+
 				this.getBody().applyLinearImpulse(movementVector,
 						this.getBody().getWorldCenter());
 

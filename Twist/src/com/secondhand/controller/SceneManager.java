@@ -7,6 +7,7 @@ import android.view.KeyEvent;
 
 import com.secondhand.model.Universe;
 import com.secondhand.resource.Fonts;
+import com.secondhand.resource.Sounds;
 import com.secondhand.scene.GameOverScene;
 import com.secondhand.scene.GamePlayScene;
 import com.secondhand.scene.HighScoreScene;
@@ -136,6 +137,7 @@ public final class SceneManager {
 	public void loadAllResources() {
 		
 		GlobalResources.getInstance().load();
+		Sounds.getInstance().load();
 		
 		// IMPORTANT: when you want to add a new scene to the app, you MUST
 		// load its resources here.

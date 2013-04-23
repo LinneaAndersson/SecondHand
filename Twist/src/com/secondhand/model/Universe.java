@@ -6,6 +6,7 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Contact;
 import com.secondhand.debug.MyDebug;
 import com.secondhand.physics.PhysicsDestroyer;
+import com.secondhand.resource.Sounds;
 import com.secondhand.twirl.GlobalResources;
 
 /**
@@ -58,7 +59,7 @@ public final class Universe {
 
 		if (blackHole.canEat(planet)) {
 			if (blackHole instanceof Player) {
-				GlobalResources.getInstance().growSound.play();
+				Sounds.getInstance().growSound.play();
 			}
 			blackHole.eatEntity(planet);
 		} else {
@@ -75,7 +76,7 @@ public final class Universe {
 	private void handlePowerUpPlayerCollision(final Entity entityA,
 			final Entity entityB) {
 
-		GlobalResources.getInstance().powerUpSound.play();
+		Sounds.getInstance().powerUpSound.play();
 
 		PowerUp power;
 		if (entityA instanceof PowerUp) {
@@ -105,7 +106,7 @@ public final class Universe {
 		if (blackHole1.canEat(blackHole2)) {
 
 			if (blackHole1 instanceof Player) {
-				GlobalResources.getInstance().growSound.play();
+				Sounds.getInstance().growSound.play();
 			} else {
 				gameOver = true;
 			}
@@ -115,7 +116,7 @@ public final class Universe {
 		} else if (blackHole2.canEat(blackHole1)) {
 
 			if (blackHole2 instanceof Player) {
-				GlobalResources.getInstance().growSound.play();
+				Sounds.getInstance().growSound.play();
 			} else {
 				gameOver = true;
 			}
@@ -151,7 +152,7 @@ public final class Universe {
 			handlePowerUpPlayerCollision(entityA, entityB);
 		} else if (entityA instanceof Player && entityB instanceof Obstacle
 				|| entityB instanceof Player && entityA instanceof Obstacle) {
-			GlobalResources.getInstance().obstacleCollisionSound.play();
+			Sounds.getInstance().obstacleCollisionSound.play();
 		}/*
 		 * else if (entityA instanceof BlackHole && entityB instanceof
 		 * BlackHole) { handleBlackHoleCollision(entityA, entityB); }

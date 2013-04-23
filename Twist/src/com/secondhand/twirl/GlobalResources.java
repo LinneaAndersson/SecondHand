@@ -1,17 +1,11 @@
 package com.secondhand.twirl;
 
 
-import org.anddev.andengine.audio.sound.Sound;
-import org.anddev.andengine.opengl.font.Font;
 import org.anddev.andengine.opengl.texture.TextureOptions;
 import org.anddev.andengine.opengl.texture.region.TextureRegion;
 
-import com.secondhand.loader.FontLoader;
-import com.secondhand.loader.SoundLoader;
 import com.secondhand.loader.TextureRegionLoader;
 
-import android.graphics.Color;
-import android.graphics.Typeface;
 
 /**
  * Singelton class for managing the global resources of the app.
@@ -20,7 +14,6 @@ import android.graphics.Typeface;
 public final class GlobalResources {
 	
 	private static final String TEXTURE_BASEPATH = "gfx/";
-	private static final String SOUND_BASEPATH = "sfx/";
 	
 	public TextureRegion playerSprite;
 	public TextureRegion planetTexture;
@@ -28,9 +21,6 @@ public final class GlobalResources {
 	public TextureRegion obstacleTexture;
 	
 	
-	public Sound powerUpSound;
-	public Sound growSound;
-	public Sound obstacleCollisionSound;
 	
 	private static GlobalResources instance;
 	
@@ -58,9 +48,6 @@ public final class GlobalResources {
 		this.powerUpTexture = TextureRegionLoader.getInstance().loadTextureRegion(TEXTURE_BASEPATH+EntityTexture.POWER_UP.path, 64, 64,
 				TextureOptions.REPEATING_BILINEAR);
 		
-		this.powerUpSound = SoundLoader.getInstance().loadSound(SOUND_BASEPATH+"powerup.wav");
-		this.growSound = SoundLoader.getInstance().loadSound(SOUND_BASEPATH+"grow.wav");
-		this.obstacleCollisionSound = SoundLoader.getInstance().loadSound(SOUND_BASEPATH+"obstacle_collision.wav");
 	}
 
 	

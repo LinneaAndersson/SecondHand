@@ -22,6 +22,9 @@ import com.secondhand.resource.Fonts;
 import com.secondhand.twirl.GlobalResources;
 import com.secondhand.twirl.LocalizationStrings;
 
+/**
+ * TO LINNEA: Look at the comment in the constructor and fix the issue - Eric
+ */
 public class GameOverScene extends GameMenuScene implements
 		IOnMenuItemClickListener {
 	private Font mFont;

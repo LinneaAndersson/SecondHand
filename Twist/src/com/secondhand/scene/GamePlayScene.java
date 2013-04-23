@@ -111,13 +111,13 @@ public class GamePlayScene extends GameScene {
 		universe.getLevel().moveEnemies();
 		
 		/* PowerUp timer
-		   TODO: Make level "unactivate" effects?*/
+		   TODO: Make level deactivate effects?*/
 		final Effect playerEffect = universe.getLevel().getPlayer().getEffect();
 		if (playerEffect != Effect.NONE) {
 			
 			if (powerUpTimer == null || currentEffect != playerEffect) {
 				powerUpTimer = new ManualTimer(playerEffect.getDuration());
-				// InActivation of currentEffect
+				// Deactivate currentEffect
 				currentEffect = playerEffect;
 			} else {
 				powerUpTimer.addTime(pSecondsElapsed);
@@ -125,7 +125,7 @@ public class GamePlayScene extends GameScene {
 			
 			if (powerUpTimer.isDone()) {
 				powerUpTimer = null;
-				// InActivation of playerEffect
+				// Deactivate playerEffect
 				universe.getLevel().getPlayer().setEffect(Effect.NONE);
 				universe.getLevel().getPlayer().getCircle().setColor(1, 1, 1); // Base color/sprite
 			} else {

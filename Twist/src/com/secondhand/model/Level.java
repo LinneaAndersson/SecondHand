@@ -113,6 +113,9 @@ public class Level {
 
 		testPlanets.add(new PowerUp(new Vector2(20, 500), Effect.SHIELD,
 			GlobalResources.getInstance().powerUpTexture, physicsWorld));
+		
+		testPlanets.add(new PowerUp(new Vector2(20, 700), Effect.SHIELD,
+				GlobalResources.getInstance().powerUpTexture, physicsWorld));
 
 		return testPlanets;
 	}

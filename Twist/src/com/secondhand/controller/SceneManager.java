@@ -8,6 +8,7 @@ import android.view.KeyEvent;
 import com.secondhand.model.Universe;
 import com.secondhand.resource.Fonts;
 import com.secondhand.resource.Sounds;
+import com.secondhand.resource.TextureRegions;
 import com.secondhand.scene.GameOverScene;
 import com.secondhand.scene.GamePlayScene;
 import com.secondhand.scene.HighScoreScene;
@@ -15,7 +16,6 @@ import com.secondhand.scene.IGameScene;
 import com.secondhand.scene.IGameScene.AllScenes;
 import com.secondhand.scene.MainMenuScene;
 import com.secondhand.scene.SettingsMenuScene;
-import com.secondhand.twirl.GlobalResources;
 
 /**
  * This manages all the scenes, is used to set the current scene, and sends
@@ -136,7 +136,7 @@ public final class SceneManager {
 	// used by the loading scene to load all game resources.
 	public void loadAllResources() {
 		
-		GlobalResources.getInstance().load();
+		TextureRegions.getInstance().load();
 		Sounds.getInstance().load();
 		
 		// IMPORTANT: when you want to add a new scene to the app, you MUST

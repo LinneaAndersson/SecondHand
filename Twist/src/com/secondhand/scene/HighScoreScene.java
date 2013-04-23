@@ -12,8 +12,8 @@ import android.content.Context;
 
 import com.secondhand.debug.MyDebug;
 import com.secondhand.resource.Fonts;
-import com.secondhand.twirl.GlobalResources;
-import com.secondhand.twirl.LocalizationStrings;
+import com.secondhand.resource.LocalizationStrings;
+
 
 public class HighScoreScene extends GameScene {
 	private Font mFont;

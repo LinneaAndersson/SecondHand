@@ -7,7 +7,6 @@ import com.badlogic.gdx.physics.box2d.Contact;
 import com.secondhand.debug.MyDebug;
 import com.secondhand.physics.PhysicsDestroyer;
 import com.secondhand.resource.Sounds;
-import com.secondhand.twirl.GlobalResources;
 
 /**
  * Singelton class for describing the universe.

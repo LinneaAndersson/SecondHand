@@ -1,5 +1,4 @@
-package com.secondhand.twirl;
-
+package com.secondhand.resource;
 
 import org.anddev.andengine.opengl.texture.TextureOptions;
 import org.anddev.andengine.opengl.texture.region.TextureRegion;
@@ -7,32 +6,25 @@ import org.anddev.andengine.opengl.texture.region.TextureRegion;
 import com.secondhand.loader.TextureRegionLoader;
 
 
-/**
- * Singelton class for managing the global resources of the app.
- * These are resources that are used in several scenes, ie, the menu font. 
- */
-public final class GlobalResources {
-	
+public class TextureRegions {
+
 	private static final String TEXTURE_BASEPATH = "gfx/";
 	
+
 	public TextureRegion playerSprite;
 	public TextureRegion planetTexture;
 	public TextureRegion powerUpTexture;
 	public TextureRegion obstacleTexture;
 	
 	
+	private static TextureRegions instance;
 	
-	private static GlobalResources instance;
-	
-	public static GlobalResources getInstance() {
+	public static TextureRegions getInstance() {
 		if(instance == null) {
-			instance = new GlobalResources();
+			instance = new TextureRegions();
 		}
 		return instance;
 	}
-	
-	private GlobalResources() {}
-
 	
 	public void load() {	
 		//this.playerSprite = null; // TODO load the player sprite
@@ -64,4 +56,5 @@ public final class GlobalResources {
 			this.path = path;
 		}
 	}
+	
 }

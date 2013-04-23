@@ -17,7 +17,7 @@ import com.secondhand.debug.MyDebug;
 import com.secondhand.math.PolygonUtil;
 import com.secondhand.model.PowerUp.Effect;
 import com.secondhand.opengl.TexturedPolygon;
-import com.secondhand.twirl.GlobalResources;
+import com.secondhand.resource.TextureRegions;
 
 public class Level {
 
@@ -92,7 +92,7 @@ public class Level {
 		final List<Entity> testPlanets = new ArrayList<Entity>();
 
 		// TODO: Understand why textures are not loaded properly
-		final TextureRegion planetTexture = GlobalResources.getInstance().planetTexture;
+		final TextureRegion planetTexture = TextureRegions.getInstance().planetTexture;
 
 		testPlanets.add(new Planet(new Vector2(130, 130), 30, planetTexture,
 				physicsWorld));
@@ -105,17 +105,17 @@ public class Level {
 
 		final TexturedPolygon polygon = new TexturedPolygon(200, 200,
 				PolygonUtil.getRandomPolygon(),
-				GlobalResources.getInstance().obstacleTexture);
+				TextureRegions.getInstance().obstacleTexture);
 		testPlanets.add(new Obstacle(polygon, physicsWorld));
 
 		testPlanets.add(new PowerUp(new Vector2(100, 500), Effect.RANDOM_TELEPORT,
-				GlobalResources.getInstance().powerUpTexture, physicsWorld));
+				TextureRegions.getInstance().powerUpTexture, physicsWorld));
 
 		testPlanets.add(new PowerUp(new Vector2(20, 500), Effect.SHIELD,
-			GlobalResources.getInstance().powerUpTexture, physicsWorld));
+				TextureRegions.getInstance().powerUpTexture, physicsWorld));
 		
 		testPlanets.add(new PowerUp(new Vector2(20, 700), Effect.SHIELD,
-				GlobalResources.getInstance().powerUpTexture, physicsWorld));
+				TextureRegions.getInstance().powerUpTexture, physicsWorld));
 
 		return testPlanets;
 	}

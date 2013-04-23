@@ -19,8 +19,7 @@ import com.secondhand.debug.MyDebug;
 import com.secondhand.model.Player;
 import com.secondhand.model.Universe;
 import com.secondhand.resource.Fonts;
-import com.secondhand.twirl.GlobalResources;
-import com.secondhand.twirl.LocalizationStrings;
+import com.secondhand.resource.LocalizationStrings;
 
 /**
  * TO LINNEA: Look at the comment in the constructor and fix the issue - Eric

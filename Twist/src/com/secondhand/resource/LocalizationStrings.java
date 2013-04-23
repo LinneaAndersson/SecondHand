@@ -1,4 +1,4 @@
-package com.secondhand.twirl;
+package com.secondhand.resource;
 
 
 import android.content.Context;

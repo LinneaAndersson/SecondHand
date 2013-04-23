@@ -56,7 +56,7 @@ public class GamePlayScene extends GameScene {
 		
         player.detachSelf();
 		attachChild(player);
-		for(IShape shape : shapeList){
+		for(final IShape shape : shapeList){
 			shape.detachSelf();
 			attachChild(shape);
 		}
@@ -111,7 +111,7 @@ public class GamePlayScene extends GameScene {
 		universe.getLevel().moveEnemies();
 		
 		// PowerUp timer
-		Effect playerEffect = universe.getLevel().getPlayer().getEffect();
+		final Effect playerEffect = universe.getLevel().getPlayer().getEffect();
 		if (playerEffect != Effect.NONE) {
 			if (powerUpCounter <= 0 || currentEffect != playerEffect)
 				powerUpCounter = playerEffect.getDuration();

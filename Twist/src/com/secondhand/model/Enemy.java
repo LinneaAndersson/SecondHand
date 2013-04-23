@@ -23,7 +23,7 @@ public class Enemy extends BlackHole {
 
 	// checks if enemy is close enough to start chasing
 	// the player
-	public boolean isCloseToEntity(final Entity entity) {
+	private boolean isCloseToEntity(final Entity entity) {
 
 		final float dx = entity.getCenterX() - this.getCenterX();
 
@@ -70,7 +70,6 @@ public class Enemy extends BlackHole {
 				final Vector2 testVector = new Vector2(this.getBody()
 						.getLinearVelocity());
 				if (testVector.add(movementVector).len() > maxSpeed) {
-					MyDebug.d("inside first if");
 					return;
 				}
 

@@ -58,9 +58,9 @@ public abstract class BlackHole extends CircleEntity{
 		
 
 		shape.setRadius(getRadius() / PhysicsConstants.PIXEL_TO_METER_RATIO_DEFAULT);
-		Vector2 currentPosition = shape.getPosition();
-		float inc = planet.getRadius() / PhysicsConstants.PIXEL_TO_METER_RATIO_DEFAULT;
-		Vector2 newPosition = currentPosition.add(inc, inc);
+		final Vector2 currentPosition = shape.getPosition();
+		final float inc = planet.getRadius() / PhysicsConstants.PIXEL_TO_METER_RATIO_DEFAULT;
+		final Vector2 newPosition = currentPosition.add(inc, inc);
 		
 		shape.setPosition(newPosition);
 			

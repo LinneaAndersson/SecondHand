@@ -16,7 +16,7 @@ public abstract class Entity {
 	private final IShape shape;
 	private final boolean isEdible;
 	private String assetName;
-	private PhysicsWorld physicsWorld;
+	private final PhysicsWorld physicsWorld;
 	
 	protected final boolean updateRotation;
 	
@@ -35,7 +35,7 @@ public abstract class Entity {
 		registerBody(body); //NOPMD
 	}
 	
-	protected final void registerBody(Body body) {
+	protected final void registerBody(final Body body) {
 		final PhysicsHandler pH = new PhysicsHandler(this.shape);
 
 		

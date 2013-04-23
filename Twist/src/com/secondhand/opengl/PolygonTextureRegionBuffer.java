@@ -41,7 +41,7 @@ public class PolygonTextureRegionBuffer extends BufferObject {
 		final int[] bufferData = this.mBufferData;
 
 		int i = 0;
-		for(Vector2 vertex: this.mVertices) {
+		for(final Vector2 vertex: this.mVertices) {
 			bufferData[i++] = Float.floatToRawIntBits(vertex.x / this.mWidth);
 			bufferData[i++] = Float.floatToRawIntBits(vertex.y / this.mHeight);
 		}

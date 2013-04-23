@@ -31,6 +31,8 @@ public class PowerUp extends RectangleEntity {
 		this(effect, new Rectangle(position.x, position.y, WIDTH, HEIGHT), physicsWorld);
 	}	
 	
+	// public abstract void affectPlayer(Player player); // TODO: We should probably do this instead of Level taking care of it
+	
 	public enum Effect{
 		NONE (),
 		SPEED_UP (2),

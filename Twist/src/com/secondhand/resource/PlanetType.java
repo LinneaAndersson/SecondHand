@@ -19,5 +19,5 @@ public enum PlanetType {
 		public String getPath() {
 			return this.path;
 		}
-	}
+}
 

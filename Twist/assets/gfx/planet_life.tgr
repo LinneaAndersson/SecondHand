@@ -1,0 +1,22 @@
+Nodes 5
+199 4
+engine.graphics.synthesis.texture.PatternPerlinNoise
+Color_Mapping 5 0.0 0.0 0.0 1.0 0.096618354 0.2 0.2 0.2 1.0 0.3188406 0.4 0.4 0.4 1.0 0.5603865 0.8 0.8 0.8 1.0 0.7198068 0.8 0.8 0.8 1.0 0.9178744 ScaleX 5.0 ScaleY 4.0 ValueScale 1.0 Persistence 0.875 StartBand 1 EndBand 3 Seed 4 Periodic true transformation 1.0 0.0 0.0 0.0 1.0 0.0 0.0 0.0 1.0 endparameters
+350 -22
+engine.graphics.synthesis.texture.PatternPerlinNoise
+Color_Mapping 5 0.0 0.0 0.0 1.0 0.096618354 0.2 0.2 0.2 1.0 0.3188406 0.4 0.4 0.4 1.0 0.5603865 0.8 0.8 0.8 1.0 0.7198068 0.8 0.8 0.8 1.0 0.9178744 ScaleX 4.0 ScaleY 5.0 ValueScale 1.0 Persistence 0.875 StartBand 1 EndBand 3 Seed 6 Periodic true transformation 1.0 0.0 0.0 0.0 1.0 0.0 0.0 0.0 1.0 endparameters
+526 9
+engine.graphics.synthesis.texture.PatternPerlinNoise
+Color_Mapping 5 0.0 0.0 0.0 1.0 0.096618354 0.2 0.2 0.2 1.0 0.3188406 0.4 0.4 0.4 1.0 0.5603865 0.8 0.8 0.8 1.0 0.7198068 0.8 0.8 0.8 1.0 0.9178744 ScaleX 5.0 ScaleY 5.0 ValueScale 1.0 Persistence 0.875 StartBand 1 EndBand 3 Seed 8 Periodic true transformation 1.0 0.0 0.0 0.0 1.0 0.0 0.0 0.0 1.0 endparameters
+354 133
+engine.graphics.synthesis.texture.FilterMask
+Invert false transformation 1.0 0.0 0.0 0.0 1.0 0.0 0.0 0.0 1.0 endparameters
+349 259
+engine.graphics.synthesis.texture.FilterColorize
+Gray_to_Color_Mapping 4 0.0 0.8 0.0 1.0 0.15458937 0.2 1.0 1.0 1.0 0.23188406 0.0 0.2 0.8 1.0 0.5652174 0.2 0.8 1.0 1.0 0.87439615 transformation 1.0 0.0 0.0 0.0 1.0 0.0 0.0 0.0 1.0 endparameters
+4
+0 3 0
+1 3 1
+2 3 2
+3 4 0
+glpreview 4 -1 -1 -1 Object 0 Spec._Power 10.0 POM_Strength 0.125 Ambient 0.125 TexScale_U 2 TexScale_V 2 CamRotX 89.0 CamRotY 1.0 CamDist 1.8999995 endglpreview

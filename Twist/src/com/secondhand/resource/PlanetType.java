@@ -8,7 +8,8 @@ public enum PlanetType {
 		GRAY("planet_gray.png"),
 		PURPLE("planet_purple.png"),
 		RED("planet_red.png"),
-		WTF("planet_wtf.png");
+		WTF("planet_wtf.png"),
+		LIFE("planet_life.png");
 		
 		private String path; 
 		

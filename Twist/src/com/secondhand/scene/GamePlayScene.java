@@ -21,7 +21,7 @@ public class GamePlayScene extends GameScene {
 	
 	private final Universe universe = Universe.getInstance();
 	
-	private float powerUpCounter = 0;
+	private ManualTimer powerUpTimer;
 	private Effect currentEffect = Effect.NONE;
 	
 	public GamePlayScene(final Engine engine, final Context context) {
@@ -110,19 +110,45 @@ public class GamePlayScene extends GameScene {
 		}
 		universe.getLevel().moveEnemies();
 		
-		// PowerUp timer
+		/* PowerUp timer
+		   TODO: (at ###) make level "unactivate" effects?*/
 		final Effect playerEffect = universe.getLevel().getPlayer().getEffect();
 		if (playerEffect != Effect.NONE) {
-			if (powerUpCounter <= 0 || currentEffect != playerEffect)
-				powerUpCounter = playerEffect.getDuration();
-			currentEffect = playerEffect;
-			powerUpCounter -= pSecondsElapsed;
-			if (powerUpCounter <= 0) {
+			
+			if (powerUpTimer == null || currentEffect != playerEffect) {
+				powerUpTimer = new ManualTimer(playerEffect.getDuration());
+				currentEffect = playerEffect;
+			} else {
+				powerUpTimer.addTime(pSecondsElapsed);
+			}
+			
+			if (powerUpTimer.isDone()) {
+				powerUpTimer = null;
 				universe.getLevel().getPlayer().setEffect(Effect.NONE);
 				universe.getLevel().getPlayer().getCircle().setColor(1, 1, 1); // Base color/sprite
 			} else {
 				universe.getLevel().getPlayer().getCircle().setColor(1f, 0, 0); // Color/Sprite for currentEffect
 			}
+			
+		}
+	}
+	
+	/* A timer that runs from startTime to 0. */
+	private class ManualTimer {
+		
+		private float startTime;
+		private float elapsedTime;
+		
+		public ManualTimer(float startTime) {
+			this.startTime = startTime;
+		}
+		
+		public void addTime(float time) {
+			elapsedTime += time;
+		}
+		
+		public boolean isDone() {
+			return startTime - elapsedTime <= 0;
 		}
 	}
 }

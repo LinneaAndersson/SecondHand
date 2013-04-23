@@ -117,6 +117,7 @@ public class GamePlayScene extends GameScene {
 			
 			if (powerUpTimer == null || currentEffect != playerEffect) {
 				powerUpTimer = new ManualTimer(playerEffect.getDuration());
+				// InActivation of currentEffect
 				currentEffect = playerEffect;
 			} else {
 				powerUpTimer.addTime(pSecondsElapsed);
@@ -124,6 +125,7 @@ public class GamePlayScene extends GameScene {
 			
 			if (powerUpTimer.isDone()) {
 				powerUpTimer = null;
+				// InActivation of playerEffect
 				universe.getLevel().getPlayer().setEffect(Effect.NONE);
 				universe.getLevel().getPlayer().getCircle().setColor(1, 1, 1); // Base color/sprite
 			} else {

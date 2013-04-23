@@ -9,6 +9,7 @@ public class Player extends BlackHole {
 
 	private  int score;
 	private Effect effect;
+	private String name;
 
 	public Player(final Vector2 position, final float radius, final PhysicsWorld physicsWorld) {
 		super(position, radius, physicsWorld, false);
@@ -32,4 +33,11 @@ public class Player extends BlackHole {
 		this.effect = effect;
 	}
 
+	public void setName(String name){
+		this.name = name;
+	}
+	
+	public String getName(){
+		return name;
+	}
 }

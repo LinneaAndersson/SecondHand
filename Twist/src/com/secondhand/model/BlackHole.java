@@ -35,6 +35,9 @@ public abstract class BlackHole extends CircleEntity {
 		// Detach the shape from AndEngine-rendering
 		entity.getShape().detachSelf();
 
+		//if you eat an planet you get 10 points, else you get 20.
+		//TODO: Maybe we should have different scores for different size
+		//this we will do in entity class, every entity has a score. 
 		if (this instanceof Player) {
 			if (entity instanceof Planet)
 				Universe.getInstance().getLevel().getPlayer().increaseScore(10);

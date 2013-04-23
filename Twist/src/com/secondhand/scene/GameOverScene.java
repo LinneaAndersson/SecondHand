@@ -22,18 +22,20 @@ import com.secondhand.twirl.GlobalResources;
 import com.secondhand.twirl.LocalizationStrings;
 
 public class GameOverScene extends GameMenuScene implements
-IOnMenuItemClickListener {
+		IOnMenuItemClickListener {
 	private Font mFont;
 	private Player player;
 	private static final int NAME = 0;
 	private static final int SKIP = 1;
+	private static final int BACK = 1;
 	private int[] highScore;
 	private String[] highScoreName;
 	private BufferedReader reader;
+	Text textGameOver = null;
 
 	public GameOverScene(final Engine engine, final Context context) {
 		super(engine, context);
-		player=Universe.getInstance().getLevel().getPlayer();
+		player = Universe.getInstance().getLevel().getPlayer();
 	}
 
 	@Override
@@ -48,32 +50,35 @@ IOnMenuItemClickListener {
 		}
 	}
 
-	@SuppressLint("NewApi") @Override
+	@SuppressLint("NewApi")
+	@Override
 	public void loadScene() {
-		Text textGameOver = null;
+
 		String mLine = "0";
+		int antal = 0;
 
 		try {
-			MyDebug.d(mLine);
+
 			mLine = reader.readLine();
-			MyDebug.d(mLine);
+			// checks if the score of the player are the top 5 score, and if it
+			// is it prints contgratulation. other way game over.
 			while (true) {
+				antal++;
 				mLine = reader.readLine().trim();
 				MyDebug.d(mLine);
-				
-				if(player.getScore()>Integer.parseInt(mLine)){
-					textGameOver = new Text(100, 60, mFont, LocalizationStrings
-							.getInstance().getLocalizedString("menu_game_over"),
-							HorizontalAlign.CENTER);
+
+				if (player.getScore() > Integer.parseInt(mLine)) {
+					setHeadLine("congratulation");
 					break;
-				} 
-				
-				mLine=reader.readLine();
-				
-				if(mLine!=null){
-					textGameOver = new Text(100, 60, mFont, LocalizationStrings
-							.getInstance().getLocalizedString("congratulation"),
-							HorizontalAlign.CENTER);
+				}
+
+				mLine = reader.readLine();
+
+				if (mLine == null && antal < 5) {
+					setHeadLine("congratulation");
+					break;
+				} else if (antal >= 5) {
+					setHeadLine("menu_game_over");
 					break;
 				}
 			}
@@ -81,6 +86,12 @@ IOnMenuItemClickListener {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+
+	}
+
+	public void setHeadLine(String text) {
+		textGameOver = new Text(100, 60, mFont, LocalizationStrings
+				.getInstance().getLocalizedString(text), HorizontalAlign.CENTER);
 
 		final float x = this.smoothCamera.getWidth() / 2.0f
 				- textGameOver.getWidth() / 2.0f;
@@ -97,8 +108,6 @@ IOnMenuItemClickListener {
 		 * .getInstance().getLocalizedString("congratulations"),
 		 * HorizontalAlign.CENTER); }
 		 */
-
-
 
 	}
 

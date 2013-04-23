@@ -15,7 +15,11 @@ import com.badlogic.gdx.physics.box2d.CircleShape;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.secondhand.debug.MyDebug;
 import com.secondhand.math.PolygonUtil;
-import com.secondhand.model.PowerUp.Effect;
+import com.secondhand.model.powerup.EatObstacle;
+import com.secondhand.model.powerup.PowerUp;
+import com.secondhand.model.powerup.RandomTeleport;
+import com.secondhand.model.powerup.Shield;
+import com.secondhand.model.powerup.SpeedUp;
 import com.secondhand.opengl.TexturedPolygon;
 import com.secondhand.resource.TextureRegions;
 
@@ -108,13 +112,13 @@ public class Level {
 				TextureRegions.getInstance().obstacleTexture);
 		testPlanets.add(new Obstacle(polygon, physicsWorld));
 
-		testPlanets.add(new PowerUp(new Vector2(100, 500), Effect.RANDOM_TELEPORT,
+		testPlanets.add(new RandomTeleport(new Vector2(100, 500),
 				TextureRegions.getInstance().powerUpTexture, physicsWorld));
 
-		testPlanets.add(new PowerUp(new Vector2(20, 500), Effect.SHIELD,
+		testPlanets.add(new Shield(new Vector2(20, 500),
 				TextureRegions.getInstance().powerUpTexture, physicsWorld));
 		
-		testPlanets.add(new PowerUp(new Vector2(20, 700), Effect.SHIELD,
+		testPlanets.add(new EatObstacle(new Vector2(20, 700),
 				TextureRegions.getInstance().powerUpTexture, physicsWorld));
 
 		return testPlanets;
@@ -172,67 +176,6 @@ public class Level {
 
 	public int getLevelHeight() {
 		return levelHeight;
-	}
-
-	// if we don't want level to handle this we could just move it
-	// TODO PowerUP is high priority so we somehow have to fix it
-	public void activateEffect(final Effect effect) {
-		switch (effect) {
-		case RANDOM_TELEPORT:
-			// remove old player
-			// I think simply changing the position of the physics body is
-			// enough(I hope).
-			// You can get a circle shape from the entity using something like:
-			// final CircleShape shape =
-			// (CircleShape)player.getBody().getFixtureList().get(0).getShape();
-			// and then simply set the position of this shape.
-			
-			/*
-			final CircleShape shape = (CircleShape)player.getBody().getFixtureList().get(0).getShape();
-			player.getBody().setTransform(new Vector2(50/32f, 50/32f), 0);
-			shape.setPosition(new Vector2(50/32f, 50/32f));
-			player.getShape().setPosition(50, 50);
-			*/
-
-			// needs to confirm empty position
-			// how to implement this:
-			/*
-			 * Use the QueryAABB method of the physicsworld. See:
-			 * http://www.iforce2d.net/b2dtut/world-querying Section
-			 * "Area querying (aka AABB querying)" for a detailed explanation
-			 * The rectangular area we give to this method will have to be the
-			 * smallest square that is able to contain the circle that
-			 * represents the player. Now, if we receive no callback in the
-			 * callback method registered in QueryAABB, that basically means
-			 * that the spot is free, and able to contain the circle without any
-			 * collisions. - Eric
-			 */
-
-			// add new player at new position
-			player.setEffect(effect);
-			break;
-		case SHIELD:
-			MyDebug.d("shield powerup");
-			player.setEffect(effect);
-			break;
-		case SPEED_UP:
-			player.setEffect(effect);
-			break;
-		case EAT_OBSTACLE:
-			player.setEffect(effect);
-			break;
-		case SCORE_UP:
-			// random number here?
-			// TODO also add animation for "+100"?
-			player.increaseScore(100);
-			break;
-		case NONE:
-			break;
-		default:
-			break;
-
-		}
-
 	}
 
 	public void moveEnemies() {

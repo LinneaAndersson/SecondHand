@@ -9,7 +9,7 @@ import android.content.Context;
 import android.view.KeyEvent;
 
 import com.secondhand.debug.MyDebug;
-import com.secondhand.model.PowerUp.Effect;
+import com.secondhand.model.powerup.PowerUp;
 import com.secondhand.model.Universe;
 import com.secondhand.opengl.StarsBackground;
 
@@ -22,7 +22,7 @@ public class GamePlayScene extends GameScene {
 	private final Universe universe = Universe.getInstance();
 	
 	private ManualTimer powerUpTimer;
-	private Effect currentEffect = Effect.NONE;
+	private PowerUp currentPowerUp = null;
 	
 	public GamePlayScene(final Engine engine, final Context context) {
 		super(engine, context);
@@ -110,15 +110,16 @@ public class GamePlayScene extends GameScene {
 		}
 		universe.getLevel().moveEnemies();
 		
-		/* PowerUp timer
-		   TODO: Make level deactivate effects?*/
-		final Effect playerEffect = universe.getLevel().getPlayer().getEffect();
-		if (playerEffect != Effect.NONE) {
+		// PowerUp timer
+		final PowerUp playerPowerUp = universe.getLevel().getPlayer().getPowerUp();
+		if (playerPowerUp != null) {
 			
-			if (powerUpTimer == null || currentEffect != playerEffect) {
-				powerUpTimer = new ManualTimer(playerEffect.getDuration());
+			if (powerUpTimer == null || currentPowerUp != playerPowerUp) {
+				powerUpTimer = new ManualTimer(playerPowerUp.getDuration());
 				// Deactivate currentEffect
-				currentEffect = playerEffect;
+				if (currentPowerUp != null)
+					currentPowerUp.deactivateEffect(universe.getLevel().getPlayer());
+				currentPowerUp = playerPowerUp;
 			} else {
 				powerUpTimer.addTime(pSecondsElapsed);
 			}
@@ -126,12 +127,10 @@ public class GamePlayScene extends GameScene {
 			if (powerUpTimer.isDone()) {
 				powerUpTimer = null;
 				// Deactivate playerEffect
-				universe.getLevel().getPlayer().setEffect(Effect.NONE);
-				universe.getLevel().getPlayer().getCircle().setColor(1, 1, 1); // Base color/sprite
-			} else {
-				universe.getLevel().getPlayer().getCircle().setColor(1f, 0, 0); // Color/Sprite for currentEffect
-			}
-			
+				playerPowerUp.deactivateEffect(universe.getLevel().getPlayer());
+				universe.getLevel().getPlayer().setPowerUp(null);
+				universe.getLevel().getPlayer().getCircle().setColor(1f, 1f, 1f); // Base color/sprite, TODO: some way to reset player
+			}			
 		}
 	}
 	

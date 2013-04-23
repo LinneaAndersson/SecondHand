@@ -5,6 +5,7 @@ import org.anddev.andengine.engine.Engine;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Contact;
 import com.secondhand.debug.MyDebug;
+import com.secondhand.model.powerup.PowerUp;
 import com.secondhand.physics.PhysicsDestroyer;
 import com.secondhand.resource.Sounds;
 
@@ -93,8 +94,7 @@ public final class Universe {
 		// effect and decide a way to have the effect for a duration
 		// the effect should be visible on the players shape
 
-		currentLevel.activateEffect(power.getEffect());
-
+		currentLevel.getPlayer().setPowerUp(power);
 	}
 
 	private void handleBlackHoleCollision(Entity entityA, Entity entityB) {

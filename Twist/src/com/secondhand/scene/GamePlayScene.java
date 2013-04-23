@@ -111,7 +111,7 @@ public class GamePlayScene extends GameScene {
 		universe.getLevel().moveEnemies();
 		
 		/* PowerUp timer
-		   TODO: (at ###) make level "unactivate" effects?*/
+		   TODO: Make level "unactivate" effects?*/
 		final Effect playerEffect = universe.getLevel().getPlayer().getEffect();
 		if (playerEffect != Effect.NONE) {
 			

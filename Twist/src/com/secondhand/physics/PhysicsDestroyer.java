@@ -1,5 +1,8 @@
 package com.secondhand.physics;
 
+import java.util.LinkedList;
+import java.util.Queue;
+
 import org.anddev.andengine.engine.Engine;
 import org.anddev.andengine.engine.handler.IUpdateHandler;
 import org.anddev.andengine.entity.shape.IShape;
@@ -12,18 +15,20 @@ public final class PhysicsDestroyer {
 
 	// true when a body is being destroyed
 	private boolean killingInProcess;
-	
+
 	private final Engine engine;
 	private final PhysicsWorld physicsWorld;
 	private final Boolean bodyToo;
-	
+	private Queue<IShape> queue;
+
 	public PhysicsDestroyer(final Engine engine, final PhysicsWorld physicsWorld) {
 		killingInProcess = false;
 		this.engine = engine;
 		this.physicsWorld = physicsWorld;
 		bodyToo = true;
+		queue = new LinkedList<IShape>();
 	}
-	
+
 	/*
 	 * I found the following method on the AndEngine forum:
 	 * http://www.andengine.
@@ -33,15 +38,12 @@ public final class PhysicsDestroyer {
 	 * know) and it seems to work well. I thought i would get null value at the
 	 * third debug but it seems that the body still exist in the connector?
 	 */
-	public void destroy(final IShape mySprite, 
-			final boolean detachSprite) {
-		final PhysicsWorld mPhysicsWorld = physicsWorld;
+	public void destroy(final IShape mySprite, final boolean detachSprite) {
 
-		
 		if (!killingInProcess) {
 			MyDebug.i("commence destruction");
 			killingInProcess = true;
-			final PhysicsConnector physicsConnector = mPhysicsWorld
+			final PhysicsConnector physicsConnector = physicsWorld
 					.getPhysicsConnectorManager().findPhysicsConnectorByShape(
 							mySprite);
 			engine.registerUpdateHandler(new IUpdateHandler() {
@@ -51,18 +53,18 @@ public final class PhysicsDestroyer {
 					engine.runOnUpdateThread(new Runnable() {
 						@Override
 						public void run() {
-							mPhysicsWorld
+							physicsWorld
 									.unregisterPhysicsConnector(physicsConnector);
 							// myFixture.getBody().destroyFixture(myFixture);
 							// don't know if the above is needed
 							if (bodyToo) {
 								MyDebug.i(physicsConnector.getBody()
 										+ " will be destroyed");
-								mPhysicsWorld.destroyBody(physicsConnector
+								physicsWorld.destroyBody(physicsConnector
 										.getBody());
 							}
-							
-							if(detachSprite) {
+
+							if (detachSprite) {
 								mySprite.detachSelf();
 							}
 							System.gc(); // NOPMD
@@ -77,8 +79,10 @@ public final class PhysicsDestroyer {
 				public void reset() {
 				}
 			});
-		} else
+		} else {
 			MyDebug.d("killing already in process, ignored!");
+			//queue.add(mySprite);
+		}
 	}
 
 }

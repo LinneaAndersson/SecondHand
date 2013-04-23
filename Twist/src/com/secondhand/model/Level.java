@@ -17,6 +17,7 @@ import com.secondhand.debug.MyDebug;
 import com.secondhand.math.PolygonUtil;
 import com.secondhand.model.PowerUp.Effect;
 import com.secondhand.opengl.TexturedPolygon;
+import com.secondhand.resource.PlanetType;
 import com.secondhand.resource.TextureRegions;
 
 public class Level {
@@ -91,16 +92,14 @@ public class Level {
 	public static List<Entity> createTestPlanets(final PhysicsWorld physicsWorld) {
 		final List<Entity> testPlanets = new ArrayList<Entity>();
 
-		// TODO: Understand why textures are not loaded properly
-		final TextureRegion planetTexture = TextureRegions.getInstance().planetTexture;
-
-		testPlanets.add(new Planet(new Vector2(130, 130), 30, planetTexture,
+		
+		testPlanets.add(new Planet(new Vector2(130, 130), 30, PlanetType.BLOOD,
 				physicsWorld));
 
 		// add small planet, add a huge planet.
-		testPlanets.add(new Planet(new Vector2(315, 115), 15, planetTexture,
+		testPlanets.add(new Planet(new Vector2(315, 115), 15, PlanetType.WTF,
 				physicsWorld));
-		testPlanets.add(new Planet(new Vector2(700, 310), 300, planetTexture,
+		testPlanets.add(new Planet(new Vector2(700, 310), 300, PlanetType.RED,
 				physicsWorld));
 
 		final TexturedPolygon polygon = new TexturedPolygon(200, 200,

@@ -1,5 +1,8 @@
 package com.secondhand.resource;
 
+import java.util.EnumMap;
+import java.util.Map;
+
 import org.anddev.andengine.opengl.texture.TextureOptions;
 import org.anddev.andengine.opengl.texture.region.TextureRegion;
 
@@ -12,9 +15,9 @@ public class TextureRegions {
 	
 
 	public TextureRegion playerSprite;
-	public TextureRegion planetTexture;
 	public TextureRegion powerUpTexture;
 	public TextureRegion obstacleTexture;
+	public Map<PlanetType, TextureRegion> planetTextures;
 	
 	
 	private static TextureRegions instance;
@@ -26,13 +29,21 @@ public class TextureRegions {
 		return instance;
 	}
 	
+	public TextureRegion getPlanetTexture(final PlanetType planetType) {
+		return planetTextures.get(planetType);
+	}
+	
 	public void load() {	
 		//this.playerSprite = null; // TODO load the player sprite
+
+		planetTextures = new EnumMap<PlanetType, TextureRegion>(PlanetType.class);
 		
-
-		this.planetTexture = TextureRegionLoader.getInstance().loadTextureRegion(TEXTURE_BASEPATH+EntityTexture.PLANET.path, 256, 256,
-			TextureOptions.REPEATING_BILINEAR);
-
+		for (PlanetType planetType : PlanetType.values()) {
+			final TextureRegion planetTexture = TextureRegionLoader.getInstance().loadTextureRegion(TEXTURE_BASEPATH+planetType.getPath(), 256, 256,
+					TextureOptions.REPEATING_BILINEAR);
+			planetTextures.put(planetType, planetTexture);
+		}
+		
 		this.obstacleTexture = TextureRegionLoader.getInstance().loadTextureRegion(TEXTURE_BASEPATH+EntityTexture.OBSTACLE.path, 256, 256,
 				TextureOptions.REPEATING_BILINEAR);
 
@@ -45,8 +56,6 @@ public class TextureRegions {
 	
 	// To add a texture path, just add enum value ex: ENEMY ("enemy.png") in list.
 	enum EntityTexture {
-		PLANET ("planet_blood.png"),
-		PLAYER ("player.png"),
 		POWER_UP("powerup_box.png"),
 		OBSTACLE("obstacle.png");
 		

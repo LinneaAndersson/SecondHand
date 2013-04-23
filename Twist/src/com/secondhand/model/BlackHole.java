@@ -6,6 +6,7 @@ import org.anddev.andengine.extension.physics.box2d.util.constants.PhysicsConsta
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.CircleShape;
 import com.secondhand.opengl.Circle;
+import com.secondhand.physics.PhysicsDestroyer;
 
 public abstract class BlackHole extends CircleEntity {
 
@@ -46,7 +47,7 @@ public abstract class BlackHole extends CircleEntity {
 		// TODO: we should have a better way of accessing the destroyer
 
 		// can't we make physicsDestroyer singleton? and get it like universe
-		Universe.getInstance().getPhysicsDestroyer()
+		PhysicsDestroyer.getInstance()
 				.destroy(entity.getShape(), true);
 
 		// TODO: we should use general entities instead, but for debugging

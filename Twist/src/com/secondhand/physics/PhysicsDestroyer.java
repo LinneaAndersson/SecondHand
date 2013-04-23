@@ -1,7 +1,7 @@
 package com.secondhand.physics;
 
-import java.util.LinkedList;
-import java.util.Queue;
+import java.util.concurrent.BlockingQueue;
+import java.util.concurrent.LinkedBlockingQueue;
 
 import org.anddev.andengine.engine.Engine;
 import org.anddev.andengine.engine.handler.IUpdateHandler;
@@ -16,17 +16,44 @@ public final class PhysicsDestroyer {
 	// true when a body is being destroyed
 	private boolean killingInProcess;
 
-	private final Engine engine;
-	private final PhysicsWorld physicsWorld;
-	private final Boolean bodyToo;
-	private Queue<IShape> queue;
+	private Engine engine;
+	private PhysicsWorld physicsWorld;
+	private Boolean bodyToo;
+	private static BlockingQueue<IShape> queue;
+	private static PhysicsDestroyer instance;
 
-	public PhysicsDestroyer(final Engine engine, final PhysicsWorld physicsWorld) {
+	private PhysicsDestroyer() {
 		killingInProcess = false;
+		
+		//perhaps a normal linkedList would suffice
+		queue = new LinkedBlockingQueue<IShape>();
+	}
+	
+	public void initialize(final Engine engine, final PhysicsWorld physicsWorld){
 		this.engine = engine;
 		this.physicsWorld = physicsWorld;
 		bodyToo = true;
-		queue = new LinkedList<IShape>();
+	}
+	
+	public static PhysicsDestroyer getInstance(){
+		if(instance == null){
+			instance = new PhysicsDestroyer();
+		}
+		return instance;
+	}
+	
+	public void destroy(final IShape mySprite, final boolean detachSprite){
+		if(queue.isEmpty()){
+			dest(mySprite, detachSprite);
+		}else{
+			queue.add(mySprite);
+		}
+	}
+	
+	public void StartDestruction(){
+		while(!queue.isEmpty()){
+			dest(queue.poll(), true);
+		}
 	}
 
 	/*
@@ -38,8 +65,8 @@ public final class PhysicsDestroyer {
 	 * know) and it seems to work well. I thought i would get null value at the
 	 * third debug but it seems that the body still exist in the connector?
 	 */
-	public void destroy(final IShape mySprite, final boolean detachSprite) {
-
+	private void dest(final IShape mySprite, final boolean detachSprite) {
+		
 		if (!killingInProcess) {
 			MyDebug.i("commence destruction");
 			killingInProcess = true;
@@ -81,7 +108,6 @@ public final class PhysicsDestroyer {
 			});
 		} else {
 			MyDebug.d("killing already in process, ignored!");
-			//queue.add(mySprite);
 		}
 	}
 

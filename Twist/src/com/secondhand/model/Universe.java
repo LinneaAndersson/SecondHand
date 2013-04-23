@@ -31,13 +31,9 @@ public final class Universe {
 		this.engine = engine;
 
 		currentLevel = new Level();
-		physicsDestroyer = new PhysicsDestroyer(this.engine,
-				currentLevel.getPhysicsWorld());
+		physicsDestroyer = PhysicsDestroyer.getInstance();
+		physicsDestroyer.initialize(engine, currentLevel.getPhysicsWorld());
 		gameOver = false;
-	}
-
-	public PhysicsDestroyer getPhysicsDestroyer() {
-		return this.physicsDestroyer;
 	}
 
 	public static Universe getInstance() {

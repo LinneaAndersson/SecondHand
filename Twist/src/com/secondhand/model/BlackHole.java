@@ -50,8 +50,7 @@ public abstract class BlackHole extends CircleEntity {
 		// TODO: we should have a better way of accessing the destroyer
 
 		// can't we make physicsDestroyer singleton? and get it like universe
-		PhysicsDestroyer.getInstance()
-				.destroy(entity.getShape(), true);
+		PhysicsDestroyer.getInstance().destroy(entity.getShape(), true);
 
 		// TODO: we should use general entities instead, but for debugging
 		// purposes we'll do this cast.

@@ -103,7 +103,7 @@ public class Level {
 		testPlanets.add(new Planet(new Vector2(700, 310), 300, planetTexture,
 				physicsWorld));
 
-		final TexturedPolygon polygon = new TexturedPolygon(200, 200,
+		final TexturedPolygon polygon = new TexturedPolygon(200, 1000,//200, 200,
 				PolygonUtil.getRandomPolygon(),
 				GlobalResources.getInstance().obstacleTexture);
 		testPlanets.add(new Obstacle(polygon, physicsWorld));

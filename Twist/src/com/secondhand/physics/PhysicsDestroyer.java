@@ -50,7 +50,7 @@ public final class PhysicsDestroyer {
 	}
 	
 	
-	public void StartDestruction(){
+	public void startDestruction(){
 		while(!queue.isEmpty()){
 			dest(queue.poll(), true);
 		}

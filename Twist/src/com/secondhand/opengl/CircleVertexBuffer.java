@@ -62,8 +62,17 @@ public class CircleVertexBuffer extends VertexBuffer {
 	    final int[] vertices = this.mBufferData;
 	    this.mVertices = new ArrayList<Vector2>();
 	    
+	    
+	    
+	    
+	    
 	    int count = 0;
 	    for (float i = 0; i < 360.0f; i += (360.0f / mSegments)) {
+	    	
+	    	
+	    	// middle point vertex
+	    	// the right most
+	    	// the left most one.
 
 	    	final float x = (float) (radius +  Math.cos(MathUtils.degToRad(360 - i)) * radius);
 	    	final float y = (float) (radius + Math.sin(MathUtils.degToRad(360 - i)) * radius);
@@ -71,7 +80,7 @@ public class CircleVertexBuffer extends VertexBuffer {
 	    	vertices[count++] = Float.floatToRawIntBits(x);
 	    	vertices[count++] = Float.floatToRawIntBits(y);
 	    	this.mVertices.add(new Vector2(x,y));
-	    }
+	    }	
 
 	    final FastFloatBuffer buffer = this.getFloatBuffer();
 	    buffer.position(0);

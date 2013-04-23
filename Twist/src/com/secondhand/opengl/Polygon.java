@@ -90,8 +90,6 @@ public class Polygon extends Shape {
 		return maxLength;
 	}*/
 	
-	
-	
 	public List<Vector2> getPolygon() {
 		return this.mPolygon;
 	}

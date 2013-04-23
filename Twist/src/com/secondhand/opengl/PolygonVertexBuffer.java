@@ -75,10 +75,10 @@ public class PolygonVertexBuffer extends VertexBuffer {
 
 	    // put the triangulated polygon in the vertex buffer
 	    int vertexI = 0;
-	    for(Vector2 v: triangles) {
-	    	this.mVertices.add(v);
-	    	vertices[vertexI++] = Float.floatToRawIntBits(v.x);
-	    	vertices[vertexI++] = Float.floatToRawIntBits(v.y);
+	    for(final Vector2 vector: triangles) {
+	    	this.mVertices.add(vector);
+	    	vertices[vertexI++] = Float.floatToRawIntBits(vector.x);
+	    	vertices[vertexI++] = Float.floatToRawIntBits(vector.y);
 	    }
 
 	    final FastFloatBuffer buffer = this.getFloatBuffer();

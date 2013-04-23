@@ -21,7 +21,7 @@ public final class MyPhysicsFactory {
 		com.badlogic.gdx.math.Vector2 vertices[] = new com.badlogic.gdx.math.Vector2[polygon
 				.getPolygon().size()];
 		int i = 0;
-		for (Vector2 vector : polygon.getPolygon()) {
+		for (final Vector2 vector : polygon.getPolygon()) {
 			vertices[i++] = new com.badlogic.gdx.math.Vector2(vector.x
 					/ PIXEL_TO_METER_RATIO_DEFAULT, vector.y
 					/ PIXEL_TO_METER_RATIO_DEFAULT);

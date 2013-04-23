@@ -101,7 +101,7 @@ public abstract class GameMenuScene extends MenuScene implements IGameScene {
 		float y = (this.smoothCamera.getHeight() - startY) / 2.0f - menuHeight
 				/ 2.0f + startY;
 
-		for (GameMenuScene.MenuItem menuItem : menuItems) {
+		for (final GameMenuScene.MenuItem menuItem : menuItems) {
 
 			MyDebug.d("laying single menu item");
 

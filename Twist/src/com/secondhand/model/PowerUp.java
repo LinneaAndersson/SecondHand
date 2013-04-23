@@ -45,7 +45,7 @@ public class PowerUp extends RectangleEntity {
 			this.duration = 0;
 		}
 		
-		private Effect(int duration) {
+		private Effect(final int duration) {
 			this.duration = duration;
 		}
 		

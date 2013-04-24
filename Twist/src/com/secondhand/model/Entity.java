@@ -15,7 +15,7 @@ public abstract class Entity {
 
 	private final Body body;
 	private final IShape shape;
-	private final boolean isEdible;
+	private boolean isEdible;
 	private String assetName;
 	private final PhysicsWorld physicsWorld;
 	
@@ -61,6 +61,10 @@ public abstract class Entity {
 	
 	public boolean isEdible() {
 		return this.isEdible;
+	}
+	
+	public void setIsEdible(boolean isEdible) {
+		this.isEdible = isEdible;
 	}
 	
 	public String getImageName(){

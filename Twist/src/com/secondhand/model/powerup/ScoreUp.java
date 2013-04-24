@@ -9,6 +9,7 @@ import com.secondhand.resource.PowerUpType;
 public class ScoreUp extends PowerUp {
 
 	private final static float DURATION = 0;
+	private int scoreBonus = 10;
 	
 	public ScoreUp(final Vector2 position,
 			final PhysicsWorld physicsWorld) {
@@ -16,14 +17,12 @@ public class ScoreUp extends PowerUp {
 
 	}
 
+	public void setScoreBonus(final int scoreBonus) {
+		this.scoreBonus = scoreBonus;
+	}
+	
 	@Override
 	public void activateEffect(final Player player) {
-
+		player.increaseScore(scoreBonus);
 	}
-
-	@Override
-	public void deactivateEffect(final Player player) {
-
-	}
-
 }

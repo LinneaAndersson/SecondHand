@@ -24,7 +24,6 @@ public class GamePlayScene extends GameScene implements PropertyChangeListener {
 	
 	private final Universe universe = Universe.getInstance();
 	
-	private ManualTimer powerUpTimer;
 	private PowerUp currentEffect = null;
 	
 	public GamePlayScene(final Engine engine, final Context context) {

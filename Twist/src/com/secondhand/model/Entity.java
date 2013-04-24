@@ -36,11 +36,6 @@ public abstract class Entity {
 	}
 	
 	protected final void registerBody(final Body body) {
-		final PhysicsHandler pH = new PhysicsHandler(this.shape);
-
-		
-		
-		getShape().registerUpdateHandler(pH);
 
 		// we need this when doing collisions handling between entities and
 		// black holes:

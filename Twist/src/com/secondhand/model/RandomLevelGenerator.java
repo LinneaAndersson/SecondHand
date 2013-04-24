@@ -1,5 +1,6 @@
 package com.secondhand.model;
 
+import java.io.InvalidObjectException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -7,6 +8,7 @@ import java.util.Random;
 import org.anddev.andengine.extension.physics.box2d.PhysicsWorld;
 
 import com.badlogic.gdx.math.Vector2;
+import com.secondhand.debug.MyDebug;
 import com.secondhand.math.PolygonUtil;
 import com.secondhand.model.powerup.RandomTeleport;
 import com.secondhand.model.powerup.Shield;
@@ -33,7 +35,7 @@ public class RandomLevelGenerator {
 		this.physicsWorld = physicsWorld;
 		this.levelNumber = levelNumber;
 		
-		this.player = new Player(new Vector2(50, 50), 20, physicsWorld, 20);
+		this.player = new Player(new Vector2(50, 50), 40, physicsWorld, 20);
 		
 		this.levelWidth = 2000 * levelNumber;
 		this.levelHeight = 2000 * levelNumber;
@@ -58,19 +60,21 @@ public class RandomLevelGenerator {
 	}
 
 	
+	
 	private void placeOutLevelEntities() {
-		entityList.add(new Obstacle(new Vector2(200, 200), PolygonUtil.getRandomPolygon() , physicsWorld));
-
-		entityList.add(new RandomTeleport(new Vector2(100, 500), physicsWorld));
-
-		entityList.add(new Shield(new Vector2(20, 500), physicsWorld));
-
-		entityList.add(new Shield(new Vector2(20, 700), physicsWorld));
-
+	
 		final float K = 1.2f;
 		
+		final int MINIMUM_PLAYER_EATABLE = 10;
+		int numPlayerEatable = 0;
+		
 		final float MAX_SIZE = 80f * this.levelNumber * K;
-		final float MIN_SIZE = player.getRadius() - 5;
+		
+		final float MIN_SIZE = player.getRadius() - 10;
+		if(MIN_SIZE < 0) {
+			MyDebug.e("planet minimum size negative");
+		}
+		
 		final int PLANETS =(int)( 20 * this.levelNumber * K);
 		
 		// make sure they don't get too close to the edges.
@@ -80,8 +84,23 @@ public class RandomLevelGenerator {
 		final Random rng = new Random();
 
 		for (int i = 0; i < PLANETS; ++i) {
-			final float radius = rng.nextFloat() * (MAX_SIZE - MIN_SIZE)
-					+ MIN_SIZE;
+			
+			float radius;
+			
+			// first ensure we place out some player eatable ones.
+			if(numPlayerEatable <= MINIMUM_PLAYER_EATABLE) {
+				
+				while(true) {
+					radius = RandomUtil.nextFloat(rng, MIN_SIZE, player.getRadius());
+					if(radius < player.getRadius())
+						break;
+				}
+				numPlayerEatable++;
+				
+			} else {
+				radius = RandomUtil.nextFloat(rng, MIN_SIZE, MAX_SIZE);
+			}
+			
 			float x;
 			float y;
 
@@ -98,5 +117,14 @@ public class RandomLevelGenerator {
 			entityList.add(new Planet(new Vector2(x, y), radius, RandomUtil
 					.randomEnum(rng, PlanetType.class), physicsWorld));
 		}
+		
+		entityList.add(new Obstacle(new Vector2(200, 200), PolygonUtil.getRandomPolygon() , physicsWorld));		
+		
+		entityList.add(new RandomTeleport(new Vector2(100, 500), physicsWorld));
+
+		entityList.add(new Shield(new Vector2(20, 500), physicsWorld));
+
+		entityList.add(new Shield(new Vector2(20, 700), physicsWorld));
+
 	}
 }

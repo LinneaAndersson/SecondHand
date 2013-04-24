@@ -10,7 +10,11 @@ import com.secondhand.physics.PhysicsDestroyer;
 
 public abstract class BlackHole extends CircleEntity {
 
+	// only a 1/5 of the masses of the eaten bodies is used in the growth
+	private static final float GROWTH_FACTOR = 0.2f;
+	
 	private float maxSpeed;
+	
 
 	public BlackHole(final Vector2 position, final float radius,
 			final PhysicsWorld physicsWorld, final boolean updateRotation,
@@ -83,7 +87,7 @@ public abstract class BlackHole extends CircleEntity {
 		final Planet planet = (Planet) entity;
 
 		// increase the size of the rendered circle.
-		this.increaseSize(planet.getRadius());
+		this.increaseSize(planet.getRadius() * GROWTH_FACTOR);
 
 		// now the must also increase the size of the circle physics body
 

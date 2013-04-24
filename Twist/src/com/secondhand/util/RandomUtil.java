@@ -11,5 +11,13 @@ public final class RandomUtil {
         final int x = random.nextInt(clazz.getEnumConstants().length);
         return clazz.getEnumConstants()[x];
     }
+ 
+    public static float nextFloat(Random rng, float min, float max) {
+    	return rng.nextFloat() * (max - min)
+    			+ min;
+	
+    }
+    
+	
 	
 }

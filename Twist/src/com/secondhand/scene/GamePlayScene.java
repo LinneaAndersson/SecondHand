@@ -9,8 +9,8 @@ import android.content.Context;
 import android.view.KeyEvent;
 
 import com.secondhand.debug.MyDebug;
-import com.secondhand.model.PowerUp.Effect;
 import com.secondhand.model.Universe;
+import com.secondhand.model.powerup.PowerUp;
 import com.secondhand.opengl.StarsBackground;
 
 public class GamePlayScene extends GameScene {
@@ -22,7 +22,7 @@ public class GamePlayScene extends GameScene {
 	private final Universe universe = Universe.getInstance();
 	
 	private ManualTimer powerUpTimer;
-	private Effect currentEffect = Effect.NONE;
+	private PowerUp currentEffect = null;
 	
 	public GamePlayScene(final Engine engine, final Context context) {
 		super(engine, context);
@@ -112,13 +112,15 @@ public class GamePlayScene extends GameScene {
 		
 		/* PowerUp timer
 		   TODO: Make level deactivate effects?*/
-		final Effect playerEffect = universe.getLevel().getPlayer().getEffect();
-		if (playerEffect != Effect.NONE) {
+		final PowerUp playerPowerUp = universe.getLevel().getPlayer().getPowerUp();
+		if (playerPowerUp != null) {
 			
-			if (powerUpTimer == null || currentEffect != playerEffect) {
-				powerUpTimer = new ManualTimer(playerEffect.getDuration());
+			if (powerUpTimer == null || currentEffect != playerPowerUp) {
+				powerUpTimer = new ManualTimer(playerPowerUp.getDuration());
 				// Deactivate currentEffect
-				currentEffect = playerEffect;
+				if (currentEffect != null)
+					currentEffect.deactivateEffect(universe.getLevel().getPlayer());
+				currentEffect = playerPowerUp;
 			} else {
 				powerUpTimer.addTime(pSecondsElapsed);
 			}
@@ -126,12 +128,8 @@ public class GamePlayScene extends GameScene {
 			if (powerUpTimer.isDone()) {
 				powerUpTimer = null;
 				// Deactivate playerEffect
-				universe.getLevel().getPlayer().setEffect(Effect.NONE);
-				universe.getLevel().getPlayer().getCircle().setColor(1, 1, 1); // Base color/sprite
-			} else {
-				universe.getLevel().getPlayer().getCircle().setColor(1f, 0, 0); // Color/Sprite for currentEffect
-			}
-			
+				universe.getLevel().getPlayer().removePowerUp();
+			}			
 		}
 	}
 	

@@ -106,14 +106,11 @@ public class Level {
 				TextureRegions.getInstance().obstacleTexture);
 		testPlanets.add(new Obstacle(polygon, physicsWorld));
 
-		testPlanets.add(new RandomTeleport(new Vector2(100, 500),
-				TextureRegions.getInstance().getPowerUpTexture(PowerUpType.EAT_OBSTACLE), physicsWorld));
+		testPlanets.add(new RandomTeleport(new Vector2(100, 500), physicsWorld));
 
-		testPlanets.add(new Shield(new Vector2(20, 500),
-				TextureRegions.getInstance().getPowerUpTexture(PowerUpType.EAT_OBSTACLE), physicsWorld));
+		testPlanets.add(new Shield(new Vector2(20, 500), physicsWorld));
 
-		testPlanets.add(new Shield(new Vector2(20, 700),
-				TextureRegions.getInstance().getPowerUpTexture(PowerUpType.EAT_OBSTACLE), physicsWorld));
+		testPlanets.add(new Shield(new Vector2(20, 700), physicsWorld));
 
 		final int MAX_SIZE = 120;
 		final int MIN_SIZE = 40;

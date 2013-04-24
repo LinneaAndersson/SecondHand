@@ -1,3 +1,4 @@
+	
 package com.secondhand.model;
 
 import org.anddev.andengine.extension.physics.box2d.PhysicsWorld;
@@ -5,6 +6,7 @@ import org.anddev.andengine.extension.physics.box2d.util.constants.PhysicsConsta
 
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.CircleShape;
+import com.secondhand.debug.MyDebug;
 import com.secondhand.opengl.Circle;
 import com.secondhand.physics.PhysicsDestroyer;
 
@@ -59,6 +61,8 @@ public abstract class BlackHole extends CircleEntity {
 		this.getBody().applyLinearImpulse(direction,
 				this.getBody().getWorldCenter());	
 	}
+	
+	private Vector2 newShapePosition;
 
 	public void eatEntity(final Entity entity) {
 
@@ -76,6 +80,8 @@ public abstract class BlackHole extends CircleEntity {
 		}
 
 		// remove the eaten entity from the physics world:
+		// TODO: we should have a better way of accessing the destroyer
+
 		PhysicsDestroyer.getInstance().destroy(entity.getShape(), true);
 
 		// TODO: we should use general entities instead, but for debugging
@@ -84,35 +90,17 @@ public abstract class BlackHole extends CircleEntity {
 		final Planet planet = (Planet) entity;
 
 		// increase the size of the rendered circle.
-		this.increaseSize(planet.getRadius() * GROWTH_FACTOR);
+		final float radiusInc = planet.getRadius() * GROWTH_FACTOR;
+		this.increaseSize(radiusInc);
 
 		// now the must also increase the size of the circle physics body
 
 		final CircleShape shape = (CircleShape) getBody().getFixtureList()
 				.get(0).getShape();
 
-		shape.setRadius(getRadius()
+		shape.setRadius(this.getRadius()
 				/ PhysicsConstants.PIXEL_TO_METER_RATIO_DEFAULT);
 
-		final Vector2 currentPosition = shape.getPosition();
-		final float inc = (planet.getRadius())
-				/ PhysicsConstants.PIXEL_TO_METER_RATIO_DEFAULT;
-		final Vector2 newPosition = currentPosition.add(inc, inc);
-
-		shape.setPosition(newPosition);
-
-		// this.getBody().setTransform(newPosition, 0);
-
-		/*
-		 * Universe.getInstance().getPhysicsDestroyer().destroy(this.getShape(),
-		 * true);
-		 * 
-		 * final Body newBody = super.createNewCircleBody(this.circle,
-		 * this.physicsWorld);
-		 * 
-		 * // TODO: this won't remove the update handler. Fix that as well.
-		 * super.registerBody(newBody);
-		 */
-
 	}
+
 }

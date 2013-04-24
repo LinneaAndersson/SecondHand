@@ -74,8 +74,8 @@ public class CircleVertexBuffer extends VertexBuffer {
 	    	// the right most
 	    	// the left most one.
 
-	    	final float x = (float) (radius +  Math.cos(MathUtils.degToRad(360 - i)) * radius);
-	    	final float y = (float) (radius + Math.sin(MathUtils.degToRad(360 - i)) * radius);
+	    	final float x = (float) (/*radius +  */Math.cos(MathUtils.degToRad(360 - i)) * radius);
+	    	final float y = (float) (/*radius +*/ Math.sin(MathUtils.degToRad(360 - i)) * radius);
 	    	
 	    	vertices[count++] = Float.floatToRawIntBits(x);
 	    	vertices[count++] = Float.floatToRawIntBits(y);

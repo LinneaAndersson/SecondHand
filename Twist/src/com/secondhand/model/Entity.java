@@ -9,6 +9,7 @@ import org.anddev.andengine.extension.physics.box2d.PhysicsWorld;
 
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
+import com.secondhand.physics.CustomPhysicsConnector;
 
 public abstract class Entity {
 
@@ -39,7 +40,7 @@ public abstract class Entity {
 		// we need this when doing collisions handling between entities and
 		// black holes:
 		body.setUserData(this);
-		physicsWorld.registerPhysicsConnector(new PhysicsConnector(this.shape, this.body, true, updateRotation));
+		physicsWorld.registerPhysicsConnector(new CustomPhysicsConnector(this, this.body, true, updateRotation));
 	}
 	
 	public float getX() {

@@ -11,6 +11,7 @@ import com.secondhand.debug.MyDebug;
 import com.secondhand.math.PolygonUtil;
 import com.secondhand.model.powerup.RandomTeleport;
 import com.secondhand.model.powerup.Shield;
+import com.secondhand.model.powerup.SpeedUp;
 import com.secondhand.physics.PhysicsAreaChecker;
 import com.secondhand.resource.PlanetType;
 import com.secondhand.util.RandomUtil;
@@ -124,7 +125,7 @@ public class RandomLevelGenerator {
 
 		entityList.add(new Shield(new Vector2(20, 500), physicsWorld));
 
-		entityList.add(new Shield(new Vector2(20, 700), physicsWorld));
+		entityList.add(new SpeedUp(new Vector2(20, 700), physicsWorld));
 
 	}
 }

@@ -1,6 +1,5 @@
 package com.secondhand.model;
 
-import java.io.InvalidObjectException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -51,7 +50,7 @@ public class RandomLevelGenerator {
 	
 
 	private void placeOutEnemies() {
-		enemyList.add(new Enemy(new Vector2(800, 800), 30, physicsWorld, 10));
+		enemyList.add(new Enemy(new Vector2(800, 800), 50, physicsWorld, 10));
 
 		for (Enemy enemy : enemyList) {
 			entityList.add(enemy);
@@ -60,7 +59,8 @@ public class RandomLevelGenerator {
 	}
 
 	
-	
+	// TODO could we create some more space between the planets?
+	// so the don't group together at start
 	private void placeOutLevelEntities() {
 	
 		final float K = 1.2f;

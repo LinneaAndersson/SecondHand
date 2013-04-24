@@ -224,10 +224,6 @@
             <ruleset>String and StringBuffer Rules</ruleset>
         </rule>
         <rule>
-            <name>ConstructorCallsOverridableMethod</name>
-            <ruleset>Design Rules</ruleset>
-        </rule>
-        <rule>
             <name>CouplingBetweenObjects</name>
             <ruleset>Coupling Rules</ruleset>
         </rule>

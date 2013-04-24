@@ -184,7 +184,7 @@ public final class Universe {
 		if (currentLevel == null) {
 			currentLevel = new Level();
 		} else if (!gameOver) {
-			currentLevel = new Level(currentLevel);
+			currentLevel = new Level(currentLevel.getLevelNumber());
 		} else {
 			gameOver = false;
 			currentLevel = new Level();

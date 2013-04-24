@@ -12,6 +12,7 @@ import org.anddev.andengine.extension.physics.box2d.PhysicsWorld;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.BodyDef.BodyType;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
+import com.secondhand.debug.MyDebug;
 import com.secondhand.math.PolygonUtil;
 import com.secondhand.model.powerup.RandomTeleport;
 import com.secondhand.model.powerup.Shield;
@@ -33,29 +34,28 @@ public class Level {
 	private int levelWidth;
 	private int levelHeight;
 
-	private static int levelNumber = 0;
+	private int levelNumber;
 
-	// many constructors necessary?
-	// default maxsize?
 	public Level() {
-		this(100);
-
-		// the only time we should call this constructor
-		// is when starting a completely new game
-
-		levelNumber = 0;
+		this(1);
+	}
+	
+	public Level(final int levelNumber) {
+		prepareLevel(levelNumber);
 	}
 
-	public Level(final int maxSize) {
+	public void prepareLevel(final int levelNumber) {
+		
+		final int maxSize = 100;
 
 		final PhysicsWorld pW = new PhysicsWorld(new Vector2(), true);
 
 		final Player player = new Player(new Vector2(50, 50), 20, pW, 20);
-		init(maxSize, pW, player, // NOPMD
+		prepareLevel(maxSize, pW, player, // NOPMD
 				createTestPlanets(pW), 2000, 2000); // NOPMD
 	}
 
-	public void init(final int maxSize, final PhysicsWorld pW, final Player p,
+	public void prepareLevel(final int maxSize, final PhysicsWorld pW, final Player p,
 			final List<Entity> otherEntities, final int levelWidth,
 			final int levelHeight) {
 		enemyList = new ArrayList<Enemy>();
@@ -73,24 +73,6 @@ public class Level {
 		}
 
 		setupWorldBounds();
-	}
-
-	public Level(final int maxSize, final PhysicsWorld pW, final Player p,
-			final List<Entity> otherEntities, final int levelWidth,
-			final int levelHeight) {
-		init(maxSize, pW, p, otherEntities, levelWidth, levelHeight); // NOPMD
-	}
-
-	// this constructor could be useful when creating
-	// new levels and want to keep player and physics
-	// from the last level
-	// creates a new physicsWorld just in case...
-	public Level(final Level level) {
-		final PhysicsWorld pw = new PhysicsWorld(new Vector2(),true);
-		
-		init(level.getPlayerMaxSize(),pw, level // NOPMD
-				.getPlayer(), createTestPlanets(pw), level //NOPMD
-				.getLevelWidth(), level.getLevelHeight()); // NOPMD
 	}
 
 	// TODO rename method as it can be used not only as a test but in creating
@@ -135,6 +117,8 @@ public class Level {
 				if (PhysicsAreaChecker.isRectangleAreaUnoccupied(new Vector2(x,
 						y), radius, radius, physicsWorld)) {
 					break;
+				} else {
+					MyDebug.d("area was occupied!");
 				}
 			}
 

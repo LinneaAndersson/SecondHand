@@ -1,5 +1,6 @@
 package com.secondhand.scene;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.anddev.andengine.engine.Engine;
@@ -112,14 +113,14 @@ public class GamePlayScene extends GameScene {
 		
 		/* PowerUp timer
 		   TODO: Make level deactivate effects?*/
-		final PowerUp playerPowerUp = universe.getLevel().getPlayer().getPowerUp();
+		final PowerUp playerPowerUp = 
+				universe.getLevel().getPlayer().getPowerUps().isEmpty() ?
+						null :
+						universe.getLevel().getPlayer().getPowerUps().get(0);
 		if (playerPowerUp != null) {
 			
 			if (powerUpTimer == null || currentEffect != playerPowerUp) {
 				powerUpTimer = new ManualTimer(playerPowerUp.getDuration());
-				// Deactivate currentEffect
-				if (currentEffect != null)
-					currentEffect.deactivateEffect(universe.getLevel().getPlayer());
 				currentEffect = playerPowerUp;
 			} else {
 				powerUpTimer.addTime(pSecondsElapsed);
@@ -128,7 +129,7 @@ public class GamePlayScene extends GameScene {
 			if (powerUpTimer.isDone()) {
 				powerUpTimer = null;
 				// Deactivate playerEffect
-				universe.getLevel().getPlayer().removePowerUp();
+				universe.getLevel().getPlayer().removePowerUp(playerPowerUp);
 			}			
 		}
 	}

@@ -10,11 +10,19 @@ import com.secondhand.physics.PhysicsDestroyer;
 
 public abstract class BlackHole extends CircleEntity {
 
+	private float maxSpeed;
+
 	public BlackHole(final Vector2 position, final float radius,
-			final PhysicsWorld physicsWorld, final boolean updateRotation) {
+			final PhysicsWorld physicsWorld, final boolean updateRotation,
+			float maxSpeed) {
 		// TODO load texture instead of creating Circle
 		super(new Circle(position.x, position.y, radius), true, physicsWorld,
 				updateRotation);
+		this.maxSpeed = maxSpeed;
+	}
+
+	public float getMaxSpeed() {
+		return maxSpeed;
 	}
 
 	private void increaseSize(final float increase) {
@@ -36,9 +44,9 @@ public abstract class BlackHole extends CircleEntity {
 		// Detach the shape from AndEngine-rendering
 		entity.getShape().detachSelf();
 
-		//if you eat an planet you get 10 points, else you get 20.
-		//TODO: Maybe we should have different scores for different size
-		//this we will do in entity class, every entity has a score. 
+		// if you eat an planet you get 10 points, else you get 20.
+		// TODO: Maybe we should have different scores for different size
+		// this we will do in entity class, every entity has a score.
 		if (this instanceof Player) {
 			if (entity instanceof Planet)
 				Universe.getInstance().getLevel().getPlayer().increaseScore(10);
@@ -66,7 +74,7 @@ public abstract class BlackHole extends CircleEntity {
 				.get(0).getShape();
 
 		shape.setRadius(getRadius()
-				/ PhysicsConstants.PIXEL_TO_METER_RATIO_DEFAULT);	
+				/ PhysicsConstants.PIXEL_TO_METER_RATIO_DEFAULT);
 
 		final Vector2 currentPosition = shape.getPosition();
 		final float inc = (planet.getRadius())
@@ -75,8 +83,8 @@ public abstract class BlackHole extends CircleEntity {
 
 		shape.setPosition(newPosition);
 
-	//	this.getBody().setTransform(newPosition, 0);
-		
+		// this.getBody().setTransform(newPosition, 0);
+
 		/*
 		 * Universe.getInstance().getPhysicsDestroyer().destroy(this.getShape(),
 		 * true);

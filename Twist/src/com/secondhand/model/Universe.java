@@ -93,7 +93,7 @@ public final class Universe {
 		// effect and decide a way to have the effect for a duration
 		// the effect should be visible on the players shape
 
-		currentLevel.getPlayer().setPowerUp(powerUp);
+		currentLevel.getPlayer().addPowerUp(powerUp);
 
 	}
 

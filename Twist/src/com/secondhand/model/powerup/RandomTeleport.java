@@ -19,7 +19,7 @@ public class RandomTeleport extends PowerUp {
 
 	@Override
 	public void activateEffect(Player player) {
-		
+
 	}
 
 	@Override

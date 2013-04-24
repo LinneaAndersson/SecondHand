@@ -5,6 +5,7 @@ import org.anddev.andengine.engine.Engine;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Contact;
 import com.secondhand.debug.MyDebug;
+import com.secondhand.model.powerup.PowerUp;
 import com.secondhand.physics.PhysicsDestroyer;
 import com.secondhand.resource.Sounds;
 
@@ -76,23 +77,23 @@ public final class Universe {
 
 		Sounds.getInstance().powerUpSound.play();
 
-		PowerUp power;
+		PowerUp powerUp;
 		if (entityA instanceof PowerUp) {
-			power = (PowerUp) entityA;
+			powerUp = (PowerUp) entityA;
 		} else {
-			power = (PowerUp) entityB;
+			powerUp = (PowerUp) entityB;
 		}
 
-		power.getShape().detachSelf();
+		powerUp.getShape().detachSelf();
 		MyDebug.d("Now the powerup should dissappear");
 
-		physicsDestroyer.destroy(power.getShape(), true);
+		physicsDestroyer.destroy(powerUp.getShape(), true);
 
 		// TODO (in Level?) now we need a way to have the power up take
 		// effect and decide a way to have the effect for a duration
 		// the effect should be visible on the players shape
 
-		currentLevel.activateEffect(power.getEffect());
+		currentLevel.getPlayer().setPowerUp(powerUp);
 
 	}
 

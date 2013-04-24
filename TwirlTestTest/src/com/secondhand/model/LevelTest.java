@@ -41,7 +41,7 @@ public class LevelTest extends TestCase {
 		float xPosition = level.getPlayer().getX();
 		float yPosition = level.getPlayer().getY();
 		Vector2 v = new Vector2(5,0);
-		level.moveEntities(v);
+		level.sendTouchInput(v);
 		float xDir = xPosition - 5;
 		float yDir = yPosition - 0;
 		Vector2 playerDirection = new Vector2(xDir,yDir);

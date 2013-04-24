@@ -8,7 +8,7 @@ import com.secondhand.debug.MyDebug;
 public class Enemy extends BlackHole {
 
 	public Enemy(final Vector2 vector, final float radius,
-			final PhysicsWorld physicsWorld, float maxSpeed) {
+			final PhysicsWorld physicsWorld, final float maxSpeed) {
 		super(vector, radius, physicsWorld, true, maxSpeed);
 	}
 

@@ -12,14 +12,12 @@ import org.anddev.andengine.extension.physics.box2d.PhysicsWorld;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.BodyDef.BodyType;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
-import com.secondhand.debug.MyDebug;
 import com.secondhand.math.PolygonUtil;
 import com.secondhand.model.powerup.RandomTeleport;
 import com.secondhand.model.powerup.Shield;
 import com.secondhand.opengl.TexturedPolygon;
 import com.secondhand.physics.PhysicsAreaChecker;
 import com.secondhand.resource.PlanetType;
-import com.secondhand.resource.PowerUpType;
 import com.secondhand.resource.TextureRegions;
 import com.secondhand.util.RandomUtil;
 
@@ -218,48 +216,8 @@ public class Level {
 
 	}
 
-	public void moveEntities(final Vector2 v) {
-
-		/*
-		 * The problem was that we got the coordinates of the player from the
-		 * getBody(). This is a problem, since Box2D uses a coordinate system
-		 * different from that of AndEngine; in this system, all AndEngine
-		 * coordinates are first divided by 32 before they're feed into Box2D.
-		 * So the body was using the coordinate system of Box2D, which was why
-		 * we had to multiply the coordinates of the body coordintes with
-		 * 30(with Linnea and Andreas found through trial and error) But IShape
-		 * on the other hand, is a AndEngine class and it therefore uses the
-		 * coordinate system of AndEngine, which is why we should it instead of
-		 * the body.
-		 * 
-		 * See section 1.7 in http://www.box2d.org/manual.html for an
-		 * explanation of why AndEngine does this division by 32.
-		 */
-
-		Vector2 movementVector = new Vector2((player.getCenterX() - v.x),
-				player.getCenterY() - v.y);
-
-		// the closer the touch is to the player, the more force do we need to
-		// apply.
-
-		// make it a bit slower depending on how big it is.
-		movementVector = movementVector.mul(player.getRadius() * 0.001f);
-
-		/*
-		 * Made a better test, like I said the earlier test we did was not
-		 * functional, and since the length of a vector is always positive, the
-		 * Math.abs(player.getBody().getLinearVelocity().len()) has no effect.
-		 * This runs rather smoothly. Try it!
-		 */
-		final Vector2 testVector = new Vector2(player.getBody()
-				.getLinearVelocity());
-		if (testVector.add(movementVector).len() > player.getMaxSpeed()){
-			// Check if new velocity doesn't exceed maxSpeed!
-			return;
-		}
-
-		player.getBody().applyLinearImpulse(movementVector,
-				player.getBody().getWorldCenter());
+	public void sendTouchInput(final Vector2 v) {
+		this.player.reachToTouch(v);
 	}
 
 	public boolean checkPlayerBigEnough() {

@@ -199,7 +199,7 @@ public final class Universe {
 
 		} else {
 
-			currentLevel.moveEntities(v);
+			currentLevel.sendTouchInput(v);
 		}
 	}
 }

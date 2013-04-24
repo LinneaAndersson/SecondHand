@@ -14,7 +14,7 @@ public abstract class BlackHole extends CircleEntity {
 
 	public BlackHole(final Vector2 position, final float radius,
 			final PhysicsWorld physicsWorld, final boolean updateRotation,
-			float maxSpeed) {
+			final float maxSpeed) {
 		// TODO load texture instead of creating Circle
 		super(new Circle(position.x, position.y, radius), true, physicsWorld,
 				updateRotation);

@@ -41,38 +41,43 @@ public class Level {
 	}
 	
 	public Level(final int levelNumber) {
-		prepareLevel(levelNumber);
+		this.levelNumber = levelNumber;
+		prepareLevel();
 	}
 
-	public void prepareLevel(final int levelNumber) {
+	public void prepareLevel() {
+
+		this.physicsWorld  = new PhysicsWorld(new Vector2(), true);
 		
-		final int maxSize = 100;
+		computeLevelConstants();
+		
+		entityList  = createTestPlanets(this.physicsWorld);
+		
+		setupEnemies();
+		
 
-		final PhysicsWorld pW = new PhysicsWorld(new Vector2(), true);
-
-		final Player player = new Player(new Vector2(50, 50), 20, pW, 20);
-		prepareLevel(maxSize, pW, player, // NOPMD
-				createTestPlanets(pW), 2000, 2000); // NOPMD
+		setupWorldBounds();
 	}
+	
+	// compute things like level width and max size for the current level
+	private void computeLevelConstants() {
+		this.player = new Player(new Vector2(50, 50), 20, this.physicsWorld, 20);
+		
+		this.levelWidth = 2000;
+		this.levelHeight = 2000;
+	
+		this.playerMaxSize = 800;
 
-	public void prepareLevel(final int maxSize, final PhysicsWorld pW, final Player p,
-			final List<Entity> otherEntities, final int levelWidth,
-			final int levelHeight) {
+	}
+	
+	private void setupEnemies() {
 		enemyList = new ArrayList<Enemy>();
-		levelNumber += 1;
-		this.playerMaxSize = maxSize;
-		this.physicsWorld = pW;
-		player = p;
-		entityList = otherEntities;
-		this.levelWidth = levelWidth;
-		this.levelHeight = levelHeight;
-		enemyList.add(new Enemy(new Vector2(800, 800), 30, physicsWorld, 10)); // tmp
+		enemyList.add(new Enemy(new Vector2(800, 800), 30, physicsWorld, 10));
 
 		for (Enemy enemy : enemyList) {
 			entityList.add(enemy);
 		}
 
-		setupWorldBounds();
 	}
 
 	// TODO rename method as it can be used not only as a test but in creating

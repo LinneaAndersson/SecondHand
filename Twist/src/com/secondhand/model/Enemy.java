@@ -13,7 +13,7 @@ public class Enemy extends BlackHole {
 		super(vector, radius, physicsWorld, true, maxSpeed);
 	}
 
-	// player has highest priority
+	// player has highest chase-priority
 	public void moveEnemy(Entity player, List<Entity> entityList) {
 		if (isCloseToEntity(player) && canEat(player)) {
 			applyMovement(player);
@@ -23,8 +23,7 @@ public class Enemy extends BlackHole {
 
 	}
 
-	// may not be needed if enemy should just go after anything edible
-	// perhaps implement a priority something here
+	// may be needed depending on serach area size
 	private boolean straightToEntity(final Entity entity) {
 
 		return true;
@@ -45,23 +44,24 @@ public class Enemy extends BlackHole {
 	}
 
 	// chase after smallest entity first
-	// could create many is-something and make different
-	// enemies behave different 
+	// could create many get-something and make different
+	// enemies behave different ( getClosest... )
 	private Entity getHighesPriority(List<Entity> entityList) {
 		Entity entity = null;
 		for (Entity e : entityList) {
-			if (isCloseToEntity(e) && canEat(e) && isSmaller(entity, e)) {
-				entity = e;
+			if (isCloseToEntity(e) && canEat(e)) {
+				entity = getSmaller(entity, e);
 			}
 		}
 		return entity;
 	}
 
-	private boolean isSmaller(Entity entity, Entity e) {
-		if (entity == null) {
-			return true;
+	private Entity getSmaller(Entity entity, Entity e) {
+		if (entity == null || e.getArea() < entity.getArea()) {
+			return e;
+		} else {
+			return entity;
 		}
-		return e.getArea() <= entity.getArea();
 	}
 
 	// responsible for moving the enemies
@@ -70,7 +70,10 @@ public class Enemy extends BlackHole {
 	// TODO avoid larger stuff, chase smaller stuff
 	// move in a smart way(no suicide)
 	private void applyMovement(Entity entity) {
-
+		
+		// TODO change the null-check to something nicer
+		// !!! straightToEntity() can take a null this way !!!
+		// ok for now because that method doesn't do anything
 		if (straightToEntity(entity) && entity != null) {
 			// the vector from enemy to the player
 			Vector2 movementVector = new Vector2(
@@ -96,6 +99,7 @@ public class Enemy extends BlackHole {
 			this.move(movementVector);
 
 		} else {
+			
 			// (Avoid) somehow move the enemy around
 			// larger entities
 		}

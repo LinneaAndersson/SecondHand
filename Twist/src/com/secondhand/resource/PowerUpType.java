@@ -4,7 +4,9 @@ package com.secondhand.resource;
 public enum PowerUpType {
 		EAT_OBSTACLE("eat_obstacle_power_up.png"),
 		SHIELD("shield_power_up.png"),
-		RANDOM_TELEPORT("random_teleport_power_up.png");
+		RANDOM_TELEPORT("random_teleport_power_up.png"),
+		SCORE_UP("score_up_power_up.png"),
+		SPEED_UP("speed_up_power_up.png");
 		
 		private String path; 
 		

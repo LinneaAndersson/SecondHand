@@ -19,6 +19,7 @@ import com.secondhand.model.powerup.Shield;
 import com.secondhand.opengl.TexturedPolygon;
 import com.secondhand.physics.PhysicsAreaChecker;
 import com.secondhand.resource.PlanetType;
+import com.secondhand.resource.PowerUpType;
 import com.secondhand.resource.TextureRegions;
 import com.secondhand.util.RandomUtil;
 
@@ -89,9 +90,9 @@ public class Level {
 	public Level(final Level level) {
 		final PhysicsWorld pw = new PhysicsWorld(new Vector2(),true);
 		
-		init(level.getPlayerMaxSize(),pw, level
-				.getPlayer(), createTestPlanets(pw), level
-				.getLevelWidth(), level.getLevelHeight());
+		init(level.getPlayerMaxSize(),pw, level // NOPMD
+				.getPlayer(), createTestPlanets(pw), level //NOPMD
+				.getLevelWidth(), level.getLevelHeight()); // NOPMD
 	}
 
 	// TODO rename method as it can be used not only as a test but in creating
@@ -106,13 +107,13 @@ public class Level {
 		testPlanets.add(new Obstacle(polygon, physicsWorld));
 
 		testPlanets.add(new RandomTeleport(new Vector2(100, 500),
-				TextureRegions.getInstance().powerUpTexture, physicsWorld));
+				TextureRegions.getInstance().getPowerUpTexture(PowerUpType.EAT_OBSTACLE), physicsWorld));
 
 		testPlanets.add(new Shield(new Vector2(20, 500),
-				TextureRegions.getInstance().powerUpTexture, physicsWorld));
+				TextureRegions.getInstance().getPowerUpTexture(PowerUpType.EAT_OBSTACLE), physicsWorld));
 
 		testPlanets.add(new Shield(new Vector2(20, 700),
-				TextureRegions.getInstance().powerUpTexture, physicsWorld));
+				TextureRegions.getInstance().getPowerUpTexture(PowerUpType.EAT_OBSTACLE), physicsWorld));
 
 		final int MAX_SIZE = 120;
 		final int MIN_SIZE = 40;

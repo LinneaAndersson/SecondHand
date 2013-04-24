@@ -15,7 +15,6 @@ public class TextureRegions {
 	
 
 	public TextureRegion playerSprite;
-	public TextureRegion powerUpTexture;
 	public TextureRegion obstacleTexture;
 	public Map<PlanetType, TextureRegion> planetTextures;
 	
@@ -35,6 +34,10 @@ public class TextureRegions {
 		return planetTextures.get(planetType);
 	}
 	
+	public TextureRegion getPowerUpTexture(final PowerUpType powerUpType) {
+		return powerUpTextures.get(powerUpType);
+	}
+	
 	public void load() {	
 		//this.playerSprite = null; // TODO load the player sprite
 
@@ -48,10 +51,10 @@ public class TextureRegions {
 		
 		powerUpTextures = new EnumMap<PowerUpType, TextureRegion>(PowerUpType.class);
 		
-		for (PlanetType planetType : PlanetType.values()) {
-			final TextureRegion planetTexture = TextureRegionLoader.getInstance().loadTextureRegion(TEXTURE_BASEPATH+planetType.getPath(), 64, 64,
+		for (PowerUpType powerUpType : PowerUpType.values()) {
+			final TextureRegion planetTexture = TextureRegionLoader.getInstance().loadTextureRegion(TEXTURE_BASEPATH+powerUpType.getPath(), 64, 64,
 					TextureOptions.REPEATING_BILINEAR);
-			planetTextures.put(planetType, planetTexture);
+			powerUpTextures.put(powerUpType, planetTexture);
 		}
 		
 		

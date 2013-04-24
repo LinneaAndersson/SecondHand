@@ -60,7 +60,7 @@ public class RandomLevelGenerator {
 
 	
 	// TODO could we create some more space between the planets?
-	// so the don't group together at start
+	// so the doesn't group together at start
 	private void placeOutLevelEntities() {
 	
 		final float K = 1.2f;

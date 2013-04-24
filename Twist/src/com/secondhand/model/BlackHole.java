@@ -76,9 +76,6 @@ public abstract class BlackHole extends CircleEntity {
 		}
 
 		// remove the eaten entity from the physics world:
-		// TODO: we should have a better way of accessing the destroyer
-
-		// can't we make physicsDestroyer singleton? and get it like universe
 		PhysicsDestroyer.getInstance().destroy(entity.getShape(), true);
 
 		// TODO: we should use general entities instead, but for debugging

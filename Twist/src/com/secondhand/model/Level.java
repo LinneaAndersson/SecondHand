@@ -30,7 +30,7 @@ public class Level {
 	}
 	
 	public Level(final int levelNumber) {
-		this.levelNumber = levelNumber;
+		this.levelNumber = levelNumber + 1;
 		prepareLevel();
 	}
 
@@ -109,7 +109,7 @@ public class Level {
 	private void moveEnemies() {
 		// enemies are in both lists because we want them
 		// for easy access and for the posibility of attacking
-		// each other. it would be preferable to change it later
+		// each other. it could be preferable to change it later
 		// if we can come up with a better way
 		
 		for (Enemy enemy : enemyList) {

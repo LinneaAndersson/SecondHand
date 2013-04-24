@@ -121,8 +121,6 @@ public final class Universe {
 		}
 	}
 
-	// TODO Now there is alot of duplicated code in this method.
-	// Perhaps we could extract that code into a new method.
 	public void checkCollision(final Contact contact) {
 		// if one or both is null, then we are dealing with a collision
 		// involving one or

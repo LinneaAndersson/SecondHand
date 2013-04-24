@@ -1,5 +1,7 @@
 package com.secondhand.model.powerup;
 
+import org.anddev.andengine.engine.handler.timer.ITimerCallback;
+import org.anddev.andengine.engine.handler.timer.TimerHandler;
 import org.anddev.andengine.entity.primitive.BaseRectangle;
 import org.anddev.andengine.entity.primitive.Rectangle;
 import org.anddev.andengine.entity.sprite.Sprite;
@@ -35,6 +37,16 @@ public abstract class PowerUp extends RectangleEntity {
 	
 	public float getDuration() {
 		return duration;
+	}
+	
+	public TimerHandler getTimer(final Player player) {
+		return new TimerHandler(duration, new ITimerCallback() {
+			private Player user = player; 
+			@Override
+			public void onTimePassed(TimerHandler pTimerHandler) {
+				user.removePowerUp(PowerUp.this);
+			}
+		});
 	}
 	
 	public void activateEffect(Player player) {

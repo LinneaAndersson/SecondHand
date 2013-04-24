@@ -1,5 +1,7 @@
 package com.secondhand.scene;
 
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,7 +16,7 @@ import com.secondhand.model.Universe;
 import com.secondhand.model.powerup.PowerUp;
 import com.secondhand.opengl.StarsBackground;
 
-public class GamePlayScene extends GameScene {
+public class GamePlayScene extends GameScene implements PropertyChangeListener {
 	
 	
 	private List<IShape> shapeList;
@@ -110,46 +112,11 @@ public class GamePlayScene extends GameScene {
 			setScene(AllScenes.GAME_OVER_SCENE);
 		}
 		universe.getLevel().moveEnemies();
-		
-		/* PowerUp timer
-		   TODO: Make level deactivate effects?*/
-		final PowerUp playerPowerUp = 
-				universe.getLevel().getPlayer().getPowerUps().isEmpty() ?
-						null :
-						universe.getLevel().getPlayer().getPowerUps().get(0);
-		if (playerPowerUp != null) {
-			
-			if (powerUpTimer == null || currentEffect != playerPowerUp) {
-				powerUpTimer = new ManualTimer(playerPowerUp.getDuration());
-				currentEffect = playerPowerUp;
-			} else {
-				powerUpTimer.addTime(pSecondsElapsed);
-			}
-			
-			if (powerUpTimer.isDone()) {
-				powerUpTimer = null;
-				// Deactivate playerEffect
-				universe.getLevel().getPlayer().removePowerUp(playerPowerUp);
-			}			
-		}
 	}
-	
-	/* A timer that runs from startTime to 0. */
-	private class ManualTimer {
-		
-		private float startTime;
-		private float elapsedTime;
-		
-		public ManualTimer(float startTime) {
-			this.startTime = startTime;
-		}
-		
-		public void addTime(float time) {
-			elapsedTime += time;
-		}
-		
-		public boolean isDone() {
-			return startTime - elapsedTime <= 0;
-		}
+
+	@Override
+	public void propertyChange(PropertyChangeEvent event) {
+		List<PowerUp> tempList = Universe.getInstance().getLevel().getPlayer().getPowerUps();
+		engine.registerUpdateHandler(tempList.get(tempList.size()-1).getTimer(Universe.getInstance().getLevel().getPlayer()));
 	}
 }

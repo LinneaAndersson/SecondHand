@@ -24,7 +24,8 @@ public class GamePlaySceneController {
 
 		scene.registerUpdateHandler(universe.getLevel().getPhysicsWorld());
 		scene.setOnSceneTouchListener(new GameSceneTouchListener());
-
+		universe.getLevel().getPlayer().addListener(scene);
+		
 		final List<IShape> shapes = new ArrayList<IShape>();
 
 		scene.setPlayer(universe.getLevel().getPlayer().getShape());

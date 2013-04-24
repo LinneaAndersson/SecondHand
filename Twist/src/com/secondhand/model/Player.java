@@ -1,5 +1,7 @@
 package com.secondhand.model;
 
+import java.beans.PropertyChangeListener;
+import java.beans.PropertyChangeSupport;
 import java.util.ArrayList;
 
 import org.anddev.andengine.extension.physics.box2d.PhysicsWorld;
@@ -11,6 +13,8 @@ public class Player extends BlackHole {
 
 	private  int score;
 	private String name;
+	
+	private PropertyChangeSupport powerUpListSupport = new PropertyChangeSupport(this);
 	
 	private ArrayList<PowerUp> powerUpList = new ArrayList<PowerUp>(1) {
 		@Override
@@ -47,8 +51,9 @@ public class Player extends BlackHole {
 		this.powerUpList.remove(powerUp);
 	}
 	
-	public void addPowerUp(final PowerUp powerUp){		
+	public void addPowerUp(final PowerUp powerUp){
 		this.powerUpList.add(powerUp);			
+		powerUpListSupport.firePropertyChange("ADD",null,null);
 	}
 
 	public void setName(String name){
@@ -57,5 +62,9 @@ public class Player extends BlackHole {
 	
 	public String getName(){
 		return name;
+	}
+	
+	public void addListener(PropertyChangeListener observer) {
+		powerUpListSupport.addPropertyChangeListener(observer);
 	}
 }

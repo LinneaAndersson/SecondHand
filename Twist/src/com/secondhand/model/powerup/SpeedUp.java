@@ -20,6 +20,4 @@ public class SpeedUp extends PowerUp {
 	public void activateEffect(final Player player) {
 		player.getCircle().setColor(0, 0, 1f);
 	}
-
-
 }

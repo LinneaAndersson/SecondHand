@@ -110,7 +110,8 @@ public class GamePlayScene extends GameScene implements PropertyChangeListener {
 			resetCamera();
 			setScene(AllScenes.GAME_OVER_SCENE);
 		}
-		universe.getLevel().moveEnemies();
+		universe.getLevel().onManagedUpdate(pSecondsElapsed);
+		
 	}
 
 	@Override

@@ -106,7 +106,7 @@ public class Level {
 		return levelHeight;
 	}
 
-	public void moveEnemies() {
+	private void moveEnemies() {
 		// enemies are in both lists because we want them
 		// for easy access and for the posibility of attacking
 		// each other. it would be preferable to change it later
@@ -120,8 +120,16 @@ public class Level {
 				}
 			}
 		}
-
 	}
+	
+	public void onManagedUpdate(final float pSecondsElapsed){ 
+		moveEnemies();
+		
+		this.player.moveToNeededPositionIfNecessary();
+		
+		// move player if necessary. 
+	}
+	
 
 	public void sendTouchInput(final Vector2 v) {
 		this.player.reachToTouch(v);

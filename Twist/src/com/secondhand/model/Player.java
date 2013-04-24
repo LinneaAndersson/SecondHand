@@ -82,4 +82,21 @@ public class Player extends BlackHole {
 		move(movementVector);
 
 	}
+
+	private Vector2 needsToMovePosition;
+	
+	// used to implement teleport, because you can't change the position inside a contact
+	// listener for some retarded reason(that would be too simple, now wouldn't it!?) 
+	// So fuck you Erin Catto.
+	// - Sincerely, Eric
+	public void setNeedsToMovePosition(Vector2 position) {
+		needsToMovePosition = position;
+	}
+	
+	public void moveToNeededPositionIfNecessary() {
+		if(needsToMovePosition != null) {
+			this.getBody().setTransform(needsToMovePosition, this.getBody().getAngle());
+			needsToMovePosition = null;
+		}
+	}
 }

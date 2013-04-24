@@ -61,14 +61,14 @@ public final class Universe {
 				Sounds.getInstance().growSound.play();
 			}
 			blackHole.eatEntity(planet);
-		} else {
+		}/* else {
 			if (blackHole instanceof Player) {
 				gameOver = true;
 			} else {
 				PhysicsDestroyer.getInstance().destroy(blackHole.getShape(),
 						true);
 			}
-		}
+		}*/
 
 	}
 

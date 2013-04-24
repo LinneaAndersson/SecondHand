@@ -51,7 +51,7 @@ public class Level {
 
 		final PhysicsWorld pW = new PhysicsWorld(new Vector2(), true);
 
-		final Player player = new Player(new Vector2(50, 50), 20, pW);
+		final Player player = new Player(new Vector2(50, 50), 20, pW, 20);
 		init(maxSize, pW, player, // NOPMD
 				createTestPlanets(pW), 2000, 2000); // NOPMD
 	}
@@ -67,7 +67,7 @@ public class Level {
 		entityList = otherEntities;
 		this.levelWidth = levelWidth;
 		this.levelHeight = levelHeight;
-		enemyList.add(new Enemy(new Vector2(800, 800), 30, physicsWorld)); // tmp
+		enemyList.add(new Enemy(new Vector2(800, 800), 30, physicsWorld, 10)); // tmp
 
 		for (Enemy enemy : enemyList) {
 			entityList.add(enemy);
@@ -253,12 +253,12 @@ public class Level {
 		 * Math.abs(player.getBody().getLinearVelocity().len()) has no effect.
 		 * This runs rather smoothly. Try it!
 		 */
-		final float maxSpeed = 20;
 		final Vector2 testVector = new Vector2(player.getBody()
 				.getLinearVelocity());
-		if (testVector.add(movementVector).len() > maxSpeed)
+		if (testVector.add(movementVector).len() > player.getMaxSpeed()){
 			// Check if new velocity doesn't exceed maxSpeed!
 			return;
+		}
 
 		player.getBody().applyLinearImpulse(movementVector,
 				player.getBody().getWorldCenter());

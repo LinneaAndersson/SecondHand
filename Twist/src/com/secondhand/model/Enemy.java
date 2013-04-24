@@ -8,8 +8,8 @@ import com.secondhand.debug.MyDebug;
 public class Enemy extends BlackHole {
 
 	public Enemy(final Vector2 vector, final float radius,
-			final PhysicsWorld physicsWorld) {
-		super(vector, radius, physicsWorld, true);
+			final PhysicsWorld physicsWorld, float maxSpeed) {
+		super(vector, radius, physicsWorld, true, maxSpeed);
 	}
 
 	// checks if there is a straight line to entity
@@ -66,10 +66,9 @@ public class Enemy extends BlackHole {
 					movementVector = movementVector.mul(0.00001f);
 				}
 
-				final float maxSpeed = 10;
 				final Vector2 testVector = new Vector2(this.getBody()
 						.getLinearVelocity());
-				if (testVector.add(movementVector).len() > maxSpeed) {
+				if (testVector.add(movementVector).len() > this.getMaxSpeed()) {
 					return;
 				}
 

@@ -85,13 +85,18 @@ public class Level {
 	// this constructor could be useful when creating
 	// new levels and want to keep player and physics
 	// from the last level
-	// Preferable to at least change the entity list?
+	// creates a new physicsWorld just in case...
 	public Level(final Level level) {
-		this(level.getPlayerMaxSize(), level.getPhysicsWorld(), level
-				.getPlayer(), createTestPlanets(level.getPhysicsWorld()), level
+		final PhysicsWorld pw = new PhysicsWorld(new Vector2(),true);
+		
+		init(level.getPlayerMaxSize(),pw, level
+				.getPlayer(), createTestPlanets(pw), level
 				.getLevelWidth(), level.getLevelHeight());
 	}
 
+	// TODO rename method as it can be used not only as a test but in creating
+	// random levels. also make sure that there are some smaller planets so that
+	// you can actually win
 	public static List<Entity> createTestPlanets(final PhysicsWorld physicsWorld) {
 		final List<Entity> testPlanets = new ArrayList<Entity>();
 

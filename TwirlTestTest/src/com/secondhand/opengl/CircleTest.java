@@ -36,10 +36,10 @@ public class CircleTest extends TestCase {
 		final float radius = 10;
 
 		Camera camera = new Camera(0, 0, WIDTH, HEIGHT);
-		Circle circle = new Circle(WIDTH - radius*2, HEIGHT - radius*2, radius);
+		Circle circle = new Circle(WIDTH - radius, HEIGHT - radius, radius);
 		assertFalse(circle.isCulled(camera));
 		
-		circle = new Circle(WIDTH+1, HEIGHT+1 , radius);
+		circle = new Circle(WIDTH + radius+1, HEIGHT+radius+1 , radius);
 		assertTrue(circle.isCulled(camera));
 	}
 }

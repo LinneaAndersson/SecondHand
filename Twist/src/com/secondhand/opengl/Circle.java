@@ -121,13 +121,12 @@ public class Circle extends Shape{
 
 	@Override
 	protected boolean isCulled(final Camera pCamera) {
-		return false;
-	/*	final float x = this.mX;
-		final float y = this.mY;
-		return x > pCamera.getMaxX()
-			|| y > pCamera.getMaxY()
-			|| x + this.getWidth() < pCamera.getMinX()
-			|| y + this.getHeight() < pCamera.getMinY();*/
+		final float cx = this.mX - this.mRadius;
+		final float cy = this.mY - this.mRadius;
+		return cx > pCamera.getMaxX()
+			|| cy > pCamera.getMaxY()
+			|| cx + this.getWidth() < pCamera.getMinX()
+			|| cy + this.getHeight() < pCamera.getMinY();
 	}
 
 }

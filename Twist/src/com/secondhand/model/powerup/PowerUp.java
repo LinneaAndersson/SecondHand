@@ -39,6 +39,8 @@ public abstract class PowerUp extends RectangleEntity {
 	
 	public abstract void activateEffect(Player player);
 	
-	public abstract void deactivateEffect(Player player);
+	public void deactivateEffect(Player player) {
+		player.getCircle().setColor(1f, 1f, 1f);
+	}
 	
 }

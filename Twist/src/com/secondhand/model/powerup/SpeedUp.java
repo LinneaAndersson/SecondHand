@@ -23,7 +23,7 @@ public class SpeedUp extends PowerUp {
 
 	@Override
 	public void deactivateEffect(Player player) {
-
+		super.deactivateEffect(player);
 	}
 
 }

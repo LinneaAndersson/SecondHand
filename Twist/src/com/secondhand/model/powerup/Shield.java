@@ -22,7 +22,7 @@ public class Shield extends PowerUp {
 
 	@Override
 	public void deactivateEffect(Player player) {
-
+		super.deactivateEffect(player);
 	}
 
 }

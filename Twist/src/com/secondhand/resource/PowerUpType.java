@@ -1,10 +1,10 @@
 package com.secondhand.resource;
 
 
-
-
 public enum PowerUpType {
-		BLOOD("eat_obstacle_power_up.png");
+		EAT_OBSTACLE("eat_obstacle_power_up.png"),
+		SHIELD("shield_power_up.png"),
+		RANDOM_TELEPORT("random_teleport_power_up.png");
 		
 		private String path; 
 		

@@ -182,7 +182,7 @@ public final class Universe {
 
 	public void nextLevel() {
 		if (currentLevel == null) {
-			currentLevel = new Level();
+			currentLevel = new Level(2);
 		} else if (!gameOver) {
 			currentLevel = new Level(currentLevel.getLevelNumber());
 		} else {

@@ -98,8 +98,8 @@ public class Level {
 
 		final float K = 1.2f;
 		
-		final float MAX_SIZE = 100f * this.levelNumber * K;
-		final float MIN_SIZE = 10 * this.levelNumber * K;
+		final float MAX_SIZE = 80f * this.levelNumber * K;
+		final float MIN_SIZE = player.getRadius() - 5;
 		final int PLANETS =(int)( 20 * this.levelNumber * K);
 		
 		// make sure they don't get too close to the edges.

@@ -44,7 +44,6 @@ public class Enemy extends BlackHole {
 
 		if (isCloseToEntity(entity)) {
 			if (straightToEntity(entity) && canEat(entity)) {
-				MyDebug.d("Here we should get movement");
 				// the vector from enemy to the player
 				Vector2 movementVector = new Vector2(
 						(entity.getCenterX() - this.getCenterX()),

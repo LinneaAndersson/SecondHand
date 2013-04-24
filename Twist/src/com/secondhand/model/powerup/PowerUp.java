@@ -11,6 +11,8 @@ import org.anddev.andengine.opengl.texture.region.TextureRegion;
 import com.badlogic.gdx.math.Vector2;
 import com.secondhand.model.Player;
 import com.secondhand.model.RectangleEntity;
+import com.secondhand.resource.PowerUpType;
+import com.secondhand.resource.TextureRegions;
 
 // I think that if we only want power-UP the
 // class doesn't need to be abstract
@@ -26,8 +28,8 @@ public abstract class PowerUp extends RectangleEntity {
 		this.duration = duration;	
 	}
 	
-	public PowerUp (final Vector2 position, final TextureRegion texture, final PhysicsWorld physicsWorld, final float duration) {
-		this(new Sprite(position.x, position.y, WIDTH, HEIGHT, texture), physicsWorld, duration);
+	public PowerUp (final Vector2 position, final PowerUpType powerUpType, final PhysicsWorld physicsWorld, final float duration) {
+		this(new Sprite(position.x, position.y, WIDTH, HEIGHT, TextureRegions.getInstance().getPowerUpTexture(powerUpType)), physicsWorld, duration);
 	}
 	
 	// this constructor is easier to test. 

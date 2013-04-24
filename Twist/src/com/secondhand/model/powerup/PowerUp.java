@@ -6,7 +6,6 @@ import org.anddev.andengine.entity.primitive.BaseRectangle;
 import org.anddev.andengine.entity.primitive.Rectangle;
 import org.anddev.andengine.entity.sprite.Sprite;
 import org.anddev.andengine.extension.physics.box2d.PhysicsWorld;
-import org.anddev.andengine.opengl.texture.region.TextureRegion;
 
 import com.badlogic.gdx.math.Vector2;
 import com.secondhand.model.Player;
@@ -45,17 +44,15 @@ public abstract class PowerUp extends RectangleEntity {
 		return new TimerHandler(duration, new ITimerCallback() {
 			private Player user = player; 
 			@Override
-			public void onTimePassed(TimerHandler pTimerHandler) {
+			public void onTimePassed(final TimerHandler pTimerHandler) {
 				user.removePowerUp(PowerUp.this);
 			}
 		});
 	}
 	
-	public void activateEffect(Player player) {
-		
-	}
+	public abstract void activateEffect(final Player player);
 	
-	public void deactivateEffect(Player player) {
+	public void deactivateEffect(final Player player) {
 		player.getCircle().setColor(1f, 1f, 1f);
 	}
 	

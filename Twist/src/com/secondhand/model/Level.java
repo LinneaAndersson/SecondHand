@@ -19,6 +19,7 @@ import com.secondhand.model.powerup.Shield;
 import com.secondhand.opengl.TexturedPolygon;
 import com.secondhand.physics.PhysicsAreaChecker;
 import com.secondhand.resource.PlanetType;
+import com.secondhand.resource.PowerUpType;
 import com.secondhand.resource.TextureRegions;
 import com.secondhand.util.RandomUtil;
 
@@ -51,7 +52,7 @@ public class Level {
 
 		final PhysicsWorld pW = new PhysicsWorld(new Vector2(), true);
 
-		final Player player = new Player(new Vector2(50, 50), 20, pW);
+		final Player player = new Player(new Vector2(50, 50), 20, pW, 20);
 		init(maxSize, pW, player, // NOPMD
 				createTestPlanets(pW), 2000, 2000); // NOPMD
 	}
@@ -67,7 +68,7 @@ public class Level {
 		entityList = otherEntities;
 		this.levelWidth = levelWidth;
 		this.levelHeight = levelHeight;
-		enemyList.add(new Enemy(new Vector2(800, 800), 30, physicsWorld)); // tmp
+		enemyList.add(new Enemy(new Vector2(800, 800), 30, physicsWorld, 10)); // tmp
 
 		for (Enemy enemy : enemyList) {
 			entityList.add(enemy);
@@ -85,13 +86,18 @@ public class Level {
 	// this constructor could be useful when creating
 	// new levels and want to keep player and physics
 	// from the last level
-	// Preferable to at least change the entity list?
+	// creates a new physicsWorld just in case...
 	public Level(final Level level) {
-		this(level.getPlayerMaxSize(), level.getPhysicsWorld(), level
-				.getPlayer(), createTestPlanets(level.getPhysicsWorld()), level
-				.getLevelWidth(), level.getLevelHeight());
+		final PhysicsWorld pw = new PhysicsWorld(new Vector2(),true);
+		
+		init(level.getPlayerMaxSize(),pw, level // NOPMD
+				.getPlayer(), createTestPlanets(pw), level //NOPMD
+				.getLevelWidth(), level.getLevelHeight()); // NOPMD
 	}
 
+	// TODO rename method as it can be used not only as a test but in creating
+	// random levels. also make sure that there are some smaller planets so that
+	// you can actually win
 	public static List<Entity> createTestPlanets(final PhysicsWorld physicsWorld) {
 		final List<Entity> testPlanets = new ArrayList<Entity>();
 
@@ -101,13 +107,13 @@ public class Level {
 		testPlanets.add(new Obstacle(polygon, physicsWorld));
 
 		testPlanets.add(new RandomTeleport(new Vector2(100, 500),
-				TextureRegions.getInstance().powerUpTexture, physicsWorld));
+				TextureRegions.getInstance().getPowerUpTexture(PowerUpType.EAT_OBSTACLE), physicsWorld));
 
 		testPlanets.add(new Shield(new Vector2(20, 500),
-				TextureRegions.getInstance().powerUpTexture, physicsWorld));
+				TextureRegions.getInstance().getPowerUpTexture(PowerUpType.EAT_OBSTACLE), physicsWorld));
 
 		testPlanets.add(new Shield(new Vector2(20, 700),
-				TextureRegions.getInstance().powerUpTexture, physicsWorld));
+				TextureRegions.getInstance().getPowerUpTexture(PowerUpType.EAT_OBSTACLE), physicsWorld));
 
 		final int MAX_SIZE = 120;
 		final int MIN_SIZE = 40;
@@ -248,12 +254,12 @@ public class Level {
 		 * Math.abs(player.getBody().getLinearVelocity().len()) has no effect.
 		 * This runs rather smoothly. Try it!
 		 */
-		final float maxSpeed = 20;
 		final Vector2 testVector = new Vector2(player.getBody()
 				.getLinearVelocity());
-		if (testVector.add(movementVector).len() > maxSpeed)
+		if (testVector.add(movementVector).len() > player.getMaxSpeed()){
 			// Check if new velocity doesn't exceed maxSpeed!
 			return;
+		}
 
 		player.getBody().applyLinearImpulse(movementVector,
 				player.getBody().getWorldCenter());

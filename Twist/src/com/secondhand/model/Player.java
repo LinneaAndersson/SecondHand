@@ -26,8 +26,8 @@ public class Player extends BlackHole {
 		};
 	};
 
-	public Player(final Vector2 position, final float radius, final PhysicsWorld physicsWorld) {
-		super(position, radius, physicsWorld, false);
+	public Player(final Vector2 position, final float radius, final PhysicsWorld physicsWorld, float maxSpeed) {
+		super(position, radius, physicsWorld, false, maxSpeed);
 		this.score = 0;
 	}
 

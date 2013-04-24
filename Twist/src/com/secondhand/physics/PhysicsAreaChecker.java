@@ -30,15 +30,6 @@ public final class PhysicsAreaChecker {
 		return !occupied;
 	}
 	
-	public static boolean isCircleAreaUnoccupied(final CircleEntity circleEntity, final PhysicsWorld physicsWorld) {
-		return isRectangleAreaUnoccupied(
-				new Vector2(circleEntity.getCircle().getX(), 
-				circleEntity.getCircle().getY()),
-				circleEntity.getCircle().getRadius(),
-				circleEntity.getCircle().getRadius(),
-				physicsWorld);
-	}
-	
 	private static class Callback implements  QueryCallback {
 
 		@Override

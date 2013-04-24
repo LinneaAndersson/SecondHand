@@ -79,21 +79,7 @@ public class Player extends BlackHole {
 		// make it a bit slower depending on how big it is.
 		movementVector = movementVector.mul(this.getRadius() * 0.001f);
 
-		/*
-		 * Made a better test, like I said the earlier test we did was not
-		 * functional, and since the length of a vector is always positive, the
-		 * Math.abs(player.getBody().getLinearVelocity().len()) has no effect.
-		 * This runs rather smoothly. Try it!
-		 */
-		final Vector2 testVector = new Vector2(this.getBody()
-				.getLinearVelocity());
-		if (testVector.add(movementVector).len() > this.getMaxSpeed()){
-			// Check if new velocity doesn't exceed maxSpeed!
-			return;
-		}
-
-		this.getBody().applyLinearImpulse(movementVector,
-				this.getBody().getWorldCenter());
+		move(movementVector);
 
 	}
 }

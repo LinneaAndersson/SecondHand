@@ -66,15 +66,8 @@ public class Enemy extends BlackHole {
 					movementVector = movementVector.mul(0.00001f);
 				}
 
-				final Vector2 testVector = new Vector2(this.getBody()
-						.getLinearVelocity());
-				if (testVector.add(movementVector).len() > this.getMaxSpeed()) {
-					return;
-				}
-
-				this.getBody().applyLinearImpulse(movementVector,
-						this.getBody().getWorldCenter());
-
+				this.move(movementVector);
+			
 			} else {
 				// (Avoid) somehow move the enemy around
 				// larger entities

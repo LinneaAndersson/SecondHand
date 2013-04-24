@@ -24,6 +24,10 @@ public abstract class BlackHole extends CircleEntity {
 	public float getMaxSpeed() {
 		return maxSpeed;
 	}
+	
+	public void setMaxSpeed(final float maxSpeed) {
+		this.maxSpeed = maxSpeed;
+	}
 
 	private void increaseSize(final float increase) {
 		setRadius(getRadius() + increase);
@@ -37,6 +41,19 @@ public abstract class BlackHole extends CircleEntity {
 			return false;
 		}
 		return this.getArea() > entity.getArea();
+	}
+	
+	// moves in the specified direction. If max speed is reached, then no movement is performed.
+	public void move(final Vector2 direction) {
+		final Vector2 testVector = new Vector2(this.getBody()
+				.getLinearVelocity());
+		if (testVector.add(direction).len() > this.getMaxSpeed()){
+			// Check if new velocity doesn't exceed maxSpeed!
+			return;
+		}
+
+		this.getBody().applyLinearImpulse(direction,
+				this.getBody().getWorldCenter());	
 	}
 
 	public void eatEntity(final Entity entity) {

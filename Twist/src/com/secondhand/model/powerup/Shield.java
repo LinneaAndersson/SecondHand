@@ -5,14 +5,15 @@ import org.anddev.andengine.opengl.texture.region.TextureRegion;
 
 import com.badlogic.gdx.math.Vector2;
 import com.secondhand.model.Player;
+import com.secondhand.resource.PowerUpType;
 
 public class Shield extends PowerUp {
 	
 	private final static float DURATION = 4;
 	
-	public Shield(Vector2 position, TextureRegion texture,
+	public Shield(Vector2 position,
 			PhysicsWorld physicsWorld) {
-		super(position, texture, physicsWorld, DURATION);
+		super(position, PowerUpType.SHIELD, physicsWorld, DURATION);
 	}
 
 	@Override
@@ -22,7 +23,7 @@ public class Shield extends PowerUp {
 
 	@Override
 	public void deactivateEffect(Player player) {
-
+		super.deactivateEffect(player);
 	}
 
 }

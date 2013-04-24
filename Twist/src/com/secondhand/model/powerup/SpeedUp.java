@@ -5,14 +5,15 @@ import org.anddev.andengine.opengl.texture.region.TextureRegion;
 
 import com.badlogic.gdx.math.Vector2;
 import com.secondhand.model.Player;
+import com.secondhand.resource.PowerUpType;
 
 public class SpeedUp extends PowerUp {
 
 	private final static float DURATION = 2;
 	
-	public SpeedUp(Vector2 position, TextureRegion texture,
+	public SpeedUp(Vector2 position, 
 			PhysicsWorld physicsWorld) {
-		super(position, texture, physicsWorld, DURATION);
+		super(position, PowerUpType.SPEED_UP, physicsWorld, DURATION);
 		
 	}
 
@@ -23,7 +24,7 @@ public class SpeedUp extends PowerUp {
 
 	@Override
 	public void deactivateEffect(Player player) {
-
+		super.deactivateEffect(player);
 	}
 
 }

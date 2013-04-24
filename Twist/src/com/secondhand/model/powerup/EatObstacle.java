@@ -5,14 +5,15 @@ import org.anddev.andengine.opengl.texture.region.TextureRegion;
 
 import com.badlogic.gdx.math.Vector2;
 import com.secondhand.model.Player;
+import com.secondhand.resource.PowerUpType;
 
 public class EatObstacle extends PowerUp {
 
 	private final static float DURATION = 5;
 	
-	public EatObstacle(Vector2 position, TextureRegion texture,
+	public EatObstacle(Vector2 position,
 			PhysicsWorld physicsWorld) {
-		super(position, texture, physicsWorld, DURATION);
+		super(position, PowerUpType.EAT_OBSTACLE, physicsWorld, DURATION);
 
 	}
 
@@ -23,7 +24,7 @@ public class EatObstacle extends PowerUp {
 
 	@Override
 	public void deactivateEffect(Player player) {
-		
+		super.deactivateEffect(player);
 	}
 
 }

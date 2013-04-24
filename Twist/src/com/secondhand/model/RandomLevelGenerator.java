@@ -76,7 +76,7 @@ public class RandomLevelGenerator {
 			MyDebug.e("planet minimum size negative");
 		}
 		
-		final int PLANETS =(int)( 20 * this.levelNumber * K);
+		final int PLANETS = (int)( 20 * this.levelNumber * K);
 		
 		// make sure they don't get too close to the edges.
 		final int HEIGHT = (int)(this.levelHeight - MAX_SIZE - 50);
@@ -110,8 +110,8 @@ public class RandomLevelGenerator {
 				x = rng.nextInt(WIDTH);
 				y = rng.nextInt(HEIGHT);
 
-				if (PhysicsAreaChecker.isRectangleAreaUnoccupied(new Vector2(x,
-						y), radius, radius, physicsWorld))
+				if (PhysicsAreaChecker.isRectangleAreaUnoccupied(new Vector2(x-radius,
+						y-radius), radius*2, radius*2, physicsWorld))
 					break;
 			}
 

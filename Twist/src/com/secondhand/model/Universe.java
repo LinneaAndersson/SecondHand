@@ -29,8 +29,7 @@ public final class Universe {
 
 	public void initialize(final Engine engine) {
 		this.engine = engine;
-
-		currentLevel = new Level();
+		nextLevel();
 		physicsDestroyer = PhysicsDestroyer.getInstance();
 		physicsDestroyer.initialize(engine, currentLevel.getPhysicsWorld());
 		gameOver = false;
@@ -184,7 +183,9 @@ public final class Universe {
 	// so everything having to do with new level could be handled here.
 
 	public void nextLevel() {
-		if (!gameOver) {
+		if (currentLevel == null) {
+			currentLevel = new Level();
+		} else if (!gameOver) {
 			currentLevel = new Level(currentLevel);
 		} else {
 			gameOver = false;

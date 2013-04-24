@@ -51,7 +51,7 @@ public class Level {
 		final PhysicsWorld pW = new PhysicsWorld(new Vector2(), true);
 
 		final Player player = new Player(new Vector2(50, 50), 20, pW);
-		init(maxSize, pW, player , // NOPMD
+		init(maxSize, pW, player, // NOPMD
 				createTestPlanets(pW), 2000, 2000); // NOPMD
 	}
 
@@ -87,30 +87,27 @@ public class Level {
 	// Preferable to at least change the entity list?
 	public Level(final Level level) {
 		this(level.getPlayerMaxSize(), level.getPhysicsWorld(), level
-				.getPlayer(), level.getEntityList(), level.getLevelWidth(),
-				level.getLevelHeight());
+				.getPlayer(), createTestPlanets(level.getPhysicsWorld()), level
+				.getLevelWidth(), level.getLevelHeight());
 	}
 
-	
 	public static List<Entity> createTestPlanets(final PhysicsWorld physicsWorld) {
 		final List<Entity> testPlanets = new ArrayList<Entity>();
-		
+
 		final TexturedPolygon polygon = new TexturedPolygon(200, 200,
 				PolygonUtil.getRandomPolygon(),
 				TextureRegions.getInstance().obstacleTexture);
 		testPlanets.add(new Obstacle(polygon, physicsWorld));
 
-		testPlanets.add(new PowerUp(new Vector2(100, 500), Effect.RANDOM_TELEPORT,
+		testPlanets.add(new PowerUp(new Vector2(100, 500),
+				Effect.RANDOM_TELEPORT,
 				TextureRegions.getInstance().powerUpTexture, physicsWorld));
 
 		testPlanets.add(new PowerUp(new Vector2(20, 500), Effect.SHIELD,
 				TextureRegions.getInstance().powerUpTexture, physicsWorld));
-		
+
 		testPlanets.add(new PowerUp(new Vector2(20, 700), Effect.SHIELD,
 				TextureRegions.getInstance().powerUpTexture, physicsWorld));
-		
-		
-		
 
 		final int MAX_SIZE = 120;
 		final int MIN_SIZE = 40;
@@ -118,31 +115,31 @@ public class Level {
 		final int HEIGHT = 1800;
 		final int WIDTH = 1800;
 		final Random rng = new Random();
-		
-		//MyDebug.d(("area unoccupied: " + PhysicsAreaChecker.isRectangleAreaUnoccupied(new Vector2(100,100), 100, 100, physicsWorld)));
-		
-		for(int i = 0; i < PLANETS; ++i) {
-			final float radius = rng.nextFloat() * (MAX_SIZE - MIN_SIZE) + MIN_SIZE;
+
+		// MyDebug.d(("area unoccupied: " +
+		// PhysicsAreaChecker.isRectangleAreaUnoccupied(new Vector2(100,100),
+		// 100, 100, physicsWorld)));
+
+		for (int i = 0; i < PLANETS; ++i) {
+			final float radius = rng.nextFloat() * (MAX_SIZE - MIN_SIZE)
+					+ MIN_SIZE;
 			float x;
 			float y;
-			
-			while(true) {
-				
+
+			while (true) {
+
 				x = rng.nextInt(WIDTH);
 				y = rng.nextInt(HEIGHT);
-				
-				if(PhysicsAreaChecker.isRectangleAreaUnoccupied(new Vector2(x,y), radius, radius, physicsWorld)) {
+
+				if (PhysicsAreaChecker.isRectangleAreaUnoccupied(new Vector2(x,
+						y), radius, radius, physicsWorld)) {
 					break;
 				}
 			}
-			
-			testPlanets.add(new Planet(new Vector2(x, y), radius, RandomUtil.randomEnum(rng, PlanetType.class),
-					physicsWorld));
-		}
-		
-		
 
-		
+			testPlanets.add(new Planet(new Vector2(x, y), radius, RandomUtil
+					.randomEnum(rng, PlanetType.class), physicsWorld));
+		}
 
 		return testPlanets;
 	}
@@ -201,7 +198,6 @@ public class Level {
 		return levelHeight;
 	}
 
-	
 	// if we don't want level to handle this we could just move it
 	// TODO PowerUP is high priority so we somehow have to fix it
 	public void activateEffect(final Effect effect) {
@@ -214,17 +210,18 @@ public class Level {
 			// final CircleShape shape =
 			// (CircleShape)player.getBody().getFixtureList().get(0).getShape();
 			// and then simply set the position of this shape.
-			
+
 			/*
-			final CircleShape shape = (CircleShape)player.getBody().getFixtureList().get(0).getShape();
-			player.getBody().setTransform(new Vector2(50/32f, 50/32f), 0);
-			shape.setPosition(new Vector2(50/32f, 50/32f));
-			player.getShape().setPosition(50, 50);
-			*/
+			 * final CircleShape shape =
+			 * (CircleShape)player.getBody().getFixtureList().get(0).getShape();
+			 * player.getBody().setTransform(new Vector2(50/32f, 50/32f), 0);
+			 * shape.setPosition(new Vector2(50/32f, 50/32f));
+			 * player.getShape().setPosition(50, 50);
+			 */
 
 			// needs to confirm empty position
 			// use PhysicsAreaChecker to confirm this - Eric
-		
+
 			// add new player at new position
 			player.setEffect(effect);
 			break;

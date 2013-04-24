@@ -89,18 +89,15 @@ public final class Universe {
 
 		physicsDestroyer.destroy(powerUp.getShape(), true);
 
-		// TODO (in Level?) now we need a way to have the power up take
-		// effect and decide a way to have the effect for a duration
-		// the effect should be visible on the players shape
 
 		currentLevel.getPlayer().addPowerUp(powerUp);
 
 	}
 
-	private void handleBlackHoleCollision(Entity entityA, Entity entityB) {
+	private void handleBlackHoleCollision(final Entity entityA, final Entity entityB) {
 		// TODO Auto-generated method stub
-		BlackHole blackHole1 = (BlackHole) entityA;
-		BlackHole blackHole2 = (BlackHole) entityB;
+		final BlackHole blackHole1 = (BlackHole) entityA;
+		final BlackHole blackHole2 = (BlackHole) entityB;
 
 		if (blackHole1.canEat(blackHole2)) {
 

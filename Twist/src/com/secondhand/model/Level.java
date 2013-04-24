@@ -198,57 +198,6 @@ public class Level {
 		return levelHeight;
 	}
 
-	// if we don't want level to handle this we could just move it
-	// TODO PowerUP is high priority so we somehow have to fix it
-	public void activateEffect(final Effect effect) {
-		switch (effect) {
-		case RANDOM_TELEPORT:
-			// remove old player
-			// I think simply changing the position of the physics body is
-			// enough(I hope).
-			// You can get a circle shape from the entity using something like:
-			// final CircleShape shape =
-			// (CircleShape)player.getBody().getFixtureList().get(0).getShape();
-			// and then simply set the position of this shape.
-
-			/*
-			 * final CircleShape shape =
-			 * (CircleShape)player.getBody().getFixtureList().get(0).getShape();
-			 * player.getBody().setTransform(new Vector2(50/32f, 50/32f), 0);
-			 * shape.setPosition(new Vector2(50/32f, 50/32f));
-			 * player.getShape().setPosition(50, 50);
-			 */
-
-			// needs to confirm empty position
-			// use PhysicsAreaChecker to confirm this - Eric
-
-			// add new player at new position
-			player.setEffect(effect);
-			break;
-		case SHIELD:
-			MyDebug.d("shield powerup");
-			player.setEffect(effect);
-			break;
-		case SPEED_UP:
-			player.setEffect(effect);
-			break;
-		case EAT_OBSTACLE:
-			player.setEffect(effect);
-			break;
-		case SCORE_UP:
-			// random number here?
-			// TODO also add animation for "+100"?
-			player.increaseScore(100);
-			break;
-		case NONE:
-			break;
-		default:
-			break;
-
-		}
-
-	}
-
 	public void moveEnemies() {
 		// enemies are in both lists because we want them
 		// for easy access and for the posibility of attacking

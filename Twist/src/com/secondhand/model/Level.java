@@ -38,6 +38,11 @@ public class Level {
 
 		this.physicsWorld  = new PhysicsWorld(new Vector2(), true);
 		
+		// you can try lowering the values of these if the game starts lagging too much.
+		this.physicsWorld.setVelocityIterations(16);
+		this.physicsWorld.setPositionIterations(16);
+
+		
 		RandomLevelGenerator randomLevelGenerator = new RandomLevelGenerator(this.levelNumber, this.physicsWorld);
 		
 		this.player = randomLevelGenerator.player;

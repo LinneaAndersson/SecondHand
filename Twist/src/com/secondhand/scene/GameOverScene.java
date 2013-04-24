@@ -21,9 +21,6 @@ import com.secondhand.model.Universe;
 import com.secondhand.resource.Fonts;
 import com.secondhand.resource.LocalizationStrings;
 
-/**
- * TO LINNEA: Look at the comment in the constructor and fix the issue - Eric
- */
 public class GameOverScene extends GameMenuScene implements
 		IOnMenuItemClickListener {
 	private Font mFont;
@@ -38,8 +35,6 @@ public class GameOverScene extends GameMenuScene implements
 
 	public GameOverScene(final Engine engine, final Context context) {
 		super(engine, context);
-		// You do not need to do this in the constructor, do it in loadScene()
-	//	player = Universe.getInstance().getLevel().getPlayer();
 	}
 
 	@Override
@@ -57,7 +52,9 @@ public class GameOverScene extends GameMenuScene implements
 	@SuppressLint("NewApi")
 	@Override
 	public void loadScene() {
-
+		
+		player = Universe.getInstance().getLevel().getPlayer();
+	
 		String mLine = "0";
 		int antal = 0;
 

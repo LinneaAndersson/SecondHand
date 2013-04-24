@@ -1,8 +1,5 @@
 package com.secondhand.resource;
 
-
-
-
 public enum PlanetType {
 		BLOOD("planet_blood.png"),
 		GRAY("planet_gray.png"),

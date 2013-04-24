@@ -41,12 +41,13 @@ public class EnemyTest extends TestCase{
 		
 		Vector2 pos = new Vector2(2f, 4f);
 		float rad = 3.2f;
+		float maxSpeed = 10f;
 		
-		Enemy enemy = new Enemy(pos, rad, pw);
+		Enemy enemy = new Enemy(pos, rad, pw, maxSpeed);
 	
-		Player other = new Player(pos, rad-1, pw);
+		Player other = new Player(pos, rad-1, pw, maxSpeed);
 		assertTrue(enemy.canEat(other));
-		other = new Player(pos, rad, pw);
+		other = new Player(pos, rad, pw, maxSpeed);
 		assertFalse(enemy.canEat(other));
 	}
 	

@@ -14,7 +14,8 @@ import com.badlogic.gdx.physics.box2d.BodyDef.BodyType;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.secondhand.debug.MyDebug;
 import com.secondhand.math.PolygonUtil;
-import com.secondhand.model.PowerUp.Effect;
+import com.secondhand.model.powerup.RandomTeleport;
+import com.secondhand.model.powerup.Shield;
 import com.secondhand.opengl.TexturedPolygon;
 import com.secondhand.physics.PhysicsAreaChecker;
 import com.secondhand.resource.PlanetType;
@@ -99,14 +100,13 @@ public class Level {
 				TextureRegions.getInstance().obstacleTexture);
 		testPlanets.add(new Obstacle(polygon, physicsWorld));
 
-		testPlanets.add(new PowerUp(new Vector2(100, 500),
-				Effect.RANDOM_TELEPORT,
+		testPlanets.add(new RandomTeleport(new Vector2(100, 500),
 				TextureRegions.getInstance().powerUpTexture, physicsWorld));
 
-		testPlanets.add(new PowerUp(new Vector2(20, 500), Effect.SHIELD,
+		testPlanets.add(new Shield(new Vector2(20, 500),
 				TextureRegions.getInstance().powerUpTexture, physicsWorld));
 
-		testPlanets.add(new PowerUp(new Vector2(20, 700), Effect.SHIELD,
+		testPlanets.add(new Shield(new Vector2(20, 700),
 				TextureRegions.getInstance().powerUpTexture, physicsWorld));
 
 		final int MAX_SIZE = 120;

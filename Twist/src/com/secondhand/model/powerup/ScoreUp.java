@@ -18,7 +18,7 @@ public class ScoreUp extends PowerUp {
 
 	@Override
 	public void activateEffect(Player player) {
-		
+
 	}
 
 	@Override

@@ -9,42 +9,48 @@ import com.badlogic.gdx.physics.box2d.QueryCallback;
 import com.secondhand.debug.MyDebug;
 import com.secondhand.model.Entity;
 
-
 // PASS ANDENGINE COORDINATES TO THIS CLASS!!!
 public final class PhysicsAreaChecker {
-	
-	private PhysicsAreaChecker() {} 
-	
+
+	private PhysicsAreaChecker() {
+	}
+
 	private static boolean occupied = false;
 
-	public static boolean isRectangleAreaUnoccupied(final Vector2 position, final float width, final float height, final PhysicsWorld physicsWorld) {
-		
+	public static boolean isRectangleAreaUnoccupied(final Vector2 position,
+			final float width, final float height,
+			final PhysicsWorld physicsWorld) {
+
 		occupied = false;
-		
-		physicsWorld.QueryAABB(new Callback(),
-				position.x / PhysicsConstants.PIXEL_TO_METER_RATIO_DEFAULT
-				, position.y / PhysicsConstants.PIXEL_TO_METER_RATIO_DEFAULT, 
-				(position.x + width) / PhysicsConstants.PIXEL_TO_METER_RATIO_DEFAULT,
-				(position.y - height) / PhysicsConstants.PIXEL_TO_METER_RATIO_DEFAULT);
-		
+
+		physicsWorld.QueryAABB(new Callback(), position.x
+				/ PhysicsConstants.PIXEL_TO_METER_RATIO_DEFAULT, position.y
+				/ PhysicsConstants.PIXEL_TO_METER_RATIO_DEFAULT,
+				(position.x + width)
+						/ PhysicsConstants.PIXEL_TO_METER_RATIO_DEFAULT,
+				(position.y - height)
+						/ PhysicsConstants.PIXEL_TO_METER_RATIO_DEFAULT);
+
 		return !occupied;
 	}
-	
-	private static class Callback implements  QueryCallback {
+
+	private static class Callback implements QueryCallback {
 
 		@Override
 		public boolean reportFixture(final Fixture fixture) {
-			
-			
-			MyDebug.d("reported class: " + fixture.getBody().getUserData().getClass() + " x pos: " +
-				
-					((Entity)fixture.getBody().getUserData()).getX());
-			
+
+			/* this messes up the STAN dependencies
+			 * MyDebug.d("reported class: " +
+			 * fixture.getBody().getUserData().getClass() + " x pos: " +
+			 * 
+			 * ((Entity)fixture.getBody().getUserData()).getX());
+			 */
 			occupied = true;
-			
-			// stop querying for fixtures, we already know that the area is unoccupied. 
+
+			// stop querying for fixtures, we already know that the area is
+			// unoccupied.
 			return true;
 		}
-		
+
 	}
 }

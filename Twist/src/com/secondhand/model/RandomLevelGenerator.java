@@ -12,6 +12,7 @@ import com.secondhand.math.PolygonUtil;
 import com.secondhand.model.powerup.RandomTeleport;
 import com.secondhand.model.powerup.Shield;
 import com.secondhand.model.powerup.SpeedUp;
+import com.secondhand.opengl.Circle;
 import com.secondhand.physics.PhysicsAreaChecker;
 import com.secondhand.resource.PlanetType;
 import com.secondhand.util.RandomUtil;
@@ -26,10 +27,8 @@ public class RandomLevelGenerator {
 	public final int levelHeight;
 	public final int playerMaxSize;
 	
-	
 	public final List<Entity> entityList;
 	public final List<Enemy> enemyList;
-	
 	
 	RandomLevelGenerator(final int levelNumber, final PhysicsWorld physicsWorld) {
 		this.physicsWorld = physicsWorld;
@@ -59,6 +58,26 @@ public class RandomLevelGenerator {
 
 	}
 
+	private boolean isTooCloseToOtherEntity(final float x, final float y, final float radius) {
+		final float MINIMUM_DISTANCE = 10;
+		
+		for(Entity entity: this.entityList) {
+			if(entity instanceof CircleEntity) {
+				Circle other = (Circle)entity.getShape();
+				
+				final float dx = Math.abs(x - other.getX());
+				final float dy = Math.abs(y - other.getY());
+				
+				final float dist = (float)Math.sqrt(dx*dx + dy*dy) - radius - other.getRadius();
+				
+				if(dist < MINIMUM_DISTANCE)
+					return true;
+			}
+		}
+		
+		return false;
+	}
+	
 	
 	// TODO could we create some more space between the planets?
 	// so the doesn't group together at start
@@ -110,9 +129,13 @@ public class RandomLevelGenerator {
 				x = rng.nextInt(WIDTH);
 				y = rng.nextInt(HEIGHT);
 
+				if(!isTooCloseToOtherEntity(x, y, radius)) {
+					break;
+				}
+				/*
 				if (PhysicsAreaChecker.isRectangleAreaUnoccupied(new Vector2(x-radius,
 						y-radius), radius*2, radius*2, physicsWorld))
-					break;
+					break;*/
 			}
 
 			entityList.add(new Planet(new Vector2(x, y), radius, RandomUtil

@@ -1,10 +1,8 @@
 package com.secondhand.physics;
 
 
-import java.util.ArrayList;
 import java.util.Iterator;
 
-import org.anddev.andengine.engine.camera.Camera;
 import org.anddev.andengine.extension.physics.box2d.PhysicsWorld;
 import org.anddev.andengine.opengl.buffer.BufferObjectManager;
 

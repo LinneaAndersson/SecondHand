@@ -74,5 +74,12 @@ public abstract class Entity {
 	public float getCenterY() {
 		return getY();
 	}
+
+	// how much every unit(pixel) of radius is worth in points. 
+	public abstract float getScoreWorth();
+	
+	public int getScoreValue() {
+		return (int)(this.getRadius() * this.getScoreWorth());
+	}
 }
 

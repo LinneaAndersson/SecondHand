@@ -59,4 +59,10 @@ public abstract class PowerUp extends RectangleEntity {
 			player.getCircle().setColor(1f, 1f, 1f);
 	}
 	
+	@Override
+	public float getScoreWorth() {
+		throw new IllegalStateException("cannot score points for eating powerup");
+
+	}
+	
 }

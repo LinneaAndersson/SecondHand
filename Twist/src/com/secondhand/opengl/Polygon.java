@@ -73,26 +73,7 @@ public class Polygon extends Shape {
 		//this.mMaxLength = computeMaxLength(polygon);
 	}
 	
-	/*private final float computeMaxLength(final List<Vector2> polygon) {
-		// compute the maximum length between 2 points in the polygon.
-		float maxLength = 0;
-		
-		for(int i = 0; i < polygon.size(); ++i) {
-			for(int j = 0; j < polygon.size(); ++j) {
-				if(j != i) {
-					final Vector2 p1 = polygon.get(i);
-					final Vector2 p2 = polygon.get(j);
-					
-					final float length = (float)Math.sqrt(Math.pow(p1.x - p2.x, 2) + Math.pow(p1.y - p2.y, 2));
-					if(length > maxLength) {
-						maxLength = length;
-					}
-				}
-			}
-		}
-		
-		return maxLength;
-	}*/
+	
 	
 	public List<Vector2> getPolygon() {
 		return this.mPolygon;

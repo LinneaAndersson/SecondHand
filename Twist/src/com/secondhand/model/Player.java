@@ -2,6 +2,7 @@ package com.secondhand.model;
 
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
+import java.io.InvalidObjectException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -103,5 +104,10 @@ public class Player extends BlackHole {
 			this.getBody().setTransform(needsToMovePosition, this.getBody().getAngle());
 			needsToMovePosition = null;
 		}
+	}
+	
+	@Override
+	public float getScoreWorth() {
+		throw new IllegalStateException("cannot score points for eating player");
 	}
 }

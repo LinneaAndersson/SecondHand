@@ -132,10 +132,9 @@ public class Enemy extends BlackHole {
 			}
 		}
 	}
-	
+
 	@Override
 	public float getScoreWorth() {
 		return 3;
 	}
-
 }

@@ -92,7 +92,6 @@ public final class Universe {
 
 	private void handleBlackHoleCollision(final Entity entityA,
 			final Entity entityB) {
-		// TODO Auto-generated method stub
 		final BlackHole blackHole1 = (BlackHole) entityA;
 		final BlackHole blackHole2 = (BlackHole) entityB;
 

@@ -59,7 +59,7 @@ public class RandomLevelGenerator {
 	}
 
 	private boolean isTooCloseToOtherEntity(final float x, final float y, final float radius) {
-		final float MINIMUM_DISTANCE = 40;
+		final float MINIMUM_DISTANCE = 100;
 		
 		for(Entity entity: this.entityList) {
 			if(entity instanceof CircleEntity) {
@@ -70,8 +70,9 @@ public class RandomLevelGenerator {
 				
 				final float dist = (float)Math.sqrt(dx*dx + dy*dy) - radius - other.getRadius();
 				
-				if(dist < MINIMUM_DISTANCE)
+				if(dist < MINIMUM_DISTANCE) {
 					return true;
+				}
 			}
 		}
 		
@@ -79,8 +80,6 @@ public class RandomLevelGenerator {
 	}
 	
 	
-	// TODO could we create some more space between the planets?
-	// so the doesn't group together at start
 	private void placeOutLevelEntities() {
 	
 		final float K = 1.2f;

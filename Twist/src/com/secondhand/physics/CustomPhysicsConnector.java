@@ -40,8 +40,7 @@ public class CustomPhysicsConnector extends PhysicsConnector {
 			shape.setPosition(x , y);
 		}
 
-		// TODO: this makes it impossible for circle to rotate when colliding, fix this.
-		if(this.mUpdateRotation && !isCircle) {
+		if(this.mUpdateRotation) {
 			final float angle = body.getAngle();
 			shape.setRotation(MathUtils.radToDeg(angle));
 		}

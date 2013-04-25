@@ -128,5 +128,22 @@ public class Circle extends Shape{
 			|| cx + this.getWidth() < pCamera.getMinX()
 			|| cy + this.getHeight() < pCamera.getMinY();
 	}
+	
+	protected void applyRotation(final GL10 pGL) {
+		final float rotation = this.mRotation;
+
+		if(rotation != 0) {
+			//final float rotationCenterX = this.mRotationCenterX;
+			//final float rotationCenterY = this.mRotationCenterY;
+
+			//pGL.glTranslatef(rotationCenterX, rotationCenterY, 0);
+			pGL.glRotatef(rotation, 0, 0, 1);
+			//pGL.glTranslatef(-rotationCenterX, -rotationCenterY, 0);
+
+			/* TODO There is a special, but very likely case when mRotationCenter and mScaleCenter are the same.
+			 * In that case the last glTranslatef of the rotation and the first glTranslatef of the scale is superfluous.
+			 * The problem is that applyRotation and applyScale would need to be "merged" in order to efficiently check for that condition.  */
+		}
+	}
 
 }

@@ -64,6 +64,10 @@ public abstract class BlackHole extends CircleEntity {
 	private Vector2 newShapePosition;
 
 	public void eatEntity(final Entity entity) {
+		
+		// sanity checking
+		if(!this.canEat(entity))
+			return;
 
 		// Detach the shape from AndEngine-rendering
 		entity.getShape().detachSelf();
@@ -79,8 +83,6 @@ public abstract class BlackHole extends CircleEntity {
 		}
 
 		// remove the eaten entity from the physics world:
-		// TODO: we should have a better way of accessing the destroyer
-
 		PhysicsDestroyer.getInstance().destroy(entity.getShape(), true);
 
 		// TODO: we should use general entities instead, but for debugging
@@ -93,10 +95,8 @@ public abstract class BlackHole extends CircleEntity {
 		this.increaseSize(radiusInc);
 
 		// now the must also increase the size of the circle physics body
-
 		final CircleShape shape = (CircleShape) getBody().getFixtureList()
 				.get(0).getShape();
-
 		shape.setRadius(this.getRadius()
 				/ PhysicsConstants.PIXEL_TO_METER_RATIO_DEFAULT);
 

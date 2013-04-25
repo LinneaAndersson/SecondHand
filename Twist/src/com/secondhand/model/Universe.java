@@ -55,66 +55,9 @@ public final class Universe {
 		
 		blackHole.eatEntity(other);
 
-	/*	if (blackHole.canEat(planet)) {
-			if (blackHole instanceof Player) {
-				Sounds.getInstance().growSound.play();
-			}
-			blackHole.eatEntity(planet);
-		}*//*
-		 * else { if (blackHole instanceof Player) { gameOver = true; } else {
-		 * PhysicsDestroyer.getInstance().destroy(blackHole.getShape(), true); }
-		 * }
-		 */
 
 	}
 
-	private void handlePowerUpPlayerCollision(final Entity entityA,
-			final Entity entityB) {
-
-		Sounds.getInstance().powerUpSound.play();
-
-		PowerUp powerUp;
-		if (entityA instanceof PowerUp) {
-			powerUp = (PowerUp) entityA;
-		} else {
-			powerUp = (PowerUp) entityB;
-		}
-
-		powerUp.getShape().detachSelf();
-
-		physicsDestroyer.destroy(powerUp.getShape(), true);
-
-		currentLevel.getPlayer().addPowerUp(powerUp);
-
-	}
-/*
-	private void handleBlackHoleCollision(final Entity entityA,
-			final Entity entityB) {
-		final BlackHole blackHole1 = (BlackHole) entityA;
-		final BlackHole blackHole2 = (BlackHole) entityB;
-
-		if (blackHole1.canEat(blackHole2)) {
-
-			if (blackHole1 instanceof Player) {
-				Sounds.getInstance().growSound.play();
-			} else {
-				gameOver = true;
-			}
-
-			blackHole1.eatEntity(blackHole2);
-
-		} else if (blackHole2.canEat(blackHole1)) {
-
-			if (blackHole2 instanceof Player) {
-				Sounds.getInstance().growSound.play();
-			} else {
-				gameOver = true;
-			}
-
-			blackHole2.eatEntity(blackHole1);
-		}
-	}
-*/
 	public void checkCollision(final Contact contact) {
 		// if one or both is null, then we are dealing with a collision
 		// involving one or
@@ -137,21 +80,6 @@ public final class Universe {
 		if (entityA instanceof BlackHole || entityB instanceof BlackHole) {
 			handleBlackHoleCollision(entityA, entityB);
 		} 
-		
-		/*else if (entityA instanceof Player && entityB instanceof PowerUp
-				|| entityB instanceof Player && entityA instanceof PowerUp) {
-			handlePowerUpPlayerCollision(entityA, entityB);
-		} else if (entityA instanceof Player && entityB instanceof Obstacle
-				|| entityB instanceof Player && entityA instanceof Obstacle) {
-			Sounds.getInstance().obstacleCollisionSound.play();
-		}*/
-		
-		
-		/*
-		 * else if (entityA instanceof BlackHole && entityB instanceof
-		 * BlackHole) { handleBlackHoleCollision(entityA, entityB); }
-		 */
-
 	}
 
 	public boolean isGameOver() {

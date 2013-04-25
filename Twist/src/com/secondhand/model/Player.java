@@ -10,6 +10,7 @@ import org.anddev.andengine.extension.physics.box2d.PhysicsWorld;
 
 import com.badlogic.gdx.math.Vector2;
 import com.secondhand.model.powerup.PowerUp;
+import com.secondhand.resource.Sounds;
 
 public class Player extends BlackHole {
 
@@ -105,8 +106,17 @@ public class Player extends BlackHole {
 
 	protected void handlePowerUp(final PowerUp powerUp) {
 
+		Sounds.getInstance().powerUpSound.play();
+		
 		addPowerUp(powerUp);
 		
 		powerUp.wasEaten();
 	}
+
+	protected void onGrow() {
+		Sounds.getInstance().growSound.play();	
+	}
+
+
+	
 }

@@ -76,6 +76,12 @@ public abstract class BlackHole extends CircleEntity {
 
 	protected abstract void handlePowerUp(final PowerUp powerUp);
 	
+	protected void onGrow() {
+		
+	}
+	
+	
+	
 	public void eatEntity(final Entity entity) {
 		
 		if(entity instanceof PowerUp) {
@@ -102,6 +108,7 @@ public abstract class BlackHole extends CircleEntity {
 			// increase the size of the rendered circle.
 			final float radiusInc = entity.getRadius() * GROWTH_FACTOR;
 			this.increaseSize(radiusInc);
+			onGrow();
 
 			// now we must also increase the size of the circle physics body
 			final CircleShape shape = (CircleShape) getBody().getFixtureList()

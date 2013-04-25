@@ -15,7 +15,7 @@ public class CollisionContactListener implements ContactListener {
 	 */
 	@Override
 	public void beginContact(final Contact contact) {
-		Universe.getInstance().checkCollision(contact);
+		Universe.getInstance().getLevel().checkCollision(contact);
 	}
 
 	@Override

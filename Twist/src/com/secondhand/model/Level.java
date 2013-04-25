@@ -9,6 +9,7 @@ import org.anddev.andengine.extension.physics.box2d.PhysicsWorld;
 
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.BodyDef.BodyType;
+import com.badlogic.gdx.physics.box2d.Contact;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
 
 public class Level {
@@ -129,7 +130,47 @@ public class Level {
 		
 		// move player if necessary. 
 	}
-	
+	private void handleBlackHoleCollision(final Entity entityA,
+			final Entity entityB) {
+
+		BlackHole blackHole;
+		Entity other;
+		if (entityA instanceof BlackHole) {
+			blackHole = (BlackHole) entityA;
+			other = entityB;
+		} else {
+			other = entityA;
+			blackHole = (BlackHole) entityB;
+		}
+		
+		blackHole.eatEntity(other);
+
+
+	}
+
+	public void checkCollision(final Contact contact) {
+		// if one or both is null, then we are dealing with a collision
+		// involving one or
+		// two non-entities
+		// (ie, a black hole collides with the wall),
+		// and we are not interested in handling such a collision
+		if (contact.getFixtureA().getBody().getUserData() == null
+				|| contact.getFixtureB().getBody().getUserData() == null) {
+			return;
+		}
+		
+		// now we know both the bodies are entities.
+		final Entity entityA = (Entity) contact.getFixtureA().getBody()
+				.getUserData();
+		final Entity entityB = (Entity) contact.getFixtureB().getBody()
+				.getUserData();
+
+		
+		// collisions involving black holes are the only ones we're interested in.
+		if (entityA instanceof BlackHole || entityB instanceof BlackHole) {
+			handleBlackHoleCollision(entityA, entityB);
+		} 
+	}
 
 	public void sendTouchInput(final Vector2 v) {
 		this.player.reachToTouch(v);

@@ -78,7 +78,6 @@ public abstract class BlackHole extends CircleEntity {
 	protected abstract void handlePowerUp(final PowerUp powerUp);
 	
 	protected void onGrow() {
-		
 	}
 	
 	protected void entityWasTooBigToEat(final Entity entity) {}

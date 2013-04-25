@@ -32,7 +32,7 @@ public abstract class PolygonEntity extends Entity {
 	public boolean isCircle(){
 		return false;
 	}
-	
+		
 	public Vector2 getCenterOfMass(){
 		final Vector2 v = this.getBody().getMassData().center;
 		

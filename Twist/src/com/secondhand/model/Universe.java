@@ -79,7 +79,7 @@ public final class Universe {
 		}
 
 		powerUp.getShape().detachSelf();
-		
+
 		physicsDestroyer.destroy(powerUp.getShape(), true);
 
 		currentLevel.getPlayer().addPowerUp(powerUp);
@@ -162,7 +162,7 @@ public final class Universe {
 		return currentLevel;
 	}
 
-		public void nextLevel() {
+	public void nextLevel() {
 		if (currentLevel == null) {
 			currentLevel = new Level(2);
 		} else if (!gameOver) {

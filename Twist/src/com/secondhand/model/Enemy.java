@@ -5,8 +5,12 @@ import java.util.List;
 import org.anddev.andengine.extension.physics.box2d.PhysicsWorld;
 
 import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.physics.box2d.Fixture;
+import com.badlogic.gdx.physics.box2d.RayCastCallback;
 
 public class Enemy extends BlackHole {
+
+	private static boolean straightLine = true;
 
 	public Enemy(final Vector2 vector, final float radius,
 			final PhysicsWorld physicsWorld, final float maxSpeed) {
@@ -24,20 +28,33 @@ public class Enemy extends BlackHole {
 	}
 
 	// may be needed depending on search area size
-	// true if road to entity is clear. also true 
+	// true if road to entity is clear. also true
 	// if blocking entity is edible
-	
-	// smallest containing square and check with the squares 
-	// area each step towards the entity. each step is 
-	// the length of the squares side
 
-	// #: steps, e: enemy, 0: entity.
-	//  e ### 0 -> ok ok ok e0
-	
 	private boolean straightToEntity(final Entity entity) {
+		straightLine = true;
 
-		
-		return true;
+		physicsWorld.rayCast(new RayCastCallback() {
+
+			@Override
+			public float reportRayFixture(Fixture fixture, Vector2 point,
+					Vector2 normal, float fraction) {
+
+				if (((Entity) fixture.getBody().getUserData()) == entity) {
+					return 1;
+
+				} else if (canEat((Entity) fixture.getBody().getUserData())) {
+					return fraction;
+				}
+
+				straightLine = false;
+
+				return 0;
+
+			}
+		}, this.getBody().getWorldCenter(), entity.getBody().getWorldCenter());
+
+		return straightLine;
 	}
 
 	// checks if enemy is close enough to start chasing
@@ -81,41 +98,39 @@ public class Enemy extends BlackHole {
 	// TODO avoid larger stuff, chase smaller stuff
 	// move in a smart way(no suicide)
 	private void applyMovement(final Entity entity) {
-		
+
 		// TODO change the null-check to something nicer
-		// !!! straightToEntity() can take a null this way !!!
-		// ok for now because that method doesn't do anything
-		if (straightToEntity(entity) && entity != null) {
-			// the vector from enemy to the player
-			Vector2 movementVector = new Vector2(
-					(entity.getCenterX() - this.getCenterX()),
-					entity.getCenterY() - this.getCenterY());
+		if (entity != null) {
+			if (straightToEntity(entity)) {
+				// the vector from enemy to the player
+				Vector2 movementVector = new Vector2(
+						(entity.getCenterX() - this.getCenterX()),
+						entity.getCenterY() - this.getCenterY());
 
-			// need to slow them down, they are to dam fast
-			// otherwise
-			// if(body is moving) we need mul(0.001)
-			// for better mobility(so they won't just
-			// go forward)
-			// lower maxSpeed than player.
+				// need to slow them down, they are to dam fast
+				// otherwise
+				// if(body is moving) we need mul(0.001)
+				// for better mobility(so they won't just
+				// go forward)
+				// lower maxSpeed than player.
 
-			
-			if (movementVector.len() > 0) {
-				// we want to apply larger force when enemy is
-				// turning (changing direction). so we need a better
-				// test than above
-				movementVector = movementVector.mul(0.0001f);
+				if (movementVector.len() > 0) {
+					// we want to apply larger force when enemy is
+					// turning (changing direction). so we need a better
+					// test than above
+					movementVector = movementVector.mul(0.0001f);
+				} else {
+					movementVector = movementVector.mul(0.00001f);
+				}
+
+				this.move(movementVector);
+
 			} else {
-				movementVector = movementVector.mul(0.00001f);
+
+				// (Avoid) somehow move the enemy around
+				// larger entities
 			}
-
-			this.move(movementVector);
-
-		} else {
-			
-			// (Avoid) somehow move the enemy around
-			// larger entities
 		}
-
 	}
 
 }

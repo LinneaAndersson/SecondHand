@@ -296,10 +296,6 @@
             <ruleset>Basic Rules</ruleset>
         </rule>
         <rule>
-            <name>EmptyMethodInAbstractClassShouldBeAbstract</name>
-            <ruleset>Design Rules</ruleset>
-        </rule>
-        <rule>
             <name>EmptyStatementNotInLoop</name>
             <ruleset>Basic Rules</ruleset>
         </rule>

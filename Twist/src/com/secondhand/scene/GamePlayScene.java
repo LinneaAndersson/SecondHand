@@ -2,10 +2,13 @@ package com.secondhand.scene;
 
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.anddev.andengine.engine.Engine;
+import org.anddev.andengine.entity.scene.background.RepeatingSpriteBackground;
 import org.anddev.andengine.entity.shape.IShape;
+import org.anddev.andengine.opengl.texture.region.TextureRegion;
 
 import android.content.Context;
 import android.view.KeyEvent;
@@ -14,7 +17,9 @@ import com.secondhand.debug.MyDebug;
 import com.secondhand.model.Player;
 import com.secondhand.model.Universe;
 import com.secondhand.model.powerup.PowerUp;
+import com.secondhand.opengl.RandomRepeatingBackground;
 import com.secondhand.opengl.StarsBackground;
+import com.secondhand.resource.TextureRegions;
 
 public class GamePlayScene extends GameScene implements PropertyChangeListener {
 	
@@ -49,6 +54,11 @@ public class GamePlayScene extends GameScene implements PropertyChangeListener {
 		// level width. it's the camera width and height for now.
 		final float width = universe.getLevel().getLevelWidth();
 		final float height = universe.getLevel().getLevelHeight();
+		
+		// TODO: get this background to work.
+		/*final List<TextureRegion> starsTextures = new ArrayList<TextureRegion>();
+		starsTextures.add(TextureRegions.getInstance().starsTexture);
+		this.attachChild(new RandomRepeatingBackground(starsTextures, width, height));*/
 		
 		this.attachChild(new StarsBackground(50, 5.0f, width, height));
 		this.attachChild(new StarsBackground(100, 3.0f, width, height));

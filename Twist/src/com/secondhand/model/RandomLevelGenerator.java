@@ -59,11 +59,11 @@ public class RandomLevelGenerator {
 	}
 
 	private boolean isTooCloseToOtherEntity(final float x, final float y, final float radius) {
-		final float MINIMUM_DISTANCE = 10;
+		final float MINIMUM_DISTANCE = 40;
 		
 		for(Entity entity: this.entityList) {
 			if(entity instanceof CircleEntity) {
-				Circle other = (Circle)entity.getShape();
+				final Circle other = (Circle)entity.getShape();
 				
 				final float dx = Math.abs(x - other.getX());
 				final float dy = Math.abs(y - other.getY());

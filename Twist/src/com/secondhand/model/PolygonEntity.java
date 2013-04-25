@@ -16,6 +16,7 @@ public abstract class PolygonEntity extends Entity {
 		super(polygon, isEdible, MyPhysicsFactory.createPolygonBody(physicsWorld,
 				polygon, BodyType.DynamicBody, fixtureDef), true, physicsWorld);
 		this.polygon = polygon;
+		polygon.setBody(this.getBody());
 	}
 	
 	@Override

@@ -160,7 +160,7 @@ public final class PolygonUtil {
         // set the zero vector.
         firstV.x = 0;
         firstV.y = 0;
-        
+
         
         return polygonEdges;
     }

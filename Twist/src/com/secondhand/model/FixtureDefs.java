@@ -11,7 +11,7 @@ public final class FixtureDefs {
 	private FixtureDefs() {}
 	
 	
-	private final static float FRICTION = 1;
+	private final static float FRICTION = 1	;
 	
 	// http://www.box2d.org/manual.html chapter 6 for an explanation of the parameters.
 	

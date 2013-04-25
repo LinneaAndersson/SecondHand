@@ -61,14 +61,11 @@ public final class Universe {
 				Sounds.getInstance().growSound.play();
 			}
 			blackHole.eatEntity(planet);
-		}/* else {
-			if (blackHole instanceof Player) {
-				gameOver = true;
-			} else {
-				PhysicsDestroyer.getInstance().destroy(blackHole.getShape(),
-						true);
-			}
-		}*/
+		}/*
+		 * else { if (blackHole instanceof Player) { gameOver = true; } else {
+		 * PhysicsDestroyer.getInstance().destroy(blackHole.getShape(), true); }
+		 * }
+		 */
 
 	}
 
@@ -89,12 +86,12 @@ public final class Universe {
 
 		physicsDestroyer.destroy(powerUp.getShape(), true);
 
-
 		currentLevel.getPlayer().addPowerUp(powerUp);
 
 	}
 
-	private void handleBlackHoleCollision(final Entity entityA, final Entity entityB) {
+	private void handleBlackHoleCollision(final Entity entityA,
+			final Entity entityB) {
 		// TODO Auto-generated method stub
 		final BlackHole blackHole1 = (BlackHole) entityA;
 		final BlackHole blackHole2 = (BlackHole) entityB;
@@ -189,14 +186,19 @@ public final class Universe {
 		}
 	}
 
-	public void update(final Vector2 v) {
-
+	public void onManagedUpdate(float pSecondsElapsed) {
 		if (currentLevel.checkPlayerBigEnough()) {
-
 			nextLevel();
-
 		} else {
+			currentLevel.onManagedUpdate(pSecondsElapsed);
+		}
 
+	}
+
+	public void update(final Vector2 v) {
+		if (currentLevel.checkPlayerBigEnough()) {
+			nextLevel();
+		} else {
 			currentLevel.sendTouchInput(v);
 		}
 	}

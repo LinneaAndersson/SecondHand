@@ -1,8 +1,9 @@
-package com.secondhand.model;
+package com.secondhand.model.powerup;
 
 import org.anddev.andengine.extension.physics.box2d.PhysicsWorld;
 
 import com.badlogic.gdx.math.Vector2;
+import com.secondhand.model.Player;
 import com.secondhand.model.powerup.PowerUp;
 
 import junit.framework.TestCase;

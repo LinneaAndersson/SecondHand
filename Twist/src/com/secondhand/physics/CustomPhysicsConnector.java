@@ -6,17 +6,15 @@ import org.anddev.andengine.util.MathUtils;
 
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
-import com.secondhand.model.CircleEntity;
-import com.secondhand.model.Entity;
 
 public class CustomPhysicsConnector extends PhysicsConnector {
 
 	private final boolean isCircle;
 	
-	public CustomPhysicsConnector(final Entity entity, final Body body, final boolean updatePosition, final boolean updateRotation) {
-		super(entity.getShape(), body, updatePosition, updateRotation );
+	public CustomPhysicsConnector(final IShape shape, boolean circle, final Body body, final boolean updatePosition, final boolean updateRotation) {
+		super(shape, body, updatePosition, updateRotation );
 		
-		this.isCircle = entity instanceof CircleEntity;
+		this.isCircle = circle;
 	}
 	
 	

@@ -18,6 +18,11 @@ public abstract class RectangleEntity extends Entity {
 		this.rectangle = rectangle;
 	}
 	
+	@Override
+	public boolean isCircle(){
+		return false;
+	}
+	
 	public float getWidth() {
 		return this.rectangle.getWidth();
 	}

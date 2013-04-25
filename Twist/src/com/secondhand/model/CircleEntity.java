@@ -31,6 +31,11 @@ public abstract class CircleEntity extends Entity {
 		this.circle = circle;
 	}
 	
+	@Override
+	public boolean isCircle(){
+		return true;
+	}
+	
 	public float getRadius() {
 		return this.circle.getRadius();
 	}

@@ -16,6 +16,11 @@ public abstract class PolygonEntity extends Entity {
 		this.polygon = polygon;
 	}
 	
+	@Override
+	public boolean isCircle(){
+		return false;
+	}
+	
 	@Override 
 	public float getArea() {
 		return 1;

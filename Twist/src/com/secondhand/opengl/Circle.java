@@ -16,7 +16,7 @@ import com.badlogic.gdx.math.Vector2;
 /**
  * A circle class used for drawing circles. 
  * @author erkastina
- * IMPORTANT: the circle position is its upper left corner, not its center position. 
+ * IMPORTANT: the center position is used to position circles. 
  *
  */
 public class Circle extends Shape{
@@ -33,12 +33,6 @@ public class Circle extends Shape{
 	}
 	
 	
-	/**
-	 * Creates a new circle.
-	 * @param pX the x position of the left side of the circle
-	 * @param pY the y position of the top of the circle.
-	 * @param radius the radius of the circle. 
-	 */
 	public Circle(final float pX, final float pY, final float radius, final boolean cullingEnabled) {
 		super(pX/* + radius*/, pY/* + radius*/);
 		
@@ -127,13 +121,12 @@ public class Circle extends Shape{
 
 	@Override
 	protected boolean isCulled(final Camera pCamera) {
-		
-		final float x = this.mX;
-		final float y = this.mY;
-		return x > pCamera.getMaxX()
-			|| y > pCamera.getMaxY()
-			|| x + this.getWidth() < pCamera.getMinX()
-			|| y + this.getHeight() < pCamera.getMinY();
+		final float cx = this.mX - this.mRadius;
+		final float cy = this.mY - this.mRadius;
+		return cx > pCamera.getMaxX()
+			|| cy > pCamera.getMaxY()
+			|| cx + this.getWidth() < pCamera.getMinX()
+			|| cy + this.getHeight() < pCamera.getMinY();
 	}
 
 }

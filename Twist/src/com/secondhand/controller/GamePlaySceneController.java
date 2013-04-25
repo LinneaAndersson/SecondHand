@@ -11,6 +11,7 @@ import org.anddev.andengine.input.touch.TouchEvent;
 import com.badlogic.gdx.math.Vector2;
 import com.secondhand.debug.MyDebug;
 import com.secondhand.model.Entity;
+import com.secondhand.model.Level;
 import com.secondhand.model.Universe;
 import com.secondhand.scene.GamePlayScene;
 
@@ -21,17 +22,19 @@ public class GamePlaySceneController {
 	public GamePlaySceneController(final GamePlayScene scene) {
 
 		universe = Universe.getInstance();
-
-		scene.registerUpdateHandler(universe.getLevel().getPhysicsWorld());
+		
+		Level currentLevel = universe.getLevel();
+		
+		scene.registerUpdateHandler(currentLevel.getPhysicsWorld());
 		scene.setOnSceneTouchListener(new GameSceneTouchListener());
-		universe.getLevel().getPlayer().addListener(scene);
+		currentLevel.getPlayer().addListener(scene);
 		
 		final List<IShape> shapes = new ArrayList<IShape>();
 
-		scene.setPlayer(universe.getLevel().getPlayer().getShape());
+		scene.setPlayer(currentLevel.getPlayer().getShape());
 		scene.setShapes(shapes);
 
-		for (final Entity entity : universe.getLevel().getEntityList()) {
+		for (final Entity entity : currentLevel.getEntityList()) {
 			shapes.add(entity.getShape());
 		}
 		

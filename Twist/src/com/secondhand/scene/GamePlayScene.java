@@ -6,12 +6,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.anddev.andengine.engine.Engine;
+import org.anddev.andengine.engine.handler.timer.TimerHandler;
 import org.anddev.andengine.entity.shape.IShape;
 
 import android.content.Context;
 import android.view.KeyEvent;
 
 import com.secondhand.debug.MyDebug;
+import com.secondhand.model.Level;
+import com.secondhand.model.Player;
 import com.secondhand.model.Universe;
 import com.secondhand.model.powerup.PowerUp;
 import com.secondhand.opengl.StarsBackground;
@@ -116,7 +119,8 @@ public class GamePlayScene extends GameScene implements PropertyChangeListener {
 
 	@Override
 	public void propertyChange(PropertyChangeEvent event) {
-		List<PowerUp> tempList = Universe.getInstance().getLevel().getPlayer().getPowerUps();
-		engine.registerUpdateHandler(tempList.get(tempList.size()-1).getTimer(Universe.getInstance().getLevel().getPlayer()));
+		Player player = Universe.getInstance().getLevel().getPlayer();
+		PowerUp powerUp = ((PowerUp)event.getNewValue());
+		engine.registerUpdateHandler(powerUp.getTimer(player));
 	}
 }

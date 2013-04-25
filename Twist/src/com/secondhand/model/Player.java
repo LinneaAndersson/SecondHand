@@ -26,8 +26,9 @@ public class Player extends BlackHole {
 		
 		@Override
 		public boolean remove(final Object object) {
+			boolean value = super.remove(object); // Priority: The list is empty when you remove last PowerUp
 			((PowerUp)object).deactivateEffect(Player.this);
-			return super.remove(object);
+			return value;
 		};
 	};
 
@@ -54,9 +55,9 @@ public class Player extends BlackHole {
 	
 	public void addPowerUp(final PowerUp powerUp){
 		this.powerUpList.add(powerUp);			
-		powerUpListSupport.firePropertyChange("ADD",null,null);
+		powerUpListSupport.firePropertyChange("ADD",null,powerUp);
 	}
-
+	
 	public void setName(final String name){
 		this.name = name;
 	}

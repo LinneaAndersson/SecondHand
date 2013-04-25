@@ -11,6 +11,7 @@ import com.secondhand.debug.MyDebug;
 import com.secondhand.math.PolygonUtil;
 import com.secondhand.model.powerup.RandomTeleport;
 import com.secondhand.model.powerup.Shield;
+import com.secondhand.model.powerup.SpeedUp;
 import com.secondhand.physics.PhysicsAreaChecker;
 import com.secondhand.resource.PlanetType;
 import com.secondhand.util.RandomUtil;
@@ -75,7 +76,7 @@ public class RandomLevelGenerator {
 			MyDebug.e("planet minimum size negative");
 		}
 		
-		final int PLANETS =(int)( 20 * this.levelNumber * K);
+		final int PLANETS = (int)( 20 * this.levelNumber * K);
 		
 		// make sure they don't get too close to the edges.
 		final int HEIGHT = (int)(this.levelHeight - MAX_SIZE - 50);
@@ -109,8 +110,8 @@ public class RandomLevelGenerator {
 				x = rng.nextInt(WIDTH);
 				y = rng.nextInt(HEIGHT);
 
-				if (PhysicsAreaChecker.isRectangleAreaUnoccupied(new Vector2(x,
-						y), radius, radius, physicsWorld))
+				if (PhysicsAreaChecker.isRectangleAreaUnoccupied(new Vector2(x-radius,
+						y-radius), radius*2, radius*2, physicsWorld))
 					break;
 			}
 
@@ -124,7 +125,7 @@ public class RandomLevelGenerator {
 
 		entityList.add(new Shield(new Vector2(20, 500), physicsWorld));
 
-		entityList.add(new Shield(new Vector2(20, 700), physicsWorld));
+		entityList.add(new SpeedUp(new Vector2(20, 700), physicsWorld));
 
 	}
 }

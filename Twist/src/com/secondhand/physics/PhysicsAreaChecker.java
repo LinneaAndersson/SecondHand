@@ -7,6 +7,7 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Fixture;
 import com.badlogic.gdx.physics.box2d.QueryCallback;
 import com.secondhand.debug.MyDebug;
+import com.secondhand.model.Entity;
 
 
 // PASS ANDENGINE COORDINATES TO THIS CLASS!!!
@@ -24,7 +25,7 @@ public final class PhysicsAreaChecker {
 				position.x / PhysicsConstants.PIXEL_TO_METER_RATIO_DEFAULT
 				, position.y / PhysicsConstants.PIXEL_TO_METER_RATIO_DEFAULT, 
 				(position.x + width) / PhysicsConstants.PIXEL_TO_METER_RATIO_DEFAULT,
-				(position.y + height) / PhysicsConstants.PIXEL_TO_METER_RATIO_DEFAULT);
+				(position.y - height) / PhysicsConstants.PIXEL_TO_METER_RATIO_DEFAULT);
 		
 		return !occupied;
 	}
@@ -35,12 +36,14 @@ public final class PhysicsAreaChecker {
 		public boolean reportFixture(final Fixture fixture) {
 			
 			
-			MyDebug.d("reported class: " + fixture.getBody().getUserData().getClass());
+			MyDebug.d("reported class: " + fixture.getBody().getUserData().getClass() + " x pos: " +
+				
+					((Entity)fixture.getBody().getUserData()).getX());
 			
 			occupied = true;
 			
 			// stop querying for fixtures, we already know that the area is unoccupied. 
-			return false;
+			return true;
 		}
 		
 	}

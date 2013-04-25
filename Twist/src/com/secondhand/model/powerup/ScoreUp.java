@@ -17,14 +17,14 @@ public class ScoreUp extends PowerUp {
 
 	}
 
+	public int getScoreBonus() {
+		return scoreBonus;
+	}
+	
 	public void setScoreBonus(final int scoreBonus) {
 		this.scoreBonus = scoreBonus;
 	}
 	
-	
-	
-	
-
 	@Override
 	public void activateEffect(final Player player) {
 		player.increaseScore(scoreBonus);

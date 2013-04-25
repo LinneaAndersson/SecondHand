@@ -81,7 +81,6 @@ public class Player extends BlackHole {
 		movementVector = movementVector.mul(this.getRadius() * 0.001f);
 
 		move(movementVector);
-
 	}
 
 	private Vector2 needsToMovePosition;

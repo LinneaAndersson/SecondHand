@@ -6,6 +6,7 @@ import org.anddev.andengine.extension.physics.box2d.util.constants.PhysicsConsta
 
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.CircleShape;
+import com.secondhand.model.powerup.PowerUp;
 import com.secondhand.opengl.Circle;
 import com.secondhand.physics.PhysicsDestroyer;
 
@@ -16,6 +17,8 @@ public abstract class BlackHole extends CircleEntity {
 	
 	private float maxSpeed;
 	
+	private  int score;
+
 
 	public BlackHole(final Vector2 position, final float radius,
 			final PhysicsWorld physicsWorld, final boolean updateRotation,
@@ -24,8 +27,18 @@ public abstract class BlackHole extends CircleEntity {
 		super(new Circle(position.x, position.y, radius), true, physicsWorld,
 				updateRotation, FixtureDefs.BLACK_HOLE_FIXTURE_DEF);
 		this.maxSpeed = maxSpeed;
+		this.score = 0;
+		
+	}
+	
+	public int getScore() {
+		return score;
 	}
 
+	public void increaseScore(final int increase) {
+		score += increase;
+	}
+	
 	public float getMaxSpeed() {
 		return maxSpeed;
 	}
@@ -61,42 +74,49 @@ public abstract class BlackHole extends CircleEntity {
 				this.getBody().getWorldCenter());	
 	}
 	
+	
+	
+	/*protected void eatPowerUp(PowerUp powerUp) {
+		
+	}*/
+	
 	public void eatEntity(final Entity entity) {
 		
-		// sanity checking
-		if(!this.canEat(entity))
-			return;
+		if(entity instanceof PowerUp) {
+			// custom handling
+		//	eatPowerUp((PowerUp)entity);
+		} else if(entity instanceof BlackHole) {
+				final BlackHole otherBlackHole = (BlackHole)entity;
+				
+				// instead of eating, you will be eaten!
+				if(otherBlackHole.canEat(entity))
+					otherBlackHole.eatEntity(this);	
+		} else {
+			
+			// for now we won't handle black holes eating other black holes.	
+			if(entity instanceof BlackHole)
+				return;
+			
+			if(!this.canEat(entity))
+				return;	
+			
+				
+			this.increaseScore(entity.getScoreValue());
 
-		// Detach the shape from AndEngine-rendering
-		entity.getShape().detachSelf();
+			// increase the size of the rendered circle.
+			final float radiusInc = entity.getRadius() * GROWTH_FACTOR;
+			this.increaseSize(radiusInc);
 
-		// if you eat an planet you get 10 points, else you get 20.
-		// TODO: Maybe we should have different scores for different size
-		// this we will do in entity class, every entity has a score.
-		if (this instanceof Player) {
-			if (entity instanceof Planet)
-				Universe.getInstance().getLevel().getPlayer().increaseScore(10);
-			else
-				Universe.getInstance().getLevel().getPlayer().increaseScore(20);
+			// now we must also increase the size of the circle physics body
+			final CircleShape shape = (CircleShape) getBody().getFixtureList()
+					.get(0).getShape();
+			shape.setRadius(this.getRadius()
+					/ PhysicsConstants.PIXEL_TO_METER_RATIO_DEFAULT);
+
+			
+			entity.wasEaten();	
 		}
 
-		// remove the eaten entity from the physics world:
-		PhysicsDestroyer.getInstance().destroy(entity.getShape(), true);
-
-		// TODO: we should use general entities instead, but for debugging
-		// purposes we'll do this cast.
-		// we'll fix it later.
-		final Planet planet = (Planet) entity;
-
-		// increase the size of the rendered circle.
-		final float radiusInc = planet.getRadius() * GROWTH_FACTOR;
-		this.increaseSize(radiusInc);
-
-		// now the must also increase the size of the circle physics body
-		final CircleShape shape = (CircleShape) getBody().getFixtureList()
-				.get(0).getShape();
-		shape.setRadius(this.getRadius()
-				/ PhysicsConstants.PIXEL_TO_METER_RATIO_DEFAULT);
 
 	}
 

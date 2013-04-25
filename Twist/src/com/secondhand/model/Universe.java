@@ -40,25 +40,27 @@ public final class Universe {
 		return instance;
 	}
 
-	private void handlePlanetBlackHoleCollision(final Entity entityA,
+	private void handleBlackHoleCollision(final Entity entityA,
 			final Entity entityB) {
 
 		BlackHole blackHole;
-		Planet planet;
+		Entity other;
 		if (entityA instanceof BlackHole) {
 			blackHole = (BlackHole) entityA;
-			planet = (Planet) entityB;
+			other = entityB;
 		} else {
-			planet = (Planet) entityA;
+			other = entityA;
 			blackHole = (BlackHole) entityB;
 		}
+		
+		blackHole.eatEntity(other);
 
-		if (blackHole.canEat(planet)) {
+	/*	if (blackHole.canEat(planet)) {
 			if (blackHole instanceof Player) {
 				Sounds.getInstance().growSound.play();
 			}
 			blackHole.eatEntity(planet);
-		}/*
+		}*//*
 		 * else { if (blackHole instanceof Player) { gameOver = true; } else {
 		 * PhysicsDestroyer.getInstance().destroy(blackHole.getShape(), true); }
 		 * }
@@ -85,7 +87,7 @@ public final class Universe {
 		currentLevel.getPlayer().addPowerUp(powerUp);
 
 	}
-
+/*
 	private void handleBlackHoleCollision(final Entity entityA,
 			final Entity entityB) {
 		final BlackHole blackHole1 = (BlackHole) entityA;
@@ -112,7 +114,7 @@ public final class Universe {
 			blackHole2.eatEntity(blackHole1);
 		}
 	}
-
+*/
 	public void checkCollision(final Contact contact) {
 		// if one or both is null, then we are dealing with a collision
 		// involving one or
@@ -123,23 +125,29 @@ public final class Universe {
 				|| contact.getFixtureB().getBody().getUserData() == null) {
 			return;
 		}
-
+		
 		// now we know both the bodies are entities.
 		final Entity entityA = (Entity) contact.getFixtureA().getBody()
 				.getUserData();
 		final Entity entityB = (Entity) contact.getFixtureB().getBody()
 				.getUserData();
 
-		if (entityA instanceof BlackHole && entityB instanceof Planet
-				|| entityB instanceof BlackHole && entityA instanceof Planet) {
-			handlePlanetBlackHoleCollision(entityA, entityB);
-		} else if (entityA instanceof Player && entityB instanceof PowerUp
+		
+		// collisions involving black holes are the only ones we're interested in.
+		if (entityA instanceof BlackHole || entityB instanceof BlackHole) {
+			handleBlackHoleCollision(entityA, entityB);
+		} 
+		
+		/*else if (entityA instanceof Player && entityB instanceof PowerUp
 				|| entityB instanceof Player && entityA instanceof PowerUp) {
 			handlePowerUpPlayerCollision(entityA, entityB);
 		} else if (entityA instanceof Player && entityB instanceof Obstacle
 				|| entityB instanceof Player && entityA instanceof Obstacle) {
 			Sounds.getInstance().obstacleCollisionSound.play();
-		}/*
+		}*/
+		
+		
+		/*
 		 * else if (entityA instanceof BlackHole && entityB instanceof
 		 * BlackHole) { handleBlackHoleCollision(entityA, entityB); }
 		 */

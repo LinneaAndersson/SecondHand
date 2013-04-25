@@ -13,7 +13,6 @@ import com.secondhand.model.powerup.PowerUp;
 
 public class Player extends BlackHole {
 
-	private  int score;
 	private String name;
 	
 	private final PropertyChangeSupport powerUpListSupport = new PropertyChangeSupport(this);
@@ -40,17 +39,9 @@ public class Player extends BlackHole {
 
 	public Player(final Vector2 position, final float radius, final PhysicsWorld physicsWorld, final float maxSpeed) {
 		super(position, radius, physicsWorld, false, maxSpeed);
-		this.score = 0;
 	}
 
-	public int getScore() {
-		return score;
-	}
 
-	public void increaseScore(final int increase) {
-		score += increase;
-	}
-	
 	public List<PowerUp> getPowerUps(){
 		return powerUpList;
 	}

@@ -6,6 +6,7 @@ import org.anddev.andengine.extension.physics.box2d.PhysicsWorld;
 
 import com.badlogic.gdx.physics.box2d.Body;
 import com.secondhand.physics.CustomPhysicsConnector;
+import com.secondhand.physics.PhysicsDestroyer;
 
 public abstract class Entity {
 
@@ -80,6 +81,19 @@ public abstract class Entity {
 	
 	public int getScoreValue() {
 		return (int)(this.getRadius() * this.getScoreWorth());
+	}
+	
+	// called when this entity is eaten up.
+	protected void wasEaten() {
+		
+		// TODO: removed enemies should probably also be removed from the  enemy updating list.
+		
+		// Detach the shape from AndEngine-rendering
+		getShape().detachSelf();
+
+		// remove the eaten entity from the physics world:
+		PhysicsDestroyer.getInstance().destroy(getShape(), true);
+
 	}
 }
 

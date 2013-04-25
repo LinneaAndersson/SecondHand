@@ -7,6 +7,7 @@ import org.anddev.andengine.extension.physics.box2d.PhysicsWorld;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Fixture;
 import com.badlogic.gdx.physics.box2d.RayCastCallback;
+import com.secondhand.model.powerup.PowerUp;
 
 public class Enemy extends BlackHole {
 
@@ -136,5 +137,10 @@ public class Enemy extends BlackHole {
 	@Override
 	public float getScoreWorth() {
 		return 3;
+	}
+	
+
+	protected void handlePowerUp(final PowerUp powerUp) {
+		// enemies can't eat powerups :(
 	}
 }

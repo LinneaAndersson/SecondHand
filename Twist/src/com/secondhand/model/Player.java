@@ -101,4 +101,12 @@ public class Player extends BlackHole {
 	public float getScoreWorth() {
 		throw new IllegalStateException("cannot score points for eating player");
 	}
+	
+
+	protected void handlePowerUp(final PowerUp powerUp) {
+
+		addPowerUp(powerUp);
+		
+		powerUp.wasEaten();
+	}
 }

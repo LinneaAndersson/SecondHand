@@ -73,18 +73,14 @@ public abstract class BlackHole extends CircleEntity {
 		this.getBody().applyLinearImpulse(direction,
 				this.getBody().getWorldCenter());	
 	}
-	
-	
-	
-	/*protected void eatPowerUp(PowerUp powerUp) {
-		
-	}*/
+
+	protected abstract void handlePowerUp(final PowerUp powerUp);
 	
 	public void eatEntity(final Entity entity) {
 		
 		if(entity instanceof PowerUp) {
 			// custom handling
-		//	eatPowerUp((PowerUp)entity);
+			handlePowerUp((PowerUp)entity);
 		} else if(entity instanceof BlackHole) {
 				final BlackHole otherBlackHole = (BlackHole)entity;
 				

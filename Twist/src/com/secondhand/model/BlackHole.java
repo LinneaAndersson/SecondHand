@@ -80,7 +80,7 @@ public abstract class BlackHole extends CircleEntity {
 		
 	}
 	
-	
+	protected void entityWasTooBigToEat(final Entity entity) {}
 	
 	public void eatEntity(final Entity entity) {
 		
@@ -99,8 +99,10 @@ public abstract class BlackHole extends CircleEntity {
 			if(entity instanceof BlackHole)
 				return;
 			
-			if(!this.canEat(entity))
+			if(!this.canEat(entity)) {
+				entityWasTooBigToEat(entity);
 				return;	
+			}
 			
 				
 			this.increaseScore(entity.getScoreValue());

@@ -116,7 +116,10 @@ public class Player extends BlackHole {
 	protected void onGrow() {
 		Sounds.getInstance().growSound.play();	
 	}
-
-
 	
+	protected void entityWasTooBigToEat(final Entity entity) {
+		if(entity instanceof Obstacle) {
+			Sounds.getInstance().obstacleCollisionSound.play();
+		}
+	}
 }

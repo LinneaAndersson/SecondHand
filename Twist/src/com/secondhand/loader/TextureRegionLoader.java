@@ -35,8 +35,6 @@ public class TextureRegionLoader extends Loader {
     	this.engine.getTextureManager().loadTexture(texture);
     	
     	try {
-			// force the loading thread to sleep the minimum loading
-			// time before we begin the actual loading.
 			Thread.sleep(1);
 		} catch (InterruptedException e) {
 			MyDebug.e(e);

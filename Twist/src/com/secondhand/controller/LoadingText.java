@@ -1,8 +1,11 @@
 package com.secondhand.controller;
 
+import java.util.Arrays;
+
 import org.anddev.andengine.engine.camera.Camera;
 import org.anddev.andengine.entity.text.ChangeableText;
 
+import com.secondhand.debug.MyDebug;
 import com.secondhand.resource.Fonts;
 import com.secondhand.resource.LocalizationStrings;
 
@@ -22,12 +25,17 @@ public class LoadingText extends ChangeableText {
 	private int loadingStringsI;
 
 	private float secondsPassedSinceLastUpdate;
+	
+	public static String getPlaceHolderString() {
+		// a length of 20 should be good enough.
+		final char[] exmarks = new char[20];
+		Arrays.fill(exmarks, ' ');
+		return new String(exmarks);
+	}
 
 	public LoadingText(final Camera camera) {
 		super(0, 0, Fonts.getInstance().menuItemFont,
-		// TODO: ugly hack, fix(this string has to be longer than the presented
-		// string for some reason)
-				"frferffreferloading");
+				getPlaceHolderString());
 
 		this.setText(getNextString());
 
@@ -56,15 +64,14 @@ public class LoadingText extends ChangeableText {
 		return loadingStrings[loadingStringsI];
 	}
 	
-	// to Johan. a method like this could be used to manage powerUps. 
-	// gamePlayScene would probably be the best place to control them.
 	@Override
 	protected void onManagedUpdate(final float pSecondsElapsed) {
 
-		// MyDebug.d("seconds passed: " + pSecondsElapsed);
+		MyDebug.d("seconds passed: " + pSecondsElapsed);
 
 		secondsPassedSinceLastUpdate += pSecondsElapsed;
 
+		
 		if (secondsPassedSinceLastUpdate >= SECONDS_PER_STRING) {
 			secondsPassedSinceLastUpdate = 0;
 			final String next = getNextString();

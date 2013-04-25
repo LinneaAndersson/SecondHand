@@ -61,7 +61,7 @@ public class TextureRegions {
 		
 		this.obstacleTexture = TextureRegionLoader.getInstance().loadTextureRegion(TEXTURE_BASEPATH+EntityTexture.OBSTACLE.path, 256, 256,
 				TextureOptions.REPEATING_BILINEAR);
-		
+	
 
 		this.starsTexture = TextureRegionLoader.getInstance().loadTextureRegion(TEXTURE_BASEPATH+"stars.png", 256, 256,
 				TextureOptions.REPEATING_BILINEAR);

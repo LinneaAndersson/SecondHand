@@ -153,7 +153,7 @@ public class RandomRepeatingBackground extends RectangularShape {
 		}
 		pGL.glLoadIdentity();
 	}
-	
+		
 
 	@Override
 	protected void onManagedUpdate(final float pSecondsElapsed) {

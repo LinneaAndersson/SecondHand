@@ -40,15 +40,6 @@ public class LoadingScene extends GameScene {
 
 			@Override
 			public void work() {
-
-				try {
-					// force the loading thread to sleep the minimum loading
-					// time before we begin the actual loading.
-					Thread.sleep(MINIMUM_LOADNG_TIME);
-				} catch (InterruptedException e) {
-					MyDebug.e(e);
-				}
-
 				// load all resources of all scenes.
 				SceneManager.getInstance().loadAllResources();
 			}

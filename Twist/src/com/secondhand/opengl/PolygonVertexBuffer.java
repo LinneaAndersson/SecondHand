@@ -7,7 +7,6 @@ import org.anddev.andengine.opengl.util.FastFloatBuffer;
 import org.anddev.andengine.opengl.vertex.VertexBuffer;
 
 import com.badlogic.gdx.math.Vector2;
-import com.secondhand.math.Triangulator;
 
 
 public class PolygonVertexBuffer extends VertexBuffer {
@@ -69,16 +68,34 @@ public class PolygonVertexBuffer extends VertexBuffer {
 	    final int[] vertices = this.mBufferData;
 	    this.mVertices = new ArrayList<Vector2>();
 
-	    // the triangulated polygon
-	   final List<Vector2> triangles = Triangulator.triangulate(polygon);
-	   // List<Vector> triangles = polygon;
-
 	    // put the triangulated polygon in the vertex buffer
 	    int vertexI = 0;
-	    for(final Vector2 vector: triangles) {
-	    	this.mVertices.add(vector);
-	    	vertices[vertexI++] = Float.floatToRawIntBits(vector.x);
-	    	vertices[vertexI++] = Float.floatToRawIntBits(vector.y);
+	    
+	    final float n = polygon.size();
+	    
+	    final Vector2 v1 = polygon.get(0);
+	    
+	    // found this method here:
+	    // http://www.gamedev.net/topic/603854-finding-the-center-point-for-a-convex-polygon/
+	    
+	    for(int i = 1; i <= n-2; ++i) {
+	    	final Vector2 v2 = polygon.get(i);
+	    	final Vector2 v3 = polygon.get(i+1);
+	    	
+	    	this.mVertices.add(v1);
+	    	this.mVertices.add(v3);
+	    	this.mVertices.add(v2);
+	    	
+	    	vertices[vertexI++] = Float.floatToRawIntBits(v1.x);
+	    	vertices[vertexI++] = Float.floatToRawIntBits(v1.y);
+	    	
+
+	    	vertices[vertexI++] = Float.floatToRawIntBits(v3.x);
+	    	vertices[vertexI++] = Float.floatToRawIntBits(v3.y);
+	    	
+	    	vertices[vertexI++] = Float.floatToRawIntBits(v2.x);
+	    	vertices[vertexI++] = Float.floatToRawIntBits(v2.y);
+	    	
 	    }
 
 	    final FastFloatBuffer buffer = this.getFloatBuffer();

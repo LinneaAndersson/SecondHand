@@ -167,7 +167,7 @@ public class Polygon extends Shape {
 		final Fixture fixture = mBody.getFixtureList().get(0);
 		this.mPolygonShape	 = (PolygonShape)fixture.getShape();	
 	}
-	
+		
 	@Override
 	protected boolean isCulled(final Camera pCamera) {
 		for(int i = 0; i < this.mPolygonShape.getVertexCount(); ++i) {

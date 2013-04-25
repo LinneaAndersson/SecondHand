@@ -6,6 +6,7 @@ import org.anddev.andengine.extension.physics.box2d.util.constants.PhysicsConsta
 
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.CircleShape;
+import com.secondhand.debug.MyDebug;
 import com.secondhand.model.powerup.PowerUp;
 import com.secondhand.opengl.Circle;
 
@@ -36,6 +37,7 @@ public abstract class BlackHole extends CircleEntity {
 
 	public void increaseScore(final int increase) {
 		score += increase;
+		MyDebug.d("new score is: " + score);
 	}
 	
 	public float getMaxSpeed() {

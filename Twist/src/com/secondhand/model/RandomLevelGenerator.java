@@ -10,6 +10,7 @@ import com.badlogic.gdx.math.Vector2;
 import com.secondhand.debug.MyDebug;
 import com.secondhand.math.PolygonUtil;
 import com.secondhand.model.powerup.RandomTeleport;
+import com.secondhand.model.powerup.ScoreUp;
 import com.secondhand.model.powerup.Shield;
 import com.secondhand.model.powerup.SpeedUp;
 import com.secondhand.opengl.Circle;
@@ -147,5 +148,7 @@ public class RandomLevelGenerator {
 
 		entityList.add(new SpeedUp(new Vector2(20, 700), physicsWorld));
 
+
+		entityList.add(new ScoreUp(new Vector2(20, 900), physicsWorld));
 	}
 }

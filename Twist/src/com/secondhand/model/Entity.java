@@ -1,9 +1,7 @@
 package com.secondhand.model;
 
-import org.anddev.andengine.engine.handler.physics.PhysicsHandler;
 import org.anddev.andengine.entity.shape.IShape;
 import org.anddev.andengine.entity.shape.Shape;
-import org.anddev.andengine.extension.physics.box2d.PhysicsConnector;
 import org.anddev.andengine.extension.physics.box2d.PhysicsFactory;
 import org.anddev.andengine.extension.physics.box2d.PhysicsWorld;
 
@@ -63,7 +61,7 @@ public abstract class Entity {
 		return this.isEdible;
 	}
 	
-	public void setIsEdible(boolean isEdible) {
+	public void setIsEdible(final boolean isEdible) {
 		this.isEdible = isEdible;
 	}
 	

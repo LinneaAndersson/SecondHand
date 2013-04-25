@@ -53,7 +53,7 @@ public class RandomLevelGenerator {
 	private void placeOutEnemies() {
 		enemyList.add(new Enemy(new Vector2(800, 800), 50, physicsWorld, 10));
 
-		for (Enemy enemy : enemyList) {
+		for (final Enemy enemy : enemyList) {
 			entityList.add(enemy);
 		}
 

@@ -186,7 +186,7 @@ public final class Universe {
 		}
 	}
 
-	public void onManagedUpdate(float pSecondsElapsed) {
+	public void onManagedUpdate(final float pSecondsElapsed) {
 		if (currentLevel.checkPlayerBigEnough()) {
 			nextLevel();
 		} else {

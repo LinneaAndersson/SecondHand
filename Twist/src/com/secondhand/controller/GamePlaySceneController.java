@@ -23,7 +23,7 @@ public class GamePlaySceneController {
 
 		universe = Universe.getInstance();
 		
-		Level currentLevel = universe.getLevel();
+		final Level currentLevel = universe.getLevel();
 		
 		scene.registerUpdateHandler(currentLevel.getPhysicsWorld());
 		scene.setOnSceneTouchListener(new GameSceneTouchListener());

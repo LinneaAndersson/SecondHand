@@ -43,7 +43,7 @@ public class Level {
 		this.physicsWorld.setPositionIterations(16);
 
 		
-		RandomLevelGenerator randomLevelGenerator = new RandomLevelGenerator(this.levelNumber, this.physicsWorld);
+		final RandomLevelGenerator randomLevelGenerator = new RandomLevelGenerator(this.levelNumber, this.physicsWorld);
 		
 		this.player = randomLevelGenerator.player;
 		this.playerMaxSize = randomLevelGenerator.playerMaxSize;
@@ -117,7 +117,7 @@ public class Level {
 		// each other. it could be preferable to change it later
 		// if we can come up with a better way
 		
-		for (Enemy enemy : enemyList) {
+		for (final Enemy enemy : enemyList) {
 			enemy.moveEnemy(player, entityList);
 		}
 	}

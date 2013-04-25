@@ -14,7 +14,7 @@ public class Enemy extends BlackHole {
 	}
 
 	// player has highest chase-priority
-	public void moveEnemy(Entity player, List<Entity> entityList) {
+	public void moveEnemy(final Entity player, final List<Entity> entityList) {
 		if (isCloseToEntity(player) && canEat(player)) {
 			applyMovement(player);
 		} else {
@@ -57,9 +57,9 @@ public class Enemy extends BlackHole {
 	// chase after smallest entity first
 	// could create many get-something and make different
 	// enemies behave different ( getClosest... )
-	private Entity getHighesPriority(List<Entity> entityList) {
+	private Entity getHighesPriority(final List<Entity> entityList) {
 		Entity entity = null;
-		for (Entity e : entityList) {
+		for (final Entity e : entityList) {
 			if (isCloseToEntity(e) && canEat(e)) {
 				entity = getSmaller(entity, e);
 			}
@@ -67,7 +67,7 @@ public class Enemy extends BlackHole {
 		return entity;
 	}
 
-	private Entity getSmaller(Entity entity, Entity e) {
+	private Entity getSmaller(final Entity entity, final Entity e) {
 		if (entity == null || e.getArea() < entity.getArea()) {
 			return e;
 		} else {
@@ -80,7 +80,7 @@ public class Enemy extends BlackHole {
 	// later we can add more functionality
 	// TODO avoid larger stuff, chase smaller stuff
 	// move in a smart way(no suicide)
-	private void applyMovement(Entity entity) {
+	private void applyMovement(final Entity entity) {
 		
 		// TODO change the null-check to something nicer
 		// !!! straightToEntity() can take a null this way !!!

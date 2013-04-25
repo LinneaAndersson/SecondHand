@@ -26,7 +26,7 @@ public class Player extends BlackHole {
 		
 		@Override
 		public boolean remove(final Object object) {
-			boolean value = super.remove(object); // Priority: The list is empty when you remove last PowerUp
+			final boolean value = super.remove(object); // Priority: The list is empty when you remove last PowerUp
 			((PowerUp)object).deactivateEffect(Player.this);
 			return value;
 		};
@@ -66,7 +66,7 @@ public class Player extends BlackHole {
 		return name;
 	}
 	
-	public void addListener(PropertyChangeListener observer) {
+	public void addListener(final PropertyChangeListener observer) {
 		powerUpListSupport.addPropertyChangeListener(observer);
 	}
 	
@@ -90,7 +90,7 @@ public class Player extends BlackHole {
 	// listener for some retarded reason(that would be too simple, now wouldn't it!?) 
 	// So fuck you Erin Catto.
 	// - Sincerely, Eric
-	public void setNeedsToMovePosition(Vector2 position) {
+	public void setNeedsToMovePosition(final Vector2 position) {
 		needsToMovePosition = position;
 	}
 	

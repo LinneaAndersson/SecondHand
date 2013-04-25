@@ -17,8 +17,6 @@ public final class Universe {
 
 	private PhysicsDestroyer physicsDestroyer;
 
-	private Engine engine;
-
 	// flag for when the game is over
 	// check by update by gamePlayScene
 	private boolean gameOver;
@@ -29,7 +27,6 @@ public final class Universe {
 	}
 
 	public void initialize(final Engine engine) {
-		this.engine = engine;
 		nextLevel();
 		physicsDestroyer = PhysicsDestroyer.getInstance();
 		physicsDestroyer.initialize(engine, currentLevel.getPhysicsWorld());
@@ -82,8 +79,7 @@ public final class Universe {
 		}
 
 		powerUp.getShape().detachSelf();
-		MyDebug.d("Now the powerup should dissappear");
-
+		
 		physicsDestroyer.destroy(powerUp.getShape(), true);
 
 		currentLevel.getPlayer().addPowerUp(powerUp);

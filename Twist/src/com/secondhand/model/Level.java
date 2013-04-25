@@ -73,7 +73,7 @@ public class Level {
 		return physicsWorld;
 	}
 
-	public final void setupWorldBounds() {
+	private final void setupWorldBounds() {
 
 		final Shape[] worldBounds = new Shape[4];
 

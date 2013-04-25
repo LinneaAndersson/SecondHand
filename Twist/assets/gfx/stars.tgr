@@ -1,0 +1,12 @@
+Nodes 3
+451 78
+engine.graphics.synthesis.texture.PatternCellular
+Color_Mapping 2 0.0 0.0 0.0 1.0 0.0 1.0 1.0 1.0 1.0 1.0 Cell_Type 4 Distance_ 0 PointGen 0 Seed 0 Intensity 0.25 Jitter 0.75 NumPoints 500 RandColor true Periodic true transformation 2.0 0.0 0.0 0.0 2.0 0.0 0.0 0.0 1.0 endparameters
+232 155
+engine.graphics.synthesis.texture.PatternCellular
+Color_Mapping 2 1.0 1.0 0.0 1.0 0.096618354 0.0 0.0 0.0 1.0 0.28502417 Cell_Type 0 Distance_ 0 PointGen 1 Seed 0 Intensity 1.0 Jitter 0.625 NumPoints 64 RandColor false Periodic true transformation 1.0 0.0 0.0 0.0 1.0 0.0 0.0 0.0 1.0 endparameters
+454 217
+engine.graphics.synthesis.texture.PatternCellular
+Color_Mapping 2 0.6 0.6 0.6 1.0 0.0 0.0 0.0 0.0 1.0 0.04347826 Cell_Type 0 Distance_ 0 PointGen 0 Seed 0 Intensity 1.0 Jitter 0.625 NumPoints 18 RandColor false Periodic true transformation 1.0 0.0 0.0 0.0 1.0 0.0 0.0 0.0 1.0 endparameters
+0
+glpreview 2 -1 -1 -1 Object 0 Spec._Power 10.0 POM_Strength 0.0 Ambient 0.375 TexScale_U 2 TexScale_V 2 CamRotX 89.0 CamRotY 0.0 CamDist 2.1000001 endglpreview

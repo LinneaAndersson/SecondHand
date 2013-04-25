@@ -102,7 +102,7 @@ public class RandomLevelGenerator {
 		final int HEIGHT = (int)(this.levelHeight - MAX_SIZE - 50);
 		final int WIDTH = (int)(this.levelWidth - MAX_SIZE - 50);
 		
-		/*final Random rng = new Random();
+		final Random rng = new Random();
 
 		for (int i = 0; i < PLANETS; ++i) {
 			
@@ -137,7 +137,7 @@ public class RandomLevelGenerator {
 
 			entityList.add(new Planet(new Vector2(x, y), radius, RandomUtil
 					.randomEnum(rng, PlanetType.class), physicsWorld));
-		}*/
+		}
 		
 		entityList.add(new Obstacle(new Vector2(200, 200), PolygonUtil.getRandomPolygon() , physicsWorld));		
 		

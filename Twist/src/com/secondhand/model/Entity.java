@@ -15,7 +15,7 @@ public abstract class Entity {
 	private final IShape shape;
 	private boolean isEdible;
 	private String assetName;
-	private final PhysicsWorld physicsWorld;
+	protected final PhysicsWorld physicsWorld;
 	
 	protected final boolean updateRotation;
 	

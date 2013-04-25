@@ -39,7 +39,11 @@ public class PhysicsAreaCheckerTest extends TestCase {
 			MyDebug.d("body: " + body.getPosition().x *32f + " " + 
 		body.getPosition().y * 32f+
 				((CircleShape)body.getFixtureList().get(0).getShape()).getRadius() * 32f);
+			
+			body.getFixtureList().get(0).
 		}
+		
+	
 		
 		assertTrue(PhysicsAreaChecker.isRectangleAreaUnoccupied(new Vector2(0, 100), 100, 2, pw));
 	

@@ -17,20 +17,20 @@ public final class PhysicsAreaChecker {
 
 	private static boolean occupied = false;
 
-	public static boolean isRectangleAreaUnoccupied(final Vector2 position,
-			final float width, final float height,
+	public static boolean isRectangleAreaUnoccupied(final Vector2 bottomLeftCorner,
+			final Vector2 topRightCorner,
 			final PhysicsWorld physicsWorld) {
 
 		occupied = false;
 
-		physicsWorld.QueryAABB(new Callback(), position.x
-				/ PhysicsConstants.PIXEL_TO_METER_RATIO_DEFAULT, position.y
-				/ PhysicsConstants.PIXEL_TO_METER_RATIO_DEFAULT,
-				(position.x + width)
+		physicsWorld.QueryAABB(new Callback(), bottomLeftCorner.x
+				/ PhysicsConstants.PIXEL_TO_METER_RATIO_DEFAULT, bottomLeftCorner.y /
+				PhysicsConstants.PIXEL_TO_METER_RATIO_DEFAULT,
+				topRightCorner.x
 						/ PhysicsConstants.PIXEL_TO_METER_RATIO_DEFAULT,
-				(position.y - height)
+				topRightCorner.y
 						/ PhysicsConstants.PIXEL_TO_METER_RATIO_DEFAULT);
-
+		
 		return !occupied;
 	}
 

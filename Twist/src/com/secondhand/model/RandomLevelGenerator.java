@@ -145,7 +145,7 @@ public class RandomLevelGenerator {
 		
 		entityList.add(new Obstacle(new Vector2(200, 200), PolygonUtil.getRandomPolygon() , physicsWorld));		
 		
-		entityList.add(new RandomTeleport(new Vector2(100, 500), physicsWorld));
+		entityList.add(new RandomTeleport(new Vector2(100, 500), physicsWorld, levelWidth, levelHeight));
 
 		entityList.add(new Shield(new Vector2(20, 500), physicsWorld));
 

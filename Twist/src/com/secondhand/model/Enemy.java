@@ -23,9 +23,20 @@ public class Enemy extends BlackHole {
 
 	}
 
-	// may be needed depending on serach area size
+	// may be needed depending on search area size
+	// true if road to entity is clear. also true 
+	// if blocking entity is edible
+	
+	// smallest containing square and check with the squares 
+	// area each step towards the entity. each step is 
+	// the length of the squares side
+
+	// #: steps, e: enemy, 0: entity.
+	//  e ### 0 -> ok ok ok e0
+	
 	private boolean straightToEntity(final Entity entity) {
 
+		
 		return true;
 	}
 
@@ -87,6 +98,7 @@ public class Enemy extends BlackHole {
 			// go forward)
 			// lower maxSpeed than player.
 
+			
 			if (movementVector.len() > 0) {
 				// we want to apply larger force when enemy is
 				// turning (changing direction). so we need a better

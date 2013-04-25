@@ -21,5 +21,9 @@ public class Obstacle extends PolygonEntity {
 		super(polygon, false, physicsWorld, FixtureDefs.OBSTACLE_FIXTURE_DEF);
 	}
 	
-	
+	@Override
+	public float getScoreWorth() {
+		// obstacles are hard to eat, so you should get lots of points for eating them!
+		return 2;
+	}
 }

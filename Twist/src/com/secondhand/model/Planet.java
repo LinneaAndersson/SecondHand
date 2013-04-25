@@ -21,4 +21,9 @@ public class Planet extends CircleEntity {
 	public Planet (final Vector2 position, final float radius, final PhysicsWorld physicsWorld) {
 		super(new Circle(position.x, position.y, radius), true, physicsWorld, true, FixtureDefs.PLANET_FIXTURE_DEF);
 	}
+	
+	@Override
+	public float getScoreWorth() {
+		return 1;
+	}
 }

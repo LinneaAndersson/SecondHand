@@ -13,8 +13,9 @@ public class PowerUpTest extends TestCase {
 	public void testConstructor() {
 		final PhysicsWorld pw = new PhysicsWorld(new Vector2(), true);
 		final Vector2 position = new Vector2(2,2);
+		float dur = 5;
 		
-		PowerUp pu1 = new PowerUp(position, pw, 5) {
+		PowerUp pu1 = new PowerUp(position, pw, dur) {
 			@Override
 			public void activateEffect(Player player) {
 				
@@ -23,6 +24,7 @@ public class PowerUpTest extends TestCase {
 		
 		assertEquals(position.x, pu1.getX());
 		assertEquals(position.y, pu1.getY());
+		assertEquals(pu1.getDuration(), dur);
 		assertEquals(true, pu1.isEdible());
 	}
 	

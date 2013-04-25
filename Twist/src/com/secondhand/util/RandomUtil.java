@@ -12,7 +12,7 @@ public final class RandomUtil {
         return clazz.getEnumConstants()[x];
     }
  
-    public static float nextFloat(Random rng, float min, float max) {
+    public static float nextFloat(final Random rng, final float min, final float max) {
     	return rng.nextFloat() * (max - min)
     			+ min;
 	

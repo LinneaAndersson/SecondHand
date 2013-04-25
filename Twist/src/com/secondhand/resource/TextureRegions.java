@@ -43,7 +43,7 @@ public class TextureRegions {
 
 		planetTextures = new EnumMap<PlanetType, TextureRegion>(PlanetType.class);
 		
-		for (PlanetType planetType : PlanetType.values()) {
+		for (final PlanetType planetType : PlanetType.values()) {
 			final TextureRegion planetTexture = TextureRegionLoader.getInstance().loadTextureRegion(TEXTURE_BASEPATH+planetType.getPath(), 256, 256,
 					TextureOptions.REPEATING_BILINEAR);
 			planetTextures.put(planetType, planetTexture);
@@ -51,7 +51,7 @@ public class TextureRegions {
 		
 		powerUpTextures = new EnumMap<PowerUpType, TextureRegion>(PowerUpType.class);
 		
-		for (PowerUpType powerUpType : PowerUpType.values()) {
+		for (final PowerUpType powerUpType : PowerUpType.values()) {
 			final TextureRegion planetTexture = TextureRegionLoader.getInstance().loadTextureRegion(TEXTURE_BASEPATH+powerUpType.getPath(), 64, 64,
 					TextureOptions.REPEATING_BILINEAR);
 			powerUpTextures.put(powerUpType, planetTexture);

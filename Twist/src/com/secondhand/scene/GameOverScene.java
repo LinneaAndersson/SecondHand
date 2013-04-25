@@ -14,6 +14,7 @@ import org.anddev.andengine.util.HorizontalAlign;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.util.Log;
 
 import com.secondhand.debug.MyDebug;
 import com.secondhand.model.Player;
@@ -44,8 +45,7 @@ public class GameOverScene extends GameMenuScene implements
 			reader = new BufferedReader(new InputStreamReader(context
 					.getAssets().open("highScore")));
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			Log.e("GameOverScene","laodResources");
 		}
 	}
 
@@ -84,13 +84,12 @@ public class GameOverScene extends GameMenuScene implements
 				}
 			}
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			Log.e("GameOverScene","laodScene");
 		}
 
 	}
 
-	public void setHeadLine(String text) {
+	public void setHeadLine(final String text) {
 		textGameOver = new Text(100, 60, mFont, LocalizationStrings
 				.getInstance().getLocalizedString(text), HorizontalAlign.CENTER);
 

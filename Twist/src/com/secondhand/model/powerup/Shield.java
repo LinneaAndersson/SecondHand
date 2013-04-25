@@ -22,10 +22,10 @@ public class Shield extends PowerUp {
 	}
 	
 	@Override
-	public void deactivateEffect(Player player) {
+	public void deactivateEffect(final Player player) {
 		super.deactivateEffect(player);
 		boolean hasAnotherShield = false;
-		for (PowerUp powerUp : player.getPowerUps()) {
+		for (final PowerUp powerUp : player.getPowerUps()) {
 			if (powerUp.getClass() == Shield.class)
 				hasAnotherShield = true;
 		}

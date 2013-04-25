@@ -11,7 +11,7 @@ import com.secondhand.model.Entity;
 
 public class CustomPhysicsConnector extends PhysicsConnector {
 
-	private boolean isCircle;
+	private final boolean isCircle;
 	
 	public CustomPhysicsConnector(final Entity entity, final Body body, final boolean updatePosition, final boolean updateRotation) {
 		super(entity.getShape(), body, updatePosition, updateRotation );

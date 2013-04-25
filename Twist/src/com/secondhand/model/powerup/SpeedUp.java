@@ -4,7 +4,6 @@ import org.anddev.andengine.extension.physics.box2d.PhysicsWorld;
 
 import com.badlogic.gdx.math.Vector2;
 import com.secondhand.model.Player;
-import com.secondhand.model.RandomLevelGenerator;
 import com.secondhand.resource.PowerUpType;
 
 public class SpeedUp extends PowerUp {
@@ -22,7 +21,7 @@ public class SpeedUp extends PowerUp {
 		return factor;
 	}
 	
-	public void setFactor(int newFactor) {
+	public void setFactor(final int newFactor) {
 		factor = newFactor;
 	}
 	
@@ -33,7 +32,7 @@ public class SpeedUp extends PowerUp {
 	}
 	
 	@Override
-	public void deactivateEffect(Player player) {
+	public void deactivateEffect(final Player player) {
 		super.deactivateEffect(player);
 		player.setMaxSpeed(player.getMaxSpeed()/factor);
 	}

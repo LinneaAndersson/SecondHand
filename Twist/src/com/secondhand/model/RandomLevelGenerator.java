@@ -60,7 +60,8 @@ public class RandomLevelGenerator {
 	}
 
 	private boolean isTooCloseToOtherEntity(final float x, final float y, final float radius) {
-		final float MINIMUM_DISTANCE = 100;
+		// setting high values for this constant will cause long level generation times, so be careful.
+		final float MINIMUM_DISTANCE = 50;
 		
 		for(Entity entity: this.entityList) {
 			if(entity instanceof CircleEntity) {
@@ -95,7 +96,7 @@ public class RandomLevelGenerator {
 			MyDebug.e("planet minimum size negative");
 		}
 		
-		final int PLANETS = (int)( 20 * this.levelNumber * K);
+		final int PLANETS = (int)( 25 * this.levelNumber * K);
 		
 		// make sure they don't get too close to the edges.
 		final int HEIGHT = (int)(this.levelHeight - MAX_SIZE - 50);

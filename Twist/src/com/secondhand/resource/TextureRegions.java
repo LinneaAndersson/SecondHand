@@ -45,7 +45,8 @@ public class TextureRegions {
 		planetTextures = new EnumMap<PlanetType, TextureRegion>(PlanetType.class);
 		
 		for (final PlanetType planetType : PlanetType.values()) {
-			final TextureRegion planetTexture = TextureRegionLoader.getInstance().loadTextureRegion(TEXTURE_BASEPATH+planetType.getPath(), 256, 256,
+			final TextureRegion planetTexture = TextureRegionLoader.getInstance().loadTextureRegion(TEXTURE_BASEPATH+planetType.getPath(), 
+					planetType.getWidth(), planetType.getHeight(),
 					TextureOptions.REPEATING_BILINEAR);
 			planetTextures.put(planetType, planetTexture);
 		}

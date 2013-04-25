@@ -107,8 +107,6 @@ public class GamePlayScene extends GameScene implements PropertyChangeListener {
 	
 	@Override
 	public AllScenes getParentScene() {
-		// TODO: we should probably instead override onKeyDown and use custom back button handling,
-		// since we also need to somehow save the current state.
 		return AllScenes.MAIN_MENU_SCENE;
 	}
 	

@@ -17,7 +17,6 @@ public class PowerUpTest extends TestCase {
 		PowerUp pu1 = new PowerUp(position, pw, 5) {
 			@Override
 			public void activateEffect(Player player) {
-				// TODO Auto-generated method stub
 				
 			}
 		};

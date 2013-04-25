@@ -120,7 +120,6 @@ public class GameOverScene extends GameMenuScene implements
 	public boolean onMenuItemClicked(final MenuScene pMenuScene,
 			final IMenuItem pMenuItem, final float pMenuItemLocalX,
 			final float pMenuItemLocalY) {
-		// TODO Auto-generated method stub
 		return false;
 	}
 

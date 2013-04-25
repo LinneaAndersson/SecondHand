@@ -45,7 +45,7 @@ public abstract class BlackHole extends CircleEntity {
 		if (!entity.isEdible()) {
 			return false;
 		}
-		return this.getArea() > entity.getArea();
+		return this.getRadius() > entity.getRadius();
 	}
 	
 	// moves in the specified direction. If max speed is reached, then no movement is performed.

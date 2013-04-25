@@ -21,6 +21,10 @@ public class ScoreUp extends PowerUp {
 		this.scoreBonus = scoreBonus;
 	}
 	
+	
+	
+	
+
 	@Override
 	public void activateEffect(final Player player) {
 		player.increaseScore(scoreBonus);

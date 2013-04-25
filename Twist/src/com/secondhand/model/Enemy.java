@@ -50,7 +50,7 @@ public class Enemy extends BlackHole {
 
 		// the hunting area is tmp like this, don't know
 		// why i choose area*100
-		return dx * dx + dy * dy <= this.getArea() * 100;
+		return dx * dx + dy * dy <= this.getRadius() * 100;
 
 	}
 
@@ -68,7 +68,7 @@ public class Enemy extends BlackHole {
 	}
 
 	private Entity getSmaller(final Entity entity, final Entity e) {
-		if (entity == null || e.getArea() < entity.getArea()) {
+		if (entity == null || e.getRadius() < entity.getRadius()) {
 			return e;
 		} else {
 			return entity;

@@ -20,6 +20,12 @@ public abstract class RectangleEntity extends Entity {
 	}
 	
 	@Override
+	public float getRadius() {
+		// because don't really use this method for rectangles entities at all.
+		return 0;
+	}
+	
+	@Override
 	public boolean isCircle(){
 		return false;
 	}
@@ -32,10 +38,6 @@ public abstract class RectangleEntity extends Entity {
 		return this.rectangle.getHeight();
 	}
 	
-	@Override 
-	public float getArea() {
-		return this.getWidth() * this.getHeight();
-	}
 
 	public RectangularShape getRectangle() {
 		return this.rectangle;

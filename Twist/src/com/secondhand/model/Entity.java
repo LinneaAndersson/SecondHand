@@ -65,7 +65,7 @@ public abstract class Entity {
 		return assetName;
 	}
 	
-	public abstract float getArea();
+	public abstract float getRadius();
 
 	public float getCenterX() {
 		return getX();

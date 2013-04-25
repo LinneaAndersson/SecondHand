@@ -37,10 +37,6 @@ public abstract class CircleEntity extends Entity {
 		return true;
 	}
 	
-	public float getRadius() {
-		return this.circle.getRadius();
-	}
-	
 	public void setRadius(final float radius) {
 		circle.setRadius(radius);
 	}	
@@ -56,8 +52,8 @@ public abstract class CircleEntity extends Entity {
 	}
 	
 	@Override 
-	public float getArea() {
-		return circle.getRadius() * circle.getRadius()  * (float)Math.PI;
+	public float getRadius() {
+		return circle.getRadius();
 	}
 
 	public Circle getCircle() {

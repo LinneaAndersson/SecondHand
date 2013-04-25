@@ -25,7 +25,7 @@ public abstract class PolygonEntity extends Entity {
 	}
 	
 	@Override 
-	public float getArea() {
+	public float getRadius() {
 		return 1; 
 	}
 	

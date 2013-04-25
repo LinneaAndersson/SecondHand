@@ -5,6 +5,7 @@ import org.anddev.andengine.extension.physics.box2d.PhysicsFactory;
 import org.anddev.andengine.extension.physics.box2d.PhysicsWorld;
 
 import com.badlogic.gdx.physics.box2d.BodyDef.BodyType;
+import com.badlogic.gdx.physics.box2d.FixtureDef;
 
 
 public abstract class RectangleEntity extends Entity {
@@ -12,9 +13,9 @@ public abstract class RectangleEntity extends Entity {
 	protected RectangularShape rectangle;
 	
 	public RectangleEntity(final RectangularShape rectangle, final boolean isEdible, final PhysicsWorld physicsWorld,
-			final boolean updateRotation) {
+			final boolean updateRotation, final FixtureDef fixtureDef) {
 		super(rectangle, isEdible, PhysicsFactory.createCircleBody(physicsWorld,
-				rectangle, BodyType.DynamicBody, Entity.FIXTURE), updateRotation, physicsWorld);
+				rectangle, BodyType.DynamicBody, fixtureDef), updateRotation, physicsWorld);
 		this.rectangle = rectangle;
 	}
 	

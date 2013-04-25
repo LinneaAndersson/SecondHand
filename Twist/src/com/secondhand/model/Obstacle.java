@@ -18,7 +18,7 @@ public class Obstacle extends PolygonEntity {
 	}
 	
 	public Obstacle(final Polygon polygon, final PhysicsWorld physicsWorld) {
-		super(polygon, false, physicsWorld);
+		super(polygon, false, physicsWorld, FixtureDefs.OBSTACLE_FIXTURE_DEF);
 	}
 	
 	

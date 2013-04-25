@@ -22,7 +22,7 @@ public abstract class BlackHole extends CircleEntity {
 			final float maxSpeed) {
 		// TODO load texture instead of creating Circle
 		super(new Circle(position.x, position.y, radius), true, physicsWorld,
-				updateRotation);
+				updateRotation, FixtureDefs.BLACK_HOLE_FIXTURE_DEF);
 		this.maxSpeed = maxSpeed;
 	}
 
@@ -61,8 +61,6 @@ public abstract class BlackHole extends CircleEntity {
 				this.getBody().getWorldCenter());	
 	}
 	
-	private Vector2 newShapePosition;
-
 	public void eatEntity(final Entity entity) {
 		
 		// sanity checking

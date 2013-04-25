@@ -5,6 +5,7 @@ import org.anddev.andengine.extension.physics.box2d.PhysicsWorld;
 
 import com.badlogic.gdx.physics.box2d.Body;	
 import com.badlogic.gdx.physics.box2d.BodyDef.BodyType;
+import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.secondhand.opengl.Circle;
 
 public abstract class CircleEntity extends Entity {
@@ -16,15 +17,15 @@ public abstract class CircleEntity extends Entity {
 	//public static Body createCircleBody(final PhysicsWorld pPhysicsWorld, final float pCenterX, final float pCenterY, final float pRadius, final float pRotation, final BodyType pBodyType, final FixtureDef pFixtureDef) {
 
 	
-	protected static Body createNewCircleBody(final Circle circle,  final PhysicsWorld physicsWorld) {
+	protected static Body createNewCircleBody(final Circle circle,  final PhysicsWorld physicsWorld, final FixtureDef fixtureDef) {
 		return PhysicsFactory.createCircleBody(physicsWorld,
-				circle.getX(), circle.getY(), circle.getRadius(),circle.getRotation(), BodyType.DynamicBody, Entity.FIXTURE);
+				circle.getX(), circle.getY(), circle.getRadius(),circle.getRotation(), BodyType.DynamicBody, fixtureDef);
 	}
 	
 	public CircleEntity(final Circle circle, final boolean isEdible, final PhysicsWorld physicsWorld,
-			final boolean updateRotation) {
+			final boolean updateRotation, final FixtureDef fixtureDef) {
 		
-		super(circle, isEdible, createNewCircleBody(circle, physicsWorld), updateRotation, physicsWorld);
+		super(circle, isEdible, createNewCircleBody(circle, physicsWorld, fixtureDef), updateRotation, physicsWorld);
 		
 		this.physicsWorld = physicsWorld;
 		

@@ -2,11 +2,9 @@ package com.secondhand.model;
 
 import org.anddev.andengine.entity.shape.IShape;
 import org.anddev.andengine.entity.shape.Shape;
-import org.anddev.andengine.extension.physics.box2d.PhysicsFactory;
 import org.anddev.andengine.extension.physics.box2d.PhysicsWorld;
 
 import com.badlogic.gdx.physics.box2d.Body;
-import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.secondhand.physics.CustomPhysicsConnector;
 
 public abstract class Entity {
@@ -18,10 +16,6 @@ public abstract class Entity {
 	protected final PhysicsWorld physicsWorld;
 	
 	protected final boolean updateRotation;
-	
-	// TODO: refactor out into a constructor paramater maybe?
-	public final static FixtureDef FIXTURE = PhysicsFactory.createFixtureDef(1, 0.5f,
-			0.5f);
 	
 	public Entity(final Shape shape, final boolean isEdible, final Body body,  final boolean updateRotation,
 			final PhysicsWorld physicsWorld) {
@@ -71,8 +65,6 @@ public abstract class Entity {
 		return assetName;
 	}
 	
-	// TODO: we should probably cache the result of this computation, because it can 
-	// get quite expensive, especially for polygons. 
 	public abstract float getArea();
 
 	public float getCenterX() {

@@ -8,6 +8,7 @@ import org.anddev.andengine.entity.sprite.Sprite;
 import org.anddev.andengine.extension.physics.box2d.PhysicsWorld;
 
 import com.badlogic.gdx.math.Vector2;
+import com.secondhand.model.FixtureDefs;
 import com.secondhand.model.Player;
 import com.secondhand.model.RectangleEntity;
 import com.secondhand.resource.PowerUpType;
@@ -23,7 +24,7 @@ public abstract class PowerUp extends RectangleEntity {
 	private float duration;
 	
 	public PowerUp(final BaseRectangle rectangle, final PhysicsWorld physicsWorld, final float duration) {
-		super(rectangle, true, physicsWorld, false);
+		super(rectangle, true, physicsWorld, false, FixtureDefs.POWER_UP_FIXTURE_DEF);
 		this.duration = duration;	
 	}
 	

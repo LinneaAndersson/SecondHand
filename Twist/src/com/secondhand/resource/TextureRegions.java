@@ -40,8 +40,6 @@ public class TextureRegions {
 	}
 	
 	public void load() {	
-		//this.playerSprite = null; // TODO load the player sprite
-
 		planetTextures = new EnumMap<PlanetType, TextureRegion>(PlanetType.class);
 		
 		for (final PlanetType planetType : PlanetType.values()) {

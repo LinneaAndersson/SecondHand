@@ -35,8 +35,7 @@ public class TexturedPolygon extends Polygon {
 				
 				// should these be the circle sizes or the texture sizes?
 				textureRegion.getWidth(), textureRegion.getHeight(),  GL11.GL_STATIC_DRAW, true);
-		
-		// TODO: maybe we should also update if the polygon is changed?
+	
 		this.mPolygonTextureRegionBuffer.update();
 		
 		this.mTextureRegion = textureRegion;

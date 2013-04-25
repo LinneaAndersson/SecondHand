@@ -17,7 +17,12 @@ public class Player extends BlackHole {
 	
 	private final PropertyChangeSupport powerUpListSupport = new PropertyChangeSupport(this);
 	
-	private final ArrayList<PowerUp> powerUpList = new ArrayList<PowerUp>(1) {
+	private final List<PowerUp> powerUpList = new ArrayList<PowerUp>(1) {
+		/**
+		 * 
+		 */
+		private static final long serialVersionUID = 1L;
+
 		@Override
 		public boolean add(final PowerUp object) {
 			object.activateEffect(Player.this);

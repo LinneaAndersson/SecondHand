@@ -9,7 +9,6 @@ import org.anddev.andengine.entity.shape.IShape;
 import org.anddev.andengine.input.touch.TouchEvent;
 
 import com.badlogic.gdx.math.Vector2;
-import com.secondhand.debug.MyDebug;
 import com.secondhand.model.Entity;
 import com.secondhand.model.Level;
 import com.secondhand.model.Universe;

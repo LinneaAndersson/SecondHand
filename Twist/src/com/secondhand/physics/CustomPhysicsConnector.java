@@ -11,7 +11,7 @@ public class CustomPhysicsConnector extends PhysicsConnector {
 
 	private final boolean isCircle;
 	
-	public CustomPhysicsConnector(final IShape shape, boolean circle, final Body body, final boolean updatePosition, final boolean updateRotation) {
+	public CustomPhysicsConnector(final IShape shape, final boolean circle, final Body body, final boolean updatePosition, final boolean updateRotation) {
 		super(shape, body, updatePosition, updateRotation );
 		
 		this.isCircle = circle;

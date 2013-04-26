@@ -46,7 +46,9 @@ public class RandomLevelGenerator {
 	
 		this.playerMaxSize = 20 * levelNumber;
 		
+		
 		this.entityList = new ArrayList<Entity>();
+		entityList.add(player);
 		placeOutLevelEntities();
 		
 		this.enemyList = new ArrayList<Enemy>();

@@ -12,15 +12,10 @@ public class RandomTeleport extends PowerUp {
 
 	private final static float DURATION = 0;
 	
-	private final int levelWidth;
-	private final int levelHeight;
 	
 	public RandomTeleport(final Vector2 position, 
 			final Level level) {
 		super(position, PowerUpType.RANDOM_TELEPORT, level, DURATION);
-
-		this.levelWidth = level.getLevelWidth();
-		this.levelHeight = level.getLevelHeight();
 	}
 
 	@Override
@@ -33,8 +28,8 @@ public class RandomTeleport extends PowerUp {
 		
 		while(true) {
 			
-			x = rng.nextInt(levelWidth);
-			y = rng.nextInt(levelHeight);
+			x = rng.nextInt(level.getLevelWidth());
+			y = rng.nextInt(level.getLevelHeight());
 			
 			if(PhysicsAreaChecker.isRectangleAreaUnoccupied(new Vector2(x - r, y+r), new Vector2(x+r, y-r), physicsWorld))
 				break;

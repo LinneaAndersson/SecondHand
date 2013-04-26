@@ -220,7 +220,11 @@ public class Level {
 	// from the world expect for the player.
 	public void clearLevel() {
 		for(Entity entity: this.entityList) {
-			entity.removeEntity();
+			if(entity != player)
+				entity.destroyEntity();
 		}
+		
+		entityList.clear();
+		entityList.add(player);
 	}
 }

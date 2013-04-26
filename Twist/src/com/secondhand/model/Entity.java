@@ -81,15 +81,21 @@ public abstract class Entity {
 	}
 	
 	// remove this entity from andengine rendering and the physics world.
-	public void removeEntity() {
+	private void removeEntity() {
+
 		level.removeEntityFromList(this);
+		
+		destroyEntity();
+	}
+	
+	public void destroyEntity() {
 		
 		// Detach the shape from AndEngine-rendering
 		getShape().detachSelf();
 
 		// remove the eaten entity from the physics world:
 		PhysicsDestroyer.getInstance().destroy(getShape(), true);
-		
+				
 	}
 	
 	// called when this entity is eaten up.

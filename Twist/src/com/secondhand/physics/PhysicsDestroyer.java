@@ -58,7 +58,6 @@ public final class PhysicsDestroyer {
 			dest(queue.poll(), true);
 		}
 	}
-
 	
 	/*
 	 * I found the following method on the AndEngine forum:

@@ -80,9 +80,8 @@ public abstract class Entity {
 		return (int)(this.getRadius() * this.getScoreWorth());
 	}
 	
-	// called when this entity is eaten up.
-	protected void wasEaten() {
-	
+	// remove this entity from andengine rendering and the physics world.
+	public void removeEntity() {
 		level.removeEntityFromList(this);
 		
 		// Detach the shape from AndEngine-rendering
@@ -90,7 +89,12 @@ public abstract class Entity {
 
 		// remove the eaten entity from the physics world:
 		PhysicsDestroyer.getInstance().destroy(getShape(), true);
+		
+	}
 	
+	// called when this entity is eaten up.
+	protected void wasEaten() {
+		removeEntity();
 	}
 }
 

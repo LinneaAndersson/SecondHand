@@ -152,8 +152,6 @@ public class Level {
 		}
 		
 		MyDebug.d("entities: " + this.entityList.size());
-		
-		// move player if necessary. 
 	}
 	private void handleBlackHoleCollision(final Entity entityA,
 			final Entity entityB) {
@@ -216,5 +214,13 @@ public class Level {
 	
 	public void removeEnemyFromList(final Enemy enemy) {
 		this.enemyList.remove(enemy);
+	}
+	
+	// remove every entity(both from the physics world and andengine rendering)
+	// from the world expect for the player.
+	public void clearLevel() {
+		for(Entity entity: this.entityList) {
+			entity.removeEntity();
+		}
 	}
 }

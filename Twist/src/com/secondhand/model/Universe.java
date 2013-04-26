@@ -33,7 +33,12 @@ public final class Universe {
 		if (currentLevel == null) {
 			// starting level
 			currentLevel = new Level(2);
+			
 		} else {
+			
+			
+			currentLevel.clearLevel();
+			/*
 			final IGamePlaySceneView view = currentLevel.getView();
 			
 			// clear physics world expect for player.
@@ -42,10 +47,11 @@ public final class Universe {
 			currentLevel = new Level(currentLevel.getLevelNumber()+1);
 			MyDebug.d("now we tell the view to create the level");
 			view.newLevelStarted();
-			// and also register all new entities in the controller. 
+			// and also register all new entities in the controller. */
 		}
 	}
 
+	
 	public void onManagedUpdate(final float pSecondsElapsed) {
 		
 		if (currentLevel.checkPlayerBigEnough()) {

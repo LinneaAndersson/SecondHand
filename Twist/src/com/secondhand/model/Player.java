@@ -53,10 +53,22 @@ public class Player extends BlackHole {
 	}
 	
 	
+	public void increaseScore(final int increase) {
+		super.increaseScore(increase);
+		// we also want to notify the view of this change:
+		if(this.level.hasView())
+			this.level.getView().updateScore(this.getScore());
+	}
+	
+	private void changeLives(final int change) {
+		lives += change;
+		if(this.level.hasView())
+			this.level.getView().updateLives(this.getLives());
+	}
 	
 	// the player loses a life 
 	private void loseLife() {
-		--this.lives;
+		changeLives(-1);
 		MyDebug.d("player lost a life. current lives: " + this.getLives());
 	}
 	
@@ -71,7 +83,7 @@ public class Player extends BlackHole {
 	}
 	
 	public void gainLife() {
-		++this.lives;
+		changeLives(+1);
 	}
 
 

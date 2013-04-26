@@ -7,5 +7,8 @@ public interface IGamePlaySceneView {
 
 	void showFadingTextNotifier(final String str, final Vector2 position);
 	
+	void updateScore(final int newScore);
+	void updateLives(final int newScore);
+	
 	void newLevelStarted();
 }

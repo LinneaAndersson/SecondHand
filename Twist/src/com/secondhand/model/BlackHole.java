@@ -39,7 +39,6 @@ public abstract class BlackHole extends CircleEntity {
 
 	public void increaseScore(final int increase) {
 		score += increase;
-		MyDebug.d("new score is: " + score);
 	}
 	
 	public float getMaxSpeed() {

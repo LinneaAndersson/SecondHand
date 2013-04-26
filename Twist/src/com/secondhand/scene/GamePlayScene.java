@@ -32,6 +32,9 @@ public class GamePlayScene extends GameScene implements PropertyChangeListener, 
 	private IShape player;
 	private HUD hud;
 	
+	
+	private ScoreLivesText scoreLivesText;
+	
 	private final Universe universe;
 	
 	public GamePlayScene(final Engine engine, final Context context) {
@@ -98,7 +101,9 @@ public class GamePlayScene extends GameScene implements PropertyChangeListener, 
 		engine.getCamera().setChaseEntity(player);
 		
 		hud = new HUD();
-		hud.attachChild(new ScoreLivesText(new Vector2(10,10)));
+		Player player = universe.getLevel().getPlayer();
+		this.scoreLivesText = new ScoreLivesText(new Vector2(10,10), player.getScore(), player.getLives()); 
+		hud.attachChild(scoreLivesText);
 		engine.getCamera().setHUD(hud);
 	}
 
@@ -113,7 +118,7 @@ public class GamePlayScene extends GameScene implements PropertyChangeListener, 
 		smoothCamera.setChaseEntity(null);
 		engine.getCamera().setCenter(0, 0);
 		
-		// don't show the HUD in the menu.
+		// don't show the HUD in the menu.	
 		hud.setCamera(null);
 	}
 	
@@ -168,5 +173,15 @@ public class GamePlayScene extends GameScene implements PropertyChangeListener, 
 	public void newLevelStarted() {
 		MyDebug.d("new level!");
 		registerNewLevel();
+	}
+
+	@Override
+	public void updateScore(int newScore) {
+		this.scoreLivesText.setScore(newScore);
+	}
+
+	@Override
+	public void updateLives(int newLives) {
+		this.scoreLivesText.setLives(newLives);
 	}
 }

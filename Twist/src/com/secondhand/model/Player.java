@@ -65,6 +65,10 @@ public class Player extends BlackHole {
 		this.setNeedsToMovePosition(new Vector2(50,50));
 	}
 	
+	public boolean lostAllLives() {
+		return this.lives == 0;
+	}
+	
 	public void gainLife() {
 		++this.lives;
 	}

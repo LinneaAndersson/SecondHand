@@ -18,6 +18,7 @@ public class Level {
 	private List<Enemy> enemyList;
 	private int playerMaxSize;
 	private PhysicsWorld physicsWorld;
+	private boolean gameOver = false;
 
 	private Player player;
 
@@ -36,6 +37,8 @@ public class Level {
 	}
 
 	public void prepareLevel() {
+		
+		this.gameOver = false;
 
 		this.physicsWorld  = new PhysicsWorld(new Vector2(), true);
 		
@@ -128,6 +131,10 @@ public class Level {
 		
 		this.player.moveToNeededPositionIfNecessary();
 		
+		if(this.player.lostAllLives()) {
+			this.gameOver = true;
+		}
+		
 		// move player if necessary. 
 	}
 	private void handleBlackHoleCollision(final Entity entityA,
@@ -147,6 +154,10 @@ public class Level {
 		blackHole.eatEntity(other);
 
 
+	}
+	
+	public boolean isGameOver() {
+		return this.gameOver;
 	}
 
 	public void checkCollision(final Contact contact) {

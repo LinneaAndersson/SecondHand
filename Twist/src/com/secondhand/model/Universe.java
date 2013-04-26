@@ -4,21 +4,18 @@ import org.anddev.andengine.engine.Engine;
 
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Contact;
+import com.secondhand.controller.SceneManager;
 import com.secondhand.debug.MyDebug;
 import com.secondhand.model.powerup.PowerUp;
 import com.secondhand.physics.PhysicsDestroyer;
 import com.secondhand.resource.Sounds;
+import com.secondhand.scene.IGameScene.AllScenes;
 
 /**
  * Singelton class for describing the universe.
  */
 public final class Universe {
 	private Level currentLevel;
-
-
-	// flag for when the game is over
-	// check by update by gamePlayScene
-	private boolean gameOver;
 
 	private static Universe instance;
 
@@ -28,7 +25,6 @@ public final class Universe {
 	public void initialize(final Engine engine) {
 		nextLevel();
 		PhysicsDestroyer.getInstance().initialize(engine, currentLevel.getPhysicsWorld());
-		gameOver = false;
 	}
 
 	public static Universe getInstance() {
@@ -37,17 +33,9 @@ public final class Universe {
 		}
 		return instance;
 	}
-
+	
 	public boolean isGameOver() {
-		return gameOver;
-	}
-
-	// perhaps not needed if we only set gameover
-	private void gameOver() {
-		gameOver = true;
-		// gameOver flag that gameplayScene checks each update
-		// other gameOver stuff in this method
-
+		return this.currentLevel.isGameOver();
 	}
 
 	public Level getLevel() {
@@ -57,10 +45,9 @@ public final class Universe {
 	public void nextLevel() {
 		if (currentLevel == null) {
 			currentLevel = new Level(2);
-		} else if (!gameOver) {
+		} else if (!this.currentLevel.isGameOver()) {
 			currentLevel = new Level(currentLevel.getLevelNumber());
 		} else {
-			gameOver = false;
 			currentLevel = new Level();
 		}
 	}
@@ -71,7 +58,6 @@ public final class Universe {
 		} else {
 			currentLevel.onManagedUpdate(pSecondsElapsed);
 		}
-
 	}
 
 	public void update(final Vector2 v) {

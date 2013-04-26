@@ -28,6 +28,6 @@ public class Shield extends PowerUp {
 			if (powerUp.getClass() == Shield.class)
 				hasAnotherShield = true;
 		}
-		player.setIsEdible(hasAnotherShield);
+		player.setIsEdible(!hasAnotherShield);
 	}
 }

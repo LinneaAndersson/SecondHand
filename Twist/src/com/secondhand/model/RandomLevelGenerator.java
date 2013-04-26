@@ -52,7 +52,7 @@ public class RandomLevelGenerator {
 		placeOutLevelEntities();
 		
 		this.enemyList = new ArrayList<Enemy>();
-		//placeOutEnemies();
+		placeOutEnemies();
 	}
 	
 
@@ -67,7 +67,7 @@ public class RandomLevelGenerator {
 
 	private boolean isTooCloseToOtherEntity(final float x, final float y, final float radius) {
 		// setting high values for this constant will cause long level generation times, so be careful.
-		final float MINIMUM_DISTANCE = 50;
+		final float MINIMUM_DISTANCE = 60;
 		
 		for(Entity entity: this.entityList) {
 			if(entity instanceof CircleEntity) {

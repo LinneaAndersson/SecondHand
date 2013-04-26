@@ -3,6 +3,7 @@ package com.secondhand.controller;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.anddev.andengine.engine.Engine;
 import org.anddev.andengine.entity.scene.Scene;
 import org.anddev.andengine.entity.scene.Scene.IOnSceneTouchListener;
 import org.anddev.andengine.entity.shape.IShape;
@@ -12,17 +13,21 @@ import com.badlogic.gdx.math.Vector2;
 import com.secondhand.model.Entity;
 import com.secondhand.model.Level;
 import com.secondhand.model.Universe;
+import com.secondhand.physics.PhysicsDestroyer;
 import com.secondhand.scene.GamePlayScene;
 
 public final class GamePlaySceneController {
 
-	//private GamePlaySceneController instance;
+	private final Universe universe;
 	
-	public GamePlaySceneController(final GamePlayScene scene) {
+	public GamePlaySceneController(final GamePlayScene scene, final Engine engine) {
 
-		final Universe universe = Universe.getInstance();
+		universe = scene.getUniverse();
 		
 		final Level currentLevel = universe.getLevel();
+		
+		// this should only be done once.
+		PhysicsDestroyer.getInstance().initialize(engine, currentLevel.getPhysicsWorld());
 		
 		scene.registerUpdateHandler(currentLevel.getPhysicsWorld());
 		scene.setOnSceneTouchListener(new GameSceneTouchListener());
@@ -37,7 +42,7 @@ public final class GamePlaySceneController {
 		}
 		scene.setShapes(shapes);
 		
-		currentLevel.getPhysicsWorld().setContactListener(new CollisionContactListener());
+		currentLevel.getPhysicsWorld().setContactListener(new CollisionContactListener(universe));
 		currentLevel.setView(scene);
 	}
 	
@@ -48,7 +53,7 @@ public final class GamePlaySceneController {
 			if (pSceneTouchEvent.getAction() == TouchEvent.ACTION_DOWN) {
 				final float posX = pSceneTouchEvent.getX();
 				final float posY = pSceneTouchEvent.getY();
-				Universe.getInstance().update(new Vector2(posX, posY));
+				universe.update(new Vector2(posX, posY));
 				return true;
 			}
 			return false;

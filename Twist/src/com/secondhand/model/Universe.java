@@ -1,31 +1,22 @@
 package com.secondhand.model;
 
-import org.anddev.andengine.engine.Engine;
-
 import com.badlogic.gdx.math.Vector2;
-import com.secondhand.physics.PhysicsDestroyer;
 
 /**
- * Singelton class for describing the universe.
+ * Class for describing the universe.
+ * 
+ * 
+ * I you make this class a singelton again, I will personally hunt you down and kill you - Eric
+ 
  */
 public final class Universe {
+	
 	private Level currentLevel;
 
-	private static Universe instance;
+	//private static Universe instance;
 
-	private Universe() {
-	}
-
-	public void initialize(final Engine engine) {
+	public Universe() {
 		nextLevel();
-		PhysicsDestroyer.getInstance().initialize(engine, currentLevel.getPhysicsWorld());
-	}
-
-	public static Universe getInstance() {
-		if (instance == null) {
-			instance = new Universe();
-		}
-		return instance;
 	}
 	
 	public boolean isGameOver() {

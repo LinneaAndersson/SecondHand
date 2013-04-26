@@ -18,12 +18,7 @@ public interface IGameScene {
 		LOADING_SCENE, MAIN_MENU_SCENE, SETTINGS_MENU_SCENE, GAME_PLAY_SCENE, HIGH_SCORE_SCENE,
 		GAME_OVER_SCENE
 	}
-
-	/**
-	 * Load the resources required by the scene.
-	 */
-	void loadResources();
-
+	
 	/**
 	 * Load and setup the scene for viewing(this basically means that all the
 	 * child entities of the scene will be attached using attachChild)

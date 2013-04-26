@@ -16,20 +16,16 @@ import com.secondhand.resource.LocalizationStrings;
 
 
 public class HighScoreScene extends GameScene {
-	private Font mFont;
 
 	public HighScoreScene(final Engine engine, final Context context) {
 		super(engine, context);
 	}
 
 	@Override
-	public void loadResources() {
-		mFont = Fonts.getInstance().menuItemFont;
-	}
-
-	@Override
 	public void loadScene() {
-
+		final Font mFont = Fonts.getInstance().menuItemFont;
+		
+		
 		int tmp = 0;
 
 		// The title

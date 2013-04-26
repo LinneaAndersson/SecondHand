@@ -16,9 +16,9 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 
-import com.secondhand.loader.SoundLoader;
 import com.secondhand.resource.Fonts;
 import com.secondhand.resource.LocalizationStrings;
+import com.secondhand.resource.Sounds;
 
 
 public class SettingsMenuScene extends GameMenuScene implements
@@ -42,10 +42,9 @@ public class SettingsMenuScene extends GameMenuScene implements
 
 	private ChangeableText volumeText;
 
-	private SharedPreferences sharedPreferences;
-	private SharedPreferences.Editor sharedPreferencesEditor;
+	private final SharedPreferences sharedPreferences;
+	private final SharedPreferences.Editor sharedPreferencesEditor;
 
-	private Sound beep;
 
 	public SettingsMenuScene(final Engine engine, final Context context) {
 		super(engine, context);
@@ -53,18 +52,14 @@ public class SettingsMenuScene extends GameMenuScene implements
 		// used for volume control:
 		this.soundManager = this.engine.getSoundManager();
 		this.musicManager = this.engine.getMusicManager();
-	}
-
-	@Override
-	public void loadResources() {
+		
 		// load the preferences:
 		sharedPreferences = PreferenceManager
 				.getDefaultSharedPreferences(this.context);
 		sharedPreferencesEditor = sharedPreferences.edit();
 
-		beep = SoundLoader.getInstance().loadSound("sfx/beep.wav");
 	}
-
+	
 	@Override
 	public void loadScene() {
 
@@ -173,11 +168,11 @@ public class SettingsMenuScene extends GameMenuScene implements
 		switch (pMenuItem.getID()) {
 		case MENU_HIGHER:
 			changeVolumeAndUpdateVolumeText(VOLUME_CHANGE);
-			beep.play();
+			Sounds.getInstance().beep.play();
 			return true;
 		case MENU_LOWER:
 			changeVolumeAndUpdateVolumeText(-VOLUME_CHANGE);
-			beep.play();
+			Sounds.getInstance().beep.play();
 			return true;
 		default:
 			return false;

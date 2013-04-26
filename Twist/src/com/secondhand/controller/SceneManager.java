@@ -5,7 +5,6 @@ import org.anddev.andengine.engine.Engine;
 import android.content.Context;
 import android.view.KeyEvent;
 
-import com.secondhand.model.Universe;
 import com.secondhand.resource.Sounds;
 import com.secondhand.resource.TextureRegions;
 import com.secondhand.scene.GameOverScene;
@@ -28,10 +27,12 @@ public final class SceneManager {
 	private AllScenes currentSceneEnum;
 
 	private Engine engine;
-
+	private Context context;
+	
 	private IGameScene loadingScene, mainMenuScene, settingsMenuScene,
-			highScoreScene, gameOverScene;
+			highScoreScene;
 	private GamePlayScene gamePlayScene;
+	private GameOverScene gameOverScene;
 
 	private GamePlaySceneController gamePlaySceneController;
 
@@ -50,16 +51,8 @@ public final class SceneManager {
 	 * */
 	public void initialize(final Engine engine, final Context context) {
 		this.engine = engine;
-
-		// IMPORTANT: when you want to add a new scene to the app, it's
-		// constructor MUST be called here.
+		this.context = context;
 		this.loadingScene = new LoadingScene(this.engine, context);
-		this.mainMenuScene = new MainMenuScene(this.engine, context);
-		this.settingsMenuScene = new SettingsMenuScene(this.engine, context);
-		this.gameOverScene = new GameOverScene(this.engine, context);
-		this.gamePlayScene = new GamePlayScene(this.engine, context);
-		
-		this.highScoreScene = new HighScoreScene(this.engine, context);
 	}
 
 	public AllScenes getCurrentSceneEnum() {
@@ -100,26 +93,18 @@ public final class SceneManager {
 
 		final IGameScene currentScene = getCurrentScene();
 
-		// the loading scene is a special case. It handles the loading of all
-		// the
-		// other scene's resources, so its(the loading scenes) resources must be
-		// loaded here.
-		if (this.currentSceneEnum == AllScenes.LOADING_SCENE) {
-			currentScene.loadResources();
-		}
 		
 		// start the controller of the game play scene.
 		
-		if (this.currentSceneEnum == AllScenes.GAME_PLAY_SCENE && gamePlaySceneController==null) {
-			Universe.getInstance().initialize(engine);
-			
-			gamePlaySceneController = new GamePlaySceneController(this.gamePlayScene);
-		}
 		
+		if (this.currentSceneEnum == AllScenes.GAME_PLAY_SCENE && gamePlaySceneController==null) {
+			gamePlaySceneController = new GamePlaySceneController(this.gamePlayScene, engine);
+		}
 		// fully clear the scene before loading and then load it.
 		currentScene.getScene().detachChildren();
 		currentScene.loadScene();
-
+		
+		
 		this.engine.setScene(currentScene.getScene());
 
 		return currentScene;
@@ -138,13 +123,17 @@ public final class SceneManager {
 		TextureRegions.getInstance().load();
 		Sounds.getInstance().load();
 		
-		// IMPORTANT: when you want to add a new scene to the app, you MUST
-		// load its resources here.
-		this.mainMenuScene.loadResources();
-		this.settingsMenuScene.loadResources();
-		this.gamePlayScene.loadResources();
-		this.highScoreScene.loadResources();
-		this.gameOverScene.loadResources();
+		
+		// IMPORTANT: when you want to add a new scene to the app, it's
+		// constructor MUST be called here.
+		this.mainMenuScene = new MainMenuScene(this.engine, context);
+		this.settingsMenuScene = new SettingsMenuScene(this.engine, context);
+		this.gameOverScene = new GameOverScene(this.engine, context);
+		this.gamePlayScene = new GamePlayScene(this.engine, context);
+		this.gameOverScene.setUniverse(gamePlayScene.getUniverse());
+
+
+		this.highScoreScene = new HighScoreScene(this.engine, context);
 	}
 
 	// called from MainActivity.

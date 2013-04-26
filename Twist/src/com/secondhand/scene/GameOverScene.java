@@ -34,26 +34,30 @@ public class GameOverScene extends GameMenuScene implements
 	private BufferedReader reader;
 	Text textGameOver = null;
 
+	
+	private Universe universe;
+	
+	public void setUniverse(Universe universe) {
+		this.universe = universe;
+	}
+	
 	public GameOverScene(final Engine engine, final Context context) {
 		super(engine, context);
-	}
-
-	@Override
-	public void loadResources() {
-		mFont = Fonts.getInstance().menuItemFont;
-		try {
-			reader = new BufferedReader(new InputStreamReader(context
-					.getAssets().open("highScore")));
-		} catch (IOException e) {
-			Log.e("GameOverScene","laodResources");
-		}
 	}
 
 	@SuppressLint("NewApi")
 	@Override
 	public void loadScene() {
 		
-		player = Universe.getInstance().getLevel().getPlayer();
+		try {
+			reader = new BufferedReader(new InputStreamReader(context
+					.getAssets().open("highScore")));
+		} catch (IOException e) {
+			Log.e("GameOverScene","laodResources");
+		}
+		
+		
+		player = universe.getLevel().getPlayer();
 	
 		String mLine = "0";
 		int antal = 0;

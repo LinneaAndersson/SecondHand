@@ -6,8 +6,15 @@ import com.badlogic.gdx.physics.box2d.ContactListener;
 import com.badlogic.gdx.physics.box2d.Manifold;
 import com.secondhand.model.Universe;
 
-public class CollisionContactListener implements ContactListener {
+public final class CollisionContactListener implements ContactListener {
 
+	
+	private final Universe universe;
+	
+	public CollisionContactListener(final Universe universe) {
+		this.universe = universe;
+	}
+	
 	/**
 	 * Called when two fixtures begin to touch. So this is the method that we
 	 * are interested in for handling the collision between black holes and
@@ -15,7 +22,7 @@ public class CollisionContactListener implements ContactListener {
 	 */
 	@Override
 	public void beginContact(final Contact contact) {
-		Universe.getInstance().getLevel().checkCollision(contact);
+		universe.getLevel().checkCollision(contact);
 	}
 
 	@Override

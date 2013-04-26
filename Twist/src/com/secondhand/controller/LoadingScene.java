@@ -17,10 +17,6 @@ public class LoadingScene extends GameScene {
 
 	public LoadingScene(final Engine engine, final Context context) {
 		super(engine, context);
-	}
-
-	@Override
-	public void loadResources() {
 		Fonts.getInstance().load();	
 	}
 

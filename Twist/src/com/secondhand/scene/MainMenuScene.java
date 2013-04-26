@@ -25,10 +25,6 @@ public class MainMenuScene extends GameMenuScene implements IOnMenuItemClickList
 	}
 
 	@Override
-	public void loadResources() {
-	}
-
-	@Override
 	public void loadScene() {
 		final int menuStartX = layoutHeadline("Twirl");
 		

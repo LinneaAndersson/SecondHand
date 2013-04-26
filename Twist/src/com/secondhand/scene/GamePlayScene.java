@@ -23,10 +23,15 @@ public class GamePlayScene extends GameScene implements PropertyChangeListener, 
 	private List<IShape> shapeList;
 	private IShape player;
 	
-	private final Universe universe = Universe.getInstance();
+	private final Universe universe;
 	
 	public GamePlayScene(final Engine engine, final Context context) {
 		super(engine, context);
+		this.universe = new Universe();
+	}
+	
+	public Universe getUniverse() {
+		return universe; 
 	}
 	
 	public void setShapes(final List<IShape> list){
@@ -37,13 +42,12 @@ public class GamePlayScene extends GameScene implements PropertyChangeListener, 
 		this.player = player;
 	}
 
-	@Override
-	public void loadResources() {
-		// load the resources of this scene
-	}
 
 	@Override
 	public void loadScene() {
+		
+		
+		
 		final float width = universe.getLevel().getLevelWidth();
 		final float height = universe.getLevel().getLevelHeight();
 		
@@ -113,7 +117,7 @@ public class GamePlayScene extends GameScene implements PropertyChangeListener, 
 
 	@Override
 	public void propertyChange(final PropertyChangeEvent event) {
-		final Player player = Universe.getInstance().getLevel().getPlayer();
+		final Player player = universe.getLevel().getPlayer();
 		final PowerUp powerUp = ((PowerUp)event.getNewValue());
 		engine.registerUpdateHandler(powerUp.getTimer(player));
 	}

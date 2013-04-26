@@ -11,6 +11,8 @@ public class Sounds {
 	public Sound growSound;
 	public Sound obstacleCollisionSound;
 	
+	public Sound beep; 
+	
 	private static final String SOUND_BASEPATH = "sfx/";
 	
 	private static Sounds instance;
@@ -27,7 +29,9 @@ public class Sounds {
 		this.powerUpSound = SoundLoader.getInstance().loadSound(SOUND_BASEPATH+"powerup.wav");
 		this.growSound = SoundLoader.getInstance().loadSound(SOUND_BASEPATH+"grow.wav");
 		this.obstacleCollisionSound = SoundLoader.getInstance().loadSound(SOUND_BASEPATH+"obstacle_collision.wav");
-	
+		this.beep = SoundLoader.getInstance().loadSound("sfx/beep.wav");
+
+		
 	}
 	
 }

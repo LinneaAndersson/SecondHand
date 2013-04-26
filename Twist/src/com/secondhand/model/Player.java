@@ -7,14 +7,20 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.anddev.andengine.extension.physics.box2d.PhysicsWorld;
+import org.anddev.andengine.extension.physics.box2d.util.constants.PhysicsConstants;
 
 import com.badlogic.gdx.math.Vector2;
+import com.secondhand.debug.MyDebug;
 import com.secondhand.model.powerup.PowerUp;
 import com.secondhand.resource.Sounds;
 
 public class Player extends BlackHole {
 
 	private String name;
+	
+	private static final int STARTING_LIVES = 3;
+	
+	private int lives;
 	
 	private final PropertyChangeSupport powerUpListSupport = new PropertyChangeSupport(this);
 	
@@ -40,6 +46,31 @@ public class Player extends BlackHole {
 
 	public Player(final Vector2 position, final float radius, final PhysicsWorld physicsWorld, final float maxSpeed) {
 		super(position, radius, physicsWorld, false, maxSpeed);
+		this.lives = STARTING_LIVES;
+	}
+	
+	public int getLives() {
+		return this.lives;
+	}
+	
+	// the player loses a life 
+	private void loseLife() {
+		--this.lives;
+		MyDebug.d("player lost a life. current lives: " + this.getLives());
+	}
+	
+	// the player loses a life and is repositioned.
+	public void kill() {
+		this.loseLife();
+		this.setNeedsToMovePosition(new Vector2(50,50));
+	}
+	
+	public boolean lostAllLives() {
+		return this.lives == 0;
+	}
+	
+	public void gainLife() {
+		++this.lives;
 	}
 
 
@@ -88,7 +119,9 @@ public class Player extends BlackHole {
 	// So fuck you Erin Catto.
 	// - Sincerely, Eric
 	public void setNeedsToMovePosition(final Vector2 position) {
-		needsToMovePosition = position;
+		
+		needsToMovePosition = new Vector2(position.x / PhysicsConstants.PIXEL_TO_METER_RATIO_DEFAULT,
+				position.y / PhysicsConstants.PIXEL_TO_METER_RATIO_DEFAULT);
 	}
 	
 	public void moveToNeededPositionIfNecessary() {
@@ -97,12 +130,6 @@ public class Player extends BlackHole {
 			needsToMovePosition = null;
 		}
 	}
-	
-	@Override
-	public float getScoreWorth() {
-		throw new IllegalStateException("cannot score points for eating player");
-	}
-	
 
 	protected void handlePowerUp(final PowerUp powerUp) {
 
@@ -122,4 +149,17 @@ public class Player extends BlackHole {
 			Sounds.getInstance().obstacleCollisionSound.play();
 		}
 	}
+
+
+	
+	@Override
+	protected void wasEaten() {
+	
+		// We override the default behaviour for wasEaten. We don't want the player to
+		// be entirely removed from the world when eaten, we only want to reposition the player and lose a life.
+	
+		kill();		
+	}
+
+	
 }

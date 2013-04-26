@@ -42,8 +42,8 @@ public class RandomTeleport extends PowerUp {
 				break;
 		}
 			
-		player.setNeedsToMovePosition(new Vector2(x / PhysicsConstants.PIXEL_TO_METER_RATIO_DEFAULT,
-				y/ PhysicsConstants.PIXEL_TO_METER_RATIO_DEFAULT));
+		player.setNeedsToMovePosition(new Vector2(x,
+				y));
 	}
 
 	@Override

@@ -156,11 +156,6 @@ public class Enemy extends BlackHole {
 
 	}
 
-	@Override
-	public float getScoreWorth() {
-		return 3;
-	}
-
 	protected void handlePowerUp(final PowerUp powerUp) {
 		// enemies can't eat powerups :(
 	}

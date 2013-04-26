@@ -32,9 +32,12 @@ public class RandomLevelGenerator {
 	public final List<Entity> entityList;
 	public final List<Enemy> enemyList;
 	
-	RandomLevelGenerator(final int levelNumber, final PhysicsWorld physicsWorld) {
-		this.physicsWorld = physicsWorld;
-		this.levelNumber = levelNumber;
+	private final Level level;
+	
+	RandomLevelGenerator(Level level) {
+		this.physicsWorld = level.getPhysicsWorld();
+		this.levelNumber = level.getLevelNumber();
+		this.level = level;
 		
 		this.player = new Player(new Vector2(50, 50), 30, physicsWorld, 20);
 		
@@ -148,7 +151,6 @@ public class RandomLevelGenerator {
 
 		entityList.add(new SpeedUp(new Vector2(20, 700), physicsWorld));
 
-
-		entityList.add(new ScoreUp(new Vector2(20, 900), physicsWorld));
+		entityList.add(new ScoreUp(new Vector2(20, 900), physicsWorld, level));
 	}
 }

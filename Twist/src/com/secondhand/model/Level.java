@@ -47,7 +47,7 @@ public class Level {
 		this.physicsWorld.setPositionIterations(16);
 
 		
-		final RandomLevelGenerator randomLevelGenerator = new RandomLevelGenerator(this.levelNumber, this.physicsWorld);
+		final RandomLevelGenerator randomLevelGenerator = new RandomLevelGenerator(this);
 		
 		this.player = randomLevelGenerator.player;
 		this.playerMaxSize = randomLevelGenerator.playerMaxSize;

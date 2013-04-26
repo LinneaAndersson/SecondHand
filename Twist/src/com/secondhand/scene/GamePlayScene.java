@@ -5,9 +5,14 @@ import java.beans.PropertyChangeListener;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.microedition.khronos.opengles.GL10;
+
 import org.anddev.andengine.engine.Engine;
+import org.anddev.andengine.entity.modifier.AlphaModifier;
+import org.anddev.andengine.entity.modifier.MoveYModifier;
 import org.anddev.andengine.entity.scene.background.RepeatingSpriteBackground;
 import org.anddev.andengine.entity.shape.IShape;
+import org.anddev.andengine.entity.text.Text;
 import org.anddev.andengine.opengl.texture.region.TextureRegion;
 
 import android.content.Context;
@@ -20,6 +25,7 @@ import com.secondhand.model.Universe;
 import com.secondhand.model.powerup.PowerUp;
 import com.secondhand.opengl.RandomRepeatingBackground;
 import com.secondhand.opengl.StarsBackground;
+import com.secondhand.resource.Fonts;
 import com.secondhand.resource.TextureRegions;
 
 public class GamePlayScene extends GameScene implements PropertyChangeListener, IGamePlaySceneView {
@@ -133,5 +139,18 @@ public class GamePlayScene extends GameScene implements PropertyChangeListener, 
 	@Override
 	public void pickedUpScorePowerUp(final int score, final Vector2 position) {
 		MyDebug.d("score: "+ score + " at pos " + position);
+		
+		final Text addScoreText = new Text(position.x, position.y, Fonts.getInstance().menuItemFont, score + "+");
+    
+		// otherwise the alpha channel won't work
+		addScoreText.setBlendFunction(GL10.GL_SRC_ALPHA, GL10.GL_ONE_MINUS_SRC_ALPHA);
+		
+		final float DURATION = 1.5f;
+		
+		addScoreText.registerEntityModifier(new AlphaModifier(DURATION, 1, 0));
+		addScoreText.registerEntityModifier(new MoveYModifier(DURATION, addScoreText.getY(), addScoreText.getY() - 50));
+		
+		this.attachChild(addScoreText);
+		
 	}
 }

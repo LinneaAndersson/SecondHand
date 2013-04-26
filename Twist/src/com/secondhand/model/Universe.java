@@ -15,7 +15,6 @@ import com.secondhand.resource.Sounds;
 public final class Universe {
 	private Level currentLevel;
 
-	private PhysicsDestroyer physicsDestroyer;
 
 	// flag for when the game is over
 	// check by update by gamePlayScene
@@ -28,8 +27,7 @@ public final class Universe {
 
 	public void initialize(final Engine engine) {
 		nextLevel();
-		physicsDestroyer = PhysicsDestroyer.getInstance();
-		physicsDestroyer.initialize(engine, currentLevel.getPhysicsWorld());
+		PhysicsDestroyer.getInstance().initialize(engine, currentLevel.getPhysicsWorld());
 		gameOver = false;
 	}
 
@@ -39,8 +37,6 @@ public final class Universe {
 		}
 		return instance;
 	}
-
-
 
 	public boolean isGameOver() {
 		return gameOver;

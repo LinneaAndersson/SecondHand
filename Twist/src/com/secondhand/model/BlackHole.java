@@ -17,6 +17,9 @@ public abstract class BlackHole extends CircleEntity {
 	
 	private float maxSpeed;
 	
+	//I put this in BlackHole, so enemy black holes will also have scores
+	// but placing it here made coding the eating logic much more convenient.
+	// but we can simply ignore the score for enemy black holes.
 	private  int score;
 
 
@@ -82,8 +85,36 @@ public abstract class BlackHole extends CircleEntity {
 	
 	protected void entityWasTooBigToEat(final Entity entity) {}
 	
-	public void eatEntity(final Entity entity) {
+	
+	public void eatEntityUtil(final Entity entity) {
+		// for now we won't handle black holes eating other black holes.	
+		/*if(entity instanceof BlackHole)
+			return;*/
 		
+		if(!this.canEat(entity)) {
+			entityWasTooBigToEat(entity);
+			return;	
+		}
+			
+		this.increaseScore(entity.getScoreValue());
+
+		// increase the size of the rendered circle.
+		final float radiusInc = entity.getRadius() * GROWTH_FACTOR;
+		this.increaseSize(radiusInc);
+		onGrow();
+
+		// now we must also increase the size of the circle physics body
+		final CircleShape shape = (CircleShape) getBody().getFixtureList()
+				.get(0).getShape();
+		shape.setRadius(this.getRadius()
+				/ PhysicsConstants.PIXEL_TO_METER_RATIO_DEFAULT);
+
+		
+		entity.wasEaten();	
+	}
+	
+	public void eatEntity(final Entity entity) {
+			
 		if(entity instanceof PowerUp) {
 			// custom handling
 			handlePowerUp((PowerUp)entity);
@@ -91,38 +122,23 @@ public abstract class BlackHole extends CircleEntity {
 				final BlackHole otherBlackHole = (BlackHole)entity;
 				
 				// instead of eating, you will be eaten!
-				if(otherBlackHole.canEat(entity))
+				if(otherBlackHole.canEat(this))
 					otherBlackHole.eatEntity(this);	
+				else
+					this.eatEntityUtil(otherBlackHole);
 		} else {
 			
-			// for now we won't handle black holes eating other black holes.	
-			if(entity instanceof BlackHole)
-				return;
-			
-			if(!this.canEat(entity)) {
-				entityWasTooBigToEat(entity);
-				return;	
-			}
 			
 				
-			this.increaseScore(entity.getScoreValue());
-
-			// increase the size of the rendered circle.
-			final float radiusInc = entity.getRadius() * GROWTH_FACTOR;
-			this.increaseSize(radiusInc);
-			onGrow();
-
-			// now we must also increase the size of the circle physics body
-			final CircleShape shape = (CircleShape) getBody().getFixtureList()
-					.get(0).getShape();
-			shape.setRadius(this.getRadius()
-					/ PhysicsConstants.PIXEL_TO_METER_RATIO_DEFAULT);
-
+			eatEntityUtil(entity);
 			
-			entity.wasEaten();	
 		}
 
 
 	}
 
+	@Override
+	public float getScoreWorth() {
+		return 3;
+	}	
 }

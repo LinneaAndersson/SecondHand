@@ -36,7 +36,7 @@ public class RandomLevelGenerator {
 		this.physicsWorld = physicsWorld;
 		this.levelNumber = levelNumber;
 		
-		this.player = new Player(new Vector2(50, 50), 40, physicsWorld, 20);
+		this.player = new Player(new Vector2(50, 50), 30, physicsWorld, 20);
 		
 		this.levelWidth = 2000 * levelNumber;
 		this.levelHeight = 2000 * levelNumber;

@@ -143,6 +143,7 @@ public class Level {
 			blackHole = (BlackHole) entityB;
 		}
 		
+		
 		blackHole.eatEntity(other);
 
 

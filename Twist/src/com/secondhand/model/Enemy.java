@@ -7,6 +7,7 @@ import org.anddev.andengine.extension.physics.box2d.PhysicsWorld;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Fixture;
 import com.badlogic.gdx.physics.box2d.RayCastCallback;
+import com.secondhand.debug.MyDebug;
 import com.secondhand.model.powerup.PowerUp;
 
 public class Enemy extends BlackHole {
@@ -27,9 +28,9 @@ public class Enemy extends BlackHole {
 	// player has highest chase-priority
 	public void moveEnemy(final Entity player, final List<Entity> entityList) {
 		if (isCloseToEntity(player) && canEat(player)) {
-			applyMovement(player);
+			dangerCheck(player);
 		} else {
-			applyMovement(getHighesPriority(entityList));
+			dangerCheck(getHighesPriority(entityList));
 		}
 
 	}
@@ -51,7 +52,7 @@ public class Enemy extends BlackHole {
 					return 1;
 
 				} else if (canEat((Entity) fixture.getBody().getUserData())) {
-					return fraction;
+					return 1;
 				}
 
 				straightLine = false;
@@ -83,6 +84,7 @@ public class Enemy extends BlackHole {
 	// enemies behave different ( getClosest... )
 	// could implement worldquery instead of sending the complete
 	// entityList. if i did they hunting area would be rectangular instead
+	// would be nice to not return null
 	private Entity getHighesPriority(final List<Entity> entityList) {
 		Entity entity = null;
 		for (final Entity e : entityList) {
@@ -101,6 +103,27 @@ public class Enemy extends BlackHole {
 		}
 	}
 
+	private void dangerCheck(Entity entity) {
+		// TODO change the null-check to something nicer
+
+		if (entity != null) {
+			if (straightToEntity(entity)) {
+				MyDebug.d("Enemy: applyMovement towards " + entity.getClass());
+				applyMovement(entity);
+
+			} else {
+				MyDebug.d("Enemy: stopMovement");
+				stopMovement();
+			}
+		}
+	}
+
+	private void stopMovement() {
+		this.getBody().setLinearVelocity(new Vector2());
+		this.getBody().setAngularVelocity(0);
+
+	}
+
 	// responsible for moving the enemies
 	// at first we only have them moving straight at the player,
 	// later we can add more functionality
@@ -108,38 +131,29 @@ public class Enemy extends BlackHole {
 	// move in a smart way(no suicide)
 	private void applyMovement(final Entity entity) {
 
-		// TODO change the null-check to something nicer
-		if (entity != null) {
-			if (straightToEntity(entity)) {
-				// the vector from enemy to the player
-				Vector2 movementVector = new Vector2(
-						(entity.getCenterX() - this.getCenterX()),
-						entity.getCenterY() - this.getCenterY());
+		// the vector from enemy to the player
+		Vector2 movementVector = new Vector2(
+				(entity.getCenterX() - this.getCenterX()), entity.getCenterY()
+						- this.getCenterY());
 
-				// need to slow them down, they are to dam fast
-				// otherwise
-				// if(body is moving) we need mul(0.001)
-				// for better mobility(so they won't just
-				// go forward)
-				// lower maxSpeed than player.
+		// need to slow them down, they are to dam fast
+		// otherwise
+		// if(body is moving) we need mul(0.001)
+		// for better mobility(so they won't just
+		// go forward)
+		// lower maxSpeed than player.
 
-				if (movementVector.len() > 0) {
-					// we want to apply larger force when enemy is
-					// turning (changing direction). so we need a better
-					// test than above
-					movementVector = movementVector.mul(0.0001f);
-				} else {
-					movementVector = movementVector.mul(0.00001f);
-				}
-
-				this.move(movementVector);
-
-			} else {
-
-				// (Avoid) somehow move the enemy around
-				// larger entities
-			}
+		if (movementVector.len() > 0) {
+			// we want to apply larger force when enemy is
+			// turning (changing direction). so we need a better
+			// test than above
+			movementVector = movementVector.mul(0.0001f);
+		} else {
+			movementVector = movementVector.mul(0.00001f);
 		}
+
+		this.move(movementVector);
+
 	}
 
 	@Override

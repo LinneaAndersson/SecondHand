@@ -13,18 +13,19 @@ public abstract class Entity {
 	private final Body body;
 	private final IShape shape;
 	private boolean isEdible;
-	private String assetName;
 	protected final PhysicsWorld physicsWorld;
+	protected final Level level;
 	
 	protected final boolean updateRotation;
 	
 	public Entity(final Shape shape, final boolean isEdible, final Body body,  final boolean updateRotation,
-			final PhysicsWorld physicsWorld) {
+			final Level level) {
 		this.body = body;
 		this.shape = shape;
 		this.isEdible = isEdible;
 		this.updateRotation = updateRotation;
-		this.physicsWorld = physicsWorld;
+		this.physicsWorld = level.getPhysicsWorld();
+		this.level = level;
 		
 		registerBody(body); //NOPMD
 	}
@@ -60,10 +61,6 @@ public abstract class Entity {
 	
 	public void setIsEdible(final boolean isEdible) {
 		this.isEdible = isEdible;
-	}
-	
-	public String getImageName(){
-		return assetName;
 	}
 	
 	public abstract float getRadius();

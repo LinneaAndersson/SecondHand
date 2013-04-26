@@ -168,8 +168,6 @@ public class Level {
 		
 		
 		blackHole.eatEntity(other);
-
-
 	}
 	
 	public boolean isGameOver() {

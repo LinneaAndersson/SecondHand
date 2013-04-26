@@ -1,7 +1,6 @@
 	
 package com.secondhand.model;
 
-import org.anddev.andengine.extension.physics.box2d.PhysicsWorld;
 import org.anddev.andengine.extension.physics.box2d.util.constants.PhysicsConstants;
 
 import com.badlogic.gdx.math.Vector2;
@@ -24,10 +23,10 @@ public abstract class BlackHole extends CircleEntity {
 
 
 	public BlackHole(final Vector2 position, final float radius,
-			final PhysicsWorld physicsWorld, final boolean updateRotation,
+			final Level level, final boolean updateRotation,
 			final float maxSpeed) {
 		// TODO load texture instead of creating Circle
-		super(new Circle(position.x, position.y, radius), true, physicsWorld,
+		super(new Circle(position.x, position.y, radius), true, level,
 				updateRotation, FixtureDefs.BLACK_HOLE_FIXTURE_DEF);
 		this.maxSpeed = maxSpeed;
 		this.score = 0;

@@ -2,7 +2,6 @@ package com.secondhand.model;
 
 import java.util.List;
 
-import org.anddev.andengine.extension.physics.box2d.PhysicsWorld;
 
 import com.badlogic.gdx.math.Vector2;
 import com.secondhand.opengl.Polygon;
@@ -11,14 +10,14 @@ import com.secondhand.resource.TextureRegions;
 
 public class Obstacle extends PolygonEntity {
 
-	public Obstacle(final Vector2 position,  final List<Vector2> polygon, final PhysicsWorld physicsWorld) {
+	public Obstacle(final Vector2 position,  final List<Vector2> polygon, final Level level) {
 		this(new TexturedPolygon(position.x, position.y,
 				polygon,
-				TextureRegions.getInstance().obstacleTexture), physicsWorld);
+				TextureRegions.getInstance().obstacleTexture), level);
 	}
 	
-	public Obstacle(final Polygon polygon, final PhysicsWorld physicsWorld) {
-		super(polygon, false, physicsWorld, FixtureDefs.OBSTACLE_FIXTURE_DEF);
+	public Obstacle(final Polygon polygon, final Level level) {
+		super(polygon, false, level, FixtureDefs.OBSTACLE_FIXTURE_DEF);
 	}
 	
 	@Override

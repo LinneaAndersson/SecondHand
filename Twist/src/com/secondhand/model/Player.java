@@ -2,11 +2,10 @@ package com.secondhand.model;
 
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
-import java.io.InvalidObjectException;
+
 import java.util.ArrayList;
 import java.util.List;
 
-import org.anddev.andengine.extension.physics.box2d.PhysicsWorld;
 import org.anddev.andengine.extension.physics.box2d.util.constants.PhysicsConstants;
 
 import com.badlogic.gdx.math.Vector2;
@@ -44,8 +43,8 @@ public class Player extends BlackHole {
 		};
 	};
 
-	public Player(final Vector2 position, final float radius, final PhysicsWorld physicsWorld, final float maxSpeed) {
-		super(position, radius, physicsWorld, false, maxSpeed);
+	public Player(final Vector2 position, final float radius, final Level level, final float maxSpeed) {
+		super(position, radius, level, false, maxSpeed);
 		this.lives = STARTING_LIVES;
 	}
 	

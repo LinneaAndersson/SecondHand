@@ -19,10 +19,10 @@ public abstract class PolygonEntity extends Entity {
 	private final float radius; 
 	
 	
-	public PolygonEntity(final Polygon polygon, final boolean isEdible, final PhysicsWorld physicsWorld,
+	public PolygonEntity(final Polygon polygon, final boolean isEdible, final Level level,
 			final FixtureDef fixtureDef) {
-		super(polygon, isEdible, MyPhysicsFactory.createPolygonBody(physicsWorld,
-				polygon, BodyType.DynamicBody, fixtureDef), true, physicsWorld);
+		super(polygon, isEdible, MyPhysicsFactory.createPolygonBody(level.getPhysicsWorld(),
+				polygon, BodyType.DynamicBody, fixtureDef), true, level);
 		this.polygon = polygon;
 		polygon.setBody(this.getBody());
 		this.radius = computeRadius(polygon.getPolygon());

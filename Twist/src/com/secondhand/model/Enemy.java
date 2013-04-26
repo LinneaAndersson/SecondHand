@@ -8,7 +8,6 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Fixture;
 import com.badlogic.gdx.physics.box2d.QueryCallback;
 import com.badlogic.gdx.physics.box2d.RayCastCallback;
-import com.secondhand.debug.MyDebug;
 import com.secondhand.model.powerup.PowerUp;
 
 public class Enemy extends BlackHole {
@@ -20,8 +19,8 @@ public class Enemy extends BlackHole {
 	private float area;
 
 	public Enemy(final Vector2 vector, final float radius,
-			final PhysicsWorld physicsWorld, final float maxSpeed) {
-		super(vector, radius, physicsWorld, true, maxSpeed);
+			final Level level, final float maxSpeed) {
+		super(vector, radius, level, true, maxSpeed);
 
 		area = getRadius() * getRadius() * (float) Math.PI;
 	}

@@ -5,7 +5,6 @@ import org.anddev.andengine.engine.handler.timer.TimerHandler;
 import org.anddev.andengine.entity.primitive.BaseRectangle;
 import org.anddev.andengine.entity.primitive.Rectangle;
 import org.anddev.andengine.entity.sprite.Sprite;
-import org.anddev.andengine.extension.physics.box2d.PhysicsWorld;
 
 import com.badlogic.gdx.math.Vector2;
 import com.secondhand.model.FixtureDefs;
@@ -24,18 +23,18 @@ public abstract class PowerUp extends RectangleEntity {
 	
 	private float duration;
 	
-	public PowerUp(final BaseRectangle rectangle, final PhysicsWorld physicsWorld, final float duration) {
-		super(rectangle, true, physicsWorld, false, FixtureDefs.POWER_UP_FIXTURE_DEF);
+	public PowerUp(final BaseRectangle rectangle, final Level level, final float duration) {
+		super(rectangle, true, level, false, FixtureDefs.POWER_UP_FIXTURE_DEF);
 		this.duration = duration;	
 	}
 	
-	public PowerUp (final Vector2 position, final PowerUpType powerUpType, final PhysicsWorld physicsWorld, final float duration) {
-		this(new Sprite(position.x, position.y, WIDTH, HEIGHT, TextureRegions.getInstance().getPowerUpTexture(powerUpType)), physicsWorld, duration);
+	public PowerUp (final Vector2 position, final PowerUpType powerUpType, final Level level, final float duration) {
+		this(new Sprite(position.x, position.y, WIDTH, HEIGHT, TextureRegions.getInstance().getPowerUpTexture(powerUpType)), level, duration);
 	}
 	
 	// this constructor is easier to test. 
-	public PowerUp (final Vector2 position, final PhysicsWorld physicsWorld, final float duration) {
-		this(new Rectangle(position.x, position.y, WIDTH, HEIGHT), physicsWorld, duration);
+	public PowerUp (final Vector2 position, final Level level, final float duration) {
+		this(new Rectangle(position.x, position.y, WIDTH, HEIGHT), level, duration);
 	}	
 	
 	public float getDuration() {

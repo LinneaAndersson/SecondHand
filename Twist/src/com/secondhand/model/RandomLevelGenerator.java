@@ -39,7 +39,7 @@ public class RandomLevelGenerator {
 		this.levelNumber = level.getLevelNumber();
 		this.level = level;
 		
-		this.player = new Player(new Vector2(50, 50), 30, physicsWorld, 20);
+		this.player = new Player(new Vector2(50, 50), 30, level, 20);
 		
 		this.levelWidth = 2000 * levelNumber;
 		this.levelHeight = 2000 * levelNumber;
@@ -55,7 +55,7 @@ public class RandomLevelGenerator {
 	
 
 	private void placeOutEnemies() {
-		enemyList.add(new Enemy(new Vector2(800, 800), 50, physicsWorld, 10));
+		enemyList.add(new Enemy(new Vector2(800, 800), 50, level, 10));
 
 		for (final Enemy enemy : enemyList) {
 			entityList.add(enemy);
@@ -140,17 +140,17 @@ public class RandomLevelGenerator {
 			}
 
 			entityList.add(new Planet(new Vector2(x, y), radius, RandomUtil
-					.randomEnum(rng, PlanetType.class), physicsWorld));
+					.randomEnum(rng, PlanetType.class), level));
 		}
 		
-		entityList.add(new Obstacle(new Vector2(200, 200), PolygonUtil.getRandomPolygon() , physicsWorld));		
+		entityList.add(new Obstacle(new Vector2(200, 200), PolygonUtil.getRandomPolygon() , level));		
 		
-		entityList.add(new RandomTeleport(new Vector2(100, 500), physicsWorld, levelWidth, levelHeight));
+		entityList.add(new RandomTeleport(new Vector2(100, 500), level));
 
-		entityList.add(new Shield(new Vector2(20, 500), physicsWorld));
+		entityList.add(new Shield(new Vector2(20, 500), level));
 
-		entityList.add(new SpeedUp(new Vector2(20, 700), physicsWorld));
+		entityList.add(new SpeedUp(new Vector2(20, 700), level));
 
-		entityList.add(new ScoreUp(new Vector2(20, 900), physicsWorld, level));
+		entityList.add(new ScoreUp(new Vector2(20, 900), level));
 	}
 }

@@ -22,12 +22,12 @@ public abstract class CircleEntity extends Entity {
 				circle.getX(), circle.getY(), circle.getRadius(),circle.getRotation(), BodyType.DynamicBody, fixtureDef);
 	}
 	
-	public CircleEntity(final Circle circle, final boolean isEdible, final PhysicsWorld physicsWorld,
+	public CircleEntity(final Circle circle, final boolean isEdible, final Level level,
 			final boolean updateRotation, final FixtureDef fixtureDef) {
 		
-		super(circle, isEdible, createNewCircleBody(circle, physicsWorld, fixtureDef), updateRotation, physicsWorld);
+		super(circle, isEdible, createNewCircleBody(circle, level.getPhysicsWorld(), fixtureDef), updateRotation, level);
 		
-		this.physicsWorld = physicsWorld;
+		this.physicsWorld = level.getPhysicsWorld();
 		
 		this.circle = circle;
 	}

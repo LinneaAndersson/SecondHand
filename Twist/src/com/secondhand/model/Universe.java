@@ -24,7 +24,7 @@ public final class Universe {
 	public boolean isGameOver() {
 		return this.currentLevel.isGameOver();
 	}
-
+	
 	public Level getLevel() {
 		return currentLevel;
 	}
@@ -34,7 +34,11 @@ public final class Universe {
 			// starting level
 			currentLevel = new Level(2);
 		} else {
-			IGamePlaySceneView view = currentLevel.getView();
+			final IGamePlaySceneView view = currentLevel.getView();
+			
+			// clear physics world expect for player.
+			
+			
 			currentLevel = new Level(currentLevel.getLevelNumber()+1);
 			MyDebug.d("now we tell the view to create the level");
 			view.newLevelStarted();

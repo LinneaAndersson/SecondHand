@@ -2,7 +2,6 @@ package com.secondhand.model;
 
 import org.anddev.andengine.entity.shape.RectangularShape;
 import org.anddev.andengine.extension.physics.box2d.PhysicsFactory;
-import org.anddev.andengine.extension.physics.box2d.PhysicsWorld;
 
 import com.badlogic.gdx.physics.box2d.BodyDef.BodyType;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
@@ -12,10 +11,10 @@ public abstract class RectangleEntity extends Entity {
 	
 	protected RectangularShape rectangle;
 	
-	public RectangleEntity(final RectangularShape rectangle, final boolean isEdible, final PhysicsWorld physicsWorld,
+	public RectangleEntity(final RectangularShape rectangle, final boolean isEdible, final Level level,
 			final boolean updateRotation, final FixtureDef fixtureDef) {
-		super(rectangle, isEdible, PhysicsFactory.createCircleBody(physicsWorld,
-				rectangle, BodyType.DynamicBody, fixtureDef), updateRotation, physicsWorld);
+		super(rectangle, isEdible, PhysicsFactory.createCircleBody(level.getPhysicsWorld(),
+				rectangle, BodyType.DynamicBody, fixtureDef), updateRotation, level);
 		this.rectangle = rectangle;
 	}
 	

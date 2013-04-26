@@ -9,9 +9,9 @@ public enum PlanetType {
 		LIFE("planet_life.png", 256, 256),
 		DRUGS("planet_drugs.png", 256, 256),
 		GRAMLICH("gramlich.jpg", 128, 128),
-		WOOD("wood_planet.png", 256, 256);
-		
-		
+		WOOD("wood_planet.png", 256, 256),
+		DEATH("planet_death.png", 256, 256);
+	
 		private String path; 
 		private int width;
 		private int height;

@@ -13,9 +13,15 @@ public class Enemy extends BlackHole {
 
 	private static boolean straightLine = true;
 
+	// because someone changed getArea to getRadius I
+	// had to do this.
+	private float area;
+
 	public Enemy(final Vector2 vector, final float radius,
 			final PhysicsWorld physicsWorld, final float maxSpeed) {
 		super(vector, radius, physicsWorld, true, maxSpeed);
+
+		area = getRadius() * getRadius() * (float) Math.PI;
 	}
 
 	// player has highest chase-priority
@@ -68,13 +74,15 @@ public class Enemy extends BlackHole {
 
 		// the hunting area is tmp like this, don't know
 		// why i choose area*100
-		return dx * dx + dy * dy <= this.getRadius() * 100;
+		return dx * dx + dy * dy <= area * 100;
 
 	}
 
 	// chase after smallest entity first
 	// could create many get-something and make different
 	// enemies behave different ( getClosest... )
+	// could implement worldquery instead of sending the complete
+	// entityList. if i did they hunting area would be rectangular instead
 	private Entity getHighesPriority(final List<Entity> entityList) {
 		Entity entity = null;
 		for (final Entity e : entityList) {
@@ -133,8 +141,6 @@ public class Enemy extends BlackHole {
 			}
 		}
 	}
-
-	
 
 	protected void handlePowerUp(final PowerUp powerUp) {
 		// enemies can't eat powerups :(

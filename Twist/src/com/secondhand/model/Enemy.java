@@ -157,7 +157,7 @@ public class Enemy extends BlackHole {
 	// later we can add more functionality
 	// TODO avoid larger stuff, chase smaller stuff
 	// move in a smart way(no suicide)
-	private void applyMovement(Vector2 movementVector) {
+	private void applyMovement(Vector2 movementVector) { // NOPMD
 
 		// the vector from enemy to the player
 
@@ -183,5 +183,10 @@ public class Enemy extends BlackHole {
 
 	protected void handlePowerUp(final PowerUp powerUp) {
 		// enemies can't eat powerups :(
+	}
+
+	protected void wasEaten() {
+		level.removeEnemyFromList(this);
+		super.wasEaten();
 	}
 }

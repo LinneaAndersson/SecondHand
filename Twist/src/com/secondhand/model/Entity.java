@@ -82,15 +82,15 @@ public abstract class Entity {
 	
 	// called when this entity is eaten up.
 	protected void wasEaten() {
-		
-		// TODO: removed enemies should probably also be removed from the  enemy updating list.
+	
+		level.removeEntityFromList(this);
 		
 		// Detach the shape from AndEngine-rendering
 		getShape().detachSelf();
 
 		// remove the eaten entity from the physics world:
 		PhysicsDestroyer.getInstance().destroy(getShape(), true);
-
+	
 	}
 }
 

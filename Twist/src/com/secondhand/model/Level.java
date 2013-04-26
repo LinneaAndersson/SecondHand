@@ -151,6 +151,8 @@ public class Level {
 			this.gameOver = true;
 		}
 		
+		MyDebug.d("entities: " + this.entityList.size());
+		
 		// move player if necessary. 
 	}
 	private void handleBlackHoleCollision(final Entity entityA,
@@ -206,6 +208,13 @@ public class Level {
 		if(player.getRadius() < playerMaxSize)
 			MyDebug.d("current played size: " + player.getRadius() + " goal: " + playerMaxSize);
 		return player.getRadius() >= playerMaxSize;
-
+	}
+	
+	public void removeEntityFromList(final Entity entity) {
+		this.entityList.remove(entity);
+	}
+	
+	public void removeEnemyFromList(final Enemy enemy) {
+		this.enemyList.remove(enemy);
 	}
 }

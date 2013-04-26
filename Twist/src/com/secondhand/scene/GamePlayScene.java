@@ -7,7 +7,9 @@ import java.util.List;
 
 
 import org.anddev.andengine.engine.Engine;
+import org.anddev.andengine.engine.camera.hud.HUD;
 import org.anddev.andengine.entity.shape.IShape;
+import org.anddev.andengine.entity.text.Text;
 
 import android.content.Context;
 import android.view.KeyEvent;
@@ -22,11 +24,13 @@ import com.secondhand.model.Universe;
 import com.secondhand.model.powerup.PowerUp;
 import com.secondhand.opengl.StarsBackground;
 import com.secondhand.physics.PhysicsDestroyer;
+import com.secondhand.resource.Fonts;
 
 public class GamePlayScene extends GameScene implements PropertyChangeListener, IGamePlaySceneView {
 	
 	private List<IShape> shapeList;
 	private IShape player;
+	private HUD hud;
 	
 	private final Universe universe;
 	
@@ -92,6 +96,10 @@ public class GamePlayScene extends GameScene implements PropertyChangeListener, 
 		this.smoothCamera.setBoundsEnabled(true);
 		
 		engine.getCamera().setChaseEntity(player);
+		
+		hud = new HUD();
+		hud.attachChild(new ScoreLivesText(new Vector2(10,10)));
+		engine.getCamera().setHUD(hud);
 	}
 
 	@Override
@@ -104,6 +112,9 @@ public class GamePlayScene extends GameScene implements PropertyChangeListener, 
 	public void resetCamera() {
 		smoothCamera.setChaseEntity(null);
 		engine.getCamera().setCenter(0, 0);
+		
+		// don't show the HUD in the menu.
+		hud.setCamera(null);
 	}
 	
 	@Override

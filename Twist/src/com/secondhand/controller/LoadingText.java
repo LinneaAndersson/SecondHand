@@ -67,7 +67,7 @@ public class LoadingText extends ChangeableText {
 	@Override
 	protected void onManagedUpdate(final float pSecondsElapsed) {
 
-		MyDebug.d("seconds passed: " + pSecondsElapsed);
+//		MyDebug.d("seconds passed: " + pSecondsElapsed);
 
 		secondsPassedSinceLastUpdate += pSecondsElapsed;
 

@@ -47,13 +47,11 @@ public class GamePlayScene extends GameScene implements PropertyChangeListener, 
 		this.player = player;
 	}
 
-	public void init() {
+	public void registerNewLevel() {
+	final Level currentLevel = universe.getLevel();
 		
-		
-		final Level currentLevel = universe.getLevel();
-		
-		// this should only be done once.
-		PhysicsDestroyer.getInstance().initialize(engine, currentLevel.getPhysicsWorld());
+		// reset for the newly created physicsworld. 
+		PhysicsDestroyer.getInstance().reset(engine, currentLevel.getPhysicsWorld());
 		
 		registerUpdateHandler(currentLevel.getPhysicsWorld());
 		currentLevel.getPlayer().addListener(this);
@@ -69,13 +67,6 @@ public class GamePlayScene extends GameScene implements PropertyChangeListener, 
 		
 		currentLevel.getPhysicsWorld().setContactListener(new CollisionContactListener(universe));
 		currentLevel.setView(this);
-	}
-
-	@Override
-	public void loadScene() {
-		 
-		init();
-		
 		
 		final float width = universe.getLevel().getLevelWidth();
 		final float height = universe.getLevel().getLevelHeight();
@@ -101,7 +92,11 @@ public class GamePlayScene extends GameScene implements PropertyChangeListener, 
 		this.smoothCamera.setBoundsEnabled(true);
 		
 		engine.getCamera().setChaseEntity(player);
-		
+	}
+
+	@Override
+	public void loadScene() {
+		 registerNewLevel();
 	}
 	
 	// Undo camera lock on player
@@ -157,5 +152,11 @@ public class GamePlayScene extends GameScene implements PropertyChangeListener, 
 	
 		this.attachChild(new AddScoreText(score, position));
 		
+	}
+
+	@Override
+	public void newLevelStarted() {
+		MyDebug.d("new level!");
+		registerNewLevel();
 	}
 }

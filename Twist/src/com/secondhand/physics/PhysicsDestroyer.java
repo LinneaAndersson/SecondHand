@@ -22,19 +22,22 @@ public final class PhysicsDestroyer {
 	private static BlockingQueue<IShape> queue;
 	private static PhysicsDestroyer instance;
 
-	private PhysicsDestroyer() {
+	private PhysicsDestroyer() { }
+	
+	// reset for a new physicsworld
+	public void reset(final Engine engine, final PhysicsWorld physicsWorld) {
 		killingInProcess = false;
 		//perhaps a normal linkedList would suffice
 		queue = new LinkedBlockingQueue<IShape>();
-	}
 	
-	public void initialize(final Engine engine, final PhysicsWorld physicsWorld){
+		
 		this.engine = engine;
 		this.physicsWorld = physicsWorld;
 		bodyToo = true;
 	}
 	
-	public static PhysicsDestroyer getInstance(){
+	
+ 	public static PhysicsDestroyer getInstance(){
 		if(instance == null){
 			instance = new PhysicsDestroyer();
 		}

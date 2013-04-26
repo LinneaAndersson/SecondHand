@@ -109,6 +109,7 @@ public abstract class BlackHole extends CircleEntity {
 		shape.setRadius(this.getRadius()
 				/ PhysicsConstants.PIXEL_TO_METER_RATIO_DEFAULT);
 
+		MyDebug.d("new size: "+ this.getRadius());
 		
 		entity.wasEaten();	
 	}
@@ -131,6 +132,7 @@ public abstract class BlackHole extends CircleEntity {
 			
 				
 			eatEntityUtil(entity);
+			
 			
 		}
 

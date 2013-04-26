@@ -109,13 +109,13 @@ public class Enemy extends BlackHole {
 
 		if (entity != null) {
 			if (straightToEntity(entity)) {
-				MyDebug.d("Enemy: applyMovement towards " + entity.getClass());
+			//	MyDebug.d("Enemy: applyMovement towards " + entity.getClass());
 				applyMovement(new Vector2(
 						(entity.getCenterX() - this.getCenterX()),
 						entity.getCenterY() - this.getCenterY()));
 
 			} else {
-				MyDebug.d("Enemy: stopMovement");
+				//MyDebug.d("Enemy: stopMovement");
 				stopMovement();
 				retreat(isCloseToDanger());
 

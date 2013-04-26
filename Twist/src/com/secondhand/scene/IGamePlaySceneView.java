@@ -7,4 +7,5 @@ public interface IGamePlaySceneView {
 
 	void pickedUpScorePowerUp(final int score, final Vector2 position);
 	
+	void newLevelStarted();
 }

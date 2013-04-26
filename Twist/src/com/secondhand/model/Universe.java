@@ -1,6 +1,8 @@
 package com.secondhand.model;
 
 import com.badlogic.gdx.math.Vector2;
+import com.secondhand.debug.MyDebug;
+import com.secondhand.scene.IGamePlaySceneView;
 
 /**
  * Class for describing the universe.
@@ -32,12 +34,16 @@ public final class Universe {
 			// starting level
 			currentLevel = new Level(2);
 		} else {
+			IGamePlaySceneView view = currentLevel.getView();
 			currentLevel = new Level(currentLevel.getLevelNumber()+1);
+			MyDebug.d("now we tell the view to create the level");
+			view.newLevelStarted();
 			// and also register all new entities in the controller. 
 		}
 	}
 
 	public void onManagedUpdate(final float pSecondsElapsed) {
+		
 		if (currentLevel.checkPlayerBigEnough()) {
 			nextLevel();
 		} else {

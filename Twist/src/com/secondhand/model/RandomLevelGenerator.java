@@ -44,13 +44,13 @@ public class RandomLevelGenerator {
 		this.levelWidth = 2000 * levelNumber;
 		this.levelHeight = 2000 * levelNumber;
 	
-		this.playerMaxSize = 800 * levelNumber;
+		this.playerMaxSize = 20 * levelNumber;
 		
 		this.entityList = new ArrayList<Entity>();
 		placeOutLevelEntities();
 		
 		this.enemyList = new ArrayList<Enemy>();
-		placeOutEnemies();
+		//placeOutEnemies();
 	}
 	
 
@@ -90,7 +90,7 @@ public class RandomLevelGenerator {
 	
 		final float K = 1.2f;
 		
-		final int MINIMUM_PLAYER_EATABLE = 10;
+		final int MINIMUM_PLAYER_EATABLE = 30;
 		int numPlayerEatable = 0;
 		
 		final float MAX_SIZE = 80f * this.levelNumber * K;

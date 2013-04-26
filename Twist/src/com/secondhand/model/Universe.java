@@ -29,11 +29,11 @@ public final class Universe {
 
 	public void nextLevel() {
 		if (currentLevel == null) {
+			// starting level
 			currentLevel = new Level(2);
-		} else if (!this.currentLevel.isGameOver()) {
-			currentLevel = new Level(currentLevel.getLevelNumber());
 		} else {
-			currentLevel = new Level();
+			currentLevel = new Level(currentLevel.getLevelNumber()+1);
+			// and also register all new entities in the controller. 
 		}
 	}
 

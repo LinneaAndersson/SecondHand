@@ -98,7 +98,7 @@ public final class SceneManager {
 		
 		
 		if (this.currentSceneEnum == AllScenes.GAME_PLAY_SCENE && gamePlaySceneController==null) {
-			gamePlaySceneController = new GamePlaySceneController(this.gamePlayScene, engine);
+			gamePlaySceneController = new GamePlaySceneController(this.gamePlayScene);
 		}
 		// fully clear the scene before loading and then load it.
 		currentScene.getScene().detachChildren();

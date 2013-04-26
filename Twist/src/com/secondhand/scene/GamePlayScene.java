@@ -2,6 +2,7 @@ package com.secondhand.scene;
 
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -12,11 +13,15 @@ import android.content.Context;
 import android.view.KeyEvent;
 
 import com.badlogic.gdx.math.Vector2;
+import com.secondhand.controller.CollisionContactListener;
 import com.secondhand.debug.MyDebug;
+import com.secondhand.model.Entity;
+import com.secondhand.model.Level;
 import com.secondhand.model.Player;
 import com.secondhand.model.Universe;
 import com.secondhand.model.powerup.PowerUp;
 import com.secondhand.opengl.StarsBackground;
+import com.secondhand.physics.PhysicsDestroyer;
 
 public class GamePlayScene extends GameScene implements PropertyChangeListener, IGamePlaySceneView {
 	
@@ -42,10 +47,34 @@ public class GamePlayScene extends GameScene implements PropertyChangeListener, 
 		this.player = player;
 	}
 
+	public void init() {
+		
+		
+		final Level currentLevel = universe.getLevel();
+		
+		// this should only be done once.
+		PhysicsDestroyer.getInstance().initialize(engine, currentLevel.getPhysicsWorld());
+		
+		registerUpdateHandler(currentLevel.getPhysicsWorld());
+		currentLevel.getPlayer().addListener(this);
+		
+		final List<IShape> shapes = new ArrayList<IShape>();
+
+		setPlayer(currentLevel.getPlayer().getShape());
+
+		for (final Entity entity : currentLevel.getEntityList()) {
+			shapes.add(entity.getShape());
+		}
+		setShapes(shapes);
+		
+		currentLevel.getPhysicsWorld().setContactListener(new CollisionContactListener(universe));
+		currentLevel.setView(this);
+	}
 
 	@Override
 	public void loadScene() {
-		
+		 
+		init();
 		
 		
 		final float width = universe.getLevel().getLevelWidth();

@@ -163,7 +163,7 @@ public class SettingsMenuScene extends GameMenuScene implements
 	@Override
 	public boolean onMenuItemClicked(final MenuScene pMenuScene,
 			final IMenuItem pMenuItem, final float pMenuItemLocalX,
-			final float pMenuItemLocalY) {
+		 float pMenuItemLocalY) {
 
 		switch (pMenuItem.getID()) {
 		case MENU_HIGHER:

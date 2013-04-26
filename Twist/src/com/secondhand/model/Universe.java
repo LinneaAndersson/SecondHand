@@ -3,13 +3,7 @@ package com.secondhand.model;
 import org.anddev.andengine.engine.Engine;
 
 import com.badlogic.gdx.math.Vector2;
-import com.badlogic.gdx.physics.box2d.Contact;
-import com.secondhand.controller.SceneManager;
-import com.secondhand.debug.MyDebug;
-import com.secondhand.model.powerup.PowerUp;
 import com.secondhand.physics.PhysicsDestroyer;
-import com.secondhand.resource.Sounds;
-import com.secondhand.scene.IGameScene.AllScenes;
 
 /**
  * Singelton class for describing the universe.

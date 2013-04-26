@@ -148,10 +148,8 @@ public class GamePlayScene extends GameScene implements PropertyChangeListener, 
 	}
 
 	@Override
-	public void pickedUpScorePowerUp(final int score, final Vector2 position) {
-		MyDebug.d("score: "+ score + " at pos " + position);
-	
-		this.attachChild(new AddScoreText(score, position));
+	public void showFadingTextNotifier(final String str, final Vector2 position) {
+		this.attachChild(new FadingNotifierText(str, position));
 		
 	}
 

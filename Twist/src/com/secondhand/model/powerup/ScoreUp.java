@@ -24,7 +24,7 @@ public class ScoreUp extends PowerUp {
 	public void activateEffect(final Player player) {
 		player.increaseScore(scoreBonus);
 		if(level.hasView()) {
-			level.getView().pickedUpScorePowerUp(scoreBonus, new Vector2(player.getX(), player.getY()));
+			level.getView().showFadingTextNotifier(scoreBonus + "+", new Vector2(player.getX(), player.getY()));
 		}
 	}
 }

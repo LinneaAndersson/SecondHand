@@ -14,13 +14,13 @@ import com.secondhand.model.Level;
 import com.secondhand.model.Universe;
 import com.secondhand.scene.GamePlayScene;
 
-public class GamePlaySceneController {
+public final class GamePlaySceneController {
 
-	private final Universe universe;
-
+	//private GamePlaySceneController instance;
+	
 	public GamePlaySceneController(final GamePlayScene scene) {
 
-		universe = Universe.getInstance();
+		final Universe universe = Universe.getInstance();
 		
 		final Level currentLevel = universe.getLevel();
 		
@@ -31,17 +31,16 @@ public class GamePlaySceneController {
 		final List<IShape> shapes = new ArrayList<IShape>();
 
 		scene.setPlayer(currentLevel.getPlayer().getShape());
-		scene.setShapes(shapes);
 
 		for (final Entity entity : currentLevel.getEntityList()) {
 			shapes.add(entity.getShape());
 		}
+		scene.setShapes(shapes);
 		
-		universe.getLevel().getPhysicsWorld().setContactListener(new CollisionContactListener());
-		universe.getLevel().setView(scene);
+		currentLevel.getPhysicsWorld().setContactListener(new CollisionContactListener());
+		currentLevel.setView(scene);
 	}
 	
-
 	private class GameSceneTouchListener implements IOnSceneTouchListener {
 		@Override
 		public boolean onSceneTouchEvent(final Scene pScene,
@@ -49,7 +48,7 @@ public class GamePlaySceneController {
 			if (pSceneTouchEvent.getAction() == TouchEvent.ACTION_DOWN) {
 				final float posX = pSceneTouchEvent.getX();
 				final float posY = pSceneTouchEvent.getY();
-				universe.update(new Vector2(posX, posY));
+				Universe.getInstance().update(new Vector2(posX, posY));
 				return true;
 			}
 			return false;

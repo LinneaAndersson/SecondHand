@@ -2,18 +2,11 @@ package com.secondhand.scene;
 
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
-import java.util.ArrayList;
 import java.util.List;
 
-import javax.microedition.khronos.opengles.GL10;
 
 import org.anddev.andengine.engine.Engine;
-import org.anddev.andengine.entity.modifier.AlphaModifier;
-import org.anddev.andengine.entity.modifier.MoveYModifier;
-import org.anddev.andengine.entity.scene.background.RepeatingSpriteBackground;
 import org.anddev.andengine.entity.shape.IShape;
-import org.anddev.andengine.entity.text.Text;
-import org.anddev.andengine.opengl.texture.region.TextureRegion;
 
 import android.content.Context;
 import android.view.KeyEvent;
@@ -23,20 +16,14 @@ import com.secondhand.debug.MyDebug;
 import com.secondhand.model.Player;
 import com.secondhand.model.Universe;
 import com.secondhand.model.powerup.PowerUp;
-import com.secondhand.opengl.RandomRepeatingBackground;
 import com.secondhand.opengl.StarsBackground;
-import com.secondhand.resource.Fonts;
-import com.secondhand.resource.TextureRegions;
 
 public class GamePlayScene extends GameScene implements PropertyChangeListener, IGamePlaySceneView {
-	
 	
 	private List<IShape> shapeList;
 	private IShape player;
 	
 	private final Universe universe = Universe.getInstance();
-	
-	private PowerUp currentEffect = null;
 	
 	public GamePlayScene(final Engine engine, final Context context) {
 		super(engine, context);
@@ -57,8 +44,6 @@ public class GamePlayScene extends GameScene implements PropertyChangeListener, 
 
 	@Override
 	public void loadScene() {
-	
-		// level width. it's the camera width and height for now.
 		final float width = universe.getLevel().getLevelWidth();
 		final float height = universe.getLevel().getLevelHeight();
 		
@@ -72,7 +57,6 @@ public class GamePlayScene extends GameScene implements PropertyChangeListener, 
         this.attachChild(new StarsBackground(130, 1.0f, width, height));
 		
 		// now load the scene(attach all the entities)
-		
         player.detachSelf();
 		attachChild(player);
 		for(final IShape shape : shapeList){
@@ -80,9 +64,7 @@ public class GamePlayScene extends GameScene implements PropertyChangeListener, 
 			attachChild(shape);
 		}
 		
-		// set the level width here.
 		this.smoothCamera.setBounds(0, width, 0, height);
-		
 		this.smoothCamera.setBoundsEnabled(true);
 		
 		engine.getCamera().setChaseEntity(player);
@@ -139,18 +121,8 @@ public class GamePlayScene extends GameScene implements PropertyChangeListener, 
 	@Override
 	public void pickedUpScorePowerUp(final int score, final Vector2 position) {
 		MyDebug.d("score: "+ score + " at pos " + position);
-		
-		final Text addScoreText = new Text(position.x, position.y, Fonts.getInstance().menuItemFont, score + "+");
-    
-		// otherwise the alpha channel won't work
-		addScoreText.setBlendFunction(GL10.GL_SRC_ALPHA, GL10.GL_ONE_MINUS_SRC_ALPHA);
-		
-		final float DURATION = 1.5f;
-		
-		addScoreText.registerEntityModifier(new AlphaModifier(DURATION, 1, 0));
-		addScoreText.registerEntityModifier(new MoveYModifier(DURATION, addScoreText.getY(), addScoreText.getY() - 50));
-		
-		this.attachChild(addScoreText);
+	
+		this.attachChild(new AddScoreText(score, position));
 		
 	}
 }

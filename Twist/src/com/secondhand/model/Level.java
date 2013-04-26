@@ -11,6 +11,7 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.BodyDef.BodyType;
 import com.badlogic.gdx.physics.box2d.Contact;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
+import com.secondhand.scene.IGamePlaySceneView;
 
 public class Level {
 
@@ -26,6 +27,20 @@ public class Level {
 	private int levelHeight;
 
 	private int levelNumber;
+	
+	private IGamePlaySceneView view;
+	
+	public void setView(final IGamePlaySceneView view) {
+		this.view = view;
+	}
+	
+	public IGamePlaySceneView getView() {
+		return this.view;
+	}
+	
+	public boolean hasView() {
+		return view != null;
+	}
 
 	public Level() {
 		this(1);

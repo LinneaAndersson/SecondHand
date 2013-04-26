@@ -13,6 +13,7 @@ import org.anddev.andengine.opengl.texture.region.TextureRegion;
 import android.content.Context;
 import android.view.KeyEvent;
 
+import com.badlogic.gdx.math.Vector2;
 import com.secondhand.debug.MyDebug;
 import com.secondhand.model.Player;
 import com.secondhand.model.Universe;
@@ -21,7 +22,7 @@ import com.secondhand.opengl.RandomRepeatingBackground;
 import com.secondhand.opengl.StarsBackground;
 import com.secondhand.resource.TextureRegions;
 
-public class GamePlayScene extends GameScene implements PropertyChangeListener {
+public class GamePlayScene extends GameScene implements PropertyChangeListener, IGamePlaySceneView {
 	
 	
 	private List<IShape> shapeList;
@@ -127,5 +128,10 @@ public class GamePlayScene extends GameScene implements PropertyChangeListener {
 		final Player player = Universe.getInstance().getLevel().getPlayer();
 		final PowerUp powerUp = ((PowerUp)event.getNewValue());
 		engine.registerUpdateHandler(powerUp.getTimer(player));
+	}
+
+	@Override
+	public void pickedUpScorePowerUp(final int score, final Vector2 position) {
+		MyDebug.d("score: "+ score + " at pos " + position);
 	}
 }

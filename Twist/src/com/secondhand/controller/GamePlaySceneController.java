@@ -38,7 +38,7 @@ public class GamePlaySceneController {
 		}
 		
 		universe.getLevel().getPhysicsWorld().setContactListener(new CollisionContactListener());
-		
+		universe.getLevel().setView(scene);
 	}
 	
 

@@ -19,6 +19,7 @@ public class ScoreUp extends PowerUp {
 		this.level = level;
 	}
 
+	// TODO: should probably used getScoreValue instead here.
 	public int getScoreBonus() {
 		return scoreBonus;
 	}
@@ -30,5 +31,8 @@ public class ScoreUp extends PowerUp {
 	@Override
 	public void activateEffect(final Player player) {
 		player.increaseScore(scoreBonus);
+		if(level.hasView()) {
+			level.getView().pickedUpScorePowerUp(scoreBonus, new Vector2(player.getX(), player.getY()));
+		}
 	}
 }

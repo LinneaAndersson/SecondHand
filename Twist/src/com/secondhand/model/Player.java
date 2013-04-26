@@ -52,6 +52,8 @@ public class Player extends BlackHole {
 		return this.lives;
 	}
 	
+	
+	
 	// the player loses a life 
 	private void loseLife() {
 		--this.lives;

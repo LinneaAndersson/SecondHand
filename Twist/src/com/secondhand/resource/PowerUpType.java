@@ -6,7 +6,8 @@ public enum PowerUpType {
 		SHIELD("shield_power_up.png"),
 		RANDOM_TELEPORT("random_teleport_power_up.png"),
 		SCORE_UP("score_up_power_up.png"),
-		SPEED_UP("speed_up_power_up.png");
+		SPEED_UP("speed_up_power_up.png"),
+		EXTRA_LIFE("extra_life_power_up.jpg");
 		
 		private String path; 
 		

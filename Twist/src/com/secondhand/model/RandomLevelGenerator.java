@@ -9,6 +9,7 @@ import org.anddev.andengine.extension.physics.box2d.PhysicsWorld;
 import com.badlogic.gdx.math.Vector2;
 import com.secondhand.debug.MyDebug;
 import com.secondhand.math.PolygonUtil;
+import com.secondhand.model.powerup.ExtraLife;
 import com.secondhand.model.powerup.RandomTeleport;
 import com.secondhand.model.powerup.ScoreUp;
 import com.secondhand.model.powerup.Shield;
@@ -153,6 +154,8 @@ public class RandomLevelGenerator {
 
 		entityList.add(new SpeedUp(new Vector2(20, 700), level));
 
+		entityList.add(new ExtraLife(new Vector2(20, 800), level));
+		
 		entityList.add(new ScoreUp(new Vector2(20, 900), level));
 	}
 }

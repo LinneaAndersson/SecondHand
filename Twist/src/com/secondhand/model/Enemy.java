@@ -6,6 +6,7 @@ import org.anddev.andengine.extension.physics.box2d.PhysicsWorld;
 
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Fixture;
+import com.badlogic.gdx.physics.box2d.QueryCallback;
 import com.badlogic.gdx.physics.box2d.RayCastCallback;
 import com.secondhand.debug.MyDebug;
 import com.secondhand.model.powerup.PowerUp;
@@ -13,7 +14,7 @@ import com.secondhand.model.powerup.PowerUp;
 public class Enemy extends BlackHole {
 
 	private static boolean straightLine = true;
-
+	private static Entity danger = null;
 	// because someone changed getArea to getRadius I
 	// had to do this.
 	private float area;
@@ -109,13 +110,32 @@ public class Enemy extends BlackHole {
 		if (entity != null) {
 			if (straightToEntity(entity)) {
 				MyDebug.d("Enemy: applyMovement towards " + entity.getClass());
-				applyMovement(entity);
+				applyMovement(new Vector2(
+						(entity.getCenterX() - this.getCenterX()),
+						entity.getCenterY() - this.getCenterY()));
 
 			} else {
 				MyDebug.d("Enemy: stopMovement");
 				stopMovement();
+				retreat(isCloseToDanger());
+
 			}
 		}
+	}
+	
+	private boolean isCloseToDanger() {
+
+		physicsWorld.QueryAABB(new QueryCallback() {
+
+			@Override
+			public boolean reportFixture(Fixture fixture) {
+				danger = ((Entity) fixture.getBody().getUserData());
+
+				return false;
+			}
+		}, 0, 0, 0, 0);
+
+		return danger != null;
 	}
 
 	private void stopMovement() {
@@ -124,17 +144,23 @@ public class Enemy extends BlackHole {
 
 	}
 
+	private void retreat(boolean inDanger) {
+		if (inDanger) {
+			applyMovement(new Vector2(this.getCenterX() - danger.getCenterX(),
+					this.getCenterY() - danger.getCenterY()));
+			danger = null;
+		}
+
+	}
+
 	// responsible for moving the enemies
 	// at first we only have them moving straight at the player,
 	// later we can add more functionality
 	// TODO avoid larger stuff, chase smaller stuff
 	// move in a smart way(no suicide)
-	private void applyMovement(final Entity entity) {
+	private void applyMovement(Vector2 movementVector) {
 
 		// the vector from enemy to the player
-		Vector2 movementVector = new Vector2(
-				(entity.getCenterX() - this.getCenterX()), entity.getCenterY()
-						- this.getCenterY());
 
 		// need to slow them down, they are to dam fast
 		// otherwise

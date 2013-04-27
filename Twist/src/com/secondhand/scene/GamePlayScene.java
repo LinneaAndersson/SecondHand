@@ -104,7 +104,6 @@ public class GamePlayScene extends GameScene implements PropertyChangeListener, 
 	@Override
 	public void loadScene() {
 		registerNewLevel();
-	//	 this.universe.getLevel().clearLevel();
 	}
 	
 	// Undo camera lock on player

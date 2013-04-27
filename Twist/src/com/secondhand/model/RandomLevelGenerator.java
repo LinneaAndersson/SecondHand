@@ -36,12 +36,13 @@ public class RandomLevelGenerator {
 	
 	private final Level level;
 	
+	
 	RandomLevelGenerator(Level level) {
 		this.physicsWorld = level.getPhysicsWorld();
 		this.levelNumber = level.getLevelNumber();
 		this.level = level;
 		
-		this.player = new Player(new Vector2(50, 50), 30, level, 20);
+		this.player = new Player(new Vector2(50, 50), 30, level, 20);	
 		
 		this.levelWidth = 2000 * levelNumber;
 		this.levelHeight = 2000 * levelNumber;
@@ -94,10 +95,10 @@ public class RandomLevelGenerator {
 	
 		final float K = 1.2f;
 		
-		final int MINIMUM_PLAYER_EATABLE = 30;
+		final int MINIMUM_PLAYER_EATABLE = 10;
 		int numPlayerEatable = 0;
 		
-		final float MAX_SIZE = 80f * this.levelNumber * K;
+		final float MAX_SIZE = 20f * this.levelNumber * K;
 		
 		final float MIN_SIZE = player.getRadius() - 10;
 		if(MIN_SIZE < 0) {

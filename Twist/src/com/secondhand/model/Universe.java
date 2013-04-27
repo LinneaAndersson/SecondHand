@@ -36,7 +36,7 @@ public final class Universe {
 			
 		} else {
 			
-			
+			MyDebug.d("advancing to next level");
 			currentLevel.clearLevel();
 			/*
 			final IGamePlaySceneView view = currentLevel.getView();
@@ -52,19 +52,21 @@ public final class Universe {
 	}
 
 	
+	
+	// for debugging
+	private boolean nextLevelAdvanced = false;
+	
 	public void onManagedUpdate(final float pSecondsElapsed) {
-		if (currentLevel.checkPlayerBigEnough()) {
+		if (currentLevel.checkPlayerBigEnough() && !nextLevelAdvanced) {
+			nextLevelAdvanced = true;
 			nextLevel();
 		} else {
 			currentLevel.onManagedUpdate(pSecondsElapsed);
 		}
 	}
+	
 
-	public void update(final Vector2 v) {
-		if (currentLevel.checkPlayerBigEnough()) {
-			nextLevel();
-		} else {
-			currentLevel.sendTouchInput(v);
-		}
+	public void updateWithTouchInput(final Vector2 v) {
+		currentLevel.sendTouchInput(v);
 	}
 }

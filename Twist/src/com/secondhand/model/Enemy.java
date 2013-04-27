@@ -2,6 +2,8 @@ package com.secondhand.model;
 
 import java.util.List;
 
+import org.anddev.andengine.extension.physics.box2d.util.constants.PhysicsConstants;
+
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Fixture;
 import com.badlogic.gdx.physics.box2d.QueryCallback;
@@ -122,8 +124,8 @@ public class Enemy extends BlackHole {
 	
 	private boolean isCloseToDanger() {
 
-		Vector2 center = getBody().getWorldCenter(); 
-		float rad = getRadius()/
+		final Vector2 center = getBody().getWorldCenter(); 
+		final float rad = (getRadius()+2)/PhysicsConstants.PIXEL_TO_METER_RATIO_DEFAULT;
 		physicsWorld.QueryAABB(new QueryCallback() {
 
 			@Override
@@ -132,7 +134,7 @@ public class Enemy extends BlackHole {
 
 				return false;
 			}
-		}, center.x-getRadius(), 0, 0, 0);
+		}, center.x-rad, center.y+rad, center.x+rad, center.y-rad);
 
 		return danger != null;
 	}

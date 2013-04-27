@@ -8,6 +8,7 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Fixture;
 import com.badlogic.gdx.physics.box2d.QueryCallback;
 import com.badlogic.gdx.physics.box2d.RayCastCallback;
+import com.secondhand.debug.MyDebug;
 import com.secondhand.model.powerup.PowerUp;
 
 public class Enemy extends BlackHole {
@@ -110,22 +111,25 @@ public class Enemy extends BlackHole {
 			if (straightToEntity(entity)) {
 				// MyDebug.d("Enemy: applyMovement towards " +
 				// entity.getClass());
+				closeToDanger();
 				applyMovement(new Vector2(
 						(entity.getCenterX() - this.getCenterX()),
 						entity.getCenterY() - this.getCenterY()));
+				
 
 			} else {
 				// MyDebug.d("Enemy: stopMovement");
 				stopMovement();
-				closeToDanger();
 
 			}
+		} else { 
+			closeToDanger();
 		}
 	}
 
-	//checks if there is something dangerous close by
+	// checks if there is something dangerous close by
 	private void closeToDanger() {
-
+		//MyDebug.d("Enemy: danger");	
 		final Vector2 center = getBody().getWorldCenter();
 		final float rad = (getRadius() + 5)
 				/ PhysicsConstants.PIXEL_TO_METER_RATIO_DEFAULT;
@@ -133,17 +137,18 @@ public class Enemy extends BlackHole {
 
 			@Override
 			public boolean reportFixture(final Fixture fixture) {
+				MyDebug.d("Enemy: report fixture "  + fixture.getBody().getUserData());	
 				Entity tmp = ((Entity) fixture.getBody().getUserData());
-				if (!canEat(tmp)) {
-				retreat(tmp);
+				/*if (!canEat(tmp)) {
+					retreat(tmp);
+				}*/
+				if(tmp.getClass() == Enemy.class ){
+					return true;
 				}
-				
-				
 				return false;
 			}
 		}, center.x - rad, center.y + rad, center.x + rad, center.y - rad);
 
-		
 	}
 
 	private void stopMovement() {
@@ -153,8 +158,9 @@ public class Enemy extends BlackHole {
 	}
 
 	private void retreat(final Entity danger) {
-			applyMovement(new Vector2(this.getCenterX() - danger.getCenterX(),
-					this.getCenterY() - danger.getCenterY()));
+		applyMovement(new Vector2(
+				(this.getCenterX() - danger.getCenterX() * 500),
+				(this.getCenterY() - danger.getCenterY() * 500)));
 
 	}
 
@@ -164,7 +170,7 @@ public class Enemy extends BlackHole {
 	// TODO avoid larger stuff, chase smaller stuff
 	// move in a smart way(no suicide)
 	private void applyMovement(Vector2 movementVector) { // NOPMD
-
+		MyDebug.d("Movement");
 		// the vector from enemy to the player
 
 		// need to slow them down, they are to dam fast
@@ -180,7 +186,7 @@ public class Enemy extends BlackHole {
 			// test than above
 			movementVector = movementVector.mul(0.0001f);
 		} else {
-			movementVector = movementVector.mul(0.00001f);
+			movementVector = movementVector.mul(0.001f);
 		}
 
 		this.move(movementVector);

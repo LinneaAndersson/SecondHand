@@ -164,11 +164,6 @@ public class Enemy extends BlackHole {
 
 	}
 
-	// responsible for moving the enemies
-	// at first we only have them moving straight at the player,
-	// later we can add more functionality
-	// TODO avoid larger stuff, chase smaller stuff
-	// move in a smart way(no suicide)
 	private void applyMovement(Vector2 movementVector) { // NOPMD
 		MyDebug.d("Movement");
 		// the vector from enemy to the player
@@ -190,7 +185,6 @@ public class Enemy extends BlackHole {
 		}
 
 		this.move(movementVector);
-
 	}
 
 	protected void handlePowerUp(final PowerUp powerUp) {

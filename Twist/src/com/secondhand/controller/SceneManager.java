@@ -5,6 +5,7 @@ import org.anddev.andengine.engine.Engine;
 import android.content.Context;
 import android.view.KeyEvent;
 
+import com.secondhand.model.GameWorld;
 import com.secondhand.resource.Sounds;
 import com.secondhand.resource.TextureRegions;
 import com.secondhand.scene.GameOverScene;
@@ -123,13 +124,17 @@ public final class SceneManager {
 		TextureRegions.getInstance().load();
 		Sounds.getInstance().load();
 		
-		
 		// IMPORTANT: when you want to add a new scene to the app, it's
 		// constructor MUST be called here.
 		this.mainMenuScene = new MainMenuScene(this.engine, context);
 		this.settingsMenuScene = new SettingsMenuScene(this.engine, context);
 		this.gameOverScene = new GameOverScene(this.engine, context);
 		this.gamePlayScene = new GamePlayScene(this.engine, context);
+		
+		// I do believe this belong here
+		gamePlayScene.getGameWorld().getPhysicsWorld().setContactListener(
+				new CollisionContactListener(gamePlayScene.getGameWorld()));
+		
 		this.gameOverScene.setGameWorld(gamePlayScene.getGameWorld());
 
 		this.highScoreScene = new HighScoreScene(this.engine, context);

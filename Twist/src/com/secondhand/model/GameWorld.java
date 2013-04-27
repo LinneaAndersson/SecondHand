@@ -16,30 +16,29 @@ import com.secondhand.scene.IGamePlaySceneView;
 public class GameWorld {
 
 	private final EntityManager entityManager;
-	
+
 	// TODO: Maybe store this in player instead?
 	private int playerMaxSize;
-	
+
 	private PhysicsWorld physicsWorld;
 
-	
 	private int levelWidth;
 	private int levelHeight;
 
 	private int levelNumber;
-	
+
 	// I would strongly recommend using some kind of observer-pattern here
 	// instead
 	private IGamePlaySceneView view;
-	
+
 	public void setView(final IGamePlaySceneView view) {
 		this.view = view;
 	}
-	
+
 	public IGamePlaySceneView getView() {
 		return this.view;
 	}
-	
+
 	public boolean hasView() {
 		return view != null;
 	}
@@ -47,34 +46,33 @@ public class GameWorld {
 	public GameWorld() {
 		this(2);
 	}
-	
+
 	public GameWorld(final int levelNumber) {
 		this.levelNumber = levelNumber;
-		
-		
-		this.physicsWorld  = new PhysicsWorld(new Vector2(), true);
-		
-		// you can try lowering the values of these if the game starts lagging too much.
+
+		this.physicsWorld = new PhysicsWorld(new Vector2(), true);
+
+		// you can try lowering the values of these if the game starts lagging
+		// too much.
 		this.physicsWorld.setVelocityIterations(16);
 		this.physicsWorld.setPositionIterations(16);
 
-		
-		final RandomLevelGenerator randomLevelGenerator = new RandomLevelGenerator(this);
-		
+		final RandomLevelGenerator randomLevelGenerator = new RandomLevelGenerator(
+				this);
+
 		this.playerMaxSize = randomLevelGenerator.playerMaxSize;
 		this.levelWidth = randomLevelGenerator.levelWidth;
 		this.levelHeight = randomLevelGenerator.levelHeight;
-		
-		this.entityManager = new EntityManager(randomLevelGenerator.player,  randomLevelGenerator.entityList,
-				randomLevelGenerator.enemyList);
-		
+
+		this.entityManager = new EntityManager(randomLevelGenerator.player,
+				randomLevelGenerator.entityList, randomLevelGenerator.enemyList);
+
 		setupWorldBounds();
-	}	
+	}
 
 	public int getLevelNumber() {
 		return levelNumber;
 	}
-
 
 	public PhysicsWorld getPhysicsWorld() {
 		return physicsWorld;
@@ -106,8 +104,6 @@ public class GameWorld {
 
 	}
 
-	
-
 	public int getLevelWidth() {
 		return levelWidth;
 	}
@@ -116,29 +112,27 @@ public class GameWorld {
 		return levelHeight;
 	}
 
-	
-	
 	// for debugging
 
 	private boolean nextLevelAdvanced = false;
 
 	public void nextLevel() {
-			
+
 		MyDebug.d("advancing to next level");
 		clearLevel();
-			/*
-			final IGamePlaySceneView view = currentLevel.getView();
-			
-			// clear physics world expect for player.
-			
-			
-			currentLevel = new Level(currentLevel.getLevelNumber()+1);
-			MyDebug.d("now we tell the view to create the level");
-			view.newLevelStarted();
-			// and also register all new entities in the controller. */
+		/*
+		 * final IGamePlaySceneView view = currentLevel.getView();
+		 * 
+		 * // clear physics world expect for player.
+		 * 
+		 * 
+		 * currentLevel = new Level(currentLevel.getLevelNumber()+1);
+		 * MyDebug.d("now we tell the view to create the level");
+		 * view.newLevelStarted(); // and also register all new entities in the
+		 * controller.
+		 */
 	}
 
-	
 	public void onManagedUpdate(final float pSecondsElapsed) {
 		if (checkPlayerBigEnough() && !nextLevelAdvanced) {
 			nextLevelAdvanced = true;
@@ -152,11 +146,11 @@ public class GameWorld {
 	public boolean isGameOver() {
 		return this.entityManager.getPlayer().lostAllLives();
 	}
-	
+
 	public void checkCollision(final Contact contact) {
-		CollisionResolver.checkCollision(contact);	
+		CollisionResolver.checkCollision(contact);
 	}
-	
+
 	public Player getPlayer() {
 		return this.entityManager.getPlayer();
 	}
@@ -166,15 +160,16 @@ public class GameWorld {
 	}
 
 	public boolean checkPlayerBigEnough() {
-		if(this.getPlayer().getRadius() < playerMaxSize)
-			MyDebug.d("current played size: " + this.getPlayer().getRadius() + " goal: " + playerMaxSize);
+		if (this.getPlayer().getRadius() < playerMaxSize)
+			MyDebug.d("current played size: " + this.getPlayer().getRadius()
+					+ " goal: " + playerMaxSize);
 		return this.getPlayer().getRadius() >= playerMaxSize;
 	}
-	
+
 	public EntityManager getEntityManager() {
 		return this.entityManager;
 	}
-	
+
 	// remove every entity(both from the physics world and andengine rendering)
 	// from the world expect for the player.
 	public void clearLevel() {

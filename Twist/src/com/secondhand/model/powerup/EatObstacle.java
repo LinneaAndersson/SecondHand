@@ -18,5 +18,20 @@ public class EatObstacle extends PowerUp {
 	@Override
 	public void activateEffect(final Player player) {
 		player.getCircle().setColor(1f, 0, 0);
+		player.setCanEatInedibles(true);
+	}
+	
+	@Override
+	public void deactivateEffect(final Player player) {
+		boolean anotherOne = false;
+		for (final PowerUp powerUp : player.getPowerUps()) {
+			if (powerUp.getClass() == EatObstacle.class)
+				anotherOne = true;
+		}
+		
+		if(!anotherOne)
+			super.deactivateEffect(player);
+		
+		player.setCanEatInedibles(!anotherOne);
 	}
 }

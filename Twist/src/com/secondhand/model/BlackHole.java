@@ -16,6 +16,8 @@ public abstract class BlackHole extends CircleEntity {
 	
 	private float maxSpeed;
 	
+	private boolean canEatInedibles;
+	
 	//I put this in BlackHole, so enemy black holes will also have scores
 	// but placing it here made coding the eating logic much more convenient.
 	// but we can simply ignore the score for enemy black holes.
@@ -30,7 +32,16 @@ public abstract class BlackHole extends CircleEntity {
 				updateRotation, FixtureDefs.BLACK_HOLE_FIXTURE_DEF);
 		this.maxSpeed = maxSpeed;
 		this.score = 0;
+		this.canEatInedibles = false;
 		
+	}
+	
+	public boolean canEatInedibles() {
+		return this.canEatInedibles;
+	}
+	
+	public void setCanEatInedibles(final boolean canEatInedibles) {
+		this.canEatInedibles = canEatInedibles;
 	}
 	
 	public int getScore() {
@@ -57,7 +68,7 @@ public abstract class BlackHole extends CircleEntity {
 	 * If sizes are equal then false is returned.
 	 */
 	public boolean canEat(final Entity entity) {
-		if (!entity.isEdible()) {
+		if (!entity.isEdible() && !this.canEatInedibles()) {
 			return false;
 		}
 		return this.getRadius() > entity.getRadius();
@@ -88,6 +99,7 @@ public abstract class BlackHole extends CircleEntity {
 		// for now we won't handle black holes eating other black holes.	
 		/*if(entity instanceof BlackHole)
 			return;*/
+		
 		
 		if(!this.canEat(entity)) {
 			entityWasTooBigToEat(entity);
@@ -127,8 +139,10 @@ public abstract class BlackHole extends CircleEntity {
 					this.eatEntityUtil(otherBlackHole);
 		} else {
 			
+		/*	if(entity instanceof Obstacle) {
+				return;
+			}*/
 			
-				
 			eatEntityUtil(entity);
 			
 			

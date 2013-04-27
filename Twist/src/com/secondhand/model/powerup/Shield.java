@@ -22,12 +22,16 @@ public class Shield extends PowerUp {
 	
 	@Override
 	public void deactivateEffect(final Player player) {
-		super.deactivateEffect(player);
 		boolean hasAnotherShield = false;
 		for (final PowerUp powerUp : player.getPowerUps()) {
 			if (powerUp.getClass() == Shield.class)
 				hasAnotherShield = true;
 		}
+		
+		if(!hasAnotherShield)
+			super.deactivateEffect(player);
+		
+		
 		player.setIsEdible(!hasAnotherShield);
 	}
 }

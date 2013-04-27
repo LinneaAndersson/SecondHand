@@ -9,6 +9,7 @@ import org.anddev.andengine.extension.physics.box2d.PhysicsWorld;
 import com.badlogic.gdx.math.Vector2;
 import com.secondhand.debug.MyDebug;
 import com.secondhand.math.PolygonUtil;
+import com.secondhand.model.powerup.EatObstacle;
 import com.secondhand.model.powerup.ExtraLife;
 import com.secondhand.model.powerup.RandomTeleport;
 import com.secondhand.model.powerup.ScoreUp;
@@ -146,7 +147,7 @@ public class RandomLevelGenerator {
 					.randomEnum(rng, PlanetType.class), level));
 		}
 		
-		entityList.add(new Obstacle(new Vector2(200, 200), PolygonUtil.getRandomPolygon() , level));		
+		entityList.add(new Obstacle(new Vector2(400, 400), PolygonUtil.getRandomPolygon() , level));		
 		
 		entityList.add(new RandomTeleport(new Vector2(100, 500), level));
 
@@ -157,5 +158,8 @@ public class RandomLevelGenerator {
 		entityList.add(new ExtraLife(new Vector2(20, 800), level));
 		
 		entityList.add(new ScoreUp(new Vector2(20, 900), level));
+		
+		entityList.add(new EatObstacle(new Vector2(20, 400), level));
+		
 	}
 }

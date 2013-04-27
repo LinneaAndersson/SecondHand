@@ -160,16 +160,7 @@ public final class PolygonUtil {
         // set the zero vector.
         firstV.x = 0;
         firstV.y = 0;
-        
-       /*
-        final List<Vector2> p = new ArrayList<Vector2>();
-
-        p.add(new Vector2(0,0));
-        p.add(new Vector2(100,0));
-        p.add(new Vector2(100,100));
-        p.add(new Vector2(0,100));
-        return p;*/
-
+       
 
         return polygonEdges;
     }

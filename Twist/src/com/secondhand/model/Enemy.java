@@ -14,13 +14,13 @@ public class Enemy extends BlackHole {
 	private static Entity danger = null;
 	// because someone changed getArea to getRadius I
 	// had to do this.
-	private final float area;
+	private final float huntingArea;
 
 	public Enemy(final Vector2 vector, final float radius,
 			final GameWorld level, final float maxSpeed) {
 		super(vector, radius, level, true, maxSpeed);
 
-		area = getRadius() * getRadius() * (float) Math.PI;
+		huntingArea = getRadius() * getRadius() * (float) Math.PI * 100;
 	}
 
 	// player has highest chase-priority
@@ -73,7 +73,7 @@ public class Enemy extends BlackHole {
 
 		// the hunting area is tmp like this, don't know
 		// why i choose area*100
-		return dx * dx + dy * dy <= area * 100;
+		return dx * dx + dy * dy <= huntingArea;
 
 	}
 
@@ -122,6 +122,8 @@ public class Enemy extends BlackHole {
 	
 	private boolean isCloseToDanger() {
 
+		Vector2 center = getBody().getWorldCenter(); 
+		float rad = getRadius()/
 		physicsWorld.QueryAABB(new QueryCallback() {
 
 			@Override
@@ -130,7 +132,7 @@ public class Enemy extends BlackHole {
 
 				return false;
 			}
-		}, 0, 0, 0, 0);
+		}, center.x-getRadius(), 0, 0, 0);
 
 		return danger != null;
 	}

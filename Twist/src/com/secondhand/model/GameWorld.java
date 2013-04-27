@@ -24,7 +24,6 @@ public class GameWorld {
 	
 	private int playerMaxSize;
 	private PhysicsWorld physicsWorld;
-	private boolean gameOver = false;
 
 	private Player player;
 
@@ -60,8 +59,6 @@ public class GameWorld {
 		
 		this.scheduledForDeletionEntities = new Stack<Entity>();
 		
-		this.gameOver = false;
-
 		this.physicsWorld  = new PhysicsWorld(new Vector2(), true);
 		
 		// you can try lowering the values of these if the game starts lagging too much.
@@ -181,16 +178,12 @@ public class GameWorld {
 			
 			this.player.moveToNeededPositionIfNecessary();
 			
-			if(this.player.lostAllLives()) {
-				this.gameOver = true;
-			}
-			
 			MyDebug.d("entities: " + this.entityList.size());
 		}
 	}
 
 	public boolean isGameOver() {
-		return this.gameOver;
+		return this.player.lostAllLives();
 	}
 	
 

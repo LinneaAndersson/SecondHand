@@ -92,8 +92,7 @@ public class GameOverScene extends GameMenuScene implements
 	}
 
 	public void setHeadLine(final String text) {
-		textGameOver = new Text(100, 60, mFont, LocalizationStrings
-				.getInstance().getLocalizedString(text), HorizontalAlign.CENTER);
+		textGameOver = new Text(100, 60, mFont, LocalizationStrings.getInstance().getLocalizedString(text), HorizontalAlign.CENTER);
 
 		final float x = this.smoothCamera.getWidth() / 2.0f
 				- textGameOver.getWidth() / 2.0f;

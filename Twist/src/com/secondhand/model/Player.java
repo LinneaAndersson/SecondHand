@@ -10,6 +10,7 @@ import org.anddev.andengine.extension.physics.box2d.util.constants.PhysicsConsta
 
 import com.badlogic.gdx.math.Vector2;
 import com.secondhand.debug.MyDebug;
+import com.secondhand.model.powerup.ExtraLife;
 import com.secondhand.model.powerup.PowerUp;
 import com.secondhand.resource.Sounds;
 
@@ -54,18 +55,20 @@ public class Player extends BlackHole {
 	
 	
 	public void increaseScore(final int increase) {
+		int oldScore = getScore();
 		super.increaseScore(increase);
 		// we also want to notify the view of this change:
 		if(this.level.hasView())
 			//this.level.getView().updateScore(this.getScore());
-			sceneSupport.firePropertyChange("Score", 0, getScore());
+			sceneSupport.firePropertyChange("Score", oldScore, getScore());
 	}
 	
 	private void changeLives(final int change) {
+		int oldLife = lives;
 		lives += change;
 		if(this.level.hasView())
 			//this.level.getView().updateLives(this.getLives());
-			sceneSupport.firePropertyChange("Life", 0, lives);
+			sceneSupport.firePropertyChange("Life", oldLife, lives);
 	}
 	
 	// the player loses a life 

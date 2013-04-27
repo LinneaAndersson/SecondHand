@@ -17,8 +17,8 @@ public class ExtraLife extends PowerUp {
 	@Override
 	public void activateEffect(final Player player) {
 		player.gainLife();
-		if(level.hasView()) {
+		/*if(level.hasView()) {
 			level.getView().showFadingTextNotifier("1UP", new Vector2(player.getX(), player.getY()));
-		}
+		}*/
 	}
 }

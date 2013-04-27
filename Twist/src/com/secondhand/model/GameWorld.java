@@ -28,6 +28,8 @@ public class GameWorld {
 
 	private int levelNumber;
 	
+	// I would strongly recommend using some kind of observer-pattern here
+	// instead
 	private IGamePlaySceneView view;
 	
 	public void setView(final IGamePlaySceneView view) {

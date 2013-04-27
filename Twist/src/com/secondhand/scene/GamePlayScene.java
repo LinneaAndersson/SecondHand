@@ -47,29 +47,21 @@ public class GamePlayScene extends GameScene implements PropertyChangeListener, 
 		
 		this.smoothCamera.setBounds(0, width, 0, height);
 		
-		final List<IShape> shapeList = new ArrayList<IShape>();
-		
 		for (final Entity entity : gameWorld.getEntityList()) {
-			shapeList.add(entity.getShape());
+			IShape shape = entity.getShape();
+			shape.detachSelf();
+			attachChild(shape);
 		}
-		
-		
 		
 		// TODO: get this background to work.
 		/*final List<TextureRegion> starsTextures = new ArrayList<TextureRegion>();
 		starsTextures.add(TextureRegions.getInstance().starsTexture);
 		this.attachChild(new RandomRepeatingBackground(starsTextures, width, height));*/
 		
+		// starry sky
 		this.attachChild(new StarsBackground(50, 5.0f, width, height));
 		this.attachChild(new StarsBackground(100, 3.0f, width, height));
         this.attachChild(new StarsBackground(130, 1.0f, width, height));
-		
-		// now load the scene(attach all the entities)
-      for(final IShape shape : shapeList){
-			shape.detachSelf();
-			attachChild(shape);
-		}
-		
 	}
 	
 	// should be called ONCE in the program.
@@ -87,7 +79,7 @@ public class GamePlayScene extends GameScene implements PropertyChangeListener, 
 			attachChild(player.getShape());
 		gameWorld.getPlayer().addListener(this);
 		engine.getCamera().setChaseEntity(player.getShape());
-		
+			
 		// setup the physicsworld the
 		registerUpdateHandler(gameWorld.getPhysicsWorld());
 		gameWorld.getPhysicsWorld().setContactListener(new CollisionContactListener(gameWorld));

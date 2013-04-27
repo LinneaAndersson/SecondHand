@@ -2,9 +2,6 @@ package com.secondhand.scene;
 
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
-import java.util.ArrayList;
-import java.util.List;
-
 
 import org.anddev.andengine.engine.Engine;
 import org.anddev.andengine.engine.camera.hud.HUD;
@@ -48,7 +45,7 @@ public class GamePlayScene extends GameScene implements PropertyChangeListener, 
 		this.smoothCamera.setBounds(0, width, 0, height);
 		
 		for (final Entity entity : gameWorld.getEntityList()) {
-			IShape shape = entity.getShape();
+			final IShape shape = entity.getShape();
 			shape.detachSelf();
 			attachChild(shape);
 		}
@@ -151,7 +148,6 @@ public class GamePlayScene extends GameScene implements PropertyChangeListener, 
 	@Override
 	public void showFadingTextNotifier(final String str, final Vector2 position) {
 		this.attachChild(new FadingNotifierText(str, position));
-		
 	}
 
 	@Override

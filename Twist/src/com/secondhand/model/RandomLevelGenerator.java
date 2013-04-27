@@ -16,7 +16,6 @@ import com.secondhand.model.powerup.ScoreUp;
 import com.secondhand.model.powerup.Shield;
 import com.secondhand.model.powerup.SpeedUp;
 import com.secondhand.opengl.Circle;
-import com.secondhand.physics.PhysicsAreaChecker;
 import com.secondhand.resource.PlanetType;
 import com.secondhand.util.RandomUtil;
 
@@ -37,7 +36,7 @@ public class RandomLevelGenerator {
 	private final GameWorld level;
 	
 	
-	RandomLevelGenerator(GameWorld level) {
+	RandomLevelGenerator(final GameWorld level) {
 		this.physicsWorld = level.getPhysicsWorld();
 		this.levelNumber = level.getLevelNumber();
 		this.level = level;

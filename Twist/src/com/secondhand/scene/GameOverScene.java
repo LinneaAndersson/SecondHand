@@ -19,7 +19,6 @@ import android.util.Log;
 import com.secondhand.debug.MyDebug;
 import com.secondhand.model.GameWorld;
 import com.secondhand.model.Player;
-import com.secondhand.resource.Fonts;
 import com.secondhand.resource.LocalizationStrings;
 
 public class GameOverScene extends GameMenuScene implements

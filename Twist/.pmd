@@ -16,10 +16,6 @@
             <ruleset>Design Rules</ruleset>
         </rule>
         <rule>
-            <name>AddEmptyString</name>
-            <ruleset>Optimization Rules</ruleset>
-        </rule>
-        <rule>
             <name>AppendCharacterWithChar</name>
             <ruleset>String and StringBuffer Rules</ruleset>
         </rule>

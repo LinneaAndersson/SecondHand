@@ -8,7 +8,7 @@ import com.secondhand.resource.PowerUpType;
 public class ScoreUp extends PowerUp {
 
 	private final static float DURATION = 0;
-	private int scoreBonus = 10;
+	private final static int SCORE_BONUS = 10;
 	
 	public ScoreUp(final Vector2 position,
 			final  GameWorld level) {
@@ -17,14 +17,14 @@ public class ScoreUp extends PowerUp {
 
 	// TODO: should probably used getScoreValue instead here.
 	public int getScoreBonus() {
-		return scoreBonus;
+		return SCORE_BONUS;
 	}
 	
 	@Override
 	public void activateEffect(final Player player) {
-		player.increaseScore(scoreBonus);
+		player.increaseScore(SCORE_BONUS);
 		if(level.hasView()) {
-			level.getView().showFadingTextNotifier(scoreBonus + "+", new Vector2(player.getX(), player.getY()));
+			level.getView().showFadingTextNotifier(SCORE_BONUS + "+", new Vector2(player.getX(), player.getY()));
 		}
 	}
 }

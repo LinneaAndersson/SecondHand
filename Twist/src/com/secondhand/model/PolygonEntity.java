@@ -2,7 +2,6 @@ package com.secondhand.model;
 
 import java.util.List;
 
-import org.anddev.andengine.extension.physics.box2d.PhysicsWorld;
 import org.anddev.andengine.extension.physics.box2d.util.constants.PhysicsConstants;
 
 import com.badlogic.gdx.math.Vector2;

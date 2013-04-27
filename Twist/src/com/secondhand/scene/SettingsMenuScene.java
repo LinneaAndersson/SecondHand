@@ -1,7 +1,6 @@
 package com.secondhand.scene;
 
 import org.anddev.andengine.audio.music.MusicManager;
-import org.anddev.andengine.audio.sound.Sound;
 import org.anddev.andengine.audio.sound.SoundManager;
 import org.anddev.andengine.engine.Engine;
 import org.anddev.andengine.entity.scene.menu.MenuScene;
@@ -163,7 +162,7 @@ public class SettingsMenuScene extends GameMenuScene implements
 	@Override
 	public boolean onMenuItemClicked(final MenuScene pMenuScene,
 			final IMenuItem pMenuItem, final float pMenuItemLocalX,
-		 float pMenuItemLocalY) {
+		final float pMenuItemLocalY) {
 
 		switch (pMenuItem.getID()) {
 		case MENU_HIGHER:

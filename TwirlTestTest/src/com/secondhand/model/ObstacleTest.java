@@ -14,8 +14,7 @@ public class ObstacleTest extends TestCase{
 
 	public void testConstructor() {
 		
-		final PhysicsWorld pw  =new PhysicsWorld(new Vector2(), true);
-		
+		final GameWorld gW = new GameWorld();		
 		
 		Vector2 pos = new Vector2(2f, 4f);
 		List<Vector2> points = new ArrayList<Vector2>();
@@ -27,7 +26,7 @@ public class ObstacleTest extends TestCase{
 		
 		Polygon p = new Polygon(pos, points);
 		
-		Obstacle obstacle = new Obstacle(p, pw);
+		Obstacle obstacle = new Obstacle(p, gW);
 		
 		assertEquals(pos.x, obstacle.getX());
 		assertEquals(pos.y, obstacle.getY());

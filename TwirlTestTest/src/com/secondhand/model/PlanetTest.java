@@ -18,13 +18,12 @@ public class PlanetTest extends TestCase{
 	
 	public void testConstructor() {
 
-		final PhysicsWorld pw  =new PhysicsWorld(new Vector2(), true);
-		
+		final GameWorld gW = new GameWorld();		
 		
 		Vector2 pos = new Vector2(2f, 4f);
 		float rad = 3.2f;
 		
-		Planet planet = new Planet(pos, rad, pw);
+		Planet planet = new Planet(pos, rad, gW);
 		
 		assertEquals(rad, planet.getRadius());
 		assertEquals(pos.x, planet.getX());

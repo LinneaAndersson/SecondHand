@@ -3,6 +3,7 @@ package com.secondhand.model.powerup;
 import org.anddev.andengine.extension.physics.box2d.PhysicsWorld;
 
 import com.badlogic.gdx.math.Vector2;
+import com.secondhand.model.GameWorld;
 import com.secondhand.model.Player;
 import com.secondhand.model.powerup.PowerUp;
 
@@ -11,11 +12,11 @@ import junit.framework.TestCase;
 public class PowerUpTest extends TestCase {
 	
 	public void testConstructor() {
-		final PhysicsWorld pw = new PhysicsWorld(new Vector2(), true);
+		final GameWorld gW = new GameWorld();
 		final Vector2 position = new Vector2(2,2);
 		float dur = 5;
 		
-		PowerUp pu1 = new PowerUp(position, pw, dur) {
+		PowerUp pu1 = new PowerUp(position, gW, dur) {
 			@Override
 			public void activateEffect(Player player) {
 				
@@ -30,12 +31,12 @@ public class PowerUpTest extends TestCase {
 	
 	public void testDeactivateEffect() {
 		Vector2 pos = new Vector2();
+		final GameWorld gW = new GameWorld();
 		float rad = 10;
-		PhysicsWorld pw = new PhysicsWorld(new Vector2(), true);
 		float maxSpeed = 20;
-		Player player = new Player(pos, rad, pw, maxSpeed);
+		Player player = new Player(pos, rad, gW, maxSpeed);
 		float duration = 5;
-		PowerUp powerUp = new PowerUp(pos, pw, duration) {
+		PowerUp powerUp = new PowerUp(pos, gW, duration) {
 			@Override
 			public void activateEffect(Player player) {
 				player.getCircle().setColor(0, 0, 0); // Set color to black

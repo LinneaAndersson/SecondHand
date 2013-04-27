@@ -18,13 +18,13 @@ public class EnemyTest extends TestCase{
 	
 	public void testConstructor() {
 
-		final PhysicsWorld pw  =new PhysicsWorld(new Vector2(), true);
+		final GameWorld gW = new GameWorld();
 		
 		Vector2 pos = new Vector2(2f, 4f);
 		float rad = 3.2f;
 		float maxSpeed = 10f;
 		
-		Enemy enemy = new Enemy(pos, rad, pw, maxSpeed);
+		Enemy enemy = new Enemy(pos, rad, gW, maxSpeed);
 		
 		assertEquals(rad, enemy.getRadius());
 		assertEquals(pos.x, enemy.getX());
@@ -36,18 +36,17 @@ public class EnemyTest extends TestCase{
 	public void testIsBiggerThan() {
 		
 		
-		final PhysicsWorld pw  =new PhysicsWorld(new Vector2(), true);
-		
+		final GameWorld gW = new GameWorld();		
 		
 		Vector2 pos = new Vector2(2f, 4f);
 		float rad = 3.2f;
 		float maxSpeed = 10f;
 		
-		Enemy enemy = new Enemy(pos, rad, pw, maxSpeed);
+		Enemy enemy = new Enemy(pos, rad, gW, maxSpeed);
 	
-		Player other = new Player(pos, rad-1, pw, maxSpeed);
+		Player other = new Player(pos, rad-1, gW, maxSpeed);
 		assertTrue(enemy.canEat(other));
-		other = new Player(pos, rad, pw, maxSpeed);
+		other = new Player(pos, rad, gW, maxSpeed);
 		assertFalse(enemy.canEat(other));
 	}
 	

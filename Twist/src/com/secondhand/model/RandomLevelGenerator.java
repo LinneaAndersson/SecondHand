@@ -34,10 +34,10 @@ public class RandomLevelGenerator {
 	public final List<Entity> entityList;
 	public final List<Enemy> enemyList;
 	
-	private final Level level;
+	private final GameWorld level;
 	
 	
-	RandomLevelGenerator(Level level) {
+	RandomLevelGenerator(GameWorld level) {
 		this.physicsWorld = level.getPhysicsWorld();
 		this.levelNumber = level.getLevelNumber();
 		this.level = level;
@@ -47,7 +47,7 @@ public class RandomLevelGenerator {
 		this.levelWidth = 2000 * levelNumber;
 		this.levelHeight = 2000 * levelNumber;
 	
-		this.playerMaxSize = 20 * levelNumber;
+		this.playerMaxSize = 40 * levelNumber;
 		
 		
 		this.entityList = new ArrayList<Entity>();

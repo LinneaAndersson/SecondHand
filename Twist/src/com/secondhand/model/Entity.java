@@ -15,12 +15,12 @@ public abstract class Entity {
 	private final IShape shape;
 	private boolean isEdible;
 	protected final PhysicsWorld physicsWorld;
-	protected final Level level;
+	protected final GameWorld level;
 	
 	protected final boolean updateRotation;
 	
 	public Entity(final Shape shape, final boolean isEdible, final Body body,  final boolean updateRotation,
-			final Level level) {
+			final GameWorld level) {
 		this.body = body;
 		this.shape = shape;
 		this.isEdible = isEdible;

@@ -9,7 +9,7 @@ import com.secondhand.resource.TextureRegions;
 
 public class Planet extends CircleEntity {
 
-	public Planet (final Vector2 position, final float radius, final PlanetType planetType, final Level level) {
+	public Planet (final Vector2 position, final float radius, final PlanetType planetType, final GameWorld level) {
 		super(new TexturedCircle(position.x, position.y, radius, TextureRegions.getInstance().getPlanetTexture(planetType)), true, level, true,
 				FixtureDefs.PLANET_FIXTURE_DEF);
 	}
@@ -17,7 +17,7 @@ public class Planet extends CircleEntity {
 	/**
 	 * Create a colored planet. This constructor is much easier to test.
 	 */
-	public Planet (final Vector2 position, final float radius, final Level level) {
+	public Planet (final Vector2 position, final float radius, final GameWorld level) {
 		super(new Circle(position.x, position.y, radius), true, level, true, FixtureDefs.PLANET_FIXTURE_DEF);
 	}
 	

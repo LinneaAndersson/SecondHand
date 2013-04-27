@@ -8,7 +8,7 @@ import org.anddev.andengine.entity.sprite.Sprite;
 
 import com.badlogic.gdx.math.Vector2;
 import com.secondhand.model.FixtureDefs;
-import com.secondhand.model.Level;
+import com.secondhand.model.GameWorld;
 import com.secondhand.model.Player;
 import com.secondhand.model.RectangleEntity;
 import com.secondhand.resource.PowerUpType;
@@ -23,17 +23,17 @@ public abstract class PowerUp extends RectangleEntity {
 	
 	private float duration;
 	
-	public PowerUp(final BaseRectangle rectangle, final Level level, final float duration) {
+	public PowerUp(final BaseRectangle rectangle, final GameWorld level, final float duration) {
 		super(rectangle, true, level, false, FixtureDefs.POWER_UP_FIXTURE_DEF);
 		this.duration = duration;	
 	}
 	
-	public PowerUp (final Vector2 position, final PowerUpType powerUpType, final Level level, final float duration) {
+	public PowerUp (final Vector2 position, final PowerUpType powerUpType, final GameWorld level, final float duration) {
 		this(new Sprite(position.x, position.y, WIDTH, HEIGHT, TextureRegions.getInstance().getPowerUpTexture(powerUpType)), level, duration);
 	}
 	
 	// this constructor is easier to test. 
-	public PowerUp (final Vector2 position, final Level level, final float duration) {
+	public PowerUp (final Vector2 position, final GameWorld level, final float duration) {
 		this(new Rectangle(position.x, position.y, WIDTH, HEIGHT), level, duration);
 	}	
 	

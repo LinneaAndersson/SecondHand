@@ -7,17 +7,17 @@ import org.anddev.andengine.input.touch.TouchEvent;
 
 import com.badlogic.gdx.math.Vector2;
 import com.secondhand.debug.MyDebug;
+import com.secondhand.model.GameWorld;
 import com.secondhand.model.Universe;
 import com.secondhand.scene.GamePlayScene;
 
 public final class GamePlaySceneController {
 
-	private final Universe universe;
+	private final GameWorld gameWorld;
 	
 	public GamePlaySceneController(final GamePlayScene scene) {
-		universe = scene.getUniverse();
+		gameWorld = scene.getGameWorld();
 		scene.setOnSceneTouchListener(new GameSceneTouchListener());
-
 	}
 	
 	private class GameSceneTouchListener implements IOnSceneTouchListener {
@@ -27,7 +27,7 @@ public final class GamePlaySceneController {
 			if (pSceneTouchEvent.getAction() == TouchEvent.ACTION_DOWN) {
 				final float posX = pSceneTouchEvent.getX();
 				final float posY = pSceneTouchEvent.getY();
-				universe.updateWithTouchInput(new Vector2(posX, posY));
+				gameWorld.updateWithTouchInput(new Vector2(posX, posY));
 				return true;
 			}
 			return false;

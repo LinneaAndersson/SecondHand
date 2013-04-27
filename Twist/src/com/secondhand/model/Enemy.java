@@ -19,7 +19,7 @@ public class Enemy extends BlackHole {
 	private float area;
 
 	public Enemy(final Vector2 vector, final float radius,
-			final Level level, final float maxSpeed) {
+			final GameWorld level, final float maxSpeed) {
 		super(vector, radius, level, true, maxSpeed);
 
 		area = getRadius() * getRadius() * (float) Math.PI;

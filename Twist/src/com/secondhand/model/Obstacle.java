@@ -10,13 +10,13 @@ import com.secondhand.resource.TextureRegions;
 
 public class Obstacle extends PolygonEntity {
 
-	public Obstacle(final Vector2 position,  final List<Vector2> polygon, final Level level) {
+	public Obstacle(final Vector2 position,  final List<Vector2> polygon, final GameWorld level) {
 		this(new TexturedPolygon(position.x, position.y,
 				polygon,
 				TextureRegions.getInstance().obstacleTexture), level);
 	}
 	
-	public Obstacle(final Polygon polygon, final Level level) {
+	public Obstacle(final Polygon polygon, final GameWorld level) {
 		super(polygon, false, level, FixtureDefs.OBSTACLE_FIXTURE_DEF);
 	}
 	

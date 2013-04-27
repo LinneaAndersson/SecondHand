@@ -17,7 +17,7 @@ import com.badlogic.gdx.math.Vector2;
 import com.secondhand.controller.CollisionContactListener;
 import com.secondhand.debug.MyDebug;
 import com.secondhand.model.Entity;
-import com.secondhand.model.Level;
+import com.secondhand.model.GameWorld;
 import com.secondhand.model.Player;
 import com.secondhand.model.Universe;
 import com.secondhand.model.powerup.PowerUp;
@@ -29,18 +29,17 @@ public class GamePlayScene extends GameScene implements PropertyChangeListener, 
 	private IShape player;
 	private HUD hud;
 	
-	
 	private ScoreLivesText scoreLivesText;
 	
-	private final Universe universe;
+	private final GameWorld gameWorld;
 	
 	public GamePlayScene(final Engine engine, final Context context) {
 		super(engine, context);
-		this.universe = new Universe();
+		this.gameWorld = new GameWorld();
 	}
 	
-	public Universe getUniverse() {
-		return universe; 
+	public GameWorld getGameWorld() {
+		return this.gameWorld; 
 	}
 	
 	public void setShapes(final List<IShape> list){
@@ -52,7 +51,9 @@ public class GamePlayScene extends GameScene implements PropertyChangeListener, 
 	}
 
 	public void registerNewLevel() {
-	final Level currentLevel = universe.getLevel();
+	
+		final GameWorld currentLevel = this.gameWorld;
+		
 		
 		registerUpdateHandler(currentLevel.getPhysicsWorld());
 		currentLevel.getPlayer().addListener(this);
@@ -66,11 +67,11 @@ public class GamePlayScene extends GameScene implements PropertyChangeListener, 
 		}
 		setShapes(shapes);
 		
-		currentLevel.getPhysicsWorld().setContactListener(new CollisionContactListener(universe));
+		currentLevel.getPhysicsWorld().setContactListener(new CollisionContactListener(gameWorld));
 		currentLevel.setView(this);
 		
-		final float width = universe.getLevel().getLevelWidth();
-		final float height = universe.getLevel().getLevelHeight();
+		final float width = gameWorld.getLevelWidth();
+		final float height = gameWorld.getLevelHeight();
 		
 		// TODO: get this background to work.
 		/*final List<TextureRegion> starsTextures = new ArrayList<TextureRegion>();
@@ -95,7 +96,7 @@ public class GamePlayScene extends GameScene implements PropertyChangeListener, 
 		engine.getCamera().setChaseEntity(player);
 		
 		hud = new HUD();
-		Player player = universe.getLevel().getPlayer();
+		Player player = getGameWorld().getPlayer();
 		this.scoreLivesText = new ScoreLivesText(new Vector2(10,10), player.getScore(), player.getLives()); 
 		hud.attachChild(scoreLivesText);
 		engine.getCamera().setHUD(hud);
@@ -140,18 +141,18 @@ public class GamePlayScene extends GameScene implements PropertyChangeListener, 
 	@Override
 	protected void onManagedUpdate(final float pSecondsElapsed){
 		super.onManagedUpdate(pSecondsElapsed);
-		if(universe.isGameOver()){
+		if(gameWorld.isGameOver()){
 			MyDebug.d("GameOver");
 			resetCamera();
 			setScene(AllScenes.GAME_OVER_SCENE);
 		}
-		universe.onManagedUpdate(pSecondsElapsed);
+		gameWorld.onManagedUpdate(pSecondsElapsed);
 		
 	}
 
 	@Override
 	public void propertyChange(final PropertyChangeEvent event) {
-		final Player player = universe.getLevel().getPlayer();
+		final Player player = gameWorld.getPlayer();
 		final PowerUp powerUp = ((PowerUp)event.getNewValue());
 		engine.registerUpdateHandler(powerUp.getTimer(player));
 	}
@@ -169,12 +170,12 @@ public class GamePlayScene extends GameScene implements PropertyChangeListener, 
 	}
 
 	@Override
-	public void updateScore(int newScore) {
+	public void updateScore(final int newScore) {
 		this.scoreLivesText.setScore(newScore);
 	}
 
 	@Override
-	public void updateLives(int newLives) {
+	public void updateLives(final int newLives) {
 		this.scoreLivesText.setLives(newLives);
 	}
 }

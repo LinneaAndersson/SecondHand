@@ -27,10 +27,10 @@ public class LevelTest extends TestCase {
 		// create a level-object in this method but no one else. ??
 		
 		//Checks the size of Player
-		Level level = new Level(700);
+		GameWorld level = new GameWorld(700);
 		assertEquals(level.checkPlayerBigEnough(),true);
 		
-		level = new Level(2200);
+		level = new GameWorld(2200);
 		assertEquals(level.checkPlayerBigEnough(),false);
 		
 		//Checks that the player gets the right vector

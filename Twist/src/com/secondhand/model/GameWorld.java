@@ -15,7 +15,8 @@ import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.secondhand.debug.MyDebug;
 import com.secondhand.scene.IGamePlaySceneView;
 
-public class Level {
+// This class was formerly known as level. 
+public class GameWorld {
 
 	private List<Entity> entityList;
 	private List<Enemy> enemyList;
@@ -46,12 +47,12 @@ public class Level {
 		return view != null;
 	}
 
-	public Level() {
-		this(1);
+	public GameWorld() {
+		this(2);
 	}
 	
-	public Level(final int levelNumber) {
-		this.levelNumber = levelNumber + 1;
+	public GameWorld(final int levelNumber) {
+		this.levelNumber = levelNumber;
 		prepareLevel();
 	}
 
@@ -147,7 +148,7 @@ public class Level {
 		}
 	}
 	
-	public void onManagedUpdate(final float pSecondsElapsed){
+	public void onManagedUpdateMore(final float pSecondsElapsed){
 		
 		// remove bodies scheduled for deletion.
 		while(!scheduledForDeletionEntities.empty()) {
@@ -165,6 +166,40 @@ public class Level {
 		
 		MyDebug.d("entities: " + this.entityList.size());
 	}
+	
+	// for debugging
+
+	private boolean nextLevelAdvanced = false;
+
+	
+
+	public void nextLevel() {
+			
+		MyDebug.d("advancing to next level");
+		clearLevel();
+			/*
+			final IGamePlaySceneView view = currentLevel.getView();
+			
+			// clear physics world expect for player.
+			
+			
+			currentLevel = new Level(currentLevel.getLevelNumber()+1);
+			MyDebug.d("now we tell the view to create the level");
+			view.newLevelStarted();
+			// and also register all new entities in the controller. */
+	}
+
+	
+	public void onManagedUpdate(final float pSecondsElapsed) {
+		if (checkPlayerBigEnough() && !nextLevelAdvanced) {
+			nextLevelAdvanced = true;
+			nextLevel();
+		} else {
+			onManagedUpdateMore(pSecondsElapsed);
+		}
+	}
+	
+	
 	private void handleBlackHoleCollision(final Entity entityA,
 			final Entity entityB) {
 
@@ -242,5 +277,9 @@ public class Level {
 		
 		entityList.clear();
 		entityList.add(player);
+	}
+
+	public void updateWithTouchInput(final Vector2 v) {
+		sendTouchInput(v);
 	}
 }

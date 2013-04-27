@@ -43,7 +43,7 @@ public class Player extends BlackHole {
 		};
 	};
 
-	public Player(final Vector2 position, final float radius, final Level level, final float maxSpeed) {
+	public Player(final Vector2 position, final float radius, final GameWorld level, final float maxSpeed) {
 		super(position, radius, level, false, maxSpeed);
 		this.lives = STARTING_LIVES;
 	}

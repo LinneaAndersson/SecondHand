@@ -17,6 +17,7 @@ import android.content.Context;
 import android.util.Log;
 
 import com.secondhand.debug.MyDebug;
+import com.secondhand.model.GameWorld;
 import com.secondhand.model.Player;
 import com.secondhand.model.Universe;
 import com.secondhand.resource.Fonts;
@@ -34,11 +35,10 @@ public class GameOverScene extends GameMenuScene implements
 	private BufferedReader reader;
 	Text textGameOver = null;
 
+	private GameWorld gameWorld;
 	
-	private Universe universe;
-	
-	public void setUniverse(Universe universe) {
-		this.universe = universe;
+	public void setGameWorld(final GameWorld gameWorld) {
+		this.gameWorld = gameWorld;
 	}
 	
 	public GameOverScene(final Engine engine, final Context context) {
@@ -57,7 +57,7 @@ public class GameOverScene extends GameMenuScene implements
 		}
 		
 		
-		player = universe.getLevel().getPlayer();
+		player = gameWorld.getPlayer();
 	
 		String mLine = "0";
 		int antal = 0;

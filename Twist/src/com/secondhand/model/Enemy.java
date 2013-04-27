@@ -186,7 +186,7 @@ public class Enemy extends BlackHole {
 	}
 
 	protected void wasEaten() {
-		level.removeEnemyFromList(this);
+		this.level.getEntityManager().removeEnemyFromList(this);
 		super.wasEaten();
 	}
 }

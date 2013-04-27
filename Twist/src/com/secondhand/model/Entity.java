@@ -28,7 +28,6 @@ public abstract class Entity {
 		this.physicsWorld = level.getPhysicsWorld();
 		this.level = level;
 		bodyScheduledForDeletion = false;
-		
 		registerBody(body); //NOPMD
 	}
 	
@@ -85,7 +84,7 @@ public abstract class Entity {
 	// remove this entity from andengine rendering and the physics world.
 	private void removeEntity() {
 
-		level.removeEntityFromList(this);
+		this.level.getEntityManager().removeEntityFromList(this);
 		
 		destroyEntity();
 	}
@@ -113,7 +112,7 @@ public abstract class Entity {
 		physicsConnector = physicsWorld.getPhysicsConnectorManager().findPhysicsConnectorByShape(
 						this.getShape());	
 		
-		this.level.scheduleEntityForDeletion(this);
+		this.level.getEntityManager().scheduleEntityForDeletion(this);
 		
 		this.bodyScheduledForDeletion = true;
 	}

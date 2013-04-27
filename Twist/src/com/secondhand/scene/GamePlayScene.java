@@ -44,7 +44,7 @@ public class GamePlayScene extends GameScene implements PropertyChangeListener, 
 		
 		this.smoothCamera.setBounds(0, width, 0, height);
 		
-		for (final Entity entity : gameWorld.getEntityList()) {
+		for (final Entity entity : gameWorld.getEntityManager().getEntityList()) {
 			final IShape shape = entity.getShape();
 			shape.detachSelf();
 			attachChild(shape);

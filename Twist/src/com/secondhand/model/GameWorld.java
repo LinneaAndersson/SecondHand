@@ -1,8 +1,5 @@
 package com.secondhand.model;
 
-import java.util.List;
-import java.util.Stack;
-
 import org.anddev.andengine.entity.primitive.Rectangle;
 import org.anddev.andengine.entity.shape.Shape;
 import org.anddev.andengine.extension.physics.box2d.PhysicsFactory;
@@ -18,15 +15,14 @@ import com.secondhand.scene.IGamePlaySceneView;
 // This class was formerly known as level. 
 public class GameWorld {
 
-	private List<Entity> entityList;
-	private List<Enemy> enemyList;
-	private Stack<Entity> scheduledForDeletionEntities;
+	private final EntityManager entityManager;
 	
+	// TODO: Maybe store this in player instead?
 	private int playerMaxSize;
+	
 	private PhysicsWorld physicsWorld;
 
-	private Player player;
-
+	
 	private int levelWidth;
 	private int levelHeight;
 
@@ -52,12 +48,7 @@ public class GameWorld {
 	
 	public GameWorld(final int levelNumber) {
 		this.levelNumber = levelNumber;
-		prepareLevel();
-	}
-
-	public void prepareLevel() {
 		
-		this.scheduledForDeletionEntities = new Stack<Entity>();
 		
 		this.physicsWorld  = new PhysicsWorld(new Vector2(), true);
 		
@@ -68,25 +59,20 @@ public class GameWorld {
 		
 		final RandomLevelGenerator randomLevelGenerator = new RandomLevelGenerator(this);
 		
-		this.player = randomLevelGenerator.player;
 		this.playerMaxSize = randomLevelGenerator.playerMaxSize;
 		this.levelWidth = randomLevelGenerator.levelWidth;
 		this.levelHeight = randomLevelGenerator.levelHeight;
 		
-		this.entityList = randomLevelGenerator.entityList;
-		this.enemyList = randomLevelGenerator.enemyList;
+		this.entityManager = new EntityManager(randomLevelGenerator.player,  randomLevelGenerator.entityList,
+				randomLevelGenerator.enemyList);
 		
 		setupWorldBounds();
-	}
-	
+	}	
 
 	public int getLevelNumber() {
 		return levelNumber;
 	}
 
-	public List<Entity> getEntityList() {
-		return entityList;
-	}
 
 	public PhysicsWorld getPhysicsWorld() {
 		return physicsWorld;
@@ -118,9 +104,7 @@ public class GameWorld {
 
 	}
 
-	public Player getPlayer() {
-		return player;
-	}
+	
 
 	public int getLevelWidth() {
 		return levelWidth;
@@ -130,16 +114,7 @@ public class GameWorld {
 		return levelHeight;
 	}
 
-	private void moveEnemies() {
-		// enemies are in both lists because we want them
-		// for easy access and for the posibility of attacking
-		// each other. it could be preferable to change it later
-		// if we can come up with a better way
-		
-		for (final Enemy enemy : enemyList) {
-			enemy.moveEnemy(player, entityList);
-		}
-	}
+	
 	
 	// for debugging
 
@@ -168,61 +143,40 @@ public class GameWorld {
 			nextLevel();
 		} else {
 
-			// remove bodies scheduled for deletion.
-			while(!scheduledForDeletionEntities.empty()) {
-				final Entity entity = scheduledForDeletionEntities.pop();
-				entity.deleteBody();
-			}
-			
-			moveEnemies();
-			
-			this.player.moveToNeededPositionIfNecessary();
-			
-			MyDebug.d("entities: " + this.entityList.size());
+			this.entityManager.onManagedUpdate(pSecondsElapsed);
 		}
 	}
 
 	public boolean isGameOver() {
-		return this.player.lostAllLives();
+		return this.entityManager.getPlayer().lostAllLives();
 	}
 	
-
 	public void checkCollision(final Contact contact) {
 		CollisionResolver.checkCollision(contact);	
 	}
+	
+	public Player getPlayer() {
+		return this.entityManager.getPlayer();
+	}
 
 	public void sendTouchInput(final Vector2 v) {
-		this.player.reachToTouch(v);
+		this.getPlayer().reachToTouch(v);
 	}
 
 	public boolean checkPlayerBigEnough() {
-		if(player.getRadius() < playerMaxSize)
-			MyDebug.d("current played size: " + player.getRadius() + " goal: " + playerMaxSize);
-		return player.getRadius() >= playerMaxSize;
+		if(this.getPlayer().getRadius() < playerMaxSize)
+			MyDebug.d("current played size: " + this.getPlayer().getRadius() + " goal: " + playerMaxSize);
+		return this.getPlayer().getRadius() >= playerMaxSize;
 	}
 	
-	public void removeEntityFromList(final Entity entity) {
-		this.entityList.remove(entity);
-	}
-	
-	public void removeEnemyFromList(final Enemy enemy) {
-		this.enemyList.remove(enemy);
-	}
-	
-	public void scheduleEntityForDeletion(final Entity entity) {
-		this.scheduledForDeletionEntities.add(entity);
+	public EntityManager getEntityManager() {
+		return this.entityManager;
 	}
 	
 	// remove every entity(both from the physics world and andengine rendering)
 	// from the world expect for the player.
 	public void clearLevel() {
-		for(Entity entity: this.entityList) {
-			if(entity != player)
-				entity.destroyEntity();
-		}
-		
-		entityList.clear();
-		entityList.add(player);
+		this.entityManager.removeAllEntitiesExpectForPlayer();
 	}
 
 	public void updateWithTouchInput(final Vector2 v) {

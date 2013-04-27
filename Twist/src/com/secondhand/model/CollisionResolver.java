@@ -1,6 +1,7 @@
 package com.secondhand.model;
 
 import com.badlogic.gdx.physics.box2d.Contact;
+import com.secondhand.resource.Sounds;
 
 public final class CollisionResolver {
 
@@ -32,7 +33,12 @@ public final class CollisionResolver {
 		// and we are not interested in handling such a collision
 		if (contact.getFixtureA().getBody().getUserData() == null
 				|| contact.getFixtureB().getBody().getUserData() == null) {
+			// if player collided with wall
+			if(contact.getFixtureA().getBody().getUserData() instanceof Player ||
+					contact.getFixtureB().getBody().getUserData() instanceof Player)
+				Sounds.getInstance().obstacleCollisionSound.play();
 			return;
+			
 		}
 		
 		// now we know both the bodies are entities.

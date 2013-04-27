@@ -62,6 +62,7 @@ public class EntityManager {
 		this.entityList.remove(entity);
 	}
 	
+	
 	public void removeEnemyFromList(final Enemy enemy) {
 		this.enemyList.remove(enemy);
 	}

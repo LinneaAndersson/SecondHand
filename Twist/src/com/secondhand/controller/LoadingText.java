@@ -5,7 +5,6 @@ import java.util.Arrays;
 import org.anddev.andengine.engine.camera.Camera;
 import org.anddev.andengine.entity.text.ChangeableText;
 
-import com.secondhand.debug.MyDebug;
 import com.secondhand.resource.Fonts;
 import com.secondhand.resource.LocalizationStrings;
 

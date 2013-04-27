@@ -4,8 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-import org.anddev.andengine.extension.physics.box2d.PhysicsWorld;
-
 import com.badlogic.gdx.math.Vector2;
 import com.secondhand.debug.MyDebug;
 import com.secondhand.math.PolygonUtil;
@@ -22,7 +20,6 @@ import com.secondhand.util.RandomUtil;
 // TODO: this generation of levels seems to be a bit slow, so we probably need a level loading screen.	
 public class RandomLevelGenerator {
 
-	private final PhysicsWorld physicsWorld;
 	private final int levelNumber;
 	
 	public final Player player;
@@ -37,7 +34,7 @@ public class RandomLevelGenerator {
 	
 	
 	RandomLevelGenerator(final GameWorld level) {
-		this.physicsWorld = level.getPhysicsWorld();
+		level.getPhysicsWorld();
 		this.levelNumber = level.getLevelNumber();
 		this.level = level;
 		
@@ -71,7 +68,7 @@ public class RandomLevelGenerator {
 		// setting high values for this constant will cause long level generation times, so be careful.
 		final float MINIMUM_DISTANCE = 60;
 		
-		for(Entity entity: this.entityList) {
+		for(final Entity entity: this.entityList) {
 			if(entity instanceof CircleEntity) {
 				final Circle other = (Circle)entity.getShape();
 				

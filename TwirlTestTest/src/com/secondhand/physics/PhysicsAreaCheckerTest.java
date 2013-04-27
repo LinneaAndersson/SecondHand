@@ -1,18 +1,9 @@
 package com.secondhand.physics;
 
 
-import java.util.Iterator;
-
-import org.anddev.andengine.extension.physics.box2d.PhysicsWorld;
-import org.anddev.andengine.opengl.buffer.BufferObjectManager;
-
-import com.badlogic.gdx.math.Vector2;
-import com.badlogic.gdx.physics.box2d.Body;
-import com.badlogic.gdx.physics.box2d.CircleShape;
-import com.secondhand.debug.MyDebug;
-import com.secondhand.model.Planet;
-
 import junit.framework.TestCase;
+
+import org.anddev.andengine.opengl.buffer.BufferObjectManager;
 
 public class PhysicsAreaCheckerTest extends TestCase {
 

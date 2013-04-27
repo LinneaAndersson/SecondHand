@@ -145,8 +145,8 @@ public class GamePlayScene extends GameScene implements PropertyChangeListener,
 	// not a very good solution bellow but it can do for now 
 	@Override
 	public void propertyChange(final PropertyChangeEvent event) {
-		String eventName = event.getPropertyName();
-		if (eventName == "ADD") {
+		final String eventName = event.getPropertyName();
+		if (eventName.equals("ADD")) {
 			
 			final Player player = gameWorld.getPlayer();
 			final PowerUp powerUp = ((PowerUp) event.getNewValue());
@@ -159,9 +159,9 @@ public class GamePlayScene extends GameScene implements PropertyChangeListener,
 				showFadingTextNotifier(((ScoreUp) powerUp).getScoreBonus()
 						+ "+", new Vector2(player.getX(), player.getY()));
 			}
-		} else if (eventName == "Score") {
+		} else if (eventName.equals("Score")) {
 			updateScore((Integer) event.getNewValue());
-		} else if (eventName == "Life") {
+		} else if (eventName.equals("Life")) {
 			updateLives((Integer) event.getNewValue());
 		}
 	}

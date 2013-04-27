@@ -1,11 +1,10 @@
 package com.secondhand.model;
 
-import org.anddev.andengine.extension.physics.box2d.PhysicsWorld;
+import junit.framework.TestCase;
+
 import org.anddev.andengine.opengl.buffer.BufferObjectManager;
 
 import com.badlogic.gdx.math.Vector2;
-
-import junit.framework.TestCase;
 
 public class PlanetTest extends TestCase{
 

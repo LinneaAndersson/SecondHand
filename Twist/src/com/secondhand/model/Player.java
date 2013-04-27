@@ -2,7 +2,6 @@ package com.secondhand.model;
 
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -10,7 +9,6 @@ import org.anddev.andengine.extension.physics.box2d.util.constants.PhysicsConsta
 
 import com.badlogic.gdx.math.Vector2;
 import com.secondhand.debug.MyDebug;
-import com.secondhand.model.powerup.ExtraLife;
 import com.secondhand.model.powerup.PowerUp;
 import com.secondhand.resource.Sounds;
 
@@ -55,7 +53,7 @@ public class Player extends BlackHole {
 	
 	
 	public void increaseScore(final int increase) {
-		int oldScore = getScore();
+		final int oldScore = getScore();
 		super.increaseScore(increase);
 		// we also want to notify the view of this change:
 		if(this.level.hasView())
@@ -64,7 +62,7 @@ public class Player extends BlackHole {
 	}
 	
 	private void changeLives(final int change) {
-		int oldLife = lives;
+		final int oldLife = lives;
 		lives += change;
 		if(this.level.hasView())
 			//this.level.getView().updateLives(this.getLives());

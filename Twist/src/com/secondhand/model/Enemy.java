@@ -14,7 +14,7 @@ public class Enemy extends BlackHole {
 	private static Entity danger = null;
 	// because someone changed getArea to getRadius I
 	// had to do this.
-	private float area;
+	private final float area;
 
 	public Enemy(final Vector2 vector, final float radius,
 			final GameWorld level, final float maxSpeed) {
@@ -43,8 +43,8 @@ public class Enemy extends BlackHole {
 		physicsWorld.rayCast(new RayCastCallback() {
 
 			@Override
-			public float reportRayFixture(Fixture fixture, Vector2 point,
-					Vector2 normal, float fraction) {
+			public float reportRayFixture(final Fixture fixture, final Vector2 point,
+					final Vector2 normal, final float fraction) {
 
 				if (((Entity) fixture.getBody().getUserData()) == entity) {
 					return 1;
@@ -101,7 +101,7 @@ public class Enemy extends BlackHole {
 		}
 	}
 
-	private void dangerCheck(Entity entity) {
+	private void dangerCheck(final Entity entity) {
 		// TODO change the null-check to something nicer
 
 		if (entity != null) {
@@ -125,7 +125,7 @@ public class Enemy extends BlackHole {
 		physicsWorld.QueryAABB(new QueryCallback() {
 
 			@Override
-			public boolean reportFixture(Fixture fixture) {
+			public boolean reportFixture(final Fixture fixture) {
 				danger = ((Entity) fixture.getBody().getUserData());
 
 				return false;
@@ -141,7 +141,7 @@ public class Enemy extends BlackHole {
 
 	}
 
-	private void retreat(boolean inDanger) {
+	private void retreat(final boolean inDanger) {
 		if (inDanger) {
 			applyMovement(new Vector2(this.getCenterX() - danger.getCenterX(),
 					this.getCenterY() - danger.getCenterY()));

@@ -5,7 +5,6 @@ import org.anddev.andengine.engine.Engine;
 import android.content.Context;
 import android.view.KeyEvent;
 
-import com.secondhand.model.GameWorld;
 import com.secondhand.resource.Sounds;
 import com.secondhand.resource.TextureRegions;
 import com.secondhand.scene.GameOverScene;

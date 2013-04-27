@@ -4,7 +4,7 @@ import junit.framework.TestCase;
 
 import com.badlogic.gdx.math.Vector2;
 
-public class LevelTest extends TestCase {
+public class GameWorldTest extends TestCase {
 
 	public void testConstructor(){
 

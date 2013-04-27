@@ -9,7 +9,6 @@ import java.util.List;
 import org.anddev.andengine.engine.Engine;
 import org.anddev.andengine.engine.camera.hud.HUD;
 import org.anddev.andengine.entity.shape.IShape;
-import org.anddev.andengine.entity.text.Text;
 
 import android.content.Context;
 import android.view.KeyEvent;
@@ -23,8 +22,6 @@ import com.secondhand.model.Player;
 import com.secondhand.model.Universe;
 import com.secondhand.model.powerup.PowerUp;
 import com.secondhand.opengl.StarsBackground;
-import com.secondhand.physics.PhysicsDestroyer;
-import com.secondhand.resource.Fonts;
 
 public class GamePlayScene extends GameScene implements PropertyChangeListener, IGamePlaySceneView {
 	
@@ -56,9 +53,6 @@ public class GamePlayScene extends GameScene implements PropertyChangeListener, 
 
 	public void registerNewLevel() {
 	final Level currentLevel = universe.getLevel();
-		
-		// reset for the newly created physicsworld. 
-		PhysicsDestroyer.getInstance().reset(engine, currentLevel.getPhysicsWorld());
 		
 		registerUpdateHandler(currentLevel.getPhysicsWorld());
 		currentLevel.getPlayer().addListener(this);

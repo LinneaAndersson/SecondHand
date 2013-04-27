@@ -1,6 +1,7 @@
 package com.secondhand.model;
 
 import java.util.List;
+import java.util.Stack;
 
 import org.anddev.andengine.entity.primitive.Rectangle;
 import org.anddev.andengine.entity.shape.Shape;
@@ -18,6 +19,8 @@ public class Level {
 
 	private List<Entity> entityList;
 	private List<Enemy> enemyList;
+	private Stack<Entity> scheduledForDeletionEntities;
+	
 	private int playerMaxSize;
 	private PhysicsWorld physicsWorld;
 	private boolean gameOver = false;
@@ -53,6 +56,8 @@ public class Level {
 	}
 
 	public void prepareLevel() {
+		
+		this.scheduledForDeletionEntities = new Stack<Entity>();
 		
 		this.gameOver = false;
 
@@ -142,7 +147,14 @@ public class Level {
 		}
 	}
 	
-	public void onManagedUpdate(final float pSecondsElapsed){ 
+	public void onManagedUpdate(final float pSecondsElapsed){
+		
+		// remove bodies scheduled for deletion.
+		while(!scheduledForDeletionEntities.empty()) {
+			final Entity entity = scheduledForDeletionEntities.pop();
+			entity.deleteBody();
+		}
+		
 		moveEnemies();
 		
 		this.player.moveToNeededPositionIfNecessary();
@@ -214,6 +226,10 @@ public class Level {
 	
 	public void removeEnemyFromList(final Enemy enemy) {
 		this.enemyList.remove(enemy);
+	}
+	
+	public void scheduleEntityForDeletion(final Entity entity) {
+		this.scheduledForDeletionEntities.add(entity);
 	}
 	
 	// remove every entity(both from the physics world and andengine rendering)

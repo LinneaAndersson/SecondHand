@@ -2,7 +2,6 @@ package com.secondhand.model;
 
 import com.badlogic.gdx.math.Vector2;
 import com.secondhand.debug.MyDebug;
-import com.secondhand.physics.PhysicsDestroyer;
 import com.secondhand.scene.IGamePlaySceneView;
 
 /**
@@ -54,9 +53,6 @@ public final class Universe {
 
 	
 	public void onManagedUpdate(final float pSecondsElapsed) {
-		
-		PhysicsDestroyer.getInstance().startDestruction();
-		
 		if (currentLevel.checkPlayerBigEnough()) {
 			nextLevel();
 		} else {

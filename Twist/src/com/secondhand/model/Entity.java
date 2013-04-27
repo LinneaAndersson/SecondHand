@@ -2,11 +2,12 @@ package com.secondhand.model;
 
 import org.anddev.andengine.entity.shape.IShape;
 import org.anddev.andengine.entity.shape.Shape;
+import org.anddev.andengine.extension.physics.box2d.PhysicsConnector;
 import org.anddev.andengine.extension.physics.box2d.PhysicsWorld;
 
 import com.badlogic.gdx.physics.box2d.Body;
+import com.secondhand.debug.MyDebug;
 import com.secondhand.physics.CustomPhysicsConnector;
-import com.secondhand.physics.PhysicsDestroyer;
 
 public abstract class Entity {
 
@@ -26,6 +27,7 @@ public abstract class Entity {
 		this.updateRotation = updateRotation;
 		this.physicsWorld = level.getPhysicsWorld();
 		this.level = level;
+		bodyScheduledForDeletion = false;
 		
 		registerBody(body); //NOPMD
 	}
@@ -90,12 +92,46 @@ public abstract class Entity {
 	
 	public void destroyEntity() {
 		
+
+		// we can't remove the body within a contact listener
+		scheduleBodyForDeletion();
+		
 		// Detach the shape from AndEngine-rendering
 		getShape().detachSelf();
 
-		// remove the eaten entity from the physics world:
-		PhysicsDestroyer.getInstance().destroy(getShape(), true);
-				
+	}
+	
+	private boolean bodyScheduledForDeletion;
+	// used when deleting the body.
+	public PhysicsConnector physicsConnector;
+	
+	private boolean isBodyScheduledForDeletion() {
+		return this.bodyScheduledForDeletion;
+	}
+	
+	private void scheduleBodyForDeletion() {
+		physicsConnector = physicsWorld.getPhysicsConnectorManager().findPhysicsConnectorByShape(
+						this.getShape());	
+		
+		this.level.scheduleEntityForDeletion(this);
+		
+		this.bodyScheduledForDeletion = true;
+	}
+	
+	// only valid when the body has been scheduled for deletion.
+	public void deleteBody() {
+		
+		if(!this.isBodyScheduledForDeletion()) {
+			throw new IllegalStateException("Body not scheduled for deletion!");
+		}
+			
+		physicsWorld.unregisterPhysicsConnector(physicsConnector);
+					
+		MyDebug.i(physicsConnector.getBody() + " will be destroyed");
+							
+		physicsWorld.destroyBody(physicsConnector.getBody());
+			
+		MyDebug.i(physicsConnector.getBody() + " destruction complete");
 	}
 	
 	// called when this entity is eaten up.

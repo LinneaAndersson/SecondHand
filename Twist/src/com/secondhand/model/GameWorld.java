@@ -148,30 +148,9 @@ public class GameWorld {
 		}
 	}
 	
-	public void onManagedUpdateMore(final float pSecondsElapsed){
-		
-		// remove bodies scheduled for deletion.
-		while(!scheduledForDeletionEntities.empty()) {
-			final Entity entity = scheduledForDeletionEntities.pop();
-			entity.deleteBody();
-		}
-		
-		moveEnemies();
-		
-		this.player.moveToNeededPositionIfNecessary();
-		
-		if(this.player.lostAllLives()) {
-			this.gameOver = true;
-		}
-		
-		MyDebug.d("entities: " + this.entityList.size());
-	}
-	
 	// for debugging
 
 	private boolean nextLevelAdvanced = false;
-
-	
 
 	public void nextLevel() {
 			
@@ -195,7 +174,22 @@ public class GameWorld {
 			nextLevelAdvanced = true;
 			nextLevel();
 		} else {
-			onManagedUpdateMore(pSecondsElapsed);
+
+			// remove bodies scheduled for deletion.
+			while(!scheduledForDeletionEntities.empty()) {
+				final Entity entity = scheduledForDeletionEntities.pop();
+				entity.deleteBody();
+			}
+			
+			moveEnemies();
+			
+			this.player.moveToNeededPositionIfNecessary();
+			
+			if(this.player.lostAllLives()) {
+				this.gameOver = true;
+			}
+			
+			MyDebug.d("entities: " + this.entityList.size());
 		}
 	}
 	

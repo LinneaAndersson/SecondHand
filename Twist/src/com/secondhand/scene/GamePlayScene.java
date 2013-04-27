@@ -19,7 +19,6 @@ import com.secondhand.debug.MyDebug;
 import com.secondhand.model.Entity;
 import com.secondhand.model.GameWorld;
 import com.secondhand.model.Player;
-import com.secondhand.model.Universe;
 import com.secondhand.model.powerup.PowerUp;
 import com.secondhand.opengl.StarsBackground;
 
@@ -52,23 +51,20 @@ public class GamePlayScene extends GameScene implements PropertyChangeListener, 
 
 	public void registerNewLevel() {
 	
-		final GameWorld currentLevel = this.gameWorld;
-		
-		
-		registerUpdateHandler(currentLevel.getPhysicsWorld());
-		currentLevel.getPlayer().addListener(this);
+		registerUpdateHandler(gameWorld.getPhysicsWorld());
+		gameWorld.getPlayer().addListener(this);
 		
 		final List<IShape> shapes = new ArrayList<IShape>();
 
-		setPlayer(currentLevel.getPlayer().getShape());
+		setPlayer(gameWorld.getPlayer().getShape());
 
-		for (final Entity entity : currentLevel.getEntityList()) {
+		for (final Entity entity : gameWorld.getEntityList()) {
 			shapes.add(entity.getShape());
 		}
 		setShapes(shapes);
 		
-		currentLevel.getPhysicsWorld().setContactListener(new CollisionContactListener(gameWorld));
-		currentLevel.setView(this);
+		gameWorld.getPhysicsWorld().setContactListener(new CollisionContactListener(gameWorld));
+		gameWorld.setView(this);
 		
 		final float width = gameWorld.getLevelWidth();
 		final float height = gameWorld.getLevelHeight();

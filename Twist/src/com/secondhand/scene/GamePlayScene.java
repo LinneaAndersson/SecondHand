@@ -42,22 +42,18 @@ public class GamePlayScene extends GameScene implements PropertyChangeListener, 
 
 	public void registerNewLevel() {
 	
-		registerUpdateHandler(gameWorld.getPhysicsWorld());
-		gameWorld.getPlayer().addListener(this);
+		final float width = gameWorld.getLevelWidth();
+		final float height = gameWorld.getLevelHeight();
+		
+		this.smoothCamera.setBounds(0, width, 0, height);
 		
 		final List<IShape> shapeList = new ArrayList<IShape>();
-
-		final Player player = gameWorld.getPlayer();
-
+		
 		for (final Entity entity : gameWorld.getEntityList()) {
 			shapeList.add(entity.getShape());
 		}
 		
-		gameWorld.getPhysicsWorld().setContactListener(new CollisionContactListener(gameWorld));
-		gameWorld.setView(this);
 		
-		final float width = gameWorld.getLevelWidth();
-		final float height = gameWorld.getLevelHeight();
 		
 		// TODO: get this background to work.
 		/*final List<TextureRegion> starsTextures = new ArrayList<TextureRegion>();
@@ -69,26 +65,44 @@ public class GamePlayScene extends GameScene implements PropertyChangeListener, 
         this.attachChild(new StarsBackground(130, 1.0f, width, height));
 		
 		// now load the scene(attach all the entities)
-        player.getShape().detachSelf();
-		attachChild(player.getShape());
-		for(final IShape shape : shapeList){
+      for(final IShape shape : shapeList){
 			shape.detachSelf();
 			attachChild(shape);
 		}
 		
-		this.smoothCamera.setBounds(0, width, 0, height);
-		this.smoothCamera.setBoundsEnabled(true);
+	}
+	
+	// should be called ONCE in the program.
+	private void setupView() {
+	
+		final float width = gameWorld.getLevelWidth();
+		final float height = gameWorld.getLevelHeight();
 		
+		this.smoothCamera.setBounds(0, width, 0, height);
+		this.smoothCamera.setBoundsEnabled(true);	
+		// setup the player
+		
+		final Player player = gameWorld.getPlayer();
+		  player.getShape().detachSelf();
+			attachChild(player.getShape());
+		gameWorld.getPlayer().addListener(this);
 		engine.getCamera().setChaseEntity(player.getShape());
 		
+		// setup the physicsworld the
+		registerUpdateHandler(gameWorld.getPhysicsWorld());
+		gameWorld.getPhysicsWorld().setContactListener(new CollisionContactListener(gameWorld));
+		gameWorld.setView(this);
+
+		// setup the HUD
 		hud = new HUD();
 		this.scoreLivesText = new ScoreLivesText(new Vector2(10,10), player.getScore(), player.getLives()); 
 		hud.attachChild(scoreLivesText);
-		engine.getCamera().setHUD(hud);
+		engine.getCamera().setHUD(hud);	
 	}
 
 	@Override
 	public void loadScene() {
+		setupView();
 		registerNewLevel();
 	}
 	

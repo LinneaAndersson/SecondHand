@@ -42,7 +42,7 @@ public class RandomLevelGenerator {
 		this.levelWidth = 2000 * levelNumber;
 		this.levelHeight = 2000 * levelNumber;
 	
-		this.playerMaxSize = 31;//40 * levelNumber;
+		this.playerMaxSize = 40 * levelNumber;
 		
 		
 		this.entityList = new ArrayList<Entity>();

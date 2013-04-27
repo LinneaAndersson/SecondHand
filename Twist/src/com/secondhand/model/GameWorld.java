@@ -103,30 +103,22 @@ public class GameWorld {
 	private boolean nextLevelAdvanced = false;
 
 	public void nextLevel() {
+		
+		++this.levelNumber;
 
 		MyDebug.d("advancing to next level");
 		
-		// destoy old level
+		// destroy old level
 		
 		// destroy the entities expect for player
 		clearLevel();
 		this.gameWorldBounds.removeWorldBounds();
 		
 		// first load the new level entities:
+		createLevelEntities(this.levelNumber);
 		
-		// then notify the view of this:
-		
-		/*
-		 * final IGamePlaySceneView view = currentLevel.getView();
-		 * 
-		 * // clear physics world expect for player.
-		 * 
-		 * 
-		 * currentLevel = new Level(currentLevel.getLevelNumber()+1);
-		 * MyDebug.d("now we tell the view to create the level");
-		 * view.newLevelStarted(); // and also register all new entities in the
-		 * controller.
-		 */
+		// then notify the view of this, so that it can place out the new Entities in AndEngine for rendering. 
+		this.getView().newLevelStarted();
 	}
 
 	public void onManagedUpdate(final float pSecondsElapsed) {

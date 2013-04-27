@@ -16,13 +16,14 @@ public class GameWorldBounds {
 	private PhysicsWorld physicsWorld;
 	
 	private Body[] bodies;
+	private Shape[]worldBounds;
 	
 	
 	public final void setupWorldBounds(final int levelWidth, final int levelHeight, final PhysicsWorld physicsWorld) {
 
 		this.physicsWorld = physicsWorld;
 		
-		Shape[]worldBounds = new Shape[4];
+		worldBounds = new Shape[4];
 		 bodies = new Body[4];
 			
 		// put some invisible, static rectangles that keep the player within the
@@ -39,29 +40,19 @@ public class GameWorldBounds {
 		
 		bodies[0] = PhysicsFactory.createBoxBody(physicsWorld, worldBounds[0],
 				BodyType.StaticBody, wallFixtureDef);
-		bodies[0].setUserData(worldBounds[0]);
-		
 		bodies[1] = PhysicsFactory.createBoxBody(physicsWorld, worldBounds[1],
 				BodyType.StaticBody, wallFixtureDef);
-		bodies[1].setUserData(worldBounds[1]);
-		
 		bodies[2] = PhysicsFactory.createBoxBody(physicsWorld, worldBounds[2],
 				BodyType.StaticBody, wallFixtureDef);
-		bodies[2].setUserData(worldBounds[2]);
-		
 		bodies[3] = PhysicsFactory.createBoxBody(physicsWorld, worldBounds[3],
 				BodyType.StaticBody, wallFixtureDef);
-		bodies[3].setUserData(worldBounds[3]);
 	}
 	
 	public void removeWorldBounds() {
-		for(Body body: bodies) {
-			// remove from andengine
-			final IEntity entity = (IEntity)body.getUserData();
-			entity.detachSelf();
-			
-			// remove from physics world
-			this.physicsWorld.destroyBody(body);
+		
+		for(int i = 0; i < 4; ++i) {
+			this.physicsWorld.destroyBody(bodies[i]);
+			this.worldBounds[i].detachSelf();
 		}
 	}
 }

@@ -10,7 +10,6 @@ import org.anddev.andengine.entity.scene.menu.item.IMenuItem;
 
 import android.content.Context;
 
-import com.secondhand.controller.SceneManager;
 import com.secondhand.debug.MyDebug;
 import com.secondhand.resource.LocalizationStrings;
 
@@ -47,14 +46,14 @@ public class MainMenuScene extends GameMenuScene implements IOnMenuItemClickList
 		switch(pMenuItem.getID()) {
 		case MENU_START:
 			MyDebug.i("now the game should start");
-			SceneManager.getInstance().setCurrentSceneEnum(AllScenes.GAME_PLAY_SCENE);
+			setScene(AllScenes.GAME_PLAY_SCENE);
 			return true;
 		case MENU_SETTINGS:
 			MyDebug.i("now a settings menu should appear");
-			SceneManager.getInstance().setCurrentSceneEnum(AllScenes.SETTINGS_MENU_SCENE);
+			setScene(AllScenes.SETTINGS_MENU_SCENE);
 			return true;
 		case MENU_HIGH_SCORE:
-			SceneManager.getInstance().setCurrentSceneEnum(AllScenes.HIGH_SCORE_SCENE);
+			setScene(AllScenes.HIGH_SCORE_SCENE);
 			return true;
 		default:
 			return false;

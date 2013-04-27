@@ -8,16 +8,22 @@ import com.secondhand.debug.MyDebug;
 // Manages all the entities of the GameWorld
 public class EntityManager {
 
-	private final List<Entity> entityList;
-	private final List<Enemy> enemyList;
+	private List<Entity> entityList;
+	private List<Enemy> enemyList;
 	private final Stack<Entity> scheduledForDeletionEntities;
 	
 	private final Player player;
 
-	public EntityManager(final Player player, final List<Entity> entityList, final List<Enemy> enemyList) {
+	public EntityManager(final Player player) {
 		this.scheduledForDeletionEntities = new Stack<Entity>();
 		this.player = player;
+	}
+	
+	public void setEntityList(final List<Entity> entityList) {
 		this.entityList = entityList;
+	}
+	
+	public void setEnemyList(final List<Enemy> enemyList) {
 		this.enemyList = enemyList;
 	}
 	

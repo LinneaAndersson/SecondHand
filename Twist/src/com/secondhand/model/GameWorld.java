@@ -21,6 +21,8 @@ public class GameWorld {
 	private int playerMaxSize;
 
 	private PhysicsWorld physicsWorld;
+	
+	private GameWorldBounds gameWorldBounds;
 
 	private int levelWidth;
 	private int levelHeight;
@@ -51,23 +53,33 @@ public class GameWorld {
 		this.levelNumber = levelNumber;
 
 		this.physicsWorld = new PhysicsWorld(new Vector2(), true);
-
+		
+		this.gameWorldBounds = new GameWorldBounds();
+		
+		
+		this.entityManager = new EntityManager(new Player(new Vector2(50, 50), 30, this, 20));
+		
 		// you can try lowering the values of these if the game starts lagging
-		// too much.
+		// too much. Basically, high values for these gives a higher quality physics simulation.
 		this.physicsWorld.setVelocityIterations(16);
 		this.physicsWorld.setPositionIterations(16);
-
-		final RandomLevelGenerator randomLevelGenerator = new RandomLevelGenerator(
-				this);
+		
+		createLevelEntities(this.levelNumber);
+	}
+	
+	// create the level entities of a new level.
+	private void createLevelEntities(final int levelNumber) {
+		final RandomLevelGenerator randomLevelGenerator = new RandomLevelGenerator(this.entityManager.getPlayer(), this);
 
 		this.playerMaxSize = randomLevelGenerator.playerMaxSize;
 		this.levelWidth = randomLevelGenerator.levelWidth;
 		this.levelHeight = randomLevelGenerator.levelHeight;
 
-		this.entityManager = new EntityManager(randomLevelGenerator.player,
-				randomLevelGenerator.entityList, randomLevelGenerator.enemyList);
-
-		setupWorldBounds();
+		
+		this.entityManager.setEntityList(randomLevelGenerator.entityList);
+		this.entityManager.setEnemyList(randomLevelGenerator.enemyList);
+		
+		gameWorldBounds.setupWorldBounds(this.levelWidth, this.levelHeight, this.physicsWorld);
 	}
 
 	public int getLevelNumber() {
@@ -76,32 +88,6 @@ public class GameWorld {
 
 	public PhysicsWorld getPhysicsWorld() {
 		return physicsWorld;
-	}
-
-	private final void setupWorldBounds() {
-
-		final Shape[] worldBounds = new Shape[4];
-
-		// put some invisible, static rectangles that keep the player within the
-		// world bounds:
-		// we do not do this using registerEntity, because these bodies are
-		// static.
-
-		worldBounds[0] = new Rectangle(0, levelHeight - 2, levelWidth, 2);
-		worldBounds[1] = new Rectangle(0, 0, levelWidth, 2);
-		worldBounds[2] = new Rectangle(0, 0, 2, levelHeight);
-		worldBounds[3] = new Rectangle(levelWidth - 2, 0, 2, levelHeight);
-		final FixtureDef wallFixtureDef = PhysicsFactory.createFixtureDef(0,
-				0.5f, 0.5f);
-		PhysicsFactory.createBoxBody(this.physicsWorld, worldBounds[0],
-				BodyType.StaticBody, wallFixtureDef);
-		PhysicsFactory.createBoxBody(this.physicsWorld, worldBounds[1],
-				BodyType.StaticBody, wallFixtureDef);
-		PhysicsFactory.createBoxBody(this.physicsWorld, worldBounds[2],
-				BodyType.StaticBody, wallFixtureDef);
-		PhysicsFactory.createBoxBody(this.physicsWorld, worldBounds[3],
-				BodyType.StaticBody, wallFixtureDef);
-
 	}
 
 	public int getLevelWidth() {
@@ -119,7 +105,17 @@ public class GameWorld {
 	public void nextLevel() {
 
 		MyDebug.d("advancing to next level");
+		
+		// destoy old level
+		
+		// destroy the entities expect for player
 		clearLevel();
+		this.gameWorldBounds.removeWorldBounds();
+		
+		// first load the new level entities:
+		
+		// then notify the view of this:
+		
 		/*
 		 * final IGamePlaySceneView view = currentLevel.getView();
 		 * 
@@ -138,7 +134,6 @@ public class GameWorld {
 			nextLevelAdvanced = true;
 			nextLevel();
 		} else {
-
 			this.entityManager.onManagedUpdate(pSecondsElapsed);
 		}
 	}
@@ -165,7 +160,7 @@ public class GameWorld {
 					+ " goal: " + playerMaxSize);
 		return this.getPlayer().getRadius() >= playerMaxSize;
 	}
-
+	
 	public EntityManager getEntityManager() {
 		return this.entityManager;
 	}

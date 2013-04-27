@@ -56,8 +56,6 @@ public class EntityManager {
 		moveEnemies();
 		
 		this.player.moveToNeededPositionIfNecessary();
-		
-		MyDebug.d("entities: " + this.entityList.size());
 	}
 	
 	public void removeEntityFromList(final Entity entity) {

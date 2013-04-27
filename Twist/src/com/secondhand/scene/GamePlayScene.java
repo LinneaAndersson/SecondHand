@@ -19,6 +19,7 @@ import com.secondhand.model.powerup.ExtraLife;
 import com.secondhand.model.powerup.PowerUp;
 import com.secondhand.model.powerup.ScoreUp;
 import com.secondhand.opengl.StarsBackground;
+import com.secondhand.resource.Sounds;
 
 public class GamePlayScene extends GameScene implements PropertyChangeListener,
 		IGamePlaySceneView {
@@ -175,6 +176,8 @@ public class GamePlayScene extends GameScene implements PropertyChangeListener,
 	public void newLevelStarted() {
 		MyDebug.d("new level!");
 		registerNewLevel();
+		Sounds.getInstance().winSound.play();
+
 	}
 
 	@Override

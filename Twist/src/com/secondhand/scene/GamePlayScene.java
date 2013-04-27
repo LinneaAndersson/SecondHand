@@ -23,9 +23,7 @@ import com.secondhand.model.powerup.PowerUp;
 import com.secondhand.opengl.StarsBackground;
 
 public class GamePlayScene extends GameScene implements PropertyChangeListener, IGamePlaySceneView {
-	
-	private List<IShape> shapeList;
-	private IShape player;
+
 	private HUD hud;
 	
 	private ScoreLivesText scoreLivesText;
@@ -40,28 +38,20 @@ public class GamePlayScene extends GameScene implements PropertyChangeListener, 
 	public GameWorld getGameWorld() {
 		return this.gameWorld; 
 	}
-	
-	public void setShapes(final List<IShape> list){
-		shapeList = list;
-	}
-	
-	public void setPlayer(final IShape player){
-		this.player = player;
-	}
+
 
 	public void registerNewLevel() {
 	
 		registerUpdateHandler(gameWorld.getPhysicsWorld());
 		gameWorld.getPlayer().addListener(this);
 		
-		final List<IShape> shapes = new ArrayList<IShape>();
+		final List<IShape> shapeList = new ArrayList<IShape>();
 
-		setPlayer(gameWorld.getPlayer().getShape());
+		final Player player = gameWorld.getPlayer();
 
 		for (final Entity entity : gameWorld.getEntityList()) {
-			shapes.add(entity.getShape());
+			shapeList.add(entity.getShape());
 		}
-		setShapes(shapes);
 		
 		gameWorld.getPhysicsWorld().setContactListener(new CollisionContactListener(gameWorld));
 		gameWorld.setView(this);
@@ -79,8 +69,8 @@ public class GamePlayScene extends GameScene implements PropertyChangeListener, 
         this.attachChild(new StarsBackground(130, 1.0f, width, height));
 		
 		// now load the scene(attach all the entities)
-        player.detachSelf();
-		attachChild(player);
+        player.getShape().detachSelf();
+		attachChild(player.getShape());
 		for(final IShape shape : shapeList){
 			shape.detachSelf();
 			attachChild(shape);
@@ -89,10 +79,9 @@ public class GamePlayScene extends GameScene implements PropertyChangeListener, 
 		this.smoothCamera.setBounds(0, width, 0, height);
 		this.smoothCamera.setBoundsEnabled(true);
 		
-		engine.getCamera().setChaseEntity(player);
+		engine.getCamera().setChaseEntity(player.getShape());
 		
 		hud = new HUD();
-		Player player = getGameWorld().getPlayer();
 		this.scoreLivesText = new ScoreLivesText(new Vector2(10,10), player.getScore(), player.getLives()); 
 		hud.attachChild(scoreLivesText);
 		engine.getCamera().setHUD(hud);

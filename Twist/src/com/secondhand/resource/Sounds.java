@@ -10,6 +10,7 @@ public class Sounds {
 	public Sound powerUpSound;
 	public Sound growSound;
 	public Sound obstacleCollisionSound;
+	public Sound playerKilledSound;
 	
 	public Sound beep; 
 	
@@ -30,8 +31,7 @@ public class Sounds {
 		this.growSound = SoundLoader.getInstance().loadSound(SOUND_BASEPATH+"grow.wav");
 		this.obstacleCollisionSound = SoundLoader.getInstance().loadSound(SOUND_BASEPATH+"obstacle_collision.wav");
 		this.beep = SoundLoader.getInstance().loadSound("sfx/beep.wav");
-
-		
+		this.playerKilledSound = SoundLoader.getInstance().loadSound("sfx/death.wav");
 	}
 	
 }

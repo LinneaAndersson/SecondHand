@@ -168,9 +168,11 @@ public class Player extends BlackHole {
 
 
 	
+	
 	@Override
 	protected void wasEaten() {
 	
+		Sounds.getInstance().playerKilledSound.play();
 		// We override the default behaviour for wasEaten. We don't want the player to
 		// be entirely removed from the world when eaten, we only want to reposition the player and lose a life.
 	

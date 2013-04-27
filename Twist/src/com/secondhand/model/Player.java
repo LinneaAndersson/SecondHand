@@ -21,7 +21,7 @@ public class Player extends BlackHole {
 	
 	private int lives;
 	
-	private final PropertyChangeSupport powerUpListSupport = new PropertyChangeSupport(this);
+	private final PropertyChangeSupport sceneSupport = new PropertyChangeSupport(this);
 	
 	private final List<PowerUp> powerUpList = new ArrayList<PowerUp>(1) {
 		/**
@@ -57,13 +57,15 @@ public class Player extends BlackHole {
 		super.increaseScore(increase);
 		// we also want to notify the view of this change:
 		if(this.level.hasView())
-			this.level.getView().updateScore(this.getScore());
+			//this.level.getView().updateScore(this.getScore());
+			sceneSupport.firePropertyChange("Score", 0, getScore());
 	}
 	
 	private void changeLives(final int change) {
 		lives += change;
 		if(this.level.hasView())
-			this.level.getView().updateLives(this.getLives());
+			//this.level.getView().updateLives(this.getLives());
+			sceneSupport.firePropertyChange("Life", 0, lives);
 	}
 	
 	// the player loses a life 
@@ -97,7 +99,7 @@ public class Player extends BlackHole {
 	
 	public void addPowerUp(final PowerUp powerUp){
 		this.powerUpList.add(powerUp);			
-		powerUpListSupport.firePropertyChange("ADD",null,powerUp);
+		sceneSupport.firePropertyChange("ADD",null,powerUp);
 	}
 	
 	public void setName(final String name){
@@ -109,7 +111,7 @@ public class Player extends BlackHole {
 	}
 	
 	public void addListener(final PropertyChangeListener observer) {
-		powerUpListSupport.addPropertyChangeListener(observer);
+		sceneSupport.addPropertyChangeListener(observer);
 	}
 	
 	public void reachToTouch(final Vector2 touch) {

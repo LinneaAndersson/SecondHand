@@ -140,9 +140,16 @@ public class GamePlayScene extends GameScene implements PropertyChangeListener, 
 
 	@Override
 	public void propertyChange(final PropertyChangeEvent event) {
-		final Player player = gameWorld.getPlayer();
-		final PowerUp powerUp = ((PowerUp)event.getNewValue());
-		engine.registerUpdateHandler(powerUp.getTimer(player));
+		String eventName = event.getPropertyName();
+		if (eventName == "ADD") {
+			final Player player = gameWorld.getPlayer();
+			final PowerUp powerUp = ((PowerUp) event.getNewValue());
+			engine.registerUpdateHandler(powerUp.getTimer(player));
+		} else if (eventName == "Score") {
+			updateScore((Integer) event.getNewValue());
+		} else if (eventName == "Life") {
+			updateLives((Integer) event.getNewValue());
+		}
 	}
 
 	@Override

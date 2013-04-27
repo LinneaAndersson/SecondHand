@@ -13,7 +13,6 @@ import com.secondhand.model.powerup.PowerUp;
 public class Enemy extends BlackHole {
 
 	private static boolean straightLine = true;
-	private static Entity danger = null;
 	// because someone changed getArea to getRadius I
 	// had to do this.
 	private final float huntingArea;
@@ -45,8 +44,9 @@ public class Enemy extends BlackHole {
 		physicsWorld.rayCast(new RayCastCallback() {
 
 			@Override
-			public float reportRayFixture(final Fixture fixture, final Vector2 point,
-					final Vector2 normal, final float fraction) {
+			public float reportRayFixture(final Fixture fixture,
+					final Vector2 point, final Vector2 normal,
+					final float fraction) {
 
 				if (((Entity) fixture.getBody().getUserData()) == entity) {
 					return 1;
@@ -108,35 +108,42 @@ public class Enemy extends BlackHole {
 
 		if (entity != null) {
 			if (straightToEntity(entity)) {
-			//	MyDebug.d("Enemy: applyMovement towards " + entity.getClass());
+				// MyDebug.d("Enemy: applyMovement towards " +
+				// entity.getClass());
 				applyMovement(new Vector2(
 						(entity.getCenterX() - this.getCenterX()),
 						entity.getCenterY() - this.getCenterY()));
 
 			} else {
-				//MyDebug.d("Enemy: stopMovement");
+				// MyDebug.d("Enemy: stopMovement");
 				stopMovement();
-				retreat(isCloseToDanger());
+				closeToDanger();
 
 			}
 		}
 	}
-	
-	private boolean isCloseToDanger() {
 
-		final Vector2 center = getBody().getWorldCenter(); 
-		final float rad = (getRadius()+2)/PhysicsConstants.PIXEL_TO_METER_RATIO_DEFAULT;
+	//checks if there is something dangerous close by
+	private void closeToDanger() {
+
+		final Vector2 center = getBody().getWorldCenter();
+		final float rad = (getRadius() + 5)
+				/ PhysicsConstants.PIXEL_TO_METER_RATIO_DEFAULT;
 		physicsWorld.QueryAABB(new QueryCallback() {
 
 			@Override
 			public boolean reportFixture(final Fixture fixture) {
-				danger = ((Entity) fixture.getBody().getUserData());
-
+				Entity tmp = ((Entity) fixture.getBody().getUserData());
+				if (!canEat(tmp)) {
+				retreat(tmp);
+				}
+				
+				
 				return false;
 			}
-		}, center.x-rad, center.y+rad, center.x+rad, center.y-rad);
+		}, center.x - rad, center.y + rad, center.x + rad, center.y - rad);
 
-		return danger != null;
+		
 	}
 
 	private void stopMovement() {
@@ -145,12 +152,9 @@ public class Enemy extends BlackHole {
 
 	}
 
-	private void retreat(final boolean inDanger) {
-		if (inDanger) {
+	private void retreat(final Entity danger) {
 			applyMovement(new Vector2(this.getCenterX() - danger.getCenterX(),
 					this.getCenterY() - danger.getCenterY()));
-			danger = null;
-		}
 
 	}
 

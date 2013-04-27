@@ -1,9 +1,2 @@
-Test Plugin
-	Stan
-	Pmd
-	Find Bugs
-	JDeoderant
-
-Sekvens Diagram
-	Graphwiz
-	UMLet
+Maybe we could use a pool to better manage the destruction  of physics bodies:
+http://www.neilson.co.za/?p=168

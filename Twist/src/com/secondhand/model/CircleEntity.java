@@ -11,8 +11,6 @@ import com.secondhand.opengl.Circle;
 public abstract class CircleEntity extends Entity {
 	
 	protected final Circle circle;
-	protected final PhysicsWorld physicsWorld;
-	
 	
 	//public static Body createCircleBody(final PhysicsWorld pPhysicsWorld, final float pCenterX, final float pCenterY, final float pRadius, final float pRotation, final BodyType pBodyType, final FixtureDef pFixtureDef) {
 
@@ -26,8 +24,6 @@ public abstract class CircleEntity extends Entity {
 			final boolean updateRotation, final FixtureDef fixtureDef) {
 		
 		super(circle, isEdible, createNewCircleBody(circle, level.getPhysicsWorld(), fixtureDef), updateRotation, level);
-		
-		this.physicsWorld = level.getPhysicsWorld();
 		
 		this.circle = circle;
 	}

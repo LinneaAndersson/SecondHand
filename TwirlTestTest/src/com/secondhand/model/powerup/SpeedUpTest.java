@@ -12,8 +12,14 @@ public class SpeedUpTest extends TestCase {
 		Vector2 position = new Vector2();
 		float radius = 10;
 		GameWorld level = new GameWorld();
-		float maxSpeed = 10;
-		Player player = new Player(position, radius, level, maxSpeed);
+		Player player = new Player(position, radius, level);
+		SpeedUp powerUp = new SpeedUp(position, level);
+		
+		float startSpeed = player.getMaxSpeed();
+		powerUp.activateEffect(player);
+		assertEquals(startSpeed*powerUp.getFactor(), player.getMaxSpeed());
+		powerUp.deactivateEffect(player);
+		assertEquals(startSpeed, player.getMaxSpeed());
 	}
 	
 }

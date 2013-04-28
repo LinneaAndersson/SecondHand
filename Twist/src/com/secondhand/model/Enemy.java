@@ -111,7 +111,7 @@ public class Enemy extends BlackHole {
 			if (straightToEntity(entity)) {
 				// MyDebug.d("Enemy: applyMovement towards " +
 				// entity.getClass());
-				closeToDanger();
+				//closeToDanger();
 				applyMovement(new Vector2(
 						(entity.getCenterX() - this.getCenterX()),
 						entity.getCenterY() - this.getCenterY()));
@@ -123,7 +123,7 @@ public class Enemy extends BlackHole {
 
 			}
 		} else { 
-			closeToDanger();
+			//closeToDanger();
 		}
 	}
 

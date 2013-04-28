@@ -32,6 +32,7 @@ public class HighScoreScene extends GameScene {
 		final Text highScore = new Text(100, 60, mFont, LocalizationStrings
 				.getInstance().getLocalizedString("menu_high_score"),
 				HorizontalAlign.CENTER);
+		highScore.setScale(1.5f);
 
 		// The coordinates for the text to bee in the middle of the screen
 		float x = this.smoothCamera.getWidth() / 2.0f - highScore.getWidth()
@@ -46,27 +47,28 @@ public class HighScoreScene extends GameScene {
 		try {
 			final BufferedReader reader = new BufferedReader(new InputStreamReader(
 					context.getAssets().open("highScore")));
-			String mLine = reader.readLine();
+		
+				String mLine = reader.readLine();
 
 			// to get the coordinates for position.
 			final Text highScoreText = new Text(100, 120 + tmp * 40, mFont, mLine,
 					HorizontalAlign.CENTER);
-			x = this.smoothCamera.getWidth() / 2.0f - highScoreText.getWidth()
-					/ 2.0f;
-			y = this.smoothCamera.getHeight() / 2.0f
-					- highScoreText.getHeight() / 2.0f;
+			x = this.smoothCamera.getWidth() / 2.0f-120;
+			y = this.smoothCamera.getHeight() / 2.0f-20;
 
 			while (mLine != null) {
 				tmp++;
-				final Text playerScore = new Text(100, 120 + tmp * 40,
-						Fonts.getInstance().menuItemFont, mLine,
-						HorizontalAlign.CENTER);
-				// increase the y-axis for every player. Max 5 players!
-				playerScore.setPosition(x, (int) (y * (0.35 + tmp * 0.3)));
-
+				final Text playerScoreName = new Text(x,y,Fonts.getInstance().menuItemFont, tmp + ". " + mLine);
+				final Text playerScore = new Text(x, y,
+						Fonts.getInstance().menuItemFont, reader.readLine());
+				// increase the y-axis for every player. Max 5 players! 
+				playerScoreName.setPosition(x, (int) (y * (0.35 + tmp * 0.3)));
+				// x-constant because the name cannot be bigger than "220"(e.g x+220)
+				playerScore.setPosition(x+220, (int) (y * (0.35 + tmp * 0.3)));
 				mLine = reader.readLine();
 
 				this.attachChild(playerScore);
+				this.attachChild(playerScoreName);
 
 			}
 

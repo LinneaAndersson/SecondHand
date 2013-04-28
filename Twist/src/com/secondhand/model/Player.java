@@ -16,7 +16,7 @@ public class Player extends BlackHole {
 
 	private String name;
 	
-	private static final int STARTING_LIVES = 3;
+	private static final int STARTING_LIVES = 1;
 	
 	private int lives;
 	

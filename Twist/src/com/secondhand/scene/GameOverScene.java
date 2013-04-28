@@ -3,6 +3,8 @@ package com.secondhand.scene;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.anddev.andengine.engine.Engine;
 import org.anddev.andengine.entity.scene.menu.MenuScene;
@@ -28,9 +30,7 @@ public class GameOverScene extends GameMenuScene implements
 	private Player player;
 	private static final int NAME = 0;
 	private static final int SKIP = 1;
-	private static final int BACK = 1;
-	private int[] highScore;
-	private String[] highScoreName;
+	private static final int SAVE = 2;
 	private BufferedReader reader;
 	Text textGameOver = null;
 
@@ -91,7 +91,13 @@ public class GameOverScene extends GameMenuScene implements
 		} catch (IOException e) {
 			Log.e("GameOverScene","laodScene");
 		}
+		final List <MenuItem> menuList = new ArrayList();
+		menuList.add( new MenuItem(NAME,LocalizationStrings.getInstance().getLocalizedString("game_over_name")));
+		menuList.add(new MenuItem(SKIP,LocalizationStrings.getInstance().getLocalizedString("game_over_skip")));
+		menuList.add(new MenuItem(SAVE,LocalizationStrings.getInstance().getLocalizedString("game_over_save")));
 
+		layoutCenteredMenu(antal, menuList);
+		this.setOnMenuItemClickListener(this);
 	}
 
 	public void setHeadLine(final String text) {
@@ -104,14 +110,7 @@ public class GameOverScene extends GameMenuScene implements
 		textGameOver.setPosition(x, (int) (0.2 * y));
 
 		this.attachChild(textGameOver);
-		// The title
-
-		/*
-		 * } else { // not important yet textGameOver = new Text(100, 60, mFont,
-		 * LocalizationStrings
-		 * .getInstance().getLocalizedString("congratulations"),
-		 * HorizontalAlign.CENTER); }
-		 */
+		
 
 	}
 
@@ -124,6 +123,17 @@ public class GameOverScene extends GameMenuScene implements
 	public boolean onMenuItemClicked(final MenuScene pMenuScene,
 			final IMenuItem pMenuItem, final float pMenuItemLocalX,
 			final float pMenuItemLocalY) {
+		
+		switch (pMenuItem.getID()){
+		case SKIP:
+			setScene(getParentScene());
+			break;
+		case SAVE:
+			setScene(AllScenes.HIGH_SCORE_SCENE);
+			break;
+		default:
+			break;
+		}
 		return false;
 	}
 

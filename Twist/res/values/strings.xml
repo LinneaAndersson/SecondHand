@@ -13,6 +13,9 @@
     <string name="menu_volume">Volume</string>
     <string name="menu_game_over">Game over!</string>
     <string name="congratulation">Congratulations!</string>
+    <string name="game_over_skip">Skip</string>
+    <string name="game_over_name">Name:</string>
+    <string name="game_over_save">Save</string>
     
     
     

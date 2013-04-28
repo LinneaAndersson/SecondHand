@@ -4,6 +4,7 @@ import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 
 import org.anddev.andengine.engine.Engine;
+import org.anddev.andengine.engine.camera.Camera;
 import org.anddev.andengine.engine.camera.hud.HUD;
 import org.anddev.andengine.entity.shape.IShape;
 
@@ -112,7 +113,8 @@ public class GamePlayScene extends GameScene implements PropertyChangeListener,
 		smoothCamera.setChaseEntity(null);
 		// reset zoom
 		smoothCamera.setZoomFactor(1.0f);
-		engine.getCamera().setCenter(0, 0);
+		Camera camera = engine.getCamera();
+		camera.setCenter(camera.getWidth()/2, camera.getHeight()/2);
 
 		// don't show the HUD in the menu.
 		hud.setCamera(null);

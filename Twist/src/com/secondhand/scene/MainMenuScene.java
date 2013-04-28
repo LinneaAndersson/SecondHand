@@ -9,9 +9,12 @@ import org.anddev.andengine.entity.scene.menu.MenuScene.IOnMenuItemClickListener
 import org.anddev.andengine.entity.scene.menu.item.IMenuItem;
 
 import android.content.Context;
+import android.view.KeyEvent;
 
+import com.secondhand.controller.SceneManager;
 import com.secondhand.debug.MyDebug;
 import com.secondhand.resource.LocalizationStrings;
+import com.secondhand.scene.IGameScene.AllScenes;
 
 public class MainMenuScene extends GameMenuScene implements IOnMenuItemClickListener {
 
@@ -61,6 +64,17 @@ public class MainMenuScene extends GameMenuScene implements IOnMenuItemClickList
 
 	}
 
+	
+	@Override
+	public boolean onKeyDown(final int pKeyCode, final KeyEvent pEvent) {
+		
+		// first we need to save the game before we shut down the app
+		final GamePlayScene gamePlayScene = (GamePlayScene)SceneManager.getInstance().getScene(AllScenes.GAME_PLAY_SCENE);
+		
+		// parent scene is null, so the app is shut down now.
+		return super.onKeyDown(pKeyCode, pEvent);
+	}
+	
 	@Override
 	public AllScenes getParentScene() {
 		// see the getParentScene method of LoadingScene for a motivation of why null

@@ -1,15 +1,9 @@
 package com.secondhand.model;
 
-import org.anddev.andengine.entity.primitive.Rectangle;
-import org.anddev.andengine.entity.shape.Shape;
-import org.anddev.andengine.extension.physics.box2d.PhysicsFactory;
 import org.anddev.andengine.extension.physics.box2d.PhysicsWorld;
 
 import com.badlogic.gdx.math.Vector2;
-import com.badlogic.gdx.physics.box2d.BodyDef.BodyType;
 import com.badlogic.gdx.physics.box2d.Contact;
-import com.badlogic.gdx.physics.box2d.FixtureDef;
-import com.secondhand.debug.MyDebug;
 import com.secondhand.scene.IGamePlaySceneView;
 
 // This class was formerly known as level. 

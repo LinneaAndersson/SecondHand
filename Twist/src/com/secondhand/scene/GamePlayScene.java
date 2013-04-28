@@ -69,8 +69,10 @@ public class GamePlayScene extends GameScene implements PropertyChangeListener,
 			shape.detachSelf();
 			attachChild(shape);
 		}
+	}
 
-
+	public void saveCurrentState() {
+		
 	}
 
 	// should be called ONCE in the program.

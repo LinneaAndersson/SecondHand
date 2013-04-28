@@ -111,41 +111,41 @@ public class Enemy extends BlackHole {
 			if (straightToEntity(entity)) {
 				// MyDebug.d("Enemy: applyMovement towards " +
 				// entity.getClass());
-				//closeToDanger();
+				closeToDanger();
 				applyMovement(new Vector2(
 						(entity.getCenterX() - this.getCenterX()),
 						entity.getCenterY() - this.getCenterY()));
-				
 
 			} else {
 				// MyDebug.d("Enemy: stopMovement");
 				stopMovement();
 
 			}
-		} else { 
-			//closeToDanger();
+		} else {
+			closeToDanger();
 		}
 	}
 
 	// checks if there is something dangerous close by
 	private void closeToDanger() {
-		//MyDebug.d("Enemy: danger");	
+		// MyDebug.d("Enemy: danger");
 		final Vector2 center = getBody().getWorldCenter();
-		final float rad = (getRadius() + 5)
+		final float rad = (getRadius() + 15)
 				/ PhysicsConstants.PIXEL_TO_METER_RATIO_DEFAULT;
 		physicsWorld.QueryAABB(new QueryCallback() {
 
 			@Override
 			public boolean reportFixture(final Fixture fixture) {
-				MyDebug.d("Enemy: report fixture "  + fixture.getBody().getUserData());	
+
 				Entity tmp = ((Entity) fixture.getBody().getUserData());
-				/*if (!canEat(tmp)) {
-					retreat(tmp);
-				}*/
-				if(tmp.getClass() == Enemy.class ){
-					return true;
+				if (tmp != null && tmp.getClass() != Enemy.class) {
+					MyDebug.d("Enemy: report fixture "
+							+ fixture.getBody().getUserData());
+					if (!canEat(tmp)) {
+						retreat(tmp);
+					}
 				}
-				return false;
+				return true;
 			}
 		}, center.x - rad, center.y + rad, center.x + rad, center.y - rad);
 
@@ -158,6 +158,7 @@ public class Enemy extends BlackHole {
 	}
 
 	private void retreat(final Entity danger) {
+		MyDebug.d("Enemy: Retreat");
 		applyMovement(new Vector2(
 				(this.getCenterX() - danger.getCenterX() * 500),
 				(this.getCenterY() - danger.getCenterY() * 500)));

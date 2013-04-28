@@ -8,6 +8,7 @@ import java.util.List;
 import org.anddev.andengine.extension.physics.box2d.util.constants.PhysicsConstants;
 
 import com.badlogic.gdx.math.Vector2;
+import com.secondhand.debug.MyDebug;
 import com.secondhand.model.powerup.PowerUp;
 import com.secondhand.resource.Sounds;
 
@@ -20,6 +21,8 @@ public class Player extends BlackHole {
 	private int lives;
 	
 	private final PropertyChangeSupport sceneSupport = new PropertyChangeSupport(this);
+	
+	private Vector2 needsToMovePosition;
 	
 	private final List<PowerUp> powerUpList = new ArrayList<PowerUp>(1) {
 		/**
@@ -122,6 +125,7 @@ public class Player extends BlackHole {
 	}
 	
 	public void reachToTouch(final Vector2 touch) {
+		MyDebug.d("TouchEvent "+ getRadius()*0.001f);
 		Vector2 movementVector = new Vector2((getCenterX() - touch.x),
 				getCenterY() - touch.y);
 
@@ -134,7 +138,6 @@ public class Player extends BlackHole {
 		move(movementVector);
 	}
 
-	private Vector2 needsToMovePosition;
 	
 	// used to implement teleport, because you can't change the position inside a contact
 	// listener for some retarded reason(that would be too simple, now wouldn't it!?) 
@@ -169,10 +172,6 @@ public class Player extends BlackHole {
 	protected void entityWasTooBigToEat(final Entity entity) {
 		Sounds.getInstance().obstacleCollisionSound.play();
 	}
-
-
-	
-	
 	
 	@Override
 	protected void wasEaten() {

@@ -119,7 +119,7 @@ public class GameWorld {
 		createLevelEntities(this.levelNumber);
 
 		// then notify the view of this, so that it can place out the new
-		// Entities in AndEngine for rendering.
+		// Entities in AndEngine for rendering.		
 		support.firePropertyChange("NextLevel", false, true);
 	}
 

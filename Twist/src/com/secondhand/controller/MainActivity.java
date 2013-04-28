@@ -31,7 +31,6 @@ public class MainActivity extends BaseGameActivity {
 	public Scene onLoadScene() {
 		// the FPS logger is useful for optimizing performance.(the FPS is shown in LogCat)
 		this.mEngine.registerUpdateHandler(new FPSLogger());
-		
 		return SceneManager.getInstance().setCurrentSceneEnum(IGameScene.AllScenes.LOADING_SCENE).getScene();				
 	}
 
@@ -77,6 +76,16 @@ public class MainActivity extends BaseGameActivity {
 		}
 	}
 
-
+	
+	
+	@Override
+	protected void onDestroy()
+	{
+	    super.onDestroy();
+	    
+	    // ensure that the app is always shut down when exited. 
+	    // otherwise we get weird behaviour when restarting the app.
+	    System.exit(0);    
+	}
 }
 

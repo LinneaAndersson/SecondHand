@@ -58,7 +58,7 @@ public class Player extends BlackHole {
 		final int oldScore = getScore();
 		super.increaseScore(increase);
 		// we also want to notify the view of this change:
-		if(this.level.hasView())
+		//if(this.level.hasView())
 			//this.level.getView().updateScore(this.getScore());
 			sceneSupport.firePropertyChange("Score", oldScore, getScore());
 	}

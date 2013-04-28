@@ -7,11 +7,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.anddev.andengine.engine.Engine;
-import org.anddev.andengine.entity.scene.background.ColorBackground;
 import org.anddev.andengine.entity.scene.menu.MenuScene;
 import org.anddev.andengine.entity.scene.menu.MenuScene.IOnMenuItemClickListener;
 import org.anddev.andengine.entity.scene.menu.item.IMenuItem;
-import org.anddev.andengine.entity.text.ChangeableText;
 import org.anddev.andengine.entity.text.Text;
 import org.anddev.andengine.opengl.font.Font;
 import org.anddev.andengine.util.HorizontalAlign;
@@ -19,7 +17,6 @@ import org.anddev.andengine.util.HorizontalAlign;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.util.Log;
-import android.widget.EditText;
 
 import com.secondhand.debug.MyDebug;
 import com.secondhand.model.GameWorld;

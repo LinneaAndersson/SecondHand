@@ -4,7 +4,6 @@ import static org.anddev.andengine.util.constants.Constants.VERTEX_INDEX_Y;
 
 import java.util.List;
 
-
 import javax.microedition.khronos.opengles.GL10;
 
 import org.anddev.andengine.collision.RectangularShapeCollisionChecker;

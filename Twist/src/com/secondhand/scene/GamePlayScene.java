@@ -89,12 +89,12 @@ public class GamePlayScene extends GameScene implements PropertyChangeListener,
 		final Player player = gameWorld.getPlayer();
 		player.getShape().detachSelf();
 		attachChild(player.getShape());
-		gameWorld.getPlayer().addListener(this);
+		gameWorld.addListener(this);
 		engine.getCamera().setChaseEntity(player.getShape());
 
 		// setup the physicsworld the
 		registerUpdateHandler(gameWorld.getPhysicsWorld());
-		gameWorld.setView(this);
+		//gameWorld.setView(this);
 
 		// setup the HUD
 		hud = new HUD();
@@ -181,6 +181,8 @@ public class GamePlayScene extends GameScene implements PropertyChangeListener,
 			final float newRadius = (Float)event.getNewValue();
 			MyDebug.d("new radius: " + newRadius);
 			apaptCameraToGrowingPlayer( (Float)event.getNewValue(),  (Float)event.getOldValue());
+		} else if(eventName.equals("NextLevel")){
+			newLevelStarted();
 		}
 	}
 	

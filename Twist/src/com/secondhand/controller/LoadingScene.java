@@ -4,7 +4,6 @@ import org.anddev.andengine.engine.Engine;
 
 import android.content.Context;
 
-import com.secondhand.debug.MyDebug;
 import com.secondhand.resource.Fonts;
 import com.secondhand.scene.GameScene;
 import com.secondhand.scene.IGameScene;

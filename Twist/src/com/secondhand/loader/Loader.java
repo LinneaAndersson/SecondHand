@@ -2,8 +2,6 @@ package com.secondhand.loader;
 
 import org.anddev.andengine.engine.Engine;
 
-
-
 import android.content.Context;
 
 public abstract class Loader implements ILoader {

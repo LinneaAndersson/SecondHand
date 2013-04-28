@@ -1,10 +1,12 @@
 package com.secondhand.model;
 
+import java.beans.PropertyChangeListener;
+import java.beans.PropertyChangeSupport;
+
 import org.anddev.andengine.extension.physics.box2d.PhysicsWorld;
 
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Contact;
-import com.secondhand.scene.IGamePlaySceneView;
 
 // This class was formerly known as level. 
 public class GameWorld {
@@ -15,7 +17,7 @@ public class GameWorld {
 	private int playerMaxSize;
 
 	private PhysicsWorld physicsWorld;
-	
+
 	private GameWorldBounds gameWorldBounds;
 
 	private int levelWidth;
@@ -23,20 +25,23 @@ public class GameWorld {
 
 	private int levelNumber;
 
+	private PropertyChangeSupport support;
+
 	// I would strongly recommend using some kind of observer-pattern here
 	// instead
-	private IGamePlaySceneView view;
+	// private IGamePlaySceneView view;
 
-	public void setView(final IGamePlaySceneView view) {
-		this.view = view;
-	}
+	/*
+	 * public void setView(final IGamePlaySceneView view) { this.view = view; }
+	 * 
+	 * public IGamePlaySceneView getView() { return this.view; }
+	 * 
+	 * public boolean hasView() { return view != null; }
+	 */
 
-	public IGamePlaySceneView getView() {
-		return this.view;
-	}
-
-	public boolean hasView() {
-		return view != null;
+	public void addListener(PropertyChangeListener listener) {
+		support.addPropertyChangeListener(listener);
+		getPlayer().addListener(listener);
 	}
 
 	public GameWorld() {
@@ -46,34 +51,38 @@ public class GameWorld {
 	public GameWorld(final int levelNumber) {
 		this.levelNumber = levelNumber;
 
+		support = new PropertyChangeSupport(this);
+
 		this.physicsWorld = new PhysicsWorld(new Vector2(), true);
-		
+
 		this.gameWorldBounds = new GameWorldBounds();
-		
-		
-		this.entityManager = new EntityManager(new Player(new Vector2(50, 50), 30, this, 20));
-		
+
+		this.entityManager = new EntityManager(new Player(new Vector2(50, 50),
+				30, this, 20));
+
 		// you can try lowering the values of these if the game starts lagging
-		// too much. Basically, high values for these gives a higher quality physics simulation.
+		// too much. Basically, high values for these gives a higher quality
+		// physics simulation.
 		this.physicsWorld.setVelocityIterations(16);
 		this.physicsWorld.setPositionIterations(16);
-		
+
 		createLevelEntities(this.levelNumber);
 	}
-	
+
 	// create the level entities of a new level.
 	private void createLevelEntities(final int levelNumber) {
-		final RandomLevelGenerator randomLevelGenerator = new RandomLevelGenerator(this.entityManager.getPlayer(), this);
+		final RandomLevelGenerator randomLevelGenerator = new RandomLevelGenerator(
+				this.entityManager.getPlayer(), this);
 
 		this.playerMaxSize = randomLevelGenerator.playerMaxSize;
 		this.levelWidth = randomLevelGenerator.levelWidth;
 		this.levelHeight = randomLevelGenerator.levelHeight;
 
-		
 		this.entityManager.setEntityList(randomLevelGenerator.entityList);
 		this.entityManager.setEnemyList(randomLevelGenerator.enemyList);
-		
-		gameWorldBounds.setupWorldBounds(this.levelWidth, this.levelHeight, this.physicsWorld);
+
+		gameWorldBounds.setupWorldBounds(this.levelWidth, this.levelHeight,
+				this.physicsWorld);
 	}
 
 	public int getLevelNumber() {
@@ -97,20 +106,21 @@ public class GameWorld {
 	private boolean nextLevelAdvanced = false;
 
 	public void nextLevel() {
-		
+
 		++this.levelNumber;
 
 		// destroy old level
-		
+
 		// destroy the entities expect for player
 		clearLevel();
 		this.gameWorldBounds.removeWorldBounds();
-		
+
 		// first load the new level entities:
 		createLevelEntities(this.levelNumber);
-		
-		// then notify the view of this, so that it can place out the new Entities in AndEngine for rendering. 
-		this.getView().newLevelStarted();
+
+		// then notify the view of this, so that it can place out the new
+		// Entities in AndEngine for rendering.
+		support.firePropertyChange("NextLevel", false, true);
 	}
 
 	public void onManagedUpdate(final float pSecondsElapsed) {
@@ -121,7 +131,7 @@ public class GameWorld {
 			this.entityManager.onManagedUpdate(pSecondsElapsed);
 		}
 	}
-	
+
 	public boolean isGameOver() {
 		return this.entityManager.getPlayer().lostAllLives();
 	}
@@ -141,11 +151,11 @@ public class GameWorld {
 	public boolean checkPlayerBigEnough() {
 		return this.getPlayer().getRadius() >= playerMaxSize;
 	}
-	
+
 	public EntityManager getEntityManager() {
 		return this.entityManager;
 	}
-	
+
 	public void saveCurrentState() {
 		this.entityManager.serialize();
 	}

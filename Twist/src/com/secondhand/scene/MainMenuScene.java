@@ -14,7 +14,6 @@ import android.view.KeyEvent;
 import com.secondhand.controller.SceneManager;
 import com.secondhand.debug.MyDebug;
 import com.secondhand.resource.LocalizationStrings;
-import com.secondhand.scene.IGameScene.AllScenes;
 
 public class MainMenuScene extends GameMenuScene implements IOnMenuItemClickListener {
 

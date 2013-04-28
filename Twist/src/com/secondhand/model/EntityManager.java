@@ -1,17 +1,31 @@
 package com.secondhand.model;
 
+import java.io.File;
 import java.util.List;
 import java.util.Stack;
+
+import com.secondhand.controller.SceneManager;
 
 // Manages all the entities of the GameWorld
 public class EntityManager {
 	
 	private List<Entity> entityList;
 	private List<Enemy> enemyList;
-	private final Stack<Entity> scheduledForDeletionEntities;
+	private Stack<Entity> scheduledForDeletionEntities;
 	private EntityManagerSerializer serializer;
 	
 	private final Player player;
+	
+	public static boolean saveDataExists() {
+		// check if the file is saved on the SD-card
+		return new File(SceneManager.getInstance().getContext().getFilesDir() + "/" + EntityManagerSerializer.FILE_NAME).exists();
+	}
+	
+	// load the serialized level instead of generating a new one. 
+	public EntityManager() {
+		serializer = new EntityManagerSerializer();
+		this.player = serializer.getPlayer();
+	}
 
 	public EntityManager(final Player player) {
 		this.scheduledForDeletionEntities = new Stack<Entity>();

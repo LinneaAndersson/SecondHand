@@ -57,8 +57,11 @@ public class GameWorld {
 
 		this.gameWorldBounds = new GameWorldBounds();
 
-		this.entityManager = new EntityManager(new Player(new Vector2(50, 50),
-				30, this, 20));
+		/*if(EntityManager.saveDataExists())
+			this.entityManager = new EntityManager();
+		else*/	
+			this.entityManager = new EntityManager(new Player(new Vector2(50, 50),
+					30, this));
 
 		// you can try lowering the values of these if the game starts lagging
 		// too much. Basically, high values for these gives a higher quality

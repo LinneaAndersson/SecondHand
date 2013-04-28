@@ -12,6 +12,8 @@ import com.secondhand.debug.MyDebug;
 import com.secondhand.model.powerup.PowerUp;
 
 public class Enemy extends BlackHole {
+	
+	private static final float ENEMY_MAX_SPEED = 10;
 
 	private static boolean straightLine = true;
 	// because someone changed getArea to getRadius I
@@ -19,8 +21,8 @@ public class Enemy extends BlackHole {
 	private final float huntingArea;
 
 	public Enemy(final Vector2 vector, final float radius,
-			final GameWorld level, final float maxSpeed) {
-		super(vector, radius, level, true, maxSpeed);
+			final GameWorld level) {
+		super(vector, radius, level, true, ENEMY_MAX_SPEED);
 
 		huntingArea = getRadius() * getRadius() * (float) Math.PI * 100;
 	}

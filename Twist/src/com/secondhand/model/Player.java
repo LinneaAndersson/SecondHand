@@ -21,6 +21,8 @@ public class Player extends BlackHole {
 	
 	private static final int STARTING_LIVES = 1;
 	
+	private static final int PLAYER_MAX_SPEED = 20;
+	
 	private int lives;
 	
 	private final PropertyChangeSupport sceneSupport = new PropertyChangeSupport(this);
@@ -47,8 +49,8 @@ public class Player extends BlackHole {
 		};
 	};
 
-	public Player(final Vector2 position, final float radius, final GameWorld level, final float maxSpeed) {
-		super(position, radius, level, false, maxSpeed);
+	public Player(final Vector2 position, final float radius, final GameWorld level) {
+		super(position, radius, level, false, PLAYER_MAX_SPEED);
 		this.lives = STARTING_LIVES;
 	}
 	
@@ -189,6 +191,8 @@ public class Player extends BlackHole {
 	public static Player readFromStream(DataInputStream in) throws IOException {
 		Vector2 pos = new Vector2(in.readFloat(), in.readFloat());
 		
+		float radius = in.readFloat();
+		
 		MyDebug.d("player position was " + pos.x + " " + pos.y); 
 		
 		return null;
@@ -196,9 +200,11 @@ public class Player extends BlackHole {
 	
 	public void writeToStream(DataOutputStream out) throws IOException {
 		// save position
-		
 		out.writeFloat(this.getX());
 		out.writeFloat(this.getY());
+		
+		out.writeFloat(this.getRadius());
+		
 	}
 
 	

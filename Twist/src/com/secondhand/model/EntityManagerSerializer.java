@@ -4,6 +4,7 @@ import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -20,7 +21,7 @@ import com.secondhand.debug.MyDebug;
 public class EntityManagerSerializer {
 
 	// the file to serialize to
-	private static final String FILE_NAME = "game_world_entities.dat";
+	public static final String FILE_NAME = "game_world_entities.dat";
 
 	
 	// reference to all the data managed by EntityManager
@@ -33,6 +34,11 @@ public class EntityManagerSerializer {
 	public EntityManagerSerializer() {
 		deserialize();
 	}
+	
+	public Player getPlayer() {
+		return this.player;
+	}
+
 	
 	public EntityManagerSerializer(
 			final Player player,
@@ -69,6 +75,7 @@ public class EntityManagerSerializer {
 	}
 	
 	public void serialize() {	
+		
 		DataOutputStream out = null;
 		try {
 			out = new DataOutputStream(new BufferedOutputStream(
@@ -87,6 +94,10 @@ public class EntityManagerSerializer {
 				MyDebug.e("Could not close serialization file for writing ", e);
 			}
 		}
+		
+		MyDebug.d("serialized file size: " + 
+		new File(SceneManager.getInstance().getContext().getFilesDir() + "/" + FILE_NAME).length() + " bytes");
+		
 		
 		deserialize();
 	}

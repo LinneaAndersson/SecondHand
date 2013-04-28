@@ -74,7 +74,7 @@ public class MainActivity extends BaseGameActivity {
 		}
 	}
 
-	@Override
+	/*@Override
 	protected void onDestroy()
 	{
 	    super.onDestroy();
@@ -82,6 +82,6 @@ public class MainActivity extends BaseGameActivity {
 	    // ensure that the app is always shut down when exited. 
 	    // otherwise we get weird behaviour when restarting the app.
 	    System.exit(0);    
-	}
+	}*/
 }
 

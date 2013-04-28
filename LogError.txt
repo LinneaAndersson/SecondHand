@@ -1,0 +1,16 @@
+04-28 20:01:48.779: E/AndroidRuntime(8095): /system/csc/feature.xml ==> cannot open file
+
+04-28 20:01:49.229: E/AndroidRuntime(8105): /system/csc/feature.xml ==> cannot open file
+
+04-28 20:01:49.829: E/InputDispatcher(160): channel '40835450 com.secondhand.twirl/com.secondhand.controller.MainActivity (server)' ~ Consumer closed input channel or an error occurred.  events=0x8
+
+04-28 20:01:49.829: E/InputDispatcher(160): channel '40835450 com.secondhand.twirl/com.secondhand.controller.MainActivity (server)' ~ Channel is unrecoverably broken and will be disposed!
+04-28 20:01:49.959: E/Launcher(7575): setWindowOpaque()
+
+04-28 20:01:49.999: E/Launcher(7575): MTP-LAUNCHER: media scanning not yet finished. 
+
+04-28 20:01:49.999: E/Launcher(7575): setWindowOpaque()
+
+04-28 20:01:50.279: E/Launcher(7575): setWindowOpaque()
+
+04-28 20:02:42.459: E/power(160): *** set_screen_state 0

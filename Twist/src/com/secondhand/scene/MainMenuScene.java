@@ -71,6 +71,7 @@ public class MainMenuScene extends GameMenuScene implements IOnMenuItemClickList
 		// first we need to save the game before we shut down the app
 		final GamePlayScene gamePlayScene = (GamePlayScene)SceneManager.getInstance().getScene(AllScenes.GAME_PLAY_SCENE);
 		
+		
 		// parent scene is null, so the app is shut down now.
 		return super.onKeyDown(pKeyCode, pEvent);
 	}

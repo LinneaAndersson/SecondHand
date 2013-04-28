@@ -70,12 +70,9 @@ public class EntityManager {
 	}
 	
 	public void removeAllEntitiesExpectForPlayer() {
+		// player is not stored in entity list.
 		for(Entity entity: this.entityList) {
-			if(entity != player)
-				entity.destroyEntity();
+			entity.destroyEntity();
 		}
-		
-		entityList.clear();
-		entityList.add(player);
 	}
 }

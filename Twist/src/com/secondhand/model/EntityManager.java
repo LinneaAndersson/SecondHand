@@ -3,8 +3,6 @@ package com.secondhand.model;
 import java.util.List;
 import java.util.Stack;
 
-import com.secondhand.debug.MyDebug;
-
 // Manages all the entities of the GameWorld
 public class EntityManager {
 

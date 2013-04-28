@@ -106,8 +106,6 @@ public class GameWorld {
 		
 		++this.levelNumber;
 
-		MyDebug.d("advancing to next level");
-		
 		// destroy old level
 		
 		// destroy the entities expect for player
@@ -129,7 +127,7 @@ public class GameWorld {
 			this.entityManager.onManagedUpdate(pSecondsElapsed);
 		}
 	}
-
+	
 	public boolean isGameOver() {
 		return this.entityManager.getPlayer().lostAllLives();
 	}
@@ -147,9 +145,6 @@ public class GameWorld {
 	}
 
 	public boolean checkPlayerBigEnough() {
-		if (this.getPlayer().getRadius() < playerMaxSize)
-			MyDebug.d("current played size: " + this.getPlayer().getRadius()
-					+ " goal: " + playerMaxSize);
 		return this.getPlayer().getRadius() >= playerMaxSize;
 	}
 	

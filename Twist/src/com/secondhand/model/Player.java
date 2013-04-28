@@ -8,7 +8,6 @@ import java.util.List;
 import org.anddev.andengine.extension.physics.box2d.util.constants.PhysicsConstants;
 
 import com.badlogic.gdx.math.Vector2;
-import com.secondhand.debug.MyDebug;
 import com.secondhand.model.powerup.PowerUp;
 import com.secondhand.resource.Sounds;
 
@@ -64,7 +63,7 @@ public class Player extends BlackHole {
 	private void changeLives(final int change) {
 		final int oldLife = lives;
 		lives += change;
-		if(this.level.hasView())
+	//	if(this.level.hasView())
 			//this.level.getView().updateLives(this.getLives());
 			sceneSupport.firePropertyChange("Life", oldLife, lives);
 	}
@@ -72,7 +71,6 @@ public class Player extends BlackHole {
 	// the player loses a life 
 	private void loseLife() {
 		changeLives(-1);
-		MyDebug.d("player lost a life. current lives: " + this.getLives());
 	}
 	
 	// the player loses a life and is repositioned.
@@ -113,6 +111,14 @@ public class Player extends BlackHole {
 	
 	public void addListener(final PropertyChangeListener observer) {
 		sceneSupport.addPropertyChangeListener(observer);
+	}
+	
+	@Override
+	public void setRadius(final float radius) {
+		final float oldRadius = this.getRadius();
+		super.setRadius(radius);
+		final float newRadius = this.getRadius();
+		sceneSupport.firePropertyChange("PlayerRadius", oldRadius, newRadius);
 	}
 	
 	public void reachToTouch(final Vector2 touch) {

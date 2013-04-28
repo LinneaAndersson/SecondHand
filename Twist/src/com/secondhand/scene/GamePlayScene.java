@@ -164,6 +164,10 @@ public class GamePlayScene extends GameScene implements PropertyChangeListener,
 			updateScore((Integer) event.getNewValue());
 		} else if (eventName.equals("Life")) {
 			updateLives((Integer) event.getNewValue());
+		} else if (eventName.equals("PlayerRadius")) {
+			final float newRadius = (Float)event.getNewValue();
+			MyDebug.d("new radius: " + newRadius);
+			//updateLives((Integer) event.getNewValue());
 		}
 	}
 

@@ -40,18 +40,11 @@ public class GamePlayScene extends GameScene implements PropertyChangeListener,
 	}
 
 	public void registerNewLevel() {
-
+		
 		final float width = gameWorld.getLevelWidth();
 		final float height = gameWorld.getLevelHeight();
 
-		this.smoothCamera.setBounds(0, width, 0, height);
-
-		for (final Entity entity : gameWorld.getEntityManager().getEntityList()) {
-			final IShape shape = entity.getShape();
-			shape.detachSelf();
-			attachChild(shape);
-		}
-
+		
 		// TODO: get this background to work.
 		/*
 		 * final List<TextureRegion> starsTextures = new
@@ -65,6 +58,18 @@ public class GamePlayScene extends GameScene implements PropertyChangeListener,
 		this.attachChild(new StarsBackground(50, 5.0f, width, height));
 		this.attachChild(new StarsBackground(100, 3.0f, width, height));
 		this.attachChild(new StarsBackground(130, 1.0f, width, height));
+		
+
+
+		this.smoothCamera.setBounds(0, width, 0, height);
+
+		for (final Entity entity : gameWorld.getEntityManager().getEntityList()) {
+			final IShape shape = entity.getShape();
+			shape.detachSelf();
+			attachChild(shape);
+		}
+
+
 	}
 
 	// should be called ONCE in the program.
@@ -101,9 +106,12 @@ public class GamePlayScene extends GameScene implements PropertyChangeListener,
 		registerNewLevel();
 	}
 
-	// Undo camera lock on player
+	// reset camera before the menu is shown
 	public void resetCamera() {
+		// stopping chasing player.
 		smoothCamera.setChaseEntity(null);
+		// reset zoom
+		smoothCamera.setZoomFactor(1.0f);
 		engine.getCamera().setCenter(0, 0);
 
 		// don't show the HUD in the menu.
@@ -167,10 +175,18 @@ public class GamePlayScene extends GameScene implements PropertyChangeListener,
 		} else if (eventName.equals("PlayerRadius")) {
 			final float newRadius = (Float)event.getNewValue();
 			MyDebug.d("new radius: " + newRadius);
-			//updateLives((Integer) event.getNewValue());
+			apaptCameraToGrowingPlayer( (Float)event.getNewValue(),  (Float)event.getOldValue());
 		}
 	}
-
+	
+	// zoom out when player grows.
+	private void apaptCameraToGrowingPlayer(final float newRadius, final float oldRadius) {
+		this.smoothCamera.setZoomFactor(this.smoothCamera.getZoomFactor() - 0.05f * oldRadius/newRadius);
+		if(this.smoothCamera.getZoomFactor() < 0.0) {
+			this.smoothCamera.setZoomFactor(0);
+		}
+	}
+	
 	@Override
 	public void showFadingTextNotifier(final String str, final Vector2 position) {
 		this.attachChild(new FadingNotifierText(str, position));

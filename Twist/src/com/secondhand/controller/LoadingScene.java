@@ -21,6 +21,7 @@ public class LoadingScene extends GameScene {
 
 	@Override
 	public void loadScene() {
+		SceneManager.getInstance().setIsGameLoaded(true);
 
 		// add loading text
 		this.attachChild(new LoadingText(this.smoothCamera));

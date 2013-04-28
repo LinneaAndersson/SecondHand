@@ -35,6 +35,16 @@ public final class SceneManager {
 	private GameOverScene gameOverScene;
 
 	private GamePlaySceneController gamePlaySceneController;
+	
+	private boolean isGameLoaded = false;
+	
+	public void setIsGameLoaded(final boolean isGameLoaded) {
+		this.isGameLoaded = isGameLoaded;
+	}
+	
+	public boolean getIsGameLoaded() {
+		return this.isGameLoaded;
+	}
 
 	public static SceneManager getInstance() {
 		if (instance == null) {

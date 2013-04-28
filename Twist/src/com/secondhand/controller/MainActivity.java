@@ -24,7 +24,7 @@ public class MainActivity extends BaseGameActivity {
 
 	@Override
 	public void onLoadResources() {
-		// this is instead delegated to the separate scenes.
+		// not handled here, instead handled by singelton classes. 
 	}
 
 	@Override
@@ -37,8 +37,10 @@ public class MainActivity extends BaseGameActivity {
 	@Override
 	public Engine onLoadEngine() {
 		
+		// configure camera
 	    final SmoothCamera camera = new SmoothCamera(0, 0, CAMERA_WIDTH, CAMERA_HEIGHT, Float.MAX_VALUE, Float.MAX_VALUE, 1.0f);
 	    
+	    // configure engine
 	    final EngineOptions engineOptions = new EngineOptions(
 	    		true, ScreenOrientation.LANDSCAPE, new RatioResolutionPolicy(CAMERA_WIDTH, CAMERA_HEIGHT), camera);
 	    engineOptions.setNeedsSound(true);
@@ -49,14 +51,9 @@ public class MainActivity extends BaseGameActivity {
 	    FontLoader.getInstance().initialize(this, engine);
 	    SoundLoader.getInstance().initialize(this, engine);
 	    TextureRegionLoader.getInstance().initialize(this, engine);
-	    // IMPORTANT: Uses TextureRegionLoader, so this line must be executed after above line always
-		
 	    LocalizationStrings.getInstance().initialize(this);
-	
-	    
-	    
+	 
 	    SceneManager.getInstance().initialize(engine, this);
-	    
 	    
 	     return engine;	
 	}
@@ -72,12 +69,11 @@ public class MainActivity extends BaseGameActivity {
 		if(SceneManager.getInstance().sendOnKeyDownToCurrentScene(pKeyCode, pEvent)) {
 			return true;
 		} else {
+			// else let AndEngine handle it.
 			return super.onKeyDown(pKeyCode, pEvent);
 		}
 	}
 
-	
-	
 	@Override
 	protected void onDestroy()
 	{

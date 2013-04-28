@@ -11,6 +11,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.List;
 import java.util.Stack;
+import java.util.logging.Level;
 
 import android.content.Context;
 
@@ -31,8 +32,8 @@ public class EntityManagerSerializer {
 	private Player player;
 
 	// construct from the serialization file.
-	public EntityManagerSerializer() {
-		deserialize();
+	public EntityManagerSerializer(final GameWorld gameWorld) {
+		deserialize(gameWorld);
 	}
 	
 	public Player getPlayer() {
@@ -53,13 +54,13 @@ public class EntityManagerSerializer {
 		// for debugging reasons.
 	}
 	
-	private void deserialize() {
+	private void deserialize(final GameWorld gameWorld) {
 		DataInputStream in = null;
 		try {
 			in = new DataInputStream(new BufferedInputStream(
 					SceneManager.getInstance().getContext().openFileInput(FILE_NAME)));
 			
-			this.player = Player.readFromStream(in);
+			this.player = Player.readFromStream(in, gameWorld);
 			
 		} catch (final FileNotFoundException e) {
 			MyDebug.e("Could not open serialization file for reading", e);
@@ -96,9 +97,6 @@ public class EntityManagerSerializer {
 		}
 		
 		MyDebug.d("serialized file size: " + 
-		new File(SceneManager.getInstance().getContext().getFilesDir() + "/" + FILE_NAME).length() + " bytes");
-		
-		
-		deserialize();
+		new File(SceneManager.getInstance().getContext().getFilesDir() + "/" + FILE_NAME).length() + " bytes");	
 	}
 }

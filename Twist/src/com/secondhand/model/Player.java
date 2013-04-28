@@ -188,10 +188,12 @@ public class Player extends BlackHole {
 		kill();		
 	}
 	
-	public static Player readFromStream(DataInputStream in) throws IOException {
-		Vector2 pos = new Vector2(in.readFloat(), in.readFloat());
+	public static Player readFromStream(final DataInputStream in, final GameWorld gameWorld) throws IOException {
+		final Vector2 pos = new Vector2(in.readFloat(), in.readFloat());
 		
-		float radius = in.readFloat();
+		final float radius = in.readFloat();
+		
+		// we need to save lives, and score as well.
 		
 		MyDebug.d("player position was " + pos.x + " " + pos.y); 
 		
@@ -206,6 +208,4 @@ public class Player extends BlackHole {
 		out.writeFloat(this.getRadius());
 		
 	}
-
-	
 }

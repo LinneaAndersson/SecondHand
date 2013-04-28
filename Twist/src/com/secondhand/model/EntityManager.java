@@ -22,8 +22,8 @@ public class EntityManager {
 	}
 	
 	// load the serialized level instead of generating a new one. 
-	public EntityManager() {
-		serializer = new EntityManagerSerializer();
+	public EntityManager(final GameWorld gameWorld) {
+		serializer = new EntityManagerSerializer(gameWorld);
 		this.player = serializer.getPlayer();
 	}
 

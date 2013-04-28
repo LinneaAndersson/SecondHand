@@ -57,9 +57,9 @@ public class GameWorld {
 
 		this.gameWorldBounds = new GameWorldBounds();
 
-		/*if(EntityManager.saveDataExists())
-			this.entityManager = new EntityManager();
-		else*/	
+		if(EntityManager.saveDataExists())
+			this.entityManager = new EntityManager(this);
+		else
 			this.entityManager = new EntityManager(new Player(new Vector2(50, 50),
 					30, this));
 

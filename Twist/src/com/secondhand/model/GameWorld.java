@@ -157,7 +157,7 @@ public class GameWorld {
 	}
 
 	public void saveCurrentState() {
-
+		this.entityManager.serialize();
 	}
 
 	// remove every entity(both from the physics world and andengine rendering)

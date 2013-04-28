@@ -2,6 +2,9 @@ package com.secondhand.model;
 
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -181,6 +184,21 @@ public class Player extends BlackHole {
 		// be entirely removed from the world when eaten, we only want to reposition the player and lose a life.
 	
 		kill();		
+	}
+	
+	public static Player readFromStream(DataInputStream in) throws IOException {
+		Vector2 pos = new Vector2(in.readFloat(), in.readFloat());
+		
+		MyDebug.d("player position was " + pos.x + " " + pos.y); 
+		
+		return null;
+	}
+	
+	public void writeToStream(DataOutputStream out) throws IOException {
+		// save position
+		
+		out.writeFloat(this.getX());
+		out.writeFloat(this.getY());
 	}
 
 	

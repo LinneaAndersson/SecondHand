@@ -5,10 +5,11 @@ import java.util.Stack;
 
 // Manages all the entities of the GameWorld
 public class EntityManager {
-
+	
 	private List<Entity> entityList;
 	private List<Enemy> enemyList;
 	private final Stack<Entity> scheduledForDeletionEntities;
+	private EntityManagerSerializer serializer;
 	
 	private final Player player;
 
@@ -74,4 +75,13 @@ public class EntityManager {
 			entity.destroyEntity();
 		}
 	}
+	
+	// save to file
+	public void serialize() {
+		if(serializer == null)
+			serializer = new EntityManagerSerializer(player, entityList, enemyList, scheduledForDeletionEntities);
+	
+		this.serializer.serialize();
+	}
+
 }

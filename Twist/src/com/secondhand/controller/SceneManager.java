@@ -42,6 +42,10 @@ public final class SceneManager {
 		}
 		return instance;
 	}
+	
+	public Context getContext() {
+		return this.context;
+	}
 
 	private SceneManager() {
 	}

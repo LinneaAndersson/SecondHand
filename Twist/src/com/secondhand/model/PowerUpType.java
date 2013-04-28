@@ -1,4 +1,4 @@
-package com.secondhand.resource;
+package com.secondhand.model;
 
 
 public enum PowerUpType {
@@ -19,4 +19,3 @@ public enum PowerUpType {
 			return this.path;
 		}
 }
-

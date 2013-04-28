@@ -145,6 +145,10 @@ public class GameWorld {
 	public EntityManager getEntityManager() {
 		return this.entityManager;
 	}
+	
+	public void saveCurrentState() {
+		
+	}
 
 	// remove every entity(both from the physics world and andengine rendering)
 	// from the world expect for the player.

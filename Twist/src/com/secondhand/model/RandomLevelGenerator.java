@@ -14,7 +14,6 @@ import com.secondhand.model.powerup.ScoreUp;
 import com.secondhand.model.powerup.Shield;
 import com.secondhand.model.powerup.SpeedUp;
 import com.secondhand.opengl.Circle;
-import com.secondhand.resource.PlanetType;
 import com.secondhand.util.RandomUtil;
 
 // TODO: this generation of levels seems to be a bit slow, so we probably need a level loading screen.	

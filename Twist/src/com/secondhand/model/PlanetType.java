@@ -1,4 +1,4 @@
-package com.secondhand.resource;
+package com.secondhand.model;
 
 public enum PlanetType {
 		BLOOD("planet_blood.png", 256, 256),

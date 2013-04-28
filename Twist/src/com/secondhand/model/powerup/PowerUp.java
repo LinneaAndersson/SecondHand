@@ -10,8 +10,8 @@ import com.badlogic.gdx.math.Vector2;
 import com.secondhand.model.FixtureDefs;
 import com.secondhand.model.GameWorld;
 import com.secondhand.model.Player;
+import com.secondhand.model.PowerUpType;
 import com.secondhand.model.RectangleEntity;
-import com.secondhand.resource.PowerUpType;
 import com.secondhand.resource.TextureRegions;
 
 // I think that if we only want power-UP the

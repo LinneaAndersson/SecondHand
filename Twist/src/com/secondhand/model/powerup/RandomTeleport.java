@@ -5,8 +5,8 @@ import java.util.Random;
 import com.badlogic.gdx.math.Vector2;
 import com.secondhand.model.GameWorld;
 import com.secondhand.model.Player;
+import com.secondhand.model.PowerUpType;
 import com.secondhand.physics.PhysicsAreaChecker;
-import com.secondhand.resource.PowerUpType;
 
 public class RandomTeleport extends PowerUp {
 

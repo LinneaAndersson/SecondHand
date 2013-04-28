@@ -4,7 +4,7 @@
     <ruleSetFile>.ruleset</ruleSetFile>
     <rules>
         <rule>
-            <name>EmptyCatchBlock</name>
+	  <name>EmptyCatchBlock</name>
             <ruleset>Basic Rules</ruleset>
         </rule>
         <rule>

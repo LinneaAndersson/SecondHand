@@ -14,8 +14,6 @@ import com.secondhand.model.PowerUpType;
 import com.secondhand.model.RectangleEntity;
 import com.secondhand.resource.TextureRegions;
 
-// I think that if we only want power-UP the
-// class doesn't need to be abstract
 public abstract class PowerUp extends RectangleEntity {
 		
 	public final static float WIDTH = 64;

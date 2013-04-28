@@ -77,6 +77,7 @@ public class MainActivity extends BaseGameActivity {
 	@Override
 	protected void onDestroy()
 	{
+		
 	    super.onDestroy();
 	    
 	    // ensure that the app is always shut down when exited. 

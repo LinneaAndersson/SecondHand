@@ -164,7 +164,7 @@ public class Enemy extends BlackHole {
 
 	}
 
-	private void applyMovement(Vector2 movementVector) { // NOPMD
+	private void applyMovement(Vector2 movementVector) { 
 		MyDebug.d("Movement");
 		// the vector from enemy to the player
 

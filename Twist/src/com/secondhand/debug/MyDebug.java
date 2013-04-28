@@ -3,7 +3,7 @@ package com.secondhand.debug;
 import android.util.Log;
 
 //@SuppressWarnings("PMD")
-public final class MyDebug{ // NOPMD
+public final class MyDebug{ 
 	// ===========================================================
 	// Constants
 	// ===========================================================

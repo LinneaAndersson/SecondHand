@@ -72,7 +72,7 @@ public class TextureRegions {
 		POWER_UP("powerup_box.png"),
 		OBSTACLE("obstacle.png");
 		
-		private String path; // NOPMD
+		private String path; 
 		
 		private EntityTexture(final String path) {
 			this.path = path;

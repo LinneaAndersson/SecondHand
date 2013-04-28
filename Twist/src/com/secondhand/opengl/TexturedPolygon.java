@@ -77,7 +77,7 @@ public class TexturedPolygon extends Polygon {
 	@Override
 	protected void finalize() throws Throwable {
 		super.finalize();
-		if(mPolygonTextureRegionBuffer.isManaged()) { // NOPMD
+		if(mPolygonTextureRegionBuffer.isManaged()) { 
 			mPolygonTextureRegionBuffer.unloadFromActiveBufferObjectManager();
 		}
 	}

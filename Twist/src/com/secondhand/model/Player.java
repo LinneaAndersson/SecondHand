@@ -169,10 +169,6 @@ public class Player extends BlackHole {
 	protected void entityWasTooBigToEat(final Entity entity) {
 		Sounds.getInstance().obstacleCollisionSound.play();
 	}
-
-
-	
-	
 	
 	@Override
 	protected void wasEaten() {

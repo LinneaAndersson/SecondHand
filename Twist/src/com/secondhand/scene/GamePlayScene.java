@@ -182,9 +182,9 @@ public class GamePlayScene extends GameScene implements PropertyChangeListener,
 	// zoom out when player grows.
 	private void apaptCameraToGrowingPlayer(final float newRadius, final float oldRadius) {
 		this.smoothCamera.setZoomFactor(this.smoothCamera.getZoomFactor() - 0.05f * oldRadius/newRadius);
-		if(this.smoothCamera.getZoomFactor() < 0.0) {
+		/*if(this.smoothCamera.getZoomFactor() < 0.0) {
 			this.smoothCamera.setZoomFactor(0);
-		}
+		}*/
 	}
 	
 	@Override

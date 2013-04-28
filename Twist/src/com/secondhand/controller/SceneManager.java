@@ -55,10 +55,6 @@ public final class SceneManager {
 		this.loadingScene = new LoadingScene(this.engine, context);
 	}
 
-	public AllScenes getCurrentSceneEnum() {
-		return this.currentSceneEnum;
-	}
-
 	public IGameScene getCurrentScene() {
 		return getScene(currentSceneEnum);
 	}
@@ -91,11 +87,7 @@ public final class SceneManager {
 	public IGameScene setCurrentSceneEnum(final AllScenes currentSceneEnum) {
 		this.currentSceneEnum = currentSceneEnum;
 
-		final IGameScene currentScene = getCurrentScene();
-
-		
-		// start the controller of the game play scene.
-		
+		final IGameScene currentScene = getCurrentScene();	
 		
 		if (this.currentSceneEnum == AllScenes.GAME_PLAY_SCENE && gamePlaySceneController==null) {
 			gamePlaySceneController = new GamePlaySceneController(this.gamePlayScene);
@@ -109,13 +101,6 @@ public final class SceneManager {
 
 		return currentScene;
 	}
-	
-	// when the game is over we somehow need to use a new gamePlayScene or
-	// reuse the last one when starting a new game. If we use a new one we need 
-	// load it somewhere else if we reuse the old one then we need to remove 
-	// everything and add them again. Because we use a new level every time i 
-	// think we should also use a new gamePlayScene.
-	// This also applies when changing levels.
 	
 	// used by the loading scene to load all game resources.
 	public void loadAllResources() {

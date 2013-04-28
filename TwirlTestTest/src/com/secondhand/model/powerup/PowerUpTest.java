@@ -30,8 +30,7 @@ public class PowerUpTest extends TestCase {
 		Vector2 pos = new Vector2();
 		final GameWorld gW = new GameWorld();
 		float rad = 10;
-		float maxSpeed = 20;
-		Player player = new Player(pos, rad, gW, maxSpeed);
+		Player player = new Player(pos, rad, gW);
 		float duration = 5;
 		PowerUp powerUp = new PowerUp(pos, gW, duration) {
 			@Override

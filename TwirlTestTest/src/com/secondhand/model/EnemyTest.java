@@ -21,14 +21,12 @@ public class EnemyTest extends TestCase{
 		
 		Vector2 pos = new Vector2(2f, 4f);
 		float rad = 3.2f;
-		float maxSpeed = 10f;
 		
-		Enemy enemy = new Enemy(pos, rad, gW, maxSpeed);
+		Enemy enemy = new Enemy(pos, rad, gW);
 		
 		assertEquals(rad, enemy.getRadius());
 		assertEquals(pos.x, enemy.getX());
 		assertEquals(pos.y, enemy.getY());
-		assertEquals(maxSpeed, enemy.getMaxSpeed());
 	}
 	
 	
@@ -39,13 +37,12 @@ public class EnemyTest extends TestCase{
 		
 		Vector2 pos = new Vector2(2f, 4f);
 		float rad = 3.2f;
-		float maxSpeed = 10f;
 		
-		Enemy enemy = new Enemy(pos, rad, gW, maxSpeed);
+		Enemy enemy = new Enemy(pos, rad, gW);
 	
-		Player other = new Player(pos, rad-1, gW, maxSpeed);
+		Player other = new Player(pos, rad-1, gW);
 		assertTrue(enemy.canEat(other));
-		other = new Player(pos, rad, gW, maxSpeed);
+		other = new Player(pos, rad, gW);
 		assertFalse(enemy.canEat(other));
 	}
 	

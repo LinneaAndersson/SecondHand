@@ -48,22 +48,30 @@ public class EntityManagerSerializer {
 	}
 	
 	private void deserialize() {
+		DataInputStream in = null;
 		try {
-			final DataInputStream out = new DataInputStream(new BufferedInputStream(
+			in = new DataInputStream(new BufferedInputStream(
 					SceneManager.getInstance().getContext().openFileInput(FILE_NAME)));
 			
-			this.player = Player.readFromStream(out);
+			this.player = Player.readFromStream(in);
 			
 		} catch (final FileNotFoundException e) {
-			MyDebug.e("Could not open serialization file for writing", e);
+			MyDebug.e("Could not open serialization file for reading", e);
 		} catch (final IOException e) {
-			MyDebug.e("Could not write to serialization file. ", e);
+			MyDebug.e("Could not read from serialization file. ", e);
+		} finally {
+			try {
+				in.close();
+			} catch (IOException e) {
+				MyDebug.e("Could not close serialization file for reading ", e);
+			}
 		}
 	}
 	
 	public void serialize() {	
+		DataOutputStream out = null;
 		try {
-			final DataOutputStream out = new DataOutputStream(new BufferedOutputStream(
+			out = new DataOutputStream(new BufferedOutputStream(
 				SceneManager.getInstance().getContext().openFileOutput(FILE_NAME, Context.MODE_PRIVATE)));
 			
 			player.writeToStream(out);
@@ -72,6 +80,12 @@ public class EntityManagerSerializer {
 			MyDebug.e("Could not open serialization file for writing", e);
 		} catch (final IOException e) {
 			MyDebug.e("Could not write to serialization file. ", e);
+		} finally {
+			try {
+				out.close();
+			} catch (IOException e) {
+				MyDebug.e("Could not close serialization file for writing ", e);
+			}
 		}
 		
 		deserialize();

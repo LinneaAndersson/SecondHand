@@ -33,6 +33,10 @@ public final class SceneManager {
 			highScoreScene;
 	private GamePlayScene gamePlayScene;
 	private GameOverScene gameOverScene;
+	
+	public GamePlayScene getGamePlayScene() {
+		return this.gamePlayScene;
+	}
 
 	private GamePlaySceneController gamePlaySceneController;
 	
@@ -130,9 +134,6 @@ public final class SceneManager {
 		this.gameOverScene = new GameOverScene(this.engine, context);
 		this.gamePlayScene = new GamePlayScene(this.engine, context);
 		
-		
-		this.gameOverScene.setGameWorld(gamePlayScene.getGameWorld());
-
 		this.highScoreScene = new HighScoreScene(this.engine, context);
 	}
 

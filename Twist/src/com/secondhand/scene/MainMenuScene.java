@@ -9,11 +9,8 @@ import org.anddev.andengine.entity.scene.menu.MenuScene.IOnMenuItemClickListener
 import org.anddev.andengine.entity.scene.menu.item.IMenuItem;
 
 import android.content.Context;
-import android.view.KeyEvent;
 
-import com.secondhand.controller.SceneManager;
 import com.secondhand.debug.MyDebug;
-import com.secondhand.model.EntityManager;
 import com.secondhand.resource.LocalizationStrings;
 
 public class MainMenuScene extends GameMenuScene implements IOnMenuItemClickListener {

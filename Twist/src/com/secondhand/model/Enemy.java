@@ -92,14 +92,13 @@ public class Enemy extends BlackHole {
 	// chase after smallest entity first
 	// could create many get-something and make different
 	// enemies behave different ( getClosest... )
-	// could implement worldquery instead of sending the complete
-	// entityList. if i did they hunting area would be rectangular instead
-	// would be nice to not return null
 	private Entity getHighesPriority(final List<Entity> entityList) {
 		Entity entity = null;
 		for (final Entity e : entityList) {
-			if (isCloseToEntity(e) && canEat(e)) {
-				entity = getSmaller(entity, e);
+			if (e.getClass() != PowerUp.class) {
+				if (isCloseToEntity(e) && canEat(e)) {
+					entity = getSmaller(entity, e);
+				}
 			}
 		}
 		return entity;

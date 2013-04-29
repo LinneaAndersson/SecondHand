@@ -97,10 +97,6 @@ public class GamePlayScene extends GameScene implements PropertyChangeListener,
 				player.getScore(), player.getLives());
 		hud.attachChild(scoreLivesText);
 		
-		
-		// I do believe this belong here
-			getGameWorld().getPhysicsWorld().setContactListener(
-						new CollisionContactListener(getGameWorld()));
 				
 	}
 	

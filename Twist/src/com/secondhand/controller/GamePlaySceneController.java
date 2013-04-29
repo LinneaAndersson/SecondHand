@@ -16,6 +16,9 @@ public final class GamePlaySceneController {
 	public GamePlaySceneController(final GamePlayScene scene) {
 		gameWorld = scene.getGameWorld();
 		scene.setOnSceneTouchListener(new GameSceneTouchListener());
+		//belongs here
+		gameWorld.getPhysicsWorld().setContactListener(
+				new CollisionContactListener(gameWorld));
 	}
 	
 	private class GameSceneTouchListener implements IOnSceneTouchListener {

@@ -22,7 +22,7 @@ public class Enemy extends BlackHole {
 
 	public Enemy(final Vector2 vector, final float radius,
 			final GameWorld level) {
-		super(vector, radius, level, true, ENEMY_MAX_SPEED);
+		super(vector, radius, level, ENEMY_MAX_SPEED);
 
 		huntingArea = getRadius() * getRadius() * (float) Math.PI * 100;
 	}

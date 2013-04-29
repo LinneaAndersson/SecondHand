@@ -22,7 +22,7 @@ public abstract class PowerUp extends RectangleEntity {
 	private float duration;
 	
 	public PowerUp(final BaseRectangle rectangle, final GameWorld level, final float duration) {
-		super(rectangle, true, level, false, FixtureDefs.POWER_UP_FIXTURE_DEF);
+		super(rectangle, true, level, FixtureDefs.POWER_UP_FIXTURE_DEF);
 		this.duration = duration;	
 	}
 	

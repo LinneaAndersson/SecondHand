@@ -17,14 +17,10 @@ public abstract class Entity {
 	protected final PhysicsWorld physicsWorld;
 	protected final GameWorld level;
 	
-	protected final boolean updateRotation;
-	
-	public Entity(final Shape shape, final boolean isEdible, final Body body,  final boolean updateRotation,
-			final GameWorld level) {
+	public Entity(final Shape shape, final boolean isEdible, final Body body, final GameWorld level) {
 		this.body = body;
 		this.shape = shape;
 		this.isEdible = isEdible;
-		this.updateRotation = updateRotation;
 		this.physicsWorld = level.getPhysicsWorld();
 		this.level = level;
 		bodyScheduledForDeletion = false;
@@ -35,7 +31,7 @@ public abstract class Entity {
 		// we need this when doing collisions handling between entities and
 		// black holes:
 		body.setUserData(this);
-		physicsWorld.registerPhysicsConnector(new CustomPhysicsConnector(this.getShape(),isCircle(), this.body, true, updateRotation));
+		physicsWorld.registerPhysicsConnector(new CustomPhysicsConnector(this.getShape(),isCircle(), this.body, true, true));
 	}
 	
 	public float getX() {

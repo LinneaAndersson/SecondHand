@@ -51,7 +51,7 @@ public class Player extends BlackHole {
 	};
 	
 	public Player(final Vector2 position, final float radius, final GameWorld gameWorld, final int startingLives) { 
-		super(position, radius, gameWorld, true, PLAYER_MAX_SPEED);
+		super(position, radius, gameWorld, PLAYER_MAX_SPEED);
 		this.lives = startingLives;
 	}
 		

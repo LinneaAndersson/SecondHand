@@ -23,11 +23,11 @@ public abstract class BlackHole extends CircleEntity {
 	private  int score;
 
 	public BlackHole(final Vector2 position, final float radius,
-			final GameWorld level, final boolean updateRotation,
+			final GameWorld level,
 			final float maxSpeed) {
 		// TODO load texture instead of creating Circle
 		super(new Circle(position.x, position.y, radius), true, level,
-				updateRotation, FixtureDefs.BLACK_HOLE_FIXTURE_DEF);
+				 FixtureDefs.BLACK_HOLE_FIXTURE_DEF);
 		this.maxSpeed = maxSpeed;
 		this.score = 0;
 		this.canEatInedibles = false;

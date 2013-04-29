@@ -21,7 +21,7 @@ public abstract class PolygonEntity extends Entity {
 	public PolygonEntity(final Polygon polygon, final boolean isEdible, final GameWorld level,
 			final FixtureDef fixtureDef) {
 		super(polygon, isEdible, MyPhysicsFactory.createPolygonBody(level.getPhysicsWorld(),
-				polygon, BodyType.DynamicBody, fixtureDef), true, level);
+				polygon, BodyType.DynamicBody, fixtureDef), level);
 		this.polygon = polygon;
 		polygon.setBody(this.getBody());
 		this.radius = computeRadius(polygon.getPolygon());

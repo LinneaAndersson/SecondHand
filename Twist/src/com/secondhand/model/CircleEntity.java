@@ -20,10 +20,9 @@ public abstract class CircleEntity extends Entity {
 				circle.getX(), circle.getY(), circle.getRadius(),circle.getRotation(), BodyType.DynamicBody, fixtureDef);
 	}
 	
-	public CircleEntity(final Circle circle, final boolean isEdible, final GameWorld level,
-			final boolean updateRotation, final FixtureDef fixtureDef) {
+	public CircleEntity(final Circle circle, final boolean isEdible, final GameWorld level,final FixtureDef fixtureDef) {
 		
-		super(circle, isEdible, createNewCircleBody(circle, level.getPhysicsWorld(), fixtureDef), updateRotation, level);
+		super(circle, isEdible, createNewCircleBody(circle, level.getPhysicsWorld(), fixtureDef), level);
 		
 		this.circle = circle;
 	}

@@ -3,11 +3,8 @@ package com.secondhand.model;
 import java.util.List;
 
 import com.badlogic.gdx.math.Vector2;
-import com.badlogic.gdx.physics.box2d.CircleShape;
 import com.badlogic.gdx.physics.box2d.Fixture;
-import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.RayCastCallback;
-import com.badlogic.gdx.physics.box2d.Shape;
 import com.secondhand.debug.MyDebug;
 import com.secondhand.model.powerup.PowerUp;
 
@@ -23,13 +20,7 @@ public class Enemy extends BlackHole {
 	public Enemy(final Vector2 vector, final float radius,
 			final GameWorld level) {
 		super(vector, radius, level, ENEMY_MAX_SPEED);
-		huntingArea = getRadius() * getRadius() * (float) Math.PI * 100;
-		FixtureDef f = new FixtureDef();
-		f.isSensor = true;
-		Shape s = new CircleShape();
-		s.setRadius((getRadius()+5)/32);
-		this.getBody().createFixture(f);
-		
+		huntingArea = getRadius() * getRadius() * (float) Math.PI * 100;		
 	}
 
 	// player has highest chase-priority
@@ -124,7 +115,7 @@ public class Enemy extends BlackHole {
 						entity.getCenterY() - this.getCenterY()));
 
 			} else {
-				findPath();
+				
 				
 				
 				

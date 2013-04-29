@@ -194,6 +194,8 @@ public class GamePlayScene extends GameScene implements PropertyChangeListener,
 			apaptCameraToGrowingPlayer( (Float)event.getNewValue(),  (Float)event.getOldValue());
 		} else if(eventName.equals("NextLevel")){
 			newLevelStarted();
+		} else if (eventName.equals("PlayerMove")) {
+			playerMoveAnimation((Vector2) event.getNewValue());
 		}
 	}
 	
@@ -227,4 +229,12 @@ public class GamePlayScene extends GameScene implements PropertyChangeListener,
 	public void updateLives(final int newLives) {
 		this.scoreLivesText.setLives(newLives);
 	}
+	
+	public void playerMoveAnimation(Vector2 touch) {
+		Vector2 playerPosition = new Vector2(gameWorld.getPlayer().getCenterX(),gameWorld.getPlayer().getCenterY());
+		Vector2 touchPosition = new Vector2(touch);
+		
+		// Fire some sort of particles relative to the players and touched position
+	}
+	
 }

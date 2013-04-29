@@ -49,7 +49,7 @@ IOnMenuItemClickListener, TextWatcher {
 	public GameOverScene(final Engine engine, final Context context) {
 		super(engine, context);
 		mcontext=context;
-		//sib = new StringInputDialogBuilder(mcontext, 0, 1, 2, mZIndex, null, null,)
+		//EditText eT = 
 
 		
 	}
@@ -122,6 +122,7 @@ IOnMenuItemClickListener, TextWatcher {
 		final float y = this.smoothCamera.getHeight() / 2.0f
 				- textGameOver.getHeight() / 2.0f;
 		textGameOver.setPosition(x, (int) (0.2 * y));
+		textGameOver.setScale(1.2f);
 
 		this.attachChild(textGameOver);
 

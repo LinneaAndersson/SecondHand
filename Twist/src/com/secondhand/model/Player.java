@@ -146,7 +146,8 @@ public class Player extends BlackHole {
 		// apply.
 
 		// make it a bit slower depending on how big it is.
-		movementVector = movementVector.mul(this.getRadius() * 0.001f);
+		
+		movementVector = movementVector.mul(((this.getRadius()*this.getRadius()*this.getRadius())*4/3)*0.0000008f);
 
 		move(movementVector);
 	}

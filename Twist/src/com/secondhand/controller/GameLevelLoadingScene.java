@@ -31,7 +31,6 @@ public class GameLevelLoadingScene extends GameScene{
 			@Override
 			public void onWorkComplete() {
 				// now go to game play scene.
-
 			}
 		};
 

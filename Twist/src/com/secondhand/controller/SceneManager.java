@@ -114,8 +114,7 @@ public final class SceneManager {
 		
 		
 		// fully clear the scene before loading and then load it.
-		currentScene.getScene().detachChildren();
-		//if(!currentScene.isLoaded()) 
+		if(!currentScene.isLoaded()) 
 			currentScene.loadScene();
 		
 		if (this.currentSceneEnum == AllScenes.GAME_PLAY_SCENE) {

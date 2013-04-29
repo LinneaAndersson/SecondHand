@@ -19,6 +19,7 @@ public class Player extends BlackHole {
 
 	private String name;
 	
+	// starting lives for a new player.
 	private static final int STARTING_LIVES = 1;
 	
 	private static final int PLAYER_MAX_SPEED = 20;
@@ -48,10 +49,15 @@ public class Player extends BlackHole {
 			return value;
 		};
 	};
-
-	public Player(final Vector2 position, final float radius, final GameWorld level) {
-		super(position, radius, level, false, PLAYER_MAX_SPEED);
-		this.lives = STARTING_LIVES;
+	
+	public Player(final Vector2 position, final float radius, final GameWorld gameWorld, final int startingLives) { 
+		super(position, radius, gameWorld, true, PLAYER_MAX_SPEED);
+		this.lives = startingLives;
+	}
+		
+	
+	public Player(final Vector2 position, final float radius, final GameWorld gameWorld) {
+		this(position, radius, gameWorld, STARTING_LIVES);
 	}
 	
 	public int getLives() {

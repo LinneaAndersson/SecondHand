@@ -22,7 +22,6 @@ public abstract class BlackHole extends CircleEntity {
 	// but we can simply ignore the score for enemy black holes.
 	private  int score;
 
-
 	public BlackHole(final Vector2 position, final float radius,
 			final GameWorld level, final boolean updateRotation,
 			final float maxSpeed) {

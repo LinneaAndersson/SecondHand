@@ -74,6 +74,7 @@ public class GamePlayScene extends GameScene implements PropertyChangeListener,
 	// save the current state of the game world to a file. 
 	public void saveCurrentState() {
 		this.gameWorld.saveCurrentState();
+		// we also need to save the zoom of the camera and other view-specific settings. 
 	}
 
 	// should be called ONCE in the program.

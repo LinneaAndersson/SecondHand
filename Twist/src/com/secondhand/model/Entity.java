@@ -31,7 +31,13 @@ public abstract class Entity {
 		// we need this when doing collisions handling between entities and
 		// black holes:
 		body.setUserData(this);
-		physicsWorld.registerPhysicsConnector(new CustomPhysicsConnector(this.getShape(),isCircle(), this.body, true, true));
+		
+		
+			boolean updateRotation = true;
+		if(this instanceof Player) {
+			updateRotation = false;
+		}
+		physicsWorld.registerPhysicsConnector(new CustomPhysicsConnector(this.getShape(),isCircle(), this.body, true, updateRotation));
 	}
 	
 	public float getX() {

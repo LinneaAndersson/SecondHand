@@ -141,7 +141,9 @@ public class Player extends BlackHole {
 		MyDebug.d("TouchEvent "+ getRadius()*0.001f);
 		Vector2 movementVector = new Vector2((getCenterX() - touch.x),
 				getCenterY() - touch.y);
-
+		
+		sceneSupport.firePropertyChange("PlayerMove", null, touch);
+		
 		// the closer the touch is to the player, the more force do we need to
 		// apply.
 

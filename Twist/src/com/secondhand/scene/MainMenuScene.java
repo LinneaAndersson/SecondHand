@@ -19,7 +19,6 @@ import com.secondhand.resource.LocalizationStrings;
 public class MainMenuScene extends GameMenuScene implements IOnMenuItemClickListener {
 
 	private static final int MENU_NEW_GAME = 0;
-	private static final int MENU_CONTINUE = 1;
 	private static final int MENU_HIGH_SCORE = 2;
 	private static final int MENU_SETTINGS = 3;
 	

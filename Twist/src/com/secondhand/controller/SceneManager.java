@@ -5,6 +5,7 @@ import org.anddev.andengine.engine.Engine;
 import android.content.Context;
 import android.view.KeyEvent;
 
+import com.secondhand.debug.MyDebug;
 import com.secondhand.resource.Sounds;
 import com.secondhand.resource.TextureRegions;
 import com.secondhand.scene.GameOverScene;
@@ -119,8 +120,10 @@ public final class SceneManager {
 		
 		
 		// fully clear the scene before loading and then load it.
-		if(!currentScene.isLoaded()) 
+		if(!currentScene.isLoaded()) {
+			MyDebug.d("scene not preloaded, loading!");
 			currentScene.loadScene();
+		}
 		
 		if (this.currentSceneEnum == AllScenes.GAME_PLAY_SCENE) {
 			gamePlaySceneController = new GamePlaySceneController(this.gamePlayScene);

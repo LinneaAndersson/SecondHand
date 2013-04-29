@@ -59,6 +59,8 @@ IOnMenuItemClickListener, TextWatcher {
 	@SuppressLint("NewApi")
 	@Override
 	public void loadScene() {
+		super.loadScene();
+		
 		setGameWorld(SceneManager.getInstance().getGamePlayScene().getGameWorld());
 		String mLine = "";
 		int antal = 0;

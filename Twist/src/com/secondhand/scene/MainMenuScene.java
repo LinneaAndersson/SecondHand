@@ -51,8 +51,8 @@ public class MainMenuScene extends GameMenuScene implements IOnMenuItemClickList
 		switch(pMenuItem.getID()) {
 		case MENU_NEW_GAME:
 			MyDebug.i("now the game should start");
-			//setScene(AllScenes.GAME_PLAY_SCENE_LOADING_SCENE);
-			setScene(AllScenes.GAME_PLAY_SCENE);
+			setScene(AllScenes.GAME_PLAY_SCENE_LOADING_SCENE);
+			//setScene(AllScenes.GAME_PLAY_SCENE);
 			
 			return true;
 		case MENU_SETTINGS:

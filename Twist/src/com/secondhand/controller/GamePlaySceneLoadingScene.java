@@ -4,6 +4,7 @@ import org.anddev.andengine.engine.Engine;
 
 import android.content.Context;
 
+import com.secondhand.debug.MyDebug;
 import com.secondhand.resource.LocalizationStrings;
 import com.secondhand.scene.GameScene;
 
@@ -15,11 +16,14 @@ public class GamePlaySceneLoadingScene extends GameScene{
 
 	@Override
 	public void loadScene() {
+		
+		MyDebug.d("setting up level loading scene");
+		
 		// add loading text
 		this.attachChild( 
 				new LoadingText(
 						LocalizationStrings.getInstance().getLocalizedString("loading_level"),
-						 this.smoothCamera));
+						 this.smoothCamera));	
 
 		final IAsyncCallback callback = new IAsyncCallback() {
 
@@ -33,6 +37,8 @@ public class GamePlaySceneLoadingScene extends GameScene{
 			public void onWorkComplete() {
 				// now go to game play scene.
 				SceneManager.getInstance().setCurrentSceneEnum(AllScenes.GAME_PLAY_SCENE);
+				MyDebug.d("done with loading level!");
+				
 			}
 		};
 

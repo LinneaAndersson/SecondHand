@@ -97,16 +97,16 @@ public class GamePlayScene extends GameScene implements PropertyChangeListener,
 				player.getScore(), player.getLives());
 		hud.attachChild(scoreLivesText);
 		
-		
-		// I do believe this belong here
-			getGameWorld().getPhysicsWorld().setContactListener(
-						new CollisionContactListener(getGameWorld()));
 				
 	}
 	
 	@Override
 	public void loadScene() {
+		super.loadScene();
+		
 		this.gameWorld = new GameWorld();
+		
+		MyDebug.d("loading game play sceme");
 		
 		setupView();
 		registerNewLevel();
@@ -114,6 +114,8 @@ public class GamePlayScene extends GameScene implements PropertyChangeListener,
 		engine.getCamera().setHUD(hud);
 		
 	}
+	
+	
 
 	// reset camera before the menu is shown
 	public void resetCamera() {

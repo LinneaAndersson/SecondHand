@@ -12,7 +12,7 @@ import com.secondhand.debug.MyDebug;
 import com.secondhand.model.powerup.PowerUp;
 
 public class Enemy extends BlackHole {
-	
+
 	private static final float ENEMY_MAX_SPEED = 10;
 
 	private static boolean straightLine = true;
@@ -20,20 +20,18 @@ public class Enemy extends BlackHole {
 	// had to do this.
 	private final float huntingArea;
 
-	public Enemy(final Vector2 vector, final float radius,
-			final GameWorld level) {
+	public Enemy(final Vector2 vector, final float radius, final GameWorld level) {
 		super(vector, radius, level, ENEMY_MAX_SPEED);
-		huntingArea = getRadius() * getRadius() * (float) Math.PI * 80;
-		
-		//makes the enemy move much smother
+		huntingArea = getRadius() * getRadius() * (float) Math.PI * 200;
+
+		// makes the enemy move much smother
 		getBody().setLinearDamping(2);
-		
-		/*FixtureDef f = new FixtureDef();
-		f.isSensor = true;
-		Shape s = new CircleShape();
-		s.setRadius((getRadius()+5)/32);
-		this.getBody().createFixture(f);
-		*/
+
+		/*
+		 * FixtureDef f = new FixtureDef(); f.isSensor = true; Shape s = new
+		 * CircleShape(); s.setRadius((getRadius()+5)/32);
+		 * this.getBody().createFixture(f);
+		 */
 	}
 
 	// player has highest chase-priority
@@ -59,7 +57,7 @@ public class Enemy extends BlackHole {
 			public float reportRayFixture(final Fixture fixture,
 					final Vector2 point, final Vector2 normal,
 					final float fraction) {
-				
+
 				if (((Entity) fixture.getBody().getUserData()) == entity) {
 					return 1;
 
@@ -94,14 +92,13 @@ public class Enemy extends BlackHole {
 	// chase after smallest entity first
 	// could create many get-something and make different
 	// enemies behave different ( getClosest... )
-	// could implement worldquery instead of sending the complete
-	// entityList. if i did they hunting area would be rectangular instead
-	// would be nice to not return null
 	private Entity getHighesPriority(final List<Entity> entityList) {
 		Entity entity = null;
 		for (final Entity e : entityList) {
-			if (isCloseToEntity(e) && canEat(e)) {
-				entity = getSmaller(entity, e);
+			if (e.getClass() != PowerUp.class) {
+				if (isCloseToEntity(e) && canEat(e)) {
+					entity = getSmaller(entity, e);
+				}
 			}
 		}
 		return entity;
@@ -129,9 +126,7 @@ public class Enemy extends BlackHole {
 
 			} else {
 				findPath();
-				
-				
-				
+
 				stopMovement();
 
 			}
@@ -141,8 +136,7 @@ public class Enemy extends BlackHole {
 	}
 
 	private void findPath() {
-		
-		
+
 	}
 
 	// checks if there is something dangerous close by
@@ -184,25 +178,11 @@ public class Enemy extends BlackHole {
 
 	}
 
-	private void applyMovement(Vector2 movementVector) { //NOPMD
+	private void applyMovement(Vector2 movementVector) { // NOPMD
 		MyDebug.d("Movement");
 		// the vector from enemy to the player
 
-		// need to slow them down, they are to dam fast
-		// otherwise
-		// if(body is moving) we need mul(0.001)
-		// for better mobility(so they won't just
-		// go forward)
-		// lower maxSpeed than player.
-
-		if (movementVector.len() > 0) {
-			// we want to apply larger force when enemy is
-			// turning (changing direction). so we need a better
-			// test than above
-			movementVector = movementVector.mul(0.001f);
-		} else {
-			movementVector = movementVector.mul(0.01f);
-		}
+		movementVector = movementVector.mul(0.06f);
 
 		this.move(movementVector);
 	}

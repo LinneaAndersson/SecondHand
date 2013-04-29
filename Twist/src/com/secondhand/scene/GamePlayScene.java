@@ -12,6 +12,7 @@ import android.content.Context;
 import android.view.KeyEvent;
 
 import com.badlogic.gdx.math.Vector2;
+import com.secondhand.controller.CollisionContactListener;
 import com.secondhand.debug.MyDebug;
 import com.secondhand.model.Entity;
 import com.secondhand.model.GameWorld;
@@ -29,11 +30,10 @@ public class GamePlayScene extends GameScene implements PropertyChangeListener,
 
 	private ScoreLivesText scoreLivesText;
 
-	private final GameWorld gameWorld;
+	private GameWorld gameWorld;
 
 	public GamePlayScene(final Engine engine, final Context context) {
 		super(engine, context);
-		this.gameWorld = new GameWorld();
 	}
 
 	public GameWorld getGameWorld() {
@@ -71,12 +71,6 @@ public class GamePlayScene extends GameScene implements PropertyChangeListener,
 		}
 	}
 
-	// save the current state of the game world to a file. 
-	public void saveCurrentState() {
-		this.gameWorld.saveCurrentState();
-		// we also need to save the zoom of the camera and other view-specific settings. 
-	}
-
 	// should be called ONCE in the program.
 	private void setupView() {
 
@@ -103,10 +97,18 @@ public class GamePlayScene extends GameScene implements PropertyChangeListener,
 				player.getScore(), player.getLives());
 		hud.attachChild(scoreLivesText);
 		engine.getCamera().setHUD(hud);
+		
+		
+		// I do believe this belong here
+			getGameWorld().getPhysicsWorld().setContactListener(
+						new CollisionContactListener(getGameWorld()));
+				
 	}
-
+	
 	@Override
 	public void loadScene() {
+		this.gameWorld = new GameWorld();
+		
 		setupView();
 		registerNewLevel();
 	}

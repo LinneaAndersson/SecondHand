@@ -6,7 +6,9 @@
     <string name="loading">Laddar</string>
     
     
-    <string name="menu_start">Starta</string>
+       <string name="menu_new_game">Nytt Spel</string>
+    <string name="menu_continue">Fortsätt</string>
+    
     <string name="menu_settings">Inställningar</string>
     
     <!-- TODO: come up with a better translation for "high score" -->

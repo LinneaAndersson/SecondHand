@@ -103,13 +103,14 @@ public final class SceneManager {
 
 		final IGameScene currentScene = getCurrentScene();	
 		
-		if (this.currentSceneEnum == AllScenes.GAME_PLAY_SCENE && gamePlaySceneController==null) {
-			gamePlaySceneController = new GamePlaySceneController(this.gamePlayScene);
-		}
+		
 		// fully clear the scene before loading and then load it.
 		currentScene.getScene().detachChildren();
 		currentScene.loadScene();
 		
+		if (this.currentSceneEnum == AllScenes.GAME_PLAY_SCENE) {
+			gamePlaySceneController = new GamePlaySceneController(this.gamePlayScene);
+		}
 		
 		this.engine.setScene(currentScene.getScene());
 
@@ -129,9 +130,6 @@ public final class SceneManager {
 		this.gameOverScene = new GameOverScene(this.engine, context);
 		this.gamePlayScene = new GamePlayScene(this.engine, context);
 		
-		// I do believe this belong here
-		gamePlayScene.getGameWorld().getPhysicsWorld().setContactListener(
-				new CollisionContactListener(gamePlayScene.getGameWorld()));
 		
 		this.gameOverScene.setGameWorld(gamePlayScene.getGameWorld());
 

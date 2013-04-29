@@ -96,7 +96,6 @@ public class GamePlayScene extends GameScene implements PropertyChangeListener,
 		this.scoreLivesText = new ScoreLivesText(new Vector2(10, 10),
 				player.getScore(), player.getLives());
 		hud.attachChild(scoreLivesText);
-		engine.getCamera().setHUD(hud);
 		
 		
 		// I do believe this belong here
@@ -111,6 +110,9 @@ public class GamePlayScene extends GameScene implements PropertyChangeListener,
 		
 		setupView();
 		registerNewLevel();
+		// we set this as late as possible, to make sure it doesn't show up in the loading scene. 
+		engine.getCamera().setHUD(hud);
+		
 	}
 
 	// reset camera before the menu is shown

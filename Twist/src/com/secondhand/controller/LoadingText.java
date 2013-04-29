@@ -6,7 +6,6 @@ import org.anddev.andengine.engine.camera.Camera;
 import org.anddev.andengine.entity.text.ChangeableText;
 
 import com.secondhand.resource.Fonts;
-import com.secondhand.resource.LocalizationStrings;
 
 /*
  * Implements a loading animation that looks like this:
@@ -21,7 +20,7 @@ public class LoadingText extends ChangeableText {
 	private static final float SECONDS_PER_STRING = 0.3f;
 
 	private String[] loadingStrings;
-	private String loadingString;
+	private final String loadingString;
 	private int loadingStringsI;
 
 	private float secondsPassedSinceLastUpdate;

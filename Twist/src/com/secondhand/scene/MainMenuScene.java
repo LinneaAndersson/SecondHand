@@ -25,6 +25,8 @@ public class MainMenuScene extends GameMenuScene implements IOnMenuItemClickList
 
 	@Override
 	public void loadScene() {
+		super.loadScene();
+		
 		final int menuStartX = layoutHeadline("Twirl");
 		
 		

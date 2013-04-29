@@ -23,6 +23,8 @@ public class HighScoreScene extends GameScene {
 
 	@Override
 	public void loadScene() {
+		super.loadScene();
+		
 		final Font mFont = Fonts.getInstance().menuItemFont;
 		
 		

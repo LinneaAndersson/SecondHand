@@ -11,4 +11,5 @@ public interface IGamePlaySceneView {
 	void updateLives(final int newScore);
 	
 	void newLevelStarted();
+
 }

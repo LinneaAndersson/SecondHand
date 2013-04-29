@@ -19,6 +19,7 @@ public class Player extends BlackHole {
 
 	private String name;
 	
+	
 	// starting lives for a new player.
 	private static final int STARTING_LIVES = 1;
 	

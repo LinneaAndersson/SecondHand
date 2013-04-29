@@ -24,4 +24,6 @@ public class Planet extends CircleEntity {
 	public float getScoreWorth() {
 		return 1;
 	}
+	
+	
 }

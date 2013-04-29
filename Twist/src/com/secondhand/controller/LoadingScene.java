@@ -10,10 +10,6 @@ import com.secondhand.scene.IGameScene;
 
 public class LoadingScene extends GameScene {
 
-	// specified in milliseconds.
-	// the minimum time the loading screen will be shown.
-	public static final int MINIMUM_LOADNG_TIME = 0;
-
 	public LoadingScene(final Engine engine, final Context context) {
 		super(engine, context);
 		Fonts.getInstance().load();	

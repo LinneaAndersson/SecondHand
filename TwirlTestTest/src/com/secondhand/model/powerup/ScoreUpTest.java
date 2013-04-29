@@ -12,8 +12,7 @@ public class ScoreUpTest extends TestCase {
 		Vector2 pos = new Vector2();
 		float rad = 5;
 		GameWorld level = new GameWorld();
-		float maxSpeed = 20;
-		Player player = new Player(pos, rad, level, maxSpeed);
+		Player player = new Player(pos, rad, level);
 		
 		ScoreUp powerUp = new ScoreUp(pos, level);
 		

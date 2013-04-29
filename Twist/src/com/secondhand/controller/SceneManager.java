@@ -30,9 +30,15 @@ public final class SceneManager {
 	private Context context;
 	
 	private IGameScene loadingScene, mainMenuScene, settingsMenuScene,
-			highScoreScene;
+			highScoreScene, gamePlaySceneLoadingScene;
+	
+	
 	private GamePlayScene gamePlayScene;
 	private GameOverScene gameOverScene;
+	
+	public GamePlayScene getGamePlayScene() {
+		return this.gamePlayScene;
+	}
 
 	private GamePlaySceneController gamePlaySceneController;
 	
@@ -73,6 +79,7 @@ public final class SceneManager {
 		return getScene(currentSceneEnum);
 	}
 
+
 	public IGameScene getScene(final AllScenes sceneEnum) {
 		IGameScene scene = null;
 
@@ -93,23 +100,31 @@ public final class SceneManager {
 			scene = this.highScoreScene;
 		} else if (sceneEnum == AllScenes.GAME_OVER_SCENE) {
 			scene = this.gameOverScene;
+		}else if (sceneEnum == AllScenes.GAME_PLAY_SCENE_LOADING_SCENE) {
+			scene = this.gamePlaySceneLoadingScene;
 		}
 
 		return scene;
 	}
 
+	
+	public void preloadSceneEnum(final AllScenes scene) {
+		
+	}
+	
 	public IGameScene setCurrentSceneEnum(final AllScenes currentSceneEnum) {
 		this.currentSceneEnum = currentSceneEnum;
 
 		final IGameScene currentScene = getCurrentScene();	
 		
-		if (this.currentSceneEnum == AllScenes.GAME_PLAY_SCENE && gamePlaySceneController==null) {
+		
+		// fully clear the scene before loading and then load it.
+		if(!currentScene.isLoaded()) 
+			currentScene.loadScene();
+		
+		if (this.currentSceneEnum == AllScenes.GAME_PLAY_SCENE) {
 			gamePlaySceneController = new GamePlaySceneController(this.gamePlayScene);
 		}
-		// fully clear the scene before loading and then load it.
-		currentScene.getScene().detachChildren();
-		currentScene.loadScene();
-		
 		
 		this.engine.setScene(currentScene.getScene());
 
@@ -128,13 +143,8 @@ public final class SceneManager {
 		this.settingsMenuScene = new SettingsMenuScene(this.engine, context);
 		this.gameOverScene = new GameOverScene(this.engine, context);
 		this.gamePlayScene = new GamePlayScene(this.engine, context);
+		this.gamePlaySceneLoadingScene = new GamePlaySceneLoadingScene(this.engine, context);
 		
-		// I do believe this belong here
-		gamePlayScene.getGameWorld().getPhysicsWorld().setContactListener(
-				new CollisionContactListener(gamePlayScene.getGameWorld()));
-		
-		this.gameOverScene.setGameWorld(gamePlayScene.getGameWorld());
-
 		this.highScoreScene = new HighScoreScene(this.engine, context);
 	}
 

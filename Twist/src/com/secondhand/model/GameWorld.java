@@ -2,19 +2,23 @@ package com.secondhand.model;
 
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
+import java.io.File;
 
 import org.anddev.andengine.extension.physics.box2d.PhysicsWorld;
 
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Contact;
+import com.secondhand.controller.SceneManager;
 
 // This class was formerly known as level. 
 public class GameWorld {
 
 	private final EntityManager entityManager;
-
+	
 	// TODO: Maybe store this in player instead?
-	private int playerMaxSize;
+	private float playerMaxSize;
+	
+	private final int STARTING_LEVEL = 2;
 
 	private PhysicsWorld physicsWorld;
 
@@ -27,53 +31,46 @@ public class GameWorld {
 
 	private PropertyChangeSupport support;
 
-	// I would strongly recommend using some kind of observer-pattern here
-	// instead
-	// private IGamePlaySceneView view;
-
-	/*
-	 * public void setView(final IGamePlaySceneView view) { this.view = view; }
-	 * 
-	 * public IGamePlaySceneView getView() { return this.view; }
-	 * 
-	 * public boolean hasView() { return view != null; }
-	 */
-
 	public void addListener(PropertyChangeListener listener) {
 		support.addPropertyChangeListener(listener);
 		getPlayer().addListener(listener);
 	}
 
 	public GameWorld() {
-		this(2);
+		
+		init();
+		
+		this.entityManager = new EntityManager(new Player(new Vector2(50, 50),
+				30, this));
+
+
+		generateNewLevelEntities(STARTING_LEVEL);
+
+
+		gameWorldBounds.setupWorldBounds(this.levelWidth, this.levelHeight,
+				this.physicsWorld);	
 	}
 
-	public GameWorld(final int levelNumber) {
-		this.levelNumber = levelNumber;
-
+	private void init() {
+	
 		support = new PropertyChangeSupport(this);
 
 		this.physicsWorld = new PhysicsWorld(new Vector2(), true);
 
 		this.gameWorldBounds = new GameWorldBounds();
-
-		/*if(EntityManager.saveDataExists())
-			this.entityManager = new EntityManager();
-		else*/	
-			this.entityManager = new EntityManager(new Player(new Vector2(50, 50),
-					30, this));
-
+		
 		// you can try lowering the values of these if the game starts lagging
 		// too much. Basically, high values for these gives a higher quality
 		// physics simulation.
 		this.physicsWorld.setVelocityIterations(16);
 		this.physicsWorld.setPositionIterations(16);
-
-		createLevelEntities(this.levelNumber);
 	}
+	
 
-	// create the level entities of a new level.
-	private void createLevelEntities(final int levelNumber) {
+	// generate the level entities of a new level.
+	private void generateNewLevelEntities(final int levelNumber) {
+		this.levelNumber = levelNumber;
+		
 		final RandomLevelGenerator randomLevelGenerator = new RandomLevelGenerator(
 				this.entityManager.getPlayer(), this);
 
@@ -84,8 +81,6 @@ public class GameWorld {
 		this.entityManager.setEntityList(randomLevelGenerator.entityList);
 		this.entityManager.setEnemyList(randomLevelGenerator.enemyList);
 
-		gameWorldBounds.setupWorldBounds(this.levelWidth, this.levelHeight,
-				this.physicsWorld);
 	}
 
 	public int getLevelNumber() {
@@ -119,7 +114,7 @@ public class GameWorld {
 		this.gameWorldBounds.removeWorldBounds();
 
 		// first load the new level entities:
-		createLevelEntities(this.levelNumber);
+		generateNewLevelEntities(this.levelNumber);
 
 		// then notify the view of this, so that it can place out the new
 		// Entities in AndEngine for rendering.		
@@ -157,10 +152,6 @@ public class GameWorld {
 
 	public EntityManager getEntityManager() {
 		return this.entityManager;
-	}
-
-	public void saveCurrentState() {
-		this.entityManager.serialize();
 	}
 
 	// remove every entity(both from the physics world and andengine rendering)

@@ -19,6 +19,8 @@ public class Player extends BlackHole {
 
 	private String name;
 	
+	
+	// starting lives for a new player.
 	private static final int STARTING_LIVES = 1;
 	
 	private static final int PLAYER_MAX_SPEED = 20;
@@ -48,10 +50,16 @@ public class Player extends BlackHole {
 			return value;
 		};
 	};
-
-	public Player(final Vector2 position, final float radius, final GameWorld level) {
-		super(position, radius, level, false, PLAYER_MAX_SPEED);
-		this.lives = STARTING_LIVES;
+	
+	public Player(final Vector2 position, final float radius, final GameWorld gameWorld, final int startingLives,
+			final int startingScore) { 
+		super(position, radius, gameWorld, PLAYER_MAX_SPEED, startingScore);
+		this.lives = startingLives;
+	}
+		
+	
+	public Player(final Vector2 position, final float radius, final GameWorld gameWorld) {
+		this(position, radius, gameWorld, STARTING_LIVES, 0);
 	}
 	
 	public int getLives() {
@@ -188,24 +196,28 @@ public class Player extends BlackHole {
 		kill();		
 	}
 	
-	public static Player readFromStream(DataInputStream in) throws IOException {
-		Vector2 pos = new Vector2(in.readFloat(), in.readFloat());
+	public static Player readFromStream(final DataInputStream in, final GameWorld gameWorld) throws IOException {
+		final Vector2 position = new Vector2(in.readFloat(), in.readFloat());
 		
-		float radius = in.readFloat();
+		final float radius = in.readFloat();
 		
-		MyDebug.d("player position was " + pos.x + " " + pos.y); 
+		final int lives = in.readInt();
 		
-		return null;
+		final int score  = in.readInt();
+		
+		return new Player(position, radius, gameWorld, lives, score);
 	}
 	
-	public void writeToStream(DataOutputStream out) throws IOException {
+	public void writeToStream(final DataOutputStream out) throws IOException {
 		// save position
 		out.writeFloat(this.getX());
 		out.writeFloat(this.getY());
 		
 		out.writeFloat(this.getRadius());
 		
+		out.writeInt(this.getLives());
+		
+		out.writeInt(this.getScore());
+		
 	}
-
-	
 }

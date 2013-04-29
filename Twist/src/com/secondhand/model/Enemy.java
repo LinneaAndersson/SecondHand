@@ -22,9 +22,18 @@ public class Enemy extends BlackHole {
 
 	public Enemy(final Vector2 vector, final float radius,
 			final GameWorld level) {
-		super(vector, radius, level, true, ENEMY_MAX_SPEED);
-
-		huntingArea = getRadius() * getRadius() * (float) Math.PI * 100;
+		super(vector, radius, level, ENEMY_MAX_SPEED);
+		huntingArea = getRadius() * getRadius() * (float) Math.PI * 80;
+		
+		//makes the enemy move much smother
+		getBody().setLinearDamping(2);
+		
+		/*FixtureDef f = new FixtureDef();
+		f.isSensor = true;
+		Shape s = new CircleShape();
+		s.setRadius((getRadius()+5)/32);
+		this.getBody().createFixture(f);
+		*/
 	}
 
 	// player has highest chase-priority
@@ -50,7 +59,7 @@ public class Enemy extends BlackHole {
 			public float reportRayFixture(final Fixture fixture,
 					final Vector2 point, final Vector2 normal,
 					final float fraction) {
-
+				
 				if (((Entity) fixture.getBody().getUserData()) == entity) {
 					return 1;
 
@@ -119,13 +128,21 @@ public class Enemy extends BlackHole {
 						entity.getCenterY() - this.getCenterY()));
 
 			} else {
-				// MyDebug.d("Enemy: stopMovement");
+				findPath();
+				
+				
+				
 				stopMovement();
 
 			}
 		} else {
 			closeToDanger();
 		}
+	}
+
+	private void findPath() {
+		
+		
 	}
 
 	// checks if there is something dangerous close by
@@ -182,9 +199,9 @@ public class Enemy extends BlackHole {
 			// we want to apply larger force when enemy is
 			// turning (changing direction). so we need a better
 			// test than above
-			movementVector = movementVector.mul(0.0001f);
-		} else {
 			movementVector = movementVector.mul(0.001f);
+		} else {
+			movementVector = movementVector.mul(0.01f);
 		}
 
 		this.move(movementVector);

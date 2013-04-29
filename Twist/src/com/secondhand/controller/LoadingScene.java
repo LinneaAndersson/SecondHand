@@ -5,14 +5,11 @@ import org.anddev.andengine.engine.Engine;
 import android.content.Context;
 
 import com.secondhand.resource.Fonts;
+import com.secondhand.resource.LocalizationStrings;
 import com.secondhand.scene.GameScene;
 import com.secondhand.scene.IGameScene;
 
 public class LoadingScene extends GameScene {
-
-	// specified in milliseconds.
-	// the minimum time the loading screen will be shown.
-	public static final int MINIMUM_LOADNG_TIME = 0;
 
 	public LoadingScene(final Engine engine, final Context context) {
 		super(engine, context);
@@ -24,7 +21,11 @@ public class LoadingScene extends GameScene {
 		SceneManager.getInstance().setIsGameLoaded(true);
 
 		// add loading text
-		this.attachChild(new LoadingText(this.smoothCamera));
+		this.attachChild( 
+				new LoadingText(
+						LocalizationStrings.getInstance().getLocalizedString("loading"),
+						 this.smoothCamera));
+		
 
 		// in the loading scene we will load all the resources of all the
 		// scenes.

@@ -23,6 +23,7 @@ import android.text.TextWatcher;
 import android.util.Log;
 import android.widget.EditText;
 
+import com.secondhand.controller.SceneManager;
 import com.secondhand.debug.MyDebug;
 import com.secondhand.model.GameWorld;
 import com.secondhand.model.Player;
@@ -58,6 +59,7 @@ IOnMenuItemClickListener, TextWatcher {
 	@SuppressLint("NewApi")
 	@Override
 	public void loadScene() {
+		setGameWorld(SceneManager.getInstance().getGamePlayScene().getGameWorld());
 		String mLine = "";
 		int antal = 0;
 		player = gameWorld.getPlayer();

@@ -59,6 +59,8 @@ public class RandomLevelGenerator {
 
 	private void placeOutEnemies() {
 		enemyList.add(new Enemy(new Vector2(800, 800), 40, level));
+		enemyList.add(new Enemy(new Vector2(500,500), 50, level));
+		enemyList.add(new Enemy(new Vector2(900,400), 45, level));
 
 		for (final Enemy enemy : enemyList) {
 			entityList.add(enemy);

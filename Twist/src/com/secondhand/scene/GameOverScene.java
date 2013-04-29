@@ -7,16 +7,21 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.anddev.andengine.engine.Engine;
+import org.anddev.andengine.entity.scene.background.ColorBackground;
 import org.anddev.andengine.entity.scene.menu.MenuScene;
 import org.anddev.andengine.entity.scene.menu.MenuScene.IOnMenuItemClickListener;
 import org.anddev.andengine.entity.scene.menu.item.IMenuItem;
 import org.anddev.andengine.entity.text.Text;
 import org.anddev.andengine.opengl.font.Font;
+import org.anddev.andengine.ui.dialog.StringInputDialogBuilder;
 import org.anddev.andengine.util.HorizontalAlign;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
+import android.widget.EditText;
 
 import com.secondhand.debug.MyDebug;
 import com.secondhand.model.GameWorld;
@@ -25,7 +30,7 @@ import com.secondhand.resource.Fonts;
 import com.secondhand.resource.LocalizationStrings;
 
 public class GameOverScene extends GameMenuScene implements
-IOnMenuItemClickListener {
+IOnMenuItemClickListener, TextWatcher {
 	private Font mFont;
 	private Player player;
 	private Engine mEngine;
@@ -34,7 +39,8 @@ IOnMenuItemClickListener {
 	private static final int SAVE = 2;
 	private BufferedReader reader;
 	Text textGameOver = null;
-
+	private Context mcontext;
+	private StringInputDialogBuilder sib;
 	private GameWorld gameWorld;
 
 	public void setGameWorld(final GameWorld gameWorld) {
@@ -43,6 +49,10 @@ IOnMenuItemClickListener {
 
 	public GameOverScene(final Engine engine, final Context context) {
 		super(engine, context);
+		mcontext=context;
+		//sib = new StringInputDialogBuilder(mcontext, 0, 1, 2, mZIndex, null, null,)
+
+		
 	}
 
 	@SuppressLint("NewApi")
@@ -52,6 +62,7 @@ IOnMenuItemClickListener {
 		int antal = 0;
 		player = gameWorld.getPlayer();
 
+		
 		this.mFont = Fonts.getInstance().menuItemFont;
 
 		try {
@@ -67,7 +78,8 @@ IOnMenuItemClickListener {
 				MyDebug.d(mLine);
 
 				if (player.getScore() > Integer.parseInt(mLine)) {
-					setHeadLine("congratulation");
+					setHeadLine("congratulation!");
+					setCenterText(150,"You are top 5!");
 					break;
 				}
 
@@ -76,9 +88,11 @@ IOnMenuItemClickListener {
 
 				if (mLine == null && antal < 5) {
 					setHeadLine("congratulation");
+					setCenterText(100,"You are top 5!");
 					break;
 				} else if (antal >= 5) {
 					setHeadLine("menu_game_over");
+					setCenterText(150,"Try  again");
 					break;
 				}
 			}
@@ -111,6 +125,17 @@ IOnMenuItemClickListener {
 
 	}
 
+	public void setCenterText(int whereY, String textName){
+		Text text = new Text(100,60,mFont,textName,HorizontalAlign.CENTER);
+		final float x = this.smoothCamera.getWidth() / 2.0f
+				- text.getWidth() / 2.0f;
+		final float y = this.smoothCamera.getHeight() / 2.0f
+				- text.getHeight() / 2.0f;
+		text.setPosition(x, (int) whereY);
+		
+		this.attachChild(text);		
+	}
+	
 	@Override
 	public AllScenes getParentScene() {
 		return AllScenes.MAIN_MENU_SCENE;
@@ -132,6 +157,25 @@ IOnMenuItemClickListener {
 			break;
 		}
 		return false;
+	}
+
+	@Override
+	public void afterTextChanged(Editable arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void beforeTextChanged(CharSequence arg0, int arg1, int arg2,
+			int arg3) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void onTextChanged(CharSequence arg0, int arg1, int arg2, int arg3) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

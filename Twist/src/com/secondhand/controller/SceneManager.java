@@ -102,6 +102,11 @@ public final class SceneManager {
 		return scene;
 	}
 
+	
+	public void preloadSceneEnum(final AllScenes scene) {
+		
+	}
+	
 	public IGameScene setCurrentSceneEnum(final AllScenes currentSceneEnum) {
 		this.currentSceneEnum = currentSceneEnum;
 
@@ -110,7 +115,8 @@ public final class SceneManager {
 		
 		// fully clear the scene before loading and then load it.
 		currentScene.getScene().detachChildren();
-		currentScene.loadScene();
+		//if(!currentScene.isLoaded()) 
+			currentScene.loadScene();
 		
 		if (this.currentSceneEnum == AllScenes.GAME_PLAY_SCENE) {
 			gamePlaySceneController = new GamePlaySceneController(this.gamePlayScene);

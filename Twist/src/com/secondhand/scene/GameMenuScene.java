@@ -26,9 +26,11 @@ public abstract class GameMenuScene extends MenuScene implements IGameScene {
 	protected final SmoothCamera smoothCamera;
 	protected final Engine engine;
 	protected final Context context;
-
+	private boolean isLoaded;
+	
 	public GameMenuScene(final Engine engine, final Context context) {
 		super(engine.getCamera());
+		this.isLoaded = false;
 
 		// we do this to keep the API consistent
 		this.smoothCamera = (SmoothCamera) this.mCamera;
@@ -40,6 +42,15 @@ public abstract class GameMenuScene extends MenuScene implements IGameScene {
 	public Scene getScene() {
 		return this;
 	}
+	
+	public boolean isLoaded() {
+		return this.isLoaded;
+	}
+	
+	@Override
+	public void loadScene() {
+		isLoaded = true;
+	}
 
 	@Override
 	public boolean onKeyDown(final int pKeyCode, final KeyEvent pEvent) {
@@ -47,6 +58,8 @@ public abstract class GameMenuScene extends MenuScene implements IGameScene {
 				&& pEvent.getAction() == KeyEvent.ACTION_DOWN) {
 			final AllScenes parent = getParentScene();
 			if (parent != null) {
+//				// it should be loaded the next time it's shown. 
+				isLoaded = false;
 				setScene(parent);
 				return true;
 			} else {

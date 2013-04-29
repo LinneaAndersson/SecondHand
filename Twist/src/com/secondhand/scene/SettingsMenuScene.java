@@ -61,6 +61,7 @@ public class SettingsMenuScene extends GameMenuScene implements
 	
 	@Override
 	public void loadScene() {
+		super.loadScene();
 
 		// layout headline
 		final int menuStartY = layoutHeadline(LocalizationStrings.getInstance()

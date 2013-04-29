@@ -19,12 +19,23 @@ public abstract class GameScene extends Scene implements IGameScene {
 	protected final SmoothCamera smoothCamera;
 	protected final Engine engine;
 	protected final Context context;
+	private boolean isLoaded;
 
 	public GameScene(final Engine engine, final Context context) {
 		super();
+		isLoaded = false;
 		this.smoothCamera = (SmoothCamera)engine.getCamera();
 		this.engine = engine;
 		this.context = context;
+	}
+	
+	@Override
+	public void loadScene() {
+		isLoaded = true;
+	}
+	
+	public boolean isLoaded() {
+		return this.isLoaded;
 	}
 
 	@Override
@@ -33,7 +44,10 @@ public abstract class GameScene extends Scene implements IGameScene {
 				&& pEvent.getAction() == KeyEvent.ACTION_DOWN) {
 			final AllScenes parent = getParentScene();
 			if (parent != null) {
+//				// it should be loaded the next time it's shown. 
+				isLoaded = false;
 				setScene(parent);
+
 				return true;
 			}
 			else {

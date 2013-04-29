@@ -38,6 +38,8 @@ public interface IGameScene {
 	AllScenes getParentScene();
 	
 	void setScene(AllScenes sceneEnum);
+	
+	boolean isLoaded();
 }
 
 	

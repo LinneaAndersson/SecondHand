@@ -12,7 +12,7 @@ public final class MyDebug{
 	// Fields
 	// ===========================================================
 
-	private static String sDebugTag = "MenuTest";
+	private static String sDebugTag = "Twirl";
 	private static DebugLevel sDebugLevel = DebugLevel.VERBOSE;
 
 	// ===========================================================

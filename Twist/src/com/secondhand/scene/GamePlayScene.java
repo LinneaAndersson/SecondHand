@@ -106,7 +106,11 @@ public class GamePlayScene extends GameScene implements PropertyChangeListener,
 	
 	@Override
 	public void loadScene() {
+		super.loadScene();
+		
 		this.gameWorld = new GameWorld();
+		
+		MyDebug.d("loading game play sceme");
 		
 		setupView();
 		registerNewLevel();
@@ -114,6 +118,8 @@ public class GamePlayScene extends GameScene implements PropertyChangeListener,
 		engine.getCamera().setHUD(hud);
 		
 	}
+	
+	
 
 	// reset camera before the menu is shown
 	public void resetCamera() {

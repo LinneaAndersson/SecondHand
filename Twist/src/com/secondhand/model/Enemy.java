@@ -23,7 +23,7 @@ public class Enemy extends BlackHole {
 	public Enemy(final Vector2 vector, final float radius, final GameWorld level) {
 		super(vector, radius, level, ENEMY_MAX_SPEED);
 		huntingArea = getHuntingArea();
-		
+
 		// makes the enemy move much smother
 		getBody().setLinearDamping(1);
 
@@ -33,8 +33,8 @@ public class Enemy extends BlackHole {
 		 * this.getBody().createFixture(f);
 		 */
 	}
-	
-	public float getHuntingArea(){
+
+	public float getHuntingArea() {
 		return getRadius() * getRadius() * (float) Math.PI * 100;
 	}
 
@@ -99,11 +99,12 @@ public class Enemy extends BlackHole {
 	private Entity getHighesPriority(final List<Entity> entityList) {
 		Entity entity = null;
 		for (final Entity e : entityList) {
-			if (e.getClass() != PowerUp.class) {
-				if (isCloseToEntity(e) && canEat(e)) {
-					entity = getSmaller(entity, e);
-				}
+
+			if (e.getClass() != PowerUp.class && isCloseToEntity(e)
+					&& canEat(e)) {
+				entity = getSmaller(entity, e);
 			}
+
 		}
 		return entity;
 	}
@@ -120,7 +121,7 @@ public class Enemy extends BlackHole {
 		// TODO change the null-check to something nicer
 
 		if (entity != null) {
-			
+
 			if (straightToEntity(entity)) {
 				// MyDebug.d("Enemy: applyMovement towards " +
 				// entity.getClass());
@@ -128,13 +129,12 @@ public class Enemy extends BlackHole {
 				applyMovement(new Vector2(
 						(entity.getCenterX() - this.getCenterX()),
 						entity.getCenterY() - this.getCenterY()));
-			
 
 			} else {
 				stopMovement();
 
 			}
-			if(huntingArea != getHuntingArea()){
+			if (huntingArea != getHuntingArea()) {
 				huntingArea = getHuntingArea();
 			}
 		} else {
@@ -153,7 +153,7 @@ public class Enemy extends BlackHole {
 			@Override
 			public boolean reportFixture(final Fixture fixture) {
 
-				Entity tmp = ((Entity) fixture.getBody().getUserData());
+				final Entity tmp = ((Entity) fixture.getBody().getUserData());
 				if (tmp != null && tmp.getClass() != Enemy.class) {
 					MyDebug.d("Enemy: report fixture "
 							+ fixture.getBody().getUserData());

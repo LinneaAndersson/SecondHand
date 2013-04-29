@@ -122,7 +122,7 @@ public class GamePlayScene extends GameScene implements PropertyChangeListener,
 		smoothCamera.setChaseEntity(null);
 		// reset zoom
 		smoothCamera.setZoomFactor(1.0f);
-		Camera camera = engine.getCamera();
+		final Camera camera = engine.getCamera();
 		camera.setCenter(camera.getWidth()/2, camera.getHeight()/2);
 
 		// don't show the HUD in the menu.

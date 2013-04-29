@@ -16,7 +16,7 @@ public class GameWorld {
 	// TODO: Maybe store this in player instead?
 	private float playerMaxSize;
 	
-	private final int STARTING_LEVEL = 2;
+	private static final int STARTING_LEVEL = 2;
 
 	private PhysicsWorld physicsWorld;
 
@@ -29,7 +29,7 @@ public class GameWorld {
 
 	private PropertyChangeSupport support;
 
-	public void addListener(PropertyChangeListener listener) {
+	public void addListener(final PropertyChangeListener listener) {
 		support.addPropertyChangeListener(listener);
 		getPlayer().addListener(listener);
 	}

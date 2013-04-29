@@ -2,8 +2,11 @@ package com.secondhand.model;
 
 import java.util.List;
 
+import org.anddev.andengine.extension.physics.box2d.util.constants.PhysicsConstants;
+
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Fixture;
+import com.badlogic.gdx.physics.box2d.QueryCallback;
 import com.badlogic.gdx.physics.box2d.RayCastCallback;
 import com.secondhand.debug.MyDebug;
 import com.secondhand.model.powerup.PowerUp;
@@ -20,7 +23,17 @@ public class Enemy extends BlackHole {
 	public Enemy(final Vector2 vector, final float radius,
 			final GameWorld level) {
 		super(vector, radius, level, ENEMY_MAX_SPEED);
-		huntingArea = getRadius() * getRadius() * (float) Math.PI * 100;		
+		huntingArea = getRadius() * getRadius() * (float) Math.PI * 80;
+		
+		//makes the enemy move much smother
+		getBody().setLinearDamping(2);
+		
+		/*FixtureDef f = new FixtureDef();
+		f.isSensor = true;
+		Shape s = new CircleShape();
+		s.setRadius((getRadius()+5)/32);
+		this.getBody().createFixture(f);
+		*/
 	}
 
 	// player has highest chase-priority
@@ -115,7 +128,7 @@ public class Enemy extends BlackHole {
 						entity.getCenterY() - this.getCenterY()));
 
 			} else {
-				
+				findPath();
 				
 				
 				
@@ -134,7 +147,27 @@ public class Enemy extends BlackHole {
 
 	// checks if there is something dangerous close by
 	private void closeToDanger() {
-		
+		// MyDebug.d("Enemy: danger");
+		final Vector2 center = getBody().getWorldCenter();
+		final float rad = (getRadius() + 15)
+				/ PhysicsConstants.PIXEL_TO_METER_RATIO_DEFAULT;
+		physicsWorld.QueryAABB(new QueryCallback() {
+
+			@Override
+			public boolean reportFixture(final Fixture fixture) {
+
+				Entity tmp = ((Entity) fixture.getBody().getUserData());
+				if (tmp != null && tmp.getClass() != Enemy.class) {
+					MyDebug.d("Enemy: report fixture "
+							+ fixture.getBody().getUserData());
+					if (!canEat(tmp)) {
+						retreat(tmp);
+					}
+				}
+				return true;
+			}
+		}, center.x - rad, center.y + rad, center.x + rad, center.y - rad);
+
 	}
 
 	private void stopMovement() {
@@ -166,9 +199,9 @@ public class Enemy extends BlackHole {
 			// we want to apply larger force when enemy is
 			// turning (changing direction). so we need a better
 			// test than above
-			movementVector = movementVector.mul(0.0001f);
-		} else {
 			movementVector = movementVector.mul(0.001f);
+		} else {
+			movementVector = movementVector.mul(0.01f);
 		}
 
 		this.move(movementVector);

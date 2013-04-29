@@ -21,6 +21,7 @@ public class LoadingText extends ChangeableText {
 	private static final float SECONDS_PER_STRING = 0.3f;
 
 	private String[] loadingStrings;
+	private String loadingString;
 	private int loadingStringsI;
 
 	private float secondsPassedSinceLastUpdate;
@@ -32,9 +33,11 @@ public class LoadingText extends ChangeableText {
 		return new String(exmarks);
 	}
 
-	public LoadingText(final Camera camera) {
+	public LoadingText(final String loadingString, final Camera camera) {
 		super(0, 0, Fonts.getInstance().menuItemFont,
 				getPlaceHolderString());
+		
+		this.loadingString = loadingString;
 
 		this.setText(getNextString());
 
@@ -49,8 +52,6 @@ public class LoadingText extends ChangeableText {
 		if (loadingStrings == null) {
 			// create the loading strings.
 
-			final String loadingString = LocalizationStrings.getInstance()
-					.getLocalizedString("loading");
 			loadingStrings = new String[] { loadingString + ".",
 					loadingString + "..", loadingString + "..." };
 

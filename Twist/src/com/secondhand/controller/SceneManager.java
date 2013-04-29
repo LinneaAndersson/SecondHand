@@ -30,7 +30,9 @@ public final class SceneManager {
 	private Context context;
 	
 	private IGameScene loadingScene, mainMenuScene, settingsMenuScene,
-			highScoreScene;
+			highScoreScene, gamePlaySceneLoadingScene;
+	
+	
 	private GamePlayScene gamePlayScene;
 	private GameOverScene gameOverScene;
 	
@@ -77,6 +79,7 @@ public final class SceneManager {
 		return getScene(currentSceneEnum);
 	}
 
+
 	public IGameScene getScene(final AllScenes sceneEnum) {
 		IGameScene scene = null;
 
@@ -97,6 +100,8 @@ public final class SceneManager {
 			scene = this.highScoreScene;
 		} else if (sceneEnum == AllScenes.GAME_OVER_SCENE) {
 			scene = this.gameOverScene;
+		}else if (sceneEnum == AllScenes.GAME_PLAY_SCENE_LOADING_SCENE) {
+			scene = this.gamePlaySceneLoadingScene;
 		}
 
 		return scene;
@@ -138,6 +143,7 @@ public final class SceneManager {
 		this.settingsMenuScene = new SettingsMenuScene(this.engine, context);
 		this.gameOverScene = new GameOverScene(this.engine, context);
 		this.gamePlayScene = new GamePlayScene(this.engine, context);
+		this.gamePlaySceneLoadingScene = new GamePlaySceneLoadingScene(this.engine, context);
 		
 		this.highScoreScene = new HighScoreScene(this.engine, context);
 	}

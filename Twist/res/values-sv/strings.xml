@@ -3,7 +3,9 @@
 
     <string name="app_name">Twirl</string>
     
-    <string name="loading">Laddar</string>
+    
+    <string name="loading">Laddar Resurser</string>
+    <string name="loading_level">Laddar Nivå</string>
     
     
        <string name="menu_new_game">Nytt Spel</string>

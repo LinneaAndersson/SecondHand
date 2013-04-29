@@ -3,7 +3,8 @@
 
     <string name="app_name">Twirl</string>
     
-    <string name="loading">Loading</string>
+    <string name="loading">Loading Resources</string>
+    <string name="loading_level">Loading Level</string>
     
     
     <string name="menu_new_game">New Game</string>

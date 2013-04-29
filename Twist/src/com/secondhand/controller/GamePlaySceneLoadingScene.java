@@ -4,33 +4,35 @@ import org.anddev.andengine.engine.Engine;
 
 import android.content.Context;
 
-import com.secondhand.resource.Fonts;
+import com.secondhand.resource.LocalizationStrings;
 import com.secondhand.scene.GameScene;
-import com.secondhand.scene.IGameScene;
-import com.secondhand.scene.IGameScene.AllScenes;
 
-public class GameLevelLoadingScene extends GameScene{
+public class GamePlaySceneLoadingScene extends GameScene{
 
-	public GameLevelLoadingScene(final Engine engine, final Context context) {
+	public GamePlaySceneLoadingScene(final Engine engine, final Context context) {
 		super(engine, context);
 	}
 
 	@Override
 	public void loadScene() {
 		// add loading text
-		this.attachChild(new LoadingText(this.smoothCamera));
+		this.attachChild( 
+				new LoadingText(
+						LocalizationStrings.getInstance().getLocalizedString("loading_level"),
+						 this.smoothCamera));
 
 		final IAsyncCallback callback = new IAsyncCallback() {
 
 			@Override
 			public void work() {
 				// preload gameplay scene 
-				
+				SceneManager.getInstance().getGamePlayScene().loadScene();
 			}
 
 			@Override
 			public void onWorkComplete() {
 				// now go to game play scene.
+				SceneManager.getInstance().setCurrentSceneEnum(AllScenes.GAME_PLAY_SCENE);
 			}
 		};
 

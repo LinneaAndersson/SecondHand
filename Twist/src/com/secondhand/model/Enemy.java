@@ -22,10 +22,10 @@ public class Enemy extends BlackHole {
 
 	public Enemy(final Vector2 vector, final float radius, final GameWorld level) {
 		super(vector, radius, level, ENEMY_MAX_SPEED);
-		huntingArea = getRadius() * getRadius() * (float) Math.PI * 200;
+		huntingArea = getRadius() * getRadius() * (float) Math.PI * 100;
 
 		// makes the enemy move much smother
-		getBody().setLinearDamping(2);
+		getBody().setLinearDamping(1);
 
 		/*
 		 * FixtureDef f = new FixtureDef(); f.isSensor = true; Shape s = new
@@ -182,7 +182,7 @@ public class Enemy extends BlackHole {
 		MyDebug.d("Movement");
 		// the vector from enemy to the player
 
-		movementVector = movementVector.mul(0.06f);
+		movementVector = movementVector.mul(0.001f);
 
 		this.move(movementVector);
 	}

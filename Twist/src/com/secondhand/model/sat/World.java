@@ -47,7 +47,7 @@ public class World {
 		final Vector2[] axes2 = poly2.getAxes();
 		// loop over the axes1
 		for (int i = 0; i < axes1.length; i++) {
-			final Vector2 axis = axes1[i];
+			final Vector2 axis = new Vector2(axes1[i]);
 			// project both shapes onto the axis
 			final  Projection p1 = poly1.project(axis);
 			final  Projection p2 = poly2.project(axis);
@@ -59,7 +59,7 @@ public class World {
 		}
 		// loop over the axes2
 		for (int i = 0; i < axes2.length; i++) {
-			final Vector2 axis = axes2[i];
+			final Vector2 axis = new Vector2(axes2[i]);
 			// project both shapes onto the axis
 			final  Projection p1 = poly1.project(axis);
 			final  Projection p2 = poly2.project(axis);
@@ -86,14 +86,14 @@ public class World {
 		return true;
 	}
 
-
+	
 	public static class Polygon {
 		public List<Vector2> edges;
 
 		Polygon(final Vector2 position, final List<Vector2> edges) {
 			this.edges = new ArrayList<Vector2>();
 			for(Vector2 edge: edges) {
-				this.edges.add(edge.add(position));
+				this.edges.add(new Vector2(edge.x + position.x, edge.y + position.y));
 			}
 		}
 
@@ -102,9 +102,9 @@ public class World {
 			// loop over the vertices
 			for (int i = 0; i <  edges.size(); i++) {
 				// get the current vertex
-				final Vector2 p1 = edges.get(i);
+				final Vector2 p1 = new Vector2(edges.get(i));
 				// get the next vertex
-				final Vector2 p2 = edges.get(i + 1 == edges.size() ? 0 : i + 1);
+				final Vector2 p2 = new Vector2(edges.get(i + 1 == edges.size() ? 0 : i + 1));
 				// subtract the two to get the edge vector
 				final Vector2 edge = p1.sub(p2);
 				// get either perpendicular vector

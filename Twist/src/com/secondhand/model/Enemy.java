@@ -18,12 +18,12 @@ public class Enemy extends BlackHole {
 	private static boolean straightLine = true;
 	// because someone changed getArea to getRadius I
 	// had to do this.
-	private final float huntingArea;
+	private float huntingArea;
 
 	public Enemy(final Vector2 vector, final float radius, final GameWorld level) {
 		super(vector, radius, level, ENEMY_MAX_SPEED);
-		huntingArea = getRadius() * getRadius() * (float) Math.PI * 100;
-
+		huntingArea = getHuntingArea();
+		
 		// makes the enemy move much smother
 		getBody().setLinearDamping(1);
 
@@ -32,6 +32,10 @@ public class Enemy extends BlackHole {
 		 * CircleShape(); s.setRadius((getRadius()+5)/32);
 		 * this.getBody().createFixture(f);
 		 */
+	}
+	
+	public float getHuntingArea(){
+		return getRadius() * getRadius() * (float) Math.PI * 100;
 	}
 
 	// player has highest chase-priority
@@ -116,6 +120,7 @@ public class Enemy extends BlackHole {
 		// TODO change the null-check to something nicer
 
 		if (entity != null) {
+			
 			if (straightToEntity(entity)) {
 				// MyDebug.d("Enemy: applyMovement towards " +
 				// entity.getClass());
@@ -123,27 +128,25 @@ public class Enemy extends BlackHole {
 				applyMovement(new Vector2(
 						(entity.getCenterX() - this.getCenterX()),
 						entity.getCenterY() - this.getCenterY()));
+			
 
 			} else {
-				findPath();
-
 				stopMovement();
 
 			}
+			if(huntingArea != getHuntingArea()){
+				huntingArea = getHuntingArea();
+			}
 		} else {
-			closeToDanger();
+			huntingArea *= 2;
 		}
-	}
-
-	private void findPath() {
-
 	}
 
 	// checks if there is something dangerous close by
 	private void closeToDanger() {
 		// MyDebug.d("Enemy: danger");
 		final Vector2 center = getBody().getWorldCenter();
-		final float rad = (getRadius() + 15)
+		final float rad = (getRadius() + 20)
 				/ PhysicsConstants.PIXEL_TO_METER_RATIO_DEFAULT;
 		physicsWorld.QueryAABB(new QueryCallback() {
 
@@ -172,9 +175,8 @@ public class Enemy extends BlackHole {
 
 	private void retreat(final Entity danger) {
 		MyDebug.d("Enemy: Retreat");
-		applyMovement(new Vector2(
-				(this.getCenterX() - danger.getCenterX() * 500),
-				(this.getCenterY() - danger.getCenterY() * 500)));
+		applyMovement(new Vector2((this.getCenterX() - danger.getCenterX()),
+				(this.getCenterY() - danger.getCenterY())));
 
 	}
 

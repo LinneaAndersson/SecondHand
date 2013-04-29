@@ -60,7 +60,10 @@ public class EntityManagerSerializer {
 			in = new DataInputStream(new BufferedInputStream(
 					SceneManager.getInstance().getContext().openFileInput(FILE_NAME)));
 			
+			
 			this.player = Player.readFromStream(in, gameWorld);
+			MyDebug.d("serialized player: " + (this.player != null));
+			
 			
 		} catch (final FileNotFoundException e) {
 			MyDebug.e("Could not open serialization file for reading", e);

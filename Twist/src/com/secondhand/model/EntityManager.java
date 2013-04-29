@@ -25,6 +25,7 @@ public class EntityManager {
 	public EntityManager(final GameWorld gameWorld) {
 		serializer = new EntityManagerSerializer(gameWorld);
 		this.player = serializer.getPlayer();
+		this.scheduledForDeletionEntities = new Stack<Entity>();
 	}
 
 	public EntityManager(final Player player) {

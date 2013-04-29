@@ -55,6 +55,7 @@ public class HighScoreScene extends GameScene {
 			// to get the coordinates for position.
 			final Text highScoreText = new Text(100, 120 + tmp * 40, mFont, mLine,
 					HorizontalAlign.CENTER);
+			//We know which position the name will begin and where the score will end.
 			x = this.smoothCamera.getWidth() / 2.0f-120;
 			y = this.smoothCamera.getHeight() / 2.0f-20;
 

@@ -16,8 +16,8 @@ import com.secondhand.resource.TextureRegions;
 
 public abstract class PowerUp extends RectangleEntity {
 		
-	public final static float WIDTH = 64;
-	public final static float HEIGHT = 64;
+	public final static int WIDTH = 64;
+	public final static int HEIGHT = 64;
 	
 	private float duration;
 	

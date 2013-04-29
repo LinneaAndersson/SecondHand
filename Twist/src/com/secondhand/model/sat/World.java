@@ -90,7 +90,7 @@ public class World {
 	public static class Polygon {
 		public List<Vector2> edges;
 
-		Polygon(final Vector2 position, final List<Vector2> edges) {
+		public Polygon(final Vector2 position, final List<Vector2> edges) {
 			this.edges = new ArrayList<Vector2>();
 			for(Vector2 edge: edges) {
 				this.edges.add(new Vector2(edge.x + position.x, edge.y + position.y));

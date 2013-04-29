@@ -12,6 +12,7 @@ import android.content.Context;
 import android.view.KeyEvent;
 
 import com.badlogic.gdx.math.Vector2;
+import com.secondhand.controller.CollisionContactListener;
 import com.secondhand.debug.MyDebug;
 import com.secondhand.model.Entity;
 import com.secondhand.model.GameWorld;
@@ -96,6 +97,10 @@ public class GamePlayScene extends GameScene implements PropertyChangeListener,
 				player.getScore(), player.getLives());
 		hud.attachChild(scoreLivesText);
 		
+		
+		// I do believe this belong here
+			getGameWorld().getPhysicsWorld().setContactListener(
+						new CollisionContactListener(getGameWorld()));
 				
 	}
 	

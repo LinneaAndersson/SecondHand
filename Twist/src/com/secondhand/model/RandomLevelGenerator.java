@@ -32,14 +32,19 @@ public class RandomLevelGenerator {
 	private final GameWorld level;
 	
 	
+	
 	RandomLevelGenerator(final Player player, final GameWorld level) {
-		level.getPhysicsWorld();
+	
+		
 		this.levelNumber = level.getLevelNumber();
 		this.level = level;
-		this.player = player;
 		
 		this.levelWidth = 2000 * levelNumber;
 		this.levelHeight = 2000 * levelNumber;
+		
+		
+this.player = player;
+
 	
 		this.playerMaxSize = 40 * levelNumber;
 		

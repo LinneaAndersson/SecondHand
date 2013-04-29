@@ -21,7 +21,7 @@ public class GameWorldTest extends TestCase {
 	public void testMoveEntities(){
 		
 	}
-
+/*
 	public void testcheckPlayerBigEnough(){
 		//I don't know why, but somehow I can 
 		// create a level-object in this method but no one else. ??
@@ -48,5 +48,5 @@ public class GameWorldTest extends TestCase {
 		
 		//checks that we get the right Width in the level.
 		assertEquals(level.getLevelWidth(),2000);
-	}
+	}*/
 }

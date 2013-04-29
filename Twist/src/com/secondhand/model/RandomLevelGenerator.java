@@ -38,8 +38,8 @@ public class RandomLevelGenerator {
 		this.levelNumber = level.getLevelNumber();
 		this.level = level;
 		
-		this.levelWidth = 1500; //500 * levelNumber;
-		this.levelHeight =1500; // 500 * levelNumber;
+		this.levelWidth = 1700 * levelNumber;
+		this.levelHeight = 1700 * levelNumber;
 		
 		world = new World(this.levelWidth, this.levelHeight);
 
@@ -60,17 +60,18 @@ public class RandomLevelGenerator {
 		
 		this.enemyList = new ArrayList<Enemy>();
 		placeOutEnemies();
+		MyDebug.d("done placing out enemies");
+		
 		
 	}
 	
 
 	private void placeOutEnemies() {		
 		final float MAX_SIZE = 50;
-		
 		final float MIN_SIZE = 20;
+		final int ENEMIES = 4 * this.levelNumber;
 		
-		
-		for (int i = 0; i < 5; ++i) {
+		for (int i = 0; i < ENEMIES; ++i) {
 			
 			float radius;
 			
@@ -128,7 +129,9 @@ public class RandomLevelGenerator {
 	
 	private void placeOutObstacles() {
 
-		for (int i = 0; i < 8; ++i) {
+		final int OBSTACLES = this.levelNumber * 7;
+		
+		for (int i = 0; i < OBSTACLES; ++i) {
 			
 			final List<Vector2> edges =  PolygonUtil.getRandomPolygon();
 			
@@ -156,7 +159,9 @@ public class RandomLevelGenerator {
 	
 	private void placeOutPowerUps() {
 
-		for (int i = 0; i < 3; ++i) {
+		final int POWER_UPS = 5 * this.levelNumber;
+		
+		for (int i = 0; i < POWER_UPS; ++i) {
 			
 			
 			float x;
@@ -185,17 +190,17 @@ public class RandomLevelGenerator {
 
 		final float K = 1.2f;
 		
-		final int MINIMUM_PLAYER_EATABLE = 3;
+		final int MINIMUM_PLAYER_EATABLE = 0; //this.levelNumber * 4;
 		int numPlayerEatable = 0;
 		
-		final float MAX_SIZE = 20f * this.levelNumber * K;
+		final float MAX_SIZE = 80f * this.levelNumber * K;
 		
 		final float MIN_SIZE = player.getRadius() - 10;
 		if(MIN_SIZE < 0) {
 			MyDebug.e("planet minimum size negative");
 		}
 		
-		final int PLANETS = 5; //(int)( 25 * this.levelNumber * K);
+		final int PLANETS = (int)( 25 * this.levelNumber * K);
 		
 		for (int i = 0; i < PLANETS; ++i) {
 			
@@ -243,8 +248,12 @@ public class RandomLevelGenerator {
 	private void placeOutLevelEntities() {
 	
 		placeOutObstacles();
+		MyDebug.d("done placing out obstacles");
 		placeOutPlanets();
+		MyDebug.d("done placing out planets");
+		
 		placeOutPowerUps();
+		MyDebug.d("done placing out power ups");
 			
 	}
 }

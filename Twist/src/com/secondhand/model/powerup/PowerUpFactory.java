@@ -5,6 +5,8 @@ import java.util.Random;
 import com.badlogic.gdx.math.Vector2;
 import com.secondhand.model.GameWorld;
 
+// TODO: maybe we should make some powerups, like the ExtraLife powerup, more rare than the others. 
+// so we should give them lower frequencies of appearing. 
 public final class PowerUpFactory {
 
 	private PowerUpFactory() {}

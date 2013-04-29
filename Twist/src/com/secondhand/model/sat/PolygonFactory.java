@@ -27,7 +27,7 @@ public final class PolygonFactory {
 	
 		final List<Vector2> edges = new ArrayList<Vector2>();
 		
-	    for (float i = 0; i < 360.0f; i += (360.0f / Circle.CIRCLE_FRAGMENTS)) {
+	    for (float i = 0; i < 360.0f; i += (360.0f / 20)) {
 	    		
 	    	// middle point vertex
 	    	// the right most

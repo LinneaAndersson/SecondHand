@@ -21,6 +21,8 @@ public abstract class PowerUp extends RectangleEntity {
 	
 	private float duration;
 	
+	protected boolean hasText = false;
+	
 	public PowerUp(final BaseRectangle rectangle, final GameWorld level, final float duration) {
 		super(rectangle, true, level, FixtureDefs.POWER_UP_FIXTURE_DEF);
 		this.duration = duration;	
@@ -61,6 +63,15 @@ public abstract class PowerUp extends RectangleEntity {
 	public float getScoreWorth() {
 		throw new IllegalStateException("cannot score points for eating powerup");
 
+	}
+	
+	public boolean hasText(){
+		return hasText;
+	}
+	
+	
+	public String getText(){
+		return null;
 	}
 	
 }

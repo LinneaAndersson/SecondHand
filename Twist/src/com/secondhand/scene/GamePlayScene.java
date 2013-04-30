@@ -35,7 +35,6 @@ public class GamePlayScene extends GameScene implements PropertyChangeListener,
 
 	public GamePlayScene(final Engine engine, final Context context) {
 		super(engine, context);
-		this.gameWorld = new GameWorld();
 	}
 
 	public GameWorld getGameWorld() {
@@ -193,13 +192,10 @@ public class GamePlayScene extends GameScene implements PropertyChangeListener,
 			final PowerUp powerUp = ((PowerUp) event.getNewValue());
 			engine.registerUpdateHandler(powerUp.getTimer(player));
 			
-			if (powerUp.getClass() == ExtraLife.class) {
-				showFadingTextNotifier("1UP",
+			if (powerUp.hasText()) {
+				showFadingTextNotifier(powerUp.getText(),
 						new Vector2(player.getX(), player.getY()));
-			} else if (powerUp.getClass() == ScoreUp.class) {
-				showFadingTextNotifier(((ScoreUp) powerUp).getScoreBonus()
-						+ "+", new Vector2(player.getX(), player.getY()));
-			}
+			} 
 		} else if (eventName.equals("Score")) {
 			updateScore((Integer) event.getNewValue());
 		} else if (eventName.equals("Life")) {

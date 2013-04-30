@@ -38,8 +38,8 @@ public class RandomLevelGenerator {
 		this.levelNumber = level.getLevelNumber();
 		this.level = level;
 		
-		this.levelWidth = 1700 * levelNumber;
-		this.levelHeight = 1700 * levelNumber;
+		this.levelWidth = 500 * levelNumber;
+		this.levelHeight = 500 * levelNumber;
 		
 		world = new World(this.levelWidth, this.levelHeight);
 

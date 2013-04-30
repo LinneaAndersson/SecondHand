@@ -174,7 +174,7 @@ public class GamePlayScene extends GameScene implements PropertyChangeListener,
 		}
 	}
 	
-	public void switchScene(AllScenes scene) {
+	public void switchScene(final AllScenes scene) {
 		isLoaded = false;
 		resetCamera();
 		

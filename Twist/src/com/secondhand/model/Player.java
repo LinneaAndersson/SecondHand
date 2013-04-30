@@ -135,9 +135,10 @@ public class Player extends BlackHole {
 	}
 	
 	public void reachToTouch(final Vector2 touch) {
-		MyDebug.d("TouchEvent "+ getRadius()*0.001f);
+		MyDebug.d("TouchEvent radius "+ getRadius());
 		Vector2 movementVector = new Vector2((getCenterX() - touch.x),
 				getCenterY() - touch.y);
+		MyDebug.d("TouchEvent vector "+ movementVector.x + ", " + movementVector.y);
 		
 		sceneSupport.firePropertyChange("PlayerMove", null, touch);
 		
@@ -145,9 +146,16 @@ public class Player extends BlackHole {
 		// apply.
 
 		// make it a bit slower depending on how big it is.
+
+		
+//		movementVector = movementVector.mul(this.getRadius()*0.0000008f);
+		//movementVector.mul(1f / (1f/250f));
 		
 		movementVector = movementVector.mul(((this.getRadius()*this.getRadius()*this.getRadius())*4/3)*0.0000008f);
 
+		MyDebug.d("movement vector "+ movementVector.x + ", " + movementVector.y);
+		
+		
 		move(movementVector);
 	}
 

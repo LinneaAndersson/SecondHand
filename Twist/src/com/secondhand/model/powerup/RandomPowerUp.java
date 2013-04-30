@@ -1,0 +1,59 @@
+package com.secondhand.model.powerup;
+
+import java.util.Random;
+
+import com.badlogic.gdx.math.Vector2;
+import com.secondhand.debug.MyDebug;
+import com.secondhand.model.GameWorld;
+import com.secondhand.model.Player;
+
+// TODO: won't work for some fucking reason. Fix it.
+public class RandomPowerUp extends PowerUp {
+
+	private final PowerUp randomPowerUp;
+
+	public RandomPowerUp(final Vector2 position,
+			final  GameWorld gameWorld) {
+		super(position, PowerUpType.RANDOM_POWER_UP, gameWorld, 0);
+
+		final Random rng = new Random();
+		final int rand = rng.nextInt(PowerUpFactory.NUM_POWER_UPS-1);
+		
+		if(rand == 0) {
+			randomPowerUp = new EatObstacle(position, gameWorld);
+		} else if(rand == 1) {
+			randomPowerUp =  new ExtraLife(position, gameWorld);
+		}else if(rand == 2) {
+			randomPowerUp =  new RandomTeleport(position, gameWorld);
+		}else if(rand == 3) {
+			randomPowerUp =  new ScoreUp(position, gameWorld);
+		}else if(rand == 4) {
+			randomPowerUp =  new Shield(position, gameWorld);
+		}else if(rand == 5) {
+			randomPowerUp =  new SpeedUp(position, gameWorld);
+		} else 
+			randomPowerUp = null;
+		
+		randomPowerUp.getShape().setVisible(false);
+		
+		this.duration = randomPowerUp.getDuration();
+	}
+
+	@Override
+	public void activateEffect(final Player player) {
+		MyDebug.d("applying random powerup up");
+		this.randomPowerUp.activateEffect(player);
+	}
+	
+	@Override
+	public void deactivateEffect(final Player player) {
+		MyDebug.d("unapplying random powerup up");
+		
+		this.randomPowerUp.deactivateEffect(player);
+	}
+
+	@Override
+	public String getText(){
+		return this.randomPowerUp.getText();
+	}
+}

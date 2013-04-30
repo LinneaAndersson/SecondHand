@@ -9,6 +9,8 @@ import org.anddev.andengine.extension.physics.box2d.PhysicsWorld;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Contact;
 import com.secondhand.controller.SceneManager;
+import com.secondhand.debug.MyDebug;
+import com.secondhand.model.powerup.PowerUp;
 
 // This class was formerly known as level. 
 public class GameWorld {
@@ -79,6 +81,13 @@ public class GameWorld {
 		this.levelHeight = randomLevelGenerator.levelHeight;
 
 		this.entityManager.setEntityList(randomLevelGenerator.entityList);
+		int count = 0;
+		for(Entity en: randomLevelGenerator.entityList) {
+			if(en instanceof PowerUp) {
+				++count;
+			}
+		}
+		MyDebug.d("powerups:  " + count);
 		this.entityManager.setEnemyList(randomLevelGenerator.enemyList);
 
 	}

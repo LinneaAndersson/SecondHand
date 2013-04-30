@@ -10,7 +10,6 @@ import com.badlogic.gdx.math.Vector2;
 import com.secondhand.model.FixtureDefs;
 import com.secondhand.model.GameWorld;
 import com.secondhand.model.Player;
-import com.secondhand.model.PowerUpType;
 import com.secondhand.model.RectangleEntity;
 import com.secondhand.resource.TextureRegions;
 
@@ -19,9 +18,7 @@ public abstract class PowerUp extends RectangleEntity {
 	public final static int WIDTH = 64;
 	public final static int HEIGHT = 64;
 	
-	private float duration;
-	
-	protected boolean hasText = false;
+	protected float duration;
 	
 	public PowerUp(final BaseRectangle rectangle, final GameWorld level, final float duration) {
 		super(rectangle, true, level, FixtureDefs.POWER_UP_FIXTURE_DEF);
@@ -66,7 +63,7 @@ public abstract class PowerUp extends RectangleEntity {
 	}
 	
 	public boolean hasText(){
-		return hasText;
+		return getText() != null;
 	}
 	
 	

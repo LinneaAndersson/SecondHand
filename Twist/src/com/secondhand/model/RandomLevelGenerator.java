@@ -159,9 +159,6 @@ public class RandomLevelGenerator {
 	}
 	
 	private void placeOutPowerUps() {
-
-		entityList.add(new ExtraLife(new Vector2(100,350), level));		
-		
 		final int POWER_UPS = 5 * this.levelNumber;
 		
 		for (int i = 0; i < POWER_UPS; ++i) {

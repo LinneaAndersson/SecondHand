@@ -4,7 +4,6 @@ import com.badlogic.gdx.math.Vector2;
 import com.secondhand.debug.MyDebug;
 import com.secondhand.model.GameWorld;
 import com.secondhand.model.Player;
-import com.secondhand.model.PowerUpType;
 
 public class ExtraLife extends PowerUp {
 
@@ -13,7 +12,6 @@ public class ExtraLife extends PowerUp {
 	public ExtraLife(final Vector2 position,
 			final  GameWorld level) {
 		super(position, PowerUpType.EXTRA_LIFE, level, DURATION);
-		hasText = true;
 	}
 
 	@Override

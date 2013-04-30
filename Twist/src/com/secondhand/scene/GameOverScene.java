@@ -51,7 +51,7 @@ IOnMenuItemClickListener, TextWatcher {
 	public GameOverScene(final Engine engine, final Context context) {
 		super(engine, context);
 		mcontext=context;
-		//EditText eT = 
+		MyDebug.d("creating the GameOverScene");
 
 		
 	}
@@ -60,10 +60,11 @@ IOnMenuItemClickListener, TextWatcher {
 	@Override
 	public void loadScene() {
 		super.loadScene();
-		
+		MyDebug.d("loading the GameOverScene");
 		setGameWorld(SceneManager.getInstance().getGamePlayScene().getGameWorld());
 		String mLine = "";
 		int antal = 0;
+		MyDebug.d(gameWorld.getPlayer() + " =gameWorld.getPlayer");
 		player = gameWorld.getPlayer();
 
 		
@@ -72,34 +73,36 @@ IOnMenuItemClickListener, TextWatcher {
 		try {
 			reader = new BufferedReader(new InputStreamReader(context
 					.getAssets().open("highScore")));
-
+			MyDebug.d("reading from file");
 			mLine = reader.readLine();
+			MyDebug.d("reading from file");
 			// checks if the score of the player are the top 5 score, and if it
 			// is it prints contgratulation. other way game over.
-			while (true) {
+			int i=0;
+			while (mLine!=null) {
 				antal++;
 				mLine = reader.readLine().trim();
-				MyDebug.d(mLine);
 
 				if (player.getScore() > Integer.parseInt(mLine)) {
-					setHeadLine("congratulation!");
-					setCenterText(150,"You are top 5!");
+					setHeadLine("congratulation");
+					setCenterText(100,"You are top 5!");
+					
 					break;
 				}
 
 
 				mLine = reader.readLine();
-
 				if (mLine == null && antal < 5) {
 					setHeadLine("congratulation");
 					setCenterText(100,"You are top 5!");
 					break;
 				} else if (antal >= 5) {
 					setHeadLine("menu_game_over");
-					setCenterText(150,"Try  again");
+					setCenterText(100,"Try  again");
 					break;
-				}
+				} 
 			}
+			MyDebug.d("Done reading from file");
 		} catch (IOException e) {
 			Log.e("GameOverScene", "laodScene");
 		}

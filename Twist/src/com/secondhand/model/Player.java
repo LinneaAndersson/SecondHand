@@ -135,32 +135,27 @@ public class Player extends BlackHole {
 	}
 	
 	public void reachToTouch(final Vector2 touch) {
-		MyDebug.d("TouchEvent radius "+ getRadius());
-		Vector2 movementVector = new Vector2((getCenterX() - touch.x),
+		
+		
+		Vector2 forcePosition = new Vector2(
+				touch.x / PhysicsConstants.PIXEL_TO_METER_RATIO_DEFAULT, 
+				touch.y / PhysicsConstants.PIXEL_TO_METER_RATIO_DEFAULT);
+	
+		Vector2 force = new Vector2((getCenterX() - touch.x),
 				getCenterY() - touch.y);
-		MyDebug.d("TouchEvent vector "+ movementVector.x + ", " + movementVector.y);
 		
-		// we want to deal with Box2D coordinates.
-		movementVector.x = movementVector.x / PhysicsConstants.PIXEL_TO_METER_RATIO_DEFAULT;
-		movementVector.y = movementVector.y / PhysicsConstants.PIXEL_TO_METER_RATIO_DEFAULT;
+		force.x = force.x / PhysicsConstants.PIXEL_TO_METER_RATIO_DEFAULT;
+		force.y = force.y / PhysicsConstants.PIXEL_TO_METER_RATIO_DEFAULT;
 		
-		sceneSupport.firePropertyChange("PlayerMove", null, touch);
+		force.x = force.x / force.len();
+		force.y = force.y / force.len();
 		
-		// the closer the touch is to the player, the more force do we need to
-		// apply.
-
-		// make it a bit slower depending on how big it is.
-
+		force.mul(3);
 		
-//		movementVector = movementVector.mul(this.getRadius()*0.0000008f);
-		//movementVector.mul(1f / (1f/250f));
+		this.getBody().applyLinearImpulse(force,
+				forcePosition);	
 		
-		movementVector = movementVector.mul(1);
-
-		MyDebug.d("movement vector "+ movementVector.x + ", " + movementVector.y);
-		
-		
-		move(movementVector);
+		MyDebug.d("force: " + force.x + force.y);
 	}
 
 	

@@ -96,6 +96,9 @@ public class GamePlayScene extends GameScene implements PropertyChangeListener,
 		hud.attachChild(scoreLivesText);
 		
 		
+	//	hud.attachChild(new FadingNotifierText("hello!", new Vector2(100,100)));
+		
+		
 		// I do believe this belong here
 			getGameWorld().getPhysicsWorld().setContactListener(
 						new CollisionContactListener(getGameWorld()));
@@ -210,6 +213,7 @@ public class GamePlayScene extends GameScene implements PropertyChangeListener,
 		}
 	}
 	
+	
 	// zoom out when player grows.
 	private void apaptCameraToGrowingPlayer(final float newRadius, final float oldRadius) {
 		this.smoothCamera.setZoomFactor(this.smoothCamera.getZoomFactor() - 0.05f * oldRadius/newRadius);
@@ -220,7 +224,13 @@ public class GamePlayScene extends GameScene implements PropertyChangeListener,
 	
 	@Override
 	public void showFadingTextNotifier(final String str, final Vector2 position) {
-		this.attachChild(new FadingNotifierText(str, position));
+		
+		// convert positon to camera coordinates.
+		final Vector2 cameraPosition = new Vector2( 
+				position.x - this.smoothCamera.getMinX(),
+						position.y - this.smoothCamera.getMinY());
+		
+		this.hud.attachChild(new FadingNotifierText(str, cameraPosition));
 	}
 
 	@Override

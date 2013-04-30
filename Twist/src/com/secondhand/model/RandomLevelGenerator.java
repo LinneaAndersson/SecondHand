@@ -7,6 +7,7 @@ import java.util.Random;
 import com.badlogic.gdx.math.Vector2;
 import com.secondhand.debug.MyDebug;
 import com.secondhand.math.PolygonUtil;
+import com.secondhand.model.powerup.ExtraLife;
 import com.secondhand.model.powerup.PowerUp;
 import com.secondhand.model.powerup.PowerUpFactory;
 import com.secondhand.model.sat.PolygonFactory;
@@ -159,6 +160,8 @@ public class RandomLevelGenerator {
 	
 	private void placeOutPowerUps() {
 
+		entityList.add(new ExtraLife(new Vector2(100,350), level));		
+		
 		final int POWER_UPS = 5 * this.levelNumber;
 		
 		for (int i = 0; i < POWER_UPS; ++i) {

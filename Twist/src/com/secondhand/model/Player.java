@@ -4,6 +4,7 @@ import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Vector;
 
 import org.anddev.andengine.extension.physics.box2d.util.constants.PhysicsConstants;
 
@@ -25,6 +26,8 @@ public class Player extends BlackHole {
 	private int lives;
 	
 	private float scoreMultiplier;
+	
+	private boolean isMirroredMovement;
 	
 	private final PropertyChangeSupport sceneSupport = new PropertyChangeSupport(this);
 	
@@ -60,6 +63,15 @@ public class Player extends BlackHole {
 	
 	public Player(final Vector2 position, final float radius, final GameWorld gameWorld) {
 		this(position, radius, gameWorld, STARTING_LIVES, 0);
+	}
+	
+	
+	public boolean isMirroredMovement() {
+		return this.isMirroredMovement;
+	}
+	
+	public void setMirroredMovement(boolean mirrored) {
+		this.isMirroredMovement = mirrored;
 	}
 	
 	public int getLives() {
@@ -147,13 +159,29 @@ public class Player extends BlackHole {
 	
 	public void reachToTouch(final Vector2 touch) {
 		
+		Vector2 forcePosition;
 		
-		Vector2 forcePosition = new Vector2(
-				touch.x / PhysicsConstants.PIXEL_TO_METER_RATIO_DEFAULT, 
-				touch.y / PhysicsConstants.PIXEL_TO_METER_RATIO_DEFAULT);
-	
-		Vector2 force = new Vector2((getCenterX() - touch.x),
+		if(this.isMirroredMovement()) {
+			final Vector2 v1 = new Vector2(touch.x - getCenterX(), touch.y - getCenterY());
+			v1.mul(-1);
+			final Vector2 v2 = new Vector2(getCenterX(), getCenterY());
+			v2.add(v1);
+			forcePosition = new Vector2(
+					v2.x / PhysicsConstants.PIXEL_TO_METER_RATIO_DEFAULT, 
+					v2.y / PhysicsConstants.PIXEL_TO_METER_RATIO_DEFAULT);
+		}else {
+
+			forcePosition = new Vector2(
+					touch.x / PhysicsConstants.PIXEL_TO_METER_RATIO_DEFAULT, 
+					touch.y / PhysicsConstants.PIXEL_TO_METER_RATIO_DEFAULT);
+		}
+		
+		final Vector2 force = new Vector2((getCenterX() - touch.x),
 				getCenterY() - touch.y);
+		
+		if(this.isMirroredMovement) {
+			force.mul(-1);
+		}
 		
 		force.x = force.x / PhysicsConstants.PIXEL_TO_METER_RATIO_DEFAULT;
 		force.y = force.y / PhysicsConstants.PIXEL_TO_METER_RATIO_DEFAULT;

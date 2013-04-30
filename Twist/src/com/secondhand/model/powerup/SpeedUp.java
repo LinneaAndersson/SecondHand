@@ -34,13 +34,12 @@ public class SpeedUp extends PowerUp {
 	@Override
 	public void deactivateEffect(final Player player) {
 		
-
 		final boolean hasAnother = super.hasAnother(player);
 		
 		if(!hasAnother)
 			super.deactivateEffect(player);
 		
 		if(!hasAnother)
-			player.setMaxSpeed(player.getMaxSpeed()/factor);
+			player.setMaxSpeed(player.getMaxSpeed()/factor);	
 	}
 }

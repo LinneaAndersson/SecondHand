@@ -71,4 +71,14 @@ public abstract class PowerUp extends RectangleEntity {
 		return null;
 	}
 	
+	public boolean hasAnother(final Player player) {
+		boolean hasAnother = false;
+		for (final PowerUp powerUp : player.getPowerUps()) {
+			if (powerUp.getClass() == DoubleScore.class)
+				hasAnother = true;
+		}
+		return hasAnother;
+		
+	}
+	
 }

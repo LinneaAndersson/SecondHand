@@ -25,17 +25,13 @@ public class DoubleScore extends PowerUp {
 	
 	@Override
 	public void deactivateEffect(final Player player) {
-		boolean hasAnotherShield = false;
-		for (final PowerUp powerUp : player.getPowerUps()) {
-			if (powerUp.getClass() == DoubleScore.class)
-				hasAnotherShield = true;
-		}
+		boolean hasAnother = super.hasAnother(player);
 		
-		if(!hasAnotherShield)
+		if(!hasAnother)
 			super.deactivateEffect(player);
 		
-		player.setScoreMultiplier(hasAnotherShield ? MULT : 1);
+		player.setScoreMultiplier(hasAnother ? MULT : 1);
 		
-		player.setIsEdible(!hasAnotherShield);
+		player.setIsEdible(!hasAnother);
 	}
 }

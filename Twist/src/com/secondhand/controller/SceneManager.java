@@ -120,7 +120,6 @@ public final class SceneManager {
 	public IGameScene setCurrentSceneEnum(final AllScenes currentSceneEnum) {
 		this.currentSceneEnum = currentSceneEnum;
 		final IGameScene currentScene = getCurrentScene();	
-		MyDebug.d("currentScene.getScene()==null =" + currentScene.getScene());
 		
 		if(!currentScene.isLoaded()) {;
 			MyDebug.d("scene not preloaded, loading!");
@@ -128,7 +127,6 @@ public final class SceneManager {
 		}
 		
 		if (this.currentSceneEnum == AllScenes.GAME_PLAY_SCENE) {
-			MyDebug.d("kommer den in i 2" + currentScene.getScene());
 			gamePlaySceneController = new GamePlaySceneController(this.gamePlayScene);
 		}
 

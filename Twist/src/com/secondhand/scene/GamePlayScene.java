@@ -35,7 +35,6 @@ public class GamePlayScene extends GameScene implements PropertyChangeListener,
 
 	public GamePlayScene(final Engine engine, final Context context) {
 		super(engine, context);
-		this.gameWorld = new GameWorld();
 	}
 
 	public GameWorld getGameWorld() {

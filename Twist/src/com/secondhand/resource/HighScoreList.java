@@ -23,10 +23,20 @@ public final class HighScoreList {
 		return instance;
 	}
 	
+	// stored from highest to lowest position in list.
 	private List<Entry> highScoreList;
 	
 	public List<Entry> getHighScoreList() {
 		return this.highScoreList;
+	}
+	
+	public boolean madeItToHighScoreList(final int newScore) {
+		for(int i = this.highScoreList.size() - 1; i >= 0; ++i) {
+			int score = this.highScoreList.get(i).score;
+			if(newScore > score)
+				return true;
+		}
+		return false;
 	}
 	
 	public void initialize(final Context context) {

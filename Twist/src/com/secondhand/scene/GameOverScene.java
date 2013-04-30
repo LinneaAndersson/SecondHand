@@ -26,6 +26,7 @@ import com.secondhand.debug.MyDebug;
 import com.secondhand.model.GameWorld;
 import com.secondhand.model.Player;
 import com.secondhand.resource.Fonts;
+import com.secondhand.resource.HighScoreList;
 import com.secondhand.resource.LocalizationStrings;
 
 
@@ -56,49 +57,22 @@ IOnMenuItemClickListener, TextWatcher {
 		super.loadScene();
 		MyDebug.d("loading the GameOverScene");
 		setGameWorld(SceneManager.getInstance().getGamePlayScene().getGameWorld());
-		String mLine = "";
-		int antal = 0;
 		MyDebug.d(gameWorld.getPlayer() + " =gameWorld.getPlayer");
 		player = gameWorld.getPlayer();
 
 		
 		this.mFont = Fonts.getInstance().menuItemFont;
 
-		try {
-			reader = new BufferedReader(new InputStreamReader(context
-					.getAssets().open("highScore")));
-			MyDebug.d("reading from file");
-			mLine = reader.readLine();
-			MyDebug.d("reading from file");
-			// checks if the score of the player are the top 5 score, and if it
-			// is it prints contgratulation. other way game over.
-			while (mLine!=null) {
-				antal++;
-				mLine = reader.readLine().trim();
-
-				if (player.getScore() > Integer.parseInt(mLine)) {
-					setHeadLine("congratulation");
-					setCenterText(100,"You are top 5!");
-					
-					break;
-				}
-
-
-				mLine = reader.readLine();
-				if (mLine == null && antal < 5) {
-					setHeadLine("congratulation");
-					setCenterText(100,"You are top 5!");
-					break;
-				} else if (antal >= 5) {
-					setHeadLine("menu_game_over");
-					setCenterText(100,"Try  again");
-					break;
-				} 
-			}
-			MyDebug.d("Done reading from file");
-		} catch (IOException e) {
-			Log.e("GameOverScene", "laodScene");
+		if (HighScoreList.getInstance().madeItToHighScoreList(player.getScore())) {
+			setHeadLine("congratulation");
+			setCenterText(100,"You are top 5!");
 		}
+		else  {
+			setHeadLine("menu_game_over");
+			setCenterText(100,"Try  again");
+		} 
+			
+	/*
 		final List<MenuItem> menuList = new ArrayList<MenuItem>();
 		menuList.add(new MenuItem(NAME, LocalizationStrings.getInstance()
 				.getLocalizedString("game_over_name")));
@@ -107,7 +81,7 @@ IOnMenuItemClickListener, TextWatcher {
 		menuList.add(new MenuItem(SAVE, LocalizationStrings.getInstance()
 				.getLocalizedString("game_over_save")));
 
-		layoutCenteredMenu(antal, menuList);
+		layoutCenteredMenu(antal, menuList);*/
 		this.setOnMenuItemClickListener(this);
 	}
 

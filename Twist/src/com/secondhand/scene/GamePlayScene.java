@@ -35,6 +35,10 @@ public class GamePlayScene extends GameScene implements PropertyChangeListener,
 
 	public GamePlayScene(final Engine engine, final Context context) {
 		super(engine, context);
+
+		MyDebug.i("creating game world");
+		//Have to create gameWorld here, because else it is null when I need it!
+		this.gameWorld = new GameWorld();
 	}
 
 	public GameWorld getGameWorld() {
@@ -114,9 +118,7 @@ public class GamePlayScene extends GameScene implements PropertyChangeListener,
 		// we'll need to be able to restore the camera when returning to the menu.
 		cachedCameraCenter = new Vector2(smoothCamera.getCenterX(), smoothCamera.getCenterY());
 		
-		MyDebug.i("creating game world");
 		
-		this.gameWorld = new GameWorld();
 		
 		MyDebug.d("loading game play sceme");
 		
@@ -227,10 +229,10 @@ public class GamePlayScene extends GameScene implements PropertyChangeListener,
 	@Override
 	public void newLevelStarted() {
 		MyDebug.d("new level!");
-		
-		setScene(AllScenes.CHANGE_LEVEL_SCENE);
 		registerNewLevel();
 		Sounds.getInstance().winSound.play();
+		setScene(AllScenes.CHANGE_LEVEL_SCENE);
+		
 		
 	}
 

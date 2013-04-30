@@ -32,11 +32,11 @@ public class ChangeLevelScene extends GameScene{
 	@Override
 	public void loadScene(){
 		super.loadScene();
-		
+		MyDebug.d("Loading ChangeLevelScene");
 		this.setBackground(new ColorBackground(0,0,0));
-		
+		MyDebug.d("Loading ChangeLevelScene");
 		int levelNumber=gameWorld.getLevelNumber();
-		
+		MyDebug.d("Loading ChangeLevelScene");
 		mFont = Fonts.getInstance().menuItemFont;
 		
 
@@ -48,7 +48,7 @@ public class ChangeLevelScene extends GameScene{
 				/ 2.0f;
 		  levelName.setPosition(x,y);
 		levelName.setScale(2);
-	
+		MyDebug.d("Loading ChangeLevelScene");
 		this.attachChild(levelName);
 
 	}

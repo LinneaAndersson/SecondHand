@@ -113,7 +113,9 @@ public class GamePlayScene extends GameScene implements PropertyChangeListener,
 		// get rid the entities from the previous game.
 		//this.detachChildren();
 		
+		MyDebug.i("creating game world");
 		
+		this.gameWorld = new GameWorld();
 	
 		// we'll need to be able to restore the camera when returning to the menu.
 		cachedCameraCenter = new Vector2(smoothCamera.getCenterX(), smoothCamera.getCenterY());

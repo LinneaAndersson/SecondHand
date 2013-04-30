@@ -100,7 +100,7 @@ public class RandomLevelGenerator {
 			
 			final Enemy enemy = new Enemy(new Vector2(x, y), radius, level);
 			entityList.add(enemy);		
-			entityList.add(enemy);
+			enemyList.add(enemy);
 
 		}
 

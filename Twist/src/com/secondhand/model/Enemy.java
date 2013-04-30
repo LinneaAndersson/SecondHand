@@ -87,8 +87,6 @@ public class Enemy extends BlackHole {
 
 		final float dy = entity.getCenterY() - this.getCenterY();
 
-		// the hunting area is tmp like this, don't know
-		// why i choose area*100
 		return dx * dx + dy * dy <= huntingArea;
 
 	}
@@ -119,13 +117,12 @@ public class Enemy extends BlackHole {
 
 	private void dangerCheck(final Entity entity) {
 		// TODO change the null-check to something nicer
-
 		if (entity != null) {
 
 			if (straightToEntity(entity)) {
 				// MyDebug.d("Enemy: applyMovement towards " +
 				// entity.getClass());
-				closeToDanger();
+				//closeToDanger();
 				applyMovement(new Vector2(
 						(entity.getCenterX() - this.getCenterX()),
 						entity.getCenterY() - this.getCenterY()));
@@ -181,7 +178,6 @@ public class Enemy extends BlackHole {
 	}
 
 	private void applyMovement(Vector2 movementVector) { // NOPMD
-		MyDebug.d("Movement");
 		// the vector from enemy to the player
 
 		movementVector = movementVector.mul(0.001f);

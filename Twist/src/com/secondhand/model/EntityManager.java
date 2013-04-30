@@ -3,6 +3,8 @@ package com.secondhand.model;
 import java.util.List;
 import java.util.Stack;
 
+import com.secondhand.debug.MyDebug;
+
 // Manages all the entities of the GameWorld
 public class EntityManager {
 	
@@ -38,7 +40,6 @@ public class EntityManager {
 		// for easy access and for the posibility of attacking
 		// each other. it could be preferable to change it later
 		// if we can come up with a better way
-		
 		for (final Enemy enemy : enemyList) {
 			enemy.moveEnemy(player, entityList);
 		}
@@ -46,13 +47,13 @@ public class EntityManager {
 	
 	public void onManagedUpdate(final float pSecondsElapsed) {
 		// remove bodies scheduled for deletion.
+		
 		while(!scheduledForDeletionEntities.empty()) {
 			final Entity entity = scheduledForDeletionEntities.pop();
 			entity.deleteBody();
 		}
 		
 		moveEnemies();
-		
 		this.player.moveToNeededPositionIfNecessary();
 	}
 	

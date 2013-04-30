@@ -13,6 +13,7 @@ public class ScoreUp extends PowerUp {
 	public ScoreUp(final Vector2 position,
 			final  GameWorld level) {
 		super(position, PowerUpType.SCORE_UP, level, DURATION);
+		hasText = true;
 	}
 
 	// TODO: should probably used getScoreValue instead here.
@@ -23,5 +24,10 @@ public class ScoreUp extends PowerUp {
 	@Override
 	public void activateEffect(final Player player) {
 		player.increaseScore(SCORE_BONUS);
+	}
+	
+	@Override
+	public String getText(){
+		return getScoreBonus() +"+";
 	}
 }

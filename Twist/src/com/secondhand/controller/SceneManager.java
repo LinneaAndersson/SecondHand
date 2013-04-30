@@ -6,8 +6,10 @@ import android.content.Context;
 import android.view.KeyEvent;
 
 import com.secondhand.debug.MyDebug;
+import com.secondhand.model.GameWorld;
 import com.secondhand.resource.Sounds;
 import com.secondhand.resource.TextureRegions;
+import com.secondhand.scene.ChangeLevelScene;
 import com.secondhand.scene.GameOverScene;
 import com.secondhand.scene.GamePlayScene;
 import com.secondhand.scene.HighScoreScene;
@@ -31,7 +33,7 @@ public final class SceneManager {
 	private Context context;
 	
 	private IGameScene loadingScene, mainMenuScene, settingsMenuScene,
-			highScoreScene, gamePlaySceneLoadingScene;
+			highScoreScene, gamePlaySceneLoadingScene, changeLevelScene;
 	
 	
 	private GamePlayScene gamePlayScene;
@@ -103,6 +105,8 @@ public final class SceneManager {
 			scene = this.gameOverScene;
 		}else if (sceneEnum == AllScenes.GAME_PLAY_SCENE_LOADING_SCENE) {
 			scene = this.gamePlaySceneLoadingScene;
+		}else if(sceneEnum == AllScenes.CHANGE_LEVEL_SCENE){
+			scene = this.changeLevelScene;
 		}
 
 		return scene;
@@ -115,18 +119,19 @@ public final class SceneManager {
 	
 	public IGameScene setCurrentSceneEnum(final AllScenes currentSceneEnum) {
 		this.currentSceneEnum = currentSceneEnum;
-
 		final IGameScene currentScene = getCurrentScene();	
+		MyDebug.d("currentScene.getScene()==null =" + currentScene.getScene());
 		
-		
-		if(!currentScene.isLoaded()) {
+		if(!currentScene.isLoaded()) {;
 			MyDebug.d("scene not preloaded, loading!");
 			currentScene.loadScene();
 		}
 		
 		if (this.currentSceneEnum == AllScenes.GAME_PLAY_SCENE) {
+			MyDebug.d("kommer den in i 2" + currentScene.getScene());
 			gamePlaySceneController = new GamePlaySceneController(this.gamePlayScene);
 		}
+
 		this.engine.setScene(currentScene.getScene());
 
 		return currentScene;
@@ -145,8 +150,10 @@ public final class SceneManager {
 		this.gameOverScene = new GameOverScene(this.engine, context);
 		this.gamePlayScene = new GamePlayScene(this.engine, context);
 		this.gamePlaySceneLoadingScene = new GamePlaySceneLoadingScene(this.engine, context);
-		
 		this.highScoreScene = new HighScoreScene(this.engine, context);
+		this.changeLevelScene = new ChangeLevelScene(this.engine , context, gamePlayScene.getGameWorld());
+		
+		
 	}
 
 	// called from MainActivity.

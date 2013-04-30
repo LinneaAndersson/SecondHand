@@ -12,10 +12,16 @@ public class ExtraLife extends PowerUp {
 	public ExtraLife(final Vector2 position,
 			final  GameWorld level) {
 		super(position, PowerUpType.EXTRA_LIFE, level, DURATION);
+		hasText = true;
 	}
 
 	@Override
 	public void activateEffect(final Player player) {
 		player.gainLife();
+	}
+	
+	@Override
+	public String getText(){
+		return "1UP";
 	}
 }

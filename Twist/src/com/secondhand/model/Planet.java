@@ -22,7 +22,7 @@ public class Planet extends CircleEntity {
 	
 	@Override
 	public float getScoreWorth() {
-		return 1;
+		return 10;
 	}
 	
 	

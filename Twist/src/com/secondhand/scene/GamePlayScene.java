@@ -34,6 +34,7 @@ public class GamePlayScene extends GameScene implements PropertyChangeListener,
 
 	public GamePlayScene(final Engine engine, final Context context) {
 		super(engine, context);
+		this.gameWorld = new GameWorld();
 	}
 
 	public GameWorld getGameWorld() {
@@ -104,7 +105,7 @@ public class GamePlayScene extends GameScene implements PropertyChangeListener,
 	public void loadScene() {
 		super.loadScene();
 		
-		this.gameWorld = new GameWorld();
+		
 		
 		MyDebug.d("loading game play sceme");
 		
@@ -209,8 +210,10 @@ public class GamePlayScene extends GameScene implements PropertyChangeListener,
 	@Override
 	public void newLevelStarted() {
 		MyDebug.d("new level!");
-		registerNewLevel();
-		Sounds.getInstance().winSound.play();
+		
+		setScene(AllScenes.CHANGE_LEVEL_SCENE);
+		//registerNewLevel();
+		//Sounds.getInstance().winSound.play();
 		
 	}
 

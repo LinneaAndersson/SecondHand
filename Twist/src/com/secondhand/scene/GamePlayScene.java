@@ -136,10 +136,9 @@ public class GamePlayScene extends GameScene implements PropertyChangeListener,
 		
 		//camera.setCenter(camera.getWidth()/2, camera.getHeight()/2);
 		
-		
 		smoothCamera.setBoundsEnabled(false);
-		this.smoothCamera.setBounds(0, camera.getWidth(), 0, camera.getHeight());
-		smoothCamera.setCenterDirect(this.cachedCameraCenter.x, this.cachedCameraCenter.y);
+		this.smoothCamera.setBounds(0, this.smoothCamera.getWidth(), 0, this.smoothCamera.getHeight());
+		smoothCamera.setCenterDirectThatActuallyFuckingWorks(this.cachedCameraCenter.x, this.cachedCameraCenter.y);
 		//smoothCamera.setBoundsEnabled(true);
 		
 		

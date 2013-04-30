@@ -7,7 +7,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.anddev.andengine.engine.Engine;
-import org.anddev.andengine.entity.scene.background.ColorBackground;
 import org.anddev.andengine.entity.scene.menu.MenuScene;
 import org.anddev.andengine.entity.scene.menu.MenuScene.IOnMenuItemClickListener;
 import org.anddev.andengine.entity.scene.menu.item.IMenuItem;
@@ -21,7 +20,6 @@ import android.content.Context;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
-import android.widget.EditText;
 
 import com.secondhand.controller.SceneManager;
 import com.secondhand.debug.MyDebug;

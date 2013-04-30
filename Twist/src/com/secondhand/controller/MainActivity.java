@@ -82,7 +82,7 @@ public class MainActivity extends BaseGameActivity {
 	    
 	    // ensure that the app is always shut down when exited. 
 	    // otherwise we get weird behaviour when restarting the app.
-	    if(SceneManager.getInstance().getIsGameLoaded())
+	    if(SceneManager.getInstance().isGameLoaded())
 
 	    	System.exit(0);    
 	}

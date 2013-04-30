@@ -98,6 +98,10 @@ public class GamePlayScene extends GameScene implements PropertyChangeListener,
 				player.getScore(), player.getLives());
 		hud.attachChild(scoreLivesText);
 		
+		
+		// I do believe this belong here
+			getGameWorld().getPhysicsWorld().setContactListener(
+						new CollisionContactListener(getGameWorld()));
 				
 	}
 	
@@ -124,7 +128,7 @@ public class GamePlayScene extends GameScene implements PropertyChangeListener,
 		smoothCamera.setChaseEntity(null);
 		// reset zoom
 		smoothCamera.setZoomFactor(1.0f);
-		Camera camera = engine.getCamera();
+		final Camera camera = engine.getCamera();
 		camera.setCenter(camera.getWidth()/2, camera.getHeight()/2);
 
 		// don't show the HUD in the menu.
@@ -191,6 +195,8 @@ public class GamePlayScene extends GameScene implements PropertyChangeListener,
 			apaptCameraToGrowingPlayer( (Float)event.getNewValue(),  (Float)event.getOldValue());
 		} else if(eventName.equals("NextLevel")){
 			newLevelStarted();
+		} else if (eventName.equals("PlayerMove")) {
+			playerMoveAnimation((Vector2) event.getNewValue());
 		}
 	}
 	
@@ -226,4 +232,12 @@ public class GamePlayScene extends GameScene implements PropertyChangeListener,
 	public void updateLives(final int newLives) {
 		this.scoreLivesText.setLives(newLives);
 	}
+	
+	public void playerMoveAnimation(Vector2 touch) {
+		Vector2 playerPosition = new Vector2(gameWorld.getPlayer().getCenterX(),gameWorld.getPlayer().getCenterY());
+		Vector2 touchPosition = new Vector2(touch);
+		
+		// Fire some sort of particles relative to the players and touched position
+	}
+	
 }

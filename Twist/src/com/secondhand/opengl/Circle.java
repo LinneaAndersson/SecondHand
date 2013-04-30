@@ -32,6 +32,7 @@ public class Circle extends Shape{
 		this(pX, pY, radius, true);
 	}
 	
+	public static final int CIRCLE_FRAGMENTS = 100;
 	
 	public Circle(final float pX, final float pY, final float radius, final boolean cullingEnabled) {
 		super(pX/* + radius*/, pY/* + radius*/);

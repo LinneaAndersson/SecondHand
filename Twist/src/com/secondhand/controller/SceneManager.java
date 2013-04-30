@@ -51,7 +51,7 @@ public final class SceneManager {
 		this.isGameLoaded = isGameLoaded;
 	}
 	
-	public boolean getIsGameLoaded() {
+	public boolean isGameLoaded() {
 		return this.isGameLoaded;
 	}
 

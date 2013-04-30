@@ -1,18 +1,14 @@
 package com.secondhand.model;
 
-import java.io.File;
 import java.util.List;
 import java.util.Stack;
-
-import com.secondhand.controller.SceneManager;
-import com.secondhand.debug.MyDebug;
 
 // Manages all the entities of the GameWorld
 public class EntityManager {
 	
 	private List<Entity> entityList;
 	private List<Enemy> enemyList;
-	private Stack<Entity> scheduledForDeletionEntities;
+	private final Stack<Entity> scheduledForDeletionEntities;
 	
 	private final Player player;
 	
@@ -74,7 +70,7 @@ public class EntityManager {
 	
 	public void removeAllEntitiesExpectForPlayer() {
 		// player is not stored in entity list.
-		for(Entity entity: this.entityList) {
+		for(final Entity entity: this.entityList) {
 			entity.destroyEntity();
 		}
 	}

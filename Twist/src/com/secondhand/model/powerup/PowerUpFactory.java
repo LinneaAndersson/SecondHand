@@ -15,7 +15,10 @@ public final class PowerUpFactory {
 
 	// used for level generation., 
 	public static PowerUp getRandomPowerUp(final Vector2 position, final GameWorld gameWorld, final Random rng) {
-		final int rand = rng.nextInt(NUM_POWER_UPS);
+		
+		return new DoubleScore(position, gameWorld);
+		
+	/*	final int rand = rng.nextInt(NUM_POWER_UPS);
 		
 		if(rand == 0) {
 			return new EatObstacle(position, gameWorld);
@@ -29,11 +32,10 @@ public final class PowerUpFactory {
 			return new Shield(position, gameWorld);
 		}else if(rand == 5) {
 			return new SpeedUp(position, gameWorld);
-		}/*else if(rand == 6) {
-			return new RandomPowerUp(position, gameWorld);
-		} */
+		} else if(rand == 6) {
+			return new DoubleScore(position, gameWorld);
 		
 		else
-			return null;
+			return null;*/
 	}
 }

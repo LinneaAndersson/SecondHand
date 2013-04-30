@@ -24,6 +24,8 @@ public class Player extends BlackHole {
 	
 	private int lives;
 	
+	private float scoreMultiplier;
+	
 	private final PropertyChangeSupport sceneSupport = new PropertyChangeSupport(this);
 	
 	private Vector2 needsToMovePosition;
@@ -52,6 +54,7 @@ public class Player extends BlackHole {
 			final int startingScore) { 
 		super(position, radius, gameWorld, PLAYER_MAX_SPEED, startingScore);
 		this.lives = startingLives;
+		this.scoreMultiplier = 1;
 	}
 		
 	
@@ -66,11 +69,19 @@ public class Player extends BlackHole {
 	
 	public void increaseScore(final int increase) {
 		final int oldScore = getScore();
-		super.increaseScore(increase);
+		super.increaseScore((int)this.getScoreMultiplier() * increase);
 		// we also want to notify the view of this change:
 		//if(this.level.hasView())
 			//this.level.getView().updateScore(this.getScore());
 			sceneSupport.firePropertyChange("Score", oldScore, getScore());
+	}
+	
+	public void setScoreMultiplier(final float scoreMultiplier) {
+		this.scoreMultiplier = scoreMultiplier;
+	}
+	
+	public float getScoreMultiplier() {
+		return this.scoreMultiplier;
 	}
 	
 	private void changeLives(final int change) {

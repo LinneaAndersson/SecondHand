@@ -9,7 +9,8 @@ public enum PowerUpType {
 		SPEED_UP("speed_up_power_up.png"),
 		EXTRA_LIFE("extra_life_power_up.jpg"),
 		RANDOM_POWER_UP("random_teleport_power_up.png"),
-		DOUBLE_SCORE("double_score_power_up.png");
+		DOUBLE_SCORE("double_score_power_up.png"),
+		MIRRORED_MOVEMENT("reflect_power_up.png");
 		
 		private String path; 
 		

@@ -93,7 +93,7 @@ public class RandomLevelGenerator {
 					world.addToWorld(poly);
 					break;
 				} else {
-					MyDebug.d("needs to reposition!");
+					//MyDebug.d("needs to reposition!");
 				}
 			}
 			
@@ -149,7 +149,7 @@ public class RandomLevelGenerator {
 					world.addToWorld(poly);
 					break;
 				} else {
-					MyDebug.d("needs to reposition!");
+					//MyDebug.d("needs to reposition!");
 				}
 			}
 
@@ -178,7 +178,7 @@ public class RandomLevelGenerator {
 					world.addToWorld(poly);
 					break;
 				} else {
-					MyDebug.d("needs to reposition!");
+					//MyDebug.d("needs to reposition!");
 				}
 			}
 
@@ -235,7 +235,7 @@ public class RandomLevelGenerator {
 					world.addToWorld(poly);
 					break;
 				} else {
-					MyDebug.d("needs to reposition!");
+					//MyDebug.d("needs to reposition!");
 				}
 
 		

@@ -28,6 +28,7 @@ import com.secondhand.model.Player;
 import com.secondhand.resource.Fonts;
 import com.secondhand.resource.LocalizationStrings;
 
+
 public class GameOverScene extends GameMenuScene implements
 IOnMenuItemClickListener, TextWatcher {
 	private Font mFont;

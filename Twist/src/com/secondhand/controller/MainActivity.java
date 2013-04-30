@@ -14,6 +14,7 @@ import android.view.KeyEvent;
 import com.secondhand.loader.FontLoader;
 import com.secondhand.loader.SoundLoader;
 import com.secondhand.loader.TextureRegionLoader;
+import com.secondhand.resource.HighScoreList;
 import com.secondhand.resource.LocalizationStrings;
 import com.secondhand.scene.IGameScene;
 
@@ -48,10 +49,12 @@ public class MainActivity extends BaseGameActivity {
 	    final Engine engine = new Engine(engineOptions);
 	    
 	    // initialize loader classes:
+	    HighScoreList.getInstance().initialize(this);
 	    FontLoader.getInstance().initialize(this, engine);
 	    SoundLoader.getInstance().initialize(this, engine);
 	    TextureRegionLoader.getInstance().initialize(this, engine);
 	    LocalizationStrings.getInstance().initialize(this);
+
 	 
 	    SceneManager.getInstance().initialize(engine, this);
 	    

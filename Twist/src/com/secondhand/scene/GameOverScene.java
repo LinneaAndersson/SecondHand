@@ -6,6 +6,9 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 
+import android.content.DialogInterface;
+import android.content.DialogInterface.OnClickListener;
+
 import org.anddev.andengine.engine.Engine;
 import org.anddev.andengine.entity.scene.menu.MenuScene;
 import org.anddev.andengine.entity.scene.menu.MenuScene.IOnMenuItemClickListener;
@@ -16,10 +19,12 @@ import org.anddev.andengine.ui.dialog.StringInputDialogBuilder;
 import org.anddev.andengine.util.HorizontalAlign;
 
 import android.annotation.SuppressLint;
+import android.app.AlertDialog;
 import android.content.Context;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
+import android.widget.EditText;
 
 import com.secondhand.controller.SceneManager;
 import com.secondhand.debug.MyDebug;
@@ -64,6 +69,32 @@ IOnMenuItemClickListener, TextWatcher {
 		this.mFont = Fonts.getInstance().menuItemFont;
 
 		if (HighScoreList.getInstance().madeItToHighScoreList(player.getScore())) {
+			/*
+			this.engin.runOnUiThread(new Runnable() {
+				public void run() {
+
+					final EditText ipEditText = new EditText(this.context);
+					new AlertDialog.Builder(this.context)
+					.setIcon(android.R.drawable.ic_dialog_info)
+					.setTitle("Enter Server-IP ...")
+					.setCancelable(false)
+					.setView(ipEditText)
+					.setPositiveButton("Connect", new OnClickListener() {
+						@Override
+						public void onClick(final DialogInterface pDialog, final int pWhich) {
+						}
+					})
+					.setNegativeButton("cancel", new OnClickListener() {
+						@Override
+						public void onClick(final DialogInterface pDialog, final int pWhich) {
+							//   MultiplayerExample.this.finish();
+						}
+					})
+					.create();
+				}
+			}*/
+			
+			
 			setHeadLine("congratulation");
 			setCenterText(100,"You are top 5!");
 		}

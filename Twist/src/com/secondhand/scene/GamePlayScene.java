@@ -2,14 +2,10 @@ package com.secondhand.scene;
 
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
-import java.util.ArrayList;
-import java.util.List;
 
 import org.anddev.andengine.engine.Engine;
 import org.anddev.andengine.engine.camera.Camera;
 import org.anddev.andengine.engine.camera.hud.HUD;
-import org.anddev.andengine.entity.IEntity;
-import org.anddev.andengine.entity.shape.IShape;
 
 import android.content.Context;
 import android.view.KeyEvent;
@@ -35,8 +31,6 @@ public class GamePlayScene extends GameScene implements PropertyChangeListener,
 
 	private GameWorld gameWorld;
 	
-	private List<IEntity> children;
-	
 	private Vector2 cachedCameraCenter;
 
 	public GamePlayScene(final Engine engine, final Context context) {
@@ -45,24 +39,6 @@ public class GamePlayScene extends GameScene implements PropertyChangeListener,
 
 	public GameWorld getGameWorld() {
 		return this.gameWorld;
-	}
-
-	public void detachChildren() {
-		for(IEntity child : this.children) {
-			// if it has already been detached, then AndEnengine simply ignores this call. 
-			child.detachSelf();
-		}
-	}
-	
-	@Override
-	public void attachChild(final IEntity child) {
-		if(!child.hasParent()) {
-			super.attachChild(child);
-
-			if(children == null)
-				children =new ArrayList<IEntity>();
-			children.add(child);
-		}
 	}
 	
 	public void registerNewLevel() {
@@ -88,7 +64,8 @@ public class GamePlayScene extends GameScene implements PropertyChangeListener,
 		this.smoothCamera.setBounds(0, width, 0, height);
 
 		for (final Entity entity : gameWorld.getEntityManager().getEntityList()) {
-			attachChild( entity.getShape());
+			if(!entity.getShape().hasParent())
+				attachChild( entity.getShape());
 		}
 	}
 
@@ -156,13 +133,14 @@ public class GamePlayScene extends GameScene implements PropertyChangeListener,
 		smoothCamera.setChaseEntity(null);
 		// reset zoom
 		smoothCamera.setZoomFactor(1.0f);
-		final Camera camera = engine.getCamera();
-		//this.smoothCamera.setBounds(0, camera.getWidth(), 0, camera.getHeight());
-
-		camera.setCenter(camera.getWidth()/2, camera.getHeight()/2);
-
-
-//	camera.setCenter(camera.getCenterX(), camera.getCenterY());
+		
+		//camera.setCenter(camera.getWidth()/2, camera.getHeight()/2);
+		
+		
+		smoothCamera.setBoundsEnabled(false);
+		this.smoothCamera.setBounds(0, camera.getWidth(), 0, camera.getHeight());
+		smoothCamera.setCenterDirect(this.cachedCameraCenter.x, this.cachedCameraCenter.y);
+		//smoothCamera.setBoundsEnabled(true);
 		
 		
 
@@ -176,10 +154,10 @@ public class GamePlayScene extends GameScene implements PropertyChangeListener,
 				&& pEvent.getAction() == KeyEvent.ACTION_DOWN) {
 			final AllScenes parent = getParentScene();
 			if (parent != null) {
-				// entirely clear the scene.
 				isLoaded = false;
-				setScene(parent);
 				resetCamera();
+				
+				setScene(parent);
 				return true;
 			} else
 				return false;

@@ -122,7 +122,6 @@ public class GameWorld {
 	}
 
 	public void onManagedUpdate(final float pSecondsElapsed) {
-		MyDebug.d("GameWorld onManagedUpdate");
 		if (checkPlayerBigEnough() && !nextLevelAdvanced) {
 			nextLevelAdvanced = true;
 			nextLevel();

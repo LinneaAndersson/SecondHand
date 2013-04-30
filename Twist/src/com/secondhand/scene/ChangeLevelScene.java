@@ -16,7 +16,7 @@ import com.secondhand.resource.LocalizationStrings;
 import android.content.Context;
 
 public class ChangeLevelScene extends GameScene{
-	private static final float SECONDS_FOR_SCENE = 1f;
+	private static final float SECONDS_FOR_SCENE = 4f;
 	private float secondsPassedSinceLastUpdate=0;
 	private Font mFont;
 	private GameWorld gameWorld;
@@ -32,21 +32,22 @@ public class ChangeLevelScene extends GameScene{
 	@Override
 	public void loadScene(){
 		super.loadScene();
-		MyDebug.d("loading changeLevelScene!");
+		
 		this.setBackground(new ColorBackground(0,0,0));
-		MyDebug.d("loading changeLevelScene!");
+		
 		int levelNumber=gameWorld.getLevelNumber();
-		MyDebug.d("loading changeLevelScene!");
+		
 		mFont = Fonts.getInstance().menuItemFont;
-		MyDebug.d("loading changeLevelScene!");
+		
 
-		final Text levelName = new Text(100, 60, mFont, "Level" + gameWorld.getLevelNumber(),
+		final Text levelName = new Text(300, 300, mFont, "Level" + gameWorld.getLevelNumber(),
 				HorizontalAlign.CENTER);
 		float x = this.smoothCamera.getWidth() / 2.0f - levelName.getWidth()
 				/ 2.0f;
 		float y = this.smoothCamera.getHeight() / 2.0f - levelName.getHeight()
 				/ 2.0f;
-		levelName.setPosition(x,y);
+		  levelName.setPosition(x,y);
+		levelName.setScale(2);
 	
 		this.attachChild(levelName);
 

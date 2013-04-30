@@ -21,6 +21,7 @@ public final class GamePlaySceneController {
 				new CollisionContactListener(gameWorld));
 	}
 	
+	
 	private class GameSceneTouchListener implements IOnSceneTouchListener {
 		@Override
 		public boolean onSceneTouchEvent(final Scene pScene,

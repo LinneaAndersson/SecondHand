@@ -38,7 +38,7 @@ public class MainActivity extends BaseGameActivity {
 	public Engine onLoadEngine() {
 		
 		// configure camera
-	    final SmoothCamera camera = new SmoothCamera(0, 0, CAMERA_WIDTH, CAMERA_HEIGHT, Float.MAX_VALUE, Float.MAX_VALUE, 1.0f);
+	    final MySmoothCamera camera = new MySmoothCamera(0, 0, CAMERA_WIDTH, CAMERA_HEIGHT, Float.MAX_VALUE, Float.MAX_VALUE, 1.0f);
 	    
 	    // configure engine
 	    final EngineOptions engineOptions = new EngineOptions(

@@ -54,6 +54,9 @@ public class RandomLevelGenerator {
 		this.playerMaxSize = 40 * levelNumber;
 		
 		
+		MyDebug.d("now we'll start placing out level entities");
+
+		
 		this.entityList = new ArrayList<Entity>();
 		// to make it easier to place out the entities.
 		placeOutLevelEntities();
@@ -190,7 +193,7 @@ public class RandomLevelGenerator {
 
 		final float K = 1.2f;
 		
-		final int MINIMUM_PLAYER_EATABLE = 0; //this.levelNumber * 4;
+		final int MINIMUM_PLAYER_EATABLE = 10; //this.levelNumber * 4;
 		int numPlayerEatable = 0;
 		
 		final float MAX_SIZE = 80f * this.levelNumber * K;
@@ -200,7 +203,7 @@ public class RandomLevelGenerator {
 			MyDebug.e("planet minimum size negative");
 		}
 		
-		final int PLANETS = (int)( 25 * this.levelNumber * K);
+		final int PLANETS = 10; //(int)( 25 * this.levelNumber * K);
 		
 		for (int i = 0; i < PLANETS; ++i) {
 			

@@ -6,7 +6,6 @@ import java.beans.PropertyChangeListener;
 import org.anddev.andengine.engine.Engine;
 import org.anddev.andengine.engine.camera.Camera;
 import org.anddev.andengine.engine.camera.hud.HUD;
-import org.anddev.andengine.entity.shape.IShape;
 
 import android.content.Context;
 import android.view.KeyEvent;
@@ -31,6 +30,8 @@ public class GamePlayScene extends GameScene implements PropertyChangeListener,
 	private ScoreLivesText scoreLivesText;
 
 	private GameWorld gameWorld;
+	
+	private Vector2 cachedCameraCenter;
 
 	public GamePlayScene(final Engine engine, final Context context) {
 		super(engine, context);
@@ -40,7 +41,7 @@ public class GamePlayScene extends GameScene implements PropertyChangeListener,
 	public GameWorld getGameWorld() {
 		return this.gameWorld;
 	}
-
+	
 	public void registerNewLevel() {
 		
 		final float width = gameWorld.getLevelWidth();
@@ -57,22 +58,18 @@ public class GamePlayScene extends GameScene implements PropertyChangeListener,
 		 */
 
 		// starry sky
-		this.attachChild(new StarsBackground(50, 5.0f, width, height));
-		this.attachChild(new StarsBackground(100, 3.0f, width, height));
+		attachChild(new StarsBackground(50, 5.0f, width, height));
+		attachChild(new StarsBackground(100, 3.0f, width, height));
 		this.attachChild(new StarsBackground(130, 1.0f, width, height));
 		
-
-
 		this.smoothCamera.setBounds(0, width, 0, height);
 
 		for (final Entity entity : gameWorld.getEntityManager().getEntityList()) {
-			final IShape shape = entity.getShape();
-			shape.detachSelf();
-			attachChild(shape);
+			if(!entity.getShape().hasParent())
+				attachChild( entity.getShape());
 		}
 	}
 
-	// should be called ONCE in the program.
 	private void setupView() {
 
 		final float width = gameWorld.getLevelWidth();
@@ -105,11 +102,26 @@ public class GamePlayScene extends GameScene implements PropertyChangeListener,
 				
 	}
 	
+	
 	@Override
 	public void loadScene() {
 		super.loadScene();
 		
+<<<<<<< HEAD
 		
+=======
+		// get rid the entities from the previous game.
+		//this.detachChildren();
+		
+		
+	
+		// we'll need to be able to restore the camera when returning to the menu.
+		cachedCameraCenter = new Vector2(smoothCamera.getCenterX(), smoothCamera.getCenterY());
+		
+		MyDebug.i("creating game world");
+		
+		this.gameWorld = new GameWorld();
+>>>>>>> 8894600984882b143ccc03b5056998178f6e54e3
 		
 		MyDebug.d("loading game play sceme");
 		
@@ -119,8 +131,6 @@ public class GamePlayScene extends GameScene implements PropertyChangeListener,
 		engine.getCamera().setHUD(hud);
 		
 	}
-	
-	
 
 	// reset camera before the menu is shown
 	public void resetCamera() {
@@ -128,8 +138,15 @@ public class GamePlayScene extends GameScene implements PropertyChangeListener,
 		smoothCamera.setChaseEntity(null);
 		// reset zoom
 		smoothCamera.setZoomFactor(1.0f);
-		final Camera camera = engine.getCamera();
-		camera.setCenter(camera.getWidth()/2, camera.getHeight()/2);
+		
+		//camera.setCenter(camera.getWidth()/2, camera.getHeight()/2);
+		
+		smoothCamera.setBoundsEnabled(false);
+		this.smoothCamera.setBounds(0, this.smoothCamera.getWidth(), 0, this.smoothCamera.getHeight());
+		smoothCamera.setCenterDirectThatActuallyFuckingWorks(this.cachedCameraCenter.x, this.cachedCameraCenter.y);
+		//smoothCamera.setBoundsEnabled(true);
+		
+		
 
 		// don't show the HUD in the menu.
 		hud.setCamera(null);
@@ -141,8 +158,10 @@ public class GamePlayScene extends GameScene implements PropertyChangeListener,
 				&& pEvent.getAction() == KeyEvent.ACTION_DOWN) {
 			final AllScenes parent = getParentScene();
 			if (parent != null) {
-				setScene(parent);
+				isLoaded = false;
 				resetCamera();
+				
+				setScene(parent);
 				return true;
 			} else
 				return false;

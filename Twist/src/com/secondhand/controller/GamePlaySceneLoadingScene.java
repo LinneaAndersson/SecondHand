@@ -16,7 +16,9 @@ public class GamePlaySceneLoadingScene extends GameScene{
 
 	@Override
 	public void loadScene() {
+		super.detachChildren();
 		
+
 		MyDebug.d("setting up level loading scene");
 		
 		// add loading text

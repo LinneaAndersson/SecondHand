@@ -122,7 +122,6 @@ public final class SceneManager {
 		final IGameScene currentScene = getCurrentScene();	
 		MyDebug.d("currentScene.getScene()==null =" + currentScene.getScene());
 		
-		// fully clear the scene before loading and then load it.
 		if(!currentScene.isLoaded()) {
 			MyDebug.d("kommer den in i 1" + currentScene.getScene());
 			MyDebug.d("scene not preloaded, loading!");
@@ -133,7 +132,10 @@ public final class SceneManager {
 			MyDebug.d("kommer den in i 2" + currentScene.getScene());
 			gamePlaySceneController = new GamePlaySceneController(this.gamePlayScene);
 		}
+<<<<<<< HEAD
 		MyDebug.d("kommer den ut ur alla" + currentScene.getScene());
+=======
+>>>>>>> 8894600984882b143ccc03b5056998178f6e54e3
 		this.engine.setScene(currentScene.getScene());
 
 		return currentScene;

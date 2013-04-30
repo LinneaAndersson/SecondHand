@@ -7,7 +7,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.anddev.andengine.engine.Engine;
-import org.anddev.andengine.entity.scene.background.ColorBackground;
 import org.anddev.andengine.entity.scene.menu.MenuScene;
 import org.anddev.andengine.entity.scene.menu.MenuScene.IOnMenuItemClickListener;
 import org.anddev.andengine.entity.scene.menu.item.IMenuItem;
@@ -21,7 +20,6 @@ import android.content.Context;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
-import android.widget.EditText;
 
 import com.secondhand.controller.SceneManager;
 import com.secondhand.debug.MyDebug;
@@ -34,13 +32,11 @@ public class GameOverScene extends GameMenuScene implements
 IOnMenuItemClickListener, TextWatcher {
 	private Font mFont;
 	private Player player;
-	private Engine mEngine;
 	private static final int NAME = 0;
 	private static final int SKIP = 1;
 	private static final int SAVE = 2;
 	private BufferedReader reader;
 	Text textGameOver = null;
-	private Context mcontext;
 	private StringInputDialogBuilder sib;
 	private GameWorld gameWorld;
 
@@ -50,10 +46,7 @@ IOnMenuItemClickListener, TextWatcher {
 
 	public GameOverScene(final Engine engine, final Context context) {
 		super(engine, context);
-		mcontext=context;
-		MyDebug.d("creating the GameOverScene");
-
-		
+		MyDebug.d("creating the GameOverScene");	
 	}
 
 	@SuppressLint("NewApi")
@@ -78,7 +71,6 @@ IOnMenuItemClickListener, TextWatcher {
 			MyDebug.d("reading from file");
 			// checks if the score of the player are the top 5 score, and if it
 			// is it prints contgratulation. other way game over.
-			int i=0;
 			while (mLine!=null) {
 				antal++;
 				mLine = reader.readLine().trim();
@@ -106,7 +98,7 @@ IOnMenuItemClickListener, TextWatcher {
 		} catch (IOException e) {
 			Log.e("GameOverScene", "laodScene");
 		}
-		final List<MenuItem> menuList = new ArrayList();
+		final List<MenuItem> menuList = new ArrayList<MenuItem>();
 		menuList.add(new MenuItem(NAME, LocalizationStrings.getInstance()
 				.getLocalizedString("game_over_name")));
 		menuList.add(new MenuItem(SKIP, LocalizationStrings.getInstance()

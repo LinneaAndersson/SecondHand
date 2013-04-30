@@ -16,7 +16,7 @@ import com.secondhand.resource.LocalizationStrings;
 import android.content.Context;
 
 public class ChangeLevelScene extends GameScene{
-	private static final float SECONDS_PER_STRING = 1f;
+	private static final float SECONDS_FOR_SCENE = 1f;
 	private float secondsPassedSinceLastUpdate=0;
 	private Font mFont;
 	private GameWorld gameWorld;
@@ -54,11 +54,12 @@ public class ChangeLevelScene extends GameScene{
 	@Override
 	protected void onManagedUpdate(final float pSecondsElapsed) {
 
-		secondsPassedSinceLastUpdate =+ pSecondsElapsed;
+		secondsPassedSinceLastUpdate += pSecondsElapsed;
 
 		
-		if (secondsPassedSinceLastUpdate >= SECONDS_PER_STRING) {
+		if (secondsPassedSinceLastUpdate >= SECONDS_FOR_SCENE) {
 			secondsPassedSinceLastUpdate = 0;
+			MyDebug.d("change scene to gameplayScene");
 			setScene(AllScenes.GAME_PLAY_SCENE);
 		}
 

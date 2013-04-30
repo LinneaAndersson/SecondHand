@@ -107,9 +107,6 @@ public class GamePlayScene extends GameScene implements PropertyChangeListener,
 	public void loadScene() {
 		super.loadScene();
 		
-<<<<<<< HEAD
-		
-=======
 		// get rid the entities from the previous game.
 		//this.detachChildren();
 		
@@ -121,7 +118,6 @@ public class GamePlayScene extends GameScene implements PropertyChangeListener,
 		MyDebug.i("creating game world");
 		
 		this.gameWorld = new GameWorld();
->>>>>>> 8894600984882b143ccc03b5056998178f6e54e3
 		
 		MyDebug.d("loading game play sceme");
 		

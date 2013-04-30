@@ -19,7 +19,7 @@ public abstract class GameScene extends Scene implements IGameScene {
 	protected final SmoothCamera smoothCamera;
 	protected final Engine engine;
 	protected final Context context;
-	private boolean isLoaded;
+	protected boolean isLoaded;
 
 	public GameScene(final Engine engine, final Context context) {
 		super();
@@ -31,6 +31,7 @@ public abstract class GameScene extends Scene implements IGameScene {
 	
 	@Override
 	public void loadScene() {
+		super.detachChildren();
 		isLoaded = true;
 	}
 	

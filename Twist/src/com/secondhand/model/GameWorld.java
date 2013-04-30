@@ -7,6 +7,7 @@ import org.anddev.andengine.extension.physics.box2d.PhysicsWorld;
 
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Contact;
+import com.secondhand.debug.MyDebug;
 
 // This class was formerly known as level. 
 public class GameWorld {
@@ -42,8 +43,9 @@ public class GameWorld {
 				30, this));
 
 
+		MyDebug.d("about to generate level entities");
 		generateNewLevelEntities(STARTING_LEVEL);
-
+		MyDebug.d("done with generate level entities");
 
 		gameWorldBounds.setupWorldBounds(this.levelWidth, this.levelHeight,
 				this.physicsWorld);	
@@ -120,6 +122,7 @@ public class GameWorld {
 	}
 
 	public void onManagedUpdate(final float pSecondsElapsed) {
+		MyDebug.d("GameWorld onManagedUpdate");
 		if (checkPlayerBigEnough() && !nextLevelAdvanced) {
 			nextLevelAdvanced = true;
 			nextLevel();

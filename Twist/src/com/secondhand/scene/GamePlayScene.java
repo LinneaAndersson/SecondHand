@@ -165,16 +165,20 @@ public class GamePlayScene extends GameScene implements PropertyChangeListener,
 				&& pEvent.getAction() == KeyEvent.ACTION_DOWN) {
 			final AllScenes parent = getParentScene();
 			if (parent != null) {
-				isLoaded = false;
-				resetCamera();
-				
-				setScene(parent);
+				this.switchScene(parent);
 				return true;
 			} else
 				return false;
 		} else {
 			return false;
 		}
+	}
+	
+	public void switchScene(AllScenes scene) {
+		isLoaded = false;
+		resetCamera();
+		
+		setScene(scene);
 	}
 
 	@Override
@@ -187,8 +191,7 @@ public class GamePlayScene extends GameScene implements PropertyChangeListener,
 		super.onManagedUpdate(pSecondsElapsed);
 		if (gameWorld.isGameOver()) {
 			MyDebug.d("GameOver");
-			resetCamera();
-			setScene(AllScenes.GAME_OVER_SCENE);
+			switchScene(AllScenes.GAME_OVER_SCENE);
 		}
 		gameWorld.onManagedUpdate(pSecondsElapsed);
 

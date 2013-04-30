@@ -4,7 +4,6 @@ import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 
 import org.anddev.andengine.engine.Engine;
-import org.anddev.andengine.engine.camera.Camera;
 import org.anddev.andengine.engine.camera.hud.HUD;
 
 import android.content.Context;
@@ -16,9 +15,7 @@ import com.secondhand.debug.MyDebug;
 import com.secondhand.model.Entity;
 import com.secondhand.model.GameWorld;
 import com.secondhand.model.Player;
-import com.secondhand.model.powerup.ExtraLife;
 import com.secondhand.model.powerup.PowerUp;
-import com.secondhand.model.powerup.ScoreUp;
 import com.secondhand.opengl.StarsBackground;
 import com.secondhand.resource.Sounds;
 
@@ -246,9 +243,9 @@ public class GamePlayScene extends GameScene implements PropertyChangeListener,
 		this.scoreLivesText.setLives(newLives);
 	}
 	
-	public void playerMoveAnimation(Vector2 touch) {
-		Vector2 playerPosition = new Vector2(gameWorld.getPlayer().getCenterX(),gameWorld.getPlayer().getCenterY());
-		Vector2 touchPosition = new Vector2(touch);
+	public void playerMoveAnimation(final Vector2 touch) {
+		final Vector2 playerPosition = new Vector2(gameWorld.getPlayer().getCenterX(),gameWorld.getPlayer().getCenterY());
+		final Vector2 touchPosition = new Vector2(touch);
 		
 		// Fire some sort of particles relative to the players and touched position
 	}

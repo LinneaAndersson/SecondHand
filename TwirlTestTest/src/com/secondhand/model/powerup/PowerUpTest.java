@@ -1,5 +1,7 @@
 package com.secondhand.model.powerup;
 
+import org.anddev.andengine.engine.handler.timer.TimerHandler;
+
 import junit.framework.TestCase;
 
 import com.badlogic.gdx.math.Vector2;
@@ -7,6 +9,24 @@ import com.secondhand.model.GameWorld;
 import com.secondhand.model.Player;
 
 public class PowerUpTest extends TestCase {
+	
+	public void testGetTimer() {
+		float duration = 10;
+		GameWorld level = new GameWorld();
+		Player player = new Player(new Vector2(), 10, level);
+		PowerUp powerUp = new PowerUp(new Vector2(), level, duration) {
+			@Override
+			public void activateEffect(Player player) {}
+		};
+		TimerHandler timer = powerUp.getTimer(player);
+		
+		assertEquals(powerUp.getDuration(), timer.getTimerSeconds());
+		
+		player.addPowerUp(powerUp);
+		timer.setAutoReset(false);
+		timer.onUpdate(duration);
+		assertTrue(!player.getPowerUps().contains(powerUp));
+	}
 	
 	public void testConstructor() {
 		final GameWorld gW = new GameWorld();

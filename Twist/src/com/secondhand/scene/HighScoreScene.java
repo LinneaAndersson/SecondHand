@@ -10,6 +10,7 @@ import android.content.Context;
 import com.secondhand.debug.MyDebug;
 import com.secondhand.resource.Fonts;
 import com.secondhand.resource.HighScoreList;
+import com.secondhand.resource.Sounds;
 import com.secondhand.resource.HighScoreList.Entry;
 import com.secondhand.resource.LocalizationStrings;
 
@@ -82,6 +83,8 @@ public class HighScoreScene extends GameScene {
 			// x-constant because the name cannot be bigger than "220"(e.g x+220)
 			playerScore.setPosition(x+220, (int) (y * (0.35 + (i+1) * 0.3)));
 
+			Sounds.getInstance().highScoreEntry.play();
+			
 			this.attachChild(playerScore);
 			this.attachChild(playerScoreName);
 

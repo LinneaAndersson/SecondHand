@@ -26,7 +26,7 @@ public class Enemy extends BlackHole {
 		
 
 		// makes the enemy move much smother
-		getBody().setLinearDamping(1);
+		getBody().setLinearDamping(1.2f);
 
 		/*
 		 * FixtureDef f = new FixtureDef(); f.isSensor = true; Shape s = new
@@ -36,7 +36,7 @@ public class Enemy extends BlackHole {
 	}
 
 	public float getHuntingArea() {
-		return getRadius() * getRadius() * (float) Math.PI * 50;
+		return getRadius() * getRadius() * (float) Math.PI * 40;
 	}
 
 	// player has highest chase-priority

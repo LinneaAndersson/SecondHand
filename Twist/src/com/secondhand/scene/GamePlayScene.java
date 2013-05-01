@@ -190,8 +190,9 @@ public class GamePlayScene extends GameScene implements PropertyChangeListener,
 	protected void onManagedUpdate(final float pSecondsElapsed) {
 		super.onManagedUpdate(pSecondsElapsed);
 		if (gameWorld.isGameOver()) {
-			MyDebug.d("GameOver");
-			switchScene(AllScenes.GAME_OVER_SCENE);
+			switchScene(AllScenes.HIGH_SCORE_SCENE);
+			/*MyDebug.d("GameOver");
+			switchScene(AllScenes.GAME_OVER_SCENE);*/
 		}
 		gameWorld.onManagedUpdate(pSecondsElapsed);
 

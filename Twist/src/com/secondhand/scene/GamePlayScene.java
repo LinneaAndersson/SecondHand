@@ -256,7 +256,6 @@ public class GamePlayScene extends GameScene implements PropertyChangeListener,
 		MyDebug.d("new level!");
 		registerNewLevel();
 		Sounds.getInstance().winSound.play();
-		setScene(AllScenes.CHANGE_LEVEL_SCENE);
 
 	}
 

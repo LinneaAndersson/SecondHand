@@ -20,14 +20,12 @@ import android.view.KeyEvent;
 import com.badlogic.gdx.math.Vector2;
 import com.secondhand.controller.CollisionContactListener;
 import com.secondhand.controller.InputDialogManager;
-import com.secondhand.controller.SceneManager;
 import com.secondhand.debug.MyDebug;
 import com.secondhand.model.Entity;
 import com.secondhand.model.GameWorld;
 import com.secondhand.model.Player;
 import com.secondhand.model.powerup.PowerUp;
 import com.secondhand.opengl.StarsBackground;
-import com.secondhand.resource.HighScoreList;
 import com.secondhand.resource.Sounds;
 
 public class GamePlayScene extends GameScene implements PropertyChangeListener,
@@ -38,27 +36,27 @@ public class GamePlayScene extends GameScene implements PropertyChangeListener,
 	private ScoreLivesText scoreLivesText;
 
 	private GameWorld gameWorld;
-	
+
 	private Vector2 cachedCameraCenter;
 
 	public GamePlayScene(final Engine engine, final Context context) {
 		super(engine, context);
 
 		MyDebug.i("creating game world");
-		//Have to create gameWorld here, because else it is null when I need it!
+		// Have to create gameWorld here, because else it is null when I need
+		// it!
 		this.gameWorld = new GameWorld();
 	}
 
 	public GameWorld getGameWorld() {
 		return this.gameWorld;
 	}
-	
+
 	public void registerNewLevel() {
-		
+
 		final float width = gameWorld.getLevelWidth();
 		final float height = gameWorld.getLevelHeight();
 
-		
 		// TODO: get this background to work.
 		/*
 		 * final List<TextureRegion> starsTextures = new
@@ -72,12 +70,12 @@ public class GamePlayScene extends GameScene implements PropertyChangeListener,
 		attachChild(new StarsBackground(50, 5.0f, width, height));
 		attachChild(new StarsBackground(100, 3.0f, width, height));
 		this.attachChild(new StarsBackground(130, 1.0f, width, height));
-		
+
 		this.smoothCamera.setBounds(0, width, 0, height);
 
 		for (final Entity entity : gameWorld.getEntityManager().getEntityList()) {
-			if(!entity.getShape().hasParent())
-				attachChild( entity.getShape());
+			if (!entity.getShape().hasParent())
+				attachChild(entity.getShape());
 		}
 	}
 
@@ -98,48 +96,47 @@ public class GamePlayScene extends GameScene implements PropertyChangeListener,
 
 		// setup the physicsworld the
 		registerUpdateHandler(gameWorld.getPhysicsWorld());
-		//gameWorld.setView(this);
+		// gameWorld.setView(this);
 
 		// setup the HUD
 		hud = new HUD();
 		this.scoreLivesText = new ScoreLivesText(new Vector2(10, 10),
 				player.getScore(), player.getLives());
 		hud.attachChild(scoreLivesText);
-		
-		
-	//	hud.attachChild(new FadingNotifierText("hello!", new Vector2(100,100)));
-		
-		
+
+		// hud.attachChild(new FadingNotifierText("hello!", new
+		// Vector2(100,100)));
+
 		// I do believe this belong here
-			getGameWorld().getPhysicsWorld().setContactListener(
-						new CollisionContactListener(getGameWorld()));
-				
+		getGameWorld().getPhysicsWorld().setContactListener(
+				new CollisionContactListener(getGameWorld()));
+
 	}
-	
-	
+
 	@Override
 	public void loadScene() {
 		super.loadScene();
-		
+
 		// get rid the entities from the previous game.
-		//this.detachChildren();
-		
+		// this.detachChildren();
+
 		MyDebug.i("creating game world");
-		
+
 		this.gameWorld = new GameWorld();
-	
-		// we'll need to be able to restore the camera when returning to the menu.
-		cachedCameraCenter = new Vector2(smoothCamera.getCenterX(), smoothCamera.getCenterY());
-		
-		
-		
+
+		// we'll need to be able to restore the camera when returning to the
+		// menu.
+		cachedCameraCenter = new Vector2(smoothCamera.getCenterX(),
+				smoothCamera.getCenterY());
+
 		MyDebug.d("loading game play sceme");
-		
+
 		setupView();
 		registerNewLevel();
-		// we set this as late as possible, to make sure it doesn't show up in the loading scene. 
+		// we set this as late as possible, to make sure it doesn't show up in
+		// the loading scene.
 		engine.getCamera().setHUD(hud);
-		
+
 	}
 
 	// reset camera before the menu is shown
@@ -148,15 +145,15 @@ public class GamePlayScene extends GameScene implements PropertyChangeListener,
 		smoothCamera.setChaseEntity(null);
 		// reset zoom
 		smoothCamera.setZoomFactor(1.0f);
-		
-		//camera.setCenter(camera.getWidth()/2, camera.getHeight()/2);
-		
+
+		// camera.setCenter(camera.getWidth()/2, camera.getHeight()/2);
+
 		smoothCamera.setBoundsEnabled(false);
-		this.smoothCamera.setBounds(0, this.smoothCamera.getWidth(), 0, this.smoothCamera.getHeight());
-		smoothCamera.setCenterDirectThatActuallyFuckingWorks(this.cachedCameraCenter.x, this.cachedCameraCenter.y);
-		//smoothCamera.setBoundsEnabled(true);
-		
-		
+		this.smoothCamera.setBounds(0, this.smoothCamera.getWidth(), 0,
+				this.smoothCamera.getHeight());
+		smoothCamera.setCenterDirectThatActuallyFuckingWorks(
+				this.cachedCameraCenter.x, this.cachedCameraCenter.y);
+		// smoothCamera.setBoundsEnabled(true);
 
 		// don't show the HUD in the menu.
 		hud.setCamera(null);
@@ -176,11 +173,11 @@ public class GamePlayScene extends GameScene implements PropertyChangeListener,
 			return false;
 		}
 	}
-	
+
 	public void switchScene(final AllScenes scene) {
 		isLoaded = false;
 		resetCamera();
-		
+
 		setScene(scene);
 	}
 
@@ -193,89 +190,64 @@ public class GamePlayScene extends GameScene implements PropertyChangeListener,
 	protected void onManagedUpdate(final float pSecondsElapsed) {
 		super.onManagedUpdate(pSecondsElapsed);
 		if (gameWorld.isGameOver()) {
-			
-			// TODO: holy fuck this code is ugly. Clean up. 
-			// get rid of all the static fields, for one.
-			
-			// we are doing it this way because it takes a  whole freaking second until
-			// the operating system shows the damn input dialog. 
-			if(InputDialogManager.getInstance().input != null) {
-				
-				// TODO: insert score in high score table
-				MyDebug.d("input string: " + InputDialogManager.getInstance().input);
-				
-				InputDialogManager.getInstance().showing = false;
-			
-				InputDialogManager.getInstance().input  = null;
-				
-				
-				switchScene(AllScenes.HIGH_SCORE_SCENE);
-				
-				
-			} else if(InputDialogManager.getInstance().showing)
-				gameWorld.onManagedUpdate(pSecondsElapsed);
-			else if(HighScoreList.getInstance().madeItToHighScoreList(this.gameWorld.getPlayer().getScore())) {
-				
-				InputDialogManager.getInstance().showing = true;
-				InputDialogManager.getInstance().showDialog();
-				
-			}  else
-				switchScene(AllScenes.HIGH_SCORE_SCENE);
-			/*MyDebug.d("GameOver");
-			switchScene(AllScenes.GAME_OVER_SCENE);*/
+
+			InputDialogManager.getInstance().doStuff(this, pSecondsElapsed);
 		} else
 			gameWorld.onManagedUpdate(pSecondsElapsed);
 
 	}
 
-	// not a very good solution bellow but it can do for now 
+	// not a very good solution bellow but it can do for now
 	@Override
 	public void propertyChange(final PropertyChangeEvent event) {
 		final String eventName = event.getPropertyName();
 		if (eventName.equals("ADD")) {
-			
+
 			final Player player = gameWorld.getPlayer();
 			final PowerUp powerUp = ((PowerUp) event.getNewValue());
 			engine.registerUpdateHandler(powerUp.getTimer(player));
-			
+
 			if (powerUp.hasText()) {
 				showFadingTextNotifier(powerUp.getText(),
 						new Vector2(player.getX(), player.getY()));
-			} 
+			}
 		} else if (eventName.equals("Score")) {
 			updateScore((Integer) event.getNewValue());
 		} else if (eventName.equals("Life")) {
 			updateLives((Integer) event.getNewValue());
 		} else if (eventName.equals("PlayerRadius")) {
-			final float newRadius = (Float)event.getNewValue();
+			final float newRadius = (Float) event.getNewValue();
 			MyDebug.d("new radius: " + newRadius);
-			apaptCameraToGrowingPlayer( (Float)event.getNewValue(),  (Float)event.getOldValue());
-		} else if(eventName.equals("NextLevel")){
+			apaptCameraToGrowingPlayer((Float) event.getNewValue(),
+					(Float) event.getOldValue());
+		} else if (eventName.equals("NextLevel")) {
 			newLevelStarted();
 		} else if (eventName.equals("PlayerMove")) {
 			playerMoveAnimation((Vector2) event.getNewValue());
 		}
 	}
-	
-	
+
 	// zoom out when player grows.
 	// I think we may need to reset sizes when going to new level, otherwise it
 	// will look bad
-	private void apaptCameraToGrowingPlayer(final float newRadius, final float oldRadius) {
-		this.smoothCamera.setZoomFactor(this.smoothCamera.getZoomFactor() - 0.05f * oldRadius/newRadius);
-		/*if(this.smoothCamera.getZoomFactor() < 0.0) {
-			this.smoothCamera.setZoomFactor(0);
-		}*/
+	private void apaptCameraToGrowingPlayer(final float newRadius,
+			final float oldRadius) {
+		this.smoothCamera.setZoomFactor(this.smoothCamera.getZoomFactor()
+				- 0.05f * oldRadius / newRadius);
+		/*
+		 * if(this.smoothCamera.getZoomFactor() < 0.0) {
+		 * this.smoothCamera.setZoomFactor(0); }
+		 */
 	}
-	
+
 	@Override
 	public void showFadingTextNotifier(final String str, final Vector2 position) {
-		
+
 		// convert positon to camera coordinates.
-		final Vector2 cameraPosition = new Vector2( 
-				position.x - this.smoothCamera.getMinX(),
-						position.y - this.smoothCamera.getMinY());
-		
+		final Vector2 cameraPosition = new Vector2(position.x
+				- this.smoothCamera.getMinX(), position.y
+				- this.smoothCamera.getMinY());
+
 		this.hud.attachChild(new FadingNotifierText(str, cameraPosition));
 	}
 
@@ -285,8 +257,7 @@ public class GamePlayScene extends GameScene implements PropertyChangeListener,
 		registerNewLevel();
 		Sounds.getInstance().winSound.play();
 		setScene(AllScenes.CHANGE_LEVEL_SCENE);
-		
-		
+
 	}
 
 	@Override
@@ -298,38 +269,46 @@ public class GamePlayScene extends GameScene implements PropertyChangeListener,
 	public void updateLives(final int newLives) {
 		this.scoreLivesText.setLives(newLives);
 	}
-	
+
 	public void playerMoveAnimation(final Vector2 touch) {
 
-		final Vector2 playerPosition = new Vector2(gameWorld.getPlayer().getCenterX(),gameWorld.getPlayer().getCenterY());
+		final Vector2 playerPosition = new Vector2(gameWorld.getPlayer()
+				.getCenterX(), gameWorld.getPlayer().getCenterY());
 		final Vector2 touchPosition = new Vector2(touch);
 
 		Player player = gameWorld.getPlayer();
-		
+
 		// TODO: Will use TextureLoader, this is just for testing
-		final BitmapTextureAtlas texture = new BitmapTextureAtlas(16, 16, TextureOptions.BILINEAR_PREMULTIPLYALPHA);
-		final TextureRegion particleTexture = BitmapTextureAtlasTextureRegionFactory.createFromAsset(texture, context, "gfx/particle.png", 0, 0);
-		
-		final Vector2 surfacePosition = getRelativeSurfacePosition(player, touch);
-		
-		final PointParticleEmitter movementEmitter = new PointParticleEmitter(surfacePosition.x, surfacePosition.y);
-		final ParticleSystem particleSystem = new ParticleSystem(movementEmitter, 60, 60, 10, particleTexture);
-		
+		final BitmapTextureAtlas texture = new BitmapTextureAtlas(16, 16,
+				TextureOptions.BILINEAR_PREMULTIPLYALPHA);
+		final TextureRegion particleTexture = BitmapTextureAtlasTextureRegionFactory
+				.createFromAsset(texture, context, "gfx/particle.png", 0, 0);
+
+		final Vector2 surfacePosition = getRelativeSurfacePosition(player,
+				touch);
+
+		final PointParticleEmitter movementEmitter = new PointParticleEmitter(
+				surfacePosition.x, surfacePosition.y);
+		final ParticleSystem particleSystem = new ParticleSystem(
+				movementEmitter, 60, 60, 10, particleTexture);
+
 		attachChild(particleSystem);
-		
-		final float duration = 2; 
-		engine.registerUpdateHandler(new TimerHandler(duration, new ITimerCallback() {
-			@Override
-			public void onTimePassed(TimerHandler pTimerHandler) {
-				GamePlayScene.this.detachChild(particleSystem);
-			}
-		}));
+
+		final float duration = 2;
+		engine.registerUpdateHandler(new TimerHandler(duration,
+				new ITimerCallback() {
+					@Override
+					public void onTimePassed(TimerHandler pTimerHandler) {
+						GamePlayScene.this.detachChild(particleSystem);
+					}
+				}));
 	}
-	
+
 	// Calculate the surface position of object relative to given position
 	public Vector2 getRelativeSurfacePosition(Entity object, Vector2 position) {
 		// Vector from object position to given position
-		Vector2 surfacePosition = new Vector2(object.getCenterX() - position.x, object.getCenterY() - position.y);
+		Vector2 surfacePosition = new Vector2(object.getCenterX() - position.x,
+				object.getCenterY() - position.y);
 		// Length of new vector increased/decreased to length of radius
 		surfacePosition.mul(object.getRadius() / surfacePosition.len());
 		return surfacePosition;

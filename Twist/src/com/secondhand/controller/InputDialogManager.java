@@ -4,6 +4,7 @@ import org.anddev.andengine.engine.Engine;
 
 import com.secondhand.debug.MyDebug;
 import com.secondhand.resource.HighScoreList;
+import com.secondhand.resource.HighScoreList.Entry;
 import com.secondhand.scene.GamePlayScene;
 import com.secondhand.scene.IGameScene.AllScenes;
 
@@ -59,13 +60,13 @@ public final class InputDialogManager {
 	public void doStuff(GamePlayScene scene, float pSecondsElapsed) {
 		if (input != null) {
 
-			// TODO: insert score in high score table
-			MyDebug.d("input string: " + input);
-
+			HighScoreList.Entry newEntry = new HighScoreList.Entry(input, scene.getGameWorld().getPlayer().getScore());
+			HighScoreList.getInstance().insertInHighScoreList(newEntry);
 			showing = false;
 
 			input = null;
 
+			scene.resetCamera();
 			scene.switchScene(AllScenes.HIGH_SCORE_SCENE);
 
 		} else if (showing) {
@@ -77,10 +78,8 @@ public final class InputDialogManager {
 			showDialog();
 
 		} else {
+			scene.resetCamera();
 			scene.switchScene(AllScenes.HIGH_SCORE_SCENE);
-			/*
-			 * MyDebug.d("GameOver"); switchScene(AllScenes.GAME_OVER_SCENE);
-			 */
 		}
 	}
 }

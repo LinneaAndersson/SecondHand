@@ -1,4 +1,4 @@
-package com.secondhand.model.powerup;
+package com.secondhand.resource;
 
 
 public enum PowerUpType {

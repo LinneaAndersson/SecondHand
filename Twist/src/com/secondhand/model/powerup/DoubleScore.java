@@ -4,6 +4,7 @@ import com.badlogic.gdx.math.Vector2;
 import com.secondhand.debug.MyDebug;
 import com.secondhand.model.GameWorld;
 import com.secondhand.model.Player;
+import com.secondhand.resource.PowerUpType;
 
 // TOOD: this does not yet work for the ScoreUp powerup, fix this.
 public class DoubleScore extends PowerUp {

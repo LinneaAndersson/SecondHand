@@ -11,6 +11,7 @@ import com.secondhand.model.FixtureDefs;
 import com.secondhand.model.GameWorld;
 import com.secondhand.model.Player;
 import com.secondhand.model.RectangleEntity;
+import com.secondhand.resource.PowerUpType;
 import com.secondhand.resource.TextureRegions;
 
 public abstract class PowerUp extends RectangleEntity {

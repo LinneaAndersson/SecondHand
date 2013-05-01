@@ -7,6 +7,7 @@ import com.secondhand.debug.MyDebug;
 import com.secondhand.model.GameWorld;
 import com.secondhand.model.Player;
 import com.secondhand.physics.PhysicsAreaChecker;
+import com.secondhand.resource.PowerUpType;
 
 public class RandomTeleport extends PowerUp {
 

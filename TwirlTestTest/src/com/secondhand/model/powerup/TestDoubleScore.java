@@ -16,7 +16,7 @@ public class TestDoubleScore extends TestCase {
 		int inc = 10;
 		powerUp.activateEffect(player);
 		player.increaseScore(inc);
-		assertEquals(inc*2, player.getScore());
+		assertEquals(inc*player.getScoreMultiplier(), player.getScore());
 	}
 	
 }

@@ -84,9 +84,4 @@ public class LoadingScene extends GameScene {
 		return null;
 	}
 
-	@Override
-	public AllScenes getSceneEnum() {
-		// TODO Auto-generated method stub
-		return AllScenes.LOADING_SCENE;
-	}
 }

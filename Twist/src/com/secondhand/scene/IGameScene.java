@@ -27,8 +27,6 @@ GAME_PLAY_SCENE_LOADING_SCENE, CHANGE_LEVEL_SCENE
 
 	Scene getScene();
 	
-	AllScenes getSceneEnum();
-
 	/**
 	 * Override this method if you want to get keyboard input from the physical
 	 * buttons of an Android device.

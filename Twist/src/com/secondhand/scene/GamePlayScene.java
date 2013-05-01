@@ -314,9 +314,4 @@ public class GamePlayScene extends GameScene implements PropertyChangeListener,
 		return surfacePosition;
 	}
 
-	@Override
-	public AllScenes getSceneEnum() {
-		// TODO Auto-generated method stub
-		return AllScenes.GAME_PLAY_SCENE;
-	}
 }

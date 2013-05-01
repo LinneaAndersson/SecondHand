@@ -78,10 +78,5 @@ public class MainMenuScene extends GameMenuScene implements IOnMenuItemClickList
 		return null;
 	}
 
-	@Override
-	public AllScenes getSceneEnum() {
-		// TODO Auto-generated method stub
-		return AllScenes.MAIN_MENU_SCENE;
-	}
 
 }

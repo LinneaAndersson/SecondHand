@@ -22,8 +22,13 @@ public class World {
 		polygons = new ArrayList<World.Polygon>();
 	}
 
-	public void addToWorld(final World.Polygon polygon) {
-		polygons.add(polygon);
+	//Returns true if the 
+	public boolean addToWorld(final World.Polygon polygon) {
+		if (isUnoccupied(polygon)) {
+			polygons.add(polygon);
+			return true;
+		}
+		return false;
 	}
 
 	private boolean isWithinWorldBounds(final Vector2 position) {

@@ -68,9 +68,7 @@ public class RandomLevelGenerator {
 		Enemy enemy = new Enemy(new Vector2(200, 200), 50, level);
 		entityList.add(enemy);
 		enemyList.add(enemy);
-
-		final float MAX_SIZE = Enemy.getMaxSize();
-		final float MIN_SIZE = Enemy.getMinSize();
+		
 		final int ENEMIES;
 		if (levelNumber < 7) {
 			ENEMIES = 4 * (this.levelNumber);
@@ -82,21 +80,21 @@ public class RandomLevelGenerator {
 
 			float radius;
 
-			radius = RandomUtil.nextFloat(rng, MIN_SIZE, MAX_SIZE);
+			radius = RandomUtil.nextFloat(rng, Enemy.getMinSize(), Enemy.getMaxSize());
 
 			while (true) {
+				
 				xAxis = rng.nextInt(this.levelWidth);
 				yAxis = rng.nextInt(this.levelHeight);
 
 				final World.Polygon poly = PolygonFactory.createCircle(
 						new Vector2(xAxis, yAxis), radius);
 
-				if (world.isUnoccupied(poly)) {
-					world.addToWorld(poly);
+				//addToWorld add the polygon if it can otherwise it returns false
+				if (world.addToWorld(poly)){
 					break;
-				} else {
-					// MyDebug.d("needs to reposition!");
 				}
+			
 			}
 
 			enemy = new Enemy(new Vector2(xAxis, yAxis), radius, level);
@@ -143,11 +141,8 @@ public class RandomLevelGenerator {
 				final World.Polygon poly = new World.Polygon(new Vector2(xAxis, yAxis),
 						edges);
 
-				if (world.isUnoccupied(poly)) {
-					world.addToWorld(poly);
+				if (world.addToWorld(poly)){
 					break;
-				} else {
-					// MyDebug.d("needs to reposition!");
 				}
 			}
 
@@ -168,11 +163,8 @@ public class RandomLevelGenerator {
 				final World.Polygon poly = PolygonFactory.createRectangle(
 						new Vector2(xAxis, yAxis), PowerUp.WIDTH, PowerUp.HEIGHT);
 
-				if (world.isUnoccupied(poly)) {
-					world.addToWorld(poly);
+				if (world.addToWorld(poly)){
 					break;
-				} else {
-					// MyDebug.d("needs to reposition!");
 				}
 			}
 
@@ -223,11 +215,8 @@ public class RandomLevelGenerator {
 				final World.Polygon poly = PolygonFactory.createCircle(
 						new Vector2(xAxis, yAxis), radius);
 
-				if (world.isUnoccupied(poly)) {
-					world.addToWorld(poly);
+				if (world.addToWorld(poly)){
 					break;
-				} else {
-					// MyDebug.d("needs to reposition!");
 				}
 
 			}
@@ -236,6 +225,7 @@ public class RandomLevelGenerator {
 
 		}
 	}
+	
 
 	//private int check
 	private void placeOutLevelEntities() {

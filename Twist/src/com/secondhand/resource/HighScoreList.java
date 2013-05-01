@@ -32,7 +32,7 @@ public final class HighScoreList {
 	
 	public boolean madeItToHighScoreList(final int newScore) {
 		for(int i = this.highScoreList.size() - 1; i >= 0; --i) {
-			int score = this.highScoreList.get(i).score;
+			final int score = this.highScoreList.get(i).score;
 			if(newScore > score)
 				return true;
 		}

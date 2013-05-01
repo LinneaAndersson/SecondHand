@@ -213,6 +213,8 @@ public class GamePlayScene extends GameScene implements PropertyChangeListener,
 	}
 	
 	// zoom out when player grows.
+	// I think we may need to reset sizes when going to new level, otherwise it
+	// will look bad
 	private void apaptCameraToGrowingPlayer(final float newRadius, final float oldRadius) {
 		this.smoothCamera.setZoomFactor(this.smoothCamera.getZoomFactor() - 0.05f * oldRadius/newRadius);
 		/*if(this.smoothCamera.getZoomFactor() < 0.0) {

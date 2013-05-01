@@ -35,7 +35,7 @@ public class Enemy extends BlackHole {
 	}
 
 	public float getHuntingArea() {
-		return getRadius() * getRadius() * (float) Math.PI * 100;
+		return getRadius() * getRadius() * (float) Math.PI * 50;
 	}
 
 	// player has highest chase-priority

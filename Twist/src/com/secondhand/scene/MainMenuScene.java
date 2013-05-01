@@ -10,6 +10,8 @@ import org.anddev.andengine.entity.scene.menu.item.IMenuItem;
 
 import android.content.Context;
 
+import com.secondhand.controller.LoadingScene;
+import com.secondhand.controller.SceneManager;
 import com.secondhand.debug.MyDebug;
 import com.secondhand.model.resource.LocalizationStrings;
 
@@ -51,7 +53,10 @@ public class MainMenuScene extends GameMenuScene implements IOnMenuItemClickList
 		switch(pMenuItem.getID()) {
 		case MENU_NEW_GAME:
 			MyDebug.i("now the game should start");
-			setScene(AllScenes.GAME_PLAY_SCENE_LOADING_SCENE);
+			LoadingScene loadingScene = (LoadingScene) SceneManager.getInstance().getScene(AllScenes.LOADING_SCENE);
+			loadingScene.setText("loading");
+			loadingScene.setSceneEnum(AllScenes.GAME_PLAY_SCENE);
+			setScene(AllScenes.LOADING_SCENE);
 			return true;
 		case MENU_SETTINGS:
 			MyDebug.i("now a settings menu should appear");
@@ -71,6 +76,12 @@ public class MainMenuScene extends GameMenuScene implements IOnMenuItemClickList
 		// see the getParentScene method of LoadingScene for a motivation of why null
 		// should be returned here.
 		return null;
+	}
+
+	@Override
+	public AllScenes getSceneEnum() {
+		// TODO Auto-generated method stub
+		return AllScenes.MAIN_MENU_SCENE;
 	}
 
 }

@@ -185,4 +185,10 @@ public class SettingsMenuScene extends GameMenuScene implements
 		return AllScenes.MAIN_MENU_SCENE;
 	}
 
+	@Override
+	public AllScenes getSceneEnum() {
+		// TODO Auto-generated method stub
+		return AllScenes.SETTINGS_MENU_SCENE;
+	}
+
 }

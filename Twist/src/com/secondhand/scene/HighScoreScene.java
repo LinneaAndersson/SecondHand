@@ -99,4 +99,10 @@ public class HighScoreScene extends GameScene {
 		return AllScenes.MAIN_MENU_SCENE;
 	}
 
+	@Override
+	public AllScenes getSceneEnum() {
+		// TODO Auto-generated method stub
+		return AllScenes.HIGH_SCORE_SCENE;
+	}
+
 }

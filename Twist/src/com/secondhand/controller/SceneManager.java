@@ -140,7 +140,7 @@ public final class SceneManager {
 		this.mainMenuScene = new MainMenuScene(this.engine, context);
 		this.settingsMenuScene = new SettingsMenuScene(this.engine, context);
 		this.gamePlayScene = new GamePlayScene(this.engine, context);
-		this.gamePlaySceneLoadingScene = new GamePlaySceneLoadingScene(this.engine, context);
+		
 		this.highScoreScene = new HighScoreScene(this.engine, context);
 	}
 

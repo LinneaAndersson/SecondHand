@@ -10,12 +10,23 @@ import com.secondhand.scene.GameScene;
 import com.secondhand.scene.IGameScene;
 
 public class LoadingScene extends GameScene {
-
+	private AllScenes mSceneEnum = AllScenes.MAIN_MENU_SCENE;
+	
+	private String mString="loading";
 	public LoadingScene(final Engine engine, final Context context) {
 		super(engine, context);
 		Fonts.getInstance().load();	
+		
 	}
 
+	public void setText(String string){
+		mString = string;
+	}
+	
+	public void setSceneEnum(AllScenes scene){
+		mSceneEnum = scene;
+	}
+	
 	@Override
 	public void loadScene() {
 		SceneManager.getInstance().setIsGameLoaded(true);
@@ -23,7 +34,7 @@ public class LoadingScene extends GameScene {
 		// add loading text
 		this.attachChild( 
 				new LoadingText(
-						LocalizationStrings.getInstance().getLocalizedString("loading"),
+						LocalizationStrings.getInstance().getLocalizedString(mString),
 						 this.smoothCamera));
 		
 
@@ -49,7 +60,7 @@ public class LoadingScene extends GameScene {
 
 				// go to main menu once the loading is done.
 				SceneManager.getInstance().setCurrentSceneEnum(
-						IGameScene.AllScenes.MAIN_MENU_SCENE);
+						mSceneEnum);
 
 			}
 		};
@@ -71,5 +82,11 @@ public class LoadingScene extends GameScene {
 		// screen, then obviously the user didn't want to use the app in the
 		// first place.
 		return null;
+	}
+
+	@Override
+	public AllScenes getSceneEnum() {
+		// TODO Auto-generated method stub
+		return AllScenes.LOADING_SCENE;
 	}
 }

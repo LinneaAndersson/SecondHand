@@ -6,6 +6,7 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Fixture;
 import com.badlogic.gdx.physics.box2d.RayCastCallback;
 
+// contains the two raycast classes that enemy uses.
 public class EnemyUtil {
 	private Enemy enemy;
 	private static boolean straightLine;
@@ -17,6 +18,7 @@ public class EnemyUtil {
 		this.physics = physics;
 	}
 
+	//true if there is a line where there are no uneatable entities
 	public boolean straightLine(final Entity entity) {
 		straightLine = true;
 		physics.rayCast(new RayCastCallback() {
@@ -43,6 +45,11 @@ public class EnemyUtil {
 		return straightLine;
 	}
 
+	// need to raycast in the direction the enemy is moving
+	// the ray shouldn't be to long: radius + 5-10?
+	// so how to decide the second point for the ray?
+	
+	// clarify: a point 5-10 length-units in front of where the enemy is moving.
 	public Vector2 dangerClose() {
 		Vector2 v =  enemy.getBody().getWorldCenter();
 		Vector2 v2 = enemy.getBody().getLinearVelocity();
@@ -51,7 +58,13 @@ public class EnemyUtil {
 			@Override
 			public float reportRayFixture(Fixture fixture, Vector2 point,
 					Vector2 normal, float fraction) {
-				
+				if(fixture.getBody().getUserData() != null){
+					if(enemy.canEat((Entity)fixture.getBody().getUserData())){
+						return 0;
+					}else{
+						enemy.retreat((Entity)fixture.getBody().getUserData());
+					}
+				}
 				return 0;
 			}
 			

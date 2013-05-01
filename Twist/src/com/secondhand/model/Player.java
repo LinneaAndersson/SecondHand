@@ -34,31 +34,18 @@ public class Player extends BlackHole {
 	
 	private Vector2 needsToMovePosition;
 	
-	private final List<PowerUp> powerUpList = new ArrayList<PowerUp>(1) {
-		/**
-		 * 
-		 */
-		private static final long serialVersionUID = 1L;
-
-		@Override
-		public boolean add(final PowerUp object) {
-			object.activateEffect(Player.this);
-			return super.add(object);
-		};
-		
-		@Override
-		public boolean remove(final Object object) {
-			final boolean value = super.remove(object); // Priority: The list is empty when you remove last PowerUp
-			((PowerUp)object).deactivateEffect(Player.this);
-			return value;
-		};
-	};
+	private final List<PowerUp> powerUpList; 
+	
+	private PlayerUtil util;
 	
 	public Player(final Vector2 position, final float radius, final GameWorld gameWorld, final int startingLives,
 			final int startingScore) { 
 		super(position, radius, gameWorld, PLAYER_MAX_SPEED, startingScore);
 		this.lives = startingLives;
 		this.scoreMultiplier = 1;
+		util = new PlayerUtil(this);
+		powerUpList = util.createPowerUpList();
+		
 	}
 		
 	

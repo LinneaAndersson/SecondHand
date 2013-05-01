@@ -140,7 +140,7 @@ public class Enemy extends BlackHole {
 
 	}
 
-	private void retreat(final Entity danger) {
+	public void retreat(final Entity danger) {
 		MyDebug.d("Enemy: Retreat");
 		applyMovement(new Vector2((this.getCenterX() - danger.getCenterX()),
 				(this.getCenterY() - danger.getCenterY())));

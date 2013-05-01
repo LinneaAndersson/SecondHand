@@ -1,4 +1,4 @@
-package com.secondhand.resource;
+package com.secondhand.model.resource;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;

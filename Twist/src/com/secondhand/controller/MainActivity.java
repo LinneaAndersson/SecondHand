@@ -17,8 +17,8 @@ import android.widget.EditText;
 import com.secondhand.loader.FontLoader;
 import com.secondhand.loader.SoundLoader;
 import com.secondhand.loader.TextureRegionLoader;
-import com.secondhand.resource.HighScoreList;
-import com.secondhand.resource.LocalizationStrings;
+import com.secondhand.model.resource.HighScoreList;
+import com.secondhand.model.resource.LocalizationStrings;
 import com.secondhand.scene.IGameScene;
 
 public class MainActivity extends BaseGameActivity {

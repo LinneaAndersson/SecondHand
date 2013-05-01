@@ -1,4 +1,4 @@
-package com.secondhand.resource;
+package com.secondhand.model.resource;
 
 import java.util.EnumMap;
 import java.util.Map;

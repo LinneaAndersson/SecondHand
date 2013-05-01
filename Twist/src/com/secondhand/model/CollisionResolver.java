@@ -1,7 +1,7 @@
 package com.secondhand.model;
 
 import com.badlogic.gdx.physics.box2d.Contact;
-import com.secondhand.resource.Sounds;
+import com.secondhand.model.resource.Sounds;
 
 public final class CollisionResolver {
 

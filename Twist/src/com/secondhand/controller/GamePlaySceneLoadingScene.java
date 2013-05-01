@@ -5,7 +5,7 @@ import org.anddev.andengine.engine.Engine;
 import android.content.Context;
 
 import com.secondhand.debug.MyDebug;
-import com.secondhand.resource.LocalizationStrings;
+import com.secondhand.model.resource.LocalizationStrings;
 import com.secondhand.scene.GameScene;
 
 public class GamePlaySceneLoadingScene extends GameScene{

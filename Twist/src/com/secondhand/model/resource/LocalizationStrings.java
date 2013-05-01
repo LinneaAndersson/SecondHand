@@ -1,4 +1,4 @@
-package com.secondhand.resource;
+package com.secondhand.model.resource;
 
 
 import android.content.Context;

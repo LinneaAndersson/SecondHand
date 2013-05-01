@@ -16,7 +16,7 @@ import android.view.KeyEvent;
 
 import com.secondhand.controller.SceneManager;
 import com.secondhand.debug.MyDebug;
-import com.secondhand.resource.Fonts;
+import com.secondhand.model.resource.Fonts;
 
 /**
  * Base class for all menu scenes.

@@ -5,7 +5,7 @@ import java.util.Arrays;
 import org.anddev.andengine.engine.camera.Camera;
 import org.anddev.andengine.entity.text.ChangeableText;
 
-import com.secondhand.resource.Fonts;
+import com.secondhand.model.resource.Fonts;
 
 /*
  * Implements a loading animation that looks like this:

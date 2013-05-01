@@ -6,8 +6,8 @@ import android.content.Context;
 import android.view.KeyEvent;
 
 import com.secondhand.debug.MyDebug;
-import com.secondhand.resource.Sounds;
-import com.secondhand.resource.TextureRegions;
+import com.secondhand.model.resource.Sounds;
+import com.secondhand.model.resource.TextureRegions;
 import com.secondhand.scene.GamePlayScene;
 import com.secondhand.scene.HighScoreScene;
 import com.secondhand.scene.IGameScene;

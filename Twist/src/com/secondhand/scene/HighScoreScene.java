@@ -8,11 +8,11 @@ import org.anddev.andengine.util.HorizontalAlign;
 import android.content.Context;
 
 import com.secondhand.debug.MyDebug;
-import com.secondhand.resource.Fonts;
-import com.secondhand.resource.HighScoreList;
-import com.secondhand.resource.HighScoreList.Entry;
-import com.secondhand.resource.LocalizationStrings;
-import com.secondhand.resource.Sounds;
+import com.secondhand.model.resource.Fonts;
+import com.secondhand.model.resource.HighScoreList;
+import com.secondhand.model.resource.LocalizationStrings;
+import com.secondhand.model.resource.Sounds;
+import com.secondhand.model.resource.HighScoreList.Entry;
 
 
 public class HighScoreScene extends GameScene {

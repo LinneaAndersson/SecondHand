@@ -11,7 +11,7 @@ import org.anddev.andengine.util.modifier.IModifier;
 
 import com.badlogic.gdx.math.Vector2;
 import com.secondhand.debug.MyDebug;
-import com.secondhand.resource.Fonts;
+import com.secondhand.model.resource.Fonts;
 
 public class FadingNotifierText extends Text {
 

@@ -1,4 +1,4 @@
-package com.secondhand.resource;
+package com.secondhand.model.resource;
 
 import org.anddev.andengine.audio.sound.Sound;
 

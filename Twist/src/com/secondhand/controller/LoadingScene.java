@@ -4,8 +4,8 @@ import org.anddev.andengine.engine.Engine;
 
 import android.content.Context;
 
-import com.secondhand.resource.Fonts;
-import com.secondhand.resource.LocalizationStrings;
+import com.secondhand.model.resource.Fonts;
+import com.secondhand.model.resource.LocalizationStrings;
 import com.secondhand.scene.GameScene;
 import com.secondhand.scene.IGameScene;
 

@@ -10,7 +10,7 @@ import org.anddev.andengine.extension.physics.box2d.util.constants.PhysicsConsta
 import com.badlogic.gdx.math.Vector2;
 import com.secondhand.debug.MyDebug;
 import com.secondhand.model.powerup.PowerUp;
-import com.secondhand.resource.Sounds;
+import com.secondhand.model.resource.Sounds;
 
 public class Player extends BlackHole {
 

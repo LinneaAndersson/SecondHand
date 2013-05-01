@@ -11,7 +11,7 @@ import org.anddev.andengine.entity.scene.menu.item.IMenuItem;
 import android.content.Context;
 
 import com.secondhand.debug.MyDebug;
-import com.secondhand.resource.LocalizationStrings;
+import com.secondhand.model.resource.LocalizationStrings;
 
 public class MainMenuScene extends GameMenuScene implements IOnMenuItemClickListener {
 

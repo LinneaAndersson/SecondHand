@@ -2,7 +2,7 @@ package com.secondhand.controller;
 
 import org.anddev.andengine.engine.Engine;
 
-import com.secondhand.resource.HighScoreList;
+import com.secondhand.model.resource.HighScoreList;
 import com.secondhand.scene.GamePlayScene;
 import com.secondhand.scene.IGameScene.AllScenes;
 

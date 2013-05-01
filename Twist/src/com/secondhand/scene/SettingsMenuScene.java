@@ -15,9 +15,9 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 
-import com.secondhand.resource.Fonts;
-import com.secondhand.resource.LocalizationStrings;
-import com.secondhand.resource.Sounds;
+import com.secondhand.model.resource.Fonts;
+import com.secondhand.model.resource.LocalizationStrings;
+import com.secondhand.model.resource.Sounds;
 
 
 public class SettingsMenuScene extends GameMenuScene implements

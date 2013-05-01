@@ -9,9 +9,9 @@ import com.secondhand.debug.MyDebug;
 import com.secondhand.math.PolygonUtil;
 import com.secondhand.model.powerup.PowerUp;
 import com.secondhand.model.powerup.PowerUpFactory;
+import com.secondhand.model.resource.PlanetType;
 import com.secondhand.model.sat.PolygonFactory;
 import com.secondhand.model.sat.World;
-import com.secondhand.resource.PlanetType;
 import com.secondhand.util.RandomUtil;
 
 // TODO: this generation of levels seems to be a bit slow, so we probably need a level loading screen.	

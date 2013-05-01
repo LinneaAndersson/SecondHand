@@ -2,10 +2,10 @@ package com.secondhand.model;
 
 
 import com.badlogic.gdx.math.Vector2;
+import com.secondhand.model.resource.PlanetType;
+import com.secondhand.model.resource.TextureRegions;
 import com.secondhand.opengl.Circle;
 import com.secondhand.opengl.TexturedCircle;
-import com.secondhand.resource.PlanetType;
-import com.secondhand.resource.TextureRegions;
 
 public class Planet extends CircleEntity {
 

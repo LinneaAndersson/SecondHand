@@ -3,9 +3,9 @@ package com.secondhand.model;
 import java.util.List;
 
 import com.badlogic.gdx.math.Vector2;
+import com.secondhand.model.resource.TextureRegions;
 import com.secondhand.opengl.Polygon;
 import com.secondhand.opengl.TexturedPolygon;
-import com.secondhand.resource.TextureRegions;
 
 public class Obstacle extends PolygonEntity {
 

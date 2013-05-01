@@ -186,15 +186,15 @@ public class GamePlayScene extends GameScene implements PropertyChangeListener,
 		return AllScenes.MAIN_MENU_SCENE;
 	}
 
+	
 	@Override
 	protected void onManagedUpdate(final float pSecondsElapsed) {
 		super.onManagedUpdate(pSecondsElapsed);
 		if (gameWorld.isGameOver()) {
-
 			InputDialogManager.getInstance().doStuff(this, pSecondsElapsed);
-		} else
+		} else {
 			gameWorld.onManagedUpdate(pSecondsElapsed);
-
+		}
 	}
 
 	// not a very good solution bellow but it can do for now

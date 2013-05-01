@@ -151,8 +151,8 @@ public class GamePlayScene extends GameScene implements PropertyChangeListener,
 		smoothCamera.setBoundsEnabled(false);
 		this.smoothCamera.setBounds(0, this.smoothCamera.getWidth(), 0,
 				this.smoothCamera.getHeight());
-		smoothCamera.setCenterDirectThatActuallyFuckingWorks(
-				this.cachedCameraCenter.x, this.cachedCameraCenter.y);
+		smoothCamera.setCenter(this.cachedCameraCenter.x,
+				this.cachedCameraCenter.y);
 		// smoothCamera.setBoundsEnabled(true);
 
 		// don't show the HUD in the menu.
@@ -186,7 +186,6 @@ public class GamePlayScene extends GameScene implements PropertyChangeListener,
 		return AllScenes.MAIN_MENU_SCENE;
 	}
 
-	
 	@Override
 	protected void onManagedUpdate(final float pSecondsElapsed) {
 		super.onManagedUpdate(pSecondsElapsed);
@@ -256,7 +255,6 @@ public class GamePlayScene extends GameScene implements PropertyChangeListener,
 		MyDebug.d("new level!");
 		registerNewLevel();
 		Sounds.getInstance().winSound.play();
-		setScene(AllScenes.CHANGE_LEVEL_SCENE);
 
 	}
 

@@ -62,9 +62,6 @@ public final class SceneManager {
 		return this.context;
 	}
 
-	private SceneManager() {
-	}
-
 	/**
 	 * Setup this singelton class for usage.
 	 * */

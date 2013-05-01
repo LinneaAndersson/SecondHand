@@ -24,7 +24,7 @@ public abstract class GameScene extends Scene implements IGameScene {
 	public GameScene(final Engine engine, final Context context) {
 		super();
 		isLoaded = false;
-		this.smoothCamera = (MySmoothCamera)engine.getCamera();
+		this.smoothCamera = (MySmoothCamera) engine.getCamera();
 		this.engine = engine;
 		this.context = context;
 	}

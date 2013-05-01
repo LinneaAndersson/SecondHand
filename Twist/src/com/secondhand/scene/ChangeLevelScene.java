@@ -1,20 +1,16 @@
 package com.secondhand.scene;
 
 import org.anddev.andengine.engine.Engine;
-import org.anddev.andengine.engine.handler.timer.TimerHandler;
-import org.anddev.andengine.entity.scene.Scene;
 import org.anddev.andengine.entity.scene.background.ColorBackground;
 import org.anddev.andengine.entity.text.Text;
 import org.anddev.andengine.opengl.font.Font;
 import org.anddev.andengine.util.HorizontalAlign;
 
-import com.secondhand.controller.SceneManager;
+import android.content.Context;
+
 import com.secondhand.debug.MyDebug;
 import com.secondhand.model.GameWorld;
 import com.secondhand.resource.Fonts;
-import com.secondhand.resource.LocalizationStrings;
-
-import android.content.Context;
 
 public class ChangeLevelScene extends GameScene{
 	private static final float SECONDS_FOR_SCENE = 4f;
@@ -63,7 +59,7 @@ public class ChangeLevelScene extends GameScene{
 		if (secondsPassedSinceLastUpdate >= SECONDS_FOR_SCENE) {
 			secondsPassedSinceLastUpdate = 0;
 			MyDebug.d("change scene to gameplayScene");
-			SceneManager.getInstance().setCurrentSceneEnum(AllScenes.GAME_PLAY_SCENE);
+			setScene(AllScenes.GAME_PLAY_SCENE);
 		}
 
 		super.onManagedUpdate(pSecondsElapsed);

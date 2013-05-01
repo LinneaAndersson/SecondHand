@@ -6,7 +6,6 @@ import org.anddev.andengine.extension.physics.box2d.util.constants.PhysicsConsta
 
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Fixture;
-import com.badlogic.gdx.physics.box2d.QueryCallback;
 import com.badlogic.gdx.physics.box2d.RayCastCallback;
 import com.secondhand.debug.MyDebug;
 import com.secondhand.model.powerup.PowerUp;
@@ -15,6 +14,7 @@ public class Enemy extends BlackHole {
 
 	private static final float ENEMY_MAX_SPEED = 10;
 
+	private EnemyUtil util;
 	// because someone changed getArea to getRadius I
 	// had to do this.
 	private float huntingArea;
@@ -22,6 +22,8 @@ public class Enemy extends BlackHole {
 	public Enemy(final Vector2 vector, final float radius, final GameWorld level) {
 		super(vector, radius, level, ENEMY_MAX_SPEED);
 		huntingArea = getHuntingArea();
+		util = new EnemyUtil(this, physicsWorld);
+		
 
 		// makes the enemy move much smother
 		getBody().setLinearDamping(1);
@@ -45,18 +47,6 @@ public class Enemy extends BlackHole {
 			dangerCheck(getHighesPriority(entityList));
 		}
 
-	}
-
-	// may be needed depending on search area size
-	// true if road to entity is clear. also true
-	// if blocking entity is edible
-	private boolean straightToEntity(final Entity entity) {
-
-		final RayCast ray = new RayCast(this, entity);
-		physicsWorld.rayCast(ray, this.getBody().getWorldCenter(), entity
-				.getBody().getWorldCenter());
-
-		return ray.isStraightLine();
 	}
 
 	// checks if enemy is close enough to start chasing
@@ -99,7 +89,7 @@ public class Enemy extends BlackHole {
 		// TODO change the null-check to something nicer
 		if (entity != null) {
 
-			if (straightToEntity(entity)) {
+			if (util.straightLine(entity)) {
 				// MyDebug.d("Enemy: applyMovement towards " +
 				// entity.getClass());
 				// closeToDanger();
@@ -129,10 +119,10 @@ public class Enemy extends BlackHole {
 		physicsWorld.rayCast(new RayCastCallback(){
 
 			@Override
-			public float reportRayFixture(Fixture fixture, Vector2 point,
-					Vector2 normal, float fraction) {
+			public float reportRayFixture(final Fixture fixture, final Vector2 point,
+					final Vector2 normal, final float fraction) {
 				if(fixture.getBody().getUserData() != null){
-					Entity entity = (Entity)fixture.getBody().getUserData();
+					final Entity entity = (Entity)fixture.getBody().getUserData();
 					if(!canEat(entity)){
 						stopMovement();
 					}

@@ -6,7 +6,6 @@ import java.util.List;
 import org.anddev.andengine.util.MathUtils;
 
 import com.badlogic.gdx.math.Vector2;
-import com.secondhand.opengl.Circle;
 
 public final class PolygonFactory {
 

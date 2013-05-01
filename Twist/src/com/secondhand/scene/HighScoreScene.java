@@ -10,9 +10,9 @@ import android.content.Context;
 import com.secondhand.debug.MyDebug;
 import com.secondhand.resource.Fonts;
 import com.secondhand.resource.HighScoreList;
-import com.secondhand.resource.Sounds;
 import com.secondhand.resource.HighScoreList.Entry;
 import com.secondhand.resource.LocalizationStrings;
+import com.secondhand.resource.Sounds;
 
 
 public class HighScoreScene extends GameScene {

@@ -9,9 +9,9 @@ import java.io.OutputStreamWriter;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.secondhand.debug.MyDebug;
-
 import android.content.Context;
+
+import com.secondhand.debug.MyDebug;
 
 public final class HighScoreList {
 

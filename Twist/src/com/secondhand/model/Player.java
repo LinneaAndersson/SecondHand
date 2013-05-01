@@ -4,7 +4,6 @@ import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Vector;
 
 import org.anddev.andengine.extension.physics.box2d.util.constants.PhysicsConstants;
 

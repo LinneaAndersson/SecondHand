@@ -7,7 +7,6 @@ import java.util.Random;
 import com.badlogic.gdx.math.Vector2;
 import com.secondhand.debug.MyDebug;
 import com.secondhand.math.PolygonUtil;
-import com.secondhand.model.powerup.ExtraLife;
 import com.secondhand.model.powerup.PowerUp;
 import com.secondhand.model.powerup.PowerUpFactory;
 import com.secondhand.model.sat.PolygonFactory;

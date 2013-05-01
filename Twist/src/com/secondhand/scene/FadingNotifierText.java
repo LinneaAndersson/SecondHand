@@ -2,16 +2,20 @@ package com.secondhand.scene;
 
 import javax.microedition.khronos.opengles.GL10;
 
+import org.anddev.andengine.entity.IEntity;
 import org.anddev.andengine.entity.modifier.AlphaModifier;
+import org.anddev.andengine.entity.modifier.IEntityModifier.IEntityModifierListener;
 import org.anddev.andengine.entity.modifier.MoveYModifier;
 import org.anddev.andengine.entity.text.Text;
+import org.anddev.andengine.util.modifier.IModifier;
 
 import com.badlogic.gdx.math.Vector2;
+import com.secondhand.debug.MyDebug;
 import com.secondhand.resource.Fonts;
 
 public class FadingNotifierText extends Text {
 
-	private static final float DURATION = 1.5f;
+	private static final float DURATION = 1.7f;
 	
 	
 	FadingNotifierText(final String str, final Vector2 position) {
@@ -21,10 +25,33 @@ public class FadingNotifierText extends Text {
 		setBlendFunction(GL10.GL_SRC_ALPHA, GL10.GL_ONE_MINUS_SRC_ALPHA);
 		
 		
-		registerEntityModifier(new AlphaModifier(DURATION, 1, 0));
+		final IEntityModifierListener modifierListener= new IEntityModifierListener() {
+
+			@Override
+			public void onModifierStarted(final IModifier<IEntity> pModifier,
+				final IEntity pItem) {
+
+			}
+
+			@Override
+			public void onModifierFinished(final IModifier<IEntity> pModifier,
+					final IEntity pItem) {
+				// clean up
+				FadingNotifierText.this.detachSelf();
+			}    	
+		};
+		
+		registerEntityModifier(new AlphaModifier(DURATION, 1, 0, modifierListener));
 		registerEntityModifier(new MoveYModifier(DURATION, getY(), getY() - 50));
-		
-		
+	}
+
+	
+
+	@Override
+	protected void onManagedUpdate(float pSecondsElapsed) {
+		// TODO Auto-generated method stub
+		super.onManagedUpdate(pSecondsElapsed);
+		MyDebug.d("on manged update notifer");
 	}
 	
 }

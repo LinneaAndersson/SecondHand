@@ -1,9 +1,9 @@
 package com.secondhand.model.powerup;
 
 import com.badlogic.gdx.math.Vector2;
+import com.secondhand.debug.MyDebug;
 import com.secondhand.model.GameWorld;
 import com.secondhand.model.Player;
-import com.secondhand.model.PowerUpType;
 
 public class ScoreUp extends PowerUp {
 
@@ -13,7 +13,8 @@ public class ScoreUp extends PowerUp {
 	public ScoreUp(final Vector2 position,
 			final  GameWorld level) {
 		super(position, PowerUpType.SCORE_UP, level, DURATION);
-		hasText = true;
+		
+		// multiply by player score multiplyer here for getText
 	}
 
 	// TODO: should probably used getScoreValue instead here.
@@ -23,9 +24,10 @@ public class ScoreUp extends PowerUp {
 	
 	@Override
 	public void activateEffect(final Player player) {
+		MyDebug.d("applying score up");
 		player.increaseScore(SCORE_BONUS);
 	}
-	
+
 	@Override
 	public String getText(){
 		return getScoreBonus() +"+";

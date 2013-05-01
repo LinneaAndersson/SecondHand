@@ -1,8 +1,5 @@
 package com.secondhand.scene;
 
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
-
 import org.anddev.andengine.engine.Engine;
 import org.anddev.andengine.entity.text.Text;
 import org.anddev.andengine.opengl.font.Font;
@@ -12,11 +9,25 @@ import android.content.Context;
 
 import com.secondhand.debug.MyDebug;
 import com.secondhand.resource.Fonts;
+import com.secondhand.resource.HighScoreList;
+import com.secondhand.resource.Sounds;
+import com.secondhand.resource.HighScoreList.Entry;
 import com.secondhand.resource.LocalizationStrings;
 
 
 public class HighScoreScene extends GameScene {
 
+	// position of the high score table
+	private float x;
+	private float y;
+	
+	// index so far in the high score table.
+	private int i = 0;
+
+	private float timer;
+	
+	public static final float SECONDS_PER_HIGH_SCORE_ENTRY = 0.5f;
+	
 	public HighScoreScene(final Engine engine, final Context context) {
 		super(engine, context);
 	}
@@ -26,58 +37,61 @@ public class HighScoreScene extends GameScene {
 		super.loadScene();
 		
 		final Font mFont = Fonts.getInstance().menuItemFont;
-		
-		
-		int tmp = 0;
-
 		// The title
 		final Text highScore = new Text(100, 60, mFont, LocalizationStrings
 				.getInstance().getLocalizedString("menu_high_score"),
 				HorizontalAlign.CENTER);
 		highScore.setScale(1.5f);
 
-		// The coordinates for the text to bee in the middle of the screen
-		float x = this.smoothCamera.getWidth() / 2.0f - highScore.getWidth()
-				/ 2.0f;
-		float y = this.smoothCamera.getHeight() / 2.0f - highScore.getHeight()
-				/ 2.0f;
-		highScore.setPosition(x, (int) (0.2 * y));
-
 		this.attachChild(highScore);
 
-		// read from highScore-file in the asset-folder
-		try {
-			final BufferedReader reader = new BufferedReader(new InputStreamReader(
-					context.getAssets().open("highScore")));
+		x = this.smoothCamera.getWidth() / 2.0f-120;
+		y = this.smoothCamera.getHeight() / 2.0f-20;
 		
-				String mLine = reader.readLine();
+		
+		timer = 0;
+		i = 0;
+	}
+	
+	@Override
+	protected void onManagedUpdate(final float pSecondsElapsed) {
+		super.onManagedUpdate(pSecondsElapsed);
+		
+		timer += pSecondsElapsed;
 
-			// to get the coordinates for position.
-			final Text highScoreText = new Text(100, 120 + tmp * 40, mFont, mLine,
-					HorizontalAlign.CENTER);
-			//We know which position the name will begin and where the score will end.
-			x = this.smoothCamera.getWidth() / 2.0f-120;
-			y = this.smoothCamera.getHeight() / 2.0f-20;
-
-			while (mLine != null) {
-				tmp++;
-				final Text playerScoreName = new Text(x,y,Fonts.getInstance().menuItemFont, tmp + ". " + mLine);
-				final Text playerScore = new Text(x, y,
-						Fonts.getInstance().menuItemFont, reader.readLine());
-				// increase the y-axis for every player. Max 5 players! 
-				playerScoreName.setPosition(x, (int) (y * (0.35 + tmp * 0.3)));
-				// x-constant because the name cannot be bigger than "220"(e.g x+220)
-				playerScore.setPosition(x+220, (int) (y * (0.35 + tmp * 0.3)));
-				mLine = reader.readLine();
-
-				this.attachChild(playerScore);
-				this.attachChild(playerScoreName);
-
+		MyDebug.d("second: " + pSecondsElapsed);
+		
+		MyDebug.d("timer: " + timer);
+		
+		if(timer > SECONDS_PER_HIGH_SCORE_ENTRY) {
+			
+			timer = 0;
+			
+			if(i == HighScoreList.getInstance().getHighScoreList().size()) {
+				this.isLoaded = false;
+				super.setScene(AllScenes.MAIN_MENU_SCENE);
+				return;
 			}
 
-		}catch (Exception e) {
-			MyDebug.e("could not load high score file",  e);
+			final Entry entry =  HighScoreList.getInstance().getHighScoreList().get(i);
+
+			final Text playerScoreName = new Text(x,y,Fonts.getInstance().menuItemFont, (i+1) + ". " + entry.name);
+			final Text playerScore = new Text(x, y,
+					Fonts.getInstance().menuItemFont, entry.score + "");
+			// increase the y-axis for every player. Max 5 players! 
+			playerScoreName.setPosition(x, (int) (y * (0.35 + (i+1) * 0.3)));
+			// x-constant because the name cannot be bigger than "220"(e.g x+220)
+			playerScore.setPosition(x+220, (int) (y * (0.35 + (i+1) * 0.3)));
+
+			Sounds.getInstance().highScoreEntry.play();
+			
+			this.attachChild(playerScore);
+			this.attachChild(playerScoreName);
+
+			// next entry in the next showing. 
+			i++;
 		}
+
 	}
 
 	@Override

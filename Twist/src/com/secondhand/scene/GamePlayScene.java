@@ -5,18 +5,29 @@ import java.beans.PropertyChangeListener;
 
 import org.anddev.andengine.engine.Engine;
 import org.anddev.andengine.engine.camera.hud.HUD;
+import org.anddev.andengine.engine.handler.timer.ITimerCallback;
+import org.anddev.andengine.engine.handler.timer.TimerHandler;
+import org.anddev.andengine.entity.particle.ParticleSystem;
+import org.anddev.andengine.entity.particle.emitter.PointParticleEmitter;
+import org.anddev.andengine.opengl.texture.TextureOptions;
+import org.anddev.andengine.opengl.texture.atlas.bitmap.BitmapTextureAtlas;
+import org.anddev.andengine.opengl.texture.atlas.bitmap.BitmapTextureAtlasTextureRegionFactory;
+import org.anddev.andengine.opengl.texture.region.TextureRegion;
 
 import android.content.Context;
 import android.view.KeyEvent;
 
 import com.badlogic.gdx.math.Vector2;
 import com.secondhand.controller.CollisionContactListener;
+import com.secondhand.controller.InputDialogManager;
+import com.secondhand.controller.SceneManager;
 import com.secondhand.debug.MyDebug;
 import com.secondhand.model.Entity;
 import com.secondhand.model.GameWorld;
 import com.secondhand.model.Player;
 import com.secondhand.model.powerup.PowerUp;
 import com.secondhand.opengl.StarsBackground;
+import com.secondhand.resource.HighScoreList;
 import com.secondhand.resource.Sounds;
 
 public class GamePlayScene extends GameScene implements PropertyChangeListener,
@@ -96,6 +107,9 @@ public class GamePlayScene extends GameScene implements PropertyChangeListener,
 		hud.attachChild(scoreLivesText);
 		
 		
+	//	hud.attachChild(new FadingNotifierText("hello!", new Vector2(100,100)));
+		
+		
 		// I do believe this belong here
 			getGameWorld().getPhysicsWorld().setContactListener(
 						new CollisionContactListener(getGameWorld()));
@@ -154,16 +168,20 @@ public class GamePlayScene extends GameScene implements PropertyChangeListener,
 				&& pEvent.getAction() == KeyEvent.ACTION_DOWN) {
 			final AllScenes parent = getParentScene();
 			if (parent != null) {
-				isLoaded = false;
-				resetCamera();
-				
-				setScene(parent);
+				this.switchScene(parent);
 				return true;
 			} else
 				return false;
 		} else {
 			return false;
 		}
+	}
+	
+	public void switchScene(final AllScenes scene) {
+		isLoaded = false;
+		resetCamera();
+		
+		setScene(scene);
 	}
 
 	@Override
@@ -175,11 +193,38 @@ public class GamePlayScene extends GameScene implements PropertyChangeListener,
 	protected void onManagedUpdate(final float pSecondsElapsed) {
 		super.onManagedUpdate(pSecondsElapsed);
 		if (gameWorld.isGameOver()) {
-			MyDebug.d("GameOver");
-			resetCamera();
-			setScene(AllScenes.GAME_OVER_SCENE);
-		}
-		gameWorld.onManagedUpdate(pSecondsElapsed);
+			
+			// TODO: holy fuck this code is ugly. Clean up. 
+			// get rid of all the static fields, for one.
+			
+			// we are doing it this way because it takes a  whole freaking second until
+			// the operating system shows the damn input dialog. 
+			if(InputDialogManager.getInstance().input != null) {
+				
+				// TODO: insert score in high score table
+				MyDebug.d("input string: " + InputDialogManager.getInstance().input);
+				
+				InputDialogManager.getInstance().showing = false;
+			
+				InputDialogManager.getInstance().input  = null;
+				
+				
+				switchScene(AllScenes.HIGH_SCORE_SCENE);
+				
+				
+			} else if(InputDialogManager.getInstance().showing)
+				gameWorld.onManagedUpdate(pSecondsElapsed);
+			else if(HighScoreList.getInstance().madeItToHighScoreList(this.gameWorld.getPlayer().getScore())) {
+				
+				InputDialogManager.getInstance().showing = true;
+				InputDialogManager.getInstance().showDialog();
+				
+			}  else
+				switchScene(AllScenes.HIGH_SCORE_SCENE);
+			/*MyDebug.d("GameOver");
+			switchScene(AllScenes.GAME_OVER_SCENE);*/
+		} else
+			gameWorld.onManagedUpdate(pSecondsElapsed);
 
 	}
 
@@ -212,6 +257,7 @@ public class GamePlayScene extends GameScene implements PropertyChangeListener,
 		}
 	}
 	
+	
 	// zoom out when player grows.
 	// I think we may need to reset sizes when going to new level, otherwise it
 	// will look bad
@@ -224,7 +270,13 @@ public class GamePlayScene extends GameScene implements PropertyChangeListener,
 	
 	@Override
 	public void showFadingTextNotifier(final String str, final Vector2 position) {
-		this.attachChild(new FadingNotifierText(str, position));
+		
+		// convert positon to camera coordinates.
+		final Vector2 cameraPosition = new Vector2( 
+				position.x - this.smoothCamera.getMinX(),
+						position.y - this.smoothCamera.getMinY());
+		
+		this.hud.attachChild(new FadingNotifierText(str, cameraPosition));
 	}
 
 	@Override
@@ -248,10 +300,38 @@ public class GamePlayScene extends GameScene implements PropertyChangeListener,
 	}
 	
 	public void playerMoveAnimation(final Vector2 touch) {
+
 		final Vector2 playerPosition = new Vector2(gameWorld.getPlayer().getCenterX(),gameWorld.getPlayer().getCenterY());
 		final Vector2 touchPosition = new Vector2(touch);
+
+		Player player = gameWorld.getPlayer();
 		
-		// Fire some sort of particles relative to the players and touched position
+		// TODO: Will use TextureLoader, this is just for testing
+		final BitmapTextureAtlas texture = new BitmapTextureAtlas(16, 16, TextureOptions.BILINEAR_PREMULTIPLYALPHA);
+		final TextureRegion particleTexture = BitmapTextureAtlasTextureRegionFactory.createFromAsset(texture, context, "gfx/particle.png", 0, 0);
+		
+		final Vector2 surfacePosition = getRelativeSurfacePosition(player, touch);
+		
+		final PointParticleEmitter movementEmitter = new PointParticleEmitter(surfacePosition.x, surfacePosition.y);
+		final ParticleSystem particleSystem = new ParticleSystem(movementEmitter, 60, 60, 10, particleTexture);
+		
+		attachChild(particleSystem);
+		
+		final float duration = 2; 
+		engine.registerUpdateHandler(new TimerHandler(duration, new ITimerCallback() {
+			@Override
+			public void onTimePassed(TimerHandler pTimerHandler) {
+				GamePlayScene.this.detachChild(particleSystem);
+			}
+		}));
 	}
 	
+	// Calculate the surface position of object relative to given position
+	public Vector2 getRelativeSurfacePosition(Entity object, Vector2 position) {
+		// Vector from object position to given position
+		Vector2 surfacePosition = new Vector2(object.getCenterX() - position.x, object.getCenterY() - position.y);
+		// Length of new vector increased/decreased to length of radius
+		surfacePosition.mul(object.getRadius() / surfacePosition.len());
+		return surfacePosition;
+	}
 }

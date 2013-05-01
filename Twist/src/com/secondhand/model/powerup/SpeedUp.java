@@ -1,9 +1,9 @@
 package com.secondhand.model.powerup;
 
 import com.badlogic.gdx.math.Vector2;
+import com.secondhand.debug.MyDebug;
 import com.secondhand.model.GameWorld;
 import com.secondhand.model.Player;
-import com.secondhand.model.PowerUpType;
 
 public class SpeedUp extends PowerUp {
 
@@ -26,13 +26,20 @@ public class SpeedUp extends PowerUp {
 	
 	@Override
 	public void activateEffect(final Player player) {
+		MyDebug.d("applying speed up");
 		player.getCircle().setColor(0, 0, 1f);
 		player.setMaxSpeed(player.getMaxSpeed()*factor);
 	}
 	
 	@Override
 	public void deactivateEffect(final Player player) {
-		super.deactivateEffect(player);
-		player.setMaxSpeed(player.getMaxSpeed()/factor);
+		
+		final boolean hasAnother = super.hasAnother(player);
+		
+		if(!hasAnother)
+			super.deactivateEffect(player);
+		
+		if(!hasAnother)
+			player.setMaxSpeed(player.getMaxSpeed()/factor);	
 	}
 }

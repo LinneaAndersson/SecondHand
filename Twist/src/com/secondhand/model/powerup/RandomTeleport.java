@@ -3,9 +3,9 @@ package com.secondhand.model.powerup;
 import java.util.Random;
 
 import com.badlogic.gdx.math.Vector2;
+import com.secondhand.debug.MyDebug;
 import com.secondhand.model.GameWorld;
 import com.secondhand.model.Player;
-import com.secondhand.model.PowerUpType;
 import com.secondhand.physics.PhysicsAreaChecker;
 
 public class RandomTeleport extends PowerUp {
@@ -20,7 +20,7 @@ public class RandomTeleport extends PowerUp {
 
 	@Override
 	public void activateEffect(final Player player) {
-		
+		MyDebug.d("applying random teleport");
 
 		final Random rng = new Random();
 		float x,y;

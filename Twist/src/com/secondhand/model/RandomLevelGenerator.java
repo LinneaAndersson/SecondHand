@@ -7,6 +7,7 @@ import java.util.Random;
 import com.badlogic.gdx.math.Vector2;
 import com.secondhand.debug.MyDebug;
 import com.secondhand.math.PolygonUtil;
+import com.secondhand.model.powerup.ExtraLife;
 import com.secondhand.model.powerup.PowerUp;
 import com.secondhand.model.powerup.PowerUpFactory;
 import com.secondhand.model.sat.PolygonFactory;
@@ -66,7 +67,13 @@ public class RandomLevelGenerator {
 	}
 	
 
-	private void placeOutEnemies() {		
+	private void placeOutEnemies() {
+		
+		Enemy enemy = new Enemy(new Vector2(200, 200), 50, level);
+		entityList.add(enemy);		
+		enemyList.add(enemy);
+
+		
 		final float MAX_SIZE = 50;
 		final float MIN_SIZE = 20;
 		final int ENEMIES = 4 * this.levelNumber;
@@ -97,7 +104,7 @@ public class RandomLevelGenerator {
 				}
 			}
 			
-			final Enemy enemy = new Enemy(new Vector2(x, y), radius, level);
+			enemy = new Enemy(new Vector2(x, y), radius, level);
 			entityList.add(enemy);		
 			enemyList.add(enemy);
 
@@ -158,7 +165,6 @@ public class RandomLevelGenerator {
 	}
 	
 	private void placeOutPowerUps() {
-
 		final int POWER_UPS = 5 * this.levelNumber;
 		
 		for (int i = 0; i < POWER_UPS; ++i) {

@@ -5,21 +5,21 @@ import com.secondhand.debug.MyDebug;
 import com.secondhand.model.GameWorld;
 import com.secondhand.model.Player;
 
-public class EatObstacle extends PowerUp {
+public class MirroredMovement extends PowerUp {
 
-	private final static float DURATION = 5;
+	private final static float DURATION = 10;
 	
-	public EatObstacle(final Vector2 position,
+	public MirroredMovement(final Vector2 position,
 			final GameWorld level) {
-		super(position, PowerUpType.EAT_OBSTACLE, level, DURATION);
+		super(position, PowerUpType.MIRRORED_MOVEMENT, level, DURATION);
 
 	}
 
 	@Override
 	public void activateEffect(final Player player) {
-		MyDebug.d("applying eat obstacle");
-		player.getCircle().setColor(1f, 0, 0);
-		player.setCanEatInedibles(true);
+		MyDebug.d("applying mirrored movement");
+		player.getCircle().setColor(1f, 0, 1f);
+		player.setMirroredMovement(true);
 	}
 	
 	@Override
@@ -29,6 +29,6 @@ public class EatObstacle extends PowerUp {
 		if(!hasAnother)
 			super.deactivateEffect(player);
 		
-		player.setCanEatInedibles(!hasAnother);
+		player.setMirroredMovement(!hasAnother);
 	}
 }

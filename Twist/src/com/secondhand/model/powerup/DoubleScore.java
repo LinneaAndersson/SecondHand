@@ -5,21 +5,22 @@ import com.secondhand.debug.MyDebug;
 import com.secondhand.model.GameWorld;
 import com.secondhand.model.Player;
 
-public class EatObstacle extends PowerUp {
-
-	private final static float DURATION = 5;
+// TOOD: this does not yet work for the ScoreUp powerup, fix this.
+public class DoubleScore extends PowerUp {
 	
-	public EatObstacle(final Vector2 position,
+	private final static float DURATION = 4;
+	
+	private final static float MULT = 2;
+	
+	public DoubleScore(final Vector2 position,
 			final GameWorld level) {
-		super(position, PowerUpType.EAT_OBSTACLE, level, DURATION);
-
+		super(position, PowerUpType.DOUBLE_SCORE, level, DURATION);
 	}
 
 	@Override
 	public void activateEffect(final Player player) {
-		MyDebug.d("applying eat obstacle");
-		player.getCircle().setColor(1f, 0, 0);
-		player.setCanEatInedibles(true);
+		player.getCircle().setColor(1f, 1f, 0);
+		player.setScoreMultiplier(2);
 	}
 	
 	@Override
@@ -29,6 +30,8 @@ public class EatObstacle extends PowerUp {
 		if(!hasAnother)
 			super.deactivateEffect(player);
 		
-		player.setCanEatInedibles(!hasAnother);
+		player.setScoreMultiplier(hasAnother ? MULT : 1);
+		
+		player.setIsEdible(!hasAnother);
 	}
 }

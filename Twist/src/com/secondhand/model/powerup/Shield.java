@@ -1,9 +1,9 @@
 package com.secondhand.model.powerup;
 
 import com.badlogic.gdx.math.Vector2;
+import com.secondhand.debug.MyDebug;
 import com.secondhand.model.GameWorld;
 import com.secondhand.model.Player;
-import com.secondhand.model.PowerUpType;
 
 public class Shield extends PowerUp {
 	
@@ -16,22 +16,20 @@ public class Shield extends PowerUp {
 
 	@Override
 	public void activateEffect(final Player player) {
+		MyDebug.d("applying score up");
 		player.getCircle().setColor(0, 1f, 0);
 		player.setIsEdible(false);
 	}
 	
 	@Override
 	public void deactivateEffect(final Player player) {
-		boolean hasAnotherShield = false;
-		for (final PowerUp powerUp : player.getPowerUps()) {
-			if (powerUp.getClass() == Shield.class)
-				hasAnotherShield = true;
-		}
 		
-		if(!hasAnotherShield)
+		final boolean hasAnother = super.hasAnother(player);
+		
+		if(!hasAnother)
 			super.deactivateEffect(player);
 		
 		
-		player.setIsEdible(!hasAnotherShield);
+		player.setIsEdible(!hasAnother);
 	}
 }

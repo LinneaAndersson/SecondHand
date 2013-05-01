@@ -55,7 +55,7 @@ public class EnemyUtil {
 				return 0;
 			}
 			
-		},v, null)
+		},v, null);
 		return null;
 
 	}

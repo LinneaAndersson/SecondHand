@@ -60,13 +60,13 @@ public final class InputDialogManager {
 	public void doStuff(GamePlayScene scene, float pSecondsElapsed) {
 		if (input != null) {
 
-			MyDebug.d("input string: " + input);
 			HighScoreList.Entry newEntry = new HighScoreList.Entry(input, scene.getGameWorld().getPlayer().getScore());
 			HighScoreList.getInstance().insertInHighScoreList(newEntry);
 			showing = false;
 
 			input = null;
 
+			scene.resetCamera();
 			scene.switchScene(AllScenes.HIGH_SCORE_SCENE);
 
 		} else if (showing) {
@@ -78,6 +78,7 @@ public final class InputDialogManager {
 			showDialog();
 
 		} else {
+			scene.resetCamera();
 			scene.switchScene(AllScenes.HIGH_SCORE_SCENE);
 		}
 	}

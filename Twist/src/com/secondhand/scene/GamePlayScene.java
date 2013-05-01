@@ -196,6 +196,9 @@ public class GamePlayScene extends GameScene implements PropertyChangeListener,
 			
 			// TODO: holy fuck this code is ugly. Clean up. 
 			// get rid of all the static fields, for one.
+			
+			// we are doing it this way because it takes a  whole freaking second until
+			// the operating system shows the damn input dialog. 
 			if(InputDialogManager.getInstance().input != null) {
 				
 				// TODO: insert score in high score table

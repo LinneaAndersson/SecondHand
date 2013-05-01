@@ -6,11 +6,9 @@ import android.content.Context;
 import android.view.KeyEvent;
 
 import com.secondhand.debug.MyDebug;
-import com.secondhand.model.GameWorld;
 import com.secondhand.resource.Sounds;
 import com.secondhand.resource.TextureRegions;
 import com.secondhand.scene.ChangeLevelScene;
-import com.secondhand.scene.GameOverScene;
 import com.secondhand.scene.GamePlayScene;
 import com.secondhand.scene.HighScoreScene;
 import com.secondhand.scene.IGameScene;
@@ -37,8 +35,7 @@ public final class SceneManager {
 	
 	
 	private GamePlayScene gamePlayScene;
-	private GameOverScene gameOverScene;
-	
+
 	public GamePlayScene getGamePlayScene() {
 		return this.gamePlayScene;
 	}
@@ -101,8 +98,6 @@ public final class SceneManager {
 			scene = this.gamePlayScene;
 		} else if (sceneEnum == AllScenes.HIGH_SCORE_SCENE) {
 			scene = this.highScoreScene;
-		} else if (sceneEnum == AllScenes.GAME_OVER_SCENE) {
-			scene = this.gameOverScene;
 		}else if (sceneEnum == AllScenes.GAME_PLAY_SCENE_LOADING_SCENE) {
 			scene = this.gamePlaySceneLoadingScene;
 		}else if(sceneEnum == AllScenes.CHANGE_LEVEL_SCENE){
@@ -145,13 +140,10 @@ public final class SceneManager {
 		// constructor MUST be called here.
 		this.mainMenuScene = new MainMenuScene(this.engine, context);
 		this.settingsMenuScene = new SettingsMenuScene(this.engine, context);
-		this.gameOverScene = new GameOverScene(this.engine, context);
 		this.gamePlayScene = new GamePlayScene(this.engine, context);
 		this.gamePlaySceneLoadingScene = new GamePlaySceneLoadingScene(this.engine, context);
 		this.highScoreScene = new HighScoreScene(this.engine, context);
-		this.changeLevelScene = new ChangeLevelScene(this.engine , context, gamePlayScene.getGameWorld());
-		
-		
+		this.changeLevelScene = new ChangeLevelScene(this.engine , context, gamePlayScene.getGameWorld());	
 	}
 
 	// called from MainActivity.

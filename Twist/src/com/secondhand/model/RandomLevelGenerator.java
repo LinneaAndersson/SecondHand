@@ -67,7 +67,13 @@ public class RandomLevelGenerator {
 	}
 	
 
-	private void placeOutEnemies() {		
+	private void placeOutEnemies() {
+		
+		Enemy enemy = new Enemy(new Vector2(200, 200), 50, level);
+		entityList.add(enemy);		
+		enemyList.add(enemy);
+
+		
 		final float MAX_SIZE = 50;
 		final float MIN_SIZE = 20;
 		final int ENEMIES = 4 * this.levelNumber;
@@ -98,7 +104,7 @@ public class RandomLevelGenerator {
 				}
 			}
 			
-			final Enemy enemy = new Enemy(new Vector2(x, y), radius, level);
+			enemy = new Enemy(new Vector2(x, y), radius, level);
 			entityList.add(enemy);		
 			enemyList.add(enemy);
 

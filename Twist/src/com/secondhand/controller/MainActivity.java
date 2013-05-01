@@ -9,7 +9,11 @@ import org.anddev.andengine.entity.scene.Scene;
 import org.anddev.andengine.entity.util.FPSLogger;
 import org.anddev.andengine.ui.activity.BaseGameActivity;
 
+import android.app.AlertDialog;
+import android.app.Dialog;
+import android.content.DialogInterface;
 import android.view.KeyEvent;
+import android.widget.EditText;
 
 import com.secondhand.loader.FontLoader;
 import com.secondhand.loader.SoundLoader;
@@ -22,6 +26,8 @@ public class MainActivity extends BaseGameActivity {
 
 	public static final int CAMERA_WIDTH = 800;
 	public static final int CAMERA_HEIGHT = 480;
+	
+	public static final int TEXT_INPUT_DIALOG = 1;
 
 	@Override
 	public void onLoadResources() {
@@ -48,6 +54,8 @@ public class MainActivity extends BaseGameActivity {
 	    engineOptions.setNeedsMusic(true);
 	    final Engine engine = new Engine(engineOptions);
 	    
+	    InputDialogManager.getInstance().initialize(engine, this);
+	    
 	    // initialize loader classes:
 	    HighScoreList.getInstance().initialize(this);
 	    FontLoader.getInstance().initialize(this, engine);
@@ -60,6 +68,33 @@ public class MainActivity extends BaseGameActivity {
 	    
 	     return engine;	
 	}
+	
+    @Override
+    protected Dialog onCreateDialog(final int pID) {
+            if (pID == TEXT_INPUT_DIALOG) {
+            	AlertDialog.Builder alert = new AlertDialog.Builder(this);
+
+            	alert.setTitle("Made it to high score!");
+            	alert.setMessage("Your Name");
+
+            	// Set an EditText view to get user input 
+            	final EditText input = new EditText(this);
+            	alert.setView(input);
+
+            	alert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+            	public void onClick(DialogInterface dialog, int whichButton) {
+            	  InputDialogManager.input = input.getText().toString();
+            	  }
+            	});
+            	
+            	return alert.create();
+
+			} else {
+				// it's apparently deprecated, but I don't really give shit.
+				return super.onCreateDialog(pID);
+			}
+    }
+
 
 	@Override
 	public void onLoadComplete() {

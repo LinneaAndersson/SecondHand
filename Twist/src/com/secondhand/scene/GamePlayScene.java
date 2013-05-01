@@ -19,12 +19,15 @@ import android.view.KeyEvent;
 
 import com.badlogic.gdx.math.Vector2;
 import com.secondhand.controller.CollisionContactListener;
+import com.secondhand.controller.InputDialogManager;
+import com.secondhand.controller.SceneManager;
 import com.secondhand.debug.MyDebug;
 import com.secondhand.model.Entity;
 import com.secondhand.model.GameWorld;
 import com.secondhand.model.Player;
 import com.secondhand.model.powerup.PowerUp;
 import com.secondhand.opengl.StarsBackground;
+import com.secondhand.resource.HighScoreList;
 import com.secondhand.resource.Sounds;
 
 public class GamePlayScene extends GameScene implements PropertyChangeListener,
@@ -190,11 +193,35 @@ public class GamePlayScene extends GameScene implements PropertyChangeListener,
 	protected void onManagedUpdate(final float pSecondsElapsed) {
 		super.onManagedUpdate(pSecondsElapsed);
 		if (gameWorld.isGameOver()) {
-			switchScene(AllScenes.HIGH_SCORE_SCENE);
+			
+			// TODO: holy fuck this code is ugly. Clean up. 
+			// get rid of all the static fields, for one.
+			if(InputDialogManager.getInstance().input != null) {
+				
+				// TODO: insert score in high score table
+				MyDebug.d("input string: " + InputDialogManager.getInstance().input);
+				
+				InputDialogManager.getInstance().showing = false;
+			
+				InputDialogManager.getInstance().input  = null;
+				
+				
+				switchScene(AllScenes.HIGH_SCORE_SCENE);
+				
+				
+			} else if(InputDialogManager.getInstance().showing)
+				gameWorld.onManagedUpdate(pSecondsElapsed);
+			else if(HighScoreList.getInstance().madeItToHighScoreList(this.gameWorld.getPlayer().getScore())) {
+				
+				InputDialogManager.getInstance().showing = true;
+				InputDialogManager.getInstance().showDialog();
+				
+			}  else
+				switchScene(AllScenes.HIGH_SCORE_SCENE);
 			/*MyDebug.d("GameOver");
 			switchScene(AllScenes.GAME_OVER_SCENE);*/
-		}
-		gameWorld.onManagedUpdate(pSecondsElapsed);
+		} else
+			gameWorld.onManagedUpdate(pSecondsElapsed);
 
 	}
 

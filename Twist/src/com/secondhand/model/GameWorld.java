@@ -14,10 +14,7 @@ import com.secondhand.model.powerup.PowerUp;
 public class GameWorld {
 
 	private final EntityManager entityManager;
-	
-	// TODO: Maybe store this in player instead?
-	private float playerMaxSize;
-	
+
 	private final int STARTING_LEVEL = 2;
 
 	private PhysicsWorld physicsWorld;
@@ -37,55 +34,44 @@ public class GameWorld {
 	}
 
 	public GameWorld() {
-		
+
 		init();
-		
+
 		this.entityManager = new EntityManager(new Player(new Vector2(50, 50),
 				30, this));
 
-
 		generateNewLevelEntities(STARTING_LEVEL);
 
-
 		gameWorldBounds.setupWorldBounds(this.levelWidth, this.levelHeight,
-				this.physicsWorld);	
+				this.physicsWorld);
 	}
 
 	private void init() {
-	
+
 		support = new PropertyChangeSupport(this);
 
 		this.physicsWorld = new PhysicsWorld(new Vector2(), true);
 
 		this.gameWorldBounds = new GameWorldBounds();
-		
+
 		// you can try lowering the values of these if the game starts lagging
 		// too much. Basically, high values for these gives a higher quality
 		// physics simulation.
 		this.physicsWorld.setVelocityIterations(16);
 		this.physicsWorld.setPositionIterations(16);
 	}
-	
 
 	// generate the level entities of a new level.
 	private void generateNewLevelEntities(final int levelNumber) {
 		this.levelNumber = levelNumber;
+		this.entityManager.getPlayer().setMaxSize(levelNumber * 40);
+		this.levelWidth = 1700 * levelNumber;
+		this.levelHeight = 1700 * levelNumber;
 		
 		final RandomLevelGenerator randomLevelGenerator = new RandomLevelGenerator(
 				this.entityManager.getPlayer(), this);
 
-		this.playerMaxSize = randomLevelGenerator.playerMaxSize;
-		this.levelWidth = randomLevelGenerator.levelWidth;
-		this.levelHeight = randomLevelGenerator.levelHeight;
-
 		this.entityManager.setEntityList(randomLevelGenerator.entityList);
-		int count = 0;
-		for(Entity en: randomLevelGenerator.entityList) {
-			if(en instanceof PowerUp) {
-				++count;
-			}
-		}
-		MyDebug.d("powerups:  " + count);
 		this.entityManager.setEnemyList(randomLevelGenerator.enemyList);
 
 	}
@@ -124,7 +110,7 @@ public class GameWorld {
 		generateNewLevelEntities(this.levelNumber);
 
 		// then notify the view of this, so that it can place out the new
-		// Entities in AndEngine for rendering.		
+		// Entities in AndEngine for rendering.
 		support.firePropertyChange("NextLevel", false, true);
 	}
 
@@ -154,7 +140,7 @@ public class GameWorld {
 	}
 
 	public boolean checkPlayerBigEnough() {
-		return this.getPlayer().getRadius() >= playerMaxSize;
+		return this.getPlayer().getRadius() >= this.getPlayer().getMaxSize();
 	}
 
 	public EntityManager getEntityManager() {

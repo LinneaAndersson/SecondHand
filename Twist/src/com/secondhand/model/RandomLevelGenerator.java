@@ -39,8 +39,9 @@ public class RandomLevelGenerator {
 		this.levelNumber = level.getLevelNumber();
 		this.level = level;
 		
-		this.levelWidth = 1700 * levelNumber;
-		this.levelHeight = 1700 * levelNumber;
+		this.levelWidth = level.getLevelWidth();
+		this.levelHeight = level.getLevelHeight();
+		
 		
 		world = new World(this.levelWidth, this.levelHeight);
 
@@ -52,7 +53,7 @@ public class RandomLevelGenerator {
 				player.getRadius());
 		world.addToWorld(poly);
 	
-		this.playerMaxSize = 40 * levelNumber;
+		this.playerMaxSize = player.getMaxSize();
 		
 		
 		this.entityList = new ArrayList<Entity>();

@@ -24,6 +24,8 @@ public class Player extends BlackHole {
 	
 	private int lives;
 	
+	private int maxSize;
+	
 	private float scoreMultiplier;
 	
 	private boolean isMirroredMovement;
@@ -75,6 +77,14 @@ public class Player extends BlackHole {
 	
 	public int getLives() {
 		return this.lives;
+	}
+	
+	public void setMaxSize(int size){
+		maxSize=size;
+	}
+	
+	public int getMaxSize(){
+		return maxSize;
 	}
 	
 	

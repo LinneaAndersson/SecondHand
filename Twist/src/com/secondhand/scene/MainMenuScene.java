@@ -43,7 +43,6 @@ public class MainMenuScene extends GameMenuScene implements IOnMenuItemClickList
 		layoutCenteredMenu(menuStartX, menuItems);
 		this.setOnMenuItemClickListener(this);
 	}
-	
 
 	@Override
 	public boolean onMenuItemClicked(final MenuScene pMenuScene, final IMenuItem pMenuItem,

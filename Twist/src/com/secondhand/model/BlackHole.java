@@ -103,7 +103,6 @@ public abstract class BlackHole extends CircleEntity {
 		/*if(entity instanceof BlackHole)
 			return;*/
 		
-		
 		if(!this.canEat(entity)) {
 			entityWasTooBigToEat(entity);
 			return;	

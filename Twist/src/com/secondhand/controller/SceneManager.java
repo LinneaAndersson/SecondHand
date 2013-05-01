@@ -30,7 +30,7 @@ public final class SceneManager {
 	private Context context;
 	
 	private IGameScene loadingScene, mainMenuScene, settingsMenuScene,
-			highScoreScene, gamePlaySceneLoadingScene, changeLevelScene;
+			highScoreScene;
 	
 	
 	private GamePlayScene gamePlayScene;
@@ -94,10 +94,6 @@ public final class SceneManager {
 			scene = this.gamePlayScene;
 		} else if (sceneEnum == AllScenes.HIGH_SCORE_SCENE) {
 			scene = this.highScoreScene;
-		}else if (sceneEnum == AllScenes.GAME_PLAY_SCENE_LOADING_SCENE) {
-			scene = this.gamePlaySceneLoadingScene;
-		}else if(sceneEnum == AllScenes.CHANGE_LEVEL_SCENE){
-			scene = this.changeLevelScene;
 		}
 
 		return scene;

@@ -90,7 +90,7 @@ public class RandomLevelGenerator {
 				final World.Polygon poly = PolygonFactory.createCircle(
 						new Vector2(xAxis, yAxis), radius);
 
-				//addToWorld add the polygon if it can otherwise it returns false
+				//addToWorld add the polygon if it is unoccupied otherwise it returns false
 				if (world.addToWorld(poly)){
 					break;
 				}

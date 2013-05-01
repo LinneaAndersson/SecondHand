@@ -45,7 +45,7 @@ public class GamePlayScene extends GameScene implements PropertyChangeListener,
 		MyDebug.i("creating game world");
 		// Have to create gameWorld here, because else it is null when I need
 		// it!
-		this.gameWorld = new GameWorld();
+		
 	}
 
 	public GameWorld getGameWorld() {
@@ -117,6 +117,7 @@ public class GamePlayScene extends GameScene implements PropertyChangeListener,
 	public void loadScene() {
 		super.loadScene();
 
+		this.gameWorld = new GameWorld();
 		// get rid the entities from the previous game.
 		// this.detachChildren();
 
@@ -221,6 +222,7 @@ public class GamePlayScene extends GameScene implements PropertyChangeListener,
 					(Float) event.getOldValue());
 		} else if (eventName.equals("NextLevel")) {
 			newLevelStarted();
+			setupView();
 		} else if (eventName.equals("PlayerMove")) {
 			playerMoveAnimation((Vector2) event.getNewValue());
 		}
@@ -253,6 +255,7 @@ public class GamePlayScene extends GameScene implements PropertyChangeListener,
 	@Override
 	public void newLevelStarted() {
 		MyDebug.d("new level!");
+		gameWorld.getPlayer().setRadius(60);
 		registerNewLevel();
 		Sounds.getInstance().winSound.play();
 

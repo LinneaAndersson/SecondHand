@@ -8,6 +8,7 @@ import java.util.List;
 import org.anddev.andengine.extension.physics.box2d.util.constants.PhysicsConstants;
 
 import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.physics.box2d.CircleShape;
 import com.secondhand.debug.MyDebug;
 import com.secondhand.model.powerup.PowerUp;
 import com.secondhand.model.resource.Sounds;
@@ -150,6 +151,8 @@ public class Player extends BlackHole {
 		final float oldRadius = this.getRadius();
 		super.setRadius(radius);
 		final float newRadius = this.getRadius();
+		final CircleShape shape = (CircleShape) getBody().getFixtureList()
+				.get(0).getShape();
 		sceneSupport.firePropertyChange("PlayerRadius", oldRadius, newRadius);
 	}
 	

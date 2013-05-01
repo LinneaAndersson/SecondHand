@@ -11,31 +11,30 @@ import com.secondhand.scene.IGameScene;
 
 public class LoadingScene extends GameScene {
 	private AllScenes mSceneEnum = AllScenes.MAIN_MENU_SCENE;
-	private String mString="loading";
+	private String mString = "loading";
+
 	public LoadingScene(final Engine engine, final Context context) {
 		super(engine, context);
-		Fonts.getInstance().load();	
-		
+		Fonts.getInstance().load();
+
 	}
 
-	public void setText(String string){
+	public void setText(String string) {
 		mString = string;
 	}
-	
-	public void setSceneEnum(AllScenes scene){
+
+	public void setSceneEnum(AllScenes scene) {
 		mSceneEnum = scene;
 	}
-	
+
 	@Override
 	public void loadScene() {
-		SceneManager.getInstance().setIsGameLoaded(true);
+
+		//removing the old text from the screen.
 		this.detachChildren();
 		// add loading text
-		this.attachChild( 
-				new LoadingText(
-						LocalizationStrings.getInstance().getLocalizedString(mString),
-						 this.smoothCamera));
-		
+		this.attachChild(new LoadingText(LocalizationStrings.getInstance()
+				.getLocalizedString(mString), this.smoothCamera));
 
 		// in the loading scene we will load all the resources of all the
 		// scenes.
@@ -45,21 +44,24 @@ public class LoadingScene extends GameScene {
 
 		final IAsyncCallback callback = new IAsyncCallback() {
 
+			// I want to make this prettier. Now we have an if-statement, which
+			// makes it harder to add a new class that needs
+			// LoadingScene.
 			@Override
 			public void work() {
-				// load all resources of all scenes.
-				SceneManager.getInstance().loadAllResources();
+				if (mSceneEnum == AllScenes.MAIN_MENU_SCENE) {
+					SceneManager.getInstance().loadAllResources();
+				} else if (mSceneEnum == AllScenes.GAME_PLAY_SCENE) {
+					SceneManager.getInstance().getGamePlayScene().loadScene();
+				}
+
 			}
 
 			@Override
 			public void onWorkComplete() {
-				
-				// see if this makes the textures load. 
-				//LoadingScene.this.engine.getTextureManager().reloadTextures();
 
-				// go to main menu once the loading is done.
-				SceneManager.getInstance().setCurrentSceneEnum(
-						mSceneEnum);
+				// go to next scene when finshed loading
+				SceneManager.getInstance().setCurrentSceneEnum(mSceneEnum);
 
 			}
 		};

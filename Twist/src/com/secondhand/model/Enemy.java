@@ -15,7 +15,6 @@ public class Enemy extends BlackHole {
 
 	private static final float ENEMY_MAX_SPEED = 10;
 
-
 	// because someone changed getArea to getRadius I
 	// had to do this.
 	private float huntingArea;
@@ -53,8 +52,9 @@ public class Enemy extends BlackHole {
 	// if blocking entity is edible
 	private boolean straightToEntity(final Entity entity) {
 
-		RayCast ray = new RayCast(this, entity);
-		physicsWorld.rayCast(ray, this.getBody().getWorldCenter(), entity.getBody().getWorldCenter());
+		final RayCast ray = new RayCast(this, entity);
+		physicsWorld.rayCast(ray, this.getBody().getWorldCenter(), entity
+				.getBody().getWorldCenter());
 
 		return ray.isStraightLine();
 	}
@@ -102,7 +102,7 @@ public class Enemy extends BlackHole {
 			if (straightToEntity(entity)) {
 				// MyDebug.d("Enemy: applyMovement towards " +
 				// entity.getClass());
-				//closeToDanger();
+				// closeToDanger();
 				applyMovement(new Vector2(
 						(entity.getCenterX() - this.getCenterX()),
 						entity.getCenterY() - this.getCenterY()));
@@ -119,28 +119,28 @@ public class Enemy extends BlackHole {
 		}
 	}
 
-	// checks if there is something dangerous close by
+	// checks if there is something uneatable close by
+	// in movement direction
 	private void closeToDanger() {
 		// MyDebug.d("Enemy: danger");
 		final Vector2 center = getBody().getWorldCenter();
 		final float rad = (getRadius() + 20)
 				/ PhysicsConstants.PIXEL_TO_METER_RATIO_DEFAULT;
-		physicsWorld.QueryAABB(new QueryCallback() {
+		physicsWorld.rayCast(new RayCastCallback(){
 
 			@Override
-			public boolean reportFixture(final Fixture fixture) {
-
-				final Entity tmp = ((Entity) fixture.getBody().getUserData());
-				if (tmp != null && tmp.getClass() != Enemy.class) {
-					MyDebug.d("Enemy: report fixture "
-							+ fixture.getBody().getUserData());
-					if (!canEat(tmp)) {
-						retreat(tmp);
+			public float reportRayFixture(Fixture fixture, Vector2 point,
+					Vector2 normal, float fraction) {
+				if(fixture.getBody().getUserData() != null){
+					Entity entity = (Entity)fixture.getBody().getUserData();
+					if(!canEat(entity)){
+						stopMovement();
 					}
 				}
-				return true;
+				return 0;
 			}
-		}, center.x - rad, center.y + rad, center.x + rad, center.y - rad);
+			
+		}, this.getBody().getWorldCenter(),null );
 
 	}
 

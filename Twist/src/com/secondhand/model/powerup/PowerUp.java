@@ -75,7 +75,7 @@ public abstract class PowerUp extends RectangleEntity {
 	public boolean hasAnother(final Player player) {
 		boolean hasAnother = false;
 		for (final PowerUp powerUp : player.getPowerUps()) {
-			if (powerUp.getClass() == DoubleScore.class)
+			if (powerUp.getClass() == this.getClass()) // old was DoubleScore.getClass() but this should be right?
 				hasAnother = true;
 		}
 		return hasAnother;

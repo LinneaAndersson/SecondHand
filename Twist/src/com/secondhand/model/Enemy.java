@@ -13,11 +13,15 @@ import com.secondhand.model.powerup.PowerUp;
 public class Enemy extends BlackHole {
 
 	private static final float ENEMY_MAX_SPEED = 10;
+	private static final float MAX_SIZE = 40;
+	private static final float MIN_SIZE = 20;
+
 
 	private EnemyUtil util;
 	// because someone changed getArea to getRadius I
 	// had to do this.
 	private float huntingArea;
+	
 
 	public Enemy(final Vector2 vector, final float radius, final GameWorld level) {
 		super(vector, radius, level, ENEMY_MAX_SPEED);
@@ -38,6 +42,15 @@ public class Enemy extends BlackHole {
 	public float getHuntingArea() {
 		return getRadius() * getRadius() * (float) Math.PI * 40;
 	}
+	
+	public static float getMaxSize(){
+		return MAX_SIZE;
+	}
+	
+	public static float getMinSize(){
+		return MIN_SIZE;
+	}
+	
 
 	// player has highest chase-priority
 	public void moveEnemy(final Entity player, final List<Entity> entityList) {

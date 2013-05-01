@@ -1,4 +1,4 @@
-	package com.secondhand.math;
+	package com.secondhand.util;
 
 import java.util.ArrayList;
 import java.util.List;

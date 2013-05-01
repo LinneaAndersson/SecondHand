@@ -11,6 +11,7 @@ public class MySmoothCamera extends SmoothCamera {
 	}
 	
 	// Please excuse the swearing; it's just that AndEngine can really piss you off at times.
+	// what's the point of this class?
 	public void setCenterDirectThatActuallyFuckingWorks(final float pCenterX, final float pCenterY) {
 		super.setCenter(pCenterX, pCenterY);
 	}

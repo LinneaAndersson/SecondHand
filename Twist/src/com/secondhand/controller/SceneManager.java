@@ -8,7 +8,6 @@ import android.view.KeyEvent;
 import com.secondhand.debug.MyDebug;
 import com.secondhand.resource.Sounds;
 import com.secondhand.resource.TextureRegions;
-import com.secondhand.scene.ChangeLevelScene;
 import com.secondhand.scene.GamePlayScene;
 import com.secondhand.scene.HighScoreScene;
 import com.secondhand.scene.IGameScene;
@@ -143,7 +142,6 @@ public final class SceneManager {
 		this.gamePlayScene = new GamePlayScene(this.engine, context);
 		this.gamePlaySceneLoadingScene = new GamePlaySceneLoadingScene(this.engine, context);
 		this.highScoreScene = new HighScoreScene(this.engine, context);
-		this.changeLevelScene = new ChangeLevelScene(this.engine , context, gamePlayScene.getGameWorld());	
 	}
 
 	// called from MainActivity.

@@ -15,7 +15,7 @@ public class Enemy extends BlackHole {
 
 	private static final float ENEMY_MAX_SPEED = 10;
 
-	private static boolean straightLine = true;
+
 	// because someone changed getArea to getRadius I
 	// had to do this.
 	private float huntingArea;
@@ -51,32 +51,12 @@ public class Enemy extends BlackHole {
 	// may be needed depending on search area size
 	// true if road to entity is clear. also true
 	// if blocking entity is edible
-
 	private boolean straightToEntity(final Entity entity) {
-		straightLine = true;
 
-		physicsWorld.rayCast(new RayCastCallback() {
+		RayCast ray = new RayCast(this, entity);
+		physicsWorld.rayCast(ray, this.getBody().getWorldCenter(), entity.getBody().getWorldCenter());
 
-			@Override
-			public float reportRayFixture(final Fixture fixture,
-					final Vector2 point, final Vector2 normal,
-					final float fraction) {
-
-				if (((Entity) fixture.getBody().getUserData()) == entity) {
-					return 1;
-
-				} else if (canEat((Entity) fixture.getBody().getUserData())) {
-					return 1;
-				}
-
-				straightLine = false;
-
-				return 0;
-
-			}
-		}, this.getBody().getWorldCenter(), entity.getBody().getWorldCenter());
-
-		return straightLine;
+		return ray.isStraightLine();
 	}
 
 	// checks if enemy is close enough to start chasing

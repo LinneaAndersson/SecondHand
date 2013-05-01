@@ -5,6 +5,7 @@ import java.util.Arrays;
 import org.anddev.andengine.engine.camera.Camera;
 import org.anddev.andengine.entity.text.ChangeableText;
 
+import com.secondhand.debug.MyDebug;
 import com.secondhand.model.resource.Fonts;
 
 /*
@@ -35,11 +36,10 @@ public class LoadingText extends ChangeableText {
 	public LoadingText(final String loadingString, final Camera camera) {
 		super(0, 0, Fonts.getInstance().menuItemFont,
 				getPlaceHolderString());
-		
 		this.loadingString = loadingString;
 
 		this.setText(getNextString());
-
+		
 		// center the "loading" text both horizontally and vertically.
 		final float posX = camera.getWidth() / 2.0f - this.getWidth() / 2.0f;
 		final float posY = camera.getHeight() / 2.0f - this.getHeight() / 2.0f;

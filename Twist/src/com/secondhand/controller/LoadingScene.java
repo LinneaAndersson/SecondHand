@@ -11,7 +11,6 @@ import com.secondhand.scene.IGameScene;
 
 public class LoadingScene extends GameScene {
 	private AllScenes mSceneEnum = AllScenes.MAIN_MENU_SCENE;
-	
 	private String mString="loading";
 	public LoadingScene(final Engine engine, final Context context) {
 		super(engine, context);
@@ -30,7 +29,7 @@ public class LoadingScene extends GameScene {
 	@Override
 	public void loadScene() {
 		SceneManager.getInstance().setIsGameLoaded(true);
-
+		this.detachChildren();
 		// add loading text
 		this.attachChild( 
 				new LoadingText(

@@ -18,8 +18,8 @@ public class PlayerView implements IEntityView, PropertyChangeListener {
 	}
 	
 	@Override
-	public void propertyChange(PropertyChangeEvent arg0) {
-		String propertyName = arg0.getPropertyName();
+	public void propertyChange(PropertyChangeEvent event) {
+		String propertyName = event.getPropertyName();
 		if (propertyName.equals(Player.POWER_UP_SOUND)) {
 			Sounds.getInstance().powerUpSound.play();
 		}

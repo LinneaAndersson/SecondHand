@@ -7,7 +7,7 @@ import org.anddev.andengine.extension.physics.box2d.PhysicsWorld;
 
 import com.badlogic.gdx.physics.box2d.Body;
 import com.secondhand.debug.MyDebug;
-import com.secondhand.physics.CustomPhysicsConnector;
+import com.secondhand.model.physics.CustomPhysicsConnector;
 
 public abstract class Entity {
 

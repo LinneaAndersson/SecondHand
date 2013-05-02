@@ -12,7 +12,7 @@ import com.secondhand.model.GameWorld;
 import com.secondhand.model.Player;
 import com.secondhand.model.RectangleEntity;
 import com.secondhand.model.resource.PowerUpType;
-import com.secondhand.model.resource.TextureRegions;
+import com.secondhand.view.resource.TextureRegions;
 
 public abstract class PowerUp extends RectangleEntity {
 		

@@ -7,8 +7,6 @@ import com.secondhand.model.GameWorld;
 import com.secondhand.model.Player;
 import com.secondhand.view.resource.Sounds;
 
-// If other Entities will implement PropertyChangeListener, 
-// we may want to make IEntityView extends PropertyChangeListener
 public class PlayerView implements IEntityView, PropertyChangeListener {
 
 	private GameWorld gameWorld;

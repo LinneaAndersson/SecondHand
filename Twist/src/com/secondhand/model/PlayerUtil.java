@@ -1,10 +1,13 @@
 package com.secondhand.model;
 
+import java.beans.PropertyChangeListener;
+import java.beans.PropertyChangeSupport;
 import java.util.ArrayList;
 
 import org.anddev.andengine.extension.physics.box2d.util.constants.PhysicsConstants;
 
 import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.physics.box2d.CircleShape;
 import com.secondhand.debug.MyDebug;
 import com.secondhand.model.powerup.PowerUp;
 
@@ -14,6 +17,8 @@ public class PlayerUtil {
 	private Player player;
 	private PowerList list;
 	private boolean isMirroredMovement;
+	private final PropertyChangeSupport sceneSupport = new PropertyChangeSupport(
+			this);
 
 	public PlayerUtil(Player player) {
 		this.player = player;
@@ -95,6 +100,27 @@ public class PlayerUtil {
 		player.getBody().applyLinearImpulse(force, forcePosition);
 
 		MyDebug.d("force: " + force.x + force.y);
+	}
+
+	public void addListener(PropertyChangeListener observer) {
+		sceneSupport.addPropertyChangeListener(observer);
+	}
+
+	public void fire(String name, Object oldValue, Object newValue) {
+		sceneSupport.firePropertyChange(name, oldValue, newValue);
+	}
+
+	public void fire(String name, int oldValue, int newValue) {
+		sceneSupport.firePropertyChange(name, oldValue, newValue);
+	}
+
+	public void setRadius(float radius) {
+		final float newRadius = player.getRadius();
+		final CircleShape shape = (CircleShape) player.getBody()
+				.getFixtureList().get(0).getShape();
+		shape.setRadius(player.getRadius()
+				/ PhysicsConstants.PIXEL_TO_METER_RATIO_DEFAULT);
+		fire("PlayerRadius", 0, newRadius);
 	}
 
 }

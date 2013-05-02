@@ -1,4 +1,4 @@
-package com.secondhand.controller;
+package com.secondhand.view.scene;
 
 import java.util.Arrays;
 

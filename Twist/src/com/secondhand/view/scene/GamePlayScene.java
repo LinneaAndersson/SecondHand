@@ -28,7 +28,6 @@ import com.secondhand.model.powerup.PowerUp;
 import com.secondhand.model.resource.HighScoreList;
 import com.secondhand.view.opengl.StarsBackground;
 import com.secondhand.view.resource.Sounds;
-import com.secondhand.view.scene.IGameScene.AllScenes;
 
 public class GamePlayScene extends GameScene implements PropertyChangeListener {
 
@@ -182,7 +181,8 @@ public class GamePlayScene extends GameScene implements PropertyChangeListener {
 				InputDialogManager.input = null;
 
 				resetCamera();
-				switchScene(AllScenes.HIGH_SCORE_SCENE);
+				// TODO: switch scene here
+				//switchScene(AllScenes.HIGH_SCORE_SCENE);
 
 			} else if (InputDialogManager.showing) {
 				getGameWorld().onManagedUpdate(pSecondsElapsed);
@@ -194,20 +194,13 @@ public class GamePlayScene extends GameScene implements PropertyChangeListener {
 
 			} else {
 				resetCamera();
-				switchScene(AllScenes.HIGH_SCORE_SCENE);
+				// TODO: switch scene here. 
+				//switchScene(AllScenes.HIGH_SCORE_SCENE);
 			}
 			
 		} else {
 			gameWorld.onManagedUpdate(pSecondsElapsed);
 		}
-	}
-	
-
-	public void switchScene(final AllScenes scene) {
-		this.unloadScene();
-		resetCamera();
-
-		setScene(scene);
 	}
 
 	// not a very good solution bellow but it can do for now

@@ -1,13 +1,13 @@
-package com.secondhand.controller;
+package com.secondhand.view.scene;
 
 import org.anddev.andengine.engine.Engine;
 
 import android.content.Context;
 
+import com.secondhand.controller.AsyncTaskGameLoader;
+import com.secondhand.controller.IAsyncCallback;
 import com.secondhand.model.resource.LocalizationStrings;
 import com.secondhand.view.resource.Fonts;
-import com.secondhand.view.scene.GameScene;
-import com.secondhand.view.scene.IGameScene;
 
 public class LoadingScene extends GameScene {
 	private AllScenes mSceneEnum = AllScenes.MAIN_MENU_SCENE;
@@ -50,18 +50,17 @@ public class LoadingScene extends GameScene {
 			@Override
 			public void work() {
 				if (mSceneEnum == AllScenes.MAIN_MENU_SCENE) {
-					SceneManager.getInstance().loadAllResources();
+					//SceneManager.getInstance().loadAllResources();
 				} else if (mSceneEnum == AllScenes.GAME_PLAY_SCENE) {
-					SceneManager.getInstance().getGamePlayScene().loadScene();
+					//SceneManager.getInstance().getGamePlayScene().loadScene();
 				}
-
 			}
 
 			@Override
 			public void onWorkComplete() {
 
 				// go to next scene when finshed loading
-				SceneManager.getInstance().setCurrentSceneEnum(mSceneEnum);
+				//SceneManager.getInstance().setCurrentSceneEnum(mSceneEnum);
 
 			}
 		};

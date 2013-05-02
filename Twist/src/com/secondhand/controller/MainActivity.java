@@ -20,6 +20,7 @@ import com.secondhand.model.resource.LocalizationStrings;
 import com.secondhand.view.loader.FontLoader;
 import com.secondhand.view.loader.SoundLoader;
 import com.secondhand.view.loader.TextureRegionLoader;
+import com.secondhand.view.scene.AllScenes;
 import com.secondhand.view.scene.IGameScene;
 
 public class MainActivity extends BaseGameActivity {
@@ -28,18 +29,8 @@ public class MainActivity extends BaseGameActivity {
 	public static final int CAMERA_HEIGHT = 480;
 	
 	public static final int TEXT_INPUT_DIALOG = 1;
-
-	@Override
-	public void onLoadResources() {
-		// not handled here, instead handled by singelton classes. 
-	}
-
-	@Override
-	public Scene onLoadScene() {
-		// the FPS logger is useful for optimizing performance.(the FPS is shown in LogCat)
-		this.mEngine.registerUpdateHandler(new FPSLogger());
-		return SceneManager.getInstance().setCurrentSceneEnum(IGameScene.AllScenes.LOADING_SCENE).getScene();				
-	}
+	
+	SceneController sceneController;
 
 	@Override
 	public Engine onLoadEngine() {
@@ -64,9 +55,24 @@ public class MainActivity extends BaseGameActivity {
 	    LocalizationStrings.getInstance().initialize(this);
 
 	 
-	    SceneManager.getInstance().initialize(engine, this);
+	    // initialze scene controller. 
+	    this.sceneController = new SceneController(engine, this);
 	    
 	     return engine;	
+	}
+	
+	@Override
+	public void onLoadResources() {
+		// not handled here, instead handled by singelton classes. 
+	}
+
+	@Override
+	public Scene onLoadScene() {
+		// the FPS logger is useful for optimizing performance.(the FPS is shown in LogCat)
+		this.mEngine.registerUpdateHandler(new FPSLogger());
+	
+		this.sceneController.switchScene(AllScenes.LOADING_SCENE);	
+		return this.sceneController.getCurrentScene();
 	}
 	
     @Override
@@ -104,7 +110,7 @@ public class MainActivity extends BaseGameActivity {
 
 	@Override
 	public boolean onKeyDown(final int pKeyCode, final KeyEvent pEvent) {
-		if(SceneManager.getInstance().sendOnKeyDownToCurrentScene(pKeyCode, pEvent)) {
+		if(sceneController.sendOnKeyDownToCurrentScene(pKeyCode, pEvent)) {
 			return true;
 		} else {
 			// else let AndEngine handle it.
@@ -120,7 +126,7 @@ public class MainActivity extends BaseGameActivity {
 	    
 	    // ensure that the app is always shut down when exited. 
 	    // otherwise we get weird behaviour when restarting the app.
-	    if(SceneManager.getInstance().isGameLoaded())
+	    if(sceneController.isGameLoaded())
 
 	    	System.exit(0);    
 	}

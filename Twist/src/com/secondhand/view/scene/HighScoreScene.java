@@ -69,7 +69,8 @@ public class HighScoreScene extends GameScene {
 			
 			if(i == HighScoreList.getInstance().getHighScoreList().size()) {
 				this.isLoaded = false;
-				super.setScene(AllScenes.MAIN_MENU_SCENE);
+				// TODO: switch scene here.
+				//super.setScene(AllScenes.MAIN_MENU_SCENE);
 				return;
 			}
 

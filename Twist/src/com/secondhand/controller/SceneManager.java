@@ -8,72 +8,45 @@ import android.view.KeyEvent;
 import com.secondhand.debug.MyDebug;
 import com.secondhand.view.resource.Sounds;
 import com.secondhand.view.resource.TextureRegions;
+import com.secondhand.view.scene.AllScenes;
 import com.secondhand.view.scene.GamePlayScene;
 import com.secondhand.view.scene.HighScoreScene;
 import com.secondhand.view.scene.IGameScene;
+import com.secondhand.view.scene.LoadingScene;
 import com.secondhand.view.scene.MainMenuScene;
 import com.secondhand.view.scene.SettingsMenuScene;
-import com.secondhand.view.scene.IGameScene.AllScenes;
 
 /**
- * This manages all the scenes, is used to set the current scene, and sends
- * keyboard input from the MainActvity to the current scene. So it's basically
- * the controller of this app.
+ * Is used to switch between different scenes. 
  */
 public final class SceneManager {
 
-	private static SceneManager instance;
+	//private static SceneManager instance;
 
 	private AllScenes currentSceneEnum;
 
 	private Engine engine;
 	private Context context;
-	
-	private IGameScene loadingScene, mainMenuScene, settingsMenuScene,
+		private IGameScene loadingScene, mainMenuScene, settingsMenuScene,
 			highScoreScene;
-	
-	
+
 	private GamePlayScene gamePlayScene;
 
-	public GamePlayScene getGamePlayScene() {
-		return this.gamePlayScene;
-	}
-
-	
-	private boolean isGameLoaded = false;
-	
-	public void setIsGameLoaded(final boolean isGameLoaded) {
-		this.isGameLoaded = isGameLoaded;
-	}
-	
-	public boolean isGameLoaded() {
-		return this.isGameLoaded;
-	}
-
-	public static SceneManager getInstance() {
-		if (instance == null) {
-			instance = new SceneManager();
-		}
-		return instance;
-	}
-	
-	public Context getContext() {
-		return this.context;
-	}
-
-	/**
-	 * Setup this singelton class for usage.
-	 * */
-	public void initialize(final Engine engine, final Context context) {
+	public SceneManager(final Engine engine, final Context context) {
 		this.engine = engine;
 		this.context = context;
+		
+		// create all the scenes. 
 		this.loadingScene = new LoadingScene(this.engine, context);
+		this.mainMenuScene = new MainMenuScene(this.engine, context);
+		this.settingsMenuScene = new SettingsMenuScene(this.engine, context);
+		this.gamePlayScene = new GamePlayScene(this.engine, context);
+		this.highScoreScene = new HighScoreScene(this.engine, context);
 	}
 
 	public IGameScene getCurrentScene() {
 		return getScene(currentSceneEnum);
 	}
-
 
 	public IGameScene getScene(final AllScenes sceneEnum) {
 		IGameScene scene = null;
@@ -98,11 +71,6 @@ public final class SceneManager {
 		return scene;
 	}
 
-	
-	public void preloadSceneEnum(final AllScenes scene) {
-		
-	}
-	
 	public IGameScene setCurrentSceneEnum(final AllScenes currentSceneEnum) {
 		this.currentSceneEnum = currentSceneEnum;
 		final IGameScene currentScene = getCurrentScene();	
@@ -128,39 +96,14 @@ public final class SceneManager {
 		
 		TextureRegions.getInstance().load();
 		Sounds.getInstance().load();
-		
-		// IMPORTANT: when you want to add a new scene to the app, it's
-		// constructor MUST be called here.
-		this.mainMenuScene = new MainMenuScene(this.engine, context);
-		this.settingsMenuScene = new SettingsMenuScene(this.engine, context);
-		this.gamePlayScene = new GamePlayScene(this.engine, context);
-		this.highScoreScene = new HighScoreScene(this.engine, context);
-		setIsGameLoaded(true);
+		//setIsGameLoaded(true);
 	}
 
-	// called from MainActivity.
-	public boolean sendOnKeyDownToCurrentScene(final int pKeyCode,
-			final KeyEvent pEvent) {
-		
-		if (pKeyCode == KeyEvent.KEYCODE_BACK
-				&& pEvent.getAction() == KeyEvent.ACTION_DOWN) {
-			
-			if(this.getCurrentScene().getParentScene() != null) {
-
-				this.getCurrentScene().unloadScene();
-				this.getCurrentScene().onSwitchScene();
-				SceneManager.getInstance().setCurrentSceneEnum(this.getCurrentScene().getParentScene());
-				
-				return true;
-			} else {
-				return false;
-			}
-		} else
-			return false;
-		
-		//final IGameScene currentScene = getCurrentScene();
-		//return currentScene.onKeyDown(pKeyCode, pEvent);
+	
+	public void switchScene(AllScenes scene) {
+		this.getCurrentScene().unloadScene();
+		this.getCurrentScene().onSwitchScene();
+		setCurrentSceneEnum(scene );
 	}
-
 	
 }

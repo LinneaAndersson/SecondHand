@@ -51,24 +51,6 @@ public abstract class GameMenuScene extends MenuScene implements IGameScene {
 	public void loadScene() {
 		isLoaded = true;
 	}
-/*
-	@Override
-	public boolean onKeyDown(final int pKeyCode, final KeyEvent pEvent) {
-		if (pKeyCode == KeyEvent.KEYCODE_BACK
-				&& pEvent.getAction() == KeyEvent.ACTION_DOWN) {
-			final AllScenes parent = getParentScene();
-			if (parent != null) {
-//				// it should be loaded the next time it's shown. 
-				isLoaded = false;
-				setScene(parent);
-				return true;
-			} else {
-				return false;
-			}
-		} else {
-			return false;
-		}
-	}*/
 	
 	@Override
 	public void unloadScene() {
@@ -147,10 +129,6 @@ public abstract class GameMenuScene extends MenuScene implements IGameScene {
 			this.id = id;
 			this.text = text;
 		}
-	}
-	
-	@Override
-	public void setScene(final AllScenes sceneEnum){
 	}
 	
 	@Override

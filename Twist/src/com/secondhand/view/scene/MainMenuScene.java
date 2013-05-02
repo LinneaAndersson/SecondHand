@@ -10,7 +10,6 @@ import org.anddev.andengine.entity.scene.menu.item.IMenuItem;
 
 import android.content.Context;
 
-import com.secondhand.controller.LoadingScene;
 import com.secondhand.controller.SceneManager;
 import com.secondhand.debug.MyDebug;
 import com.secondhand.model.resource.LocalizationStrings;
@@ -52,18 +51,19 @@ public class MainMenuScene extends GameMenuScene implements IOnMenuItemClickList
 		switch(pMenuItem.getID()) {
 		case MENU_NEW_GAME:
 			MyDebug.i("now the game should start");
-			LoadingScene loadingScene = (LoadingScene) SceneManager.getInstance().getScene(AllScenes.LOADING_SCENE);
+			/*LoadingScene loadingScene = (LoadingScene) SceneManager.getInstance().getScene(AllScenes.LOADING_SCENE);
 			
 			loadingScene.setText("loading_level");
-			loadingScene.setSceneEnum(AllScenes.GAME_PLAY_SCENE);
-			setScene(AllScenes.LOADING_SCENE);
+			loadingScene.setSceneEnum(AllScenes.GAME_PLAY_SCENE);*/
+			// TODO: implement the scene switches
+			//setScene(AllScenes.LOADING_SCENE);
 			return true;
 		case MENU_SETTINGS:
 			MyDebug.i("now a settings menu should appear");
-			setScene(AllScenes.SETTINGS_MENU_SCENE);
+			//setScene(AllScenes.SETTINGS_MENU_SCENE);
 			return true;
 		case MENU_HIGH_SCORE:
-			setScene(AllScenes.HIGH_SCORE_SCENE);
+			//setScene(AllScenes.HIGH_SCORE_SCENE);
 			return true;
 		default:
 			return false;

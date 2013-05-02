@@ -44,34 +44,12 @@ public abstract class GameScene extends Scene implements IGameScene {
 		this.detachChildren();
 	}
 	
-	/*@Override
-	public boolean onKeyDown(final int pKeyCode, final KeyEvent pEvent) {
-		if (pKeyCode == KeyEvent.KEYCODE_BACK
-				&& pEvent.getAction() == KeyEvent.ACTION_DOWN) {
-			final AllScenes parent = getParentScene();
-			if (parent != null) {
-//				// it should be loaded the next time it's shown. 
-				isLoaded = false;
-				setScene(parent);
-
-				return true;
-			}
-			else {
-				return false;
-			}
-		} else {
-			return false;
-		}
-	}*/
 
 	@Override
 	public Scene getScene() {
 		return this;
 	}
 	
-	public void setScene(final AllScenes sceneEnum) {
-		SceneManager.getInstance().setCurrentSceneEnum(sceneEnum);
-	}
 	
 	@Override
 	public void onSwitchScene() { }

@@ -10,10 +10,11 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.BodyDef.BodyType;
+import com.secondhand.model.Entity;
 import com.secondhand.model.Player;
 import com.secondhand.model.physics.CustomPhysicsConnector;
 
-public class Physics extends IPhysics {
+public class Physics implements IPhysics {
 	private PhysicsWorld physicsWorld;
 	private Body[] bodies;
 	private IShape[] worldBounds;
@@ -22,7 +23,6 @@ public class Physics extends IPhysics {
 		physicsWorld = new PhysicsWorld(vector, true);
 	}
 
-	@Override
 	public void init() {
 		this.physicsWorld.setVelocityIterations(16);
 		this.physicsWorld.setPositionIterations(16);
@@ -57,11 +57,11 @@ public class Physics extends IPhysics {
 	}
 
 	@Override
-	public void registerBody(Body body, Boolean rotation) {
-		body.setUserData(this);
-		
-	//physicsWorld.registerPhysicsConnector(new CustomPhysicsConnector(this.getShape(),isCircle(), this.body, true, rotation));
-		
-	}
+	public void registerBody(Entity entity, Body body, Boolean rotation) {
+		body.setUserData(entity);
 
+		physicsWorld.registerPhysicsConnector(new CustomPhysicsConnector(entity.getShape(),entity.isCircle(), entity.getBody(), true, rotation));
+
+
+	}
 }

@@ -4,18 +4,15 @@ import org.anddev.andengine.entity.shape.IShape;
 import org.anddev.andengine.entity.shape.Shape;
 
 import com.badlogic.gdx.physics.box2d.Body;
+import com.secondhand.model.Entity;
 
-public abstract class IPhysics {
+public interface IPhysics {
 
-	public IPhysics() {
-		init();
-	}
+	public void setWorldBounds(IShape[] shape);
 	
-	public abstract void init();
-
-	public abstract void setWorldBounds(IShape[] shape);
+	public void removeWorldBounds();
 	
-	public abstract void removeWorldBounds();
+	public void registerBody(Entity entity, Body body, Boolean rotatation);
 	
-	public abstract void registerBody(Body body, Boolean rotatation);
+	public void deleteBody(Body body);
 }

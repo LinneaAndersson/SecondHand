@@ -31,12 +31,14 @@ public abstract class Entity {
 	}
 	
 	protected final void registerBody(final Body body) {
-		//physics.registerBody();
+		
 		
 		boolean updateRotation = true;
 		if(this instanceof Player) {
 			updateRotation = false;
 		}
+		
+		physics.registerBody(this,body,updateRotation);
 		
 		//TODO: Will remove this later
 		// we need this when doing collisions handling between entities and
@@ -95,6 +97,7 @@ public abstract class Entity {
 		this.level.getEntityManager().removeEntityFromList(this);
 		
 		destroyEntity();
+		
 	}
 	
 	public void destroyEntity() {

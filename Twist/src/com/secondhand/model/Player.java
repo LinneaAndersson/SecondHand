@@ -148,11 +148,16 @@ public class Player extends BlackHole {
 	
 	@Override
 	public void setRadius(final float radius) {
+		MyDebug.d("new radius1: " + radius);
+		
 		final float oldRadius = this.getRadius();
 		super.setRadius(radius);
 		final float newRadius = this.getRadius();
 		final CircleShape shape = (CircleShape) getBody().getFixtureList()
 				.get(0).getShape();
+		
+		
+		MyDebug.d("new radius: " + this.getRadius());
 		shape.setRadius(this.getRadius()
 				/ PhysicsConstants.PIXEL_TO_METER_RATIO_DEFAULT);
 		sceneSupport.firePropertyChange("PlayerRadius", oldRadius, newRadius);

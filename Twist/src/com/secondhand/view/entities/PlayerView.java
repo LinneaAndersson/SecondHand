@@ -37,7 +37,6 @@ public class PlayerView implements IEntityView, PropertyChangeListener {
 
 		Player player = gameWorld.getPlayer();
 
-		// TODO: Will use TextureLoader, this is just for testing
 		final TextureRegion particleTexture = TextureRegionLoader.getInstance().loadTextureRegion("particle.png", 16, 16);
 
 		final Vector2 surfacePosition = getRelativeSurfacePosition(player,

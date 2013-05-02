@@ -10,10 +10,13 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.BodyDef.BodyType;
+import com.secondhand.model.Player;
+import com.secondhand.model.physics.CustomPhysicsConnector;
 
 public class Physics extends IPhysics {
 	private PhysicsWorld physicsWorld;
 	private Body[] bodies;
+	private IShape[] worldBounds;
 
 	public Physics(Vector2 vector) {
 		physicsWorld = new PhysicsWorld(vector, true);
@@ -29,21 +32,36 @@ public class Physics extends IPhysics {
 	// world bounds:
 	// we do not do this using registerEntity, because these bodies are
 	// static.
-	public void setWorldBounds(IShape shape1, IShape shape2, IShape shape3,
-			IShape shape4) {
+	public void setWorldBounds(IShape[] shape) {
 		bodies = new Body[4];
 
 		final FixtureDef wallFixtureDef = PhysicsFactory.createFixtureDef(0,
 				0.5f, 0.5f);
 
-		bodies[0] = PhysicsFactory.createBoxBody(physicsWorld, shape1,
+		bodies[0] = PhysicsFactory.createBoxBody(physicsWorld, shape[0],
 				BodyType.StaticBody, wallFixtureDef);
-		bodies[1] = PhysicsFactory.createBoxBody(physicsWorld, shape2,
+		bodies[1] = PhysicsFactory.createBoxBody(physicsWorld, shape[1],
 				BodyType.StaticBody, wallFixtureDef);
-		bodies[2] = PhysicsFactory.createBoxBody(physicsWorld, shape3,
+		bodies[2] = PhysicsFactory.createBoxBody(physicsWorld, shape[2],
 				BodyType.StaticBody, wallFixtureDef);
-		bodies[3] = PhysicsFactory.createBoxBody(physicsWorld, shape4,
+		bodies[3] = PhysicsFactory.createBoxBody(physicsWorld, shape[3],
 				BodyType.StaticBody, wallFixtureDef);
+	}
+
+	@Override
+	public void removeWorldBounds() {
+		for(int i = 0; i < 4; ++i) {
+			this.physicsWorld.destroyBody(bodies[i]);
+			this.worldBounds[i].detachSelf();
+		}
+	}
+
+	@Override
+	public void registerBody(Body body, Boolean rotation) {
+		body.setUserData(this);
+		
+	//physicsWorld.registerPhysicsConnector(new CustomPhysicsConnector(this.getShape(),isCircle(), this.body, true, rotation));
+		
 	}
 
 }

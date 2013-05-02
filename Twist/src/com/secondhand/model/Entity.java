@@ -7,6 +7,7 @@ import org.anddev.andengine.extension.physics.box2d.PhysicsWorld;
 
 import com.badlogic.gdx.physics.box2d.Body;
 import com.secondhand.debug.MyDebug;
+import com.secondhand.model.ourphysics.IPhysics;
 import com.secondhand.model.physics.CustomPhysicsConnector;
 
 public abstract class Entity {
@@ -15,6 +16,7 @@ public abstract class Entity {
 	private final IShape shape;
 	private boolean isEdible;
 	protected final PhysicsWorld physicsWorld;
+	protected final IPhysics physics;
 	protected final GameWorld level;
 	
 	public Entity(final Shape shape, final boolean isEdible, final Body body, final GameWorld level) {
@@ -22,21 +24,25 @@ public abstract class Entity {
 		this.shape = shape;
 		this.isEdible = isEdible;
 		this.physicsWorld = level.getPhysicsWorld();
+		this.physics = level.getPhysics();
 		this.level = level;
 		bodyScheduledForDeletion = false;
 		registerBody(body); //NOPMD
 	}
 	
 	protected final void registerBody(final Body body) {
-		// we need this when doing collisions handling between entities and
-		// black holes:
-		body.setUserData(this);
+		//physics.registerBody();
 		
-		
-			boolean updateRotation = true;
+		boolean updateRotation = true;
 		if(this instanceof Player) {
 			updateRotation = false;
 		}
+		
+		//TODO: Will remove this later
+		// we need this when doing collisions handling between entities and
+		// black holes:
+		body.setUserData(this);
+	
 		physicsWorld.registerPhysicsConnector(new CustomPhysicsConnector(this.getShape(),isCircle(), this.body, true, updateRotation));
 	}
 	

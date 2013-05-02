@@ -19,7 +19,9 @@ public class GameWorld {
 
 	private final int STARTING_LEVEL = 2;
 
+	//TODO: will remove this later
 	private PhysicsWorld physicsWorld;
+	
 	private IPhysics mPhysic;
 
 	private GameWorldBounds gameWorldBounds;
@@ -46,15 +48,20 @@ public class GameWorld {
 
 		generateNewLevelEntities(STARTING_LEVEL);
 
+		//TODO: will remove this later
 		gameWorldBounds.setupWorldBounds(this.levelWidth, this.levelHeight,
 				this.physicsWorld);
+		
+		gameWorldBounds.setupWorldBounds(levelWidth, levelHeight, mPhysic);
 	}
 
 	private void init() {
 
 		support = new PropertyChangeSupport(this);
 
+		//TODO: will remove this later
 		this.physicsWorld = new PhysicsWorld(new Vector2(), true);
+
 		this.mPhysic = new Physics(new Vector2()); // TODO: have to do this other way. I fix
 
 		this.gameWorldBounds = new GameWorldBounds();
@@ -62,6 +69,9 @@ public class GameWorld {
 		// you can try lowering the values of these if the game starts lagging
 		// too much. Basically, high values for these gives a higher quality
 		// physics simulation.
+		
+		//In the new physics this is doing in the constructor. 
+		//TODO: will remove this later
 		this.physicsWorld.setVelocityIterations(16);
 		this.physicsWorld.setPositionIterations(16);
 	}
@@ -84,6 +94,7 @@ public class GameWorld {
 		return levelNumber;
 	}
 
+	//TODO: will remove this later
 	public PhysicsWorld getPhysicsWorld() {
 		return physicsWorld;
 	}
@@ -112,12 +123,18 @@ public class GameWorld {
 
 		// destroy the entities expect for player
 		clearLevel();
+		
 		this.gameWorldBounds.removeWorldBounds();
-
+		
 		// first load the new level entities:
 		generateNewLevelEntities(this.levelNumber);
+		
+		//TODO: will remove this later
 		gameWorldBounds.setupWorldBounds(this.levelWidth, this.levelHeight,
 				this.physicsWorld);
+		
+		gameWorldBounds.setupWorldBounds(levelWidth, levelHeight, mPhysic);
+		
 		// then notify the view of this, so that it can place out the new
 		// Entities in AndEngine for rendering.
 		support.firePropertyChange("NextLevel", false, true);

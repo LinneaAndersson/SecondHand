@@ -11,14 +11,15 @@ import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.secondhand.model.ourphysics.IPhysics;
 
 public class GameWorldBounds {
-
+	//Will remove this later
 	private PhysicsWorld physicsWorld;
+	
 	private IPhysics physics;
 
 	private Body[] bodies;
 	private Shape[]worldBounds;
 
-
+		//Will remove this later
 	public final void setupWorldBounds(final int levelWidth, final int levelHeight, final PhysicsWorld physicsWorld) {
 
 		this.physicsWorld = physicsWorld;
@@ -65,11 +66,13 @@ public class GameWorldBounds {
 		worldBounds[3] = new Rectangle(levelWidth - 2, 0, 2, levelHeight);
 		
 		
-		physics.setWorldBounds(worldBounds[0],worldBounds[1],worldBounds[2],worldBounds[3]);
+		physics.setWorldBounds(worldBounds);
 	}
 
 	public void removeWorldBounds() {
-
+		physics.removeWorldBounds();
+		
+		// TODO: will remove this later
 		for(int i = 0; i < 4; ++i) {
 			this.physicsWorld.destroyBody(bodies[i]);
 			this.worldBounds[i].detachSelf();

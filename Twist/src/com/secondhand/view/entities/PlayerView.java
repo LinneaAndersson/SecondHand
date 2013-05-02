@@ -35,10 +35,6 @@ public class PlayerView implements IEntityView, PropertyChangeListener {
 
 	public void playerMoveAnimation(final Vector2 touch) {
 
-		final Vector2 playerPosition = new Vector2(gameWorld.getPlayer()
-				.getCenterX(), gameWorld.getPlayer().getCenterY());
-		final Vector2 touchPosition = new Vector2(touch);
-
 		Player player = gameWorld.getPlayer();
 
 		// TODO: Will use TextureLoader, this is just for testing

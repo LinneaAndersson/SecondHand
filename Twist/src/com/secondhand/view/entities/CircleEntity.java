@@ -1,4 +1,4 @@
-package com.secondhand.view.Entities;
+package com.secondhand.view.entities;
 
 import org.anddev.andengine.extension.physics.box2d.PhysicsFactory;
 import com.secondhand.view.opengl.Circle;

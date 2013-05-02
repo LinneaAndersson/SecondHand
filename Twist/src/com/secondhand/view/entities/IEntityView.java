@@ -1,4 +1,4 @@
-package com.secondhand.view.Entities;
+package com.secondhand.view.entities;
 
 /* TODO: (?)
    Right now the only entites that implements PropertyChangeListener is:

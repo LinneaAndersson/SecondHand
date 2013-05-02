@@ -30,6 +30,12 @@ public class Player extends BlackHole {
 
 	private PlayerUtil util;
 
+	// ============== EVENT-CONSTANTS ==============
+	public final static String INCREASE_SCORE = "IncreaseScore";
+	public final static String INCREASE_LIFE = "IncreaseLife";
+	public final static String ADD_POWER_UP = "AddPowerUp";
+	public final static String POWER_UP_SOUND = "PowerUpSound";
+	// =============================================
 	public Player(final Vector2 position, final float radius,
 			final GameWorld gameWorld, final int startingLives,
 			final int startingScore) {
@@ -69,7 +75,7 @@ public class Player extends BlackHole {
 	@Override
 	public void increaseScore(final int increase) {
 		super.increaseScore((int) this.getScoreMultiplier() * increase);
-		util.fireInt("Score", 0, getScore());
+		util.fireInt(INCREASE_SCORE, 0, getScore());
 	}
 
 	public void setScoreMultiplier(final float scoreMultiplier) {
@@ -82,7 +88,7 @@ public class Player extends BlackHole {
 
 	private void changeLives(final int change) {
 		lives += change;
-		util.fireInt("Life", 0, lives);
+		util.fireInt(INCREASE_LIFE, 0, lives);
 	}
 
 	// the player loses a life
@@ -114,7 +120,7 @@ public class Player extends BlackHole {
 
 	public void addPowerUp(final PowerUp powerUp) {
 		this.powerUpList.add(powerUp);
-		util.fireObject("ADD", null, powerUp);
+		util.fireObject(ADD_POWER_UP, null, powerUp);
 	}
 
 	public void setName(final String name) {
@@ -162,7 +168,7 @@ public class Player extends BlackHole {
 
 	protected void handlePowerUp(final PowerUp powerUp) {
 
-		Sounds.getInstance().powerUpSound.play();
+		util.fireObject(POWER_UP_SOUND, null, null);
 
 		addPowerUp(powerUp);
 

@@ -23,7 +23,7 @@ public abstract class PowerUp extends RectangleEntity {
 	
 	public PowerUp(final BaseRectangle rectangle, final GameWorld level, final float duration) {
 		super(rectangle, true, level, FixtureDefs.POWER_UP_FIXTURE_DEF);
-		this.duration = duration;	
+		this.duration = duration;
 	}
 	
 	public PowerUp (final Vector2 position, final PowerUpType powerUpType, final GameWorld level, final float duration) {
@@ -39,20 +39,10 @@ public abstract class PowerUp extends RectangleEntity {
 		return duration;
 	}
 	
-	public TimerHandler getTimer(final Player player) {
-		return new TimerHandler(duration, new ITimerCallback() {
-			private Player user = player; 
-			@Override
-			public void onTimePassed(final TimerHandler pTimerHandler) {
-				user.removePowerUp(PowerUp.this);
-			}
-		});
-	}
-	
 	public abstract void activateEffect(final Player player);
 	
 	public void deactivateEffect(final Player player) {
-		/* 	TODO: Reset player texture or whatever it is the powerup changes */
+		/* 	TODO: Reset player texture or whatever it is the powerup changes (should be taken care of in PowerUpView) */
 		if (player.getPowerUps().isEmpty())
 			player.getCircle().setColor(1f, 1f, 1f);
 	}

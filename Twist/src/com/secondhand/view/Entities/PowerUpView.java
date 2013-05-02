@@ -20,6 +20,8 @@ public class PowerUpView implements IEntityView, PropertyChangeListener {
 	public PowerUpView(Engine engine, GameWorld gameWorld) {
 		this.engine = engine;
 		this.gameWorld = gameWorld;
+		
+		gameWorld.getPlayer().addListener(this);
 	}
 	
 	public TimerHandler getTimer(final Player player, final PowerUp powerUp) {

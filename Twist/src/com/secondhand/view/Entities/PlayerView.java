@@ -3,6 +3,7 @@ package com.secondhand.view.Entities;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 
+import com.secondhand.model.GameWorld;
 import com.secondhand.model.Player;
 import com.secondhand.view.resource.Sounds;
 
@@ -10,6 +11,14 @@ import com.secondhand.view.resource.Sounds;
 // we may want to make IEntityView extends PropertyChangeListener
 public class PlayerView implements IEntityView, PropertyChangeListener {
 
+	private GameWorld gameWorld;
+	
+	public PlayerView(GameWorld gameWorld) {
+		this.gameWorld = gameWorld;
+		
+		gameWorld.getPlayer().addListener(this);
+	}
+	
 	@Override
 	public void propertyChange(PropertyChangeEvent arg0) {
 		String propertyName = arg0.getPropertyName();

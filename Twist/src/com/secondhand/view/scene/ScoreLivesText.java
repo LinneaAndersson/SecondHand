@@ -24,7 +24,6 @@ public final class ScoreLivesText extends ChangeableText {
 		return "Score: " + score + "  Lives: " + lives;
 	}
 	
-	
 	public static String constructString(final int score, final int lives) {
 		return constructString(score + "", lives + "");
 	}

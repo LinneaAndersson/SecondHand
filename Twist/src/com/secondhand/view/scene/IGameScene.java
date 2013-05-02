@@ -24,14 +24,18 @@ GAME_PLAY_SCENE_LOADING_SCENE, CHANGE_LEVEL_SCENE
 	 * child entities of the scene will be attached using attachChild)
 	 */
 	void loadScene();
+	
+	void unloadScene();
 
 	Scene getScene();
+	
+	void onSwitchScene();
 	
 	/**
 	 * Override this method if you want to get keyboard input from the physical
 	 * buttons of an Android device.
 	 */
-	boolean onKeyDown(final int pKeyCode, final KeyEvent pEvent);
+	//boolean onKeyDown(final int pKeyCode, final KeyEvent pEvent);
 
 	// Returns the parent-scene, for example SettingsMenuScene returns
 	// AllScenes.MAIN_MENU_SCENE

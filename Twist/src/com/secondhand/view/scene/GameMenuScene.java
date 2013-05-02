@@ -51,7 +51,7 @@ public abstract class GameMenuScene extends MenuScene implements IGameScene {
 	public void loadScene() {
 		isLoaded = true;
 	}
-
+/*
 	@Override
 	public boolean onKeyDown(final int pKeyCode, final KeyEvent pEvent) {
 		if (pKeyCode == KeyEvent.KEYCODE_BACK
@@ -68,6 +68,12 @@ public abstract class GameMenuScene extends MenuScene implements IGameScene {
 		} else {
 			return false;
 		}
+	}*/
+	
+	@Override
+	public void unloadScene() {
+		this.isLoaded = false;
+		this.detachChildren();
 	}
 
 	protected int layoutHeadline(final String headline) {
@@ -145,6 +151,8 @@ public abstract class GameMenuScene extends MenuScene implements IGameScene {
 	
 	@Override
 	public void setScene(final AllScenes sceneEnum){
-		SceneManager.getInstance().setCurrentSceneEnum(sceneEnum);
 	}
+	
+	@Override
+	public void onSwitchScene() { }
 }

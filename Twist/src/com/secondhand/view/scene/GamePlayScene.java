@@ -25,8 +25,10 @@ import com.secondhand.model.Entity;
 import com.secondhand.model.GameWorld;
 import com.secondhand.model.Player;
 import com.secondhand.model.powerup.PowerUp;
+import com.secondhand.model.resource.HighScoreList;
 import com.secondhand.model.resource.Sounds;
 import com.secondhand.view.opengl.StarsBackground;
+import com.secondhand.view.scene.IGameScene.AllScenes;
 
 public class GamePlayScene extends GameScene implements PropertyChangeListener {
 
@@ -153,27 +155,11 @@ public class GamePlayScene extends GameScene implements PropertyChangeListener {
 		// don't show the HUD in the menu.
 		hud.setCamera(null);
 	}
-
-	@Override
-	public boolean onKeyDown(final int pKeyCode, final KeyEvent pEvent) {
-		if (pKeyCode == KeyEvent.KEYCODE_BACK
-				&& pEvent.getAction() == KeyEvent.ACTION_DOWN) {
-			final AllScenes parent = getParentScene();
-			if (parent != null) {
-				this.switchScene(parent);
-				return true;
-			} else
-				return false;
-		} else {
-			return false;
-		}
-	}
-
-	public void switchScene(final AllScenes scene) {
-		isLoaded = false;
+	
+	public void onSwitchScene() {
+		super.onSwitchScene();
 		resetCamera();
 
-		setScene(scene);
 	}
 
 	@Override
@@ -185,10 +171,43 @@ public class GamePlayScene extends GameScene implements PropertyChangeListener {
 	protected void onManagedUpdate(final float pSecondsElapsed) {
 		super.onManagedUpdate(pSecondsElapsed);
 		if (gameWorld.isGameOver()) {
-			InputDialogManager.getInstance().doStuff(this, pSecondsElapsed);
+			
+			if (InputDialogManager.input != null) {
+
+				HighScoreList.Entry newEntry = new HighScoreList.Entry(InputDialogManager.input, 
+						getGameWorld().getPlayer().getScore());
+				HighScoreList.getInstance().insertInHighScoreList(newEntry);
+				InputDialogManager.showing = false;
+
+				InputDialogManager.input = null;
+
+				resetCamera();
+				switchScene(AllScenes.HIGH_SCORE_SCENE);
+
+			} else if (InputDialogManager.showing) {
+				getGameWorld().onManagedUpdate(pSecondsElapsed);
+			} else if (HighScoreList.getInstance().madeItToHighScoreList(
+					getGameWorld().getPlayer().getScore())) {
+
+				InputDialogManager.showing = true;
+				InputDialogManager.getInstance().showDialog();
+
+			} else {
+				resetCamera();
+				switchScene(AllScenes.HIGH_SCORE_SCENE);
+			}
+			
 		} else {
 			gameWorld.onManagedUpdate(pSecondsElapsed);
 		}
+	}
+	
+
+	public void switchScene(final AllScenes scene) {
+		this.unloadScene();
+		resetCamera();
+
+		setScene(scene);
 	}
 
 	// not a very good solution bellow but it can do for now

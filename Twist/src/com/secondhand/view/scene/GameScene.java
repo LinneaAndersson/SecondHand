@@ -31,15 +31,20 @@ public abstract class GameScene extends Scene implements IGameScene {
 	
 	@Override
 	public void loadScene() {
-		super.detachChildren();
 		isLoaded = true;
 	}
 	
 	public boolean isLoaded() {
 		return this.isLoaded;
 	}
-
+	
 	@Override
+	public void unloadScene() {
+		this.isLoaded = false;
+		this.detachChildren();
+	}
+	
+	/*@Override
 	public boolean onKeyDown(final int pKeyCode, final KeyEvent pEvent) {
 		if (pKeyCode == KeyEvent.KEYCODE_BACK
 				&& pEvent.getAction() == KeyEvent.ACTION_DOWN) {
@@ -57,7 +62,7 @@ public abstract class GameScene extends Scene implements IGameScene {
 		} else {
 			return false;
 		}
-	}
+	}*/
 
 	@Override
 	public Scene getScene() {
@@ -67,4 +72,7 @@ public abstract class GameScene extends Scene implements IGameScene {
 	public void setScene(final AllScenes sceneEnum) {
 		SceneManager.getInstance().setCurrentSceneEnum(sceneEnum);
 	}
+	
+	@Override
+	public void onSwitchScene() { }
 }

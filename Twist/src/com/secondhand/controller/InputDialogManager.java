@@ -56,28 +56,6 @@ public final class InputDialogManager {
 	// until
 	// the operating system shows the damn input dialog.
 	public void doStuff(GamePlayScene scene, float pSecondsElapsed) {
-		if (input != null) {
 
-			HighScoreList.Entry newEntry = new HighScoreList.Entry(input, scene.getGameWorld().getPlayer().getScore());
-			HighScoreList.getInstance().insertInHighScoreList(newEntry);
-			showing = false;
-
-			input = null;
-
-			scene.resetCamera();
-			scene.switchScene(AllScenes.HIGH_SCORE_SCENE);
-
-		} else if (showing) {
-			scene.getGameWorld().onManagedUpdate(pSecondsElapsed);
-		} else if (HighScoreList.getInstance().madeItToHighScoreList(
-				scene.getGameWorld().getPlayer().getScore())) {
-
-			showing = true;
-			showDialog();
-
-		} else {
-			scene.resetCamera();
-			scene.switchScene(AllScenes.HIGH_SCORE_SCENE);
-		}
 	}
 }

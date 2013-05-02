@@ -140,8 +140,25 @@ public final class SceneManager {
 	// called from MainActivity.
 	public boolean sendOnKeyDownToCurrentScene(final int pKeyCode,
 			final KeyEvent pEvent) {
-		final IGameScene currentScene = getCurrentScene();
-		return currentScene.onKeyDown(pKeyCode, pEvent);
+		
+		if (pKeyCode == KeyEvent.KEYCODE_BACK
+				&& pEvent.getAction() == KeyEvent.ACTION_DOWN) {
+			
+			if(this.getCurrentScene().getParentScene() != null) {
+
+				this.getCurrentScene().unloadScene();
+				this.getCurrentScene().onSwitchScene();
+				SceneManager.getInstance().setCurrentSceneEnum(this.getCurrentScene().getParentScene());
+				
+				return true;
+			} else {
+				return false;
+			}
+		} else
+			return false;
+		
+		//final IGameScene currentScene = getCurrentScene();
+		//return currentScene.onKeyDown(pKeyCode, pEvent);
 	}
 
 	

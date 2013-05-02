@@ -36,7 +36,7 @@ public class PowerUpView implements IEntityView, PropertyChangeListener {
 	@Override
 	public void propertyChange(PropertyChangeEvent event) {
 		String eventName = event.getPropertyName();
-		if (eventName.equals("AddPowerUp")) {
+		if (eventName.equals(Player.ADD_POWER_UP)) {
 
 			final Player player = gameWorld.getPlayer();
 			final PowerUp powerUp = ((PowerUp) event.getNewValue());

@@ -1,4 +1,4 @@
-	package com.secondhand.util;
+	package com.secondhand.model.util;
 
 import java.util.ArrayList;
 import java.util.List;

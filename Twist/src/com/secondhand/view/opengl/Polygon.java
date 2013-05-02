@@ -1,4 +1,4 @@
-package com.secondhand.opengl;
+package com.secondhand.view.opengl;
 
 import java.util.List;
 
@@ -17,69 +17,69 @@ import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.Fixture;
 import com.badlogic.gdx.physics.box2d.PolygonShape;
 
-
 /**
- * A polygon class used for drawing polygons.
- * The positioning for polygons works as follows: 
- * All the points of the polygon(the list polygon in the constructor)
- *  are positioned relatively to the position of the polygon(the position (pX, pY)	 specified in the constructor)
- * So a point point (0,0) in the polygon with position (x,y) will be placed at position (x,y)
- * Likewise, the point (10,11) in that same polygon will be at position (x+10,y+11) 
+ * A polygon class used for drawing polygons. The positioning for polygons works
+ * as follows: All the points of the polygon(the list polygon in the
+ * constructor) are positioned relatively to the position of the polygon(the
+ * position (pX, pY) specified in the constructor) So a point point (0,0) in the
+ * polygon with position (x,y) will be placed at position (x,y) Likewise, the
+ * point (10,11) in that same polygon will be at position (x+10,y+11)
+ * 
  * @author erkastina
- *
+ * 
  */
 public class Polygon extends Shape {
-	
-	
+
 	protected final PolygonVertexBuffer mPolygonVertexBuffer;
-	
+
 	protected List<Vector2> mPolygon;
 	private Body mBody;
 	private PolygonShape mPolygonShape;
-	/*private final float mMaxLength;*/
+
+	/* private final float mMaxLength; */
 
 	public Polygon(final Vector2 position, final List<Vector2> polygon) {
 		this(position.x, position.y, polygon);
-		
+
 	}
-	
+
 	/**
-	 * Culling enabled by default. 
+	 * Culling enabled by default.
 	 */
 	public Polygon(final float pX, final float pY, final List<Vector2> polygon) {
 		this(pX, pY, polygon, true);
 	}
-	
 
 	/**
 	 * 
 	 * @param pX
 	 * @param pY
-	 * @param polygon the points that define the polygon. e.g., for a square these points will be its four corners.
+	 * @param polygon
+	 *            the points that define the polygon. e.g., for a square these
+	 *            points will be its four corners.
 	 * @param cullingEnabled
 	 */
-	public Polygon(final float pX, final float pY, final List<Vector2> polygon, final boolean cullingEnabled) {
+	public Polygon(final float pX, final float pY, final List<Vector2> polygon,
+			final boolean cullingEnabled) {
 
 		super(pX, pY);
-		
+
 		this.mPolygon = polygon;
-		
+
 		super.setCullingEnabled(cullingEnabled);
-		
-		this.mPolygonVertexBuffer = new PolygonVertexBuffer(this.mPolygon.size(), GL11.GL_STATIC_DRAW, true);
+
+		this.mPolygonVertexBuffer = new PolygonVertexBuffer(
+				this.mPolygon.size(), GL11.GL_STATIC_DRAW, true);
 		this.updateVertexBuffer();
-		
+
 		// used in the culling logic
-		//this.mMaxLength = computeMaxLength(polygon);
+		// this.mMaxLength = computeMaxLength(polygon);
 	}
-	
-	
-	
+
 	public List<Vector2> getPolygon() {
 		return this.mPolygon;
 	}
-	
-	
+
 	@Override
 	public float getWidth() {
 		return 0;
@@ -89,12 +89,12 @@ public class Polygon extends Shape {
 	public float getHeight() {
 		return 0;
 	}
-	
+
 	@Override
 	public float getBaseWidth() {
 		return getWidth();
 	}
-	
+
 	@Override
 	public float getBaseHeight() {
 		return getBaseWidth();
@@ -114,7 +114,7 @@ public class Polygon extends Shape {
 	protected void onUpdateVertexBuffer() {
 		this.mPolygonVertexBuffer.update(this.mPolygon);
 	}
-	
+
 	@Override
 	protected VertexBuffer getVertexBuffer() {
 		return this.mPolygonVertexBuffer;
@@ -131,36 +131,36 @@ public class Polygon extends Shape {
 		GLHelper.disableTexCoordArray(pGL);
 	}
 
-	
 	@Override
 	protected void drawVertices(final GL10 pGL, final Camera pCamera) {
-		pGL.glDrawArrays(GL10.GL_TRIANGLES, 0, this.mPolygonVertexBuffer.getVertices().size());
-	}	
-
-	
-	private static boolean isPointInCamera(final Camera camera, final Vector2 point) {
-		return camera.getMinX() < point.x && camera.getMaxX() > point.x &&
-				camera.getMinY() < point.y && camera.getMaxY() > point.y;
+		pGL.glDrawArrays(GL10.GL_TRIANGLES, 0, this.mPolygonVertexBuffer
+				.getVertices().size());
 	}
-	
+
+	private static boolean isPointInCamera(final Camera camera,
+			final Vector2 point) {
+		return camera.getMinX() < point.x && camera.getMaxX() > point.x
+				&& camera.getMinY() < point.y && camera.getMaxY() > point.y;
+	}
+
 	public void setBody(final Body body) {
 		this.mBody = body;
 		final Fixture fixture = mBody.getFixtureList().get(0);
-		this.mPolygonShape	 = (PolygonShape)fixture.getShape();	
+		this.mPolygonShape = (PolygonShape) fixture.getShape();
 	}
-		
+
 	@Override
 	protected boolean isCulled(final Camera pCamera) {
-		for(int i = 0; i < this.mPolygonShape.getVertexCount(); ++i) {
-			final Vector2 v = new Vector2(0,0);		
+		for (int i = 0; i < this.mPolygonShape.getVertexCount(); ++i) {
+			final Vector2 v = new Vector2(0, 0);
 			this.mPolygonShape.getVertex(i, v);
 			final Vector2 trueV = this.mBody.getWorldPoint(v);
 
 			final Vector2 translatedPoint = new Vector2(
-					PhysicsConstants.PIXEL_TO_METER_RATIO_DEFAULT * trueV.x ,
+					PhysicsConstants.PIXEL_TO_METER_RATIO_DEFAULT * trueV.x,
 					PhysicsConstants.PIXEL_TO_METER_RATIO_DEFAULT * trueV.y);
 
-			if(isPointInCamera(pCamera, translatedPoint)) {
+			if (isPointInCamera(pCamera, translatedPoint)) {
 				return false;
 			}
 		}

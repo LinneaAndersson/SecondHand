@@ -26,10 +26,9 @@ import com.secondhand.model.GameWorld;
 import com.secondhand.model.Player;
 import com.secondhand.model.powerup.PowerUp;
 import com.secondhand.model.resource.Sounds;
-import com.secondhand.opengl.StarsBackground;
+import com.secondhand.view.opengl.StarsBackground;
 
-public class GamePlayScene extends GameScene implements PropertyChangeListener,
-		IGamePlaySceneView {
+public class GamePlayScene extends GameScene implements PropertyChangeListener {
 
 	private HUD hud;
 
@@ -236,7 +235,6 @@ public class GamePlayScene extends GameScene implements PropertyChangeListener,
 		 */
 	}
 
-	@Override
 	public void showFadingTextNotifier(final String str, final Vector2 position) {
 
 		// convert positon to camera coordinates.
@@ -247,7 +245,6 @@ public class GamePlayScene extends GameScene implements PropertyChangeListener,
 		this.hud.attachChild(new FadingNotifierText(str, cameraPosition));
 	}
 
-	@Override
 	public void newLevelStarted() {
 		MyDebug.d("new level!");
 
@@ -258,12 +255,10 @@ public class GamePlayScene extends GameScene implements PropertyChangeListener,
 
 	}
 
-	@Override
 	public void updateScore(final int newScore) {
 		this.scoreLivesText.setScore(newScore);
 	}
 
-	@Override
 	public void updateLives(final int newLives) {
 		this.scoreLivesText.setLives(newLives);
 	}

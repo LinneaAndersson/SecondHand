@@ -1,4 +1,4 @@
-package com.secondhand.opengl;
+package com.secondhand.view.opengl;
 
 import java.util.List;
 
@@ -14,34 +14,36 @@ import org.anddev.andengine.opengl.vertex.VertexBuffer;
 import com.badlogic.gdx.math.Vector2;
 
 /**
- * A circle class used for drawing circles. 
- * @author erkastina
- * IMPORTANT: the center position is used to position circles. 
- *
+ * A circle class used for drawing circles.
+ * 
+ * @author erkastina IMPORTANT: the center position is used to position circles.
+ * 
  */
-public class Circle extends Shape{
-	
+public class Circle extends Shape {
+
 	protected float mRadius;
-	
+
 	protected final CircleVertexBuffer mCircleVertexBuffer;
-	
+
 	/**
-	 * Culling enabled by default. 
+	 * Culling enabled by default.
 	 */
 	public Circle(final float pX, final float pY, final float radius) {
 		this(pX, pY, radius, true);
 	}
-	
+
 	public static final int CIRCLE_FRAGMENTS = 100;
-	
-	public Circle(final float pX, final float pY, final float radius, final boolean cullingEnabled) {
-		super(pX/* + radius*/, pY/* + radius*/);
-		
+
+	public Circle(final float pX, final float pY, final float radius,
+			final boolean cullingEnabled) {
+		super(pX/* + radius */, pY/* + radius */);
+
 		super.setCullingEnabled(cullingEnabled);
-		
+
 		this.mRadius = radius;
 
-		this.mCircleVertexBuffer = new CircleVertexBuffer(100, GL11.GL_STATIC_DRAW, true);
+		this.mCircleVertexBuffer = new CircleVertexBuffer(100,
+				GL11.GL_STATIC_DRAW, true);
 		this.updateVertexBuffer();
 
 		final float width = mRadius * 2;
@@ -53,12 +55,12 @@ public class Circle extends Shape{
 		this.mScaleCenterX = this.mRotationCenterX;
 		this.mScaleCenterY = this.mRotationCenterY;
 	}
-	
+
 	@Override
 	public float getWidth() {
 		return this.mRadius * 2;
 	}
-	
+
 	public void setRadius(final float radius) {
 		this.mRadius = radius;
 		this.updateVertexBuffer();
@@ -68,7 +70,7 @@ public class Circle extends Shape{
 	public float getHeight() {
 		return getWidth();
 	}
-	
+
 	public float getRadius() {
 		return this.mRadius;
 	}
@@ -97,7 +99,7 @@ public class Circle extends Shape{
 	protected void onUpdateVertexBuffer() {
 		this.mCircleVertexBuffer.update(this.getRadius());
 	}
-	
+
 	@Override
 	protected VertexBuffer getVertexBuffer() {
 		return this.mCircleVertexBuffer;
@@ -116,24 +118,24 @@ public class Circle extends Shape{
 
 	@Override
 	protected void drawVertices(final GL10 pGL, final Camera pCamera) {
-		pGL.glDrawArrays(GL10.GL_TRIANGLE_FAN, 0, this.mCircleVertexBuffer.getSegments());
+		pGL.glDrawArrays(GL10.GL_TRIANGLE_FAN, 0,
+				this.mCircleVertexBuffer.getSegments());
 
-	}	
+	}
 
 	@Override
 	protected boolean isCulled(final Camera pCamera) {
 		final float cx = this.mX - this.mRadius;
 		final float cy = this.mY - this.mRadius;
-		return cx > pCamera.getMaxX()
-			|| cy > pCamera.getMaxY()
-			|| cx + this.getWidth() < pCamera.getMinX()
-			|| cy + this.getHeight() < pCamera.getMinY();
+		return cx > pCamera.getMaxX() || cy > pCamera.getMaxY()
+				|| cx + this.getWidth() < pCamera.getMinX()
+				|| cy + this.getHeight() < pCamera.getMinY();
 	}
-	
+
 	protected void applyRotation(final GL10 pGL) {
 		final float rotation = this.mRotation;
 
-		if(rotation != 0) {
+		if (rotation != 0) {
 			pGL.glRotatef(rotation, 0, 0, 1);
 		}
 	}

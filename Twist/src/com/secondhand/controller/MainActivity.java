@@ -1,6 +1,7 @@
 package com.secondhand.controller;
 
 import org.anddev.andengine.engine.Engine;
+import org.anddev.andengine.engine.camera.SmoothCamera;
 import org.anddev.andengine.engine.options.EngineOptions;
 import org.anddev.andengine.engine.options.EngineOptions.ScreenOrientation;
 import org.anddev.andengine.engine.options.resolutionpolicy.RatioResolutionPolicy;
@@ -44,7 +45,7 @@ public class MainActivity extends BaseGameActivity {
 	public Engine onLoadEngine() {
 		
 		// configure camera
-	    final MySmoothCamera camera = new MySmoothCamera(0, 0, CAMERA_WIDTH, CAMERA_HEIGHT, Float.MAX_VALUE, Float.MAX_VALUE, 1.0f);
+	    final SmoothCamera camera = new SmoothCamera(0, 0, CAMERA_WIDTH, CAMERA_HEIGHT, Float.MAX_VALUE, Float.MAX_VALUE, 1.0f);
 	    
 	    // configure engine
 	    final EngineOptions engineOptions = new EngineOptions(

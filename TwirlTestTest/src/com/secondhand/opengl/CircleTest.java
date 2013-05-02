@@ -4,6 +4,8 @@ package com.secondhand.opengl;
 import org.anddev.andengine.engine.camera.Camera;
 import org.anddev.andengine.opengl.buffer.BufferObjectManager;
 
+import com.secondhand.view.opengl.Circle;
+
 import junit.framework.TestCase;
 
 public class CircleTest extends TestCase {

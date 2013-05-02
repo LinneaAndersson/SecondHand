@@ -1,6 +1,7 @@
-package com.secondhand.view.Entyties;
+package com.secondhand.view.Entities;
 
 import org.anddev.andengine.extension.physics.box2d.PhysicsFactory;
+import com.secondhand.view.opengl.Circle;
 import org.anddev.andengine.extension.physics.box2d.PhysicsWorld;
 
 import com.badlogic.gdx.physics.box2d.Body;
@@ -8,7 +9,6 @@ import com.badlogic.gdx.physics.box2d.BodyDef.BodyType;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.secondhand.model.Entity;
 import com.secondhand.model.GameWorld;
-import com.secondhand.opengl.Circle;
 
 public abstract class CircleEntity extends Entity {
 	

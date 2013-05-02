@@ -26,8 +26,8 @@ import com.secondhand.model.GameWorld;
 import com.secondhand.model.Player;
 import com.secondhand.model.powerup.PowerUp;
 import com.secondhand.model.resource.HighScoreList;
-import com.secondhand.model.resource.Sounds;
 import com.secondhand.view.opengl.StarsBackground;
+import com.secondhand.view.resource.Sounds;
 import com.secondhand.view.scene.IGameScene.AllScenes;
 
 public class GamePlayScene extends GameScene implements PropertyChangeListener {

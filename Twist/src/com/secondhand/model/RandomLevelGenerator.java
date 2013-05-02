@@ -23,7 +23,7 @@ public class RandomLevelGenerator {
 	public final int levelWidth;
 	public final int levelHeight;
 	public final int playerMaxSize;
-	
+
 	private float xAxis;
 	private float yAxis;
 	public final List<Entity> entityList;
@@ -38,7 +38,7 @@ public class RandomLevelGenerator {
 
 		rng = new Random();
 
-		this.levelNumber = level.getLevelNumber();
+		this.levelNumber = level.getLevelNumber()-1;
 		this.level = level;
 
 		this.levelWidth = level.getLevelWidth();
@@ -59,8 +59,6 @@ public class RandomLevelGenerator {
 		// to make it easier to place out the entities.
 		placeOutLevelEntities();
 
-	
-
 	}
 
 	private void placeOutEnemies() {
@@ -68,7 +66,7 @@ public class RandomLevelGenerator {
 		Enemy enemy = new Enemy(new Vector2(200, 200), 50, level);
 		entityList.add(enemy);
 		enemyList.add(enemy);
-		
+
 		final int ENEMIES;
 		if (levelNumber < 7) {
 			ENEMIES = 4 * (this.levelNumber);
@@ -80,21 +78,23 @@ public class RandomLevelGenerator {
 
 			float radius;
 
-			radius = RandomUtil.nextFloat(rng, Enemy.getMinSize(), Enemy.getMaxSize());
+			radius = RandomUtil.nextFloat(rng, Enemy.getMinSize(),
+					Enemy.getMaxSize());
 
 			while (true) {
-				
+
 				xAxis = rng.nextInt(this.levelWidth);
 				yAxis = rng.nextInt(this.levelHeight);
 
 				final World.Polygon poly = PolygonFactory.createCircle(
 						new Vector2(xAxis, yAxis), radius);
 
-				//addToWorld add the polygon if it is unoccupied otherwise it returns false
-				if (world.addToWorld(poly)){
+				// addToWorld add the polygon if it is unoccupied otherwise it
+				// returns false
+				if (world.addToWorld(poly)) {
 					break;
 				}
-			
+
 			}
 
 			enemy = new Enemy(new Vector2(xAxis, yAxis), radius, level);
@@ -138,15 +138,16 @@ public class RandomLevelGenerator {
 				xAxis = rng.nextInt(this.levelWidth);
 				yAxis = rng.nextInt(this.levelHeight);
 
-				final World.Polygon poly = new World.Polygon(new Vector2(xAxis, yAxis),
-						edges);
+				final World.Polygon poly = new World.Polygon(new Vector2(xAxis,
+						yAxis), edges);
 
-				if (world.addToWorld(poly)){
+				if (world.addToWorld(poly)) {
 					break;
 				}
 			}
 
-			entityList.add(new Obstacle(new Vector2(xAxis, yAxis), edges, level));
+			entityList
+			.add(new Obstacle(new Vector2(xAxis, yAxis), edges, level));
 		}
 	}
 
@@ -161,73 +162,81 @@ public class RandomLevelGenerator {
 				yAxis = rng.nextInt(this.levelHeight);
 
 				final World.Polygon poly = PolygonFactory.createRectangle(
-						new Vector2(xAxis, yAxis), PowerUp.WIDTH, PowerUp.HEIGHT);
+						new Vector2(xAxis, yAxis), PowerUp.WIDTH,
+						PowerUp.HEIGHT);
 
-				if (world.addToWorld(poly)){
+				if (world.addToWorld(poly)) {
 					break;
 				}
 			}
 
-			entityList.add(PowerUpFactory.getRandomPowerUp(new Vector2(xAxis, yAxis),
-					level, rng));
+			entityList.add(PowerUpFactory.getRandomPowerUp(new Vector2(xAxis,
+					yAxis), level, rng));
 		}
 	}
 
 	private void placeOutPlanets() {
-
+		MyDebug.d("The level is = " + levelNumber);
 		final float K = 1.2f;
-
-		final int MINIMUM_PLAYER_EATABLE = 30; // this.levelNumber * 4;
+		final int MINIMUM_PLAYER_EATABLE;
+		if (this.levelNumber < 10) {
+			MINIMUM_PLAYER_EATABLE = 50 - (this.levelNumber) * 3;
+		} else {
+			MINIMUM_PLAYER_EATABLE = 10;
+		}
+		MyDebug.d(" eatable = " + MINIMUM_PLAYER_EATABLE);
 		int numPlayerEatable = 0;
 
-		final float MAX_SIZE = 80f * this.levelNumber * K;
+		final float MAX_SIZE = player.getRadius()*4f;
 
-		final float MIN_SIZE = player.getRadius() - 10;
-		if (MIN_SIZE < 0) {
-			MyDebug.e("planet minimum size negative");
-		}
+		final float MIN_SIZE = player.getRadius() - 20;
 
-		final int PLANETS = 35; // (int)( 25 * this.levelNumber * K);
+		final int PLANETS = 50; // (int)( 25 * this.levelNumber * K);
+		float radius;
 
-		for (int i = 0; i < PLANETS; ++i) {
-
-			float radius;
-
-			// first ensure we place out some player eatable ones.
-			if (numPlayerEatable <= MINIMUM_PLAYER_EATABLE) {
-
-				while (true) {
-					radius = RandomUtil.nextFloat(rng, MIN_SIZE,
-							player.getRadius());
-					if (radius < player.getRadius())
-						break;
-				}
-				numPlayerEatable++;
-
-			} else {
-				radius = RandomUtil.nextFloat(rng, MIN_SIZE, MAX_SIZE);
-			}
+		for (int i = 0; i < MINIMUM_PLAYER_EATABLE; ++i) {
 
 			while (true) {
+				radius = RandomUtil.nextFloat(rng, MIN_SIZE,
+						player.getRadius());
+
 				xAxis = rng.nextInt(this.levelWidth);
 				yAxis = rng.nextInt(this.levelHeight);
 
 				final World.Polygon poly = PolygonFactory.createCircle(
 						new Vector2(xAxis, yAxis), radius);
 
-				if (world.addToWorld(poly)){
+				if (world.addToWorld(poly)) {
+					numPlayerEatable++;
+					break;
+				}
+			}
+			entityList.add(new Planet(new Vector2(xAxis, yAxis), radius,
+					RandomUtil.randomEnum(rng, PlanetType.class), level));
+		}
+		MyDebug.d("there are " + entityList.size() + " eatable planets out there");
+		for (int i = MINIMUM_PLAYER_EATABLE ; i<PLANETS ; i++ ) {
+			while (true) {
+				radius = RandomUtil.nextFloat(rng, player.getRadius(),
+						MAX_SIZE);
+
+				xAxis = rng.nextInt(this.levelWidth);
+				yAxis = rng.nextInt(this.levelHeight);
+
+				final World.Polygon poly = PolygonFactory.createCircle(
+						new Vector2(xAxis, yAxis), radius);
+
+				if (world.addToWorld(poly)) {
 					break;
 				}
 
 			}
-			entityList.add(new Planet(new Vector2(xAxis, yAxis), radius, RandomUtil
-					.randomEnum(rng, PlanetType.class), level));
-
+			entityList.add(new Planet(new Vector2(xAxis, yAxis), radius,
+					RandomUtil.randomEnum(rng, PlanetType.class), level));
 		}
 	}
-	
 
-	//private int check
+	// private int check
 	private void placeOutLevelEntities() {
 
 		placeOutObstacles();

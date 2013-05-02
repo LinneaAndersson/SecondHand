@@ -114,7 +114,7 @@ public class Player extends BlackHole {
 
 	public void addPowerUp(final PowerUp powerUp) {
 		this.powerUpList.add(powerUp);
-		util.fireObject("ADD", null, powerUp);
+		util.fireObject("AddPowerUp", null, powerUp);
 	}
 
 	public void setName(final String name) {

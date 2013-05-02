@@ -2,8 +2,8 @@ package com.secondhand.view.resource;
 
 import org.anddev.andengine.audio.sound.Sound;
 
-import com.secondhand.loader.SoundLoader;
 import com.secondhand.model.resource.SoundType;
+import com.secondhand.view.loader.SoundLoader;
 
 
 public class Sounds {

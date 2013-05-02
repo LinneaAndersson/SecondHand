@@ -6,7 +6,7 @@ import java.util.Map;
 import org.anddev.andengine.opengl.texture.TextureOptions;
 import org.anddev.andengine.opengl.texture.region.TextureRegion;
 
-import com.secondhand.loader.TextureRegionLoader;
+import com.secondhand.view.loader.TextureRegionLoader;
 
 
 public class TextureRegions {

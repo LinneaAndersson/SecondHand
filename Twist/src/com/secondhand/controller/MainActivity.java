@@ -15,11 +15,11 @@ import android.content.DialogInterface;
 import android.view.KeyEvent;
 import android.widget.EditText;
 
-import com.secondhand.loader.FontLoader;
-import com.secondhand.loader.SoundLoader;
-import com.secondhand.loader.TextureRegionLoader;
 import com.secondhand.model.resource.HighScoreList;
 import com.secondhand.model.resource.LocalizationStrings;
+import com.secondhand.view.loader.FontLoader;
+import com.secondhand.view.loader.SoundLoader;
+import com.secondhand.view.loader.TextureRegionLoader;
 import com.secondhand.view.scene.IGameScene;
 
 public class MainActivity extends BaseGameActivity {

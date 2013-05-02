@@ -1,4 +1,4 @@
-package com.secondhand.loader;
+package com.secondhand.view.loader;
 
 import org.anddev.andengine.engine.Engine;
 

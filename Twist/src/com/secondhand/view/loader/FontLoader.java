@@ -1,4 +1,4 @@
-package com.secondhand.loader;
+package com.secondhand.view.loader;
 
 import org.anddev.andengine.opengl.font.Font;
 import org.anddev.andengine.opengl.font.FontFactory;

@@ -16,7 +16,7 @@ public class PlayerView implements IEntityView, PropertyChangeListener {
 	public PlayerView(GameWorld gameWorld) {
 		this.gameWorld = gameWorld;
 		
-		gameWorld.getPlayer().addListener(this);
+		this.gameWorld.getPlayer().addListener(this);
 	}
 	
 	@Override

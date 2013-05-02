@@ -5,17 +5,8 @@ import java.beans.PropertyChangeListener;
 
 import org.anddev.andengine.engine.Engine;
 import org.anddev.andengine.engine.camera.hud.HUD;
-import org.anddev.andengine.engine.handler.timer.ITimerCallback;
-import org.anddev.andengine.engine.handler.timer.TimerHandler;
-import org.anddev.andengine.entity.particle.ParticleSystem;
-import org.anddev.andengine.entity.particle.emitter.PointParticleEmitter;
-import org.anddev.andengine.opengl.texture.TextureOptions;
-import org.anddev.andengine.opengl.texture.atlas.bitmap.BitmapTextureAtlas;
-import org.anddev.andengine.opengl.texture.atlas.bitmap.BitmapTextureAtlasTextureRegionFactory;
-import org.anddev.andengine.opengl.texture.region.TextureRegion;
 
 import android.content.Context;
-import android.view.KeyEvent;
 
 import com.badlogic.gdx.math.Vector2;
 import com.secondhand.controller.CollisionContactListener;
@@ -24,7 +15,6 @@ import com.secondhand.debug.MyDebug;
 import com.secondhand.model.Entity;
 import com.secondhand.model.GameWorld;
 import com.secondhand.model.Player;
-import com.secondhand.model.powerup.PowerUp;
 import com.secondhand.model.resource.HighScoreList;
 import com.secondhand.view.opengl.StarsBackground;
 import com.secondhand.view.resource.Sounds;
@@ -219,8 +209,6 @@ public class GamePlayScene extends GameScene implements PropertyChangeListener {
 		} else if (eventName.equals("NextLevel")) {
 			smoothCamera.setZoomFactorDirect(1.0f);
 			newLevelStarted();
-		} else if (eventName.equals("PlayerMove")) {
-			playerMoveAnimation((Vector2) event.getNewValue());
 		}
 	}
 
@@ -263,50 +251,6 @@ public class GamePlayScene extends GameScene implements PropertyChangeListener {
 
 	public void updateLives(final int newLives) {
 		this.scoreLivesText.setLives(newLives);
-	}
-
-	public void playerMoveAnimation(final Vector2 touch) {
-
-		final Vector2 playerPosition = new Vector2(gameWorld.getPlayer()
-				.getCenterX(), gameWorld.getPlayer().getCenterY());
-		final Vector2 touchPosition = new Vector2(touch);
-
-		Player player = gameWorld.getPlayer();
-
-		// TODO: Will use TextureLoader, this is just for testing
-		final BitmapTextureAtlas texture = new BitmapTextureAtlas(16, 16,
-				TextureOptions.BILINEAR_PREMULTIPLYALPHA);
-		final TextureRegion particleTexture = BitmapTextureAtlasTextureRegionFactory
-				.createFromAsset(texture, context, "gfx/particle.png", 0, 0);
-
-		final Vector2 surfacePosition = getRelativeSurfacePosition(player,
-				touch);
-
-		final PointParticleEmitter movementEmitter = new PointParticleEmitter(
-				surfacePosition.x, surfacePosition.y);
-		final ParticleSystem particleSystem = new ParticleSystem(
-				movementEmitter, 60, 60, 10, particleTexture);
-
-		attachChild(particleSystem);
-
-		final float duration = 2;
-		engine.registerUpdateHandler(new TimerHandler(duration,
-				new ITimerCallback() {
-					@Override
-					public void onTimePassed(TimerHandler pTimerHandler) {
-						GamePlayScene.this.detachChild(particleSystem);
-					}
-				}));
-	}
-
-	// Calculate the surface position of object relative to given position
-	public Vector2 getRelativeSurfacePosition(Entity object, Vector2 position) {
-		// Vector from object position to given position
-		Vector2 surfacePosition = new Vector2(object.getCenterX() - position.x,
-				object.getCenterY() - position.y);
-		// Length of new vector increased/decreased to length of radius
-		surfacePosition.mul(object.getRadius() / surfacePosition.len());
-		return surfacePosition;
 	}
 
 }

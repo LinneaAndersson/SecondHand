@@ -1,0 +1,8 @@
+Att det inte blir nåt kvar i modellen låter mystiskt. Det borde det bli. Det finns två sätt att lösa det;
+
+1. Lägga fysikramverket i vyn och helt enkelt kräva ett ramverk som har en fysikmotor.
+2. Skapa ett abstraktionslager i sin model för fysikmotorn så att den blir losskopplad från er model.
+
+Alt 1 är snabbt; alt 2 är snyggare (mer oberoende av ramverket) men mer tidskrävande :).
+
+Väljer man alt 1. så kan man säga att fysikmotorn blir en del av vyn eftersom den är en del av ramverket som hanterar vyn.

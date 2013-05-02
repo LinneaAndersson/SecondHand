@@ -162,7 +162,7 @@ public class Player extends BlackHole {
 
 	protected void handlePowerUp(final PowerUp powerUp) {
 
-		Sounds.getInstance().powerUpSound.play();
+		util.fireObject("PowerUpSound", null, null);
 
 		addPowerUp(powerUp);
 

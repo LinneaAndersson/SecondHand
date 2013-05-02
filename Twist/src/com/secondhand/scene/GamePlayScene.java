@@ -26,7 +26,7 @@ import com.secondhand.model.GameWorld;
 import com.secondhand.model.Player;
 import com.secondhand.model.powerup.PowerUp;
 import com.secondhand.model.resource.Sounds;
-import com.secondhand.opengl.StarsBackground;
+import com.secondhand.view.opengl.StarsBackground;
 
 public class GamePlayScene extends GameScene implements PropertyChangeListener,
 		IGamePlaySceneView {

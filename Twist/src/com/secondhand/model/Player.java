@@ -28,9 +28,7 @@ public class Player extends BlackHole {
 	private int maxSize;
 	
 	private float scoreMultiplier;
-	
-	private boolean isMirroredMovement;
-	
+		
 	private final PropertyChangeSupport sceneSupport = new PropertyChangeSupport(this);
 	
 	private Vector2 needsToMovePosition;
@@ -45,7 +43,7 @@ public class Player extends BlackHole {
 		this.lives = startingLives;
 		this.scoreMultiplier = 1;
 		util = new PlayerUtil(this);
-		powerUpList = util.createPowerUpList();
+		powerUpList = util.getPowerUpList();
 		
 	}
 		
@@ -56,11 +54,11 @@ public class Player extends BlackHole {
 	
 	
 	public boolean isMirroredMovement() {
-		return this.isMirroredMovement;
+		return util.isMirroredMovement();
 	}
 	
 	public void setMirroredMovement(boolean mirrored) {
-		this.isMirroredMovement = mirrored;
+		util.setMirroredMovement(mirrored);
 	}
 	
 	public int getLives() {
@@ -75,13 +73,10 @@ public class Player extends BlackHole {
 		return maxSize;
 	}
 	
-	
+	@Override
 	public void increaseScore(final int increase) {
 		final int oldScore = getScore();
 		super.increaseScore((int)this.getScoreMultiplier() * increase);
-		// we also want to notify the view of this change:
-		//if(this.level.hasView())
-			//this.level.getView().updateScore(this.getScore());
 			sceneSupport.firePropertyChange("Score", oldScore, getScore());
 	}
 	
@@ -96,8 +91,6 @@ public class Player extends BlackHole {
 	private void changeLives(final int change) {
 		final int oldLife = lives;
 		lives += change;
-	//	if(this.level.hasView())
-			//this.level.getView().updateLives(this.getLives());
 			sceneSupport.firePropertyChange("Life", oldLife, lives);
 	}
 	
@@ -159,43 +152,7 @@ public class Player extends BlackHole {
 	}
 	
 	public void reachToTouch(final Vector2 touch) {
-		
-		Vector2 forcePosition;
-		
-		if(this.isMirroredMovement()) {
-			final Vector2 v1 = new Vector2(touch.x - getCenterX(), touch.y - getCenterY());
-			v1.mul(-1);
-			final Vector2 v2 = new Vector2(getCenterX(), getCenterY());
-			v2.add(v1);
-			forcePosition = new Vector2(
-					v2.x / PhysicsConstants.PIXEL_TO_METER_RATIO_DEFAULT, 
-					v2.y / PhysicsConstants.PIXEL_TO_METER_RATIO_DEFAULT);
-		}else {
-
-			forcePosition = new Vector2(
-					touch.x / PhysicsConstants.PIXEL_TO_METER_RATIO_DEFAULT, 
-					touch.y / PhysicsConstants.PIXEL_TO_METER_RATIO_DEFAULT);
-		}
-		
-		final Vector2 force = new Vector2((getCenterX() - touch.x),
-				getCenterY() - touch.y);
-		
-		if(this.isMirroredMovement) {
-			force.mul(-1);
-		}
-		
-		force.x = force.x / PhysicsConstants.PIXEL_TO_METER_RATIO_DEFAULT;
-		force.y = force.y / PhysicsConstants.PIXEL_TO_METER_RATIO_DEFAULT;
-		
-		force.x = force.x / force.len();
-		force.y = force.y / force.len();
-		
-		force.mul(3);
-		
-		this.getBody().applyLinearImpulse(force,
-				forcePosition);	
-		
-		MyDebug.d("force: " + force.x + force.y);
+		util.reachToTouch(touch);
 	}
 
 	
@@ -224,11 +181,13 @@ public class Player extends BlackHole {
 		
 		powerUp.wasEaten();
 	}
-
+	
+	@Override
 	protected void onGrow() {
 		Sounds.getInstance().growSound.play();	
 	}
 	
+	@Override
 	protected void entityWasTooBigToEat(final Entity entity) {
 		Sounds.getInstance().obstacleCollisionSound.play();
 	}

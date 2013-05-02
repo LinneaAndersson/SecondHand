@@ -1,4 +1,4 @@
-package com.secondhand.view.Entities;
+package com.secondhand.view.entities;
 
 public class EnemyView implements IEntityView{
 

@@ -1,15 +1,13 @@
 package com.secondhand.view.scene;
 
 import org.anddev.andengine.engine.Engine;
-
 import android.content.Context;
 
 import com.secondhand.model.resource.LocalizationStrings;
 
 
-public class SettingsMenuScene extends GameMenuScene {
-
-	private static final int MENU_HIGHER = 0;
+public class SettingsMenuScene extends GameMenuScene{
+	
 
 	public SettingsMenuScene(final Engine engine, final Context context) {
 		super(engine, context);
@@ -20,7 +18,7 @@ public class SettingsMenuScene extends GameMenuScene {
 		super.loadScene();
 
 		// layout headline
-		/*final int menuStartY = */layoutHeadline(LocalizationStrings.getInstance()
+		layoutHeadline(LocalizationStrings.getInstance()
 				.getLocalizedString("menu_settings"));
 	}
 

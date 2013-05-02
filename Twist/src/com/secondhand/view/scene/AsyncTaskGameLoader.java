@@ -1,4 +1,5 @@
-package com.secondhand.controller;
+package com.secondhand.view.scene;
+
 
 import android.os.AsyncTask;
 

@@ -2,7 +2,7 @@ package com.secondhand.controller;
 
 import org.anddev.andengine.entity.Entity;
 
-import com.secondhand.view.scene.LoadingTextView;
+import com.secondhand.view.entity.LoadingTextView;
 
 public class LoadingTextController extends Entity {
 	
@@ -10,11 +10,13 @@ public class LoadingTextController extends Entity {
 	// "animation"
 	private static final float SECONDS_PER_STRING = 0.3f;
 
+	
 	private float secondsPassedSinceLastUpdate;
 
 	private final LoadingTextView view;
 	
 	public LoadingTextController(final LoadingTextView view) {
+		super();
 		this.view = view;
 	}
 	

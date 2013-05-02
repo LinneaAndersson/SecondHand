@@ -30,7 +30,7 @@ public class MainActivity extends BaseGameActivity {
 	
 	public static final int TEXT_INPUT_DIALOG = 1;
 	
-	SceneController sceneController;
+	private SceneController sceneController;
 
 	@Override
 	public Engine onLoadEngine() {
@@ -78,7 +78,7 @@ public class MainActivity extends BaseGameActivity {
     @Override
     protected Dialog onCreateDialog(final int pID) {
             if (pID == TEXT_INPUT_DIALOG) {
-            	AlertDialog.Builder alert = new AlertDialog.Builder(this);
+            	final AlertDialog.Builder alert = new AlertDialog.Builder(this);
 
             	alert.setTitle("Made it to high score!");
             	alert.setMessage("Your Name");
@@ -88,7 +88,7 @@ public class MainActivity extends BaseGameActivity {
             	alert.setView(input);
 
             	alert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
-            	public void onClick(DialogInterface dialog, int whichButton) {
+            	public void onClick(final DialogInterface dialog, final int whichButton) {
             	  InputDialogManager.input = input.getText().toString();
             	  }
             	});

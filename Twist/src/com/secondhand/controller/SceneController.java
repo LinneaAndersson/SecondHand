@@ -14,10 +14,10 @@ import android.view.KeyEvent;
  */
 public class SceneController {
 
-	private Engine engine;
-	private Context context;
+	private final Engine engine;
+	private final Context context;
 	
-	private SceneManager sceneManager;
+	private final SceneManager sceneManager;
 	
 	public SceneController(final Engine engine, final Context context) {
 		this.engine = engine;
@@ -37,7 +37,7 @@ public class SceneController {
 		return this.isGameLoaded;
 	}
 	
-	public void switchScene(AllScenes scene) {
+	public void switchScene(final AllScenes scene) {
 		
 		this.sceneManager.switchScene(scene);
 
@@ -45,9 +45,9 @@ public class SceneController {
 		
 		if(scene == AllScenes.LOADING_SCENE) {
 			new LoadingSceneController(this.sceneManager.getLoadingScene(), this);	
+		} else if(scene == AllScenes.MAIN_MENU_SCENE) {
+			new MainMenuSceneController(this.sceneManager.getMainMenuScene(), this);
 		}
-		
-		
 		
 		/*if (this.currentSceneEnum == AllScenes.GAME_PLAY_SCENE) {
 			new GamePlaySceneController(this.gamePlayScene);

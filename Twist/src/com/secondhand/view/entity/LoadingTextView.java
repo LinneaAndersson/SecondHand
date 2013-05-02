@@ -1,11 +1,10 @@
-package com.secondhand.view.scene;
+package com.secondhand.view.entity;
 
 import java.util.Arrays;
 
 import org.anddev.andengine.engine.camera.Camera;
 import org.anddev.andengine.entity.text.ChangeableText;
 
-import com.secondhand.debug.MyDebug;
 import com.secondhand.view.resource.Fonts;
 
 /*

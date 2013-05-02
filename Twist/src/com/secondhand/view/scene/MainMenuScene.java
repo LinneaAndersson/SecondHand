@@ -4,20 +4,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.anddev.andengine.engine.Engine;
-import org.anddev.andengine.entity.scene.menu.MenuScene;
-import org.anddev.andengine.entity.scene.menu.MenuScene.IOnMenuItemClickListener;
-import org.anddev.andengine.entity.scene.menu.item.IMenuItem;
 
 import android.content.Context;
 
-import com.secondhand.controller.SceneManager;
 import com.secondhand.debug.MyDebug;
 import com.secondhand.model.resource.LocalizationStrings;
 
-public class MainMenuScene extends GameMenuScene implements IOnMenuItemClickListener {
+public class MainMenuScene extends GameMenuScene  {
 
-	private static final int MENU_NEW_GAME = 0;
-	private static final int MENU_HIGH_SCORE = 2;
+	public static final int MENU_NEW_GAME = 0;
+	public static final int MENU_HIGH_SCORE = 2;
 	
 	public MainMenuScene(final Engine engine, final Context context) {
 		super(engine, context);
@@ -38,32 +34,9 @@ public class MainMenuScene extends GameMenuScene implements IOnMenuItemClickList
 		menuItems.add(new MenuItem(MENU_HIGH_SCORE, LocalizationStrings.getInstance().getLocalizedString("menu_high_score")));
 		
 		layoutCenteredMenu(menuStartX, menuItems);
-		this.setOnMenuItemClickListener(this);
 	}
 
-	@Override
-	public boolean onMenuItemClicked(final MenuScene pMenuScene, final IMenuItem pMenuItem,
-			
-			final float pMenuItemLocalX, final float pMenuItemLocalY) {
-		
-		switch(pMenuItem.getID()) {
-		case MENU_NEW_GAME:
-			MyDebug.i("now the game should start");
-			/*LoadingScene loadingScene = (LoadingScene) SceneManager.getInstance().getScene(AllScenes.LOADING_SCENE);
-			
-			loadingScene.setText("loading_level");
-			loadingScene.setSceneEnum(AllScenes.GAME_PLAY_SCENE);*/
-			// TODO: implement the scene switches
-			//setScene(AllScenes.LOADING_SCENE);
-			return true;
-		case MENU_HIGH_SCORE:
-			//setScene(AllScenes.HIGH_SCORE_SCENE);
-			return true;
-		default:
-			return false;
-		}
 
-	}
 	
 	@Override
 	public AllScenes getParentScene() {

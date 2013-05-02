@@ -21,21 +21,21 @@ import com.secondhand.view.scene.SettingsMenuScene;
  */
 public final class SceneManager {
 
+	
 	//private static SceneManager instance;
 
 	private AllScenes currentSceneEnum;
 
-	private Engine engine;
-	private Context context;
-		private IGameScene mainMenuScene, settingsMenuScene,
+	private final Engine engine;
+		private IGameScene settingsMenuScene,
 			highScoreScene;
 
-	private GamePlayScene gamePlayScene;
-	private LoadingScene loadingScene;
+	private final MainMenuScene mainMenuScene;
+	private final GamePlayScene gamePlayScene;
+	private final LoadingScene loadingScene;
 
 	public SceneManager(final Engine engine, final Context context) {
 		this.engine = engine;
-		this.context = context;
 		
 		// create all the scenes. 
 		this.loadingScene = new LoadingScene(this.engine, context);
@@ -51,6 +51,10 @@ public final class SceneManager {
 	
 	public LoadingScene getLoadingScene() {
 		return this.loadingScene;
+	}
+	
+	public MainMenuScene getMainMenuScene() {
+		return this.mainMenuScene;
 	}
 
 	public IGameScene getScene(final AllScenes sceneEnum) {
@@ -80,7 +84,7 @@ public final class SceneManager {
 		this.currentSceneEnum = currentSceneEnum;
 		final IGameScene currentScene = getCurrentScene();	
 		
-		if(!currentScene.isLoaded()) {;
+		if(!currentScene.isLoaded()) {
 			MyDebug.d("scene not preloaded, loading!");
 			currentScene.loadScene();
 		}
@@ -93,7 +97,7 @@ public final class SceneManager {
 		return currentScene;
 	}
 		
-	public void switchScene(AllScenes scene) {
+	public void switchScene(final AllScenes scene) {
 		
 		if(this.getCurrentScene() != null) {
 			this.getCurrentScene().unloadScene();

@@ -13,6 +13,7 @@ public class LoadingSceneController extends Entity {
 	
 	LoadingSceneController(final LoadingScene loadingScene, 
 			final SceneController sceneController) {
+		super();
 		
 		this.sceneController = sceneController;
 		

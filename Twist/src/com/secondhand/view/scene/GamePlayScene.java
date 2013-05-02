@@ -214,9 +214,9 @@ public class GamePlayScene extends GameScene implements PropertyChangeListener {
 	@Override
 	public void propertyChange(final PropertyChangeEvent event) {
 		final String eventName = event.getPropertyName();
-		if (eventName.equals("Score")) {
+		if (eventName.equals(Player.INCREASE_SCORE)) {
 			updateScore((Integer) event.getNewValue());
-		} else if (eventName.equals("Life")) {
+		} else if (eventName.equals(Player.INCREASE_LIFE)) {
 			updateLives((Integer) event.getNewValue());
 		} else if (eventName.equals("PlayerRadius")) {
 			final float newRadius = (Float) event.getNewValue();

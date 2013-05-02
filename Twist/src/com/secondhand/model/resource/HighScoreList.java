@@ -66,7 +66,6 @@ public final class HighScoreList {
 			}
 		}
 		catch (IOException e) {
-			// TODO Auto-generated catch block
 			MyDebug.e("could not load high score file",  e);
 		} finally {
 			try {
@@ -112,7 +111,6 @@ public final class HighScoreList {
 		}
 
 		catch (IOException e) {
-			// TODO Auto-generated catch block
 			MyDebug.e("could not load high score file",  e);
 		}
 

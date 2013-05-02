@@ -44,14 +44,5 @@ public class FadingNotifierText extends Text {
 		registerEntityModifier(new AlphaModifier(DURATION, 1, 0, modifierListener));
 		registerEntityModifier(new MoveYModifier(DURATION, getY(), getY() - 50));
 	}
-
-	
-
-	@Override
-	protected void onManagedUpdate(float pSecondsElapsed) {
-		// TODO Auto-generated method stub
-		super.onManagedUpdate(pSecondsElapsed);
-		MyDebug.d("on manged update notifer");
-	}
 	
 }

@@ -69,7 +69,7 @@ public class Player extends BlackHole {
 	@Override
 	public void increaseScore(final int increase) {
 		super.increaseScore((int) this.getScoreMultiplier() * increase);
-		util.fire("Score", 0, getScore());
+		util.fireInt("Score", 0, getScore());
 	}
 
 	public void setScoreMultiplier(final float scoreMultiplier) {
@@ -82,7 +82,7 @@ public class Player extends BlackHole {
 
 	private void changeLives(final int change) {
 		lives += change;
-		util.fire("Life", 0, lives);
+		util.fireInt("Life", 0, lives);
 	}
 
 	// the player loses a life
@@ -114,7 +114,7 @@ public class Player extends BlackHole {
 
 	public void addPowerUp(final PowerUp powerUp) {
 		this.powerUpList.add(powerUp);
-		util.fire("ADD", null, powerUp);
+		util.fireObject("ADD", null, powerUp);
 	}
 
 	public void setName(final String name) {

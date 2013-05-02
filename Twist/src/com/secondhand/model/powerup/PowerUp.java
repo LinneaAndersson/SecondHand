@@ -39,16 +39,6 @@ public abstract class PowerUp extends RectangleEntity {
 		return duration;
 	}
 	
-	public TimerHandler getTimer(final Player player) {
-		return new TimerHandler(duration, new ITimerCallback() {
-			private Player user = player; 
-			@Override
-			public void onTimePassed(final TimerHandler pTimerHandler) {
-				user.removePowerUp(PowerUp.this);
-			}
-		});
-	}
-	
 	public abstract void activateEffect(final Player player);
 	
 	public void deactivateEffect(final Player player) {

@@ -14,13 +14,13 @@ import com.secondhand.model.powerup.PowerUp;
 // I decided to refactor some code from player because the that class was so large
 public class PlayerUtil {
 
-	private Player player;
-	private PowerList list;
+	private final Player player;
+	private final PowerList list;
 	private boolean isMirroredMovement;
 	private final PropertyChangeSupport sceneSupport = new PropertyChangeSupport(
 			this);
 
-	public PlayerUtil(Player player) {
+	public PlayerUtil(final Player player) {
 		this.player = player;
 		list = new PowerList(player);
 	}
@@ -29,20 +29,20 @@ public class PlayerUtil {
 		return this.isMirroredMovement;
 	}
 
-	public void setMirroredMovement(boolean mirrored) {
+	public void setMirroredMovement(final boolean mirrored) {
 		this.isMirroredMovement = mirrored;
 	}
 
-	public ArrayList<PowerUp> getPowerUpList() {
+	public PowerList getPowerUpList() {
 		return list;
 	}
 
 	private class PowerList extends ArrayList<PowerUp> {
 
-		private Player player;
+		private final Player player;
 		private static final long serialVersionUID = 1L;
 
-		public PowerList(Player player) {
+		public PowerList(final Player player) {
 			this.player = player;
 		}
 
@@ -62,7 +62,7 @@ public class PlayerUtil {
 		}
 	}
 
-	public void reachToTouch(Vector2 touch) {
+	public void reachToTouch(final Vector2 touch) {
 		Vector2 forcePosition;
 
 		if (this.isMirroredMovement()) {
@@ -102,19 +102,20 @@ public class PlayerUtil {
 		MyDebug.d("force: " + force.x + force.y);
 	}
 
-	public void addListener(PropertyChangeListener observer) {
+	public void addListener(final PropertyChangeListener observer) {
 		sceneSupport.addPropertyChangeListener(observer);
 	}
 
-	public void fire(String name, Object oldValue, Object newValue) {
+	public void fire(final String name, final Object oldValue,
+			final Object newValue) {
 		sceneSupport.firePropertyChange(name, oldValue, newValue);
 	}
 
-	public void fire(String name, int oldValue, int newValue) {
+	public void fire(final String name, final int oldValue, final int newValue) {
 		sceneSupport.firePropertyChange(name, oldValue, newValue);
 	}
 
-	public void setRadius(float radius) {
+	public void setRadius(final float radius) {
 		final float newRadius = player.getRadius();
 		final CircleShape shape = (CircleShape) player.getBody()
 				.getFixtureList().get(0).getShape();

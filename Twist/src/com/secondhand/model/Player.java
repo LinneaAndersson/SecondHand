@@ -1,15 +1,11 @@
 package com.secondhand.model;
 
 import java.beans.PropertyChangeListener;
-import java.beans.PropertyChangeSupport;
-import java.util.ArrayList;
 import java.util.List;
 
 import org.anddev.andengine.extension.physics.box2d.util.constants.PhysicsConstants;
 
 import com.badlogic.gdx.math.Vector2;
-import com.badlogic.gdx.physics.box2d.CircleShape;
-import com.secondhand.debug.MyDebug;
 import com.secondhand.model.powerup.PowerUp;
 import com.secondhand.model.resource.Sounds;
 
@@ -54,7 +50,7 @@ public class Player extends BlackHole {
 		return util.isMirroredMovement();
 	}
 
-	public void setMirroredMovement(boolean mirrored) {
+	public void setMirroredMovement(final boolean mirrored) {
 		util.setMirroredMovement(mirrored);
 	}
 
@@ -62,7 +58,7 @@ public class Player extends BlackHole {
 		return this.lives;
 	}
 
-	public void setMaxSize(int size) {
+	public void setMaxSize(final int size) {
 		maxSize = size;
 	}
 

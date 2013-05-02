@@ -43,9 +43,8 @@ public class GamePlayScene extends GameScene implements PropertyChangeListener,
 		super(engine, context);
 
 		MyDebug.i("creating game world");
-		// Have to create gameWorld here, because else it is null when I need
-		// it!
-		this.gameWorld = new GameWorld();
+		
+		
 	}
 
 	public GameWorld getGameWorld() {

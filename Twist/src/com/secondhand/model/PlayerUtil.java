@@ -106,12 +106,12 @@ public class PlayerUtil {
 		sceneSupport.addPropertyChangeListener(observer);
 	}
 
-	public void fire(final String name, final Object oldValue,
+	public void fireObject(final String name, final Object oldValue,
 			final Object newValue) {
 		sceneSupport.firePropertyChange(name, oldValue, newValue);
 	}
 
-	public void fire(final String name, final int oldValue, final int newValue) {
+	public void fireInt(final String name, final int oldValue, final int newValue) {
 		sceneSupport.firePropertyChange(name, oldValue, newValue);
 	}
 
@@ -121,7 +121,7 @@ public class PlayerUtil {
 				.getFixtureList().get(0).getShape();
 		shape.setRadius(player.getRadius()
 				/ PhysicsConstants.PIXEL_TO_METER_RATIO_DEFAULT);
-		fire("PlayerRadius", 0, newRadius);
+		fireObject("PlayerRadius", 0f, newRadius);
 	}
 
 }

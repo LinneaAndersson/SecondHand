@@ -5,7 +5,7 @@ import org.anddev.andengine.opengl.font.Font;
 import android.graphics.Color;
 import android.graphics.Typeface;
 
-import com.secondhand.loader.FontLoader;
+import com.secondhand.view.loader.FontLoader;
 
 public final class Fonts {
 	

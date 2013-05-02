@@ -3,9 +3,9 @@ package com.secondhand.model;
 
 import com.badlogic.gdx.math.Vector2;
 import com.secondhand.model.resource.PlanetType;
-import com.secondhand.model.resource.TextureRegions;
 import com.secondhand.view.opengl.Circle;
 import com.secondhand.view.opengl.TexturedCircle;
+import com.secondhand.view.resource.TextureRegions;
 
 public class Planet extends CircleEntity {
 

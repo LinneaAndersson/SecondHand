@@ -1,4 +1,4 @@
-package com.secondhand.model.resource;
+package com.secondhand.view.resource;
 
 import java.util.EnumMap;
 import java.util.Map;
@@ -6,7 +6,9 @@ import java.util.Map;
 import org.anddev.andengine.opengl.texture.TextureOptions;
 import org.anddev.andengine.opengl.texture.region.TextureRegion;
 
-import com.secondhand.loader.TextureRegionLoader;
+import com.secondhand.model.resource.PlanetType;
+import com.secondhand.model.resource.PowerUpType;
+import com.secondhand.view.loader.TextureRegionLoader;
 
 
 public class TextureRegions {

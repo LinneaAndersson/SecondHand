@@ -1,4 +1,4 @@
-package com.secondhand.loader;
+package com.secondhand.view.loader;
 
 import org.anddev.andengine.opengl.texture.TextureOptions;
 import org.anddev.andengine.opengl.texture.atlas.bitmap.BitmapTextureAtlas;

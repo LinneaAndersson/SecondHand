@@ -2,8 +2,8 @@ package com.secondhand.view.resource;
 
 import org.anddev.andengine.audio.sound.Sound;
 
-import com.secondhand.loader.SoundLoader;
 import com.secondhand.model.resource.SoundType;
+import com.secondhand.view.loader.SoundLoader;
 
 
 public class Sounds {
@@ -28,15 +28,13 @@ public class Sounds {
 	
 	public void load() {
 		
-		// make soundLoader accept SoundType
-		this.powerUpSound = SoundLoader.getInstance().loadSound(SoundType.POWERUP_SOUND.getPath());
-		this.growSound = SoundLoader.getInstance().loadSound(SoundType.GROW_SOUND.getPath());
-		this.obstacleCollisionSound = SoundLoader.getInstance().loadSound(SoundType.OBSTACLE_COLLISION_SOUND.getPath());
-		this.beep = SoundLoader.getInstance().loadSound(SoundType.BEEP_SOUND.getPath());
-		this.playerKilledSound = SoundLoader.getInstance().loadSound(SoundType.PLAYER_KILLED_SOUND.getPath());
-		this.winSound = SoundLoader.getInstance().loadSound(SoundType.WIN_SOUND.getPath());
-		
-		this.highScoreEntry = SoundLoader.getInstance().loadSound(SoundType.HIGHSCORE_SOUND.getPath());
+		this.powerUpSound = SoundLoader.getInstance().loadSound(SoundType.POWERUP_SOUND);
+		this.growSound = SoundLoader.getInstance().loadSound(SoundType.GROW_SOUND);
+		this.obstacleCollisionSound = SoundLoader.getInstance().loadSound(SoundType.OBSTACLE_COLLISION_SOUND);
+		this.beep = SoundLoader.getInstance().loadSound(SoundType.BEEP_SOUND);
+		this.playerKilledSound = SoundLoader.getInstance().loadSound(SoundType.PLAYER_KILLED_SOUND);
+		this.winSound = SoundLoader.getInstance().loadSound(SoundType.WIN_SOUND);
+		this.highScoreEntry = SoundLoader.getInstance().loadSound(SoundType.HIGHSCORE_SOUND);
 			
 	}
 	

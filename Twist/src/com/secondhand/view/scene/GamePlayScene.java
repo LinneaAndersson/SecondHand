@@ -103,8 +103,7 @@ public class GamePlayScene extends GameScene implements PropertyChangeListener {
 
 	@Override
 	public void loadScene() {
-		super.loadScene();
-
+	
 		// get rid the entities from the previous game.
 		// this.detachChildren();
 

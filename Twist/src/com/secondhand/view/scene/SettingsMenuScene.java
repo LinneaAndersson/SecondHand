@@ -15,8 +15,7 @@ public class SettingsMenuScene extends GameMenuScene{
 	
 	@Override
 	public void loadScene() {
-		super.loadScene();
-
+	
 		// layout headline
 		layoutHeadline(LocalizationStrings.getInstance()
 				.getLocalizedString("menu_settings"));

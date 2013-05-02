@@ -25,7 +25,8 @@ public class LoadingScene extends GameScene {
 
 	@Override
 	public void loadScene() {
-
+		this.unloadScene();
+		
 		 this.loadingTextView = new LoadingTextView(LocalizationStrings.getInstance()
 					.getLocalizedString("loading"), this.smoothCamera);
 		// add loading text

@@ -27,9 +27,10 @@ public final class SceneManager {
 	private AllScenes currentSceneEnum;
 
 	private final Engine engine;
-		private IGameScene settingsMenuScene,
-			highScoreScene;
-
+	
+	private IGameScene settingsMenuScene;
+	
+	private final HighScoreScene highScoreScene;
 	private final MainMenuScene mainMenuScene;
 	private final GamePlayScene gamePlayScene;
 	private final LoadingScene loadingScene;
@@ -55,6 +56,10 @@ public final class SceneManager {
 	
 	public MainMenuScene getMainMenuScene() {
 		return this.mainMenuScene;
+	}
+
+	public HighScoreScene getHighScoreScene() {
+		return this.highScoreScene;
 	}
 
 	public IGameScene getScene(final AllScenes sceneEnum) {
@@ -84,10 +89,10 @@ public final class SceneManager {
 		this.currentSceneEnum = currentSceneEnum;
 		final IGameScene currentScene = getCurrentScene();	
 		
-		if(!currentScene.isLoaded()) {
+		//if(!currentScene.isLoaded()) {
 			MyDebug.d("scene not preloaded, loading!");
 			currentScene.loadScene();
-		}
+	//	}
 		
 		
 		
@@ -100,11 +105,11 @@ public final class SceneManager {
 	public void switchScene(final AllScenes scene) {
 		
 		if(this.getCurrentScene() != null) {
-			this.getCurrentScene().unloadScene();
+			//this.getCurrentScene().unloadScene();
 			this.getCurrentScene().onSwitchScene();
 		}
 		
-		setCurrentSceneEnum(scene );
+		this.setCurrentSceneEnum(scene );
 	}
 	
 }

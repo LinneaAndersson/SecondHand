@@ -21,7 +21,7 @@ public class MainMenuScene extends GameMenuScene  {
 
 	@Override
 	public void loadScene() {
-		super.loadScene();
+		this.unloadScene();
 		MyDebug.d("loading main menu scene");
 		
 		final int menuStartX = layoutHeadline("Twirl");
@@ -44,6 +44,11 @@ public class MainMenuScene extends GameMenuScene  {
 		// should be returned here.
 		return null;
 	}
+	
+	public void onSwitchScene() {
+		MyDebug.d("switching to main menu");
+	}
+	
 
 
 }

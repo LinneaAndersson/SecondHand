@@ -5,6 +5,7 @@ import org.anddev.andengine.entity.scene.menu.MenuScene.IOnMenuItemClickListener
 import org.anddev.andengine.entity.scene.menu.item.IMenuItem;
 
 import com.secondhand.debug.MyDebug;
+import com.secondhand.view.scene.AllScenes;
 import com.secondhand.view.scene.MainMenuScene;
 
 public class MainMenuSceneController implements IOnMenuItemClickListener {
@@ -33,8 +34,7 @@ public class MainMenuSceneController implements IOnMenuItemClickListener {
 			//setScene(AllScenes.LOADING_SCENE);
 			return true;
 		case MainMenuScene.MENU_HIGH_SCORE:
-			MyDebug.d("now show high score list");
-			//setScene(AllScenes.HIGH_SCORE_SCENE);
+			sceneController.switchScene(AllScenes.HIGH_SCORE_SCENE);
 			return true;
 		default:
 			return false;

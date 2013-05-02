@@ -47,6 +47,8 @@ public class SceneController {
 			new LoadingSceneController(this.sceneManager.getLoadingScene(), this);	
 		} else if(scene == AllScenes.MAIN_MENU_SCENE) {
 			new MainMenuSceneController(this.sceneManager.getMainMenuScene(), this);
+		} else if(scene == AllScenes.HIGH_SCORE_SCENE) {
+			new HighScoreSceneController(this.sceneManager.getHighScoreScene(), this);
 		}
 		
 		/*if (this.currentSceneEnum == AllScenes.GAME_PLAY_SCENE) {

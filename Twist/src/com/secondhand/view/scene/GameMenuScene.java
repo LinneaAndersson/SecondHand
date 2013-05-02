@@ -26,12 +26,10 @@ public abstract class GameMenuScene extends MenuScene implements IGameScene {
 	protected final SmoothCamera smoothCamera;
 	protected final Engine engine;
 	protected final Context context;
-	private boolean isLoaded;
 	
 	public GameMenuScene(final Engine engine, final Context context) {
 		super(engine.getCamera());
-		this.isLoaded = false;
-
+	
 		// we do this to keep the API consistent
 		this.smoothCamera = (SmoothCamera)this.mCamera;
 		this.context = context;
@@ -42,19 +40,10 @@ public abstract class GameMenuScene extends MenuScene implements IGameScene {
 	public Scene getScene() {
 		return this;
 	}
-	
-	public boolean isLoaded() {
-		return this.isLoaded;
-	}
-	
-	@Override
-	public void loadScene() {
-		isLoaded = true;
-	}
+
 	
 	@Override
 	public void unloadScene() {
-		this.isLoaded = false;
 		this.detachChildren();
 	}
 

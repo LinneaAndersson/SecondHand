@@ -6,7 +6,7 @@ import org.anddev.andengine.engine.camera.Camera;
 import org.anddev.andengine.entity.text.ChangeableText;
 
 import com.secondhand.debug.MyDebug;
-import com.secondhand.model.resource.Fonts;
+import com.secondhand.view.resource.Fonts;
 
 /*
  * Implements a loading animation that looks like this:

@@ -8,12 +8,12 @@ import android.view.KeyEvent;
 import com.secondhand.debug.MyDebug;
 import com.secondhand.model.resource.Sounds;
 import com.secondhand.model.resource.TextureRegions;
-import com.secondhand.scene.GamePlayScene;
-import com.secondhand.scene.HighScoreScene;
-import com.secondhand.scene.IGameScene;
-import com.secondhand.scene.IGameScene.AllScenes;
-import com.secondhand.scene.MainMenuScene;
-import com.secondhand.scene.SettingsMenuScene;
+import com.secondhand.view.scene.GamePlayScene;
+import com.secondhand.view.scene.HighScoreScene;
+import com.secondhand.view.scene.IGameScene;
+import com.secondhand.view.scene.MainMenuScene;
+import com.secondhand.view.scene.SettingsMenuScene;
+import com.secondhand.view.scene.IGameScene.AllScenes;
 
 /**
  * This manages all the scenes, is used to set the current scene, and sends

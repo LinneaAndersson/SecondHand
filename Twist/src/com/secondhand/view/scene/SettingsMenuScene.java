@@ -1,4 +1,4 @@
-package com.secondhand.scene;
+package com.secondhand.view.scene;
 
 import org.anddev.andengine.audio.music.MusicManager;
 import org.anddev.andengine.audio.sound.SoundManager;

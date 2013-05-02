@@ -3,8 +3,8 @@ package com.secondhand.controller;
 import org.anddev.andengine.engine.Engine;
 
 import com.secondhand.model.resource.HighScoreList;
-import com.secondhand.scene.GamePlayScene;
-import com.secondhand.scene.IGameScene.AllScenes;
+import com.secondhand.view.scene.GamePlayScene;
+import com.secondhand.view.scene.IGameScene.AllScenes;
 
 // manages the input dialog used when entering the player name. 
 public final class InputDialogManager {

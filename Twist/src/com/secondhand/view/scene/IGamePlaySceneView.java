@@ -1,4 +1,4 @@
-package com.secondhand.scene;
+package com.secondhand.view.scene;
 
 import com.badlogic.gdx.math.Vector2;
 

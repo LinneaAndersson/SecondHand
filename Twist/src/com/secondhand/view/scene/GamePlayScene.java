@@ -1,4 +1,4 @@
-package com.secondhand.scene;
+package com.secondhand.view.scene;
 
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;

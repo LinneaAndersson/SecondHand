@@ -19,7 +19,7 @@ import com.secondhand.loader.SoundLoader;
 import com.secondhand.loader.TextureRegionLoader;
 import com.secondhand.model.resource.HighScoreList;
 import com.secondhand.model.resource.LocalizationStrings;
-import com.secondhand.scene.IGameScene;
+import com.secondhand.view.scene.IGameScene;
 
 public class MainActivity extends BaseGameActivity {
 

@@ -6,8 +6,8 @@ import android.content.Context;
 
 import com.secondhand.model.resource.Fonts;
 import com.secondhand.model.resource.LocalizationStrings;
-import com.secondhand.scene.GameScene;
-import com.secondhand.scene.IGameScene;
+import com.secondhand.view.scene.GameScene;
+import com.secondhand.view.scene.IGameScene;
 
 public class LoadingScene extends GameScene {
 	private AllScenes mSceneEnum = AllScenes.MAIN_MENU_SCENE;

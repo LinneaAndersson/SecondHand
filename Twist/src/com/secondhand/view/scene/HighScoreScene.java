@@ -1,4 +1,4 @@
-package com.secondhand.scene;
+package com.secondhand.view.scene;
 
 import org.anddev.andengine.engine.Engine;
 import org.anddev.andengine.entity.text.Text;

@@ -1,4 +1,4 @@
-package com.secondhand.view.scene;
+package com.secondhand.view.entity;
 
 import javax.microedition.khronos.opengles.GL10;
 
@@ -10,7 +10,6 @@ import org.anddev.andengine.entity.text.Text;
 import org.anddev.andengine.util.modifier.IModifier;
 
 import com.badlogic.gdx.math.Vector2;
-import com.secondhand.debug.MyDebug;
 import com.secondhand.view.resource.Fonts;
 
 public class FadingNotifierText extends Text {
@@ -18,7 +17,7 @@ public class FadingNotifierText extends Text {
 	private static final float DURATION = 1.7f;
 	
 	
-	FadingNotifierText(final String str, final Vector2 position) {
+	public FadingNotifierText(final String str, final Vector2 position) {
 		super(position.x, position.y, Fonts.getInstance().menuItemFont, str);
 		
 		// otherwise the alpha channel won't work

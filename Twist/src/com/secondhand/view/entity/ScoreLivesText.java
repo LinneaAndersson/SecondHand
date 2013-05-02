@@ -1,4 +1,4 @@
-package com.secondhand.view.scene;
+package com.secondhand.view.entity;
 
 import java.util.Arrays;
 

@@ -68,11 +68,14 @@ public class RandomLevelGenerator {
 		enemyList.add(enemy);
 
 		final int ENEMIES;
-		if (levelNumber < 7) {
-			ENEMIES = 4 * (this.levelNumber);
+		//Instead of making to many enemies we will make them go faster.
+		if (levelNumber < 4) {
+			ENEMIES = 2 * (this.levelNumber);
 		} else {
-			ENEMIES = 25;
+			ENEMIES = 8;
 		}
+		
+		enemy.setMaxSpeed(8+(this.levelNumber-1)*2);
 
 		for (int i = 0; i < ENEMIES; ++i) {
 
@@ -194,6 +197,8 @@ public class RandomLevelGenerator {
 		final int PLANETS = 50; // (int)( 25 * this.levelNumber * K);
 		float radius;
 
+		MyDebug.d("There are " + entityList.size() + " entitys out there before adding planets");
+		//Start with the smaller planets.
 		for (int i = 0; i < MINIMUM_PLAYER_EATABLE; ++i) {
 
 			while (true) {
@@ -206,7 +211,7 @@ public class RandomLevelGenerator {
 				final World.Polygon poly = PolygonFactory.createCircle(
 						new Vector2(xAxis, yAxis), radius);
 
-				if (world.addToWorld(poly)) {
+				if (world.addToWorld(poly)&& radius<player.getRadius()) {
 					numPlayerEatable++;
 					break;
 				}
@@ -214,7 +219,7 @@ public class RandomLevelGenerator {
 			entityList.add(new Planet(new Vector2(xAxis, yAxis), radius,
 					RandomUtil.randomEnum(rng, PlanetType.class), level));
 		}
-		MyDebug.d("there are " + entityList.size() + " eatable planets out there");
+		MyDebug.d("there are " + entityList.size() + " entitys out there after adding eatable planets");
 		for (int i = MINIMUM_PLAYER_EATABLE ; i<PLANETS ; i++ ) {
 			while (true) {
 				radius = RandomUtil.nextFloat(rng, player.getRadius(),

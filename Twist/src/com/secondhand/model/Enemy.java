@@ -12,7 +12,7 @@ import com.secondhand.model.powerup.PowerUp;
 
 public class Enemy extends BlackHole {
 
-	private static final float ENEMY_MAX_SPEED = 10;
+	private static float enemyMaxSpeed = 10;
 	private static final float MAX_SIZE = 40;
 	private static final float MIN_SIZE = 20;
 
@@ -24,7 +24,7 @@ public class Enemy extends BlackHole {
 	
 
 	public Enemy(final Vector2 vector, final float radius, final GameWorld level) {
-		super(vector, radius, level, ENEMY_MAX_SPEED);
+		super(vector, radius, level, enemyMaxSpeed);
 		huntingArea = getHuntingArea();
 		util = new EnemyUtil(this, physicsWorld);
 		
@@ -51,6 +51,9 @@ public class Enemy extends BlackHole {
 		return MIN_SIZE;
 	}
 	
+	public void setMaxSpeed(float maxSpeed){
+		enemyMaxSpeed=maxSpeed;
+	}
 
 	// player has highest chase-priority
 	public void moveEnemy(final Entity player, final List<Entity> entityList) {

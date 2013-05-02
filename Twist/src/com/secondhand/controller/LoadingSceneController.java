@@ -2,6 +2,7 @@ package com.secondhand.controller;
 
 import org.anddev.andengine.entity.Entity;
 
+import com.secondhand.debug.MyDebug;
 import com.secondhand.view.scene.AllScenes;
 import com.secondhand.view.scene.LoadingScene;
 import com.secondhand.view.scene.LoadingSceneCallback;
@@ -28,8 +29,9 @@ public class LoadingSceneController extends Entity {
 
 		@Override
 		public void onLoadComplete() {
+			MyDebug.d("now we should go to gameplay scene");
 			sceneController.setGameLoaded(true);
-			sceneController.switchScene(AllScenes.GAME_PLAY_SCENE);
+			sceneController.switchScene(AllScenes.MAIN_MENU_SCENE);
 		}
 		
 	}

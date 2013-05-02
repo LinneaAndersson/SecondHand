@@ -27,10 +27,11 @@ public final class SceneManager {
 
 	private Engine engine;
 	private Context context;
-		private IGameScene loadingScene, mainMenuScene, settingsMenuScene,
+		private IGameScene mainMenuScene, settingsMenuScene,
 			highScoreScene;
 
 	private GamePlayScene gamePlayScene;
+	private LoadingScene loadingScene;
 
 	public SceneManager(final Engine engine, final Context context) {
 		this.engine = engine;
@@ -46,6 +47,10 @@ public final class SceneManager {
 
 	public IGameScene getCurrentScene() {
 		return getScene(currentSceneEnum);
+	}
+	
+	public LoadingScene getLoadingScene() {
+		return this.loadingScene;
 	}
 
 	public IGameScene getScene(final AllScenes sceneEnum) {
@@ -80,29 +85,21 @@ public final class SceneManager {
 			currentScene.loadScene();
 		}
 		
-		if (this.currentSceneEnum == AllScenes.GAME_PLAY_SCENE) {
-			new GamePlaySceneController(this.gamePlayScene);
-		} else if(this.currentSceneEnum == AllScenes.MAIN_MENU_SCENE) {
-			
-		}
+		
+		
 
 		this.engine.setScene(currentScene.getScene());
 
 		return currentScene;
 	}
-	
-	// used by the loading scene to load all game resources.
-	public void loadAllResources() {
 		
-		TextureRegions.getInstance().load();
-		Sounds.getInstance().load();
-		//setIsGameLoaded(true);
-	}
-
-	
 	public void switchScene(AllScenes scene) {
-		this.getCurrentScene().unloadScene();
-		this.getCurrentScene().onSwitchScene();
+		
+		if(this.getCurrentScene() != null) {
+			this.getCurrentScene().unloadScene();
+			this.getCurrentScene().onSwitchScene();
+		}
+		
 		setCurrentSceneEnum(scene );
 	}
 	

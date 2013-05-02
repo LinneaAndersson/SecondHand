@@ -24,12 +24,12 @@ public class SceneController {
 		this.context = context;
 		this.sceneManager = new SceneManager(engine, context);	
 		
-		// now register controllers for all the scenes. 
+		
 	}
 	
 	private boolean isGameLoaded = false;
 	
-	public void setIsGameLoaded(final boolean isGameLoaded) {
+	public void setGameLoaded(final boolean isGameLoaded) {
 		this.isGameLoaded = isGameLoaded;
 	}
 	
@@ -38,7 +38,24 @@ public class SceneController {
 	}
 	
 	public void switchScene(AllScenes scene) {
+		
 		this.sceneManager.switchScene(scene);
+
+		// now register the controller for the scene.
+		
+		if(scene == AllScenes.LOADING_SCENE) {
+			new LoadingSceneController(this.sceneManager.getLoadingScene(), this);	
+		}
+		
+		
+		
+		/*if (this.currentSceneEnum == AllScenes.GAME_PLAY_SCENE) {
+			new GamePlaySceneController(this.gamePlayScene);
+		} else if(this.currentSceneEnum == AllScenes.MAIN_MENU_SCENE) {
+			
+		}*/
+		 
+			
 	}
 	
 	public Scene getCurrentScene() {

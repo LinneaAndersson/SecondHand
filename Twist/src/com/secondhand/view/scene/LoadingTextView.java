@@ -14,26 +14,22 @@ import com.secondhand.view.resource.Fonts;
  "Loading.."
  "Loading..."
  */
-public class LoadingText extends ChangeableText {
+public class LoadingTextView extends ChangeableText {
 
-	// how many seconds to wait before showing the next string in the
-	// "animation"
-	private static final float SECONDS_PER_STRING = 0.3f;
 
 	private String[] loadingStrings;
 	private final String loadingString;
 	private int loadingStringsI;
 
-	private float secondsPassedSinceLastUpdate;
 	
-	public static String getPlaceHolderString() {
+	private static String getPlaceHolderString() {
 		// a length of 20 should be good enough.
 		final char[] exmarks = new char[20];
 		Arrays.fill(exmarks, ' ');
 		return new String(exmarks);
 	}
 
-	public LoadingText(final String loadingString, final Camera camera) {
+	public LoadingTextView(final String loadingString, final Camera camera) {
 		super(0, 0, Fonts.getInstance().menuItemFont,
 				getPlaceHolderString());
 		this.loadingString = loadingString;
@@ -63,21 +59,8 @@ public class LoadingText extends ChangeableText {
 		return loadingStrings[loadingStringsI];
 	}
 	
-	@Override
-	protected void onManagedUpdate(final float pSecondsElapsed) {
-
-//		MyDebug.d("seconds passed: " + pSecondsElapsed);
-
-		secondsPassedSinceLastUpdate += pSecondsElapsed;
-
-		
-		if (secondsPassedSinceLastUpdate >= SECONDS_PER_STRING) {
-			secondsPassedSinceLastUpdate = 0;
-			final String next = getNextString();
-			this.setText(next);
-		}
-
-		super.onManagedUpdate(pSecondsElapsed);
+	public void goToNextStringInAnimation() {
+		this.setText(getNextString());
+	
 	}
-
 }

@@ -14,7 +14,6 @@ import org.anddev.andengine.opengl.font.Font;
 import android.content.Context;
 import android.view.KeyEvent;
 
-import com.secondhand.controller.MySmoothCamera;
 import com.secondhand.controller.SceneManager;
 import com.secondhand.debug.MyDebug;
 import com.secondhand.model.resource.Fonts;
@@ -24,7 +23,7 @@ import com.secondhand.model.resource.Fonts;
  */
 public abstract class GameMenuScene extends MenuScene implements IGameScene {
 
-	protected final MySmoothCamera smoothCamera;
+	protected final SmoothCamera smoothCamera;
 	protected final Engine engine;
 	protected final Context context;
 	private boolean isLoaded;
@@ -34,7 +33,7 @@ public abstract class GameMenuScene extends MenuScene implements IGameScene {
 		this.isLoaded = false;
 
 		// we do this to keep the API consistent
-		this.smoothCamera = (MySmoothCamera) this.mCamera;
+		this.smoothCamera = (SmoothCamera)this.mCamera;
 		this.context = context;
 		this.engine = engine;
 	}

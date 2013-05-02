@@ -24,13 +24,16 @@ public class PowerUpView implements IEntityView, PropertyChangeListener {
 		gameWorld.getPlayer().addListener(this);
 	}
 	
-	public TimerHandler getTimer(final Player player, final PowerUp powerUp) {
+	public TimerHandler createTimer(final Player player, final PowerUp powerUp) {
 		return new TimerHandler(powerUp.getDuration(), new ITimerCallback() {
 			private Player user = player; 
 			@Override
 			public void onTimePassed(final TimerHandler pTimerHandler) {
 				if (user.getPowerUps().contains(powerUp))
 					user.removePowerUp(powerUp);
+				if (!powerUp.hasAnother(player)) {
+					// TODO: Unattach the powerups texture from player (ex: shield makes the player glow)
+				}
 			}
 		});
 	}
@@ -42,8 +45,12 @@ public class PowerUpView implements IEntityView, PropertyChangeListener {
 
 			final Player player = gameWorld.getPlayer();
 			final PowerUp powerUp = ((PowerUp) event.getNewValue());
-			engine.registerUpdateHandler(getTimer(player, powerUp));
+			engine.registerUpdateHandler(createTimer(player, powerUp));
 
+			if (!powerUp.hasAnother(player)) {
+				// TODO: Attach the powerups texture to player (ex: shield makes the player glow)
+			}
+			
 			// TODO: Implement floating text here
 //			if (powerUp.hasText()) {
 //				showFadingTextNotifier(powerUp.getText(),

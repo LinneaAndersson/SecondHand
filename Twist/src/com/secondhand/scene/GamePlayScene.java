@@ -45,7 +45,7 @@ public class GamePlayScene extends GameScene implements PropertyChangeListener,
 		MyDebug.i("creating game world");
 		// Have to create gameWorld here, because else it is null when I need
 		// it!
-		
+		this.gameWorld = new GameWorld();
 	}
 
 	public GameWorld getGameWorld() {
@@ -104,9 +104,6 @@ public class GamePlayScene extends GameScene implements PropertyChangeListener,
 				player.getScore(), player.getLives());
 		hud.attachChild(scoreLivesText);
 
-		// hud.attachChild(new FadingNotifierText("hello!", new
-		// Vector2(100,100)));
-
 		// I do believe this belong here
 		getGameWorld().getPhysicsWorld().setContactListener(
 				new CollisionContactListener(getGameWorld()));
@@ -117,7 +114,6 @@ public class GamePlayScene extends GameScene implements PropertyChangeListener,
 	public void loadScene() {
 		super.loadScene();
 
-		this.gameWorld = new GameWorld();
 		// get rid the entities from the previous game.
 		// this.detachChildren();
 
@@ -221,8 +217,8 @@ public class GamePlayScene extends GameScene implements PropertyChangeListener,
 			apaptCameraToGrowingPlayer((Float) event.getNewValue(),
 					(Float) event.getOldValue());
 		} else if (eventName.equals("NextLevel")) {
+			smoothCamera.setZoomFactorDirect(1.0f);
 			newLevelStarted();
-			setupView();
 		} else if (eventName.equals("PlayerMove")) {
 			playerMoveAnimation((Vector2) event.getNewValue());
 		}
@@ -255,8 +251,10 @@ public class GamePlayScene extends GameScene implements PropertyChangeListener,
 	@Override
 	public void newLevelStarted() {
 		MyDebug.d("new level!");
-		gameWorld.getPlayer().setRadius(60);
+
+		gameWorld.getPlayer().setRadius(30);
 		registerNewLevel();
+
 		Sounds.getInstance().winSound.play();
 
 	}

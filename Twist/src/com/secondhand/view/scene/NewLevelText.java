@@ -5,7 +5,7 @@ import java.util.Arrays;
 import org.anddev.andengine.entity.text.ChangeableText;
 
 import com.badlogic.gdx.math.Vector2;
-import com.secondhand.model.resource.Fonts;
+import com.secondhand.view.resource.Fonts;
 
 // This will be between the Levels. 
 public final class NewLevelText extends ChangeableText {

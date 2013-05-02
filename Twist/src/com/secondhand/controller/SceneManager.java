@@ -39,7 +39,6 @@ public final class SceneManager {
 		return this.gamePlayScene;
 	}
 
-	private GamePlaySceneController gamePlaySceneController;
 	
 	private boolean isGameLoaded = false;
 	
@@ -114,7 +113,9 @@ public final class SceneManager {
 		}
 		
 		if (this.currentSceneEnum == AllScenes.GAME_PLAY_SCENE) {
-			gamePlaySceneController = new GamePlaySceneController(this.gamePlayScene);
+			new GamePlaySceneController(this.gamePlayScene);
+		} else if(this.currentSceneEnum == AllScenes.MAIN_MENU_SCENE) {
+			
 		}
 
 		this.engine.setScene(currentScene.getScene());

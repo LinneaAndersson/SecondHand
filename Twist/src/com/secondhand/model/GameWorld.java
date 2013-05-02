@@ -8,6 +8,8 @@ import org.anddev.andengine.extension.physics.box2d.PhysicsWorld;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Contact;
 import com.secondhand.debug.MyDebug;
+import com.secondhand.model.ourphysics.IPhysics;
+import com.secondhand.model.ourphysics.Physics;
 import com.secondhand.model.powerup.PowerUp;
 
 // This class was formerly known as level. 
@@ -18,6 +20,7 @@ public class GameWorld {
 	private final int STARTING_LEVEL = 2;
 
 	private PhysicsWorld physicsWorld;
+	private IPhysics mPhysic;
 
 	private GameWorldBounds gameWorldBounds;
 
@@ -52,6 +55,7 @@ public class GameWorld {
 		support = new PropertyChangeSupport(this);
 
 		this.physicsWorld = new PhysicsWorld(new Vector2(), true);
+		this.mPhysic = new Physics(new Vector2()); // TODO: have to do this other way. I fix
 
 		this.gameWorldBounds = new GameWorldBounds();
 
@@ -84,6 +88,10 @@ public class GameWorld {
 		return physicsWorld;
 	}
 
+	public IPhysics getPhysics(){
+		return mPhysic;
+	}
+	
 	public int getLevelWidth() {
 		return levelWidth;
 	}

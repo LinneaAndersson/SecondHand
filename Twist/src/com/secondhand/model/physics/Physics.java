@@ -14,13 +14,14 @@ import com.badlogic.gdx.physics.box2d.Contact;
 import com.secondhand.controller.CollisionContactListener;
 import com.secondhand.debug.MyDebug;
 import com.secondhand.model.BlackHole;
+import com.secondhand.model.CircleEntity;
 import com.secondhand.model.Enemy;
 import com.secondhand.model.CollisionResolver;
 import com.secondhand.model.Entity;
 import com.secondhand.model.GameWorld;
 import com.secondhand.model.Obstacle;
 import com.secondhand.model.Planet;
-import com.secondhand.model.powerup.PowerUp;
+import com.secondhand.model.RectangleEntity;
 import com.secondhand.view.opengl.Circle;
 import com.secondhand.view.opengl.Polygon;
 import com.secondhand.view.scene.GamePlayScene;
@@ -72,7 +73,6 @@ public class Physics implements IPhysics {
 		physicsWorld.registerPhysicsConnector(new CustomPhysicsConnector(entity
 				.getShape(), entity.isCircle(), entity.getBody(), true,
 				rotation));
-
 	}
 
 	// andEngine or box2d coordinates in? and depending on from
@@ -93,7 +93,7 @@ public class Physics implements IPhysics {
 
 	}
 
-	public void deleteBody(Boolean scheduledBody) {
+	public void deleteBody(final boolean scheduledBody) {
 		if (!scheduledBody) {
 			throw new IllegalStateException("Body not scheduled for deletion!");
 		}
@@ -108,19 +108,19 @@ public class Physics implements IPhysics {
 	}
 
 	@Override
-	public void setConnector(IShape shape) {
+	public void setConnector(final IShape shape) {
 		physicsConnector = physicsWorld.getPhysicsConnectorManager()
 				.findPhysicsConnectorByShape(shape);
 	}
 
 	@Override
-	public void checkCollision(Contact contact) {
+	public void checkCollision(final Contact contact) {
 		collisionResolver.checkCollision(contact.getFixtureA().getBody()
 				.getUserData(), contact.getFixtureB().getBody().getUserData());
 	}
 
 	@Override
-	public boolean isStraightLine(Entity entity, Enemy enemy) {
+	public boolean isStraightLine(final Entity entity, final Enemy enemy) {
 		return enemyUtil.straightLine(entity, enemy);
 	}
 
@@ -131,7 +131,7 @@ public class Physics implements IPhysics {
 		return physicsWorld;
 	}
 
-	public boolean isAreaUnOccupied(float x, float y, float r) {
+	public boolean isAreaUnOccupied(final float x, final float y, final float r) {
 		return PhysicsAreaChecker.isRectangleAreaUnoccupied(new Vector2(x - r,
 				y + r), new Vector2(x + r, y - r), physicsWorld);
 	}
@@ -143,44 +143,41 @@ public class Physics implements IPhysics {
 	}
 
 	@Override
-	public Body createType(IShape shape,Entity entity) {
+	public Body createType(final IShape shape, final Entity entity) {
 		if(entity instanceof Obstacle){
-			Polygon polygon = (Polygon) shape;
+			final Polygon polygon = (Polygon) shape;
 			return MyPhysicsFactory.createPolygonBody(physicsWorld,
 					polygon, BodyType.DynamicBody, FixtureDefs.OBSTACLE_FIXTURE_DEF);
 		} else 	if (entity instanceof Planet) {
-			Circle circle = (Circle) shape;
+			final Circle circle = (Circle) shape;
 			return PhysicsFactory.createCircleBody(physicsWorld, circle.getX(),
 					circle.getY(), circle.getRadius(), circle.getRotation(),
 					BodyType.DynamicBody, FixtureDefs.PLANET_FIXTURE_DEF);
-		} else if (entity instanceof BlackHole) {
-			Circle circle = (Circle) shape;
+		} else if (entity instanceof CircleEntity) {
+			final Circle circle = (Circle) shape;
 			return PhysicsFactory.createCircleBody(physicsWorld, circle.getX(),
 					circle.getY(), circle.getRadius(), circle.getRotation(),
 					BodyType.DynamicBody, FixtureDefs.BLACK_HOLE_FIXTURE_DEF);
-		} else if(entity instanceof PowerUp){
-			RectangularShape rectangle = (RectangularShape) shape;
+		} else if(entity instanceof RectangleEntity){
+			final RectangularShape rectangle = (RectangularShape) shape;
 			return PhysicsFactory.createCircleBody(physicsWorld,
 					rectangle, BodyType.DynamicBody, FixtureDefs.POWER_UP_FIXTURE_DEF);
 		}
 		return null;
-		
-		
-		// TODO Auto-generated method stub
-
 	}
 
 	@Override
-	public void registerUpdateHandler(GamePlayScene gamePlayScene) {
+	public void registerUpdateHandler(final GamePlayScene gamePlayScene) {
 
 		gamePlayScene.registerUpdateHandler(physicsWorld);
 		
 	}
 
 	@Override
-	public void setGameWorld(GameWorld gameWorld) {
+	public void setGameWorld(final GameWorld gameWorld) {
 		this.gameWorld = gameWorld;
 		this.collisionResolver = new CollisionResolver(gameWorld);
 		
 	}
-}
+
+	}

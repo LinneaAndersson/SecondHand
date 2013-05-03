@@ -49,15 +49,11 @@ public class SceneController {
 			new MainMenuSceneController(this.sceneManager.getMainMenuScene(), this);
 		} else if(scene == AllScenes.HIGH_SCORE_SCENE) {
 			new HighScoreSceneController(this.sceneManager.getHighScoreScene(), this);
-		}
-		
-		/*if (this.currentSceneEnum == AllScenes.GAME_PLAY_SCENE) {
-			new GamePlaySceneController(this.gamePlayScene);
-		} else if(this.currentSceneEnum == AllScenes.MAIN_MENU_SCENE) {
-			
-		}*/
+		} else if (scene == AllScenes.GAME_PLAY_SCENE) {
+			new GamePlaySceneController(this.sceneManager.getGamePlayScene());
+		} 
 		 
-			
+				
 	}
 	
 	public Scene getCurrentScene() {

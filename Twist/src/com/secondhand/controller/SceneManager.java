@@ -62,6 +62,10 @@ public final class SceneManager {
 		return this.highScoreScene;
 	}
 
+	public GamePlayScene getGamePlayScene() {
+		return this.gamePlayScene;
+	}
+	
 	public IGameScene getScene(final AllScenes sceneEnum) {
 		IGameScene scene = null;
 

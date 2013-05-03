@@ -536,10 +536,6 @@
             <ruleset>Code Size Rules</ruleset>
         </rule>
         <rule>
-            <name>NullAssignment</name>
-            <ruleset>Controversial Rules</ruleset>
-        </rule>
-        <rule>
             <name>OptimizableToArrayCall</name>
             <ruleset>Design Rules</ruleset>
         </rule>

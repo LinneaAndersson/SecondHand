@@ -11,10 +11,13 @@ import org.anddev.andengine.extension.physics.box2d.util.constants.PhysicsConsta
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.BodyDef.BodyType;
+import com.badlogic.gdx.physics.box2d.Contact;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.secondhand.debug.MyDebug;
 import com.secondhand.model.Enemy;
+import com.secondhand.model.CollisionResolver;
 import com.secondhand.model.Entity;
+import com.secondhand.model.GameWorld;
 import com.secondhand.model.physics.CustomPhysicsConnector;
 
 public class Physics implements IPhysics {
@@ -23,16 +26,19 @@ public class Physics implements IPhysics {
 	private IShape[] worldBounds;
 	private PhysicsConnector physicsConnector;
 	private EnemyUtil enemyUtil;
+	private final CollisionResolver collisionResolver;
 
-	
 	// no vector needed because its zero gravity. And if the constructor
 	// needs an vector that means we need to to import Vector2
-	// wherever we creates Physics 
+	// wherever we creates Physics
 	// TODO:remove vector2.
-	public Physics(Vector2 vector) {
-		//TODO: Will be here later.
-		//physicsWorld = new PhysicsWorld(vector, true);
-		//enemyUtil = new EnemyUtil(physicsWorld);
+
+	public Physics(final GameWorld gameWorld, final Vector2 vector) {
+		// TODO: Will be here later.
+		// physicsWorld = new PhysicsWorld(vector, true);
+			//enemyUtil = new EnemyUtil(physicsWorld);
+		this.collisionResolver = new CollisionResolver(gameWorld);
+
 	}
 
 	public void init() {
@@ -108,20 +114,20 @@ public class Physics implements IPhysics {
 	}
 
 	public void deleteBody(Boolean scheduledBody) {
-		if(!scheduledBody) {
+		if (!scheduledBody) {
 			throw new IllegalStateException("Body not scheduled for deletion!");
 		}
-			
+
 		physicsWorld.unregisterPhysicsConnector(physicsConnector);
-					
+
 		MyDebug.i(physicsConnector.getBody() + " will be destroyed");
-							
+
 		physicsWorld.destroyBody(physicsConnector.getBody());
-			
+
 		MyDebug.i(physicsConnector.getBody() + " destruction complete");
 	}
 
-	//TODO: Will remove thi later, just for testing it works okej.
+	// TODO: Will remove thi later, just for testing it works okej.
 	@Override
 	public void setPhysicsWorld(PhysicsWorld p) {
 		this.physicsWorld = p;
@@ -129,10 +135,16 @@ public class Physics implements IPhysics {
 		enemyUtil = new EnemyUtil(physicsWorld);
 		
 	}
-	
-	public void setConnector(IShape shape){
-		physicsConnector = physicsWorld.getPhysicsConnectorManager().findPhysicsConnectorByShape(
-				shape);
+
+	public void setConnector(IShape shape) {
+		physicsConnector = physicsWorld.getPhysicsConnectorManager()
+				.findPhysicsConnectorByShape(shape);
+	}
+
+	@Override
+	public void checkCollision(Contact contact) {
+		collisionResolver.checkCollision(contact.getFixtureA().getBody()
+				.getUserData(), contact.getFixtureB().getBody().getUserData());
 	}
 
 	public boolean isStraightLine(Entity entity, Enemy enemy){

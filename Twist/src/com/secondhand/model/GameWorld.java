@@ -6,7 +6,6 @@ import java.beans.PropertyChangeSupport;
 import org.anddev.andengine.extension.physics.box2d.PhysicsWorld;
 
 import com.badlogic.gdx.math.Vector2;
-import com.badlogic.gdx.physics.box2d.Contact;
 import com.secondhand.model.ourphysics.IPhysics;
 import com.secondhand.model.ourphysics.Physics;
 
@@ -15,7 +14,7 @@ public class GameWorld {
 
 	private final EntityManager entityManager;
 
-	private final int STARTING_LEVEL = 2;
+	private static final int STARTING_LEVEL = 2;
 
 	//TODO: will remove this later
 	private PhysicsWorld physicsWorld;
@@ -28,6 +27,10 @@ public class GameWorld {
 	private int levelNumber;
 
 	private PropertyChangeSupport support;
+	
+	public PropertyChangeSupport getPropertyChangeSupport() {
+		return this.support;
+	}
 
 	public void addListener(PropertyChangeListener listener) {
 		support.addPropertyChangeListener(listener);
@@ -54,19 +57,9 @@ public class GameWorld {
 		//TODO: will remove this later
 		this.physicsWorld = new PhysicsWorld(new Vector2(), true);
 
-		this.mPhysic = new Physics(new Vector2()); // TODO: have to do this other way. I fix
+		this.mPhysic = new Physics(this, new Vector2()); // TODO: have to do this other way. I fix
 
 		mPhysic.setPhysicsWorld(getPhysicsWorld());
-
-
-		// you can try lowering the values of these if the game starts lagging
-		// too much. Basically, high values for these gives a higher quality
-		// physics simulation.
-		
-		//In the new physics this is doing in the constructor. 
-		//TODO: will remove this later
-		//this.physicsWorld.setVelocityIterations(16);
-		//this.physicsWorld.setPositionIterations(16);
 	}
 
 	// generate the level entities of a new level.
@@ -104,10 +97,6 @@ public class GameWorld {
 		return levelHeight;
 	}
 
-	// for debugging
-
-	private boolean nextLevelAdvanced = false;
-
 	public void nextLevel() {
 
 		++this.levelNumber;
@@ -131,8 +120,7 @@ public class GameWorld {
 
 	// update game world for this frame.
 	public void updateGameWorld() {
-		if (checkPlayerBigEnough() && !nextLevelAdvanced) {
-			nextLevelAdvanced = true;
+		if (checkPlayerBigEnough()) {
 			nextLevel();
 		} else {
 			this.entityManager.updateEntities();
@@ -141,10 +129,6 @@ public class GameWorld {
 
 	public boolean isGameOver() {
 		return this.entityManager.getPlayer().lostAllLives();
-	}
-
-	public void checkCollision(final Contact contact) {
-		CollisionResolver.checkCollision(contact);
 	}
 
 	public Player getPlayer() {

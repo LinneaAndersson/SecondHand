@@ -1,12 +1,12 @@
 package com.secondhand.model.ourphysics;
 
 import org.anddev.andengine.entity.shape.IShape;
-import org.anddev.andengine.entity.shape.Shape;
 import org.anddev.andengine.extension.physics.box2d.PhysicsWorld;
-
 
 import com.badlogic.gdx.physics.box2d.Body;
 import com.secondhand.model.Enemy;
+import com.badlogic.gdx.physics.box2d.Contact;
+
 import com.secondhand.model.Entity;
 
 public interface IPhysics {
@@ -29,4 +29,6 @@ public interface IPhysics {
 
 	public boolean isStraightLine(Entity entity, Enemy enemy);
 
+	
+	public void checkCollision(Contact contact);
 }

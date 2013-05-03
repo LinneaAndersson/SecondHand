@@ -1,7 +1,5 @@
 package com.secondhand.view.scene;
 
-import java.beans.PropertyChangeEvent;
-import java.beans.PropertyChangeListener;
 
 import org.anddev.andengine.engine.Engine;
 import org.anddev.andengine.engine.camera.hud.HUD;
@@ -9,19 +7,16 @@ import org.anddev.andengine.engine.camera.hud.HUD;
 import android.content.Context;
 
 import com.badlogic.gdx.math.Vector2;
-import com.secondhand.controller.CollisionContactListener;
-import com.secondhand.controller.InputDialogManager;
 import com.secondhand.debug.MyDebug;
 import com.secondhand.model.Entity;
 import com.secondhand.model.GameWorld;
 import com.secondhand.model.Player;
-import com.secondhand.model.resource.HighScoreList;
 import com.secondhand.view.entity.FadingNotifierText;
 import com.secondhand.view.entity.ScoreLivesText;
 import com.secondhand.view.opengl.StarsBackground;
 import com.secondhand.view.resource.Sounds;
 
-public class GamePlayScene extends GameScene implements PropertyChangeListener {
+public class GamePlayScene extends GameScene {
 
 	private HUD hud;
 
@@ -78,23 +73,16 @@ public class GamePlayScene extends GameScene implements PropertyChangeListener {
 		final Player player = gameWorld.getPlayer();
 		player.getShape().detachSelf();
 		attachChild(player.getShape());
-		gameWorld.addListener(this);
 		engine.getCamera().setChaseEntity(player.getShape());
 
 		// setup the physicsworld the
 		registerUpdateHandler(gameWorld.getPhysicsWorld());
-		// gameWorld.setView(this);
 
 		// setup the HUD
 		hud = new HUD();
 		this.scoreLivesText = new ScoreLivesText(new Vector2(10, 10),
 				player.getScore(), player.getLives());
 		hud.attachChild(scoreLivesText);
-
-		// I do believe this belong here
-		getGameWorld().getPhysicsWorld().setContactListener(
-				new CollisionContactListener(getGameWorld()));
-
 	}
 
 	@Override
@@ -152,28 +140,10 @@ public class GamePlayScene extends GameScene implements PropertyChangeListener {
 		return AllScenes.MAIN_MENU_SCENE;
 	}
 
-	
-	// not a very good solution bellow but it can do for now
-	@Override
-	public void propertyChange(final PropertyChangeEvent event) {
-		final String eventName = event.getPropertyName();
-		if (eventName.equals(Player.INCREASE_SCORE)) {
-			updateScore((Integer) event.getNewValue());
-		} else if (eventName.equals(Player.INCREASE_LIFE)) {
-			updateLives((Integer) event.getNewValue());
-		} else if (eventName.equals("PlayerRadius")) {
-			apaptCameraToGrowingPlayer((Float) event.getNewValue(),
-					(Float) event.getOldValue());
-		} else if (eventName.equals("NextLevel")) {
-			smoothCamera.setZoomFactorDirect(1.0f);
-			newLevelStarted();
-		}
-	}
-
 	// zoom out when player grows.
 	// I think we may need to reset sizes when going to new level, otherwise it
 	// will look bad
-	private void apaptCameraToGrowingPlayer(final float newRadius,
+	public void apaptCameraToGrowingPlayer(final float newRadius,
 			final float oldRadius) {
 		this.smoothCamera.setZoomFactor(this.smoothCamera.getZoomFactor()
 				- 0.05f * oldRadius / newRadius);
@@ -194,13 +164,14 @@ public class GamePlayScene extends GameScene implements PropertyChangeListener {
 	}
 
 	public void newLevelStarted() {
-		MyDebug.d("new level!");
-
-		gameWorld.getPlayer().setRadius(30);
-		registerNewLevel();
-
 		Sounds.getInstance().winSound.play();
 
+		smoothCamera.setZoomFactorDirect(1.0f);
+		
+		// TODO: gameworld should probably handle this one.
+		gameWorld.getPlayer().setRadius(30);
+		
+		registerNewLevel();
 	}
 
 	public void updateScore(final int newScore) {
@@ -211,4 +182,10 @@ public class GamePlayScene extends GameScene implements PropertyChangeListener {
 		this.scoreLivesText.setLives(newLives);
 	}
 
+	public void onPlayerWallCollision() {
+		Sounds.getInstance().obstacleCollisionSound.play();	
+	}
+	
+	
+	
 }

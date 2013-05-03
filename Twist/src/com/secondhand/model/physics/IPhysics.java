@@ -1,7 +1,6 @@
 package com.secondhand.model.physics;
 
 import org.anddev.andengine.entity.shape.IShape;
-import org.anddev.andengine.extension.physics.box2d.PhysicsWorld;
 
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.Contact;
@@ -13,7 +12,6 @@ import com.secondhand.view.scene.GamePlayScene;
 
 public interface IPhysics {
 
-	
 	void setWorldBounds(final int levelWidth, final int levelHeight);
 	
 	void removeWorldBounds();
@@ -28,7 +26,6 @@ public interface IPhysics {
 
 	boolean isStraightLine(final Entity entity, final Enemy enemy);
 
-	
 	void checkCollision(final Contact contact);
 
 	boolean isAreaUnOccupied(final float x, final float y, final float r);

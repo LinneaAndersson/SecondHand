@@ -1,10 +1,6 @@
 package com.secondhand.model;
 
 import org.anddev.andengine.entity.shape.RectangularShape;
-import org.anddev.andengine.extension.physics.box2d.PhysicsFactory;
-
-import com.badlogic.gdx.physics.box2d.BodyDef.BodyType;
-import com.badlogic.gdx.physics.box2d.FixtureDef;
 
 
 public abstract class RectangleEntity extends Entity {

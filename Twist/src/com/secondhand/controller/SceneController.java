@@ -3,10 +3,10 @@ package com.secondhand.controller;
 import org.anddev.andengine.engine.Engine;
 import org.anddev.andengine.entity.scene.Scene;
 
-import com.secondhand.view.scene.AllScenes;
-
 import android.content.Context;
 import android.view.KeyEvent;
+
+import com.secondhand.view.scene.AllScenes;
 
 /**
  * The controller for all the scenes. While the SceneManager is capable of switching between scenes,

@@ -1,6 +1,7 @@
 package com.secondhand.view.scene;
 
 import org.anddev.andengine.engine.Engine;
+
 import android.content.Context;
 
 import com.secondhand.model.resource.LocalizationStrings;

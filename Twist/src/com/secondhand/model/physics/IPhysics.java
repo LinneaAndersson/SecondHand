@@ -1,12 +1,14 @@
 package com.secondhand.model.physics;
 
-import org.anddev.andengine.entity.Entity;
 import org.anddev.andengine.entity.shape.IShape;
 import org.anddev.andengine.extension.physics.box2d.PhysicsWorld;
 
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.Contact;
 import com.secondhand.model.Enemy;
+import com.secondhand.model.Entity;
+import com.secondhand.model.GameWorld;
+import com.secondhand.view.scene.GamePlayScene;
 
 
 public interface IPhysics {
@@ -40,7 +42,7 @@ public interface IPhysics {
 
 	Body createType(final IShape shape, final Entity entity);
 
-	public void registerUpdateHandler(final GamePlayScene gamePlayScene);
+	void registerUpdateHandler(final GamePlayScene gamePlayScene);
 
-	public void setGameWorld(final GameWorld gameWorld);
+	void setGameWorld(final GameWorld gameWorld);
 }

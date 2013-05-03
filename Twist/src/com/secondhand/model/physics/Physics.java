@@ -195,4 +195,5 @@ public class Physics implements IPhysics {
 		this.collisionResolver = new CollisionResolver(gameWorld);
 		
 	}
-}
+
+	}

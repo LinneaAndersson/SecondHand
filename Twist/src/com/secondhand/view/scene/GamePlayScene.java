@@ -76,7 +76,7 @@ public class GamePlayScene extends GameScene {
 		engine.getCamera().setChaseEntity(player.getShape());
 
 		// setup the physicsworld the
-		registerUpdateHandler(gameWorld.getPhysicsWorld());
+		gameWorld.getPhysics().registerUpdateHandler(this);
 
 		// setup the HUD
 		hud = new HUD();

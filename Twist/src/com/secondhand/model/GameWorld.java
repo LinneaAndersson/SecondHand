@@ -3,7 +3,6 @@ package com.secondhand.model;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 
-import org.anddev.andengine.extension.physics.box2d.PhysicsWorld;
 
 import com.badlogic.gdx.math.Vector2;
 import com.secondhand.model.physics.IPhysics;
@@ -21,9 +20,6 @@ public class GameWorld {
 
 	private static final int STARTING_LEVEL = 2;
 
-	//TODO: will remove this later
-	private PhysicsWorld physicsWorld;
-	
 	private IPhysics mPhysic;
 
 	private int levelWidth;
@@ -61,8 +57,6 @@ public class GameWorld {
 
 		this.mPhysic = new Physics(this, new Vector2()); // TODO: have to do this other way. I fix
 
-		//TODO: will remove this later
-		this.physicsWorld = mPhysic.getPhysicsWorld();
 
 	}
 
@@ -82,11 +76,6 @@ public class GameWorld {
 
 	public int getLevelNumber() {
 		return levelNumber;
-	}
-
-	//TODO: will remove this later
-	public PhysicsWorld getPhysicsWorld() {
-		return physicsWorld;
 	}
 
 	public IPhysics getPhysics(){

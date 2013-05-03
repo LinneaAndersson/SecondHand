@@ -12,6 +12,7 @@ import com.badlogic.gdx.physics.box2d.Contact;
 import com.secondhand.model.Entity;
 import com.secondhand.view.opengl.Circle;
 import com.secondhand.view.opengl.Polygon;
+import com.secondhand.view.scene.GamePlayScene;
 
 public interface IPhysics {
 
@@ -43,4 +44,6 @@ public interface IPhysics {
 	public void setContactListener();
 
 	Body createType(IShape shape, Entity entity);
+
+	public void registerUpdateHandler(GamePlayScene gamePlayScene);
 }

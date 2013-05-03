@@ -23,13 +23,14 @@ import com.secondhand.model.Planet;
 import com.secondhand.model.powerup.PowerUp;
 import com.secondhand.view.opengl.Circle;
 import com.secondhand.view.opengl.Polygon;
+import com.secondhand.view.scene.GamePlayScene;
 
 public class Physics implements IPhysics {
-	private PhysicsWorld physicsWorld;
+	private final PhysicsWorld physicsWorld;
 	private PhysicsConnector physicsConnector;
-	private PhysicsEnemyUtil enemyUtil;
+	private final PhysicsEnemyUtil enemyUtil;
 	private final CollisionResolver collisionResolver;
-	private PhysicsWorldBounds bounds;
+	private final PhysicsWorldBounds bounds;
 
 	// no vector needed because its zero gravity. And if the constructor
 	// needs an vector that means we need to to import Vector2
@@ -184,5 +185,12 @@ public class Physics implements IPhysics {
 		
 		// TODO Auto-generated method stub
 
+	}
+
+	@Override
+	public void registerUpdateHandler(GamePlayScene gamePlayScene) {
+
+		gamePlayScene.registerUpdateHandler(physicsWorld);
+		
 	}
 }

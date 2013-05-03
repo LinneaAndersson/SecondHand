@@ -3,11 +3,8 @@ package com.secondhand.controller;
 import org.anddev.andengine.engine.Engine;
 
 import android.content.Context;
-import android.view.KeyEvent;
 
 import com.secondhand.debug.MyDebug;
-import com.secondhand.view.resource.Sounds;
-import com.secondhand.view.resource.TextureRegions;
 import com.secondhand.view.scene.AllScenes;
 import com.secondhand.view.scene.GamePlayScene;
 import com.secondhand.view.scene.HighScoreScene;
@@ -19,7 +16,7 @@ import com.secondhand.view.scene.SettingsMenuScene;
 /**
  * Is used to switch between different scenes. 
  */
-public final class SceneManager {
+final class SceneManager {
 
 	
 	//private static SceneManager instance;
@@ -94,10 +91,10 @@ public final class SceneManager {
 		this.currentSceneEnum = currentSceneEnum;
 		final IGameScene currentScene = getCurrentScene();	
 		
-		//if(!currentScene.isLoaded()) {
+		if(!currentScene.isLoaded()) {
 			MyDebug.d("scene not preloaded, loading!");
 			currentScene.loadScene();
-	//	}
+		}
 
 		this.engine.setScene(currentScene.getScene());
 
@@ -107,7 +104,6 @@ public final class SceneManager {
 	public void switchScene(final AllScenes scene) {
 		
 		if(this.getCurrentScene() != null) {
-			//this.getCurrentScene().unloadScene();
 			this.getCurrentScene().onSwitchScene();
 		}
 		

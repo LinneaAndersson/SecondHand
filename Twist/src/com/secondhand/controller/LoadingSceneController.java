@@ -11,7 +11,7 @@ import com.secondhand.view.scene.AllScenes;
 import com.secondhand.view.scene.LoadingScene;
 import com.secondhand.view.scene.LoadingSceneCallback;
 
-public class LoadingSceneController extends Entity {
+class LoadingSceneController extends Entity {
 	
 	private final SceneController sceneController;
 	private final AllScenes nextScene;

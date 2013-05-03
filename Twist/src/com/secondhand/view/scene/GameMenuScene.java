@@ -12,10 +12,7 @@ import org.anddev.andengine.entity.text.Text;
 import org.anddev.andengine.opengl.font.Font;
 
 import android.content.Context;
-import android.view.KeyEvent;
 
-import com.secondhand.controller.SceneManager;
-import com.secondhand.debug.MyDebug;
 import com.secondhand.view.resource.Fonts;
 
 /**
@@ -26,6 +23,7 @@ public abstract class GameMenuScene extends MenuScene implements IGameScene {
 	protected final SmoothCamera smoothCamera;
 	protected final Engine engine;
 	protected final Context context;
+	private boolean isLoaded;
 	
 	public GameMenuScene(final Engine engine, final Context context) {
 		super(engine.getCamera());
@@ -36,16 +34,6 @@ public abstract class GameMenuScene extends MenuScene implements IGameScene {
 		this.engine = engine;
 	}
 
-	@Override
-	public Scene getScene() {
-		return this;
-	}
-
-	
-	@Override
-	public void unloadScene() {
-		this.detachChildren();
-	}
 
 	protected int layoutHeadline(final String headline) {
 		// the vertical spacing around the headline.
@@ -92,9 +80,6 @@ public abstract class GameMenuScene extends MenuScene implements IGameScene {
 				/ 2.0f + startY;
 
 		for (final GameMenuScene.MenuItem menuItem : menuItems) {
-
-			MyDebug.d("laying single menu item");
-
 			final IMenuItem item = new TextMenuItem(menuItem.id, menuItemFont,
 					menuItem.text);
 
@@ -119,7 +104,22 @@ public abstract class GameMenuScene extends MenuScene implements IGameScene {
 			this.text = text;
 		}
 	}
+
+	@Override
+	public void loadScene() {
+		this.detachChildren();
+		this.isLoaded = true;
+	}
+	
+	public boolean isLoaded() {
+		return this.isLoaded;
+	}
+
+	@Override
+	public Scene getScene() {
+		return this;
+	}
 	
 	@Override
-	public void onSwitchScene() { }
+	public void onSwitchScene() { this.isLoaded = false; }
 }

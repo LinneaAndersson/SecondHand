@@ -10,9 +10,10 @@ import android.view.KeyEvent;
 
 /**
  * The controller for all the scenes. While the SceneManager is capable of switching between scenes,
- * this is the one who does the actual switching
+ * this is the one who does the actual switching. This class also responsible for registering the 
+ * controllers of all the scenes. 
  */
-public class SceneController {
+class SceneController {
 
 	private final Engine engine;
 	private final Context context;

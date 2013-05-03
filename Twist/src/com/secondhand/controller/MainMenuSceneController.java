@@ -4,11 +4,10 @@ import org.anddev.andengine.entity.scene.menu.MenuScene;
 import org.anddev.andengine.entity.scene.menu.MenuScene.IOnMenuItemClickListener;
 import org.anddev.andengine.entity.scene.menu.item.IMenuItem;
 
-import com.secondhand.debug.MyDebug;
 import com.secondhand.view.scene.AllScenes;
 import com.secondhand.view.scene.MainMenuScene;
 
-public class MainMenuSceneController implements IOnMenuItemClickListener {
+class MainMenuSceneController implements IOnMenuItemClickListener {
 
 	private final SceneController sceneController;
 	
@@ -23,9 +22,7 @@ public class MainMenuSceneController implements IOnMenuItemClickListener {
 			final float pMenuItemLocalX, final float pMenuItemLocalY) {
 		
 		switch(pMenuItem.getID()) {
-		case MainMenuScene.MENU_NEW_GAME:
-			MyDebug.i("now the game should start");
-			
+		case MainMenuScene.MENU_NEW_GAME:	
 			sceneController.switchScene(AllScenes.LEVEL_LOADING_SCENE);
 			
 			// start new game

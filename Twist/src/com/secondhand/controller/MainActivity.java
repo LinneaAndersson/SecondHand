@@ -21,7 +21,6 @@ import com.secondhand.view.loader.FontLoader;
 import com.secondhand.view.loader.SoundLoader;
 import com.secondhand.view.loader.TextureRegionLoader;
 import com.secondhand.view.scene.AllScenes;
-import com.secondhand.view.scene.IGameScene;
 
 public class MainActivity extends BaseGameActivity {
 

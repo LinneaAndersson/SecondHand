@@ -33,10 +33,6 @@ public class GamePlayScene extends GameScene implements PropertyChangeListener {
 
 	public GamePlayScene(final Engine engine, final Context context) {
 		super(engine, context);
-
-		MyDebug.i("creating game world");
-		
-		
 	}
 
 	public GameWorld getGameWorld() {
@@ -103,6 +99,7 @@ public class GamePlayScene extends GameScene implements PropertyChangeListener {
 
 	@Override
 	public void loadScene() {
+		super.loadScene();
 	
 		// get rid the entities from the previous game.
 		// this.detachChildren();
@@ -115,8 +112,6 @@ public class GamePlayScene extends GameScene implements PropertyChangeListener {
 		// menu.
 		cachedCameraCenter = new Vector2(smoothCamera.getCenterX(),
 				smoothCamera.getCenterY());
-
-		MyDebug.d("loading game play sceme");
 
 		setupView();
 		registerNewLevel();
@@ -204,7 +199,6 @@ public class GamePlayScene extends GameScene implements PropertyChangeListener {
 			updateLives((Integer) event.getNewValue());
 		} else if (eventName.equals("PlayerRadius")) {
 			final float newRadius = (Float) event.getNewValue();
-			MyDebug.d("new radius: " + newRadius);
 			apaptCameraToGrowingPlayer((Float) event.getNewValue(),
 					(Float) event.getOldValue());
 		} else if (eventName.equals("NextLevel")) {

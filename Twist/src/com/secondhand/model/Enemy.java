@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.badlogic.gdx.math.Vector2;
 import com.secondhand.debug.MyDebug;
+import com.secondhand.model.ourphysics.IPhysics;
 import com.secondhand.model.powerup.PowerUp;
 
 public class Enemy extends BlackHole {
@@ -13,16 +14,18 @@ public class Enemy extends BlackHole {
 	private static final float MIN_SIZE = 20;
 
 
-	private EnemyUtil util;
+	//private EnemyUtil util;
 	// because someone changed getArea to getRadius I
 	// had to do this.
 	private float huntingArea;
+	private IPhysics physics;
 	
 
 	public Enemy(final float[] vector, final float radius, final GameWorld level) {
 		super(vector, radius, level, enemyMaxSpeed);
 		huntingArea = getHuntingArea();
-		util = new EnemyUtil(this, physicsWorld);
+		physics=level.getPhysics();
+		//util = new EnemyUtil(this, level.getPhysicsWorld());
 		
 
 		// makes the enemy move much smother
@@ -101,7 +104,7 @@ public class Enemy extends BlackHole {
 		// TODO change the null-check to something nicer
 		if (entity != null) {
 
-			if (util.straightLine(entity)) {
+			if (physics.isStraightLine(entity,this)) {
 				// MyDebug.d("Enemy: applyMovement towards " +
 				// entity.getClass());
 				// closeToDanger();

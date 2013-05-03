@@ -1,25 +1,25 @@
-package com.secondhand.model;
+package com.secondhand.model.ourphysics;
 
 import org.anddev.andengine.extension.physics.box2d.PhysicsWorld;
 
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Fixture;
 import com.badlogic.gdx.physics.box2d.RayCastCallback;
+import com.secondhand.model.Enemy;
+import com.secondhand.model.Entity;
 
 // contains the two raycast classes that enemy uses.
 public class EnemyUtil {
-	private Enemy enemy;
 	private static boolean straightLine;
 	private PhysicsWorld physics;
 
-	public EnemyUtil(Enemy enemy, PhysicsWorld physics) {
-		this.enemy = enemy;
+	public EnemyUtil(PhysicsWorld physics) {
 		straightLine = true;
 		this.physics = physics;
 	}
 
 	//true if there is a line where there are no uneatable entities
-	public boolean straightLine(final Entity entity) {
+	public boolean straightLine(final Entity entity,final Enemy enemy) {
 		straightLine = true;
 		physics.rayCast(new RayCastCallback() {
 
@@ -48,10 +48,10 @@ public class EnemyUtil {
 	// need to raycast in the direction the enemy is moving
 	// the ray shouldn't be to long: radius + 5-10?
 	// so how to decide the second point for the ray?
-	
+
 	// clarify: a point 5-10 length-units in front of where the enemy is moving.
-	public Vector2 dangerClose() {
-		Vector2 v =  enemy.getBody().getWorldCenter();
+	public Vector2 dangerClose(final Enemy enemy) {
+		Vector2 v = enemy.getBody().getWorldCenter();
 		Vector2 v2 = enemy.getBody().getLinearVelocity();
 		physics.rayCast(new RayCastCallback(){
 
@@ -67,7 +67,7 @@ public class EnemyUtil {
 				}
 				return 0;
 			}
-			
+
 		},v, null);
 		return null;
 

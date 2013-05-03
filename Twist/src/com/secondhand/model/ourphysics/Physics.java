@@ -13,6 +13,7 @@ import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.BodyDef.BodyType;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.secondhand.debug.MyDebug;
+import com.secondhand.model.Enemy;
 import com.secondhand.model.Entity;
 import com.secondhand.model.physics.CustomPhysicsConnector;
 
@@ -21,6 +22,7 @@ public class Physics implements IPhysics {
 	private Body[] bodies;
 	private IShape[] worldBounds;
 	private PhysicsConnector physicsConnector;
+	private EnemyUtil enemyUtil;
 
 	
 	// no vector needed because its zero gravity. And if the constructor
@@ -30,10 +32,8 @@ public class Physics implements IPhysics {
 	public Physics(Vector2 vector) {
 		//TODO: Will be here later.
 		//physicsWorld = new PhysicsWorld(vector, true);
+		//enemyUtil = new EnemyUtil(physicsWorld);
 	}
-
-	
-
 
 	public void init() {
 		this.physicsWorld.setVelocityIterations(16);
@@ -126,6 +126,7 @@ public class Physics implements IPhysics {
 	public void setPhysicsWorld(PhysicsWorld p) {
 		this.physicsWorld = p;
 		init();
+		enemyUtil = new EnemyUtil(physicsWorld);
 		
 	}
 	
@@ -134,4 +135,7 @@ public class Physics implements IPhysics {
 				shape);
 	}
 
+	public boolean isStraightLine(Entity entity, Enemy enemy){
+		return enemyUtil.straightLine(entity, enemy);
+	}
 }

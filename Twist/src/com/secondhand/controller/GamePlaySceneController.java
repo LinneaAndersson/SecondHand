@@ -57,7 +57,6 @@ final class GamePlaySceneController extends Entity{
 				this.sceneController.switchScene(AllScenes.HIGH_SCORE_SCENE);
 			}
 			
-			/*
 			if (InputDialogManager.input != null) {
 
 				final HighScoreList.Entry newEntry = new HighScoreList.Entry(InputDialogManager.input, 
@@ -67,17 +66,16 @@ final class GamePlaySceneController extends Entity{
 
 				InputDialogManager.input = null;
 
-// switch scene here
-				//switchScene(AllScenes.HIGH_SCORE_SCENE);
+				this.sceneController.switchScene(AllScenes.HIGH_SCORE_SCENE);
 
 			} else if (HighScoreList.getInstance().madeItToHighScoreList(
-					getGameWorld().getPlayer().getScore())) {
+					gameWorld.getPlayer().getScore())) {
 
 				InputDialogManager.showing = true;
 				InputDialogManager.getInstance().showDialog();
 
 			} else {
-			}*/
+			}
 			
 		} else {
 			gameWorld.updateGameWorld();

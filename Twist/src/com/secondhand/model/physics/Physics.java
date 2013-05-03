@@ -183,14 +183,14 @@ public class Physics implements IPhysics {
 	}
 
 	@Override
-	public void registerUpdateHandler(GamePlayScene gamePlayScene) {
+	public void registerUpdateHandler(final GamePlayScene gamePlayScene) {
 
 		gamePlayScene.registerUpdateHandler(physicsWorld);
 		
 	}
 
 	@Override
-	public void setGameWorld(GameWorld gameWorld) {
+	public void setGameWorld(final GameWorld gameWorld) {
 		this.gameWorld = gameWorld;
 		this.collisionResolver = new CollisionResolver(gameWorld);
 		

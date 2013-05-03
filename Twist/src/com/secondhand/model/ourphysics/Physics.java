@@ -9,6 +9,7 @@ import org.anddev.andengine.extension.physics.box2d.util.constants.PhysicsConsta
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.BodyDef.BodyType;
+import com.badlogic.gdx.physics.box2d.Contact;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.secondhand.debug.MyDebug;
 import com.secondhand.model.Entity;
@@ -120,6 +121,15 @@ public class Physics implements IPhysics {
 	public void setConnector(IShape shape){
 		physicsConnector = physicsWorld.getPhysicsConnectorManager().findPhysicsConnectorByShape(
 				shape);
+	}
+
+
+
+
+	@Override
+	public void checkCollision(Contact contact) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

@@ -51,7 +51,7 @@ public abstract class Entity {
 	public void setBody(Body body){
 		this.body = body;
 		MyDebug.d("In setBody " + body);
-		registerBody(body); //NOPMD
+		registerBody(body); 
 
 		MyDebug.d("Out from setBody");
 	}

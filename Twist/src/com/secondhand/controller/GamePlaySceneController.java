@@ -23,7 +23,7 @@ final class GamePlaySceneController extends Entity  implements PropertyChangeLis
 	private final SceneController sceneController; 
 	
 	public GamePlaySceneController(final GamePlayScene scene, final SceneController sceneController) {
-		
+		super();
 		this.gamePlayScene = scene;
 		this.sceneController = sceneController;
 		

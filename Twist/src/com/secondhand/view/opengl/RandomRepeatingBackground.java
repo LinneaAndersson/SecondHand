@@ -95,20 +95,20 @@ public class RandomRepeatingBackground extends RectangularShape {
 
 	// TODO: should we use some kind of shared vertex buffer to speed things up?
 	// Refer to TMXLayer for inspiration.
-
+/*
 	@Override
 	protected void onApplyVertices(final GL10 pGL) {
 		if (GLHelper.EXTENSIONS_VERTEXBUFFEROBJECTS) {
 			// final GL11 gl11 = (GL11)pGL;
 
-			// this.mTMXTiledMap.getSharedVertexBuffer().selectOnHardware(gl11);
-			// GLHelper.vertexZeroPointer(gl11);
+			//this.mTMXTiledMap.getSharedVertexBuffer().selectOnHardware(gl11);
+			//GLHelper.vertexZeroPointer(gl11);
 		} else {
-			// GLHelper.vertexPointer(pGL,
-			// this.mTMXTiledMap.getSharedVertexBuffer().getFloatBuffer());
+		GLHelper.vertexPointer(pGL,
+		//	 this.mTMXTiledMap.getSharedVertexBuffer().getFloatBuffer());
 		}
 	}
-
+*/
 	@Override
 	protected void drawVertices(final GL10 pGL, final Camera pCamera) {
 

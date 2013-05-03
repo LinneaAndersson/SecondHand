@@ -15,9 +15,6 @@ import com.secondhand.view.scene.AllScenes;
  */
 class SceneController {
 
-	private final Engine engine;
-	private final Context context;
-	
 	private final SceneManager sceneManager;
 	
 	public SceneManager getSceneManager() {
@@ -25,11 +22,7 @@ class SceneController {
 	}
 	
 	public SceneController(final Engine engine, final Context context) {
-		this.engine = engine;
-		this.context = context;
-		this.sceneManager = new SceneManager(engine, context);	
-		
-		
+		this.sceneManager = new SceneManager(engine, context);		
 	}
 	
 	private boolean isGameLoaded = false;

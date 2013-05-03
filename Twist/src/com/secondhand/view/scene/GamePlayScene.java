@@ -93,7 +93,7 @@ public class GamePlayScene extends GameScene implements PropertyChangeListener {
 
 		// I do believe this belong here
 		getGameWorld().getPhysicsWorld().setContactListener(
-				new CollisionContactListener(getGameWorld()));
+				new CollisionContactListener(getGameWorld().getPhysics()));
 
 	}
 

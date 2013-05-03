@@ -5,6 +5,7 @@ import org.anddev.andengine.extension.physics.box2d.util.constants.PhysicsConsta
 
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.CircleShape;
+import com.secondhand.model.physics.FixtureDefs;
 import com.secondhand.model.powerup.PowerUp;
 import com.secondhand.view.opengl.Circle;
 
@@ -26,8 +27,7 @@ public abstract class BlackHole extends CircleEntity {
 			final GameWorld level,
 			final float maxSpeed, final int startingScore) {
 		// TODO load texture instead of creating Circle
-		super(new Circle(position[0], position[1], radius), true, level,
-				 FixtureDefs.BLACK_HOLE_FIXTURE_DEF);
+		super(new Circle(position[0], position[1], radius), true, level);
 		this.maxSpeed = maxSpeed;
 		this.score = startingScore;
 		this.canEatInedibles = false;

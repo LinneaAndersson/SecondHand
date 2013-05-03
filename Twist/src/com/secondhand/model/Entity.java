@@ -2,29 +2,37 @@ package com.secondhand.model;
 
 import org.anddev.andengine.entity.shape.IShape;
 import org.anddev.andengine.entity.shape.Shape;
-import org.anddev.andengine.extension.physics.box2d.PhysicsWorld;
 
 import com.badlogic.gdx.physics.box2d.Body;
 import com.secondhand.model.physics.IPhysics;
 
 public abstract class Entity {
 
-	private final Body body;
+	private Body body;
 	private final IShape shape;
 	private boolean isEdible;
-	protected final PhysicsWorld physicsWorld;
 	protected final IPhysics physics;
 	protected final GameWorld level;
 
+	protected enum Type {
+		CIRCLE, RECTANGLE, POLYGON;
+	}
 	public Entity(final Shape shape, final boolean isEdible, final Body body, final GameWorld level) {
 		this.body = body;
 		this.shape = shape;
 		this.isEdible = isEdible;
-		this.physicsWorld = level.getPhysicsWorld();
 		this.physics = level.getPhysics();
 		this.level = level;
 		bodyScheduledForDeletion = false;
 		registerBody(body); //NOPMD
+	}
+	
+	public Entity(final Shape shape, final boolean isEdible, final GameWorld level){
+		this.shape = shape;
+		this.isEdible = isEdible;
+		this.physics = level.getPhysics();
+		this.level = level;
+		bodyScheduledForDeletion = false;
 	}
 
 	protected final void registerBody(final Body body) {
@@ -36,6 +44,11 @@ public abstract class Entity {
 
 		physics.registerBody(this,body,updateRotation);
 
+	}
+	
+	public void setBody(Body body){
+		this.body = body;
+		registerBody(body); //NOPMD
 	}
 
 	public float getX() {

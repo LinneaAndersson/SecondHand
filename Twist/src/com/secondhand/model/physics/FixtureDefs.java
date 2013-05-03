@@ -1,4 +1,4 @@
-package com.secondhand.model;
+package com.secondhand.model.physics;
 
 import org.anddev.andengine.extension.physics.box2d.PhysicsFactory;
 

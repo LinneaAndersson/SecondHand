@@ -11,18 +11,26 @@ import com.secondhand.view.opengl.Circle;
 public abstract class CircleEntity extends Entity {
 	
 	protected final Circle circle;
+	private final Body mBody;
 	
 	//public static Body createCircleBody(final PhysicsWorld pPhysicsWorld, final float pCenterX, final float pCenterY, final float pRadius, final float pRotation, final BodyType pBodyType, final FixtureDef pFixtureDef) {
 
 	
-	protected static Body createNewCircleBody(final Circle circle,  final PhysicsWorld physicsWorld, final FixtureDef fixtureDef) {
-		return PhysicsFactory.createCircleBody(physicsWorld,
+	protected Body createNewCircleBody(final Circle circle) {
+		 return physics.createType(circle,this);
+		  
+		 
+		
+		/*return PhysicsFactory.createCircleBody(physicsWorld,
 				circle.getX(), circle.getY(), circle.getRadius(),circle.getRotation(), BodyType.DynamicBody, fixtureDef);
+	*/
 	}
 	
-	public CircleEntity(final Circle circle, final boolean isEdible, final GameWorld level,final FixtureDef fixtureDef) {
+	public CircleEntity(final Circle circle, final boolean isEdible, final GameWorld level) {
 		
-		super(circle, isEdible, createNewCircleBody(circle, level.getPhysicsWorld(), fixtureDef), level);
+		  super(circle,isEdible,level);
+		 mBody=createNewCircleBody(circle);
+		 this.setBody(mBody);
 		
 		this.circle = circle;
 	}

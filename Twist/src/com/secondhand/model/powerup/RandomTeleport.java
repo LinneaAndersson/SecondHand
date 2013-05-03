@@ -6,7 +6,6 @@ import com.badlogic.gdx.math.Vector2;
 import com.secondhand.debug.MyDebug;
 import com.secondhand.model.GameWorld;
 import com.secondhand.model.Player;
-import com.secondhand.model.physics.PhysicsAreaChecker;
 import com.secondhand.model.resource.PowerUpType;
 
 public class RandomTeleport extends PowerUp {
@@ -32,7 +31,7 @@ public class RandomTeleport extends PowerUp {
 			x = rng.nextInt(level.getLevelWidth());
 			y = rng.nextInt(level.getLevelHeight());
 			
-			if(PhysicsAreaChecker.isRectangleAreaUnoccupied(new Vector2(x - r, y+r), new Vector2(x+r, y-r), physicsWorld))
+			if(physics.isAreaUnOccupied(x, y, r))
 				break;
 		}
 			

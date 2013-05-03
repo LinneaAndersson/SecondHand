@@ -2,6 +2,7 @@ package com.secondhand.model.physics;
 
 import org.anddev.andengine.entity.primitive.Rectangle;
 import org.anddev.andengine.entity.shape.IShape;
+import org.anddev.andengine.entity.shape.RectangularShape;
 import org.anddev.andengine.entity.shape.Shape;
 import org.anddev.andengine.extension.physics.box2d.PhysicsConnector;
 import org.anddev.andengine.extension.physics.box2d.PhysicsFactory;
@@ -13,11 +14,16 @@ import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.BodyDef.BodyType;
 import com.badlogic.gdx.physics.box2d.Contact;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
+import com.secondhand.controller.CollisionContactListener;
 import com.secondhand.debug.MyDebug;
+import com.secondhand.model.BlackHole;
 import com.secondhand.model.Enemy;
 import com.secondhand.model.CollisionResolver;
 import com.secondhand.model.Entity;
 import com.secondhand.model.GameWorld;
+import com.secondhand.model.Planet;
+import com.secondhand.view.opengl.Circle;
+import com.secondhand.view.opengl.Polygon;
 
 public class Physics implements IPhysics {
 	private PhysicsWorld physicsWorld;
@@ -34,9 +40,9 @@ public class Physics implements IPhysics {
 	// TODO:remove vector2.
 
 	public Physics(final GameWorld gameWorld, final Vector2 vector) {
-		 physicsWorld = new PhysicsWorld(vector, true);
+		physicsWorld = new PhysicsWorld(vector, true);
 		bounds = new PhysicsWorldBounds(physicsWorld);
-			enemyUtil = new PhysicsEnemyUtil(physicsWorld);
+		enemyUtil = new PhysicsEnemyUtil(physicsWorld);
 		this.collisionResolver = new CollisionResolver(gameWorld);
 
 	}
@@ -101,7 +107,7 @@ public class Physics implements IPhysics {
 
 		MyDebug.i(physicsConnector.getBody() + " destruction complete");
 	}
-	
+
 	@Override
 	public void setConnector(IShape shape) {
 		physicsConnector = physicsWorld.getPhysicsConnectorManager()
@@ -113,16 +119,55 @@ public class Physics implements IPhysics {
 		collisionResolver.checkCollision(contact.getFixtureA().getBody()
 				.getUserData(), contact.getFixtureB().getBody().getUserData());
 	}
-	
+
 	@Override
-	public boolean isStraightLine(Entity entity, Enemy enemy){
+	public boolean isStraightLine(Entity entity, Enemy enemy) {
 		return enemyUtil.straightLine(entity, enemy);
 	}
 
-	//TODO: Will remove this later
+	// TODO: Will remove this later
 	@Override
 	public PhysicsWorld getPhysicsWorld() {
 		// TODO Auto-generated method stub
 		return physicsWorld;
+	}
+
+	public boolean isAreaUnOccupied(float x, float y, float r) {
+		return PhysicsAreaChecker.isRectangleAreaUnoccupied(new Vector2(x - r,
+				y + r), new Vector2(x + r, y - r), physicsWorld);
+	}
+
+	public Body createType(Circle circle, Entity entity) {
+		if (entity instanceof Planet) {
+			return PhysicsFactory.createCircleBody(physicsWorld, circle.getX(),
+					circle.getY(), circle.getRadius(), circle.getRotation(),
+					BodyType.DynamicBody, FixtureDefs.PLANET_FIXTURE_DEF);
+		} else if (entity instanceof BlackHole) {
+			return PhysicsFactory.createCircleBody(physicsWorld, circle.getX(),
+					circle.getY(), circle.getRadius(), circle.getRotation(),
+					BodyType.DynamicBody, FixtureDefs.BLACK_HOLE_FIXTURE_DEF);
+		}
+		MyDebug.d("You shouldnt be here");
+		return null;
+	}
+
+	@Override
+	public void setContactListener() {
+		physicsWorld.setContactListener(new CollisionContactListener(this));
+
+	}
+
+	@Override
+	public Body createType(RectangularShape rectangle,Entity enntity) {
+		return null;
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public Body createType(Polygon polygon,Entity entity) {
+		return null;
+		// TODO Auto-generated method stub
+
 	}
 }

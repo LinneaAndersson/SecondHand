@@ -1,13 +1,17 @@
 package com.secondhand.model.physics;
 
 import org.anddev.andengine.entity.shape.IShape;
+import org.anddev.andengine.entity.shape.RectangularShape;
 import org.anddev.andengine.extension.physics.box2d.PhysicsWorld;
 
 import com.badlogic.gdx.physics.box2d.Body;
+import com.secondhand.controller.CollisionContactListener;
 import com.secondhand.model.Enemy;
 import com.badlogic.gdx.physics.box2d.Contact;
 
 import com.secondhand.model.Entity;
+import com.secondhand.view.opengl.Circle;
+import com.secondhand.view.opengl.Polygon;
 
 public interface IPhysics {
 
@@ -33,4 +37,14 @@ public interface IPhysics {
 
 	
 	public void checkCollision(Contact contact);
+
+	public boolean isAreaUnOccupied(float x, float y, float r);
+	
+	public void setContactListener();
+	
+	public Body createType(RectangularShape rectangle, Entity entity);
+	
+	public Body createType(Circle circle, Entity entity);
+	
+	public Body createType(Polygon polygon, Entity entity);
 }

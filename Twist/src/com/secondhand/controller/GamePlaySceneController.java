@@ -33,14 +33,12 @@ final class GamePlaySceneController extends Entity  implements PropertyChangeLis
 		
 		scene.setOnSceneTouchListener(new GameSceneTouchListener());
 	
-		gameWorld.getPhysicsWorld().setContactListener(
-				new CollisionContactListener(gameWorld.getPhysics()));
+		gameWorld.getPhysics().setContactListener();
 		
 		// receive gameworld property change in controller.
 		gameWorld.addListener(this);
 		
-		gameWorld.getPhysicsWorld().setContactListener(
-				new CollisionContactListener(gameWorld.getPhysics()));
+		gameWorld.getPhysics().setContactListener();
 	}
 	
 	private class GameSceneTouchListener implements IOnSceneTouchListener {

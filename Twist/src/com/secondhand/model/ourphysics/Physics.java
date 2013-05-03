@@ -16,6 +16,7 @@ import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.secondhand.debug.MyDebug;
 import com.secondhand.model.CollisionResolver;
 import com.secondhand.model.Entity;
+import com.secondhand.model.GameWorld;
 import com.secondhand.model.physics.CustomPhysicsConnector;
 
 public class Physics implements IPhysics {
@@ -23,14 +24,18 @@ public class Physics implements IPhysics {
 	private Body[] bodies;
 	private IShape[] worldBounds;
 	private PhysicsConnector physicsConnector;
+	private final CollisionResolver collisionResolver;
 
 	// no vector needed because its zero gravity. And if the constructor
 	// needs an vector that means we need to to import Vector2
 	// wherever we creates Physics
 	// TODO:remove vector2.
-	public Physics(Vector2 vector) {
+	public Physics(final GameWorld gameWorld, final Vector2 vector) {
 		// TODO: Will be here later.
 		// physicsWorld = new PhysicsWorld(vector, true);
+		
+		this.collisionResolver = new CollisionResolver(gameWorld);
+
 	}
 
 	public void init() {
@@ -134,7 +139,7 @@ public class Physics implements IPhysics {
 
 	@Override
 	public void checkCollision(Contact contact) {
-		CollisionResolver.checkCollision(contact.getFixtureA().getBody()
+		collisionResolver.checkCollision(contact.getFixtureA().getBody()
 				.getUserData(), contact.getFixtureB().getBody().getUserData());
 	}
 

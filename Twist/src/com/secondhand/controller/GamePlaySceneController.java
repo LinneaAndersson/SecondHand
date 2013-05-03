@@ -107,8 +107,11 @@ final class GamePlaySceneController extends Entity  implements PropertyChangeLis
 					(Float) event.getOldValue());
 		} else if (eventName.equals("NextLevel")) {
 			this.gamePlayScene.newLevelStarted();
-			
 			// now add listeners n stuff
+		} else if (eventName.equals("NextLevel")) {
+			this.gamePlayScene.newLevelStarted();
+		} else if (eventName.equals("PlayerWallCollision")) {
+			this.gamePlayScene.onPlayerWallCollision();
 		}
 	}
 

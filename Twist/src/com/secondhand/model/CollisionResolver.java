@@ -4,10 +4,13 @@ import com.secondhand.view.resource.Sounds;
 
 public final class CollisionResolver {
 
-	private CollisionResolver() {
+	private GameWorld gameWorld;
+	
+	public CollisionResolver(GameWorld gameWorld) {
+		this.gameWorld = gameWorld;
 	}
 
-	private static void handleBlackHoleCollision(final Entity entityA,
+	private void handleBlackHoleCollision(final Entity entityA,
 			final Entity entityB) {
 
 		BlackHole blackHole;
@@ -23,7 +26,7 @@ public final class CollisionResolver {
 		blackHole.eatEntity(other);
 	}
 
-	public static void checkCollision(final Object a, final Object b) {
+	public void checkCollision(final Object a, final Object b) {
 		// if one or both is null, then we are dealing with a collision
 		// involving one or
 		// two non-entities
@@ -31,9 +34,9 @@ public final class CollisionResolver {
 		// and we are not interested in handling such a collision
 		if (a == null || b == null) {
 			// if player collided with wall
-			if (a instanceof Player || b instanceof Player)
-				Sounds.getInstance().obstacleCollisionSound.play();
-			return;
+			if (a instanceof Player || b instanceof Player) {
+				this.gameWorld.getPropertyChangeSupport().firePropertyChange("PlayerWallCollision", false, true);
+			}
 
 		}
 

@@ -182,4 +182,10 @@ public class GamePlayScene extends GameScene {
 		this.scoreLivesText.setLives(newLives);
 	}
 
+	public void onPlayerWallCollision() {
+		Sounds.getInstance().obstacleCollisionSound.play();	
+	}
+	
+	
+	
 }

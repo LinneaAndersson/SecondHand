@@ -26,7 +26,7 @@ public class MainMenuSceneController implements IOnMenuItemClickListener {
 		case MainMenuScene.MENU_NEW_GAME:
 			MyDebug.i("now the game should start");
 			
-			sceneController.switchScene(AllScenes.GAME_PLAY_SCENE);
+			sceneController.switchScene(AllScenes.LEVEL_LOADING_SCENE);
 			
 			// start new game
 			/*LoadingScene loadingScene = (LoadingScene) SceneManager.getInstance().getScene(AllScenes.LOADING_SCENE);

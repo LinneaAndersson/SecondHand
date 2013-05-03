@@ -44,7 +44,11 @@ public class SceneController {
 		// now register the controller for the scene.
 		
 		if(scene == AllScenes.LOADING_SCENE) {
-			new LoadingSceneController(this.sceneManager.getLoadingScene(), this);	
+			new LoadingSceneController(this.sceneManager.getLoadingScene(), this,
+					AllScenes.MAIN_MENU_SCENE);	
+		}else if(scene == AllScenes.LEVEL_LOADING_SCENE) {
+			new LoadingSceneController(this.sceneManager.getLoadingScene(), this,
+					AllScenes.GAME_PLAY_SCENE);			
 		} else if(scene == AllScenes.MAIN_MENU_SCENE) {
 			new MainMenuSceneController(this.sceneManager.getMainMenuScene(), this);
 		} else if(scene == AllScenes.HIGH_SCORE_SCENE) {

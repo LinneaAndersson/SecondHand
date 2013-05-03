@@ -4,6 +4,7 @@ import org.anddev.andengine.engine.Engine;
 
 import android.content.Context;
 
+import com.secondhand.model.resource.HighScoreList;
 import com.secondhand.model.resource.LocalizationStrings;
 import com.secondhand.view.entity.LoadingTextView;
 import com.secondhand.view.resource.Fonts;
@@ -27,8 +28,7 @@ public class LoadingScene extends GameScene {
 	public void loadScene() {
 		this.unloadScene();
 		
-		 this.loadingTextView = new LoadingTextView(LocalizationStrings.getInstance()
-					.getLocalizedString("loading"), this.smoothCamera);
+		 this.loadingTextView = new LoadingTextView(this.smoothCamera);
 		// add loading text
 		this.attachChild(this.loadingTextView);
 	}
@@ -39,16 +39,14 @@ public class LoadingScene extends GameScene {
 
 			public void work() {
 
-				TextureRegions.getInstance().load();
-
-				Sounds.getInstance().load();
-
+				callback.doWork();
+				
 			}
 
 			@Override
 			public void onWorkComplete() {
 				callback.onLoadComplete();
-						}
+			}
 		});
 	}
 

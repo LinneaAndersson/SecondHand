@@ -74,7 +74,8 @@ public final class SceneManager {
 		// that it can be accessed be using this method.
 
 		// also change the scene in the game:
-		if (sceneEnum == AllScenes.LOADING_SCENE) {
+		if (sceneEnum == AllScenes.LOADING_SCENE ||
+				sceneEnum == AllScenes.LEVEL_LOADING_SCENE) {
 			scene = this.loadingScene;
 		} else if (sceneEnum == AllScenes.MAIN_MENU_SCENE) {
 			scene = this.mainMenuScene;
@@ -97,9 +98,6 @@ public final class SceneManager {
 			MyDebug.d("scene not preloaded, loading!");
 			currentScene.loadScene();
 	//	}
-		
-		
-		
 
 		this.engine.setScene(currentScene.getScene());
 

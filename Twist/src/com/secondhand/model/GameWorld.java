@@ -35,6 +35,7 @@ public class GameWorld {
 		this.entityManager = new EntityManager(new Player(new float[]{50,50},
 				30, this));
 
+		mPhysic.setWorldBounds(levelWidth, levelHeight);
 		generateNewLevelEntities(STARTING_LEVEL);
 	}
 	
@@ -47,12 +48,6 @@ public class GameWorld {
 		getPlayer().addListener(listener);
 	}
 	
-	public void setPhysics(IPhysics physics){
-		this.mPhysic=physics;
-		MyDebug.d("is it null in setPhysics?" + mPhysic);
-
-		mPhysic.setWorldBounds(levelWidth, levelHeight);
-	}
 
 	// generate the level entities of a new level.
 	private void generateNewLevelEntities(final int levelNumber) {
@@ -73,7 +68,6 @@ public class GameWorld {
 	}
 
 	public IPhysics getPhysics(){
-		MyDebug.d("is it null? = " + mPhysic);
 		return mPhysic;
 	}
 	

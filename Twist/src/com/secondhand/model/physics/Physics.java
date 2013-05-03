@@ -136,29 +136,11 @@ public class Physics implements IPhysics {
 				y + r), new Vector2(x + r, y - r), physicsWorld);
 	}
 
-	public Body createType(Circle circle, Entity entity) {
-		if (entity instanceof Planet) {
-			return PhysicsFactory.createCircleBody(physicsWorld, circle.getX(),
-					circle.getY(), circle.getRadius(), circle.getRotation(),
-					BodyType.DynamicBody, FixtureDefs.PLANET_FIXTURE_DEF);
-		} else if (entity instanceof BlackHole) {
-			return PhysicsFactory.createCircleBody(physicsWorld, circle.getX(),
-					circle.getY(), circle.getRadius(), circle.getRotation(),
-					BodyType.DynamicBody, FixtureDefs.BLACK_HOLE_FIXTURE_DEF);
-		}
-		MyDebug.d("You shouldnt be here");
-		return null;
-	}
-
 	@Override
 	public void setContactListener() {
 		physicsWorld.setContactListener(new CollisionContactListener(this));
 
 	}
-
-	
-	
-	
 
 	@Override
 	public Body createType(IShape shape,Entity entity) {

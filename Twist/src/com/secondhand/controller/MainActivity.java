@@ -44,7 +44,7 @@ public class MainActivity extends BaseGameActivity {
 	    engineOptions.setNeedsMusic(true);
 	    final Engine engine = new Engine(engineOptions);
 	    
-	    InputDialogManager.getInstance().initialize(engine, this);
+	    InputDialogManager.getInstance().initialize(this);
 	    
 	    // initialize loader classes:
 	    HighScoreList.getInstance().initialize(this);

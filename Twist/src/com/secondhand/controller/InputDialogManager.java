@@ -1,14 +1,10 @@
 package com.secondhand.controller;
 
-import org.anddev.andengine.engine.Engine;
-
-import com.secondhand.view.scene.GamePlayScene;
 
 // manages the input dialog used when entering the player name. 
 public final class InputDialogManager {
 	private static InputDialogManager instance;
 
-	private Engine engine;
 	private MainActivity activity;
 
 	public static String input;
@@ -27,8 +23,7 @@ public final class InputDialogManager {
 	/**
 	 * Setup this singelton class for usage.
 	 * */
-	public void initialize(final Engine engine, final MainActivity activity) {
-		this.engine = engine;
+	public void initialize(final MainActivity activity) {
 		this.activity = activity;
 	}
 
@@ -36,24 +31,15 @@ public final class InputDialogManager {
 		return input;
 	}
 
+	@SuppressWarnings("deprecation")
 	public void showDialog() {
 
 		input = null;
 		activity.runOnUiThread(new Runnable() {
 			public void run() {
 				// so it's deprecated, huh? Well fuck you android!
-				activity.showDialog(MainActivity.TEXT_INPUT_DIALOG);
+				activity.showDialog(MainActivity.TEXT_INPUT_DIALOG);	
 			}
 		});
-	}
-
-	// TODO: holy fuck this code is ugly. Clean up.
-	// get rid of all the static fields, for one.
-
-	// we are doing it this way because it takes a whole freaking second
-	// until
-	// the operating system shows the damn input dialog.
-	public void doStuff(GamePlayScene scene, float pSecondsElapsed) {
-
 	}
 }

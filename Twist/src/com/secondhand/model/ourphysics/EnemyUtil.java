@@ -68,7 +68,7 @@ public class EnemyUtil {
 				return 0;
 			}
 
-		},v, null);
+		},v, null);// <--- the second point of the ray should go here
 		return null;
 
 	}

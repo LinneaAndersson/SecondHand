@@ -1,11 +1,9 @@
 package com.secondhand.model;
 
-import com.secondhand.view.resource.Sounds;
-
 public final class CollisionResolver {
 
 	private GameWorld gameWorld;
-	
+
 	public CollisionResolver(GameWorld gameWorld) {
 		this.gameWorld = gameWorld;
 	}
@@ -35,9 +33,11 @@ public final class CollisionResolver {
 		if (a == null || b == null) {
 			// if player collided with wall
 			if (a instanceof Player || b instanceof Player) {
-				this.gameWorld.getPropertyChangeSupport().firePropertyChange("PlayerWallCollision", false, true);
+				this.gameWorld.getPropertyChangeSupport().firePropertyChange(
+						"PlayerWallCollision", false, true);
+				
 			}
-
+			return;
 		}
 
 		// now we know both the bodies are entities.

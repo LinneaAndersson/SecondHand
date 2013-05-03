@@ -113,6 +113,7 @@ public class Physics implements IPhysics {
 		
 	}
 
+	@Override
 	public void setConnector(IShape shape) {
 		physicsConnector = physicsWorld.getPhysicsConnectorManager()
 				.findPhysicsConnectorByShape(shape);
@@ -123,7 +124,8 @@ public class Physics implements IPhysics {
 		collisionResolver.checkCollision(contact.getFixtureA().getBody()
 				.getUserData(), contact.getFixtureB().getBody().getUserData());
 	}
-
+	
+	@Override
 	public boolean isStraightLine(Entity entity, Enemy enemy){
 		return enemyUtil.straightLine(entity, enemy);
 	}

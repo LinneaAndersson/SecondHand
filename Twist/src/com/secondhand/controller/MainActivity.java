@@ -74,6 +74,8 @@ public class MainActivity extends BaseGameActivity {
 		return this.sceneController.getCurrentScene();
 	}
 	
+
+	@SuppressWarnings("deprecation")
     @Override
     protected Dialog onCreateDialog(final int pID) {
             if (pID == TEXT_INPUT_DIALOG) {

@@ -12,7 +12,7 @@ public final class PolygonFactory {
 	private PolygonFactory() {}
 	
 	public static World.Polygon createRectangle(final Vector2 position, final int width, final int height) {
-		List<Vector2> edges = new ArrayList<Vector2>();
+		final List<Vector2> edges = new ArrayList<Vector2>();
 		
 		edges.add(new Vector2(0,0));
 		edges.add(new Vector2(width,0));

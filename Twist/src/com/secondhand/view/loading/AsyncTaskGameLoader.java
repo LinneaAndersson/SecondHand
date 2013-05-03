@@ -1,4 +1,5 @@
-package com.secondhand.view.scene;
+package com.secondhand.view.loading;
+
 
 
 import android.os.AsyncTask;

@@ -5,6 +5,8 @@ import org.anddev.andengine.engine.Engine;
 import android.content.Context;
 
 import com.secondhand.view.entity.LoadingTextView;
+import com.secondhand.view.loading.AsyncTaskGameLoader;
+import com.secondhand.view.loading.IAsyncCallback;
 import com.secondhand.view.resource.Fonts;
 
 public class LoadingScene extends GameScene {

@@ -1,4 +1,4 @@
-package com.secondhand.view.scene;
+package com.secondhand.view.loading;
 
 /**
  * Used in conjunction with AsyncTaskGameLoader to create the loading scene.

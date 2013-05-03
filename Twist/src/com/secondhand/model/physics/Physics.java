@@ -39,7 +39,7 @@ public class Physics implements IPhysics {
 	// TODO:remove vector2.
 
 	public Physics() {
-		
+
 		physicsWorld = new PhysicsWorld(new Vector2(), true);
 		bounds = new PhysicsWorldBounds(physicsWorld);
 		enemyUtil = new PhysicsEnemyUtil(physicsWorld);
@@ -161,16 +161,14 @@ public class Physics implements IPhysics {
 
 	@Override
 	public void registerUpdateHandler(final GamePlayScene gamePlayScene) {
-
 		gamePlayScene.registerUpdateHandler(physicsWorld);
-		
 	}
 
 	@Override
 	public void setGameWorld(final GameWorld gameWorld) {
 		this.gameWorld = gameWorld;
 		this.collisionResolver = new CollisionResolver(gameWorld);
-		
-	}
 
 	}
+
+}

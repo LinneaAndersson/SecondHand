@@ -8,7 +8,7 @@ import org.anddev.andengine.extension.physics.box2d.PhysicsWorld;
 import com.badlogic.gdx.math.Vector2;
 import com.secondhand.model.ourphysics.IPhysics;
 import com.secondhand.model.ourphysics.Physics;
-
+//TODO I think we should perhaps create an IGameWorld to support mvc
 // This class was formerly known as level. 
 public class GameWorld {
 

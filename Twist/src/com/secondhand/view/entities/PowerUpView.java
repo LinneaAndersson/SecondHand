@@ -13,10 +13,10 @@ import com.secondhand.model.powerup.PowerUp;
 
 public class PowerUpView implements IEntityView, PropertyChangeListener {
 
-	private Engine engine;
-	private GameWorld gameWorld;
+	private final Engine engine;
+	private final GameWorld gameWorld;
 	
-	public PowerUpView(Engine engine, GameWorld gameWorld) {
+	public PowerUpView(final Engine engine, final GameWorld gameWorld) {
 		this.engine = engine;
 		this.gameWorld = gameWorld;
 		
@@ -31,25 +31,25 @@ public class PowerUpView implements IEntityView, PropertyChangeListener {
 			public void onTimePassed(final TimerHandler pTimerHandler) {
 				if (user.getPowerUps().contains(powerUp))
 					user.removePowerUp(powerUp);
-				if (!powerUp.hasAnother(player)) {
+				/*if (!powerUp.hasAnother(player)) {
 					// TODO: Unattach the powerups texture from player (ex: shield makes the player glow)
-				}
+				}*/
 			}
 		});
 	}
 
 	@Override
-	public void propertyChange(PropertyChangeEvent event) {
-		String eventName = event.getPropertyName();
+	public void propertyChange(final PropertyChangeEvent event) {
+		final String eventName = event.getPropertyName();
 		if (eventName.equals(Player.ADD_POWER_UP)) {
 
 			final Player player = gameWorld.getPlayer();
 			final PowerUp powerUp = ((PowerUp) event.getNewValue());
 			engine.registerUpdateHandler(createTimer(player, powerUp));
-
+/*
 			if (!powerUp.hasAnother(player)) {
 				// TODO: Attach the powerups texture to player (ex: shield makes the player glow)
-			}
+			}*/
 			
 			// TODO: Implement floating text here
 //			if (powerUp.hasText()) {

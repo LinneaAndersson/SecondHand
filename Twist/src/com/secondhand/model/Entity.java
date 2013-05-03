@@ -4,6 +4,7 @@ import org.anddev.andengine.entity.shape.IShape;
 import org.anddev.andengine.entity.shape.Shape;
 
 import com.badlogic.gdx.physics.box2d.Body;
+import com.secondhand.debug.MyDebug;
 import com.secondhand.model.physics.IPhysics;
 
 public abstract class Entity {
@@ -48,7 +49,10 @@ public abstract class Entity {
 	
 	public void setBody(Body body){
 		this.body = body;
+		MyDebug.d("In setBody " + body);
 		registerBody(body); //NOPMD
+
+		MyDebug.d("Out from setBody");
 	}
 
 	public float getX() {

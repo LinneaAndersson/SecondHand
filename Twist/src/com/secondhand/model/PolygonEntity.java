@@ -5,6 +5,7 @@ import java.util.List;
 import org.anddev.andengine.extension.physics.box2d.util.constants.PhysicsConstants;
 
 import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.BodyDef.BodyType;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.secondhand.model.physics.MyPhysicsFactory;
@@ -13,15 +14,18 @@ import com.secondhand.view.opengl.Polygon;
 public abstract class PolygonEntity extends Entity {
 	
 	protected final Polygon polygon;
+	private final Body mBody;
 	
 	// polygon won't be allowed to grow.
 	private final float radius; 
 	
 	
-	public PolygonEntity(final Polygon polygon, final boolean isEdible, final GameWorld level,
-			final FixtureDef fixtureDef) {
-		super(polygon, isEdible, MyPhysicsFactory.createPolygonBody(level.getPhysicsWorld(),
-				polygon, BodyType.DynamicBody, fixtureDef), level);
+	public PolygonEntity(final Polygon polygon, final boolean isEdible, final GameWorld level) {
+		super(polygon, isEdible, level);
+		
+		mBody=physics.createType(polygon, this);
+		this.setBody(mBody);
+		
 		this.polygon = polygon;
 		polygon.setBody(this.getBody());
 		this.radius = computeRadius(polygon.getPolygon());

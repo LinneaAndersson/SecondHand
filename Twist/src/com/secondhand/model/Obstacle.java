@@ -17,7 +17,7 @@ public class Obstacle extends PolygonEntity {
 	}
 	
 	public Obstacle(final Polygon polygon, final GameWorld level) {
-		super(polygon, false, level, FixtureDefs.OBSTACLE_FIXTURE_DEF);
+		super(polygon, false, level);
 	}
 	
 	@Override

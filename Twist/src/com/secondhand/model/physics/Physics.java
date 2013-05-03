@@ -1,9 +1,7 @@
 package com.secondhand.model.physics;
 
-import org.anddev.andengine.entity.primitive.Rectangle;
 import org.anddev.andengine.entity.shape.IShape;
 import org.anddev.andengine.entity.shape.RectangularShape;
-import org.anddev.andengine.entity.shape.Shape;
 import org.anddev.andengine.extension.physics.box2d.PhysicsConnector;
 import org.anddev.andengine.extension.physics.box2d.PhysicsFactory;
 import org.anddev.andengine.extension.physics.box2d.PhysicsWorld;
@@ -13,7 +11,6 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.BodyDef.BodyType;
 import com.badlogic.gdx.physics.box2d.Contact;
-import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.secondhand.controller.CollisionContactListener;
 import com.secondhand.debug.MyDebug;
 import com.secondhand.model.BlackHole;
@@ -21,14 +18,14 @@ import com.secondhand.model.Enemy;
 import com.secondhand.model.CollisionResolver;
 import com.secondhand.model.Entity;
 import com.secondhand.model.GameWorld;
+import com.secondhand.model.Obstacle;
 import com.secondhand.model.Planet;
+import com.secondhand.model.powerup.PowerUp;
 import com.secondhand.view.opengl.Circle;
 import com.secondhand.view.opengl.Polygon;
 
 public class Physics implements IPhysics {
 	private PhysicsWorld physicsWorld;
-	private Body[] bodies;
-	private IShape[] worldBounds;
 	private PhysicsConnector physicsConnector;
 	private PhysicsEnemyUtil enemyUtil;
 	private final CollisionResolver collisionResolver;
@@ -158,7 +155,13 @@ public class Physics implements IPhysics {
 	}
 
 	@Override
-	public Body createType(RectangularShape rectangle,Entity enntity) {
+	public Body createType(RectangularShape rectangle,Entity entity) {
+		
+		if(entity instanceof PowerUp){
+			return PhysicsFactory.createCircleBody(physicsWorld,
+					rectangle, BodyType.DynamicBody, FixtureDefs.POWER_UP_FIXTURE_DEF);
+		}
+		
 		return null;
 		// TODO Auto-generated method stub
 
@@ -166,7 +169,16 @@ public class Physics implements IPhysics {
 
 	@Override
 	public Body createType(Polygon polygon,Entity entity) {
+		
+		if(entity instanceof Obstacle){
+
+			return MyPhysicsFactory.createPolygonBody(physicsWorld,
+					polygon, BodyType.DynamicBody, FixtureDefs.OBSTACLE_FIXTURE_DEF);
+		}
+		MyDebug.d(" Wrong entity in createType for Polygon ");
 		return null;
+		
+		
 		// TODO Auto-generated method stub
 
 	}

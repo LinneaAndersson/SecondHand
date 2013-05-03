@@ -16,20 +16,20 @@ public abstract class CircleEntity extends Entity {
 	//public static Body createCircleBody(final PhysicsWorld pPhysicsWorld, final float pCenterX, final float pCenterY, final float pRadius, final float pRotation, final BodyType pBodyType, final FixtureDef pFixtureDef) {
 
 	
-	protected Body createNewCircleBody(final Circle circle) {
+	/*protected Body createNewCircleBody(final Circle circle) {
 		 return physics.createType(circle,this);
 		  
 		 
 		
-		/*return PhysicsFactory.createCircleBody(physicsWorld,
+		return PhysicsFactory.createCircleBody(physicsWorld,
 				circle.getX(), circle.getY(), circle.getRadius(),circle.getRotation(), BodyType.DynamicBody, fixtureDef);
-	*/
-	}
+	
+	 }*/
 	
 	public CircleEntity(final Circle circle, final boolean isEdible, final GameWorld level) {
 		
 		  super(circle,isEdible,level);
-		 mBody=createNewCircleBody(circle);
+		 mBody=physics.createType(circle,this);
 		 this.setBody(mBody);
 		
 		this.circle = circle;

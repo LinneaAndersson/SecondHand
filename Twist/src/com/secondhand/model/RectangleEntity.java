@@ -11,9 +11,11 @@ public abstract class RectangleEntity extends Entity {
 	
 	protected RectangularShape rectangle;
 	
-	public RectangleEntity(final RectangularShape rectangle, final boolean isEdible, final GameWorld level, final FixtureDef fixtureDef) {
-		super(rectangle, isEdible, PhysicsFactory.createCircleBody(level.getPhysicsWorld(),
-				rectangle, BodyType.DynamicBody, fixtureDef), level);
+	public RectangleEntity(final RectangularShape rectangle, final boolean isEdible, final GameWorld level) {
+		super(rectangle, isEdible, level);
+		
+		setBody(physics.createType(rectangle, this));
+		
 		this.rectangle = rectangle;
 	}
 	

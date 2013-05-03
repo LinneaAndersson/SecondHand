@@ -1,12 +1,12 @@
 package com.secondhand.model;
 
-import com.badlogic.gdx.physics.box2d.Contact;
 import com.secondhand.view.resource.Sounds;
 
 public final class CollisionResolver {
 
-	private CollisionResolver() { }
-	
+	private CollisionResolver() {
+	}
+
 	private static void handleBlackHoleCollision(final Entity entityA,
 			final Entity entityB) {
 
@@ -19,39 +19,33 @@ public final class CollisionResolver {
 			other = entityA;
 			blackHole = (BlackHole) entityB;
 		}
-		
-		
+
 		blackHole.eatEntity(other);
 	}
-	
 
-	public static void checkCollision(final Contact contact) {
+	public static void checkCollision(final Object a, final Object b) {
 		// if one or both is null, then we are dealing with a collision
 		// involving one or
 		// two non-entities
 		// (ie, a black hole collides with the wall),
 		// and we are not interested in handling such a collision
-		if (contact.getFixtureA().getBody().getUserData() == null
-				|| contact.getFixtureB().getBody().getUserData() == null) {
+		if (a == null || b == null) {
 			// if player collided with wall
-			if(contact.getFixtureA().getBody().getUserData() instanceof Player ||
-					contact.getFixtureB().getBody().getUserData() instanceof Player)
+			if (a instanceof Player || b instanceof Player)
 				Sounds.getInstance().obstacleCollisionSound.play();
 			return;
-			
-		}
-		
-		// now we know both the bodies are entities.
-		final Entity entityA = (Entity) contact.getFixtureA().getBody()
-				.getUserData();
-		final Entity entityB = (Entity) contact.getFixtureB().getBody()
-				.getUserData();
 
-		
-		// collisions involving black holes are the only ones we're interested in.
+		}
+
+		// now we know both the bodies are entities.
+		final Entity entityA = (Entity) a;
+		final Entity entityB = (Entity) b;
+
+		// collisions involving black holes are the only ones we're interested
+		// in.
 		if (entityA instanceof BlackHole || entityB instanceof BlackHole) {
 			handleBlackHoleCollision(entityA, entityB);
-		} 
+		}
 	}
 
 }

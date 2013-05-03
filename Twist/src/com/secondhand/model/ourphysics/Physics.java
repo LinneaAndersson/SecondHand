@@ -24,18 +24,14 @@ public class Physics implements IPhysics {
 	private IShape[] worldBounds;
 	private PhysicsConnector physicsConnector;
 
-	
 	// no vector needed because its zero gravity. And if the constructor
 	// needs an vector that means we need to to import Vector2
-	// wherever we creates Physics 
+	// wherever we creates Physics
 	// TODO:remove vector2.
 	public Physics(Vector2 vector) {
-		//TODO: Will be here later.
-		//physicsWorld = new PhysicsWorld(vector, true);
+		// TODO: Will be here later.
+		// physicsWorld = new PhysicsWorld(vector, true);
 	}
-
-	
-
 
 	public void init() {
 		this.physicsWorld.setVelocityIterations(16);
@@ -110,36 +106,36 @@ public class Physics implements IPhysics {
 	}
 
 	public void deleteBody(Boolean scheduledBody) {
-		if(!scheduledBody) {
+		if (!scheduledBody) {
 			throw new IllegalStateException("Body not scheduled for deletion!");
 		}
-			
+
 		physicsWorld.unregisterPhysicsConnector(physicsConnector);
-					
+
 		MyDebug.i(physicsConnector.getBody() + " will be destroyed");
-							
+
 		physicsWorld.destroyBody(physicsConnector.getBody());
-			
+
 		MyDebug.i(physicsConnector.getBody() + " destruction complete");
 	}
 
-	//TODO: Will remove thi later, just for testing it works okej.
+	// TODO: Will remove thi later, just for testing it works okej.
 	@Override
 	public void setPhysicsWorld(PhysicsWorld p) {
 		this.physicsWorld = p;
 		init();
-		
-	}
-	
-	public void setConnector(IShape shape){
-		physicsConnector = physicsWorld.getPhysicsConnectorManager().findPhysicsConnectorByShape(
-				shape);
+
 	}
 
+	public void setConnector(IShape shape) {
+		physicsConnector = physicsWorld.getPhysicsConnectorManager()
+				.findPhysicsConnectorByShape(shape);
+	}
 
 	@Override
 	public void checkCollision(Contact contact) {
-		CollisionResolver.checkCollision(contact);		
+		CollisionResolver.checkCollision(contact.getFixtureA().getBody()
+				.getUserData(), contact.getFixtureB().getBody().getUserData());
 	}
 
 }

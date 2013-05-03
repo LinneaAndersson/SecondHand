@@ -10,14 +10,19 @@ import android.view.KeyEvent;
 
 /**
  * The controller for all the scenes. While the SceneManager is capable of switching between scenes,
- * this is the one who does the actual switching
+ * this is the one who does the actual switching. This class also responsible for registering the 
+ * controllers of all the scenes. 
  */
-public class SceneController {
+class SceneController {
 
 	private final Engine engine;
 	private final Context context;
 	
 	private final SceneManager sceneManager;
+	
+	public SceneManager getSceneManager() {
+		return this.sceneManager;
+	}
 	
 	public SceneController(final Engine engine, final Context context) {
 		this.engine = engine;
@@ -37,6 +42,7 @@ public class SceneController {
 		return this.isGameLoaded;
 	}
 	
+	
 	public void switchScene(final AllScenes scene) {
 		
 		this.sceneManager.switchScene(scene);
@@ -54,7 +60,7 @@ public class SceneController {
 		} else if(scene == AllScenes.HIGH_SCORE_SCENE) {
 			new HighScoreSceneController(this.sceneManager.getHighScoreScene(), this);
 		} else if (scene == AllScenes.GAME_PLAY_SCENE) {
-			new GamePlaySceneController(this.sceneManager.getGamePlayScene());
+			new GamePlaySceneController(this.sceneManager.getGamePlayScene(), this);
 		} 
 		 
 				

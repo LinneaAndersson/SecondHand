@@ -11,7 +11,7 @@ import com.secondhand.view.scene.AllScenes;
 import com.secondhand.view.scene.LoadingScene;
 import com.secondhand.view.scene.LoadingSceneCallback;
 
-public class LoadingSceneController extends Entity {
+class LoadingSceneController extends Entity {
 	
 	private final SceneController sceneController;
 	private final AllScenes nextScene;
@@ -62,6 +62,7 @@ public class LoadingSceneController extends Entity {
 				Sounds.getInstance().load();
 			} else if(nextScene == AllScenes.GAME_PLAY_SCENE) {
 				// preoload gameplay scene. 
+				sceneController.getSceneManager().getScene(AllScenes.GAME_PLAY_SCENE).loadScene();
 				MyDebug.d("now we should be preloading the level scene");
 			}
 

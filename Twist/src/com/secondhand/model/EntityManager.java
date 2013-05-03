@@ -43,7 +43,7 @@ public class EntityManager {
 		}
 	}
 	
-	public void onManagedUpdate(final float pSecondsElapsed) {
+	public void updateEntities() {
 		// remove bodies scheduled for deletion.
 		
 		//while(!scheduledForDeletionEntities.empty()) {

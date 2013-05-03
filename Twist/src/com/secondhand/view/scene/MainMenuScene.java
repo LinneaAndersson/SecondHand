@@ -7,7 +7,6 @@ import org.anddev.andengine.engine.Engine;
 
 import android.content.Context;
 
-import com.secondhand.debug.MyDebug;
 import com.secondhand.model.resource.LocalizationStrings;
 
 public class MainMenuScene extends GameMenuScene  {
@@ -21,8 +20,7 @@ public class MainMenuScene extends GameMenuScene  {
 
 	@Override
 	public void loadScene() {
-		this.unloadScene();
-		MyDebug.d("loading main menu scene");
+		super.loadScene();
 		
 		final int menuStartX = layoutHeadline("Twirl");
 		
@@ -46,7 +44,6 @@ public class MainMenuScene extends GameMenuScene  {
 	}
 	
 	public void onSwitchScene() {
-		MyDebug.d("switching to main menu");
 	}
 	
 

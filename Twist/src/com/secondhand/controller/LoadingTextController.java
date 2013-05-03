@@ -4,7 +4,7 @@ import org.anddev.andengine.entity.Entity;
 
 import com.secondhand.view.entity.LoadingTextView;
 
-public class LoadingTextController extends Entity {
+class LoadingTextController extends Entity {
 	
 	// how many seconds to wait before showing the next string in the
 	// "animation"
@@ -22,9 +22,6 @@ public class LoadingTextController extends Entity {
 	
 	@Override
 	protected void onManagedUpdate(final float pSecondsElapsed) {
-
-//		MyDebug.d("seconds passed: " + pSecondsElapsed);
-
 		secondsPassedSinceLastUpdate += pSecondsElapsed;
 
 

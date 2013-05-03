@@ -33,10 +33,6 @@ public class GamePlayScene extends GameScene implements PropertyChangeListener {
 
 	public GamePlayScene(final Engine engine, final Context context) {
 		super(engine, context);
-
-		MyDebug.i("creating game world");
-		
-		
 	}
 
 	public GameWorld getGameWorld() {
@@ -103,6 +99,7 @@ public class GamePlayScene extends GameScene implements PropertyChangeListener {
 
 	@Override
 	public void loadScene() {
+		super.loadScene();
 	
 		// get rid the entities from the previous game.
 		// this.detachChildren();
@@ -115,8 +112,6 @@ public class GamePlayScene extends GameScene implements PropertyChangeListener {
 		// menu.
 		cachedCameraCenter = new Vector2(smoothCamera.getCenterX(),
 				smoothCamera.getCenterY());
-
-		MyDebug.d("loading game play sceme");
 
 		setupView();
 		registerNewLevel();
@@ -157,43 +152,7 @@ public class GamePlayScene extends GameScene implements PropertyChangeListener {
 		return AllScenes.MAIN_MENU_SCENE;
 	}
 
-	@Override
-	protected void onManagedUpdate(final float pSecondsElapsed) {
-		super.onManagedUpdate(pSecondsElapsed);
-		if (gameWorld.isGameOver()) {
-			
-			if (InputDialogManager.input != null) {
-
-				HighScoreList.Entry newEntry = new HighScoreList.Entry(InputDialogManager.input, 
-						getGameWorld().getPlayer().getScore());
-				HighScoreList.getInstance().insertInHighScoreList(newEntry);
-				InputDialogManager.showing = false;
-
-				InputDialogManager.input = null;
-
-				resetCamera();
-				// TODO: switch scene here
-				//switchScene(AllScenes.HIGH_SCORE_SCENE);
-
-			} else if (InputDialogManager.showing) {
-				getGameWorld().onManagedUpdate(pSecondsElapsed);
-			} else if (HighScoreList.getInstance().madeItToHighScoreList(
-					getGameWorld().getPlayer().getScore())) {
-
-				InputDialogManager.showing = true;
-				InputDialogManager.getInstance().showDialog();
-
-			} else {
-				resetCamera();
-				// TODO: switch scene here. 
-				//switchScene(AllScenes.HIGH_SCORE_SCENE);
-			}
-			
-		} else {
-			gameWorld.onManagedUpdate(pSecondsElapsed);
-		}
-	}
-
+	
 	// not a very good solution bellow but it can do for now
 	@Override
 	public void propertyChange(final PropertyChangeEvent event) {
@@ -203,8 +162,6 @@ public class GamePlayScene extends GameScene implements PropertyChangeListener {
 		} else if (eventName.equals(Player.INCREASE_LIFE)) {
 			updateLives((Integer) event.getNewValue());
 		} else if (eventName.equals("PlayerRadius")) {
-			final float newRadius = (Float) event.getNewValue();
-			MyDebug.d("new radius: " + newRadius);
 			apaptCameraToGrowingPlayer((Float) event.getNewValue(),
 					(Float) event.getOldValue());
 		} else if (eventName.equals("NextLevel")) {

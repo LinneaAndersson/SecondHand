@@ -7,10 +7,8 @@ import org.anddev.andengine.extension.physics.box2d.PhysicsWorld;
 
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Contact;
-import com.secondhand.debug.MyDebug;
 import com.secondhand.model.ourphysics.IPhysics;
 import com.secondhand.model.ourphysics.Physics;
-import com.secondhand.model.powerup.PowerUp;
 
 // This class was formerly known as level. 
 public class GameWorld {
@@ -43,7 +41,7 @@ public class GameWorld {
 		init();
 		this.levelWidth = 1700 * 2;
 		this.levelHeight = 1700 * 2;
-		this.entityManager = new EntityManager(new Player(new Vector2(50, 50),
+		this.entityManager = new EntityManager(new Player(new float[]{50,50},
 				30, this));
 
 		generateNewLevelEntities(STARTING_LEVEL);
@@ -59,7 +57,13 @@ public class GameWorld {
 		this.physicsWorld = new PhysicsWorld(new Vector2(), true);
 
 		this.mPhysic = new Physics(new Vector2()); // TODO: have to do this other way. I fix
+
 		mPhysic.setPhysicsWorld(getPhysicsWorld());
+
+		// Why? you could just create an empty vector
+		// in physics constructor
+		
+		//first I want to move code from here then I will optimize
 
 		this.gameWorldBounds = new GameWorldBounds();
 
@@ -133,12 +137,13 @@ public class GameWorld {
 		support.firePropertyChange("NextLevel", false, true);
 	}
 
-	public void onManagedUpdate(final float pSecondsElapsed) {
+	// update game world for this frame.
+	public void updateGameWorld() {
 		if (checkPlayerBigEnough() && !nextLevelAdvanced) {
 			nextLevelAdvanced = true;
 			nextLevel();
 		} else {
-			this.entityManager.onManagedUpdate(pSecondsElapsed);
+			this.entityManager.updateEntities();
 		}
 	}
 

@@ -14,8 +14,6 @@ public interface IGameScene {
 	 * child entities of the scene will be attached using attachChild)
 	 */
 	void loadScene();
-	
-	void unloadScene();
 
 	Scene getScene();
 	
@@ -24,6 +22,9 @@ public interface IGameScene {
 	// Returns the parent-scene, for example SettingsMenuScene returns
 	// AllScenes.MAIN_MENU_SCENE
 	AllScenes getParentScene();
+	
+	// has the scene already been preloaded?
+	boolean isLoaded();
 
 }
 

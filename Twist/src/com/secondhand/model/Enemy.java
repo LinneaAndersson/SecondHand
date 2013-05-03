@@ -2,11 +2,7 @@ package com.secondhand.model;
 
 import java.util.List;
 
-import org.anddev.andengine.extension.physics.box2d.util.constants.PhysicsConstants;
-
 import com.badlogic.gdx.math.Vector2;
-import com.badlogic.gdx.physics.box2d.Fixture;
-import com.badlogic.gdx.physics.box2d.RayCastCallback;
 import com.secondhand.debug.MyDebug;
 import com.secondhand.model.powerup.PowerUp;
 
@@ -23,7 +19,7 @@ public class Enemy extends BlackHole {
 	private float huntingArea;
 	
 
-	public Enemy(final Vector2 vector, final float radius, final GameWorld level) {
+	public Enemy(final float[] vector, final float radius, final GameWorld level) {
 		super(vector, radius, level, enemyMaxSpeed);
 		huntingArea = getHuntingArea();
 		util = new EnemyUtil(this, physicsWorld);
@@ -128,25 +124,6 @@ public class Enemy extends BlackHole {
 	// checks if there is something uneatable close by
 	// in movement direction
 	private void closeToDanger() {
-		// MyDebug.d("Enemy: danger");
-		final Vector2 center = getBody().getWorldCenter();
-		final float rad = (getRadius() + 20)
-				/ PhysicsConstants.PIXEL_TO_METER_RATIO_DEFAULT;
-		physicsWorld.rayCast(new RayCastCallback(){
-
-			@Override
-			public float reportRayFixture(final Fixture fixture, final Vector2 point,
-					final Vector2 normal, final float fraction) {
-				if(fixture.getBody().getUserData() != null){
-					final Entity entity = (Entity)fixture.getBody().getUserData();
-					if(!canEat(entity)){
-						stopMovement();
-					}
-				}
-				return 0;
-			}
-			
-		}, this.getBody().getWorldCenter(),null );
 
 	}
 

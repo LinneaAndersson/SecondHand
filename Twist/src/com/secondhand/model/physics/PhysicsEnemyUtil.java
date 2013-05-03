@@ -1,4 +1,4 @@
-package com.secondhand.model.ourphysics;
+package com.secondhand.model.physics;
 
 import org.anddev.andengine.extension.physics.box2d.PhysicsWorld;
 
@@ -9,11 +9,11 @@ import com.secondhand.model.Enemy;
 import com.secondhand.model.Entity;
 
 // contains the two raycast classes that enemy uses.
-public class EnemyUtil {
+public class PhysicsEnemyUtil {
 	private static boolean straightLine;
 	private PhysicsWorld physics;
 
-	public EnemyUtil(PhysicsWorld physics) {
+	public PhysicsEnemyUtil(PhysicsWorld physics) {
 		straightLine = true;
 		this.physics = physics;
 	}

@@ -5,7 +5,7 @@ import org.anddev.andengine.entity.shape.Shape;
 import org.anddev.andengine.extension.physics.box2d.PhysicsWorld;
 
 import com.badlogic.gdx.physics.box2d.Body;
-import com.secondhand.model.ourphysics.IPhysics;
+import com.secondhand.model.physics.IPhysics;
 
 public abstract class Entity {
 

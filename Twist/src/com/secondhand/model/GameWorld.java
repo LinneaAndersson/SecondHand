@@ -6,8 +6,8 @@ import java.beans.PropertyChangeSupport;
 import org.anddev.andengine.extension.physics.box2d.PhysicsWorld;
 
 import com.badlogic.gdx.math.Vector2;
-import com.secondhand.model.ourphysics.IPhysics;
-import com.secondhand.model.ourphysics.Physics;
+import com.secondhand.model.physics.IPhysics;
+import com.secondhand.model.physics.Physics;
 
 // This class was formerly known as level. 
 public class GameWorld {

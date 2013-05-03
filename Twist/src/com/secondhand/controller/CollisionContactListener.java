@@ -4,7 +4,7 @@ import com.badlogic.gdx.physics.box2d.Contact;
 import com.badlogic.gdx.physics.box2d.ContactImpulse;
 import com.badlogic.gdx.physics.box2d.ContactListener;
 import com.badlogic.gdx.physics.box2d.Manifold;
-import com.secondhand.model.ourphysics.IPhysics;
+import com.secondhand.model.physics.IPhysics;
 
 public final class CollisionContactListener implements ContactListener {
 

@@ -1,4 +1,4 @@
-package com.secondhand.model.ourphysics;
+package com.secondhand.model.physics;
 
 import org.anddev.andengine.entity.primitive.Rectangle;
 import org.anddev.andengine.entity.shape.IShape;
@@ -18,15 +18,15 @@ import com.secondhand.model.Enemy;
 import com.secondhand.model.CollisionResolver;
 import com.secondhand.model.Entity;
 import com.secondhand.model.GameWorld;
-import com.secondhand.model.physics.CustomPhysicsConnector;
 
 public class Physics implements IPhysics {
 	private PhysicsWorld physicsWorld;
 	private Body[] bodies;
 	private IShape[] worldBounds;
 	private PhysicsConnector physicsConnector;
-	private EnemyUtil enemyUtil;
+	private PhysicsEnemyUtil enemyUtil;
 	private final CollisionResolver collisionResolver;
+	private PhysicsWorldBounds bounds;
 
 	// no vector needed because its zero gravity. And if the constructor
 	// needs an vector that means we need to to import Vector2
@@ -36,6 +36,7 @@ public class Physics implements IPhysics {
 	public Physics(final GameWorld gameWorld, final Vector2 vector) {
 		// TODO: Will be here later.
 		// physicsWorld = new PhysicsWorld(vector, true);
+		//bounds = new PhysicsWorldBounds()
 			//enemyUtil = new EnemyUtil(physicsWorld);
 		this.collisionResolver = new CollisionResolver(gameWorld);
 
@@ -51,37 +52,12 @@ public class Physics implements IPhysics {
 	// we do not do this using registerEntity, because these bodies are
 	// static.
 	public void setWorldBounds(final int levelWidth, final int levelHeight) {
-		bodies = new Body[4];
-		worldBounds = new Shape[4];
-		bodies = new Body[4];
-
-		// put some invisible, static rectangles that keep the player within the
-		// world bounds:
-
-		worldBounds[0] = new Rectangle(0, levelHeight - 2, levelWidth, 2);
-		worldBounds[1] = new Rectangle(0, 0, levelWidth, 2);
-		worldBounds[2] = new Rectangle(0, 0, 2, levelHeight);
-		worldBounds[3] = new Rectangle(levelWidth - 2, 0, 2, levelHeight);
-
-		final FixtureDef wallFixtureDef = PhysicsFactory.createFixtureDef(0,
-				0.5f, 0.5f);
-
-		bodies[0] = PhysicsFactory.createBoxBody(physicsWorld, worldBounds[0],
-				BodyType.StaticBody, wallFixtureDef);
-		bodies[1] = PhysicsFactory.createBoxBody(physicsWorld, worldBounds[1],
-				BodyType.StaticBody, wallFixtureDef);
-		bodies[2] = PhysicsFactory.createBoxBody(physicsWorld, worldBounds[2],
-				BodyType.StaticBody, wallFixtureDef);
-		bodies[3] = PhysicsFactory.createBoxBody(physicsWorld, worldBounds[3],
-				BodyType.StaticBody, wallFixtureDef);
+		bounds.setWorldBounds(levelWidth, levelHeight);
 	}
 
 	@Override
 	public void removeWorldBounds() {
-		for (int i = 0; i < 4; ++i) {
-			this.physicsWorld.destroyBody(bodies[i]);
-			this.worldBounds[i].detachSelf();
-		}
+		bounds.removeBounds();
 	}
 
 	@Override
@@ -132,7 +108,8 @@ public class Physics implements IPhysics {
 	public void setPhysicsWorld(PhysicsWorld p) {
 		this.physicsWorld = p;
 		init();
-		enemyUtil = new EnemyUtil(physicsWorld);
+		enemyUtil = new PhysicsEnemyUtil(physicsWorld);
+		bounds = new PhysicsWorldBounds(physicsWorld);
 		
 	}
 

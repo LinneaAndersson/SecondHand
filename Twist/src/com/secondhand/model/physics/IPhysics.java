@@ -1,4 +1,4 @@
-package com.secondhand.model.ourphysics;
+package com.secondhand.model.physics;
 
 import org.anddev.andengine.entity.shape.IShape;
 import org.anddev.andengine.extension.physics.box2d.PhysicsWorld;

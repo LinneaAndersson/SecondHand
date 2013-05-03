@@ -95,7 +95,7 @@ public class RandomLevelGenerator {
 
 			}
 
-			enemy = new Enemy(new Vector2(xAxis, yAxis), radius, level);
+			enemy = new Enemy(new float[]{xAxis, yAxis}, radius, level);
 			enemy.setMaxSpeed(8+(this.levelNumber-1)*2);
 			entityList.add(enemy);
 			enemyList.add(enemy);

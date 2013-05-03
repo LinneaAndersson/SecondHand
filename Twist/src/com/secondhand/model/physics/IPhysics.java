@@ -11,7 +11,9 @@ import com.secondhand.model.Entity;
 
 public interface IPhysics {
 
-	public void setPhysicsWorld(PhysicsWorld p);
+	
+	//TODO: Will remove this later.
+	public PhysicsWorld getPhysicsWorld();
 	
 	public void setWorldBounds(final int levelWidth, final int levelHeight);
 	

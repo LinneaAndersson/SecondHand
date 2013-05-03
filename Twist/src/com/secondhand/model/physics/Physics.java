@@ -34,10 +34,9 @@ public class Physics implements IPhysics {
 	// TODO:remove vector2.
 
 	public Physics(final GameWorld gameWorld, final Vector2 vector) {
-		// TODO: Will be here later.
-		// physicsWorld = new PhysicsWorld(vector, true);
-		//bounds = new PhysicsWorldBounds()
-			//enemyUtil = new EnemyUtil(physicsWorld);
+		 physicsWorld = new PhysicsWorld(vector, true);
+		bounds = new PhysicsWorldBounds(physicsWorld);
+			enemyUtil = new PhysicsEnemyUtil(physicsWorld);
 		this.collisionResolver = new CollisionResolver(gameWorld);
 
 	}
@@ -102,17 +101,7 @@ public class Physics implements IPhysics {
 
 		MyDebug.i(physicsConnector.getBody() + " destruction complete");
 	}
-
-	// TODO: Will remove thi later, just for testing it works okej.
-	@Override
-	public void setPhysicsWorld(PhysicsWorld p) {
-		this.physicsWorld = p;
-		init();
-		enemyUtil = new PhysicsEnemyUtil(physicsWorld);
-		bounds = new PhysicsWorldBounds(physicsWorld);
-		
-	}
-
+	
 	@Override
 	public void setConnector(IShape shape) {
 		physicsConnector = physicsWorld.getPhysicsConnectorManager()
@@ -128,5 +117,12 @@ public class Physics implements IPhysics {
 	@Override
 	public boolean isStraightLine(Entity entity, Enemy enemy){
 		return enemyUtil.straightLine(entity, enemy);
+	}
+
+	//TODO: Will remove this later
+	@Override
+	public PhysicsWorld getPhysicsWorld() {
+		// TODO Auto-generated method stub
+		return physicsWorld;
 	}
 }

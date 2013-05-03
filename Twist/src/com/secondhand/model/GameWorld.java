@@ -59,12 +59,11 @@ public class GameWorld {
 
 		support = new PropertyChangeSupport(this);
 
-		//TODO: will remove this later
-		this.physicsWorld = new PhysicsWorld(new Vector2(), true);
-
 		this.mPhysic = new Physics(this, new Vector2()); // TODO: have to do this other way. I fix
 
-		mPhysic.setPhysicsWorld(getPhysicsWorld());
+		//TODO: will remove this later
+		this.physicsWorld = mPhysic.getPhysicsWorld();
+
 	}
 
 	// generate the level entities of a new level.

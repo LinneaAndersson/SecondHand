@@ -10,19 +10,18 @@ import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.BodyDef.BodyType;
 
 public class PhysicsWorldBounds {
-	PhysicsWorld physicsWorld;
+	private final PhysicsWorld physicsWorld;
 	private Body[] bodies;
 	private Shape[] worldBounds;
 	
 
-	public PhysicsWorldBounds(PhysicsWorld physicsWorld){
+	public PhysicsWorldBounds(final PhysicsWorld physicsWorld){
 		this.physicsWorld=physicsWorld;
 	}
 
 	public void setWorldBounds(final int levelWidth, final int levelHeight) {
 		bodies = new Body[4];
 		worldBounds = new Shape[4];
-		bodies = new Body[4];
 
 		// put some invisible, static rectangles that keep the player within the
 		// world bounds:

@@ -93,7 +93,9 @@ final class SceneManager {
 		
 		if(!currentScene.isLoaded()) {
 			MyDebug.d("scene not preloaded, loading!");
+			MyDebug.d("Scene: " + currentScene);
 			currentScene.loadScene();
+			MyDebug.d("Scene: " + currentScene);
 		}
 
 		this.engine.setScene(currentScene.getScene());

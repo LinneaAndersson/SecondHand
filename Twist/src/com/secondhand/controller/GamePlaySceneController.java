@@ -12,6 +12,7 @@ import com.badlogic.gdx.math.Vector2;
 import com.secondhand.debug.MyDebug;
 import com.secondhand.model.GameWorld;
 import com.secondhand.model.Player;
+import com.secondhand.model.physics.Physics;
 import com.secondhand.model.resource.HighScoreList;
 import com.secondhand.view.scene.AllScenes;
 import com.secondhand.view.scene.GamePlayScene;
@@ -20,7 +21,7 @@ final class GamePlaySceneController extends Entity  implements PropertyChangeLis
 
 	private final GameWorld gameWorld;
 	private final GamePlayScene gamePlayScene;
-	private final SceneController sceneController;
+	private final SceneController sceneController; 
 	
 	public GamePlaySceneController(final GamePlayScene scene, final SceneController sceneController) {
 		
@@ -33,6 +34,7 @@ final class GamePlaySceneController extends Entity  implements PropertyChangeLis
 		
 		scene.setOnSceneTouchListener(new GameSceneTouchListener());
 	
+		MyDebug.d("is it null in GamePlaySceneController? " + gameWorld.getPhysics());
 		gameWorld.getPhysics().setContactListener();
 		
 		// receive gameworld property change in controller.

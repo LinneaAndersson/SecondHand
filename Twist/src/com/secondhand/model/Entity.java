@@ -22,6 +22,7 @@ public abstract class Entity {
 		this.body = body;
 		this.shape = shape;
 		this.isEdible = isEdible;
+		MyDebug.d("is it null in Entity" + level.getPhysics());
 		this.physics = level.getPhysics();
 		this.level = level;
 		bodyScheduledForDeletion = false;

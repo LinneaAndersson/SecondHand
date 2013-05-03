@@ -11,6 +11,7 @@ import com.secondhand.debug.MyDebug;
 import com.secondhand.model.Entity;
 import com.secondhand.model.GameWorld;
 import com.secondhand.model.Player;
+import com.secondhand.model.physics.Physics;
 import com.secondhand.view.entity.FadingNotifierText;
 import com.secondhand.view.entity.ScoreLivesText;
 import com.secondhand.view.opengl.StarsBackground;
@@ -76,6 +77,7 @@ public class GamePlayScene extends GameScene {
 		engine.getCamera().setChaseEntity(player.getShape());
 
 		// setup the physicsworld the
+		MyDebug.d("in setUpView is it null=" + gameWorld.getPhysics());
 		gameWorld.getPhysics().registerUpdateHandler(this);
 
 		// setup the HUD
@@ -93,8 +95,9 @@ public class GamePlayScene extends GameScene {
 		// this.detachChildren();
 
 		MyDebug.i("creating game world");
-
-		this.gameWorld = new GameWorld();
+		
+		this.gameWorld = new GameWorld(new Physics());
+		
 
 		// we'll need to be able to restore the camera when returning to the
 		// menu.

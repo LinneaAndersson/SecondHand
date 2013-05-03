@@ -24,6 +24,7 @@ public class Enemy extends BlackHole {
 	public Enemy(final float[] vector, final float radius, final GameWorld level) {
 		super(vector, radius, level, enemyMaxSpeed);
 		huntingArea = getHuntingArea();
+		MyDebug.d("is it null in Enemy" + level.getPhysics());
 		physics=level.getPhysics();
 		//util = new EnemyUtil(this, level.getPhysicsWorld());
 		

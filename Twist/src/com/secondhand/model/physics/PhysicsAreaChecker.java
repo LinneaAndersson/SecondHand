@@ -37,12 +37,6 @@ public final class PhysicsAreaChecker {
 		@Override
 		public boolean reportFixture(final Fixture fixture) {
 
-			/* this messes up the STAN dependencies
-			 * MyDebug.d("reported class: " +
-			 * fixture.getBody().getUserData().getClass() + " x pos: " +
-			 * 
-			 * ((Entity)fixture.getBody().getUserData()).getX());
-			 */
 			occupied = true;
 
 			// stop querying for fixtures, we already know that the area is

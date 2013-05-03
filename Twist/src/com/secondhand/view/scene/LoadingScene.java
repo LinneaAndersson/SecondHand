@@ -4,12 +4,10 @@ import org.anddev.andengine.engine.Engine;
 
 import android.content.Context;
 
-import com.secondhand.model.resource.HighScoreList;
-import com.secondhand.model.resource.LocalizationStrings;
 import com.secondhand.view.entity.LoadingTextView;
+import com.secondhand.view.loading.AsyncTaskGameLoader;
+import com.secondhand.view.loading.IAsyncCallback;
 import com.secondhand.view.resource.Fonts;
-import com.secondhand.view.resource.Sounds;
-import com.secondhand.view.resource.TextureRegions;
 
 public class LoadingScene extends GameScene {
 
@@ -26,7 +24,7 @@ public class LoadingScene extends GameScene {
 
 	@Override
 	public void loadScene() {
-		this.unloadScene();
+		super.loadScene();
 		
 		 this.loadingTextView = new LoadingTextView(this.smoothCamera);
 		// add loading text

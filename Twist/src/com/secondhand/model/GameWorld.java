@@ -7,10 +7,8 @@ import org.anddev.andengine.extension.physics.box2d.PhysicsWorld;
 
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Contact;
-import com.secondhand.debug.MyDebug;
 import com.secondhand.model.ourphysics.IPhysics;
 import com.secondhand.model.ourphysics.Physics;
-import com.secondhand.model.powerup.PowerUp;
 
 // This class was formerly known as level. 
 public class GameWorld {

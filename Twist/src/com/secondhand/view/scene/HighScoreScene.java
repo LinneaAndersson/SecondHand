@@ -31,7 +31,7 @@ public class HighScoreScene extends GameScene {
 
 	@Override
 	public void loadScene() {
-		this.unloadScene();
+		super.loadScene();
 		
 		final Font mFont = Fonts.getInstance().menuItemFont;
 		// The title

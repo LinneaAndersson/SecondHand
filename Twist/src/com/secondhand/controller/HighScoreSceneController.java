@@ -5,7 +5,7 @@ import org.anddev.andengine.entity.Entity;
 import com.secondhand.view.scene.AllScenes;
 import com.secondhand.view.scene.HighScoreScene;
 
-public class HighScoreSceneController extends Entity {
+class HighScoreSceneController extends Entity {
 
 	private float timer;
 	

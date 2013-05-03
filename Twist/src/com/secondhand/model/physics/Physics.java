@@ -43,14 +43,10 @@ public class Physics implements IPhysics {
 		physicsWorld = new PhysicsWorld(new Vector2(), true);
 		bounds = new PhysicsWorldBounds(physicsWorld);
 		enemyUtil = new PhysicsEnemyUtil(physicsWorld);
-
-	}
-
-	public void init() {
 		this.physicsWorld.setVelocityIterations(16);
 		this.physicsWorld.setPositionIterations(16);
-	}
 
+	}
 	// put some invisible, static rectangles that keep the player within the
 	// world bounds:
 	// we do not do this using registerEntity, because these bodies are

@@ -38,7 +38,7 @@ public final class HighScoreList {
 	}
 	
 	// stored from highest to lowest position in list.
-	private List<Entry> highScoreList;
+	private List<Entry> highScoreList; 
 	
 	public List<Entry> getHighScoreList() {
 		return this.highScoreList;

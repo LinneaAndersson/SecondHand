@@ -63,7 +63,8 @@ public class GameWorld {
 		this.physicsWorld = new PhysicsWorld(new Vector2(), true);
 
 		this.mPhysic = new Physics(new Vector2()); // TODO: have to do this other way. I fix
-
+												   // Why? you could just create an empty vector
+												   // in physics constructor
 		this.gameWorldBounds = new GameWorldBounds();
 
 		// you can try lowering the values of these if the game starts lagging

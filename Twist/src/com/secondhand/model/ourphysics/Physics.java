@@ -19,6 +19,9 @@ public class Physics implements IPhysics {
 	private Body[] bodies;
 	private IShape[] worldBounds;
 
+	// no vector needed because its zero gravity. And if the constructor
+	// needs an vector that means we need to to import Vector2
+	// wherever we creates Physics 
 	public Physics(Vector2 vector) {
 		physicsWorld = new PhysicsWorld(vector, true);
 	}

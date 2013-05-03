@@ -14,9 +14,6 @@ import com.secondhand.view.scene.GamePlayScene;
 public interface IPhysics {
 
 	
-	//TODO: Will remove this later.
-	PhysicsWorld getPhysicsWorld();
-	
 	void setWorldBounds(final int levelWidth, final int levelHeight);
 	
 	void removeWorldBounds();
@@ -26,8 +23,6 @@ public interface IPhysics {
 	void deleteBody(final boolean scheduledForDeletion);
 	
 	void setConnector(IShape shape);
-
-	//void deleteBody(Body body);
 	
 	void applyImpulse(final Body body, final float posX, final float posY);
 

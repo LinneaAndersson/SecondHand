@@ -124,12 +124,6 @@ public class Physics implements IPhysics {
 		return enemyUtil.straightLine(entity, enemy);
 	}
 
-	// TODO: Will remove this later
-	@Override
-	public PhysicsWorld getPhysicsWorld() {
-		// TODO Auto-generated method stub
-		return physicsWorld;
-	}
 
 	public boolean isAreaUnOccupied(final float x, final float y, final float r) {
 		return PhysicsAreaChecker.isRectangleAreaUnoccupied(new Vector2(x - r,

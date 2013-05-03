@@ -2,7 +2,6 @@ package com.secondhand.controller;
 
 import org.anddev.andengine.engine.Engine;
 
-import com.secondhand.model.resource.HighScoreList;
 import com.secondhand.view.scene.GamePlayScene;
 
 // manages the input dialog used when entering the player name. 

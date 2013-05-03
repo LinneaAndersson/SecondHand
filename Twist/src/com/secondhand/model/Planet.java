@@ -2,7 +2,6 @@ package com.secondhand.model;
 
 
 import com.badlogic.gdx.math.Vector2;
-import com.secondhand.model.physics.FixtureDefs;
 import com.secondhand.model.resource.PlanetType;
 import com.secondhand.view.opengl.Circle;
 import com.secondhand.view.opengl.TexturedCircle;

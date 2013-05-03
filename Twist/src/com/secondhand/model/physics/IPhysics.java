@@ -7,6 +7,7 @@ import org.anddev.andengine.extension.physics.box2d.PhysicsWorld;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.secondhand.controller.CollisionContactListener;
 import com.secondhand.model.Enemy;
+import com.secondhand.model.GameWorld;
 import com.badlogic.gdx.physics.box2d.Contact;
 
 import com.secondhand.model.Entity;
@@ -46,4 +47,6 @@ public interface IPhysics {
 	Body createType(IShape shape, Entity entity);
 
 	public void registerUpdateHandler(GamePlayScene gamePlayScene);
+
+	public void setGameWorld(GameWorld gameWorld);
 }

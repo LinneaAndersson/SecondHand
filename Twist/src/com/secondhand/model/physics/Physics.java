@@ -29,19 +29,20 @@ public class Physics implements IPhysics {
 	private final PhysicsWorld physicsWorld;
 	private PhysicsConnector physicsConnector;
 	private final PhysicsEnemyUtil enemyUtil;
-	private final CollisionResolver collisionResolver;
+	private CollisionResolver collisionResolver;
 	private final PhysicsWorldBounds bounds;
+	private GameWorld gameWorld;
 
 	// no vector needed because its zero gravity. And if the constructor
 	// needs an vector that means we need to to import Vector2
 	// wherever we creates Physics
 	// TODO:remove vector2.
 
-	public Physics(final GameWorld gameWorld, final Vector2 vector) {
-		physicsWorld = new PhysicsWorld(vector, true);
+	public Physics() {
+		
+		physicsWorld = new PhysicsWorld(new Vector2(), true);
 		bounds = new PhysicsWorldBounds(physicsWorld);
 		enemyUtil = new PhysicsEnemyUtil(physicsWorld);
-		this.collisionResolver = new CollisionResolver(gameWorld);
 
 	}
 
@@ -191,6 +192,13 @@ public class Physics implements IPhysics {
 	public void registerUpdateHandler(GamePlayScene gamePlayScene) {
 
 		gamePlayScene.registerUpdateHandler(physicsWorld);
+		
+	}
+
+	@Override
+	public void setGameWorld(GameWorld gameWorld) {
+		this.gameWorld = gameWorld;
+		this.collisionResolver = new CollisionResolver(gameWorld);
 		
 	}
 }

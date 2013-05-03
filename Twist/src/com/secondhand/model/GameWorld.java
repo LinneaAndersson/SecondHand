@@ -5,11 +5,8 @@ import java.beans.PropertyChangeSupport;
 
 
 import com.badlogic.gdx.math.Vector2;
+import com.secondhand.debug.MyDebug;
 import com.secondhand.model.physics.IPhysics;
-import com.secondhand.model.physics.Physics;
-
-import com.secondhand.model.physics.IPhysics;
-import com.secondhand.model.physics.Physics;
 //TODO I think we should perhaps create an IGameWorld to support mvc
 //Dont think that is needed. Physics will take care of everything soon.
 
@@ -28,6 +25,18 @@ public class GameWorld {
 	private int levelNumber;
 
 	private PropertyChangeSupport support;
+
+	public GameWorld(IPhysics physics) {
+		mPhysic = physics;
+		mPhysic.setGameWorld(this);
+		support = new PropertyChangeSupport(this);
+		this.levelWidth = 1700 * 2;
+		this.levelHeight = 1700 * 2;
+		this.entityManager = new EntityManager(new Player(new float[]{50,50},
+				30, this));
+
+		generateNewLevelEntities(STARTING_LEVEL);
+	}
 	
 	public PropertyChangeSupport getPropertyChangeSupport() {
 		return this.support;
@@ -37,27 +46,12 @@ public class GameWorld {
 		support.addPropertyChangeListener(listener);
 		getPlayer().addListener(listener);
 	}
+	
+	public void setPhysics(IPhysics physics){
+		this.mPhysic=physics;
+		MyDebug.d("is it null in setPhysics?" + mPhysic);
 
-	public GameWorld() {
-
-		init();
-		this.levelWidth = 1700 * 2;
-		this.levelHeight = 1700 * 2;
-		this.entityManager = new EntityManager(new Player(new float[]{50,50},
-				30, this));
-
-		generateNewLevelEntities(STARTING_LEVEL);
-		
 		mPhysic.setWorldBounds(levelWidth, levelHeight);
-	}
-
-	private void init() {
-
-		support = new PropertyChangeSupport(this);
-
-		this.mPhysic = new Physics(this, new Vector2()); // TODO: have to do this other way. I fix
-
-
 	}
 
 	// generate the level entities of a new level.
@@ -79,6 +73,7 @@ public class GameWorld {
 	}
 
 	public IPhysics getPhysics(){
+		MyDebug.d("is it null? = " + mPhysic);
 		return mPhysic;
 	}
 	

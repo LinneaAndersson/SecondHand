@@ -14,5 +14,5 @@ public interface IPhysics {
 	
 	public void registerBody(Entity entity, Body body, Boolean rotatation);
 	
-	public void deleteBody(Body body);
+	//public void deleteBody(Body body);
 }

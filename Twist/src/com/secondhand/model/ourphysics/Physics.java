@@ -14,6 +14,7 @@ import com.badlogic.gdx.physics.box2d.BodyDef.BodyType;
 import com.badlogic.gdx.physics.box2d.Contact;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.secondhand.debug.MyDebug;
+import com.secondhand.model.CollisionResolver;
 import com.secondhand.model.Entity;
 import com.secondhand.model.physics.CustomPhysicsConnector;
 
@@ -136,12 +137,9 @@ public class Physics implements IPhysics {
 	}
 
 
-
-
 	@Override
 	public void checkCollision(Contact contact) {
-		// TODO Auto-generated method stub
-		
+		CollisionResolver.checkCollision(contact);		
 	}
 
 }

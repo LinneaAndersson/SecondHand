@@ -143,10 +143,6 @@ public class GameWorld {
 		return this.entityManager.getPlayer().lostAllLives();
 	}
 
-	public void checkCollision(final Contact contact) {
-		CollisionResolver.checkCollision(contact);
-	}
-
 	public Player getPlayer() {
 		return this.entityManager.getPlayer();
 	}

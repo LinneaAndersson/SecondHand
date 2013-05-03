@@ -29,7 +29,7 @@ final class GamePlaySceneController extends Entity{
 		scene.setOnSceneTouchListener(new GameSceneTouchListener());
 	
 		gameWorld.getPhysicsWorld().setContactListener(
-				new CollisionContactListener(gameWorld));
+				new CollisionContactListener(gameWorld.getPhysics()));
 	}
 	
 	private class GameSceneTouchListener implements IOnSceneTouchListener {

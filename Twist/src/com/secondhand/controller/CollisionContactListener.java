@@ -4,15 +4,15 @@ import com.badlogic.gdx.physics.box2d.Contact;
 import com.badlogic.gdx.physics.box2d.ContactImpulse;
 import com.badlogic.gdx.physics.box2d.ContactListener;
 import com.badlogic.gdx.physics.box2d.Manifold;
-import com.secondhand.model.GameWorld;
+import com.secondhand.model.ourphysics.IPhysics;
 
 public final class CollisionContactListener implements ContactListener {
 
 	
-	private final GameWorld gameWorld;
+	private final IPhysics physics;
 	
-	public CollisionContactListener(final GameWorld gameWorld) {
-		this.gameWorld = gameWorld;
+	public CollisionContactListener(final IPhysics physics) {
+		this.physics = physics;
 	}
 	
 	/**
@@ -22,7 +22,7 @@ public final class CollisionContactListener implements ContactListener {
 	 */
 	@Override
 	public void beginContact(final Contact contact) {
-		gameWorld.checkCollision(contact);
+		physics.checkCollision(contact);
 	}
 
 	@Override

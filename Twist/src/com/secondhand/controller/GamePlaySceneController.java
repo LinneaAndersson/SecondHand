@@ -1,17 +1,22 @@
 package com.secondhand.controller;
 
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
+
 import org.anddev.andengine.entity.Entity;
 import org.anddev.andengine.entity.scene.Scene;
 import org.anddev.andengine.entity.scene.Scene.IOnSceneTouchListener;
 import org.anddev.andengine.input.touch.TouchEvent;
 
 import com.badlogic.gdx.math.Vector2;
+import com.secondhand.debug.MyDebug;
 import com.secondhand.model.GameWorld;
+import com.secondhand.model.Player;
 import com.secondhand.model.resource.HighScoreList;
 import com.secondhand.view.scene.AllScenes;
 import com.secondhand.view.scene.GamePlayScene;
 
-final class GamePlaySceneController extends Entity{
+final class GamePlaySceneController extends Entity  implements PropertyChangeListener{
 
 	private final GameWorld gameWorld;
 	private final GamePlayScene gamePlayScene;
@@ -28,6 +33,12 @@ final class GamePlaySceneController extends Entity{
 		
 		scene.setOnSceneTouchListener(new GameSceneTouchListener());
 	
+		gameWorld.getPhysicsWorld().setContactListener(
+				new CollisionContactListener(gameWorld.getPhysics()));
+		
+		// receive gameworld property change in controller.
+		gameWorld.addListener(this);
+		
 		gameWorld.getPhysicsWorld().setContactListener(
 				new CollisionContactListener(gameWorld.getPhysics()));
 	}
@@ -74,11 +85,30 @@ final class GamePlaySceneController extends Entity{
 				InputDialogManager.showing = true;
 				InputDialogManager.getInstance().showDialog();
 
-			} else {
-			}
+			}	
 			
 		} else {
 			gameWorld.updateGameWorld();
+		}
+	}
+	
+	// not a very good solution bellow but it can do for now
+	@Override
+	public void propertyChange(final PropertyChangeEvent event) {
+		final String eventName = event.getPropertyName();
+		if (eventName.equals(Player.INCREASE_SCORE)) {
+			this.gamePlayScene.updateScore((Integer) event.getNewValue());
+		} else if (eventName.equals(Player.INCREASE_LIFE)) {
+			this.gamePlayScene.updateLives((Integer) event.getNewValue());
+		} else if (eventName.equals("PlayerRadius")) {
+			MyDebug.d("eric");
+			this.gamePlayScene.apaptCameraToGrowingPlayer((Float) event.getNewValue(),
+					(Float) event.getOldValue());
+		} else if (eventName.equals("NextLevel")) {
+			//smoothCamera.setZoomFactorDirect(1.0f);
+			//newLevelStarted();
+			// first place out the new level in view
+			// now add listeners n stuff
 		}
 	}
 

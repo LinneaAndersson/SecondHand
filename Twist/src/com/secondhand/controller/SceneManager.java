@@ -17,15 +17,11 @@ import com.secondhand.view.scene.SettingsMenuScene;
  * Is used to switch between different scenes. 
  */
 final class SceneManager {
-
-	
-	//private static SceneManager instance;
-
 	private AllScenes currentSceneEnum;
 
 	private final Engine engine;
 	
-	private IGameScene settingsMenuScene;
+	private final IGameScene settingsMenuScene;
 	
 	private final HighScoreScene highScoreScene;
 	private final MainMenuScene mainMenuScene;
@@ -66,11 +62,6 @@ final class SceneManager {
 	public IGameScene getScene(final AllScenes sceneEnum) {
 		IGameScene scene = null;
 
-		// IMPORTANT: when you want to add a new scene to the app, you MUST make
-		// sure
-		// that it can be accessed be using this method.
-
-		// also change the scene in the game:
 		if (sceneEnum == AllScenes.LOADING_SCENE ||
 				sceneEnum == AllScenes.LEVEL_LOADING_SCENE) {
 			scene = this.loadingScene;

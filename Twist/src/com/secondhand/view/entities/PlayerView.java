@@ -20,10 +20,10 @@ import com.secondhand.view.resource.Sounds;
 // what? the controller should be handling the PropertyChangeListener, not the view!
 public class PlayerView implements IEntityView, PropertyChangeListener {
 
-	private Engine engine;
-	private GameWorld gameWorld;
+	private final Engine engine;
+	private final GameWorld gameWorld;
 
-	public PlayerView(Engine engine, GameWorld gameWorld) {
+	public PlayerView(final Engine engine, final GameWorld gameWorld) {
 		this.engine = engine;
 		this.gameWorld = gameWorld;
 
@@ -32,7 +32,7 @@ public class PlayerView implements IEntityView, PropertyChangeListener {
 
 	public void playerMoveAnimation(final Vector2 touch) {
 
-		Player player = gameWorld.getPlayer();
+		final Player player = gameWorld.getPlayer();
 
 		final TextureRegion particleTexture = TextureRegionLoader.getInstance().loadTextureRegion("particle.png", 16, 16);
 
@@ -51,23 +51,23 @@ public class PlayerView implements IEntityView, PropertyChangeListener {
 		engine.registerUpdateHandler(new TimerHandler(duration,
 				new ITimerCallback() {
 			@Override
-			public void onTimePassed(TimerHandler pTimerHandler) {
+			public void onTimePassed(final TimerHandler pTimerHandler) {
 				// GamePlayScene.this.detachChild(particleSystem); // Read TODO above
 			}
 		}));
 	}
 
 	// Calculate the surface position of object relative to given position
-	public Vector2 getRelativeSurfacePosition(Entity object, Vector2 position) {
-		Vector2 surfacePosition = new Vector2(object.getCenterX() - position.x,	
+	public Vector2 getRelativeSurfacePosition(final Entity object, final Vector2 position) {
+		final Vector2 surfacePosition = new Vector2(object.getCenterX() - position.x,	
 											  object.getCenterY() - position.y); // Vector from object position to given position
 		surfacePosition.mul(object.getRadius() / surfacePosition.len()); // Length of new vector increased/decreased to length of radius
 		return surfacePosition;
 	}
 
 	@Override
-	public void propertyChange(PropertyChangeEvent event) {
-		String propertyName = event.getPropertyName();
+	public void propertyChange(final PropertyChangeEvent event) {
+		final String propertyName = event.getPropertyName();
 		if (propertyName.equals(Player.POWER_UP_SOUND)) {
 			Sounds.getInstance().powerUpSound.play();
 		}

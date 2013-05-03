@@ -159,7 +159,7 @@ public class GamePlayScene extends GameScene implements PropertyChangeListener {
 			
 			if (InputDialogManager.input != null) {
 
-				HighScoreList.Entry newEntry = new HighScoreList.Entry(InputDialogManager.input, 
+				final HighScoreList.Entry newEntry = new HighScoreList.Entry(InputDialogManager.input, 
 						getGameWorld().getPlayer().getScore());
 				HighScoreList.getInstance().insertInHighScoreList(newEntry);
 				InputDialogManager.showing = false;
@@ -198,7 +198,6 @@ public class GamePlayScene extends GameScene implements PropertyChangeListener {
 		} else if (eventName.equals(Player.INCREASE_LIFE)) {
 			updateLives((Integer) event.getNewValue());
 		} else if (eventName.equals("PlayerRadius")) {
-			final float newRadius = (Float) event.getNewValue();
 			apaptCameraToGrowingPlayer((Float) event.getNewValue(),
 					(Float) event.getOldValue());
 		} else if (eventName.equals("NextLevel")) {

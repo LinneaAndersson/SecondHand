@@ -47,10 +47,6 @@ public class GameWorld {
 				30, this));
 
 		generateNewLevelEntities(STARTING_LEVEL);
-
-		//TODO: will remove this later
-		gameWorldBounds.setupWorldBounds(this.levelWidth, this.levelHeight,
-				this.physicsWorld);
 		
 		gameWorldBounds.setupWorldBounds(levelWidth, levelHeight, mPhysic);
 	}
@@ -63,6 +59,7 @@ public class GameWorld {
 		this.physicsWorld = new PhysicsWorld(new Vector2(), true);
 
 		this.mPhysic = new Physics(new Vector2()); // TODO: have to do this other way. I fix
+		mPhysic.setPhysicsWorld(getPhysicsWorld());
 
 		this.gameWorldBounds = new GameWorldBounds();
 
@@ -72,8 +69,8 @@ public class GameWorld {
 		
 		//In the new physics this is doing in the constructor. 
 		//TODO: will remove this later
-		this.physicsWorld.setVelocityIterations(16);
-		this.physicsWorld.setPositionIterations(16);
+		//this.physicsWorld.setVelocityIterations(16);
+		//this.physicsWorld.setPositionIterations(16);
 	}
 
 	// generate the level entities of a new level.
@@ -128,10 +125,6 @@ public class GameWorld {
 		
 		// first load the new level entities:
 		generateNewLevelEntities(this.levelNumber);
-		
-		//TODO: will remove this later
-		gameWorldBounds.setupWorldBounds(this.levelWidth, this.levelHeight,
-				this.physicsWorld);
 		
 		gameWorldBounds.setupWorldBounds(levelWidth, levelHeight, mPhysic);
 		

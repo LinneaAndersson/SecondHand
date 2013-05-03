@@ -1,26 +1,27 @@
 package com.secondhand.model.ourphysics;
 
 import org.anddev.andengine.entity.shape.IShape;
+import org.anddev.andengine.extension.physics.box2d.PhysicsConnector;
 import org.anddev.andengine.extension.physics.box2d.PhysicsFactory;
 import org.anddev.andengine.extension.physics.box2d.PhysicsWorld;
 
-import android.graphics.drawable.shapes.Shape;
-
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
-import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.BodyDef.BodyType;
+import com.badlogic.gdx.physics.box2d.FixtureDef;
+import com.secondhand.debug.MyDebug;
 import com.secondhand.model.Entity;
-import com.secondhand.model.Player;
 import com.secondhand.model.physics.CustomPhysicsConnector;
 
 public class Physics implements IPhysics {
 	private PhysicsWorld physicsWorld;
 	private Body[] bodies;
 	private IShape[] worldBounds;
+	private PhysicsConnector physicsConnector;
 
 	public Physics(Vector2 vector) {
-		physicsWorld = new PhysicsWorld(vector, true);
+		//TODO: Will be here later.
+		//physicsWorld = new PhysicsWorld(vector, true);
 	}
 
 	public void init() {
@@ -64,4 +65,32 @@ public class Physics implements IPhysics {
 
 
 	}
+
+	public void deleteBody(Boolean scheduledBody) {
+		if(!scheduledBody) {
+			throw new IllegalStateException("Body not scheduled for deletion!");
+		}
+			
+		physicsWorld.unregisterPhysicsConnector(physicsConnector);
+					
+		MyDebug.i(physicsConnector.getBody() + " will be destroyed");
+							
+		physicsWorld.destroyBody(physicsConnector.getBody());
+			
+		MyDebug.i(physicsConnector.getBody() + " destruction complete");
+	}
+
+	//TODO: Will remove thi later, just for testing it works okej.
+	@Override
+	public void setPhysicsWorld(PhysicsWorld p) {
+		this.physicsWorld = p;
+		init();
+		
+	}
+	
+	public void setConnector(IShape shape){
+		physicsConnector = physicsWorld.getPhysicsConnectorManager().findPhysicsConnectorByShape(
+				shape);
+	}
+
 }

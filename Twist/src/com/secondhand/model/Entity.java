@@ -18,7 +18,7 @@ public abstract class Entity {
 	protected final PhysicsWorld physicsWorld;
 	protected final IPhysics physics;
 	protected final GameWorld level;
-	
+
 	public Entity(final Shape shape, final boolean isEdible, final Body body, final GameWorld level) {
 		this.body = body;
 		this.shape = shape;
@@ -29,31 +29,24 @@ public abstract class Entity {
 		bodyScheduledForDeletion = false;
 		registerBody(body); //NOPMD
 	}
-	
+
 	protected final void registerBody(final Body body) {
-		
-		
+
 		boolean updateRotation = true;
 		if(this instanceof Player) {
 			updateRotation = false;
 		}
-		
+
 		physics.registerBody(this,body,updateRotation);
-		
-		//TODO: Will remove this later
-		// we need this when doing collisions handling between entities and
-		// black holes:
-		body.setUserData(this);
-	
-		physicsWorld.registerPhysicsConnector(new CustomPhysicsConnector(this.getShape(),isCircle(), this.body, true, updateRotation));
+
 	}
-	
+
 	public float getX() {
 		return shape.getX();
 	}
-	
+
 	public abstract boolean isCircle();
-	
+
 	public float getY() {
 		return shape.getY();
 	}
@@ -65,15 +58,15 @@ public abstract class Entity {
 	public IShape getShape() {
 		return shape;
 	}
-	
+
 	public boolean isEdible() {
 		return this.isEdible;
 	}
-	
+
 	public void setIsEdible(final boolean isEdible) {
 		this.isEdible = isEdible;
 	}
-	
+
 	public abstract float getRadius();
 
 	public float getCenterX() {
@@ -86,64 +79,51 @@ public abstract class Entity {
 
 	// how much every unit(pixel) of radius is worth in points. 
 	public abstract float getScoreWorth();
-	
+
 	public int getScoreValue() {
 		return (int)(this.getRadius() * this.getScoreWorth());
 	}
-	
+
 	// remove this entity from andengine rendering and the physics world.
 	private void removeEntity() {
 
 		this.level.getEntityManager().removeEntityFromList(this);
-		
+
 		destroyEntity();
-		
+
 	}
-	
+
 	public void destroyEntity() {
-		
+
 
 		// we can't remove the body within a contact listener
 		scheduleBodyForDeletion();
-		
+
 		// Detach the shape from AndEngine-rendering
 		getShape().detachSelf();
 
 	}
-	
+
 	private boolean bodyScheduledForDeletion;
-	// used when deleting the body.
-	public PhysicsConnector physicsConnector;
 	
 	private boolean isBodyScheduledForDeletion() {
 		return this.bodyScheduledForDeletion;
 	}
-	
+
 	private void scheduleBodyForDeletion() {
-		physicsConnector = physicsWorld.getPhysicsConnectorManager().findPhysicsConnectorByShape(
-						this.getShape());	
-		
+		physics.setConnector(this.getShape());
+
 		this.level.getEntityManager().scheduleEntityForDeletion(this);
-		
+
 		this.bodyScheduledForDeletion = true;
 	}
-	
+
 	// only valid when the body has been scheduled for deletion.
 	public void deleteBody() {
-		
-		if(!this.isBodyScheduledForDeletion()) {
-			throw new IllegalStateException("Body not scheduled for deletion!");
-		}
-			
-		physicsWorld.unregisterPhysicsConnector(physicsConnector);
-					
-		MyDebug.i(physicsConnector.getBody() + " will be destroyed");
-							
-		physicsWorld.destroyBody(physicsConnector.getBody());
-			
-		MyDebug.i(physicsConnector.getBody() + " destruction complete");
+
+		physics.deleteBody(isBodyScheduledForDeletion());
 	}
-	
+
 	// called when this entity is eaten up.
 	protected void wasEaten() {
 		removeEntity();

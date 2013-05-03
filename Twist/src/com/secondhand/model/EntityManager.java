@@ -46,10 +46,10 @@ public class EntityManager {
 	public void onManagedUpdate(final float pSecondsElapsed) {
 		// remove bodies scheduled for deletion.
 		
-		while(!scheduledForDeletionEntities.empty()) {
-			final Entity entity = scheduledForDeletionEntities.pop();
-			entity.deleteBody();
-		}
+		//while(!scheduledForDeletionEntities.empty()) {
+			//final Entity entity = scheduledForDeletionEntities.pop();
+			//entity.deleteBody();
+		//}
 		
 		moveEnemies();
 		this.player.moveToNeededPositionIfNecessary();

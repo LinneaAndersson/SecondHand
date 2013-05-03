@@ -10,7 +10,7 @@ public enum SoundType {
 		HIGHSCORE_SOUND("sfx/high_score_entry.wav");
 		
 		private String path;
-		private SoundType(String path){
+		private SoundType(final String path){
 			this.path = path;
 		}
 		

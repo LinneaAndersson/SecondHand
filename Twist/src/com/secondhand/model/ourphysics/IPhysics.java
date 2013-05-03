@@ -11,7 +11,7 @@ public interface IPhysics {
 
 	public void setPhysicsWorld(PhysicsWorld p);
 	
-	public void setWorldBounds(IShape[] shape);
+	public void setWorldBounds(final int levelWidth, final int levelHeight);
 	
 	public void removeWorldBounds();
 	

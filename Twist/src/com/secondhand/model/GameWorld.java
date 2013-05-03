@@ -22,8 +22,6 @@ public class GameWorld {
 	
 	private IPhysics mPhysic;
 
-	private GameWorldBounds gameWorldBounds;
-
 	private int levelWidth;
 	private int levelHeight;
 
@@ -46,7 +44,7 @@ public class GameWorld {
 
 		generateNewLevelEntities(STARTING_LEVEL);
 		
-		gameWorldBounds.setupWorldBounds(levelWidth, levelHeight, mPhysic);
+		mPhysic.setWorldBounds(levelWidth, levelHeight);
 	}
 
 	private void init() {
@@ -60,12 +58,6 @@ public class GameWorld {
 
 		mPhysic.setPhysicsWorld(getPhysicsWorld());
 
-		// Why? you could just create an empty vector
-		// in physics constructor
-		
-		//first I want to move code from here then I will optimize
-
-		this.gameWorldBounds = new GameWorldBounds();
 
 		// you can try lowering the values of these if the game starts lagging
 		// too much. Basically, high values for these gives a higher quality
@@ -125,12 +117,12 @@ public class GameWorld {
 		// destroy the entities expect for player
 		clearLevel();
 		
-		this.gameWorldBounds.removeWorldBounds();
+		this.mPhysic.removeWorldBounds();
 		
 		// first load the new level entities:
 		generateNewLevelEntities(this.levelNumber);
 		
-		gameWorldBounds.setupWorldBounds(levelWidth, levelHeight, mPhysic);
+		mPhysic.setWorldBounds(levelWidth, levelHeight);
 		
 		// then notify the view of this, so that it can place out the new
 		// Entities in AndEngine for rendering.

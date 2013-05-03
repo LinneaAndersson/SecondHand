@@ -8,6 +8,7 @@ import org.anddev.andengine.input.touch.TouchEvent;
 import com.badlogic.gdx.math.Vector2;
 import com.secondhand.model.GameWorld;
 import com.secondhand.model.resource.HighScoreList;
+import com.secondhand.view.scene.AllScenes;
 import com.secondhand.view.scene.GamePlayScene;
 
 final class GamePlaySceneController extends Entity{
@@ -50,7 +51,14 @@ final class GamePlaySceneController extends Entity{
 		super.onManagedUpdate(pSecondsElapsed);
 		if (gameWorld.isGameOver()) {
 			
-			/*if (InputDialogManager.input != null) {
+			if(!HighScoreList.getInstance().madeItToHighScoreList(
+					gameWorld.getPlayer().getScore())) {
+				// go to high score. 
+				this.sceneController.switchScene(AllScenes.HIGH_SCORE_SCENE);
+			}
+			
+			/*
+			if (InputDialogManager.input != null) {
 
 				final HighScoreList.Entry newEntry = new HighScoreList.Entry(InputDialogManager.input, 
 						gameWorld.getPlayer().getScore());
@@ -59,12 +67,9 @@ final class GamePlaySceneController extends Entity{
 
 				InputDialogManager.input = null;
 
-				resetCamera();
-				// TODO: switch scene here
+// switch scene here
 				//switchScene(AllScenes.HIGH_SCORE_SCENE);
 
-			} else if (InputDialogManager.showing) {
-				getGameWorld().onManagedUpdate(pSecondsElapsed);
 			} else if (HighScoreList.getInstance().madeItToHighScoreList(
 					getGameWorld().getPlayer().getScore())) {
 
@@ -72,9 +77,6 @@ final class GamePlaySceneController extends Entity{
 				InputDialogManager.getInstance().showDialog();
 
 			} else {
-				resetCamera();
-				// TODO: switch scene here. 
-				//switchScene(AllScenes.HIGH_SCORE_SCENE);
 			}*/
 			
 		} else {

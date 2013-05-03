@@ -54,31 +54,17 @@ public class TextureRegions {
 		powerUpTextures = new EnumMap<PowerUpType, TextureRegion>(PowerUpType.class);
 		
 		for (final PowerUpType powerUpType : PowerUpType.values()) {
-			final TextureRegion planetTexture = TextureRegionLoader.getInstance().loadTextureRegion(TEXTURE_BASEPATH+powerUpType.getPath(), 64, 64,
+			final TextureRegion planetTexture = TextureRegionLoader.getInstance().loadTextureRegion(TEXTURE_BASEPATH+"powerup_box.png", 64, 64,
 					TextureOptions.REPEATING_BILINEAR);
 			powerUpTextures.put(powerUpType, planetTexture);
 		}
 		
 		
-		this.obstacleTexture = TextureRegionLoader.getInstance().loadTextureRegion(TEXTURE_BASEPATH+EntityTexture.OBSTACLE.path, 256, 256,
+		this.obstacleTexture = TextureRegionLoader.getInstance().loadTextureRegion(TEXTURE_BASEPATH+"obstacle.png", 256, 256,
 				TextureOptions.REPEATING_BILINEAR);
 	
 
 		this.starsTexture = TextureRegionLoader.getInstance().loadTextureRegion(TEXTURE_BASEPATH+"stars.png", 256, 256,
 				TextureOptions.REPEATING_BILINEAR);
-	}
-
-	
-	// To add a texture path, just add enum value ex: ENEMY ("enemy.png") in list.
-	enum EntityTexture {
-		POWER_UP("powerup_box.png"),
-		OBSTACLE("obstacle.png");
-		
-		private String path; 
-		
-		private EntityTexture(final String path) {
-			this.path = path;
-		}
-	}
-	
+	}	
 }

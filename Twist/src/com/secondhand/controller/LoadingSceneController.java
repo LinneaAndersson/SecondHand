@@ -62,6 +62,7 @@ class LoadingSceneController extends Entity {
 				Sounds.getInstance().load();
 			} else if(nextScene == AllScenes.GAME_PLAY_SCENE) {
 				// preoload gameplay scene. 
+				sceneController.getSceneManager().getScene(AllScenes.GAME_PLAY_SCENE).loadScene();
 				MyDebug.d("now we should be preloading the level scene");
 			}
 

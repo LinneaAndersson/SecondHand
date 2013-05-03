@@ -139,12 +139,13 @@ public class GameWorld {
 		support.firePropertyChange("NextLevel", false, true);
 	}
 
-	public void onManagedUpdate(final float pSecondsElapsed) {
+	// update game world for this frame.
+	public void updateGameWorld() {
 		if (checkPlayerBigEnough() && !nextLevelAdvanced) {
 			nextLevelAdvanced = true;
 			nextLevel();
 		} else {
-			this.entityManager.onManagedUpdate(pSecondsElapsed);
+			this.entityManager.updateEntities();
 		}
 	}
 

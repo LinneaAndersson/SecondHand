@@ -20,6 +20,10 @@ class SceneController {
 	
 	private final SceneManager sceneManager;
 	
+	public SceneManager getSceneManager() {
+		return this.sceneManager;
+	}
+	
 	public SceneController(final Engine engine, final Context context) {
 		this.engine = engine;
 		this.context = context;
@@ -38,6 +42,7 @@ class SceneController {
 		return this.isGameLoaded;
 	}
 	
+	
 	public void switchScene(final AllScenes scene) {
 		
 		this.sceneManager.switchScene(scene);
@@ -55,7 +60,7 @@ class SceneController {
 		} else if(scene == AllScenes.HIGH_SCORE_SCENE) {
 			new HighScoreSceneController(this.sceneManager.getHighScoreScene(), this);
 		} else if (scene == AllScenes.GAME_PLAY_SCENE) {
-			new GamePlaySceneController(this.sceneManager.getGamePlayScene());
+			new GamePlaySceneController(this.sceneManager.getGamePlayScene(), this);
 		} 
 		 
 				

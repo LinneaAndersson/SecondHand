@@ -152,43 +152,7 @@ public class GamePlayScene extends GameScene implements PropertyChangeListener {
 		return AllScenes.MAIN_MENU_SCENE;
 	}
 
-	@Override
-	protected void onManagedUpdate(final float pSecondsElapsed) {
-		super.onManagedUpdate(pSecondsElapsed);
-		if (gameWorld.isGameOver()) {
-			
-			if (InputDialogManager.input != null) {
-
-				final HighScoreList.Entry newEntry = new HighScoreList.Entry(InputDialogManager.input, 
-						getGameWorld().getPlayer().getScore());
-				HighScoreList.getInstance().insertInHighScoreList(newEntry);
-				InputDialogManager.showing = false;
-
-				InputDialogManager.input = null;
-
-				resetCamera();
-				// TODO: switch scene here
-				//switchScene(AllScenes.HIGH_SCORE_SCENE);
-
-			} else if (InputDialogManager.showing) {
-				getGameWorld().onManagedUpdate(pSecondsElapsed);
-			} else if (HighScoreList.getInstance().madeItToHighScoreList(
-					getGameWorld().getPlayer().getScore())) {
-
-				InputDialogManager.showing = true;
-				InputDialogManager.getInstance().showDialog();
-
-			} else {
-				resetCamera();
-				// TODO: switch scene here. 
-				//switchScene(AllScenes.HIGH_SCORE_SCENE);
-			}
-			
-		} else {
-			gameWorld.onManagedUpdate(pSecondsElapsed);
-		}
-	}
-
+	
 	// not a very good solution bellow but it can do for now
 	@Override
 	public void propertyChange(final PropertyChangeEvent event) {

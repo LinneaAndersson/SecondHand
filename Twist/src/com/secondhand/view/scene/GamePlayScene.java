@@ -164,13 +164,14 @@ public class GamePlayScene extends GameScene {
 	}
 
 	public void newLevelStarted() {
-		MyDebug.d("new level!");
-
-		gameWorld.getPlayer().setRadius(30);
-		registerNewLevel();
-
 		Sounds.getInstance().winSound.play();
 
+		smoothCamera.setZoomFactorDirect(1.0f);
+		
+		// TODO: gameworld should probably handle this one.
+		gameWorld.getPlayer().setRadius(30);
+		
+		registerNewLevel();
 	}
 
 	public void updateScore(final int newScore) {

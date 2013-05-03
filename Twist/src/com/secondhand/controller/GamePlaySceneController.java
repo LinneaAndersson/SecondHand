@@ -106,9 +106,8 @@ final class GamePlaySceneController extends Entity  implements PropertyChangeLis
 			this.gamePlayScene.apaptCameraToGrowingPlayer((Float) event.getNewValue(),
 					(Float) event.getOldValue());
 		} else if (eventName.equals("NextLevel")) {
-			//smoothCamera.setZoomFactorDirect(1.0f);
-			//newLevelStarted();
-			// first place out the new level in view
+			this.gamePlayScene.newLevelStarted();
+			
 			// now add listeners n stuff
 		}
 	}

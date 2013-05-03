@@ -10,10 +10,10 @@ import com.secondhand.model.Entity;
 
 // contains the two raycast classes that enemy uses.
 public class PhysicsEnemyUtil {
-	private static boolean straightLine;
-	private PhysicsWorld physics;
+	private boolean straightLine;
+	private final PhysicsWorld physics;
 
-	public PhysicsEnemyUtil(PhysicsWorld physics) {
+	public PhysicsEnemyUtil(final PhysicsWorld physics) {
 		straightLine = true;
 		this.physics = physics;
 	}
@@ -51,13 +51,13 @@ public class PhysicsEnemyUtil {
 
 	// clarify: a point 5-10 length-units in front of where the enemy is moving.
 	public Vector2 dangerClose(final Enemy enemy) {
-		Vector2 v = enemy.getBody().getWorldCenter();
-		Vector2 v2 = enemy.getBody().getLinearVelocity();
+		final Vector2 v = enemy.getBody().getWorldCenter();
+		//Vector2 v2 = enemy.getBody().getLinearVelocity();
 		physics.rayCast(new RayCastCallback(){
 
 			@Override
-			public float reportRayFixture(Fixture fixture, Vector2 point,
-					Vector2 normal, float fraction) {
+			public float reportRayFixture(final Fixture fixture,final  Vector2 point,
+					final Vector2 normal, final float fraction) {
 				if(fixture.getBody().getUserData() != null){
 					if(enemy.canEat((Entity)fixture.getBody().getUserData())){
 						return 0;

@@ -21,7 +21,8 @@ public class PowerUpView implements IEntityView, PropertyChangeListener {
 		this.engine = engine;
 		this.gameWorld = gameWorld;
 		
-		gameWorld.getPlayer().addListener(this);
+		//  you probably don't want to add the player again(was alreay done in PlayerView)
+		//gameWorld.getPlayer().addListener(this);
 	}
 	
 	public TimerHandler createTimer(final Player player, final PowerUp powerUp) {

@@ -41,10 +41,6 @@ public interface IPhysics {
 	public boolean isAreaUnOccupied(float x, float y, float r);
 	
 	public void setContactListener();
-	
-	public Body createType(RectangularShape rectangle, Entity entity);
-	
-	public Body createType(Circle circle, Entity entity);
-	
-	public Body createType(Polygon polygon, Entity entity);
+
+	Body createType(IShape shape, Entity entity);
 }

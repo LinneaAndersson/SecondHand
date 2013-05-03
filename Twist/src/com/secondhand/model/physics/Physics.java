@@ -154,28 +154,31 @@ public class Physics implements IPhysics {
 
 	}
 
+	
+	
+	
+
 	@Override
-	public Body createType(RectangularShape rectangle,Entity entity) {
-		
-		if(entity instanceof PowerUp){
+	public Body createType(IShape shape,Entity entity) {
+		if(entity instanceof Obstacle){
+			Polygon polygon = (Polygon) shape;
+			return MyPhysicsFactory.createPolygonBody(physicsWorld,
+					polygon, BodyType.DynamicBody, FixtureDefs.OBSTACLE_FIXTURE_DEF);
+		} else 	if (entity instanceof Planet) {
+			Circle circle = (Circle) shape;
+			return PhysicsFactory.createCircleBody(physicsWorld, circle.getX(),
+					circle.getY(), circle.getRadius(), circle.getRotation(),
+					BodyType.DynamicBody, FixtureDefs.PLANET_FIXTURE_DEF);
+		} else if (entity instanceof BlackHole) {
+			Circle circle = (Circle) shape;
+			return PhysicsFactory.createCircleBody(physicsWorld, circle.getX(),
+					circle.getY(), circle.getRadius(), circle.getRotation(),
+					BodyType.DynamicBody, FixtureDefs.BLACK_HOLE_FIXTURE_DEF);
+		} else if(entity instanceof PowerUp){
+			RectangularShape rectangle = (RectangularShape) shape;
 			return PhysicsFactory.createCircleBody(physicsWorld,
 					rectangle, BodyType.DynamicBody, FixtureDefs.POWER_UP_FIXTURE_DEF);
 		}
-		
-		return null;
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public Body createType(Polygon polygon,Entity entity) {
-		
-		if(entity instanceof Obstacle){
-
-			return MyPhysicsFactory.createPolygonBody(physicsWorld,
-					polygon, BodyType.DynamicBody, FixtureDefs.OBSTACLE_FIXTURE_DEF);
-		}
-		MyDebug.d(" Wrong entity in createType for Polygon ");
 		return null;
 		
 		

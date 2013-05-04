@@ -17,16 +17,6 @@ public abstract class Entity {
 	protected enum Type {
 		CIRCLE, RECTANGLE, POLYGON;
 	}
-	public Entity(final Shape shape, final boolean isEdible, final Body body, final GameWorld level) {
-		this.body = body;
-		this.shape = shape;
-		this.isEdible = isEdible;
-		MyDebug.d("is it null in Entity" + level.getPhysics());
-		this.physics = level.getPhysics();
-		this.level = level;
-		bodyScheduledForDeletion = false;
-		registerBody(body); //NOPMD
-	}
 	
 	public Entity(final Shape shape, final boolean isEdible, final GameWorld level){
 		this.shape = shape;
@@ -49,10 +39,7 @@ public abstract class Entity {
 	
 	public void setBody(Body body){
 		this.body = body;
-		MyDebug.d("In setBody " + body);
 		registerBody(body); 
-
-		MyDebug.d("Out from setBody");
 	}
 
 	public float getX() {
@@ -134,7 +121,6 @@ public abstract class Entity {
 
 	// only valid when the body has been scheduled for deletion.
 	public void deleteBody() {
-
 		physics.deleteBody(isBodyScheduledForDeletion());
 	}
 

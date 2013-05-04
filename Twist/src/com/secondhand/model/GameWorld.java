@@ -5,21 +5,20 @@ import java.beans.PropertyChangeSupport;
 
 import com.badlogic.gdx.math.Vector2;
 
-// This class was formerly known as level. 
 public class GameWorld {
 
 	private final EntityManager entityManager;
 
 	private static final int STARTING_LEVEL = 2;
 
-	private IPhysics mPhysic;
+	private final IPhysics mPhysic;
 
-	private int levelWidth;
-	private int levelHeight;
+	private final int levelWidth;
+	private final int levelHeight;
 
 	private int levelNumber;
 
-	private PropertyChangeSupport support;
+	private final PropertyChangeSupport support;
 
 	public GameWorld(IPhysics physics) {
 		mPhysic = physics;

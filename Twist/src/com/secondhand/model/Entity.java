@@ -17,7 +17,9 @@ public abstract class Entity {
 	protected enum Type {
 		CIRCLE, RECTANGLE, POLYGON;
 	}
-	public Entity(final Shape shape, final boolean isEdible, final Body body, final GameWorld level) {
+
+	public Entity(final Shape shape, final boolean isEdible, final Body body,
+			final GameWorld level) {
 		this.body = body;
 		this.shape = shape;
 		this.isEdible = isEdible;
@@ -25,10 +27,11 @@ public abstract class Entity {
 		this.physics = level.getPhysics();
 		this.level = level;
 		bodyScheduledForDeletion = false;
-		registerBody(body); //NOPMD
+		registerBody(body); // NOPMD
 	}
-	
-	public Entity(final Shape shape, final boolean isEdible, final GameWorld level){
+
+	public Entity(final Shape shape, final boolean isEdible,
+			final GameWorld level) {
 		this.shape = shape;
 		this.isEdible = isEdible;
 		this.physics = level.getPhysics();
@@ -38,19 +41,14 @@ public abstract class Entity {
 
 	protected final void registerBody(final Body body) {
 
-		boolean updateRotation = true;
-		if(this instanceof Player) {
-			updateRotation = false;
-		}
-
-		physics.registerBody(this,body,updateRotation);
+		physics.registerBody(this, body);
 
 	}
-	
-	public void setBody(Body body){
+
+	public void setBody(Body body) {
 		this.body = body;
 		MyDebug.d("In setBody " + body);
-		registerBody(body); 
+		registerBody(body);
 
 		MyDebug.d("Out from setBody");
 	}
@@ -91,11 +89,11 @@ public abstract class Entity {
 		return getY();
 	}
 
-	// how much every unit(pixel) of radius is worth in points. 
+	// how much every unit(pixel) of radius is worth in points.
 	public abstract float getScoreWorth();
 
 	public int getScoreValue() {
-		return (int)(this.getRadius() * this.getScoreWorth());
+		return (int) (this.getRadius() * this.getScoreWorth());
 	}
 
 	// remove this entity from andengine rendering and the physics world.
@@ -109,7 +107,6 @@ public abstract class Entity {
 
 	public void destroyEntity() {
 
-
 		// we can't remove the body within a contact listener
 		scheduleBodyForDeletion();
 
@@ -119,7 +116,7 @@ public abstract class Entity {
 	}
 
 	private boolean bodyScheduledForDeletion;
-	
+
 	private boolean isBodyScheduledForDeletion() {
 		return this.bodyScheduledForDeletion;
 	}
@@ -142,5 +139,8 @@ public abstract class Entity {
 	protected void wasEaten() {
 		removeEntity();
 	}
-}
 
+	public boolean getRotation() {
+		return this instanceof Player ? false : true;
+	}
+}

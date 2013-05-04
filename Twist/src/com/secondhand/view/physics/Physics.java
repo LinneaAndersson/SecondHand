@@ -47,6 +47,7 @@ public class Physics implements IPhysics {
 		this.physicsWorld.setPositionIterations(16);
 
 	}
+
 	// put some invisible, static rectangles that keep the player within the
 	// world bounds:
 	// we do not do this using registerEntity, because these bodies are
@@ -61,13 +62,12 @@ public class Physics implements IPhysics {
 	}
 
 	@Override
-	public void registerBody(final Entity entity, final Body body,
-			final boolean rotation) {
+	public void registerBody(final Entity entity, final Body body) {
 		body.setUserData(entity);
 
 		physicsWorld.registerPhysicsConnector(new CustomPhysicsConnector(entity
 				.getShape(), entity.isCircle(), entity.getBody(), true,
-				rotation));
+				entity.getRotation()));
 	}
 
 	// andEngine or box2d coordinates in? and depending on from
@@ -119,7 +119,6 @@ public class Physics implements IPhysics {
 		return enemyUtil.straightLine(entity, enemy);
 	}
 
-
 	public boolean isAreaUnOccupied(final float x, final float y, final float r) {
 		return PhysicsAreaChecker.isRectangleAreaUnoccupied(new Vector2(x - r,
 				y + r), new Vector2(x + r, y - r), physicsWorld);
@@ -133,26 +132,28 @@ public class Physics implements IPhysics {
 
 	@Override
 	public Body createType(final IShape shape, final Entity entity) {
-		if(entity instanceof Obstacle){
+		Body body = null;
+		if (entity instanceof Obstacle) {
 			final Polygon polygon = (Polygon) shape;
-			return MyPhysicsFactory.createPolygonBody(physicsWorld,
-					polygon, BodyType.DynamicBody, FixtureDefs.OBSTACLE_FIXTURE_DEF);
-		} else 	if (entity instanceof Planet) {
+			body = MyPhysicsFactory.createPolygonBody(physicsWorld, polygon,
+					BodyType.DynamicBody, FixtureDefs.OBSTACLE_FIXTURE_DEF);
+		} else if (entity instanceof Planet) {
 			final Circle circle = (Circle) shape;
-			return PhysicsFactory.createCircleBody(physicsWorld, circle.getX(),
+			body = PhysicsFactory.createCircleBody(physicsWorld, circle.getX(),
 					circle.getY(), circle.getRadius(), circle.getRotation(),
 					BodyType.DynamicBody, FixtureDefs.PLANET_FIXTURE_DEF);
 		} else if (entity instanceof CircleEntity) {
 			final Circle circle = (Circle) shape;
-			return PhysicsFactory.createCircleBody(physicsWorld, circle.getX(),
+			body = PhysicsFactory.createCircleBody(physicsWorld, circle.getX(),
 					circle.getY(), circle.getRadius(), circle.getRotation(),
 					BodyType.DynamicBody, FixtureDefs.BLACK_HOLE_FIXTURE_DEF);
-		} else if(entity instanceof RectangleEntity){
+		} else if (entity instanceof RectangleEntity) {
 			final RectangularShape rectangle = (RectangularShape) shape;
-			return PhysicsFactory.createCircleBody(physicsWorld,
-					rectangle, BodyType.DynamicBody, FixtureDefs.POWER_UP_FIXTURE_DEF);
+			body = PhysicsFactory.createCircleBody(physicsWorld, rectangle,
+					BodyType.DynamicBody, FixtureDefs.POWER_UP_FIXTURE_DEF);
 		}
-		return null;
+		registerBody(entity, body);
+		return body;
 	}
 
 	@Override

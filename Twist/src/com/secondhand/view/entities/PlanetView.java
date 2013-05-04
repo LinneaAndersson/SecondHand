@@ -1,5 +1,12 @@
 package com.secondhand.view.entities;
 
-public class PlanetView {
+import java.beans.PropertyChangeEvent;
+
+public class PlanetView implements IEntityView {
+
+	@Override
+	public void propertyChange(PropertyChangeEvent arg0) {
+		
+	}
 
 }

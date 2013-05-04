@@ -1,4 +1,4 @@
-package com.secondhand.model.physics;
+package com.secondhand.physics;
 
 import org.anddev.andengine.extension.physics.box2d.PhysicsWorld;
 

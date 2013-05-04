@@ -1,4 +1,4 @@
-package com.secondhand.model.physics;
+package com.secondhand.physics;
 
 import org.anddev.andengine.entity.primitive.Rectangle;
 import org.anddev.andengine.entity.shape.Shape;

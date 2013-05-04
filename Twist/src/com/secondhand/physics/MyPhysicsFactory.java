@@ -1,4 +1,4 @@
-package com.secondhand.model.physics;
+package com.secondhand.physics;
 
 import static org.anddev.andengine.extension.physics.box2d.util.constants.PhysicsConstants.PIXEL_TO_METER_RATIO_DEFAULT;
 

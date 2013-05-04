@@ -4,9 +4,7 @@ import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 
 import com.badlogic.gdx.math.Vector2;
-import com.secondhand.model.physics.IPhysics;
-//TODO I think we should perhaps create an IGameWorld to support mvc
-//Dont think that is needed. Physics will take care of everything soon.
+import com.secondhand.physics.IPhysics;
 
 // This class was formerly known as level. 
 public class GameWorld {

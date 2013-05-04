@@ -9,7 +9,7 @@ public abstract class CircleEntity extends Entity {
 	public CircleEntity(final Circle circle, final boolean isEdible, final GameWorld level) {
 		
 		  super(circle,isEdible,level);
-		 this.setBody(physics.createType(circle,this));
+		 physics.createType(circle,this);
 		
 		this.circle = circle;
 	}

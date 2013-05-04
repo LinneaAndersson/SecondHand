@@ -18,7 +18,7 @@ public abstract class Entity {
 		CIRCLE, RECTANGLE, POLYGON;
 	}
 
-	public Entity(final Shape shape, final boolean isEdible, final Body body,
+	/*public Entity(final Shape shape, final boolean isEdible, final Body body,
 			final GameWorld level) {
 		this.body = body;
 		this.shape = shape;
@@ -28,7 +28,7 @@ public abstract class Entity {
 		this.level = level;
 		bodyScheduledForDeletion = false;
 		registerBody(body); // NOPMD
-	}
+	}*/
 
 	public Entity(final Shape shape, final boolean isEdible,
 			final GameWorld level) {
@@ -105,6 +105,7 @@ public abstract class Entity {
 
 	}
 
+	// detaching should be done by view or physics
 	public void destroyEntity() {
 
 		// we can't remove the body within a contact listener

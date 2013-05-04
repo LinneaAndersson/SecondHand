@@ -66,7 +66,7 @@ public class Physics implements IPhysics {
 		body.setUserData(entity);
 
 		physicsWorld.registerPhysicsConnector(new CustomPhysicsConnector(entity
-				.getShape(), entity.isCircle(), entity.getBody(), true,
+				.getShape(), entity.isCircle(),body, true,
 				entity.getRotation()));
 	}
 

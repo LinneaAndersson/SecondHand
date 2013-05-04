@@ -10,8 +10,8 @@ import com.badlogic.gdx.math.Vector2;
 import com.secondhand.debug.MyDebug;
 import com.secondhand.model.Entity;
 import com.secondhand.model.GameWorld;
+import com.secondhand.model.IPhysics;
 import com.secondhand.model.Player;
-import com.secondhand.physics.Physics;
 import com.secondhand.view.entity.FadingNotifierText;
 import com.secondhand.view.entity.ScoreLivesText;
 import com.secondhand.view.opengl.StarsBackground;
@@ -27,9 +27,9 @@ public class GamePlayScene extends GameScene {
 
 	private Vector2 cachedCameraCenter;
 	
-	private Physics physics;
+	private IPhysics physics;
 	
-	public void setPhysics(final Physics physics) {
+	public void setPhysics(final IPhysics physics) {
 		this.physics = physics;
 	}
 

@@ -76,8 +76,7 @@ public class GamePlayScene extends GameScene {
 		attachChild(player.getShape());
 		engine.getCamera().setChaseEntity(player.getShape());
 
-		// setup the physicsworld the
-		MyDebug.d("in setUpView is it null=" + gameWorld.getPhysics());
+		// TODO: should be done in controller. 
 		gameWorld.getPhysics().registerUpdateHandler(this);
 
 		// setup the HUD
@@ -91,9 +90,6 @@ public class GamePlayScene extends GameScene {
 	public void loadScene() {
 		super.loadScene();
 	
-		// get rid the entities from the previous game.
-		// this.detachChildren();
-
 		MyDebug.i("creating game world");
 		
 		this.gameWorld = new GameWorld(new Physics());

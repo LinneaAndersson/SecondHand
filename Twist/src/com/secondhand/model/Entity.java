@@ -13,9 +13,6 @@ public abstract class Entity {
 	protected final IPhysics physics;
 	protected final GameWorld level;
 
-	protected enum Type {
-		CIRCLE, RECTANGLE, POLYGON;
-	}
 	
 	public Entity(final Shape shape, final boolean isEdible,
 			final GameWorld level) {

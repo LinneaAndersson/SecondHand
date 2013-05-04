@@ -76,13 +76,21 @@ public class Physics implements IPhysics {
 	// be done in model. Entity instead of body and then somehow get body?
 	// All entities that need this function are enemies and player.
 	@Override
-	public void applyImpulse(final Body body, final float posX, final float posY) {
-
+	public void applyImpulse(final Body body, final float posX, final float posY, final float maxSpeed) {
+		
 		final Vector2 position = new Vector2(posX
 				/ PhysicsConstants.PIXEL_TO_METER_RATIO_DEFAULT, posY
 				/ PhysicsConstants.PIXEL_TO_METER_RATIO_DEFAULT);
 		final Vector2 force = new Vector2(body.getWorldCenter().x - posX,
 				body.getWorldCenter().y - posY);
+		
+		final Vector2 velocity = new Vector2(body
+				.getLinearVelocity());
+		
+		if (velocity.add(force).len() > maxSpeed){
+			// Check if new velocity doesn't exceed maxSpeed!
+			return;
+		}
 
 		body.applyLinearImpulse(force, position);
 

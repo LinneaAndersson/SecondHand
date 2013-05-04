@@ -4,7 +4,6 @@ import org.anddev.andengine.entity.shape.IShape;
 import org.anddev.andengine.entity.shape.Shape;
 
 import com.badlogic.gdx.physics.box2d.Body;
-import com.secondhand.debug.MyDebug;
 
 public abstract class Entity {
 

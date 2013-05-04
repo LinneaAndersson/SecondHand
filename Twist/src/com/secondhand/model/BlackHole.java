@@ -3,7 +3,6 @@ package com.secondhand.model;
 
 import org.anddev.andengine.extension.physics.box2d.util.constants.PhysicsConstants;
 
-import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.CircleShape;
 import com.secondhand.model.powerup.PowerUp;
 import com.secondhand.view.opengl.Circle;
@@ -77,16 +76,8 @@ public abstract class BlackHole extends CircleEntity {
 	}
 	
 	// moves in the specified direction. If max speed is reached, then no movement is performed.
-	public void move(final Vector2 direction) {
-		final Vector2 testVector = new Vector2(this.getBody()
-				.getLinearVelocity());
-		if (testVector.add(direction).len() > this.getMaxSpeed()){
-			// Check if new velocity doesn't exceed maxSpeed!
-			return;
-		}
-
-		this.getBody().applyLinearImpulse(direction,
-				this.getBody().getWorldCenter());	
+	public void move(final float posX, final float posY) {
+		physics.applyImpulse(getBody(), posX, posY, maxSpeed);
 	}
 
 	protected abstract void handlePowerUp(final PowerUp powerUp);

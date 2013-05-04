@@ -25,7 +25,7 @@ public interface IPhysics {
 	void setConnector(IShape shape);
 	
 	// apply linear impulse on the body
-	void applyImpulse(final Body body, final float posX, final float posY);
+	void applyImpulse(final Body body, final float posX, final float posY, final float maxSpeed);
 
 	// checks if enemy has staight line to the entity
 	boolean isStraightLine(final Entity entity, final Enemy enemy);

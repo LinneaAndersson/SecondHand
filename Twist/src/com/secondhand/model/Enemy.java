@@ -12,14 +12,13 @@ public class Enemy extends BlackHole {
 	private static final float MAX_SIZE = 40;
 	private static final float MIN_SIZE = 20;
 
-
-	private float huntingArea;	
+	private float huntingArea;
 
 	public Enemy(final float[] vector, final float radius, final GameWorld level) {
 		super(vector, radius, level, enemyMaxSpeed);
 		huntingArea = getHuntingArea();
 		MyDebug.d("is it null in Enemy" + level.getPhysics());
-		
+
 		// makes the enemy move much smother
 		getBody().setLinearDamping(1.2f);
 
@@ -28,17 +27,17 @@ public class Enemy extends BlackHole {
 	public float getHuntingArea() {
 		return getRadius() * getRadius() * (float) Math.PI * 40;
 	}
-	
-	public static float getMaxSize(){
+
+	public static float getMaxSize() {
 		return MAX_SIZE;
 	}
-	
-	public static float getMinSize(){
+
+	public static float getMinSize() {
 		return MIN_SIZE;
 	}
-	
-	public void setMaxSpeed(float maxSpeed){
-		enemyMaxSpeed=maxSpeed;
+
+	public void setMaxSpeed(float maxSpeed) {
+		enemyMaxSpeed = maxSpeed;
 	}
 
 	// player has highest chase-priority
@@ -91,16 +90,14 @@ public class Enemy extends BlackHole {
 		// TODO change the null-check to something nicer
 		if (entity != null) {
 
-			if (physics.isStraightLine(entity,this)) {
+			if (physics.isStraightLine(entity, this)) {
 				// MyDebug.d("Enemy: applyMovement towards " +
 				// entity.getClass());
 				// closeToDanger();
-				applyMovement(new Vector2(
-						(entity.getCenterX() - this.getCenterX()),
-						entity.getCenterY() - this.getCenterY()));
+				move(entity.getCenterX(), entity.getCenterY());
 
 			} else {
-				stopMovement();
+				// stopMovement();
 
 			}
 			if (huntingArea != getHuntingArea()) {
@@ -125,17 +122,8 @@ public class Enemy extends BlackHole {
 
 	public void retreat(final Entity danger) {
 		MyDebug.d("Enemy: Retreat");
-		applyMovement(new Vector2((this.getCenterX() - danger.getCenterX()),
-				(this.getCenterY() - danger.getCenterY())));
+		
 
-	}
-
-	private void applyMovement(Vector2 movementVector) { // NOPMD
-		// the vector from enemy to the player
-
-		movementVector = movementVector.mul(0.001f);
-
-		this.move(movementVector);
 	}
 
 	protected void handlePowerUp(final PowerUp powerUp) {

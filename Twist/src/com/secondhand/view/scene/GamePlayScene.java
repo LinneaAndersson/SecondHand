@@ -97,10 +97,8 @@ public class GamePlayScene extends GameScene {
 	
 		MyDebug.i("creating game world");
 		
-		// TODO: should be created and registered in controller instead.
 		this.gameWorld = new GameWorld(physics);
-		
-
+	
 		// we'll need to be able to restore the camera when returning to the
 		// menu.
 		cachedCameraCenter = new Vector2(smoothCamera.getCenterX(),

@@ -1,6 +1,3 @@
-
-
-
 # Package Files #
 *.class
 *.ear
@@ -8,6 +5,7 @@
 *.war
 /TODO
 /rad
+/tood
 TwirlTestTest/bin
 Twist/bin
 Twist/gen

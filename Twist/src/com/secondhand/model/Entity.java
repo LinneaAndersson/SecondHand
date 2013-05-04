@@ -18,7 +18,8 @@ public abstract class Entity {
 		CIRCLE, RECTANGLE, POLYGON;
 	}
 	
-	public Entity(final Shape shape, final boolean isEdible, final GameWorld level){
+	public Entity(final Shape shape, final boolean isEdible,
+			final GameWorld level) {
 		this.shape = shape;
 		this.isEdible = isEdible;
 		this.physics = level.getPhysics();
@@ -28,18 +29,14 @@ public abstract class Entity {
 
 	protected final void registerBody(final Body body) {
 
-		boolean updateRotation = true;
-		if(this instanceof Player) {
-			updateRotation = false;
-		}
-
-		physics.registerBody(this,body,updateRotation);
+		physics.registerBody(this, body);
 
 	}
-	
-	public void setBody(Body body){
+
+	public void setBody(Body body) {
 		this.body = body;
 		registerBody(body); 
+		registerBody(body);
 	}
 
 	public float getX() {
@@ -78,11 +75,11 @@ public abstract class Entity {
 		return getY();
 	}
 
-	// how much every unit(pixel) of radius is worth in points. 
+	// how much every unit(pixel) of radius is worth in points.
 	public abstract float getScoreWorth();
 
 	public int getScoreValue() {
-		return (int)(this.getRadius() * this.getScoreWorth());
+		return (int) (this.getRadius() * this.getScoreWorth());
 	}
 
 	// remove this entity from andengine rendering and the physics world.
@@ -94,8 +91,8 @@ public abstract class Entity {
 
 	}
 
+	// detaching should be done by view or physics
 	public void destroyEntity() {
-
 
 		// we can't remove the body within a contact listener
 		scheduleBodyForDeletion();
@@ -106,7 +103,7 @@ public abstract class Entity {
 	}
 
 	private boolean bodyScheduledForDeletion;
-	
+
 	private boolean isBodyScheduledForDeletion() {
 		return this.bodyScheduledForDeletion;
 	}
@@ -128,5 +125,8 @@ public abstract class Entity {
 	protected void wasEaten() {
 		removeEntity();
 	}
-}
 
+	public boolean getRotation() {
+		return this instanceof Player ? false : true;
+	}
+}

@@ -5,7 +5,7 @@ import org.anddev.andengine.entity.Entity;
 import com.secondhand.debug.MyDebug;
 import com.secondhand.model.resource.HighScoreList;
 import com.secondhand.model.resource.LocalizationStrings;
-import com.secondhand.physics.Physics;
+import com.secondhand.view.physics.Physics;
 import com.secondhand.view.resource.Sounds;
 import com.secondhand.view.resource.TextureRegions;
 import com.secondhand.view.scene.AllScenes;

@@ -11,7 +11,7 @@ import com.secondhand.model.GameWorld;
 import com.secondhand.model.Player;
 import com.secondhand.model.powerup.PowerUp;
 
-public class PowerUpView implements IEntityView, PropertyChangeListener {
+public class PowerUpView implements IEntityView {
 
 	private final Engine engine;
 	private final GameWorld gameWorld;
@@ -20,8 +20,7 @@ public class PowerUpView implements IEntityView, PropertyChangeListener {
 		this.engine = engine;
 		this.gameWorld = gameWorld;
 		
-		//  you probably don't want to add the player again(was alreay done in PlayerView)
-		//gameWorld.getPlayer().addListener(this);
+		gameWorld.getPlayer().addListener(this);
 	}
 	
 	public TimerHandler createTimer(final Player player, final PowerUp powerUp) {

@@ -1,4 +1,4 @@
-package com.secondhand.physics;
+package com.secondhand.view.physics;
 
 import com.badlogic.gdx.physics.box2d.Contact;
 import com.badlogic.gdx.physics.box2d.ContactImpulse;

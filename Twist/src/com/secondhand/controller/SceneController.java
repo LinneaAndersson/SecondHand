@@ -6,7 +6,7 @@ import org.anddev.andengine.entity.scene.Scene;
 import android.content.Context;
 import android.view.KeyEvent;
 
-import com.secondhand.physics.Physics;
+import com.secondhand.view.physics.Physics;
 import com.secondhand.view.scene.AllScenes;
 
 /**

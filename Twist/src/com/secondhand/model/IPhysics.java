@@ -16,7 +16,7 @@ public interface IPhysics {
 	void removeWorldBounds();
 	
 	//Add your body to the physicWorld
-	void registerBody(final Entity entity, final Body body, final boolean rotatation);
+	void registerBody(final Entity entity, final Body body);
 
 	//delete your body from physicsWorld
 	void deleteBody(final boolean scheduledForDeletion);

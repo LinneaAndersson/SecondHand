@@ -1,4 +1,4 @@
-package com.secondhand.physics;
+package com.secondhand.view.physics;
 
 import org.anddev.andengine.entity.shape.IShape;
 import org.anddev.andengine.entity.shape.RectangularShape;

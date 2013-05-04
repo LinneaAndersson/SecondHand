@@ -52,6 +52,7 @@ public class Physics implements IPhysics {
 	// world bounds:
 	// we do not do this using registerEntity, because these bodies are
 	// static.
+	@Override
 	public void setWorldBounds(final int levelWidth, final int levelHeight) {
 		bounds.setWorldBounds(levelWidth, levelHeight);
 	}
@@ -96,6 +97,7 @@ public class Physics implements IPhysics {
 
 	}
 
+	@Override
 	public void deleteBody(final boolean scheduledBody) {
 		if (!scheduledBody) {
 			throw new IllegalStateException("Body not scheduled for deletion!");
@@ -121,6 +123,10 @@ public class Physics implements IPhysics {
 		collisionResolver.checkCollision(contact.getFixtureA().getBody()
 				.getUserData(), contact.getFixtureB().getBody().getUserData());
 	}
+	
+	//TODO Enemy needs getCenterX,Y but when shapes is
+	// moved from Entity some method here(probably) is needed to return center pos.
+	//getCenterX,Y(Entity) or something.
 
 	@Override
 	public boolean isStraightLine(final Entity entity, final Enemy enemy) {

@@ -6,6 +6,7 @@ import org.anddev.andengine.entity.scene.Scene;
 import android.content.Context;
 import android.view.KeyEvent;
 
+import com.secondhand.physics.Physics;
 import com.secondhand.view.scene.AllScenes;
 
 /**
@@ -37,6 +38,7 @@ class SceneController {
 	
 	
 	public void switchScene(final AllScenes scene) {
+		
 		
 		this.sceneManager.switchScene(scene);
 

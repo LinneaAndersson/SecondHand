@@ -5,6 +5,7 @@ import org.anddev.andengine.entity.Entity;
 import com.secondhand.debug.MyDebug;
 import com.secondhand.model.resource.HighScoreList;
 import com.secondhand.model.resource.LocalizationStrings;
+import com.secondhand.physics.Physics;
 import com.secondhand.view.resource.Sounds;
 import com.secondhand.view.resource.TextureRegions;
 import com.secondhand.view.scene.AllScenes;
@@ -61,6 +62,11 @@ class LoadingSceneController extends Entity {
 				TextureRegions.getInstance().load();
 				Sounds.getInstance().load();
 			} else if(nextScene == AllScenes.GAME_PLAY_SCENE) {
+				
+			
+				// find some better place to register this.
+				sceneController.getSceneManager().getGamePlayScene().setPhysics(new Physics());
+				
 				// preoload gameplay scene. 
 				sceneController.getSceneManager().getScene(AllScenes.GAME_PLAY_SCENE).loadScene();
 				MyDebug.d("now we should be preloading the level scene");

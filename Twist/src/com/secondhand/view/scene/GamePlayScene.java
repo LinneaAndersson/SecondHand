@@ -26,6 +26,12 @@ public class GamePlayScene extends GameScene {
 	private GameWorld gameWorld;
 
 	private Vector2 cachedCameraCenter;
+	
+	private Physics physics;
+	
+	public void setPhysics(final Physics physics) {
+		this.physics = physics;
+	}
 
 	public GamePlayScene(final Engine engine, final Context context) {
 		super(engine, context);
@@ -93,7 +99,7 @@ public class GamePlayScene extends GameScene {
 		MyDebug.i("creating game world");
 		
 		// TODO: should be created and registered in controller instead.
-		this.gameWorld = new GameWorld(new Physics());
+		this.gameWorld = new GameWorld(physics);
 		
 
 		// we'll need to be able to restore the camera when returning to the

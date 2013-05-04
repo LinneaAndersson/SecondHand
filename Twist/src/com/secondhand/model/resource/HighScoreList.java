@@ -13,6 +13,8 @@ import android.content.Context;
 
 import com.secondhand.debug.MyDebug;
 
+// this class actually uses the android OS to do
+// the high score file loading, so does it really belong in the model?
 public final class HighScoreList {
 
 	private static HighScoreList instance;

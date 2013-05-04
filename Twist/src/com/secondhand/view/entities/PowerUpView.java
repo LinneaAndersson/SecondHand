@@ -46,7 +46,7 @@ public class PowerUpView implements IEntityView, PropertyChangeListener {
 			final Player player = gameWorld.getPlayer();
 			final PowerUp powerUp = ((PowerUp) event.getNewValue());
 			engine.registerUpdateHandler(createTimer(player, powerUp));
-/*
+/*	
 			if (!powerUp.hasAnother(player)) {
 				// TODO: Attach the powerups texture to player (ex: shield makes the player glow)
 			}*/

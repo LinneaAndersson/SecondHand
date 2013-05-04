@@ -22,7 +22,7 @@ public final class LocalizationStrings {
 	}
 
 	
-
+	
 	public void initialize(final Context context) {
 		this.context = context;
 	}

@@ -18,6 +18,7 @@ import com.secondhand.model.CollisionResolver;
 import com.secondhand.model.Enemy;
 import com.secondhand.model.Entity;
 import com.secondhand.model.GameWorld;
+import com.secondhand.model.IPhysics;
 import com.secondhand.model.Obstacle;
 import com.secondhand.model.Planet;
 import com.secondhand.model.RectangleEntity;

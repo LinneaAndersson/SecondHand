@@ -1,12 +1,9 @@
-package com.secondhand.physics;
+package com.secondhand.model;
 
 import org.anddev.andengine.entity.shape.IShape;
 
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.Contact;
-import com.secondhand.model.Enemy;
-import com.secondhand.model.Entity;
-import com.secondhand.model.GameWorld;
 import com.secondhand.view.scene.GamePlayScene;
 
 

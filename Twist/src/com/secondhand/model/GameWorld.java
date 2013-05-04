@@ -4,7 +4,6 @@ import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 
 import com.badlogic.gdx.math.Vector2;
-import com.secondhand.physics.IPhysics;
 
 // This class was formerly known as level. 
 public class GameWorld {

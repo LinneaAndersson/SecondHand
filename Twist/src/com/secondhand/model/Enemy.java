@@ -5,7 +5,6 @@ import java.util.List;
 import com.badlogic.gdx.math.Vector2;
 import com.secondhand.debug.MyDebug;
 import com.secondhand.model.powerup.PowerUp;
-import com.secondhand.physics.IPhysics;
 
 public class Enemy extends BlackHole {
 

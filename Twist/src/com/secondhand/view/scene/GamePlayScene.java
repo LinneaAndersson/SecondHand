@@ -82,7 +82,6 @@ public class GamePlayScene extends GameScene {
 		attachChild(player.getShape());
 		engine.getCamera().setChaseEntity(player.getShape());
 
-		// TODO: should be done in controller. 
 		gameWorld.getPhysics().registerUpdateHandler(this);
 
 		// setup the HUD

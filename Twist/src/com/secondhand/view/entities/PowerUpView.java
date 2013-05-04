@@ -20,8 +20,7 @@ public class PowerUpView implements IEntityView {
 		this.engine = engine;
 		this.gameWorld = gameWorld;
 		
-		//  you probably don't want to add the player again(was alreay done in PlayerView)
-		//gameWorld.getPlayer().addListener(this);
+		gameWorld.getPlayer().addListener(this);
 	}
 	
 	public TimerHandler createTimer(final Player player, final PowerUp powerUp) {

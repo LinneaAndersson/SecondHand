@@ -13,29 +13,16 @@ public class Enemy extends BlackHole {
 	private static final float MIN_SIZE = 20;
 
 
-	//private EnemyUtil util;
-	// because someone changed getArea to getRadius I
-	// had to do this.
-	private float huntingArea;
-	private IPhysics physics;
-	
+	private float huntingArea;	
 
 	public Enemy(final float[] vector, final float radius, final GameWorld level) {
 		super(vector, radius, level, enemyMaxSpeed);
 		huntingArea = getHuntingArea();
 		MyDebug.d("is it null in Enemy" + level.getPhysics());
-		physics=level.getPhysics();
-		//util = new EnemyUtil(this, level.getPhysicsWorld());
 		
-
 		// makes the enemy move much smother
 		getBody().setLinearDamping(1.2f);
 
-		/*
-		 * FixtureDef f = new FixtureDef(); f.isSensor = true; Shape s = new
-		 * CircleShape(); s.setRadius((getRadius()+5)/32);
-		 * this.getBody().createFixture(f);
-		 */
 	}
 
 	public float getHuntingArea() {

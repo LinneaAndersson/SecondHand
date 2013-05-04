@@ -16,7 +16,7 @@ public abstract class BlackHole extends CircleEntity {
 	private float maxSpeed;
 	
 	private boolean canEatInedibles;
-	
+		
 	//I put this in BlackHole, so enemy black holes will also have scores
 	// but placing it here made coding the eating logic much more convenient.
 	// but we can simply ignore the score for enemy black holes.

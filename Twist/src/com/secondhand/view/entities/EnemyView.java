@@ -5,7 +5,7 @@ import java.beans.PropertyChangeEvent;
 import com.secondhand.model.Enemy;
 import com.secondhand.model.Entity;
 
-public class EnemyView extends EntityView{
+public class EnemyView extends BlackHoleView {
 
 	public EnemyView(Enemy enemy) {
 		super(enemy);

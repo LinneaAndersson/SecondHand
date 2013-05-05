@@ -17,7 +17,7 @@ import com.secondhand.view.loader.TextureRegionLoader;
 import com.secondhand.view.resource.Sounds;
 
 // what? the controller should be handling the PropertyChangeListener, not the view!
-public class PlayerView extends EntityView {
+public class PlayerView extends BlackHoleView {
 
 	private Engine engine;
 	private GameWorld gameWorld;

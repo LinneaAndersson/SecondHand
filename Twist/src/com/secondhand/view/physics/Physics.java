@@ -48,6 +48,10 @@ public class Physics implements IPhysics {
 
 	}
 
+	public PhysicsWorld getPhysicsWorld() {
+		return this.physicsWorld;
+	}
+	
 	// put some invisible, static rectangles that keep the player within the
 	// world bounds:
 	// we do not do this using registerEntity, because these bodies are
@@ -170,10 +174,6 @@ public class Physics implements IPhysics {
 		return body;
 	}
 
-	@Override
-	public void registerUpdateHandler(final GamePlayScene gamePlayScene) {
-		gamePlayScene.registerUpdateHandler(physicsWorld);
-	}
 
 	@Override
 	public void setGameWorld(final GameWorld gameWorld) {

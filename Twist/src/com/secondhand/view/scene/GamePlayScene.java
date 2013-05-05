@@ -13,15 +13,13 @@ import android.content.Context;
 
 import com.badlogic.gdx.math.Vector2;
 import com.secondhand.debug.MyDebug;
-import com.secondhand.model.Entity;
-import com.secondhand.model.GameWorld;
-import com.secondhand.model.IPhysics;
 import com.secondhand.model.*;
 import com.secondhand.view.entities.BlackHoleView;
 import com.secondhand.view.entities.IEntityView;
 import com.secondhand.view.entity.FadingNotifierText;
 import com.secondhand.view.entity.ScoreLivesText;
 import com.secondhand.view.opengl.StarsBackground;
+import com.secondhand.view.physics.Physics;
 import com.secondhand.view.resource.Sounds;
 
 public class GamePlayScene extends GameScene{
@@ -36,9 +34,9 @@ public class GamePlayScene extends GameScene{
 
 	private Vector2 cachedCameraCenter;
 	
-	private IPhysics physics;
+	private Physics physics;
 	
-	public void setPhysics(final IPhysics physics) {
+	public void setPhysics(final Physics physics) {
 		this.physics = physics;
 	}
 
@@ -102,7 +100,7 @@ public class GamePlayScene extends GameScene{
 		attachChild(player.getShape());
 		engine.getCamera().setChaseEntity(player.getShape());
 
-		gameWorld.getPhysics().registerUpdateHandler(this);
+		registerUpdateHandler(this.physics.getPhysicsWorld());
 
 		// setup the HUD
 		hud = new HUD();

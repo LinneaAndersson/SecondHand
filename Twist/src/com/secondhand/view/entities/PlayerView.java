@@ -1,7 +1,6 @@
 package com.secondhand.view.entities;
 
 import java.beans.PropertyChangeEvent;
-import java.beans.PropertyChangeListener;
 
 import org.anddev.andengine.engine.Engine;
 import org.anddev.andengine.engine.handler.timer.ITimerCallback;
@@ -23,7 +22,7 @@ public class PlayerView extends EntityView {
 	private Engine engine;
 	private GameWorld gameWorld;
 	
-	public PlayerView(Player player){
+	public PlayerView(final Player player){
 		super(player);
 	}
 

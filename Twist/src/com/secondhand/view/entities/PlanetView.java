@@ -2,10 +2,19 @@ package com.secondhand.view.entities;
 
 import java.beans.PropertyChangeEvent;
 
+import com.secondhand.model.Entity;
+
 public class PlanetView implements IEntityView {
 
 	@Override
-	public void propertyChange(PropertyChangeEvent arg0) {
+	public void updateView(String name) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void propertyChange(PropertyChangeEvent event) {
+		// TODO Auto-generated method stub
 		
 	}
 

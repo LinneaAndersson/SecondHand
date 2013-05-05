@@ -23,16 +23,9 @@ public abstract class Entity {
 		bodyScheduledForDeletion = false;
 	}
 
-	protected final void registerBody(final Body body) {
-
-		physics.registerBody(this, body);
-
-	}
-
 	public void setBody(Body body) {
 		this.body = body;
-		registerBody(body); 
-		registerBody(body);
+		//registerBody(body); 
 	}
 
 	public float getX() {
@@ -55,6 +48,10 @@ public abstract class Entity {
 
 	public boolean isEdible() {
 		return this.isEdible;
+	}
+	
+	public IPhysics getPhysics(){
+		return this.physics;
 	}
 
 	public void setIsEdible(final boolean isEdible) {

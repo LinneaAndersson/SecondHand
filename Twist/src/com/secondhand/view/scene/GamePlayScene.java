@@ -1,6 +1,11 @@
 package com.secondhand.view.scene;
 
 
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
+import java.util.ArrayList;
+import java.util.List;
+
 import org.anddev.andengine.engine.Engine;
 import org.anddev.andengine.engine.camera.hud.HUD;
 
@@ -11,17 +16,21 @@ import com.secondhand.debug.MyDebug;
 import com.secondhand.model.Entity;
 import com.secondhand.model.GameWorld;
 import com.secondhand.model.IPhysics;
-import com.secondhand.model.Player;
+import com.secondhand.model.*;
+import com.secondhand.view.entities.BlackHoleView;
+import com.secondhand.view.entities.IEntityView;
 import com.secondhand.view.entity.FadingNotifierText;
 import com.secondhand.view.entity.ScoreLivesText;
 import com.secondhand.view.opengl.StarsBackground;
 import com.secondhand.view.resource.Sounds;
 
-public class GamePlayScene extends GameScene {
+public class GamePlayScene extends GameScene{
 
 	private HUD hud;
 
 	private ScoreLivesText scoreLivesText;
+	
+	private List<IEntityView> entityViewList;
 
 	private GameWorld gameWorld;
 
@@ -42,9 +51,13 @@ public class GamePlayScene extends GameScene {
 	}
 
 	public void registerNewLevel() {
+		
+		entityViewList = new ArrayList();
+		
 
 		final float width = gameWorld.getLevelWidth();
 		final float height = gameWorld.getLevelHeight();
+		new BlackHoleView(gameWorld.getPlayer());
 
 		// TODO: get this background to work.
 		/*
@@ -63,8 +76,15 @@ public class GamePlayScene extends GameScene {
 		this.smoothCamera.setBounds(0, width, 0, height);
 
 		for (final Entity entity : gameWorld.getEntityManager().getEntityList()) {
-			if (!entity.getShape().hasParent())
+			if (!entity.getShape().hasParent()){
+				
+				if(entity instanceof BlackHole){
+				entityViewList.add(new BlackHoleView((BlackHole) entity));
+				MyDebug.d("new BlackHOleView created!");
+				}
+				
 				attachChild(entity.getShape());
+			}
 		}
 	}
 
@@ -188,7 +208,6 @@ public class GamePlayScene extends GameScene {
 	public void onPlayerWallCollision() {
 		Sounds.getInstance().obstacleCollisionSound.play();	
 	}
-	
 	
 	
 }

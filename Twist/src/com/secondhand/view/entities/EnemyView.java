@@ -2,10 +2,19 @@ package com.secondhand.view.entities;
 
 import java.beans.PropertyChangeEvent;
 
+import com.secondhand.model.Entity;
+
 public class EnemyView implements IEntityView{
 
-	
 	@Override
-	public void propertyChange(final PropertyChangeEvent event) {	}
+	public void updateView(String name) {
+		// TODO Auto-generated method stub
+		
+	}
 
+	@Override
+	public void propertyChange(PropertyChangeEvent event) {
+		// TODO Auto-generated method stub
+		
+	}
 }

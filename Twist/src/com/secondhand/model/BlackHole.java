@@ -1,6 +1,9 @@
 	
 package com.secondhand.model;
 
+import java.beans.PropertyChangeListener;
+import java.beans.PropertyChangeSupport;
+
 import org.anddev.andengine.extension.physics.box2d.util.constants.PhysicsConstants;
 
 import com.badlogic.gdx.physics.box2d.CircleShape;
@@ -9,12 +12,15 @@ import com.secondhand.view.opengl.Circle;
 
 public abstract class BlackHole extends CircleEntity {
 
+	private PropertyChangeSupport pcs = new PropertyChangeSupport(this);
 	// only a 1/5 of the masses of the eaten bodies is used in the growth
 	private static final float GROWTH_FACTOR = 0.2f;
 	
 	private float maxSpeed;
 	
 	private boolean canEatInedibles;
+	
+	private float[] position;
 		
 	//I put this in BlackHole, so enemy black holes will also have scores
 	// but placing it here made coding the eating logic much more convenient.
@@ -26,6 +32,7 @@ public abstract class BlackHole extends CircleEntity {
 			final float maxSpeed, final int startingScore) {
 		// TODO load texture instead of creating Circle
 		super(new Circle(position[0], position[1], radius), true, level);
+		this.position = position;
 		this.maxSpeed = maxSpeed;
 		this.score = startingScore;
 		this.canEatInedibles = false;
@@ -35,6 +42,14 @@ public abstract class BlackHole extends CircleEntity {
 			final GameWorld level,
 			final float maxSpeed) {
 		this(position, radius, level, maxSpeed, 0);
+	}
+	
+	public float getPosX(){
+		return position[0];
+	}
+
+	public float getPosY(){
+	return position[1];
 	}
 	
 	public boolean canEatInedibles() {
@@ -62,6 +77,7 @@ public abstract class BlackHole extends CircleEntity {
 	}
 
 	private void increaseSize(final float increase) {
+		pcs.firePropertyChange("radius", getRadius(), getRadius() + increase);
 		setRadius(getRadius() + increase);
 	}
 
@@ -96,7 +112,7 @@ public abstract class BlackHole extends CircleEntity {
 		
 		if(!this.canEat(entity)) {
 			entityWasTooBigToEat(entity);
-			return;	
+	 		return;	
 		}
 			
 		this.increaseScore(entity.getScoreValue());
@@ -146,4 +162,8 @@ public abstract class BlackHole extends CircleEntity {
 	public float getScoreWorth() {
 		return 3;
 	}	
+	
+	public void addPropertyChangeListener(PropertyChangeListener listener){
+		pcs.addPropertyChangeListener(listener);
+	}
 }

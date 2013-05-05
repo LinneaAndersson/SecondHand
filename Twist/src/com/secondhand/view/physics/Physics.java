@@ -62,7 +62,7 @@ public class Physics implements IPhysics {
 		bounds.removeBounds();
 	}
 
-	@Override
+	//@Override
 	public void registerBody(final Entity entity, final Body body) {
 		body.setUserData(entity);
 

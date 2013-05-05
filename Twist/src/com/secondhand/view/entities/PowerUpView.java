@@ -7,11 +7,12 @@ import org.anddev.andengine.engine.Engine;
 import org.anddev.andengine.engine.handler.timer.ITimerCallback;
 import org.anddev.andengine.engine.handler.timer.TimerHandler;
 
+import com.secondhand.model.Entity;
 import com.secondhand.model.GameWorld;
 import com.secondhand.model.Player;
 import com.secondhand.model.powerup.PowerUp;
 
-public class PowerUpView implements IEntityView {
+public class PowerUpView implements PropertyChangeListener {
 
 	private final Engine engine;
 	private final GameWorld gameWorld;

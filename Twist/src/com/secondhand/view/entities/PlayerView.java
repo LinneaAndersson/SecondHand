@@ -1,7 +1,6 @@
 package com.secondhand.view.entities;
 
 import java.beans.PropertyChangeEvent;
-import java.beans.PropertyChangeListener;
 
 import org.anddev.andengine.engine.Engine;
 import org.anddev.andengine.engine.handler.timer.ITimerCallback;
@@ -23,7 +22,7 @@ public class PlayerView extends BlackHoleView {
 	private Engine engine;
 	private GameWorld gameWorld;
 	
-	public PlayerView(Player player){
+	public PlayerView(final Player player){
 		super(player);
 	}
 /*
@@ -75,12 +74,16 @@ public class PlayerView extends BlackHoleView {
 	public void propertyChange(final PropertyChangeEvent event) {
 		final String propertyName = event.getPropertyName();
 		
-		
-		
-		/*if (propertyName.equals(Player.POWER_UP_SOUND)) {
+
+		if (propertyName.equals(Player.POWER_UP_SOUND)) {
 			Sounds.getInstance().powerUpSound.play();
-		}*/
-		
+		} else if (propertyName.equals(Player.GROW_SOUND)) {
+			Sounds.getInstance().growSound.play();
+		} else if (propertyName.equals(Player.BIGGER_ENTITY_COLLISION_SOUND)) {
+			Sounds.getInstance().obstacleCollisionSound.play();
+		}  else if (propertyName.equals(Player.PLAYER_KILLED_SOUND)) {
+			Sounds.getInstance().playerKilledSound.play();
+		}
 	}
 
 }

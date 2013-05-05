@@ -110,12 +110,6 @@ final class GamePlaySceneController extends Entity  implements PropertyChangeLis
 			this.gamePlayScene.newLevelStarted();
 		} else if (eventName.equals("PlayerWallCollision")) {
 			this.gamePlayScene.onPlayerWallCollision();
-		} else if (eventName.equals("PlayerBiggerEntityCollision")) {
-			this.gamePlayScene.onPlayerBiggerEntityCollision();
-		} else if (eventName.equals("PlayerGrow")) {
-			this.gamePlayScene.onPlayerGrow();
-		} else if (eventName.equals("PlayerKilled")) {
-			this.gamePlayScene.onPlayerKilled();
 		}
 	}
 

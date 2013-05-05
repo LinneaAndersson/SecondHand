@@ -18,7 +18,7 @@ import com.secondhand.view.loader.TextureRegionLoader;
 import com.secondhand.view.resource.Sounds;
 
 // what? the controller should be handling the PropertyChangeListener, not the view!
-public class PlayerView extends EntityView {
+public class PlayerView extends BlackHoleView {
 
 	private Engine engine;
 	private GameWorld gameWorld;
@@ -26,7 +26,7 @@ public class PlayerView extends EntityView {
 	public PlayerView(Player player){
 		super(player);
 	}
-
+/*
 	public PlayerView(final Engine engine, final GameWorld gameWorld) {
 		//TODO: remove this later.
 		super(gameWorld.getPlayer());
@@ -69,14 +69,18 @@ public class PlayerView extends EntityView {
 											  object.getCenterY() - position.y); // Vector from object position to given position
 		surfacePosition.mul(object.getRadius() / surfacePosition.len()); // Length of new vector increased/decreased to length of radius
 		return surfacePosition;
-	}
+	}*/
 
 	@Override
 	public void propertyChange(final PropertyChangeEvent event) {
 		final String propertyName = event.getPropertyName();
-		if (propertyName.equals(Player.POWER_UP_SOUND)) {
+		
+		
+		
+		/*if (propertyName.equals(Player.POWER_UP_SOUND)) {
 			Sounds.getInstance().powerUpSound.play();
-		}
+		}*/
+		
 	}
 
 }

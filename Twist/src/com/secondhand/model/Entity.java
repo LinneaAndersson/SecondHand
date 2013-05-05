@@ -11,7 +11,7 @@ import com.badlogic.gdx.physics.box2d.Body;
 public abstract class Entity {
 
 	private Body body;
-	private final IShape shape;
+	private IShape shape;
 	private boolean isEdible;
 	protected final IPhysics physics;
 
@@ -20,7 +20,7 @@ public abstract class Entity {
 
 	public Entity(final Shape shape, final boolean isEdible,
 			final GameWorld level) {
-		this.shape = shape;
+		//this.shape = shape;
 		this.isEdible = isEdible;
 		this.physics = level.getPhysics();
 		this.gameWorld = level;

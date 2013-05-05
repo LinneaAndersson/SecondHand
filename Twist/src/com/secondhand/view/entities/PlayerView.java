@@ -25,9 +25,14 @@ public class PlayerView extends BlackHoleView {
 	public PlayerView(final Player player){
 		super(player);
 	}
+	
+	
+	//This may be here later.
+	
+	
 /*
 	public PlayerView(final Engine engine, final GameWorld gameWorld) {
-		//TODO: remove this later.
+
 		super(gameWorld.getPlayer());
 		this.engine = engine;
 		this.gameWorld = gameWorld;
@@ -74,8 +79,9 @@ public class PlayerView extends BlackHoleView {
 	public void propertyChange(final PropertyChangeEvent event) {
 		final String propertyName = event.getPropertyName();
 		
-
-		if (propertyName.equals(Player.POWER_UP_SOUND)) {
+		if(propertyName.equalsIgnoreCase("Radius")){
+			changeSize();
+		}else if (propertyName.equals(Player.POWER_UP_SOUND)) {
 			Sounds.getInstance().powerUpSound.play();
 		} else if (propertyName.equals(Player.GROW_SOUND)) {
 			Sounds.getInstance().growSound.play();

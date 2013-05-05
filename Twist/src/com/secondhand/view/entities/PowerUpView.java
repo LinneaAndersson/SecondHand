@@ -24,8 +24,6 @@ public class PowerUpView extends EntityView{
 		super(new Planet(null, 0, gameWorld), new Circle(0,0,0));
 		this.engine = engine;
 		this.gameWorld = gameWorld;
-		
-		gameWorld.getPlayer().addListener(this);
 	}
 	
 	public TimerHandler createTimer(final Player player, final PowerUp powerUp) {

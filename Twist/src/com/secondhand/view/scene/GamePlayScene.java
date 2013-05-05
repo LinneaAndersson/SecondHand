@@ -215,5 +215,9 @@ public class GamePlayScene extends GameScene{
 		Sounds.getInstance().growSound.play();
 	}
 	
+	public void onPlayerKilled() {
+		Sounds.getInstance().playerKilledSound.play();
+	}
+	
 	
 }

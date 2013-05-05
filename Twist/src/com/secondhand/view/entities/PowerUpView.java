@@ -9,15 +9,18 @@ import org.anddev.andengine.engine.handler.timer.TimerHandler;
 
 import com.secondhand.model.Entity;
 import com.secondhand.model.GameWorld;
+import com.secondhand.model.Planet;
 import com.secondhand.model.Player;
 import com.secondhand.model.powerup.PowerUp;
 
-public class PowerUpView implements IEntityView{
+public class PowerUpView extends EntityView{
 
 	private final Engine engine;
 	private final GameWorld gameWorld;
 	
 	public PowerUpView(final Engine engine, final GameWorld gameWorld) {
+		//just for now. 
+		super(new Planet(null, 0, gameWorld));
 		this.engine = engine;
 		this.gameWorld = gameWorld;
 		

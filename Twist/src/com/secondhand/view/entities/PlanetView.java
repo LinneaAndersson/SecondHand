@@ -4,8 +4,13 @@ import java.beans.PropertyChangeEvent;
 
 import com.secondhand.model.Entity;
 
-public class PlanetView implements IEntityView {
+public class PlanetView extends EntityView {
 
+
+	public PlanetView(Entity entity) {
+		super(entity);
+		// TODO Auto-generated constructor stub
+	}
 
 	@Override
 	public void propertyChange(PropertyChangeEvent event) {

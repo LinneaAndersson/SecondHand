@@ -18,7 +18,7 @@ import com.secondhand.model.GameWorld;
 import com.secondhand.model.IPhysics;
 import com.secondhand.model.*;
 import com.secondhand.view.entities.BlackHoleView;
-import com.secondhand.view.entities.IEntityView;
+import com.secondhand.view.entities.EntityView;
 import com.secondhand.view.entity.FadingNotifierText;
 import com.secondhand.view.entity.ScoreLivesText;
 import com.secondhand.view.opengl.StarsBackground;
@@ -30,7 +30,7 @@ public class GamePlayScene extends GameScene{
 
 	private ScoreLivesText scoreLivesText;
 	
-	private List<IEntityView> entityViewList;
+	private List<EntityView> entityViewList;
 
 	private GameWorld gameWorld;
 

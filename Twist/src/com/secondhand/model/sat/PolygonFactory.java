@@ -5,7 +5,8 @@ import java.util.List;
 
 import org.anddev.andengine.util.MathUtils;
 
-import com.badlogic.gdx.math.Vector2;
+import com.secondhand.model.Vector2;
+
 
 public final class PolygonFactory {
 

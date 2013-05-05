@@ -3,7 +3,8 @@ package com.secondhand.model.sat;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.badlogic.gdx.math.Vector2;
+import com.secondhand.model.Vector2;
+
 
 // Uses the separating axis theorem to implement collision checking.
 // Credits: http://www.codezealot.org/archives/55

@@ -4,7 +4,6 @@ import java.util.List;
 
 import org.anddev.andengine.extension.physics.box2d.util.constants.PhysicsConstants;
 
-import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.secondhand.view.opengl.Polygon;
 
@@ -34,7 +33,7 @@ public abstract class PolygonEntity extends Entity {
 	}
 		
 	public Vector2 getCenterOfMass(){
-		final Vector2 v = this.getBody().getMassData().center;
+		final Vector2 v = new Vector2(this.getBody().getMassData().center.x, this.getBody().getMassData().center.x) ;
 		
 		return new Vector2(v.x * PhysicsConstants.PIXEL_TO_METER_RATIO_DEFAULT,
 				v.y * PhysicsConstants.PIXEL_TO_METER_RATIO_DEFAULT);

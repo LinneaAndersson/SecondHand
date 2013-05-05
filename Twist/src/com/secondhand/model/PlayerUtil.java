@@ -6,7 +6,6 @@ import java.util.ArrayList;
 
 import org.anddev.andengine.extension.physics.box2d.util.constants.PhysicsConstants;
 
-import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.CircleShape;
 import com.secondhand.model.powerup.PowerUp;
 
@@ -96,7 +95,8 @@ public class PlayerUtil {
 
 		force.mul(3);
 
-		player.getBody().applyLinearImpulse(force, forcePosition);
+		player.getBody().applyLinearImpulse(new com.badlogic.gdx.math.Vector2(force.x, force.y), 
+				new com.badlogic.gdx.math.Vector2(forcePosition.x, forcePosition.y));
 
 	}
 

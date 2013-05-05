@@ -3,7 +3,6 @@ package com.secondhand.model;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 
-import com.badlogic.gdx.math.Vector2;
 
 public class GameWorld {
 

@@ -5,7 +5,6 @@ import java.util.List;
 
 import org.anddev.andengine.extension.physics.box2d.util.constants.PhysicsConstants;
 
-import com.badlogic.gdx.math.Vector2;
 import com.secondhand.model.powerup.PowerUp;
 import com.secondhand.view.resource.Sounds;
 

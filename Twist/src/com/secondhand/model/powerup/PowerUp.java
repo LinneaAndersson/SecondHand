@@ -4,10 +4,10 @@ import org.anddev.andengine.entity.primitive.BaseRectangle;
 import org.anddev.andengine.entity.primitive.Rectangle;
 import org.anddev.andengine.entity.sprite.Sprite;
 
-import com.badlogic.gdx.math.Vector2;
 import com.secondhand.model.GameWorld;
 import com.secondhand.model.Player;
 import com.secondhand.model.RectangleEntity;
+import com.secondhand.model.Vector2;
 import com.secondhand.model.resource.PowerUpType;
 import com.secondhand.view.resource.TextureRegions;
 

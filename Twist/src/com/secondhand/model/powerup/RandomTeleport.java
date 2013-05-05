@@ -2,10 +2,10 @@ package com.secondhand.model.powerup;
 
 import java.util.Random;
 
-import com.badlogic.gdx.math.Vector2;
 import com.secondhand.debug.MyDebug;
 import com.secondhand.model.GameWorld;
 import com.secondhand.model.Player;
+import com.secondhand.model.Vector2;
 import com.secondhand.model.resource.PowerUpType;
 
 public class RandomTeleport extends PowerUp {

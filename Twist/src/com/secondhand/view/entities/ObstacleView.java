@@ -8,12 +8,12 @@ import com.secondhand.model.Obstacle;
 
 public class ObstacleView extends EntityView {
 
-	public ObstacleView(Obstacle entity, IShape shape) {
+	public ObstacleView(final Obstacle entity, final IShape shape) {
 		super(entity, shape);
 	}
 
 	@Override
-	public void propertyChange(PropertyChangeEvent event) {
+	public void propertyChange(final PropertyChangeEvent event) {
 		
 	}
 

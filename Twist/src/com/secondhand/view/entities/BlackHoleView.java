@@ -39,7 +39,6 @@ public class BlackHoleView extends EntityView {
 	}
 
 	private void updateRadius() {
-		// cast shape to Circle and set radius.
 	}
 
 }

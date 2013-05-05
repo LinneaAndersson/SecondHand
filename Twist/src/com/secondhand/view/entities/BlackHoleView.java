@@ -14,7 +14,7 @@ public class BlackHoleView extends EntityView{
 
 	public BlackHoleView(BlackHole blackHole){
 		super(blackHole);
-		circle = new Circle(mBlackHole.getPosX(),mBlackHole.getPosY(),mBlackHole.getRadius());
+		circle = new Circle(blackHole.getPosX(),blackHole.getPosY(),blackHole.getRadius());
 		//mBlackHole.addPropertyChangeListener(this);
 		//mBlackHole.setBody(mBlackHole.getPhysics().createType(circle,mBlackHole)); 
 	}

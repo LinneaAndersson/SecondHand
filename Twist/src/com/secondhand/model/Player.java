@@ -120,6 +120,7 @@ public class Player extends BlackHole {
 
 	public void removePowerUp(final PowerUp powerUp) {
 		this.powerUpList.remove(powerUp);
+		util.fireObject(REMOVE_POWER_UP, null, powerUp);
 	}
 
 	public void addPowerUp(final PowerUp powerUp) {

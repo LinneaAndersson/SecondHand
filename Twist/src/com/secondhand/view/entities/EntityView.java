@@ -1,5 +1,6 @@
 package com.secondhand.view.entities;
 
+import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 
 import com.secondhand.model.Entity;

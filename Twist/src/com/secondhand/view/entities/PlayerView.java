@@ -25,20 +25,74 @@ public class PlayerView extends BlackHoleView {
 	public PlayerView(final Player player){
 		super(player);
 	}
+<<<<<<< HEAD
+=======
+	
+	
+	//This may be here later.
+	
+	
+/*
+	public PlayerView(final Engine engine, final GameWorld gameWorld) {
+
+		super(gameWorld.getPlayer());
+		this.engine = engine;
+		this.gameWorld = gameWorld;
+
+		this.gameWorld.getPlayer().addListener(this);
+	}
+
+	public void playerMoveAnimation(final Vector2 touch) {
+
+		final Player player = gameWorld.getPlayer();
+
+		final TextureRegion particleTexture = TextureRegionLoader.getInstance().loadTextureRegion("particle.png", 16, 16);
+
+		final Vector2 surfacePosition = getRelativeSurfacePosition(player,
+				touch);
+
+		final PointParticleEmitter movementEmitter = new PointParticleEmitter(
+				surfacePosition.x, surfacePosition.y);
+		final ParticleSystem particleSystem = new ParticleSystem(
+				movementEmitter, 60, 60, 10, particleTexture);
+
+		// TODO: How to access GamePlayScene?
+		// attachChild(particleSystem);
+		
+		final float duration = 2;
+		engine.registerUpdateHandler(new TimerHandler(duration,
+				new ITimerCallback() {
+			@Override
+			public void onTimePassed(final TimerHandler pTimerHandler) {
+				// GamePlayScene.this.detachChild(particleSystem); // Read TODO above
+			}
+		}));
+	}
+
+	// Calculate the surface position of object relative to given position
+	public Vector2 getRelativeSurfacePosition(final Entity object, final Vector2 position) {
+		final Vector2 surfacePosition = new Vector2(object.getCenterX() - position.x,	
+											  object.getCenterY() - position.y); // Vector from object position to given position
+		surfacePosition.mul(object.getRadius() / surfacePosition.len()); // Length of new vector increased/decreased to length of radius
+		return surfacePosition;
+	}*/
+>>>>>>> 9124dbd204d8feaadef941c55d9883a5ee421a9e
 
 	@Override
 	public void propertyChange(final PropertyChangeEvent event) {
 		final String propertyName = event.getPropertyName();
-		final Player player =  (Player) entity;
+		final Player player =  (Player) getEntity();
 		
-		if (propertyName.equals(Player.POWER_UP_SOUND)) {
+		if(propertyName.equalsIgnoreCase("Radius")){
+			changeSize();
+		}else if (propertyName.equals(Player.POWER_UP_SOUND)) {
 			Sounds.getInstance().powerUpSound.play();
-		} else if (propertyName.equals(Player.ADD_POWER_UP)) {
+		}else if (propertyName.equals(Player.ADD_POWER_UP)) {
 			player.getShape().setColor(1f, 0, 0);
-		} else if (propertyName.equals(Player.REMOVE_POWER_UP)) {
+		/*} else if (propertyName.equals(Player.REMOVE_POWER_UP)) {
 			if (player.getPowerUps().isEmpty()) {
 				player.getShape().setColor(1f, 1f, 1f);
-			}
+			}*/
 		} else if (propertyName.equals(Player.GROW_SOUND)) {
 			Sounds.getInstance().growSound.play();
 		} else if (propertyName.equals(Player.BIGGER_ENTITY_COLLISION_SOUND)) {

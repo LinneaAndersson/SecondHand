@@ -8,6 +8,8 @@ public class EnemyView extends BlackHoleView{
 
 	public EnemyView(Enemy enemy) {
 		super(enemy);
+
+		getBody().setLinearDamping(1.2f);
 		// TODO Auto-generated constructor stub
 	}
 

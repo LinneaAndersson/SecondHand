@@ -5,12 +5,14 @@ import java.beans.PropertyChangeListener;
 
 import org.anddev.andengine.entity.shape.IShape;
 
+import com.badlogic.gdx.physics.box2d.Body;
 import com.secondhand.model.Entity;
 
 public abstract class EntityView implements PropertyChangeListener {
-	
-	protected Entity entity;
-	protected IShape shape;
+	private Entity entity;
+	private IShape shape;
+	//Need this for physics.
+	private Body body;
 	
 	public EntityView(Entity entity, IShape shape){
 		this.entity = entity;
@@ -18,11 +20,15 @@ public abstract class EntityView implements PropertyChangeListener {
 		entity.addPropertyChangeListener(this);
 		
 		//Will be here later
-		//entity.setBody(entity.getPhysics().createType(shape,entity));
+		//body=entity.getPhysics().createType(shape,entity);
 	}
 	
 	public Entity getEntity(){
 		return entity;
+	}
+	
+	public Body getBody(){
+		return body;
 	}
 	
 	public IShape getShape(){

@@ -33,6 +33,11 @@ public class Player extends BlackHole {
 	public final static String INCREASE_LIFE = "IncreaseLife";
 	public final static String ADD_POWER_UP = "AddPowerUp";
 	public final static String POWER_UP_SOUND = "PowerUpSound";
+	public final static String GROW_SOUND = "GrowSound";
+	public final static String BIGGER_ENTITY_COLLISION_SOUND = "PlayerBiggerEntityCollision";
+	public final static String PLAYER_KILLED_SOUND = "PlayerKilled";
+
+
 	// =============================================
 	public Player(final float[] position, final float radius,
 			final GameWorld gameWorld, final int startingLives,
@@ -175,22 +180,19 @@ public class Player extends BlackHole {
 
 	@Override
 	protected void onGrow() {
-		this.gameWorld.getPropertyChangeSupport().firePropertyChange(
-				"PlayerGrow", false, true);
-	
+		util.fireObject(GROW_SOUND, null, null);
 	}
 
 	@Override
 	protected void entityWasTooBigToEat(final Entity entity) {
-		this.gameWorld.getPropertyChangeSupport().firePropertyChange(
-				"PlayerBiggerEntityCollision", false, true);
+		util.fireObject(BIGGER_ENTITY_COLLISION_SOUND, null, null);
 	}
 
 	@Override
 	protected void wasEaten() {
-		this.gameWorld.getPropertyChangeSupport().firePropertyChange(
-				"PlayerKilled", false, true);
-	
+		
+		util.fireObject(PLAYER_KILLED_SOUND, null, null);
+
 		// We override the default behaviour for wasEaten. We don't want the
 		// player to
 		// be entirely removed from the world when eaten, we only want to

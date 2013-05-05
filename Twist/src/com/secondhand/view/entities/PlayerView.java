@@ -75,6 +75,12 @@ public class PlayerView extends EntityView {
 		final String propertyName = event.getPropertyName();
 		if (propertyName.equals(Player.POWER_UP_SOUND)) {
 			Sounds.getInstance().powerUpSound.play();
+		} else if (propertyName.equals(Player.GROW_SOUND)) {
+			Sounds.getInstance().growSound.play();
+		} else if (propertyName.equals(Player.BIGGER_ENTITY_COLLISION_SOUND)) {
+			Sounds.getInstance().obstacleCollisionSound.play();
+		}  else if (propertyName.equals(Player.PLAYER_KILLED_SOUND)) {
+			Sounds.getInstance().playerKilledSound.play();
 		}
 	}
 

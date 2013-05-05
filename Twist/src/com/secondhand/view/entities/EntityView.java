@@ -8,8 +8,9 @@ import org.anddev.andengine.entity.shape.IShape;
 import com.secondhand.model.Entity;
 
 public abstract class EntityView implements PropertyChangeListener {
-	Entity entity;
-	IShape shape;
+	
+	protected Entity entity;
+	protected IShape shape;
 	
 	public EntityView(Entity entity, IShape shape){
 		this.entity = entity;

@@ -42,8 +42,6 @@ public interface IPhysics {
 	//creating a new body depending on entity.
 	Body createType(final IShape shape, final Entity entity);
 
-	void registerUpdateHandler(final GamePlayScene gamePlayScene);
-
 	//connect this to gameWorld
 	void setGameWorld(final GameWorld gameWorld);
 }

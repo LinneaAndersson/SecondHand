@@ -6,17 +6,13 @@ import com.secondhand.model.Enemy;
 
 public class EnemyView extends BlackHoleView{
 
-	public EnemyView(Enemy enemy) {
+	public EnemyView(final Enemy enemy) {
 		super(enemy);
 
 		getBody().setLinearDamping(1.2f);
-		// TODO Auto-generated constructor stub
 	}
 
 	@Override
-	public void propertyChange(PropertyChangeEvent event) {
-		// TODO Auto-generated method stub
-		
-	}
+	public void propertyChange(final PropertyChangeEvent event) { }
 
 }

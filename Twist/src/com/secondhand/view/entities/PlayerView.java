@@ -78,11 +78,18 @@ public class PlayerView extends BlackHoleView {
 	@Override
 	public void propertyChange(final PropertyChangeEvent event) {
 		final String propertyName = event.getPropertyName();
+		final Player player =  (Player) getEntity();
 		
 		if(propertyName.equalsIgnoreCase("Radius")){
 			changeSize();
 		}else if (propertyName.equals(Player.POWER_UP_SOUND)) {
 			Sounds.getInstance().powerUpSound.play();
+		}else if (propertyName.equals(Player.ADD_POWER_UP)) {
+			player.getShape().setColor(1f, 0, 0);
+		/*} else if (propertyName.equals(Player.REMOVE_POWER_UP)) {
+			if (player.getPowerUps().isEmpty()) {
+				player.getShape().setColor(1f, 1f, 1f);
+			}*/
 		} else if (propertyName.equals(Player.GROW_SOUND)) {
 			Sounds.getInstance().growSound.play();
 		} else if (propertyName.equals(Player.BIGGER_ENTITY_COLLISION_SOUND)) {

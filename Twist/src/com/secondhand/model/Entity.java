@@ -27,10 +27,10 @@ public abstract class Entity {
 		bodyScheduledForDeletion = false;
 	}
 
-	/*public void setBody(Body body) {
+	public void setBody(Body body) {
 		this.body = body;
 		//registerBody(body); 
-	}*/
+	}
 
 	public float getX() {
 		return shape.getX();

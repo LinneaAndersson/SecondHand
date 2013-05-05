@@ -32,6 +32,7 @@ public class Player extends BlackHole {
 	public final static String INCREASE_SCORE = "IncreaseScore";
 	public final static String INCREASE_LIFE = "IncreaseLife";
 	public final static String ADD_POWER_UP = "AddPowerUp";
+	public final static String REMOVE_POWER_UP = "RemovePowerUp";
 	public final static String POWER_UP_SOUND = "PowerUpSound";
 	public final static String GROW_SOUND = "GrowSound";
 	public final static String BIGGER_ENTITY_COLLISION_SOUND = "PlayerBiggerEntityCollision";
@@ -119,6 +120,7 @@ public class Player extends BlackHole {
 
 	public void removePowerUp(final PowerUp powerUp) {
 		this.powerUpList.remove(powerUp);
+		util.fireObject(REMOVE_POWER_UP, null, powerUp);
 	}
 
 	public void addPowerUp(final PowerUp powerUp) {

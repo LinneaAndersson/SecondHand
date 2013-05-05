@@ -211,5 +211,9 @@ public class GamePlayScene extends GameScene{
 		Sounds.getInstance().obstacleCollisionSound.play();
 	}
 	
+	public void onPlayerGrow() {
+		Sounds.getInstance().growSound.play();
+	}
+	
 	
 }

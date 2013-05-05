@@ -176,7 +176,9 @@ public class Player extends BlackHole {
 
 	@Override
 	protected void onGrow() {
-		Sounds.getInstance().growSound.play();
+		this.gameWorld.getPropertyChangeSupport().firePropertyChange(
+				"PlayerGrow", false, true);
+	
 	}
 
 	@Override

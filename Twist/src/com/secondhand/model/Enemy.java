@@ -20,7 +20,7 @@ public class Enemy extends BlackHole {
 		MyDebug.d("is it null in Enemy" + level.getPhysics());
 
 		// makes the enemy move much smother
-		getBody().setLinearDamping(1.2f);
+		//getBody().setLinearDamping(1.2f);
 
 	}
 

@@ -3,17 +3,8 @@ package com.secondhand.view.entities;
 import java.beans.PropertyChangeEvent;
 
 import org.anddev.andengine.engine.Engine;
-import org.anddev.andengine.engine.handler.timer.ITimerCallback;
-import org.anddev.andengine.engine.handler.timer.TimerHandler;
-import org.anddev.andengine.entity.particle.ParticleSystem;
-import org.anddev.andengine.entity.particle.emitter.PointParticleEmitter;
-import org.anddev.andengine.opengl.texture.region.TextureRegion;
-
-import com.badlogic.gdx.math.Vector2;
-import com.secondhand.model.Entity;
 import com.secondhand.model.GameWorld;
 import com.secondhand.model.Player;
-import com.secondhand.view.loader.TextureRegionLoader;
 import com.secondhand.view.resource.Sounds;
 
 // what? the controller should be handling the PropertyChangeListener, not the view!

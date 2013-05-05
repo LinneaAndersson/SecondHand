@@ -12,10 +12,10 @@ import org.anddev.andengine.extension.physics.box2d.util.constants.PhysicsConsta
 import org.anddev.andengine.opengl.util.GLHelper;
 import org.anddev.andengine.opengl.vertex.VertexBuffer;
 
-import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.Fixture;
 import com.badlogic.gdx.physics.box2d.PolygonShape;
+import com.secondhand.model.Vector2;
 
 /**
  * A polygon class used for drawing polygons. The positioning for polygons works
@@ -152,9 +152,12 @@ public class Polygon extends Shape {
 	@Override
 	protected boolean isCulled(final Camera pCamera) {
 		for (int i = 0; i < this.mPolygonShape.getVertexCount(); ++i) {
-			final Vector2 v = new Vector2(0, 0);
+			final com.badlogic.gdx.math.Vector2 v = new com.badlogic.gdx.math.Vector2(0, 0);
 			this.mPolygonShape.getVertex(i, v);
-			final Vector2 trueV = this.mBody.getWorldPoint(v);
+			
+			
+			final com.badlogic.gdx.math.Vector2 temp = this.mBody.getWorldPoint(v);
+			final Vector2 trueV = new Vector2(temp.x, temp.y);
 
 			final Vector2 translatedPoint = new Vector2(
 					PhysicsConstants.PIXEL_TO_METER_RATIO_DEFAULT * trueV.x,

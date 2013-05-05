@@ -11,7 +11,7 @@ public abstract class Entity {
 	private final IShape shape;
 	private boolean isEdible;
 	protected final IPhysics physics;
-	protected final GameWorld level;
+	protected final GameWorld gameWorld;
 
 	
 	public Entity(final Shape shape, final boolean isEdible,
@@ -19,7 +19,7 @@ public abstract class Entity {
 		this.shape = shape;
 		this.isEdible = isEdible;
 		this.physics = level.getPhysics();
-		this.level = level;
+		this.gameWorld = level;
 		bodyScheduledForDeletion = false;
 	}
 
@@ -78,7 +78,7 @@ public abstract class Entity {
 	// remove this entity from andengine rendering and the physics world.
 	private void removeEntity() {
 
-		this.level.getEntityManager().removeEntityFromList(this);
+		this.gameWorld.getEntityManager().removeEntityFromList(this);
 
 		destroyEntity();
 
@@ -104,7 +104,7 @@ public abstract class Entity {
 	private void scheduleBodyForDeletion() {
 		physics.setConnector(this.getShape());
 
-		this.level.getEntityManager().scheduleEntityForDeletion(this);
+		this.gameWorld.getEntityManager().scheduleEntityForDeletion(this);
 
 		this.bodyScheduledForDeletion = true;
 	}

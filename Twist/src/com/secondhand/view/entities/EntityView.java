@@ -1,6 +1,5 @@
 package com.secondhand.view.entities;
 
-import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 
 import org.anddev.andengine.entity.shape.IShape;
@@ -9,12 +8,12 @@ import com.badlogic.gdx.physics.box2d.Body;
 import com.secondhand.model.Entity;
 
 public abstract class EntityView implements PropertyChangeListener {
-	private Entity entity;
-	private IShape shape;
+	private final Entity entity;
+	private final IShape shape;
 	//Need this for physics.
 	private Body body;
 	
-	public EntityView(Entity entity, IShape shape){
+	public EntityView(final Entity entity, final IShape shape){
 		this.entity = entity;
 		this.shape=shape;
 		entity.addPropertyChangeListener(this);

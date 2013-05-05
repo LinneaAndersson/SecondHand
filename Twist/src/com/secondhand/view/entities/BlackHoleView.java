@@ -20,6 +20,8 @@ public class BlackHoleView extends EntityView {
 		super(blackHole, new Circle(blackHole.getPosX(), blackHole.getPosY(),
 				blackHole.getRadius()));
 		mBlackHole = blackHole;
+		//mBlackHole.addPropertyChangeListener(this);
+		//mBlackHole.setBody(mBlackHole.getPhysics().createType(circle,mBlackHole)); 
 	}
 
 	/*private void setBody(Body body) {
@@ -30,8 +32,8 @@ public class BlackHoleView extends EntityView {
 		final CircleShape shape = (CircleShape) getShape();
 		shape.setRadius(mBlackHole.getRadius()
 				/ PhysicsConstants.PIXEL_TO_METER_RATIO_DEFAULT);
-	
-		
+
+
 		//If it dont work this way.
 		/*final CircleShape shape = (CircleShape) getBody().getFixtureList()
 				.get(0).getShape();

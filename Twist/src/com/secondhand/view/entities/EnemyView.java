@@ -4,7 +4,6 @@ import java.beans.PropertyChangeEvent;
 
 import com.secondhand.model.Enemy;
 
-
 public class EnemyView extends BlackHoleView{
 
 	public EnemyView(Enemy enemy) {

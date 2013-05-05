@@ -6,7 +6,6 @@ import java.util.List;
 import org.anddev.andengine.extension.physics.box2d.util.constants.PhysicsConstants;
 
 import com.secondhand.model.powerup.PowerUp;
-import com.secondhand.view.resource.Sounds;
 
 public class Player extends BlackHole {
 
@@ -176,18 +175,22 @@ public class Player extends BlackHole {
 
 	@Override
 	protected void onGrow() {
-		Sounds.getInstance().growSound.play();
+		this.gameWorld.getPropertyChangeSupport().firePropertyChange(
+				"PlayerGrow", false, true);
+	
 	}
 
 	@Override
 	protected void entityWasTooBigToEat(final Entity entity) {
-		Sounds.getInstance().obstacleCollisionSound.play();
+		this.gameWorld.getPropertyChangeSupport().firePropertyChange(
+				"PlayerBiggerEntityCollision", false, true);
 	}
 
 	@Override
 	protected void wasEaten() {
-
-		Sounds.getInstance().playerKilledSound.play();
+		this.gameWorld.getPropertyChangeSupport().firePropertyChange(
+				"PlayerKilled", false, true);
+	
 		// We override the default behaviour for wasEaten. We don't want the
 		// player to
 		// be entirely removed from the world when eaten, we only want to

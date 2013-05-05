@@ -181,7 +181,8 @@ public class Player extends BlackHole {
 
 	@Override
 	protected void entityWasTooBigToEat(final Entity entity) {
-		Sounds.getInstance().obstacleCollisionSound.play();
+		this.gameWorld.getPropertyChangeSupport().firePropertyChange(
+				"PlayerBiggerEntityCollision", false, true);
 	}
 
 	@Override

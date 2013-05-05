@@ -207,5 +207,9 @@ public class GamePlayScene extends GameScene{
 		Sounds.getInstance().obstacleCollisionSound.play();	
 	}
 	
+	public void onPlayerBiggerEntityCollision() {
+		Sounds.getInstance().obstacleCollisionSound.play();
+	}
+	
 	
 }

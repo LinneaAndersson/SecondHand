@@ -33,7 +33,7 @@ public abstract class PolygonEntity extends Entity {
 	}
 		
 	public Vector2 getCenterOfMass(){
-		final Vector2 v = new Vector2(this.getBody().getMassData().center.x, this.getBody().getMassData().center.x) ;
+		final Vector2 v = new Vector2(this.getBody().getMassData().center.x, this.getBody().getMassData().center.y) ;
 		
 		return new Vector2(v.x * PhysicsConstants.PIXEL_TO_METER_RATIO_DEFAULT,
 				v.y * PhysicsConstants.PIXEL_TO_METER_RATIO_DEFAULT);

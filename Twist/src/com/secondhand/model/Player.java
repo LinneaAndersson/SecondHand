@@ -6,7 +6,6 @@ import java.util.List;
 import org.anddev.andengine.extension.physics.box2d.util.constants.PhysicsConstants;
 
 import com.secondhand.model.powerup.PowerUp;
-import com.secondhand.view.resource.Sounds;
 
 public class Player extends BlackHole {
 

@@ -1,8 +1,6 @@
 	
 package com.secondhand.model;
 
-import java.beans.PropertyChangeListener;
-import java.beans.PropertyChangeSupport;
 
 import org.anddev.andengine.extension.physics.box2d.util.constants.PhysicsConstants;
 
@@ -12,7 +10,6 @@ import com.secondhand.view.opengl.Circle;
 
 public abstract class BlackHole extends CircleEntity {
 
-	private PropertyChangeSupport pcs = new PropertyChangeSupport(this);
 	// only a 1/5 of the masses of the eaten bodies is used in the growth
 	private static final float GROWTH_FACTOR = 0.2f;
 	
@@ -163,7 +160,5 @@ public abstract class BlackHole extends CircleEntity {
 		return 3;
 	}	
 	
-	public void addPropertyChangeListener(PropertyChangeListener listener){
-		pcs.addPropertyChangeListener(listener);
-	}
+	
 }

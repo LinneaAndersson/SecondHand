@@ -7,16 +7,15 @@ import com.secondhand.debug.MyDebug;
 import com.secondhand.model.BlackHole;
 import com.secondhand.view.opengl.Circle;
 
-public class BlackHoleView implements IEntityView{
+public class BlackHoleView extends EntityView{
 	
-	BlackHole mBlackHole;
 	Circle circle;
 	Body body;
 
 	public BlackHoleView(BlackHole blackHole){
-		mBlackHole = blackHole;
-		circle = new Circle(mBlackHole.getPosX(),mBlackHole.getPosY(),mBlackHole.getRadius());
-		mBlackHole.addPropertyChangeListener(this);
+		super(blackHole);
+		circle = new Circle(blackHole.getPosX(),blackHole.getPosY(),blackHole.getRadius());
+		//mBlackHole.addPropertyChangeListener(this);
 		//mBlackHole.setBody(mBlackHole.getPhysics().createType(circle,mBlackHole)); 
 	}
 	
@@ -26,8 +25,13 @@ public class BlackHoleView implements IEntityView{
 
 	@Override
 	public void propertyChange(PropertyChangeEvent event) {
-		MyDebug.d("old val" +event.getOldValue());
-		MyDebug.d("new val" +event.getNewValue());
+		if (event.getPropertyName()=="radius"){
+			updateRadius();
+		}
+	}
+
+	private void updateRadius() {
+		
 		
 	}
 

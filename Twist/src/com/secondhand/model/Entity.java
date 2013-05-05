@@ -1,5 +1,8 @@
 package com.secondhand.model;
 
+import java.beans.PropertyChangeListener;
+import java.beans.PropertyChangeSupport;
+
 import org.anddev.andengine.entity.shape.IShape;
 import org.anddev.andengine.entity.shape.Shape;
 
@@ -11,9 +14,10 @@ public abstract class Entity {
 	private final IShape shape;
 	private boolean isEdible;
 	protected final IPhysics physics;
-	protected final GameWorld gameWorld;
 
-	
+	protected final GameWorld gameWorld;
+	protected PropertyChangeSupport pcs = new PropertyChangeSupport(this);
+
 	public Entity(final Shape shape, final boolean isEdible,
 			final GameWorld level) {
 		this.shape = shape;
@@ -121,5 +125,9 @@ public abstract class Entity {
 
 	public boolean getRotation() {
 		return this instanceof Player ? false : true;
+	}
+	
+	public void addPropertyChangeListener(PropertyChangeListener listener){
+		pcs.addPropertyChangeListener(listener);
 	}
 }

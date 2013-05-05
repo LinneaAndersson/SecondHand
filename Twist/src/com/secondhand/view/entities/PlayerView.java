@@ -18,12 +18,18 @@ import com.secondhand.view.loader.TextureRegionLoader;
 import com.secondhand.view.resource.Sounds;
 
 // what? the controller should be handling the PropertyChangeListener, not the view!
-public class PlayerView implements IEntityView {
+public class PlayerView extends EntityView {
 
-	private final Engine engine;
-	private final GameWorld gameWorld;
+	private Engine engine;
+	private GameWorld gameWorld;
+	
+	public PlayerView(Player player){
+		super(player);
+	}
 
 	public PlayerView(final Engine engine, final GameWorld gameWorld) {
+		//TODO: remove this later.
+		super(gameWorld.getPlayer());
 		this.engine = engine;
 		this.gameWorld = gameWorld;
 

@@ -3,26 +3,20 @@ package com.secondhand.view.entities;
 import java.beans.PropertyChangeEvent;
 
 import org.anddev.andengine.extension.physics.box2d.util.constants.PhysicsConstants;
+
 import com.badlogic.gdx.physics.box2d.CircleShape;
-import com.secondhand.debug.MyDebug;
 import com.secondhand.model.BlackHole;
 import com.secondhand.view.opengl.Circle;
 
 public class BlackHoleView extends EntityView {
 
-	//Circle circle;
-	//Body body;
 	private final BlackHole mBlackHole;
 
-	public BlackHoleView(BlackHole blackHole) {
+	public BlackHoleView(final BlackHole blackHole) {
 		super(blackHole, new Circle(blackHole.getPosX(), blackHole.getPosY(),
 				blackHole.getRadius()));
 		mBlackHole = blackHole;
 	}
-
-	/*private void setBody(Body body) {
-		this.body = body;
-	}*/
 
 	protected void changeSize() {
 		final CircleShape shape = (CircleShape) getShape();
@@ -38,14 +32,14 @@ public class BlackHoleView extends EntityView {
 	}
 
 	@Override
-	public void propertyChange(PropertyChangeEvent event) {
-		if (event.getPropertyName() == "radius") {
+	public void propertyChange(final PropertyChangeEvent event) {
+		if (event.getPropertyName().equals("radius")) {
 			updateRadius();
 		}
 	}
 
 	private void updateRadius() {
-
+		// cast shape to Circle and set radius.
 	}
 
 }

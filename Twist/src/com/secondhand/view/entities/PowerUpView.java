@@ -12,7 +12,7 @@ import com.secondhand.model.GameWorld;
 import com.secondhand.model.Player;
 import com.secondhand.model.powerup.PowerUp;
 
-public class PowerUpView implements PropertyChangeListener {
+public class PowerUpView implements IEntityView{
 
 	private final Engine engine;
 	private final GameWorld gameWorld;

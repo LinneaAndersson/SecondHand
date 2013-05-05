@@ -6,11 +6,6 @@ import com.secondhand.model.Entity;
 
 public class PlanetView implements IEntityView {
 
-	@Override
-	public void updateView(String name) {
-		// TODO Auto-generated method stub
-		
-	}
 
 	@Override
 	public void propertyChange(PropertyChangeEvent event) {

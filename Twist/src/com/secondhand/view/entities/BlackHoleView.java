@@ -31,9 +31,4 @@ public class BlackHoleView implements IEntityView{
 		
 	}
 
-	@Override
-	public void updateView(String name) {
-		// TODO Auto-generated method stub
-		
-	}
 }

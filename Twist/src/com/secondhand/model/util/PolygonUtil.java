@@ -4,7 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-import com.badlogic.gdx.math.Vector2;
+import com.secondhand.model.Vector2;
+
 
 public final class PolygonUtil {
 

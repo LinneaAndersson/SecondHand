@@ -5,7 +5,6 @@ import org.anddev.andengine.entity.shape.RectangularShape;
 import org.anddev.andengine.extension.physics.box2d.PhysicsConnector;
 import org.anddev.andengine.extension.physics.box2d.PhysicsFactory;
 import org.anddev.andengine.extension.physics.box2d.PhysicsWorld;
-import org.anddev.andengine.extension.physics.box2d.util.constants.PhysicsConstants;
 
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
@@ -23,15 +22,15 @@ import com.secondhand.model.Planet;
 import com.secondhand.model.RectangleEntity;
 import com.secondhand.view.opengl.Circle;
 import com.secondhand.view.opengl.Polygon;
-import com.secondhand.view.scene.GamePlayScene;
 
 public class Physics implements IPhysics {
-	private final PhysicsWorld physicsWorld;
+	private PhysicsWorld physicsWorld;
 	private PhysicsConnector physicsConnector;
 	private final PhysicsEnemyUtil enemyUtil;
 	private CollisionResolver collisionResolver;
 	private final PhysicsWorldBounds bounds;
 	private GameWorld gameWorld;
+	private Body body;
 
 	// no vector needed because its zero gravity. And if the constructor
 	// needs an vector that means we need to to import Vector2
@@ -52,6 +51,21 @@ public class Physics implements IPhysics {
 		return this.physicsWorld;
 	}
 	
+	public void setPhysicsWorld(PhysicsWorld physicsWorld){
+		this.physicsWorld = physicsWorld;
+	}
+
+	//TODO andengine or box2d coordinates?
+	@Override
+	public float getCenterX() {
+		return body.getWorldCenter().x;
+	}
+
+	@Override
+	public float getCenterY() {
+		return body.getWorldCenter().y;
+	}
+
 	// put some invisible, static rectangles that keep the player within the
 	// world bounds:
 	// we do not do this using registerEntity, because these bodies are
@@ -66,13 +80,13 @@ public class Physics implements IPhysics {
 		bounds.removeBounds();
 	}
 
-	//@Override
+	// @Override
 	public void registerBody(final Entity entity, final Body body) {
 		body.setUserData(entity);
 
 		physicsWorld.registerPhysicsConnector(new CustomPhysicsConnector(entity
-				.getShape(), entity.isCircle(),body, true,
-				entity.getRotation()));
+				.getShape(), entity.isCircle(), body, true, entity
+				.getRotation()));
 	}
 
 	// andEngine or box2d coordinates in? and depending on from
@@ -81,23 +95,19 @@ public class Physics implements IPhysics {
 	// be done in model. Entity instead of body and then somehow get body?
 	// All entities that need this function are enemies and player.
 	@Override
-	public void applyImpulse(final Body body, final float posX, final float posY, final float maxSpeed) {
-		
-		final Vector2 position = new Vector2(posX
-				/ PhysicsConstants.PIXEL_TO_METER_RATIO_DEFAULT, posY
-				/ PhysicsConstants.PIXEL_TO_METER_RATIO_DEFAULT);
-		final Vector2 force = new Vector2(body.getWorldCenter().x - posX,
-				body.getWorldCenter().y - posY);
-		
-		final Vector2 velocity = new Vector2(body
-				.getLinearVelocity());
-		
-		if (velocity.add(force).len() > maxSpeed){
+	public void applyImpulse(final float posX, final float posY,
+			final float maxSpeed) {
+
+		final Vector2 force = new Vector2(posX, posY);
+
+		final Vector2 velocity = new Vector2(body.getLinearVelocity());
+
+		if (velocity.add(force).len() > maxSpeed) {
 			// Check if new velocity doesn't exceed maxSpeed!
 			return;
 		}
 
-		body.applyLinearImpulse(force, position);
+		body.applyLinearImpulse(force, body.getWorldCenter());
 
 	}
 
@@ -127,10 +137,6 @@ public class Physics implements IPhysics {
 		collisionResolver.checkCollision(contact.getFixtureA().getBody()
 				.getUserData(), contact.getFixtureB().getBody().getUserData());
 	}
-	
-	//TODO Enemy needs getCenterX,Y but when shapes is
-	// moved from Entity some method here(probably) is needed to return center pos.
-	//getCenterX,Y(Entity) or something.
 
 	@Override
 	public boolean isStraightLine(final Entity entity, final Enemy enemy) {
@@ -150,7 +156,6 @@ public class Physics implements IPhysics {
 
 	@Override
 	public Body createType(final IShape shape, final Entity entity) {
-		Body body = null;
 		if (entity instanceof Obstacle) {
 			final Polygon polygon = (Polygon) shape;
 			body = MyPhysicsFactory.createPolygonBody(physicsWorld, polygon,
@@ -171,9 +176,9 @@ public class Physics implements IPhysics {
 					BodyType.DynamicBody, FixtureDefs.POWER_UP_FIXTURE_DEF);
 		}
 		registerBody(entity, body);
+
 		return body;
 	}
-
 
 	@Override
 	public void setGameWorld(final GameWorld gameWorld) {

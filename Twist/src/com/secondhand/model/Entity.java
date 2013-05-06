@@ -32,15 +32,7 @@ public abstract class Entity {
 		//registerBody(body); 
 	}
 
-	public float getX() {
-		return shape.getX();
-	}
-
 	public abstract boolean isCircle();
-
-	public float getY() {
-		return shape.getY();
-	}
 
 	public Body getBody() {
 		return body;
@@ -65,11 +57,11 @@ public abstract class Entity {
 	public abstract float getRadius();
 
 	public float getCenterX() {
-		return getX();
+		return physics.getCenterX();
 	}
 
 	public float getCenterY() {
-		return getY();
+		return physics.getCenterY();
 	}
 
 	// how much every unit(pixel) of radius is worth in points.

@@ -2,7 +2,6 @@ package com.secondhand.model;
 
 import java.util.List;
 
-import com.badlogic.gdx.math.Vector2;
 import com.secondhand.debug.MyDebug;
 import com.secondhand.model.powerup.PowerUp;
 
@@ -94,10 +93,10 @@ public class Enemy extends BlackHole {
 				// MyDebug.d("Enemy: applyMovement towards " +
 				// entity.getClass());
 				// closeToDanger();
-				move(entity.getCenterX(), entity.getCenterY());
+				move(new Vector2(getCenterX() - entity.getCenterX(),
+						getCenterY() - entity.getCenterY()));
 
 			} else {
-				// stopMovement();
 
 			}
 			if (huntingArea != getHuntingArea()) {
@@ -114,15 +113,8 @@ public class Enemy extends BlackHole {
 
 	}
 
-	private void stopMovement() {
-		this.getBody().setLinearVelocity(new Vector2());
-		this.getBody().setAngularVelocity(0);
-
-	}
-
 	public void retreat(final Entity danger) {
 		MyDebug.d("Enemy: Retreat");
-		
 
 	}
 

@@ -1,5 +1,7 @@
 package com.secondhand.model;
 
+import java.beans.PropertyChangeListener;
+import java.beans.PropertyChangeSupport;
 import java.util.List;
 import java.util.Stack;
 
@@ -9,6 +11,7 @@ public class EntityManager {
 	private List<Entity> entityList;
 	private List<Enemy> enemyList;
 	private final Stack<Entity> scheduledForDeletionEntities;
+	PropertyChangeSupport pcs;
 	
 	private final Player player;
 	
@@ -19,6 +22,7 @@ public class EntityManager {
 	
 	public void setEntityList(final List<Entity> entityList) {
 		this.entityList = entityList;
+		pcs.firePropertyChange("newEntitylist", 0, entityList);
 	}
 	
 	public void setEnemyList(final List<Enemy> enemyList) {
@@ -71,5 +75,10 @@ public class EntityManager {
 		for(final Entity entity: this.entityList) {
 			entity.destroyEntity();
 		}
+	}
+	
+	//the listener will et physics to the new Entity
+	public void addPropertyChangeListener(PropertyChangeListener listener){
+		pcs.addPropertyChangeListener(listener);
 	}
 }

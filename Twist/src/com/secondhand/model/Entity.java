@@ -34,9 +34,6 @@ public abstract class Entity {
 
 	public abstract boolean isCircle();
 
-	public Body getBody() {
-		return body;
-	}
 
 	public IShape getShape() {
 		return shape;

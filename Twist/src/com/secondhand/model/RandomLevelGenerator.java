@@ -46,8 +46,9 @@ public class RandomLevelGenerator {
 		this.player = player;
 		// make sure entities are not placed on top of player
 	
+		// TODO: generate player position for level.
 		final World.Polygon poly = PolygonFactory.createCircle(new Vector2(
-				player.getCenterX(), player.getCenterY()), player.getRadius());
+				120 /*player.getCenterX()*/,120/* player.getCenterY()*/), 40);
 		world.addToWorld(poly);
 
 		this.playerMaxSize = player.getMaxSize();
@@ -179,6 +180,7 @@ public class RandomLevelGenerator {
 		}
 	}
 
+	
 	private void placeOutPlanets() {
 		MyDebug.d("The level is = " + levelNumber);
 		final float K = 1.2f;
@@ -191,9 +193,9 @@ public class RandomLevelGenerator {
 		MyDebug.d(" eatable = " + MINIMUM_PLAYER_EATABLE);
 		int numPlayerEatable = 0;
 
-		final float MAX_SIZE = player.getRadius()*4f;
+		final float MAX_SIZE = 60 /*player.getRadius()*/*4f;
 
-		final float MIN_SIZE = player.getRadius() - 20;
+		final float MIN_SIZE = 40 /*player.getRadius()*/ - 20;
 
 		final int PLANETS = 50; // (int)( 25 * this.levelNumber * K);
 		float radius;
@@ -204,7 +206,7 @@ public class RandomLevelGenerator {
 
 			while (true) {
 				radius = RandomUtil.nextFloat(rng, MIN_SIZE,
-						player.getRadius());
+						40 /*player.getRadius()*/);
 
 				xAxis = rng.nextInt(this.levelWidth);
 				yAxis = rng.nextInt(this.levelHeight);
@@ -212,7 +214,7 @@ public class RandomLevelGenerator {
 				final World.Polygon poly = PolygonFactory.createCircle(
 						new Vector2(xAxis, yAxis), radius);
 
-				if (world.addToWorld(poly)&& radius<player.getRadius()) {
+				if (world.addToWorld(poly)&& radius< 40 /*player.getRadius()*/) {
 					numPlayerEatable++;
 					break;
 				}
@@ -223,7 +225,7 @@ public class RandomLevelGenerator {
 		MyDebug.d("there are " + entityList.size() + " entitys out there after adding eatable planets");
 		for (int i = MINIMUM_PLAYER_EATABLE ; i<PLANETS ; i++ ) {
 			while (true) {
-				radius = RandomUtil.nextFloat(rng, player.getRadius(),
+				radius = RandomUtil.nextFloat(rng, 40 /*player.getRadius()*/,
 						MAX_SIZE);
 
 				xAxis = rng.nextInt(this.levelWidth);

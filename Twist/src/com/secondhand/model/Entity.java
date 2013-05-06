@@ -80,7 +80,7 @@ public abstract class Entity {
 
 	}
 
-	// detaching should be done by view or physics
+	// detaching should be done by view
 	public void destroyEntity() {
 
 		// we can't remove the body within a contact listener
@@ -98,7 +98,6 @@ public abstract class Entity {
 	}
 
 	private void scheduleBodyForDeletion() {
-		physics.setConnector(this.getShape());
 
 		this.gameWorld.getEntityManager().scheduleEntityForDeletion(this);
 

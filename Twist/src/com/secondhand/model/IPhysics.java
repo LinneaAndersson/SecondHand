@@ -19,9 +19,6 @@ public interface IPhysics {
 	// delete your body from physicsWorld
 	void deleteBody(final boolean scheduledForDeletion);
 
-	//
-	void setConnector(IShape shape);
-
 	float getCenterX();
 
 	float getCenterY();

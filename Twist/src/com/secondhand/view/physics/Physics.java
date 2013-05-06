@@ -50,12 +50,12 @@ public class Physics implements IPhysics {
 	public PhysicsWorld getPhysicsWorld() {
 		return this.physicsWorld;
 	}
-	
-	public void setPhysicsWorld(PhysicsWorld physicsWorld){
+
+	public void setPhysicsWorld(PhysicsWorld physicsWorld) {
 		this.physicsWorld = physicsWorld;
 	}
 
-	//TODO andengine or box2d coordinates?
+	// TODO andengine or box2d coordinates?
 	@Override
 	public float getCenterX() {
 		return body.getWorldCenter().x;
@@ -83,10 +83,9 @@ public class Physics implements IPhysics {
 	// @Override
 	public void registerBody(final Entity entity, final Body body) {
 		body.setUserData(entity);
-
-		physicsWorld.registerPhysicsConnector(new CustomPhysicsConnector(entity
-				.getShape(), entity.isCircle(), body, true, entity
-				.getRotation()));
+		physicsConnector = new CustomPhysicsConnector(entity.getShape(),
+				entity.isCircle(), body, true, entity.getRotation());
+		physicsWorld.registerPhysicsConnector(physicsConnector);
 	}
 
 	// andEngine or box2d coordinates in? and depending on from
@@ -124,12 +123,6 @@ public class Physics implements IPhysics {
 		physicsWorld.destroyBody(physicsConnector.getBody());
 
 		MyDebug.i(physicsConnector.getBody() + " destruction complete");
-	}
-
-	@Override
-	public void setConnector(final IShape shape) {
-		physicsConnector = physicsWorld.getPhysicsConnectorManager()
-				.findPhysicsConnectorByShape(shape);
 	}
 
 	@Override

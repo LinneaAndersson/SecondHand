@@ -20,13 +20,15 @@ import com.secondhand.view.physics.MyPhysicsEntity;
 import com.secondhand.view.scene.AllScenes;
 import com.secondhand.view.scene.GamePlayScene;
 
-final class GamePlaySceneController extends Entity  implements PropertyChangeListener{
+final class GamePlaySceneController extends Entity implements
+		PropertyChangeListener {
 
 	private final GameWorld gameWorld;
 	private final GamePlayScene gamePlayScene;
-	private final SceneController sceneController; 
+	private final SceneController sceneController;
 
-	public GamePlaySceneController(final GamePlayScene scene, final SceneController sceneController) {
+	public GamePlaySceneController(final GamePlayScene scene,
+			final SceneController sceneController) {
 		super();
 		
 		this.gamePlayScene = scene;
@@ -66,16 +68,17 @@ final class GamePlaySceneController extends Entity  implements PropertyChangeLis
 		super.onManagedUpdate(pSecondsElapsed);
 		if (gameWorld.isGameOver()) {
 
-			if(!HighScoreList.getInstance().madeItToHighScoreList(
+			if (!HighScoreList.getInstance().madeItToHighScoreList(
 					gameWorld.getPlayer().getScore())) {
-				// go to high score. 
+				// go to high score.
 				this.sceneController.switchScene(AllScenes.HIGH_SCORE_SCENE);
 			}
 
 			if (InputDialogManager.input != null) {
 
-				final HighScoreList.Entry newEntry = new HighScoreList.Entry(InputDialogManager.input, 
-						gameWorld.getPlayer().getScore());
+				final HighScoreList.Entry newEntry = new HighScoreList.Entry(
+						InputDialogManager.input, gameWorld.getPlayer()
+								.getScore());
 				HighScoreList.getInstance().insertInHighScoreList(newEntry);
 				InputDialogManager.showing = false;
 
@@ -89,7 +92,7 @@ final class GamePlaySceneController extends Entity  implements PropertyChangeLis
 				InputDialogManager.showing = true;
 				InputDialogManager.getInstance().showDialog();
 
-			}	
+			}
 
 		} else {
 			gameWorld.updateGameWorld();
@@ -100,14 +103,14 @@ final class GamePlaySceneController extends Entity  implements PropertyChangeLis
 	@Override
 	public void propertyChange(final PropertyChangeEvent event) {
 		final String eventName = event.getPropertyName();
-		if(event.getSource().getClass()==EntityManager.class){
+		if (event.getSource().getClass() == EntityManager.class) {
 
 			List <com.secondhand.model.Entity> list = (List<com.secondhand.model.Entity>) event.getNewValue();
 			for (int i = 0; i<list.size() ; i++){
 					 list.get(i).setPhysics(new MyPhysicsEntity());
 			}
-		
-		} else if (event.getSource().getClass()==GameWorld.class){
+
+		} else if (event.getSource().getClass() == GameWorld.class) {
 
 			if (eventName.equals(Player.INCREASE_SCORE)) {
 				this.gamePlayScene.updateScore((Integer) event.getNewValue());
@@ -116,7 +119,8 @@ final class GamePlaySceneController extends Entity  implements PropertyChangeLis
 			} else if (eventName.equals("PlayerRadius")) {
 				// TODO: is never sent from player for some reason; fix.
 				MyDebug.d("eric");
-				this.gamePlayScene.apaptCameraToGrowingPlayer((Float) event.getNewValue(),
+				this.gamePlayScene.apaptCameraToGrowingPlayer(
+						(Float) event.getNewValue(),
 						(Float) event.getOldValue());
 			} else if (eventName.equals("NextLevel")) {
 				this.gamePlayScene.newLevelStarted();

@@ -10,7 +10,7 @@ import com.badlogic.gdx.physics.box2d.Body;
 
 public abstract class Entity {
 
-	private Body body;
+	//private Body body;
 	private IShape shape;
 	private boolean isEdible;
 	protected IPhysicsEntity physics;
@@ -26,10 +26,10 @@ public abstract class Entity {
 		bodyScheduledForDeletion = false;
 	}
 
-	public void setBody(Body body) {
+	/*public void setBody(Body body) {
 		this.body = body;
 		//registerBody(body); 
-	}
+	}*/
 	
 	public void setPhysics(IPhysicsEntity physics){
 		this.physics = physics;
@@ -64,9 +64,9 @@ public abstract class Entity {
 		return physics.getCenterY();
 	}
 	
-	public Body getBody(){
+	/*public Body getBody(){
 		return body;
-	}
+	}*/
 
 	// how much every unit(pixel) of radius is worth in points.
 	public abstract float getScoreWorth();

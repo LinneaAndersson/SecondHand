@@ -166,8 +166,8 @@ public class Player extends BlackHole {
 	public void moveToNeededPositionIfNecessary() {
 		if (needsToMovePosition != null) {
 			// TODO move to physics
-			getBody().setTransform(new com.badlogic.gdx.math.Vector2(needsToMovePosition.x, needsToMovePosition.y),
-					getBody().getAngle());
+			physics.getBody().setTransform(new com.badlogic.gdx.math.Vector2(needsToMovePosition.x, needsToMovePosition.y),
+					physics.getBody().getAngle());
 			needsToMovePosition = null;
 		}
 	}

@@ -96,7 +96,7 @@ public class PlayerUtil {
 
 		force.mul(3);
 
-		player.getBody().applyLinearImpulse(new com.badlogic.gdx.math.Vector2(force.x, force.y), 
+		player.getPhysics().getBody().applyLinearImpulse(new com.badlogic.gdx.math.Vector2(force.x, force.y), 
 				new com.badlogic.gdx.math.Vector2(forcePosition.x, forcePosition.y));
 
 	}
@@ -117,7 +117,7 @@ public class PlayerUtil {
 	// TODO handle by view
 	public void setRadius(final float radius) {
 		final float newRadius = player.getRadius();
-		final CircleShape shape = (CircleShape) player.getBody()
+		final CircleShape shape = (CircleShape) player.getPhysics().getBody()
 				.getFixtureList().get(0).getShape();
 		shape.setRadius(player.getRadius()
 				/ PhysicsConstants.PIXEL_TO_METER_RATIO_DEFAULT);

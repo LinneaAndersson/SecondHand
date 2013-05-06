@@ -18,6 +18,8 @@ public class GameWorld {
 	private int levelNumber;
 
 	private final PropertyChangeSupport support;
+	
+	private Vector2 cameraPosition;
 
 	public GameWorld(IPhysics physics) {
 		mPhysic = physics;
@@ -54,6 +56,18 @@ public class GameWorld {
 		this.entityManager.setEntityList(randomLevelGenerator.entityList);
 		this.entityManager.setEnemyList(randomLevelGenerator.enemyList);
 
+	}
+	
+	public float getCameraX(){
+		return cameraPosition.x;
+	}
+	
+	public float getCameraY(){
+		return cameraPosition.y;
+	}
+	
+	public void setCameraPos(float posX, float posY){
+		cameraPosition = new Vector2(posX, posY);
 	}
 
 	public int getLevelNumber() {

@@ -21,6 +21,11 @@ public class Enemy extends BlackHole {
 		// makes the enemy move much smother
 		//This does not work, why??
 		//physics.setLinearDamping(1.2f);
+		
+		// The problem is that this method is called in the
+		// constructor. The body hasn't yet been initialized!
+		// to solve the problem the method need to be called elsewhere
+		// at a later time. 
 		MyDebug.d("is it null in Enemy" + level.getPhysics());
 	}
 

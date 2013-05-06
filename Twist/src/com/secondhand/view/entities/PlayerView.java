@@ -17,7 +17,7 @@ public class PlayerView extends BlackHoleView {
 	@Override
 	public void propertyChange(final PropertyChangeEvent event) {
 		final String propertyName = event.getPropertyName();
-		//final Player player =  (Player) getEntity();
+		final Player player =  (Player) getEntity();
 		
 		if(propertyName.equalsIgnoreCase("Radius")){
 			changeSize();

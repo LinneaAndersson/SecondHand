@@ -1,26 +1,30 @@
 package com.secondhand.view.physics;
 
 import org.anddev.andengine.entity.shape.IShape;
-import org.anddev.andengine.entity.shape.RectangularShape;
 import org.anddev.andengine.extension.physics.box2d.PhysicsConnector;
-import org.anddev.andengine.extension.physics.box2d.PhysicsFactory;
 import org.anddev.andengine.extension.physics.box2d.PhysicsWorld;
 
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
-import com.badlogic.gdx.physics.box2d.BodyDef.BodyType;
 import com.secondhand.debug.MyDebug;
-import com.secondhand.model.*;
-import com.secondhand.view.opengl.Circle;
-import com.secondhand.view.opengl.Polygon;
+import com.secondhand.model.Entity;
+import com.secondhand.model.IPhysicsEntity;
 
 public class MyPhysicsEntity implements IPhysicsEntity{
 	private Body body;
 	private PhysicsWorld physicsWorld;
 	private PhysicsConnector physicsConnector;
 	
-	public MyPhysicsEntity(PhysicsWorld physicsWorld){
+	public MyPhysicsEntity(PhysicsWorld physicsWorld, final Entity entity , final IShape shape,
+			Body body){
 		this.physicsWorld = physicsWorld;
+		
+		body.setUserData(entity);
+		physicsConnector = new CustomPhysicsConnector(shape, entity.isCircle(),
+				body, true, entity.getRotation());
+		physicsWorld.registerPhysicsConnector(physicsConnector);
+		
+	
 	}
 	
 	// TODO andengine or box2d coordinates?
@@ -33,14 +37,11 @@ public class MyPhysicsEntity implements IPhysicsEntity{
 		public float getCenterY() {
 			return body.getWorldCenter().y;
 		}
-		
+		/*
 		@Override
 		public void registerBody(final Entity entity, final Body body, final IShape shape) {
-			body.setUserData(entity);
-			physicsConnector = new CustomPhysicsConnector(shape, entity.isCircle(),
-					body, true, entity.getRotation());
-			physicsWorld.registerPhysicsConnector(physicsConnector);
-		}
+			
+		}*/
 		
 		// andEngine or box2d coordinates in? and depending on from
 		// where we call the method we could perhaps have an vector as input.
@@ -79,6 +80,7 @@ public class MyPhysicsEntity implements IPhysicsEntity{
 			MyDebug.i(physicsConnector.getBody() + " destruction complete");
 		}
 		
+		/*
 		@Override
 		public Body createType(final IShape shape, final Entity entity) {
 			MyDebug.d("in createtype in Myphysics...");
@@ -107,7 +109,7 @@ public class MyPhysicsEntity implements IPhysicsEntity{
 			registerBody(entity, body, shape);
 
 			return body;
-		}
+		}*/
 		
 		@Override
 		public Body getBody(){

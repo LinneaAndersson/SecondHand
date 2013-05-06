@@ -63,8 +63,7 @@ public class GamePlayScene extends GameScene{
 		
 		final float width = gameWorld.getLevelWidth();
 		final float height = gameWorld.getLevelHeight();
-		new BlackHoleView(gameWorld.getPlayer());
-
+		
 		// TODO: get this background to work.
 		/*
 		 * final List<TextureRegion> starsTextures = new

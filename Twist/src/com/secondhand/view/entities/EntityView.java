@@ -6,7 +6,12 @@ import org.anddev.andengine.entity.shape.IShape;
 import org.anddev.andengine.extension.physics.box2d.PhysicsWorld;
 
 import com.badlogic.gdx.physics.box2d.Body;
+import com.badlogic.gdx.physics.box2d.FixtureDef;
+import com.secondhand.model.CircleEntity;
 import com.secondhand.model.Entity;
+import com.secondhand.view.opengl.Circle;
+import com.secondhand.view.physics.CustomPhysicsConnector;
+import com.secondhand.view.physics.MyPhysicsEntity;
 
 public abstract class EntityView implements PropertyChangeListener {
 	private final IShape shape;
@@ -14,16 +19,18 @@ public abstract class EntityView implements PropertyChangeListener {
 	private final Entity entity;
 	private final Body body;
 	
-	public EntityView(final Entity entity, final IShape shape){
+	public EntityView(final PhysicsWorld physicsWorld, final Entity entity , final IShape shape,
+			Body body){
 		this.shape=shape;
 		this.entity = entity;
 		entity.addPropertyChangeListener(this);
+		this.body = body;
 		
-		entity.setPhysics(physics);
-		
-		//Will be here later
-		//if(this instanceof EnemyView)
-		//body=entity.getPhysics().createType(shape,entity);
+		entity.setPhysics(	new MyPhysicsEntity(physicsWorld, entity, shape, body));
+	}
+	
+	public Body getBody() {
+		return this.body;
 	}
 	
 	public Entity getEntity() {

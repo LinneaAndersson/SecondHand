@@ -4,7 +4,7 @@ import java.beans.PropertyChangeEvent;
 
 import com.secondhand.model.Entity;
 import com.secondhand.view.opengl.Circle;
-
+*/
 public class PlanetView extends EntityView {
 
 	public PlanetView(final Entity entity) {
@@ -16,4 +16,4 @@ public class PlanetView extends EntityView {
 		
 	}
 
-}
+}*/

@@ -13,14 +13,13 @@ import com.secondhand.model.CircleEntity;
 import com.secondhand.view.opengl.Circle;
 
 public class CircleView extends EntityView {
-
 	
-	public static Body createCircleBody(final PhysicsWorld pPhysicsWorld, final IShape pShape, final BodyType pBodyType, final FixtureDef pFixtureDef) {
-
+	public CircleView(final PhysicsWorld physicsWorld, final CircleEntity circleEntity , final Circle circle,
+			final FixtureDef fixtureDef) {
 	
-	public CircleView(final PhysicsWorld physicsWorld, final CircleEntity circleEntity , final Circle circle) {
-	
-		super(PhysicsFactory.createCircleBody(physicsWorld, circle, ));
+		super(physicsWorld, circleEntity, circle,
+				PhysicsFactory.createCircleBody(physicsWorld,
+						circle.getX(), circle.getY(), circle.getRadius(),circle.getRotation(), BodyType.DynamicBody, fixtureDef));
 	}
 
 	@Override

@@ -2,13 +2,13 @@ package com.secondhand.view.entities;
 
 import java.beans.PropertyChangeEvent;
 
-import org.anddev.andengine.extension.physics.box2d.PhysicsFactory;
 import org.anddev.andengine.extension.physics.box2d.PhysicsWorld;
 import org.anddev.andengine.extension.physics.box2d.util.constants.PhysicsConstants;
 
 import com.badlogic.gdx.physics.box2d.CircleShape;
 import com.secondhand.model.BlackHole;
 import com.secondhand.view.opengl.Circle;
+import com.secondhand.view.physics.FixtureDefs;
 
 public class BlackHoleView extends CircleView {
 
@@ -16,6 +16,8 @@ public class BlackHoleView extends CircleView {
 
 	public BlackHoleView(final PhysicsWorld physicsWorld,
 			final BlackHole blackHole) {
+		super(physicsWorld, blackHole, new Circle(blackHole.getCenterX(), blackHole.getCenterY(), blackHole.getRadius()),
+				FixtureDefs.BLACK_HOLE_FIXTURE_DEF);
 
 		mBlackHole = blackHole;
 	}

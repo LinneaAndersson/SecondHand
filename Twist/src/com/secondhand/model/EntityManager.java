@@ -13,8 +13,7 @@ public class EntityManager {
 	private List<Entity> entityList;
 	private List<Enemy> enemyList;
 	private final Stack<Entity> scheduledForDeletionEntities;
-	PropertyChangeSupport pcs;
-	
+
 	private final Player player;
 	
 	public EntityManager(final Player player) {
@@ -27,7 +26,6 @@ public class EntityManager {
 	
 	public void setEntityList(final List<Entity> entityList) {
 		this.entityList = entityList;
-		pcs.firePropertyChange("newEntitylist", 0, entityList);
 	}
 	
 	public void setEnemyList(final List<Enemy> enemyList) {
@@ -82,8 +80,4 @@ public class EntityManager {
 		}
 	}
 	
-	//the listener will et physics to the new Entity
-	public void addPropertyChangeListener(PropertyChangeListener listener){
-		pcs.addPropertyChangeListener(listener);
-	}
 }

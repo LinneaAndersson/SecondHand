@@ -81,6 +81,7 @@ public class MyPhysicsEntity implements IPhysicsEntity{
 		
 		@Override
 		public Body createType(final IShape shape, final Entity entity) {
+			MyDebug.d("in createtype in Myphysics...");
 			if (entity instanceof Obstacle) {
 				final Polygon polygon = (Polygon) shape;
 				body = MyPhysicsFactory.createPolygonBody(physicsWorld, polygon,
@@ -91,10 +92,13 @@ public class MyPhysicsEntity implements IPhysicsEntity{
 						circle.getY(), circle.getRadius(), circle.getRotation(),
 						BodyType.DynamicBody, FixtureDefs.PLANET_FIXTURE_DEF);
 			} else if (entity instanceof CircleEntity) {
+				MyDebug.d("in createtype in Myphysics...");
 				final Circle circle = (Circle) shape;
+				MyDebug.d("in createtype in Myphysics..." + circle.getX() + "    " + circle.getY() + "   " + circle.getRadius() + "    " + circle.getRotation());
 				body = PhysicsFactory.createCircleBody(physicsWorld, circle.getX(),
 						circle.getY(), circle.getRadius(), circle.getRotation(),
 						BodyType.DynamicBody, FixtureDefs.BLACK_HOLE_FIXTURE_DEF);
+				MyDebug.d("in createtype in Myphysics...");
 			} else if (entity instanceof RectangleEntity) {
 				final RectangularShape rectangle = (RectangularShape) shape;
 				body = PhysicsFactory.createCircleBody(physicsWorld, rectangle,

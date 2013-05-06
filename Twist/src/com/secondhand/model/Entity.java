@@ -7,6 +7,7 @@ import org.anddev.andengine.entity.shape.IShape;
 import org.anddev.andengine.entity.shape.Shape;
 
 import com.badlogic.gdx.physics.box2d.Body;
+import com.secondhand.debug.MyDebug;
 
 public abstract class Entity {
 
@@ -24,6 +25,7 @@ public abstract class Entity {
 		this.isEdible = isEdible;
 		this.gameWorld = level;
 		bodyScheduledForDeletion = false;
+		MyDebug.d("now we have created a entity");
 	}
 
 	/*public void setBody(Body body) {
@@ -32,8 +34,11 @@ public abstract class Entity {
 	}*/
 	
 	public void setPhysics(IPhysicsEntity physics){
+		MyDebug.d("in setPhysics");
 		this.physics = physics;
+		MyDebug.d("in setPhysics");
 		createType();
+		MyDebug.d("in setPhysics");
 	}
 	
 	public abstract void createType();

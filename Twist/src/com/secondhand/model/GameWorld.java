@@ -8,7 +8,7 @@ import com.secondhand.debug.MyDebug;
 
 public class GameWorld {
 
-	private final EntityManager entityManager;
+	private EntityManager entityManager;
 
 	private static final int STARTING_LEVEL = 2;
 
@@ -18,30 +18,37 @@ public class GameWorld {
 	private final int levelHeight;
 
 	private int levelNumber;
+	private Player player;
 
 	private final PropertyChangeSupport support;
 	
 	private Vector2 cameraPosition;
 
 	public GameWorld(final IPhysicsWorld physics) {
+		MyDebug.d("In creating GameWorld");
 		mPhysic = physics;
-		MyDebug.d("now we have created GameWorld");
+		MyDebug.d("In creating GameWorld");
 		mPhysic.setGameWorld(this);
-		
-		MyDebug.d("now we have created GameWorld");
+		MyDebug.d("In creating GameWorld");
 		support = new PropertyChangeSupport(this);
-		MyDebug.d("now we have created GameWorl" + "d");
+
+		player = new Player(new float[]{50,50},30, this);
+		this.entityManager = new EntityManager(player);
+		MyDebug.d("In creating GameWorld");
 		this.levelWidth = 1700 * 2;
-		MyDebug.d("now we have created GameWorld");
 		this.levelHeight = 1700 * 2;
-		MyDebug.d("now we have created GameWorld");
-		this.entityManager = new EntityManager(new Player(new float[]{50,50},
-				30, this));
-		MyDebug.d("now we have created GameWorld");
+	}
+	
+	//before this we have to add GamePlaySceneController as a listener and set physics to the player
+	public void generateNewLevelEntities(){
+		MyDebug.d("In generateNewLevelEntities");
+		MyDebug.d("In generateNewLevelEntities");
+		
+		MyDebug.d("In generateNewLevelEntities");
 		mPhysic.setWorldBounds(levelWidth, levelHeight);
-		MyDebug.d("now we have created GameWorld");
+		MyDebug.d("In generateNewLevelEntities");
 		generateNewLevelEntities(STARTING_LEVEL);
-MyDebug.d("now we have created GameWorld");
+		MyDebug.d("In generateNewLevelEntities");
 	}
 	
 	public PropertyChangeSupport getPropertyChangeSupport() {
@@ -59,7 +66,7 @@ MyDebug.d("now we have created GameWorld");
 		this.levelNumber = levelNumber;
 		this.entityManager.getPlayer().setMaxSize(80);
 		
-		
+		MyDebug.d("I guess its the last time");
 		final RandomLevelGenerator randomLevelGenerator = new RandomLevelGenerator(
 				this.entityManager.getPlayer(), this);
 
@@ -154,5 +161,9 @@ MyDebug.d("now we have created GameWorld");
 
 	public void updateWithTouchInput(final Vector2 v) {
 		sendTouchInput(v);
+	}
+	
+	public void addPropertyChangeListener(PropertyChangeListener listener){
+		support.addPropertyChangeListener(listener);
 	}
 }

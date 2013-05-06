@@ -1,5 +1,6 @@
 package com.secondhand.model;
 
+import java.beans.PropertyChangeSupport;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -30,34 +31,40 @@ public class RandomLevelGenerator {
 
 	private final GameWorld level;
 
+	PropertyChangeSupport pcs;
+	
 	private final World world;
 	private final Random rng;
 
 	RandomLevelGenerator(final Player player, final GameWorld level) {
-
+		MyDebug.d("first");
 		rng = new Random();
-
+		MyDebug.d("first");
 		this.levelNumber = level.getLevelNumber()-1;
 		this.level = level;
-
+		MyDebug.d("first");
 		this.levelWidth = level.getLevelWidth();
 		this.levelHeight = level.getLevelHeight();
-
+		MyDebug.d("first");
 		world = new World(this.levelWidth, this.levelHeight);
-
+		MyDebug.d("first");
 		this.player = player;
-
+		MyDebug.d("first");
 		// make sure entities are not placed on top of player
 		final World.Polygon poly = PolygonFactory.createCircle(new Vector2(
 				player.getCenterX(), player.getCenterY()), player.getRadius());
+		MyDebug.d("first");
 		world.addToWorld(poly);
+		MyDebug.d("first");
 
 		this.playerMaxSize = player.getMaxSize();
+		MyDebug.d("first");
 		this.enemyList = new ArrayList<Enemy>();
 		this.entityList = new ArrayList<Entity>();
 		// to make it easier to place out the entities.
+		MyDebug.d("first");
 		placeOutLevelEntities();
-
+		MyDebug.d("first");
 	}
 
 	private void placeOutEnemies() {

@@ -43,7 +43,6 @@ final class GamePlaySceneController extends Entity implements
 
 		// receive gameworld property change in controller.
 		gameWorld.addListener(this);
-		gameWorld.getEntityManager().addPropertyChangeListener(this);
 
 		
 		gameWorld.getPhysics().setContactListener();
@@ -107,7 +106,7 @@ final class GamePlaySceneController extends Entity implements
 
 			List <com.secondhand.model.Entity> list = (List<com.secondhand.model.Entity>) event.getNewValue();
 			for (int i = 0; i<list.size() ; i++){
-					// list.get(i).setPhysics(new MyPhysicsEntity(this.gameWorld.getPhysics()));
+					list.get(i).setPhysics(new MyPhysicsEntity(this.gamePlayScene.getPhysicsWorld()));
 			}
 
 		} else if (event.getSource().getClass() == GameWorld.class) {

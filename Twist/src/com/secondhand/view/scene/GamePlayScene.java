@@ -22,6 +22,7 @@ import com.secondhand.view.entities.EntityView;
 import com.secondhand.view.entity.FadingNotifierText;
 import com.secondhand.view.entity.ScoreLivesText;
 import com.secondhand.view.opengl.StarsBackground;
+import com.secondhand.view.physics.MyPhysicsEntity;
 import com.secondhand.view.physics.MyPhysicsWorld;
 import com.secondhand.view.resource.Sounds;
 
@@ -50,6 +51,10 @@ public class GamePlayScene extends GameScene{
 
 	public GameWorld getGameWorld() {
 		return this.gameWorld;
+	}
+	
+	public PhysicsWorld getPhysicsWorld(){
+		return this.physicsWorld;
 	}
 
 	public void registerNewLevel() {
@@ -91,18 +96,22 @@ public class GamePlayScene extends GameScene{
 	}
 
 	private void setupView() {
-
+		MyDebug.i("In setupView gameplayscene");
 		final float width = gameWorld.getLevelWidth();
 		final float height = gameWorld.getLevelHeight();
-
+		MyDebug.i("In setupView gameplayscene");
 		this.smoothCamera.setBounds(0, width, 0, height);
 		this.smoothCamera.setBoundsEnabled(true);
 		// setup the player
-
+		MyDebug.i("In setupView gameplayscene");
 		final Player player = gameWorld.getPlayer();
+		MyDebug.i("In setupView gameplayscene");
 		player.getShape().detachSelf();
+		MyDebug.i("In setupView gameplayscene");
 		attachChild(player.getShape());
+		MyDebug.i("In setupView gameplayscene");
 		engine.getCamera().setChaseEntity(player.getShape());//playerView
+		MyDebug.i("In setupView gameplayscene");
 
 		registerUpdateHandler(physicsWorld);
 
@@ -120,14 +129,21 @@ public class GamePlayScene extends GameScene{
 		MyDebug.i("creating game world");
 		
 		this.gameWorld = new GameWorld(physics);
-	
+		MyDebug.i("Done game world");
+		gameWorld.getPlayer().setPhysics(new MyPhysicsEntity(physicsWorld));
+		gameWorld.generateNewLevelEntities();
+		MyDebug.i("Done set physics for player");
 		// we'll need to be able to restore the camera when returning to the
 		// menu.
+		
 		gameWorld.setCameraPos(smoothCamera.getCenterX(),
 				smoothCamera.getCenterY());
+		MyDebug.i("done setCamera");
 
 		setupView();
+		MyDebug.i("done setupView");
 		registerNewLevel();
+		MyDebug.i("done registernewLevel");
 		// we set this as late as possible, to make sure it doesn't show up in
 		// the loading scene.
 		engine.getCamera().setHUD(hud);

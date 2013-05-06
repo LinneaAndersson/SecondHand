@@ -16,8 +16,10 @@ public interface IPhysicsEntity {
 
 	void applyImpulse(float posX, float posY, float maxSpeed);
 
+	// this does not belong in the model, remove
 	Body createType(IShape shape, Entity entity);
 
+	// this does not belong in the model, remove
 	Body getBody();
 
 	void setLinearDamping(float f);

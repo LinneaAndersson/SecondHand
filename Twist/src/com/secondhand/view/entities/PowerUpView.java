@@ -19,7 +19,7 @@ public class PowerUpView extends EntityView{
 	
 	public PowerUpView(final Engine engine, final GameWorld gameWorld) {
 		//just for now. 
-		super(new Planet(null, 0, gameWorld), new Circle(0,0,0));
+		super(null /*new Planet(null, 0, gameWorld)*/, new Circle(0,0,0));
 		this.engine = engine;
 		this.gameWorld = gameWorld;
 	}

@@ -10,7 +10,6 @@ import com.secondhand.view.opengl.Polygon;
 public abstract class PolygonEntity extends Entity {
 	
 	protected final Polygon polygon;
-	private final Body mBody;
 	
 	// polygon won't be allowed to grow.
 	private final float radius; 
@@ -19,11 +18,12 @@ public abstract class PolygonEntity extends Entity {
 	public PolygonEntity(final Polygon polygon, final boolean isEdible, final GameWorld level) {
 		super(polygon, isEdible, level);
 		
-		mBody=physics.createType(polygon, this);
-		this.setBody(mBody);
+		physics.createType(polygon, this);
+		
 		
 		this.polygon = polygon;
-		polygon.setBody(getBody());
+		//TODO move this away from here
+		polygon.setBody(physics.getBody());
 		this.radius = computeRadius(polygon.getPolygon());
 	}
 	
@@ -34,7 +34,7 @@ public abstract class PolygonEntity extends Entity {
 	
 	// TODO physics
 	public Vector2 getCenterOfMass(){
-		final Vector2 v = new Vector2(getBody().getMassData().center.x, getBody().getMassData().center.y) ;
+		final Vector2 v = new Vector2(physics.getBody().getMassData().center.x, physics.getBody().getMassData().center.y) ;
 		
 		return new Vector2(v.x * PhysicsConstants.PIXEL_TO_METER_RATIO_DEFAULT,
 				v.y * PhysicsConstants.PIXEL_TO_METER_RATIO_DEFAULT);

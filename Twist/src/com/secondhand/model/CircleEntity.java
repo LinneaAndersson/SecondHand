@@ -11,7 +11,7 @@ public abstract class CircleEntity extends Entity {
 		  super(circle,isEdible,level);
 		  
 		  // the body should be created in the view instead. 
-		  this.setBody(physics.createType(circle,this)); 
+		  physics.createType(circle,this); 
 		  //physics.createType(circle,this);
 		
 		this.circle = circle;

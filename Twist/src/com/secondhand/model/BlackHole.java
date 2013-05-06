@@ -129,7 +129,7 @@ public abstract class BlackHole extends CircleEntity {
 		// now we must also increase the size of the circle physics body
 		// TODO fire an event here instead and let the view handle
 		// increasing the size
-		final CircleShape shape = (CircleShape) getBody().getFixtureList()
+		final CircleShape shape = (CircleShape) physics.getBody().getFixtureList()
 				.get(0).getShape();
 		shape.setRadius(this.getRadius()
 				/ PhysicsConstants.PIXEL_TO_METER_RATIO_DEFAULT);

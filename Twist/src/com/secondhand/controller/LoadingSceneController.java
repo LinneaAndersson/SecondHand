@@ -65,7 +65,7 @@ class LoadingSceneController extends Entity {
 				
 			
 				// find some better place to register this.
-				sceneController.getSceneManager().getGamePlayScene().setPhysics(new Physics());
+				//sceneController.getSceneManager().getGamePlayScene().setPhysics(new Physics());
 				
 				// preoload gameplay scene. 
 				sceneController.getSceneManager().getScene(AllScenes.GAME_PLAY_SCENE).loadScene();

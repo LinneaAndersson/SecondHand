@@ -35,9 +35,9 @@ public class GamePlayScene extends GameScene{
 	
 	private Physics physics;
 	
-	public void setPhysics(final Physics physics) {
+	/*public void setPhysics(final Physics physics) {
 		this.physics = physics;
-	}
+	}*/
 
 	public GamePlayScene(final Engine engine, final Context context) {
 		super(engine, context);

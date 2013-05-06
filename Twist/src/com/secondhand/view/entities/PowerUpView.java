@@ -11,7 +11,7 @@ import com.secondhand.model.Planet;
 import com.secondhand.model.Player;
 import com.secondhand.model.powerup.PowerUp;
 import com.secondhand.view.opengl.Circle;
-
+/*
 public class PowerUpView extends EntityView{
 
 	private final Engine engine;
@@ -19,7 +19,7 @@ public class PowerUpView extends EntityView{
 	
 	public PowerUpView(final Engine engine, final GameWorld gameWorld) {
 		//just for now. 
-		super(null /*new Planet(null, 0, gameWorld)*/, new Circle(0,0,0));
+		super(null , new Circle(0,0,0));
 		this.engine = engine;
 		this.gameWorld = gameWorld;
 	}
@@ -31,9 +31,9 @@ public class PowerUpView extends EntityView{
 			public void onTimePassed(final TimerHandler pTimerHandler) {
 				if (user.getPowerUps().contains(powerUp))
 					user.removePowerUp(powerUp);
-				/*if (!powerUp.hasAnother(player)) {
+				//if (!powerUp.hasAnother(player)) {
 					// TODO: Unattach the powerups texture from player (ex: shield makes the player glow)
-				}*/
+				//}
 			}
 		});
 	}
@@ -46,10 +46,10 @@ public class PowerUpView extends EntityView{
 			final Player player = gameWorld.getPlayer();
 			final PowerUp powerUp = ((PowerUp) event.getNewValue());
 			engine.registerUpdateHandler(createTimer(player, powerUp));
-/*	
+//	
 			if (!powerUp.hasAnother(player)) {
 				// TODO: Attach the powerups texture to player (ex: shield makes the player glow)
-			}*/
+			//}
 			
 			// TODO: Implement floating text here
 //			if (powerUp.hasText()) {
@@ -59,3 +59,4 @@ public class PowerUpView extends EntityView{
 	}
 	
 }
+*/

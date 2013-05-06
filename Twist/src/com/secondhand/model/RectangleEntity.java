@@ -23,8 +23,8 @@ public abstract class RectangleEntity extends Entity {
 	
 	@Override
 	public void createType(){
-		physics.createType(rectangle, this);
-	}
+		//physics.createType(rectangle, this);
+	}	
 	
 	@Override
 	public boolean isCircle(){

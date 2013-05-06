@@ -26,9 +26,7 @@ public abstract class CircleEntity extends Entity {
 	
 	@Override
 	public void createType(){
-		//physics.createType(circle,this);
 		MyDebug.d("creating playerType" + physics);
-		physics.createType(circle,this); 
 		  MyDebug.d("Now we have created playerType");
 	}
 	

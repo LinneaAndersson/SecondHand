@@ -19,6 +19,7 @@ import com.secondhand.model.IPhysicsWorld;
 import com.secondhand.model.Player;
 import com.secondhand.view.entities.BlackHoleView;
 import com.secondhand.view.entities.EntityView;
+import com.secondhand.view.entities.PlayerView;
 import com.secondhand.view.entity.FadingNotifierText;
 import com.secondhand.view.entity.ScoreLivesText;
 import com.secondhand.view.opengl.StarsBackground;
@@ -80,7 +81,7 @@ public class GamePlayScene extends GameScene{
 
 		this.smoothCamera.setBounds(0, width, 0, height);
 
-		for (final Entity entity : gameWorld.getEntityManager().getEntityList()) {
+		/*for (final Entity entity : gameWorld.getEntityManager().getEntityList()) {
 			if (!entity.getShape().hasParent()){
 				
 				if(entity instanceof BlackHole){
@@ -90,7 +91,7 @@ public class GamePlayScene extends GameScene{
 				
 				attachChild(entity.getShape());
 			}
-		}
+		}*/
 	}
 
 	private void setupView() {
@@ -104,7 +105,8 @@ public class GamePlayScene extends GameScene{
 		
 		
 		// create player view.
-		gameWorld.getPlayer().setPhysics(new MyPhysicsEntity(physicsWorld));
+		new PlayerView(physicsWorld, gameWorld.getPlayer());
+		//gameWorld.getPlayer().setPhysics(new MyPhysicsEntity(physicsWorld));
 		
 		MyDebug.i("In setupView gameplayscene");
 		final Player player = gameWorld.getPlayer();

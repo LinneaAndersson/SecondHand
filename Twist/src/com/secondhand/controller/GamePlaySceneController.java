@@ -103,11 +103,11 @@ final class GamePlaySceneController extends Entity implements
 	public void propertyChange(final PropertyChangeEvent event) {
 		final String eventName = event.getPropertyName();
 		if (event.getSource().getClass() == EntityManager.class) {
-
+/*
 			List <com.secondhand.model.Entity> list = (List<com.secondhand.model.Entity>) event.getNewValue();
 			for (int i = 0; i<list.size() ; i++){
 					list.get(i).setPhysics(new MyPhysicsEntity(this.gamePlayScene.getPhysicsWorld()));
-			}
+			}*/
 
 		} else if (event.getSource().getClass() == GameWorld.class) {
 

@@ -30,7 +30,6 @@ public abstract class PolygonEntity extends Entity {
 	}
 	
 	public void createType(){
-		physics.createType(polygon, this);
 		polygon.setBody(physics.getBody());
 		this.radius = computeRadius(polygon.getPolygon());
 	}

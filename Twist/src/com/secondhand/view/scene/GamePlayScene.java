@@ -61,7 +61,6 @@ public class GamePlayScene extends GameScene{
 		
 		entityViewList = new ArrayList();
 		
-
 		final float width = gameWorld.getLevelWidth();
 		final float height = gameWorld.getLevelHeight();
 		new BlackHoleView(gameWorld.getPlayer());
@@ -146,8 +145,6 @@ public class GamePlayScene extends GameScene{
 		MyDebug.i("done setupView");
 		registerNewLevel();
 		MyDebug.i("done registernewLevel");
-		// we set this as late as possible, to make sure it doesn't show up in
-		// the loading scene.
 		engine.getCamera().setHUD(hud);
 
 	}

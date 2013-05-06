@@ -1,7 +1,5 @@
 package com.secondhand.model;
 
-import java.beans.PropertyChangeListener;
-import java.beans.PropertyChangeSupport;
 import java.util.List;
 import java.util.Stack;
 

@@ -60,6 +60,7 @@ public class PlayerUtil {
 		}
 	}
 
+	// TODO need to sync this with physics
 	public void reachToTouch(final Vector2 touch) {
 		Vector2 forcePosition;
 
@@ -95,7 +96,7 @@ public class PlayerUtil {
 
 		force.mul(3);
 
-		player.getPhysics().getBody().applyLinearImpulse(new com.badlogic.gdx.math.Vector2(force.x, force.y), 
+		player.getBody().applyLinearImpulse(new com.badlogic.gdx.math.Vector2(force.x, force.y), 
 				new com.badlogic.gdx.math.Vector2(forcePosition.x, forcePosition.y));
 
 	}
@@ -113,9 +114,10 @@ public class PlayerUtil {
 		sceneSupport.firePropertyChange(name, oldValue, newValue);
 	}
 
+	// TODO handle by view
 	public void setRadius(final float radius) {
 		final float newRadius = player.getRadius();
-		final CircleShape shape = (CircleShape) player.getPhysics().getBody()
+		final CircleShape shape = (CircleShape) player.getBody()
 				.getFixtureList().get(0).getShape();
 		shape.setRadius(player.getRadius()
 				/ PhysicsConstants.PIXEL_TO_METER_RATIO_DEFAULT);

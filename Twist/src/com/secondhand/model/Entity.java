@@ -34,9 +34,9 @@ public abstract class Entity {
 
 	public abstract boolean isCircle();
 
-	/*public Body getBody() {
+	public Body getBody() {
 		return body;
-	}*/
+	}
 
 	public IShape getShape() {
 		return shape;
@@ -83,7 +83,7 @@ public abstract class Entity {
 
 	}
 
-	// detaching should be done by view
+	// TODO detaching should be done by view
 	public void destroyEntity() {
 
 		// we can't remove the body within a contact listener

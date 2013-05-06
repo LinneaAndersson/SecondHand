@@ -10,7 +10,7 @@ public abstract class RectangleEntity extends Entity {
 	public RectangleEntity(final RectangularShape rectangle, final boolean isEdible, final GameWorld level) {
 		super(rectangle, isEdible, level);
 		
-		physics.createType(rectangle, this);
+		
 		
 		this.rectangle = rectangle;
 	}
@@ -19,6 +19,11 @@ public abstract class RectangleEntity extends Entity {
 	public float getRadius() {
 		// because don't really use this method for rectangles entities at all.
 		return 0;
+	}
+	
+	@Override
+	public void createType(){
+		physics.createType(rectangle, this);
 	}
 	
 	@Override

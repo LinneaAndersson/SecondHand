@@ -33,7 +33,10 @@ public abstract class Entity {
 	
 	public void setPhysics(IPhysicsEntity physics){
 		this.physics = physics;
+		createType();
 	}
+	
+	public abstract void createType();
 
 	public abstract boolean isCircle();
 

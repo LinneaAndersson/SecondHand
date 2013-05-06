@@ -5,6 +5,8 @@ import java.beans.PropertyChangeSupport;
 import java.util.List;
 import java.util.Stack;
 
+import com.secondhand.debug.MyDebug;
+
 // Manages all the entities of the GameWorld
 public class EntityManager {
 	
@@ -16,8 +18,11 @@ public class EntityManager {
 	private final Player player;
 	
 	public EntityManager(final Player player) {
+		MyDebug.d("now we are creating EntityManager");
 		this.scheduledForDeletionEntities = new Stack<Entity>();
+		MyDebug.d("now we are creating EntityManager");
 		this.player = player;
+		MyDebug.d("now we are creating EntityManager");
 	}
 	
 	public void setEntityList(final List<Entity> entityList) {

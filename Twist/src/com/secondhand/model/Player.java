@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.anddev.andengine.extension.physics.box2d.util.constants.PhysicsConstants;
 
+import com.secondhand.debug.MyDebug;
 import com.secondhand.model.powerup.PowerUp;
 
 public class Player extends BlackHole {
@@ -44,10 +45,15 @@ public class Player extends BlackHole {
 			final GameWorld gameWorld, final int startingLives,
 			final int startingScore) {
 		super(position, radius, gameWorld, PLAYER_MAX_SPEED, startingScore);
+		MyDebug.d("Nw we create Player");
 		this.lives = startingLives;
+		MyDebug.d("Nw we create Player");
 		this.scoreMultiplier = 1;
+		MyDebug.d("Nw we create Player");
 		util = new PlayerUtil(this);
+		MyDebug.d("Nw we create Player");
 		powerUpList = util.getPowerUpList();
+		MyDebug.d("Nw we create Player");
 
 	}
 

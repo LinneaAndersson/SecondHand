@@ -5,6 +5,7 @@ package com.secondhand.model;
 import org.anddev.andengine.extension.physics.box2d.util.constants.PhysicsConstants;
 
 import com.badlogic.gdx.physics.box2d.CircleShape;
+import com.secondhand.debug.MyDebug;
 import com.secondhand.model.powerup.PowerUp;
 import com.secondhand.view.opengl.Circle;
 
@@ -29,6 +30,7 @@ public abstract class BlackHole extends CircleEntity {
 			final float maxSpeed, final int startingScore) {
 		// TODO load texture instead of creating Circle
 		super(new Circle(position[0], position[1], radius), true, level);
+		MyDebug.d("now we create BlackHole");
 		this.position = position;
 		this.maxSpeed = maxSpeed;
 		this.score = startingScore;

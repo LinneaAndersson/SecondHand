@@ -3,6 +3,8 @@ package com.secondhand.model;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 
+import com.secondhand.debug.MyDebug;
+
 
 public class GameWorld {
 
@@ -23,15 +25,23 @@ public class GameWorld {
 
 	public GameWorld(final IPhysicsWorld physics) {
 		mPhysic = physics;
+		MyDebug.d("now we have created GameWorld");
 		mPhysic.setGameWorld(this);
+		
+		MyDebug.d("now we have created GameWorld");
 		support = new PropertyChangeSupport(this);
+		MyDebug.d("now we have created GameWorl" + "d");
 		this.levelWidth = 1700 * 2;
+		MyDebug.d("now we have created GameWorld");
 		this.levelHeight = 1700 * 2;
+		MyDebug.d("now we have created GameWorld");
 		this.entityManager = new EntityManager(new Player(new float[]{50,50},
 				30, this));
-
+		MyDebug.d("now we have created GameWorld");
 		mPhysic.setWorldBounds(levelWidth, levelHeight);
+		MyDebug.d("now we have created GameWorld");
 		generateNewLevelEntities(STARTING_LEVEL);
+MyDebug.d("now we have created GameWorld");
 	}
 	
 	public PropertyChangeSupport getPropertyChangeSupport() {

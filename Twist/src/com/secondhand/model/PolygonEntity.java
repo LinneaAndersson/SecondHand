@@ -12,24 +12,28 @@ public abstract class PolygonEntity extends Entity {
 	protected final Polygon polygon;
 	
 	// polygon won't be allowed to grow.
-	private final float radius; 
+	private float radius; 
 	
 	
 	public PolygonEntity(final Polygon polygon, final boolean isEdible, final GameWorld level) {
 		super(polygon, isEdible, level);
 		
-		physics.createType(polygon, this);
 		
 		
 		this.polygon = polygon;
 		//TODO move this away from here
-		polygon.setBody(physics.getBody());
-		this.radius = computeRadius(polygon.getPolygon());
+		
 	}
 	
 	@Override
 	public boolean isCircle(){
 		return false;
+	}
+	
+	public void createType(){
+		physics.createType(polygon, this);
+		polygon.setBody(physics.getBody());
+		this.radius = computeRadius(polygon.getPolygon());
 	}
 	
 	// TODO physics

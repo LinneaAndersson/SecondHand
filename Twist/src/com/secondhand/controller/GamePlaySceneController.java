@@ -7,6 +7,7 @@ import java.util.List;
 import org.anddev.andengine.entity.Entity;
 import org.anddev.andengine.entity.scene.Scene;
 import org.anddev.andengine.entity.scene.Scene.IOnSceneTouchListener;
+import org.anddev.andengine.extension.physics.box2d.PhysicsWorld;
 import org.anddev.andengine.input.touch.TouchEvent;
 
 import com.secondhand.debug.MyDebug;
@@ -15,7 +16,7 @@ import com.secondhand.model.GameWorld;
 import com.secondhand.model.Player;
 import com.secondhand.model.Vector2;
 import com.secondhand.model.resource.HighScoreList;
-import com.secondhand.view.physics.Physics;
+import com.secondhand.view.physics.MyPhysicsEntity;
 import com.secondhand.view.scene.AllScenes;
 import com.secondhand.view.scene.GamePlayScene;
 
@@ -27,6 +28,7 @@ final class GamePlaySceneController extends Entity  implements PropertyChangeLis
 
 	public GamePlaySceneController(final GamePlayScene scene, final SceneController sceneController) {
 		super();
+		
 		this.gamePlayScene = scene;
 		this.sceneController = sceneController;
 
@@ -100,9 +102,9 @@ final class GamePlaySceneController extends Entity  implements PropertyChangeLis
 		final String eventName = event.getPropertyName();
 		if(event.getSource().getClass()==EntityManager.class){
 
-			List <Entity> list = (List<Entity>) event.getNewValue();
+			List <com.secondhand.model.Entity> list = (List<com.secondhand.model.Entity>) event.getNewValue();
 			for (int i = 0; i<list.size() ; i++){
-				 list.get(i)).setPhysics(new Physics());
+					 list.get(i).setPhysics(new MyPhysicsEntity());
 			}
 		
 		} else if (event.getSource().getClass()==GameWorld.class){

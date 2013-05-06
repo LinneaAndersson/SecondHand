@@ -31,7 +31,7 @@ public class RandomTeleport extends PowerUp {
 			x = rng.nextInt(gameWorld.getLevelWidth());
 			y = rng.nextInt(gameWorld.getLevelHeight());
 			
-			if(physics.isAreaUnOccupied(x, y, r))
+			if(this.gameWorld.getPhysics().isAreaUnOccupied(x, y, r))
 				break;
 		}
 			

@@ -20,7 +20,7 @@ import com.secondhand.view.entities.EntityView;
 import com.secondhand.view.entity.FadingNotifierText;
 import com.secondhand.view.entity.ScoreLivesText;
 import com.secondhand.view.opengl.StarsBackground;
-import com.secondhand.view.physics.Physics;
+import com.secondhand.view.physics.MyPhysicsWorld;
 import com.secondhand.view.resource.Sounds;
 
 public class GamePlayScene extends GameScene{
@@ -33,7 +33,7 @@ public class GamePlayScene extends GameScene{
 
 	private GameWorld gameWorld;
 	
-	private Physics physics;
+	private MyPhysicsWorld physics;
 	
 	/*public void setPhysics(final Physics physics) {
 		this.physics = physics;

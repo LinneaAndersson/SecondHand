@@ -10,7 +10,7 @@ public class GameWorld {
 
 	private static final int STARTING_LEVEL = 2;
 
-	private final IPhysics mPhysic;
+	private final IPhysicsWorld mPhysic;
 
 	private final int levelWidth;
 	private final int levelHeight;
@@ -21,7 +21,7 @@ public class GameWorld {
 	
 	private Vector2 cameraPosition;
 
-	public GameWorld(final IPhysics physics) {
+	public GameWorld(final IPhysicsWorld physics) {
 		mPhysic = physics;
 		mPhysic.setGameWorld(this);
 		support = new PropertyChangeSupport(this);
@@ -74,7 +74,7 @@ public class GameWorld {
 		return levelNumber;
 	}
 
-	public IPhysics getPhysics(){
+	public IPhysicsWorld getPhysics(){
 		return mPhysic;
 	}
 	

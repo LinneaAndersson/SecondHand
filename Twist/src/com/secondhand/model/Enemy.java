@@ -90,7 +90,7 @@ public class Enemy extends BlackHole {
 		// TODO change the null-check to something nicer
 		if (entity != null) {
 
-			if (physics.isStraightLine(entity, this)) {
+			if (this.gameWorld.getPhysics().isStraightLine(entity, this)) {
 				// MyDebug.d("Enemy: applyMovement towards " +
 				// entity.getClass());
 				// closeToDanger();

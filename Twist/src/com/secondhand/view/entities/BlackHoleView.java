@@ -5,7 +5,7 @@ import java.beans.PropertyChangeEvent;
 import org.anddev.andengine.extension.physics.box2d.util.constants.PhysicsConstants;
 
 import com.badlogic.gdx.physics.box2d.CircleShape;
-import com.secondhand.model.IPhysics;
+import com.secondhand.model.IPhysicsWorld;
 import com.secondhand.debug.MyDebug;
 import com.secondhand.model.BlackHole;
 import com.secondhand.view.opengl.Circle;

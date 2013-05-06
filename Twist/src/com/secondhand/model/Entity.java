@@ -13,7 +13,7 @@ public abstract class Entity {
 	private Body body;
 	private IShape shape;
 	private boolean isEdible;
-	protected IPhysics physics;
+	protected IPhysicsEntity physics;
 
 	protected final GameWorld gameWorld;
 	protected PropertyChangeSupport pcs = new PropertyChangeSupport(this);
@@ -31,7 +31,7 @@ public abstract class Entity {
 		//registerBody(body); 
 	}
 	
-	public void setPhysics(IPhysics physics){
+	public void setPhysics(IPhysicsEntity physics){
 		this.physics = physics;
 	}
 
@@ -46,7 +46,7 @@ public abstract class Entity {
 		return this.isEdible;
 	}
 	
-	public IPhysics getPhysics(){
+	public IPhysicsEntity getPhysics(){
 		return this.physics;
 	}
 

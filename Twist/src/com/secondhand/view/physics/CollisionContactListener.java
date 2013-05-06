@@ -4,14 +4,14 @@ import com.badlogic.gdx.physics.box2d.Contact;
 import com.badlogic.gdx.physics.box2d.ContactImpulse;
 import com.badlogic.gdx.physics.box2d.ContactListener;
 import com.badlogic.gdx.physics.box2d.Manifold;
-import com.secondhand.model.IPhysics;
+import com.secondhand.model.IPhysicsWorld;
 
 public final class CollisionContactListener implements ContactListener {
 
 	
-	private final IPhysics physics;
+	private final IPhysicsWorld physics;
 	
-	public CollisionContactListener(final IPhysics physics) {
+	public CollisionContactListener(final IPhysicsWorld physics) {
 		this.physics = physics;
 	}
 	

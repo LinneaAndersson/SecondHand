@@ -6,11 +6,11 @@ import com.badlogic.gdx.physics.box2d.Body;
 
 public interface IPhysicsEntity {
 	
-	public float getCenterX();
+	float getCenterX();
 	
-	public float getCenterY();
+	float getCenterY();
 	
-	public void registerBody(final Entity entity, final Body body, final IShape shape);
+	void registerBody(final Entity entity, final Body body, final IShape shape);
 	
 	void deleteBody(boolean scheduledBody);
 
@@ -20,5 +20,5 @@ public interface IPhysicsEntity {
 
 	Body getBody();
 
-	public void setLinearDamping(float f);
+	void setLinearDamping(float f);
 }

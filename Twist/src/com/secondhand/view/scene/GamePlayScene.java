@@ -106,7 +106,9 @@ public class GamePlayScene extends GameScene{
 		MyDebug.i("In setupView gameplayscene");
 		final Player player = gameWorld.getPlayer();
 		MyDebug.i("In setupView gameplayscene");
-		player.getShape().detachSelf();
+		if(player.getShape() != null) {
+			player.getShape().detachSelf();
+		}	
 		MyDebug.i("In setupView gameplayscene");
 		attachChild(player.getShape());
 		MyDebug.i("In setupView gameplayscene");

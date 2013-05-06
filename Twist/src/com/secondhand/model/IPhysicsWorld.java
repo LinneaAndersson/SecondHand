@@ -1,8 +1,6 @@
 package com.secondhand.model;
 
-import org.anddev.andengine.entity.shape.IShape;
 
-import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.Contact;
 
 public interface IPhysicsWorld {

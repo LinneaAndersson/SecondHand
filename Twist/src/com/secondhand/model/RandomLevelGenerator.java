@@ -51,6 +51,9 @@ public class RandomLevelGenerator {
 		this.player = player;
 		MyDebug.d("first");
 		// make sure entities are not placed on top of player
+		MyDebug.d("player" + player);
+		MyDebug.d("players x" + player.getCenterX());
+		MyDebug.d("players radius" + player.getRadius());
 		final World.Polygon poly = PolygonFactory.createCircle(new Vector2(
 				player.getCenterX(), player.getCenterY()), player.getRadius());
 		MyDebug.d("first");

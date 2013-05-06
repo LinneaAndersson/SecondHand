@@ -28,11 +28,11 @@ public abstract class Entity {
 	}
 
 	public void setPhysics(IPhysicsEntity physics){
-		MyDebug.d("in setPhysics");
 		this.physics = physics;
-		MyDebug.d("in setPhysics");
 		createType();
-		MyDebug.d("in setPhysics");
+		MyDebug.d("is this null?" +this.getCenterX());
+		MyDebug.d("is this null?" +this.getCenterY());
+		MyDebug.d("is this null?" +this.getRadius());
 	}
 	
 	public abstract void createType();

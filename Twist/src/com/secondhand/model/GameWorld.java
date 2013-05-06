@@ -41,15 +41,10 @@ public class GameWorld {
 	
 	//before this we have to add GamePlaySceneController as a listener and set physics to the player
 	public void generateNewLevelEntities(){
-		MyDebug.d("In generateNewLevelEntities");
-		MyDebug.d("now we have created GameWorld");
-		this.entityManager = new EntityManager(new Player(new Vector2(50,50),
-				30, this));
-		MyDebug.d("now we have created GameWorld");
+		this.entityManager = new EntityManager(player);
 		mPhysic.setWorldBounds(levelWidth, levelHeight);
-		MyDebug.d("In generateNewLevelEntities");
 		generateNewLevelEntities(STARTING_LEVEL);
-		MyDebug.d("In generateNewLevelEntities");
+		
 	}
 	
 	public PropertyChangeSupport getPropertyChangeSupport() {
@@ -73,6 +68,7 @@ public class GameWorld {
 
 		this.entityManager.setEntityList(randomLevelGenerator.entityList);
 		this.entityManager.setEnemyList(randomLevelGenerator.enemyList);
+		MyDebug.d("done generateNewLevelEntities");
 
 	}
 	

@@ -114,6 +114,13 @@ public class Enemy extends BlackHole {
 
 	}
 
+	private void stopMovement() {
+		pcs.firePropertyChange("stopMovement", 0, 0);
+		//this.getBody().setLinearVelocity(new Vector2());
+		this.getBody().setAngularVelocity(0);
+
+	}
+
 	public void retreat(final Entity danger) {
 		MyDebug.d("Enemy: Retreat");
 

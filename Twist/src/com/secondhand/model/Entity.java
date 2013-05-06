@@ -34,9 +34,9 @@ public abstract class Entity {
 
 	public abstract boolean isCircle();
 
-	/*public Body getBody() {
+	public Body getBody() {
 		return body;
-	}*/
+	}
 
 	public IShape getShape() {
 		return shape;
@@ -63,6 +63,10 @@ public abstract class Entity {
 	public float getCenterY() {
 		return physics.getCenterY();
 	}
+	
+	public Body getBody(){
+		return body;
+	}
 
 	// how much every unit(pixel) of radius is worth in points.
 	public abstract float getScoreWorth();
@@ -73,14 +77,13 @@ public abstract class Entity {
 
 	// remove this entity from andengine rendering and the physics world.
 	private void removeEntity() {
-
 		this.gameWorld.getEntityManager().removeEntityFromList(this);
 
 		destroyEntity();
 
 	}
 
-	// detaching should be done by view
+	// TODO detaching should be done by view
 	public void destroyEntity() {
 
 		// we can't remove the body within a contact listener
@@ -98,6 +101,10 @@ public abstract class Entity {
 	}
 
 	private void scheduleBodyForDeletion() {
+		//pcs.firePropertyChange(propertyName, oldValue, newValue)
+		
+		//physics.setConnector(this.getShape());
+		
 
 		this.gameWorld.getEntityManager().scheduleEntityForDeletion(this);
 

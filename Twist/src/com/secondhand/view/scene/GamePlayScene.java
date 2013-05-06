@@ -76,8 +76,8 @@ public class GamePlayScene extends GameScene{
 			if (!entity.getShape().hasParent()){
 				
 				if(entity instanceof BlackHole){
-				entityViewList.add(new BlackHoleView((BlackHole) entity));
-				MyDebug.d("new BlackHOleView created!");
+				//entityViewList.add(new BlackHoleView((BlackHole) entity));
+				//MyDebug.d("new BlackHOleView created!");
 				}
 				
 				attachChild(entity.getShape());

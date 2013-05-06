@@ -2,21 +2,21 @@ package com.secondhand.view.entities;
 
 import java.beans.PropertyChangeEvent;
 
+import org.anddev.andengine.extension.physics.box2d.PhysicsFactory;
+import org.anddev.andengine.extension.physics.box2d.PhysicsWorld;
 import org.anddev.andengine.extension.physics.box2d.util.constants.PhysicsConstants;
 
 import com.badlogic.gdx.physics.box2d.CircleShape;
-import com.secondhand.model.IPhysicsWorld;
-import com.secondhand.debug.MyDebug;
 import com.secondhand.model.BlackHole;
 import com.secondhand.view.opengl.Circle;
 
-public class BlackHoleView extends EntityView {
+public class BlackHoleView extends CircleView {
 
 	private final BlackHole mBlackHole;
 
-	public BlackHoleView(final BlackHole blackHole) {
-		super(blackHole, new Circle(blackHole.getPosX(), blackHole.getPosY(),
-				blackHole.getRadius()));
+	public BlackHoleView(final PhysicsWorld physicsWorld,
+			final BlackHole blackHole) {
+
 		mBlackHole = blackHole;
 	}
 
@@ -34,12 +34,11 @@ public class BlackHoleView extends EntityView {
 	}
 
 	@Override
-	public void propertyChange(PropertyChangeEvent event) {
+	public void propertyChange(final PropertyChangeEvent event) {
 		if (event.getPropertyName().equalsIgnoreCase("radius")) {
 			changeSize();
 		} else if(event.getPropertyName().equalsIgnoreCase("move")){
 			//mBlackHole.getPhysics().applyImpulse(getBody(), (Float)event.getOldValue(), (Float)event.getNewValue(), mBlackHole.getMaxSpeed());
 		}
 	}
-
 }

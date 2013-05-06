@@ -102,6 +102,11 @@ public class GamePlayScene extends GameScene{
 		this.smoothCamera.setBounds(0, width, 0, height);
 		this.smoothCamera.setBoundsEnabled(true);
 		// setup the player
+		
+		
+		// create player view.
+		gameWorld.getPlayer().setPhysics(new MyPhysicsEntity(physicsWorld));
+		
 		MyDebug.i("In setupView gameplayscene");
 		final Player player = gameWorld.getPlayer();
 		MyDebug.i("In setupView gameplayscene");
@@ -131,7 +136,6 @@ public class GamePlayScene extends GameScene{
 		
 		this.gameWorld = new GameWorld(physics);
 		MyDebug.i("Done game world");
-		gameWorld.getPlayer().setPhysics(new MyPhysicsEntity(physicsWorld));
 		gameWorld.generateNewLevelEntities();
 		MyDebug.i("Done set physics for player");
 		// we'll need to be able to restore the camera when returning to the

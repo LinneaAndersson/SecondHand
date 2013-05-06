@@ -39,7 +39,6 @@ public abstract class Entity {
 
 	public abstract boolean isCircle();
 
-
 	public IShape getShape() {
 		return shape;
 	}
@@ -89,8 +88,8 @@ public abstract class Entity {
 		scheduleBodyForDeletion();
 
 		// Detach the shape from AndEngine-rendering
+		// do this from IPhysicsEntity instead.
 		getShape().detachSelf();
-
 	}
 
 	private boolean bodyScheduledForDeletion;

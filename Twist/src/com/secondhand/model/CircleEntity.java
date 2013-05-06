@@ -24,16 +24,6 @@ public abstract class CircleEntity extends Entity {
 		circle.setRadius(radius);
 	}	
 	
-	@Override
-	public float getCenterX() {
-		return this.getX();
-	}
-	
-	@Override
-	public float getCenterY() {
-		return this.getY();
-	}
-	
 	@Override 
 	public float getRadius() {
 		return circle.getRadius();

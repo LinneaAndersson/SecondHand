@@ -81,7 +81,6 @@ public abstract class Entity {
 
 	// remove this entity from andengine rendering and the physics world.
 	private void removeEntity() {
-
 		this.gameWorld.getEntityManager().removeEntityFromList(this);
 
 		destroyEntity();
@@ -106,7 +105,11 @@ public abstract class Entity {
 	}
 
 	private void scheduleBodyForDeletion() {
+
+		//pcs.firePropertyChange(propertyName, oldValue, newValue)
+		
 		physics.setConnector(this.getShape());
+		
 
 		this.gameWorld.getEntityManager().scheduleEntityForDeletion(this);
 

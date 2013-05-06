@@ -90,6 +90,7 @@ public abstract class BlackHole extends CircleEntity {
 	
 	// moves in the specified direction. If max speed is reached, then no movement is performed.
 	public void move(final float posX, final float posY) {
+		pcs.firePropertyChange("move", (int)posX, (int)posY);
 		physics.applyImpulse(getBody(), posX, posY, maxSpeed);
 	}
 

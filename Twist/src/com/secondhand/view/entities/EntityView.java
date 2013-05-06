@@ -20,7 +20,8 @@ public abstract class EntityView implements PropertyChangeListener {
 		entity.addPropertyChangeListener(this);
 		
 		//Will be here later
-		//body=entity.getPhysics().createType(shape,entity);
+		if(this instanceof EnemyView)
+		body=entity.getPhysics().createType(shape,entity);
 	}
 	
 	public Entity getEntity(){

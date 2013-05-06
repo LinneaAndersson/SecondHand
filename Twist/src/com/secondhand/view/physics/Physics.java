@@ -26,7 +26,7 @@ import com.secondhand.view.opengl.Polygon;
 public class Physics implements IPhysics {
 	private PhysicsWorld physicsWorld;
 	private PhysicsConnector physicsConnector;
-	//TODO only enemy needs the util class
+	// TODO only enemy needs the util class
 	private final PhysicsEnemyUtil enemyUtil;
 	private CollisionResolver collisionResolver;
 	private final PhysicsWorldBounds bounds;
@@ -34,7 +34,7 @@ public class Physics implements IPhysics {
 	private Body body;
 
 	public Physics() {
-		
+
 		// TODO remove physicsWorld from constructor
 		// and put worldBoundries somewhere else
 		physicsWorld = new PhysicsWorld(new Vector2(), true);
@@ -78,9 +78,8 @@ public class Physics implements IPhysics {
 		bounds.removeBounds();
 	}
 
-	// @Override
-	public void registerBody(final Entity entity, final Body body,
-			final IShape shape) {
+	@Override
+	public void registerBody(final Entity entity, final Body body, final IShape shape) {
 		body.setUserData(entity);
 		physicsConnector = new CustomPhysicsConnector(shape, entity.isCircle(),
 				body, true, entity.getRotation());

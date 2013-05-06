@@ -23,7 +23,7 @@ public abstract class PolygonEntity extends Entity {
 		this.setBody(mBody);
 		
 		this.polygon = polygon;
-		polygon.setBody(physics.getBody());
+		polygon.setBody(getBody());
 		this.radius = computeRadius(polygon.getPolygon());
 	}
 	
@@ -31,9 +31,10 @@ public abstract class PolygonEntity extends Entity {
 	public boolean isCircle(){
 		return false;
 	}
-		
+	
+	// TODO physics
 	public Vector2 getCenterOfMass(){
-		final Vector2 v = new Vector2(physics.getBody().getMassData().center.x, physics.getBody().getMassData().center.y) ;
+		final Vector2 v = new Vector2(getBody().getMassData().center.x, getBody().getMassData().center.y) ;
 		
 		return new Vector2(v.x * PhysicsConstants.PIXEL_TO_METER_RATIO_DEFAULT,
 				v.y * PhysicsConstants.PIXEL_TO_METER_RATIO_DEFAULT);

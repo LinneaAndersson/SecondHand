@@ -8,20 +8,12 @@ import org.anddev.andengine.extension.physics.box2d.PhysicsWorld;
 
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
-import com.badlogic.gdx.physics.box2d.BodyDef.BodyType;
 import com.badlogic.gdx.physics.box2d.Contact;
-import com.secondhand.debug.MyDebug;
-import com.secondhand.model.CircleEntity;
 import com.secondhand.model.CollisionResolver;
 import com.secondhand.model.Enemy;
 import com.secondhand.model.Entity;
 import com.secondhand.model.GameWorld;
 import com.secondhand.model.IPhysicsWorld;
-import com.secondhand.model.Obstacle;
-import com.secondhand.model.Planet;
-import com.secondhand.model.RectangleEntity;
-import com.secondhand.view.opengl.Circle;
-import com.secondhand.view.opengl.Polygon;
 
 public class MyPhysicsWorld implements IPhysicsWorld {
 	private PhysicsWorld physicsWorld;

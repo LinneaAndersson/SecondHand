@@ -7,7 +7,6 @@ import java.util.List;
 import org.anddev.andengine.entity.Entity;
 import org.anddev.andengine.entity.scene.Scene;
 import org.anddev.andengine.entity.scene.Scene.IOnSceneTouchListener;
-import org.anddev.andengine.extension.physics.box2d.PhysicsWorld;
 import org.anddev.andengine.input.touch.TouchEvent;
 
 import com.secondhand.debug.MyDebug;
@@ -46,6 +45,7 @@ final class GamePlaySceneController extends Entity implements
 		gameWorld.addListener(this);
 		gameWorld.getEntityManager().addPropertyChangeListener(this);
 
+		
 		gameWorld.getPhysics().setContactListener();
 	}
 
@@ -107,7 +107,7 @@ final class GamePlaySceneController extends Entity implements
 
 			List <com.secondhand.model.Entity> list = (List<com.secondhand.model.Entity>) event.getNewValue();
 			for (int i = 0; i<list.size() ; i++){
-					 list.get(i).setPhysics(new MyPhysicsEntity());
+					// list.get(i).setPhysics(new MyPhysicsEntity(this.gameWorld.getPhysics()));
 			}
 
 		} else if (event.getSource().getClass() == GameWorld.class) {

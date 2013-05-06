@@ -19,6 +19,10 @@ public class MyPhysicsEntity implements IPhysicsEntity{
 	private PhysicsWorld physicsWorld;
 	private PhysicsConnector physicsConnector;
 	
+	public MyPhysicsEntity(PhysicsWorld physicsWorld){
+		this.physicsWorld = physicsWorld;
+	}
+	
 	// TODO andengine or box2d coordinates?
 		@Override
 		public float getCenterX() {

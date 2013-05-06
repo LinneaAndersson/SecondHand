@@ -6,6 +6,7 @@ import java.util.List;
 
 import org.anddev.andengine.engine.Engine;
 import org.anddev.andengine.engine.camera.hud.HUD;
+import org.anddev.andengine.extension.physics.box2d.PhysicsWorld;
 
 import android.content.Context;
 
@@ -14,6 +15,7 @@ import com.secondhand.debug.MyDebug;
 import com.secondhand.model.BlackHole;
 import com.secondhand.model.Entity;
 import com.secondhand.model.GameWorld;
+import com.secondhand.model.IPhysicsWorld;
 import com.secondhand.model.Player;
 import com.secondhand.view.entities.BlackHoleView;
 import com.secondhand.view.entities.EntityView;
@@ -33,14 +35,17 @@ public class GamePlayScene extends GameScene{
 
 	private GameWorld gameWorld;
 	
-	private MyPhysicsWorld physics;
+	private IPhysicsWorld physics;
+	private PhysicsWorld physicsWorld;
 	
-	/*public void setPhysics(final Physics physics) {
+	public void setPhysics(final IPhysicsWorld physics) {
 		this.physics = physics;
-	}*/
+	}
 
 	public GamePlayScene(final Engine engine, final Context context) {
 		super(engine, context);
+		physicsWorld = new PhysicsWorld(new Vector2(),true);
+		physics = new MyPhysicsWorld(physicsWorld);
 	}
 
 	public GameWorld getGameWorld() {
@@ -99,7 +104,7 @@ public class GamePlayScene extends GameScene{
 		attachChild(player.getShape());
 		engine.getCamera().setChaseEntity(player.getShape());//playerView
 
-		registerUpdateHandler(this.physics.getPhysicsWorld());
+		registerUpdateHandler(physicsWorld);
 
 		// setup the HUD
 		hud = new HUD();

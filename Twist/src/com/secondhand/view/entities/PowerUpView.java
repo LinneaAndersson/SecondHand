@@ -2,28 +2,24 @@ package com.secondhand.view.entities;
 
 import java.beans.PropertyChangeEvent;
 
-import org.anddev.andengine.engine.Engine;
-import org.anddev.andengine.engine.handler.timer.ITimerCallback;
-import org.anddev.andengine.engine.handler.timer.TimerHandler;
+import org.anddev.andengine.entity.shape.IShape;
+import org.anddev.andengine.extension.physics.box2d.PhysicsWorld;
 
-import com.secondhand.model.GameWorld;
-import com.secondhand.model.Planet;
-import com.secondhand.model.Player;
+import com.badlogic.gdx.physics.box2d.Body;
 import com.secondhand.model.powerup.PowerUp;
-import com.secondhand.view.opengl.Circle;
-/*
-public class PowerUpView extends EntityView{
 
-	private final Engine engine;
-	private final GameWorld gameWorld;
+public class PowerUpView extends EntityView {
 	
-	public PowerUpView(final Engine engine, final GameWorld gameWorld) {
-		//just for now. 
-		super(null , new Circle(0,0,0));
-		this.engine = engine;
-		this.gameWorld = gameWorld;
+	public PowerUpView(final PhysicsWorld physicsWorld, final PowerUp powerUp, final IShape shape, final Body body) {
+		super(physicsWorld, powerUp, shape, body);
+	}
+
+	@Override
+	public void propertyChange(PropertyChangeEvent arg0) {
+		
 	}
 	
+	/*
 	public TimerHandler createTimer(final Player player, final PowerUp powerUp) {
 		return new TimerHandler(powerUp.getDuration(), new ITimerCallback() {
 			private Player user = player; 
@@ -57,6 +53,5 @@ public class PowerUpView extends EntityView{
 //						new Vector2(player.getX(), player.getY()));
 		}
 	}
-	
+	*/
 }
-*/

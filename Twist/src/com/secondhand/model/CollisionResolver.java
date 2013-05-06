@@ -2,9 +2,9 @@ package com.secondhand.model;
 
 public final class CollisionResolver {
 
-	private GameWorld gameWorld;
+	private final GameWorld gameWorld;
 
-	public CollisionResolver(GameWorld gameWorld) {
+	public CollisionResolver(final GameWorld gameWorld) {
 		this.gameWorld = gameWorld;
 	}
 

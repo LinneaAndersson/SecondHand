@@ -1,14 +1,8 @@
 package com.secondhand.model.powerup;
 
-import java.util.Random;
-
-import com.secondhand.debug.MyDebug;
-import com.secondhand.model.GameWorld;
-import com.secondhand.model.Player;
-import com.secondhand.model.Vector2;
-import com.secondhand.model.resource.PowerUpType;
 
 // TODO: won't work for some fucking reason. Fix it.
+/*
 public class RandomPowerUp extends PowerUp {
 
 	private final PowerUp randomPowerUp;
@@ -57,4 +51,4 @@ public class RandomPowerUp extends PowerUp {
 	public String getText(){
 		return this.randomPowerUp.getText();
 	}
-}
+}*/

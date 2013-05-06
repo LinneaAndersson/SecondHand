@@ -2,16 +2,14 @@ package com.secondhand.view.entities;
 
 import java.beans.PropertyChangeEvent;
 
-import org.anddev.andengine.engine.Engine;
-import com.secondhand.model.GameWorld;
 import com.secondhand.model.Player;
 import com.secondhand.view.resource.Sounds;
 
 // what? the controller should be handling the PropertyChangeListener, not the view!
 public class PlayerView extends BlackHoleView {
-
+/*
 	private Engine engine;
-	private GameWorld gameWorld;
+	private GameWorld gameWorld;*/
 	
 	public PlayerView(final Player player){
 		super(player);

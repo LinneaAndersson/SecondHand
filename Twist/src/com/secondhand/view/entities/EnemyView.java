@@ -7,11 +7,10 @@ import com.secondhand.model.Enemy;
 
 public class EnemyView extends BlackHoleView{
 
-	public EnemyView(Enemy enemy) {
+	public EnemyView(final Enemy enemy) {
 		super(enemy);
 
 		getBody().setLinearDamping(1.2f);
-		// TODO Auto-generated constructor stub
 	}
 	
 	public void stopMovement(){
@@ -24,7 +23,7 @@ public class EnemyView extends BlackHoleView{
 		if(event.getPropertyName().equalsIgnoreCase("stopMovement")){
 			stopMovement();
 		} else if (event.getPropertyName().equalsIgnoreCase("setConnector")){
-			getEntity().getPhysics().setConnector(getShape());
+			//getEntity().getPhysics().setConnector(getShape());
 		}
 		
 	}

@@ -1,8 +1,6 @@
 package com.secondhand.view.scene;
 
 
-import java.beans.PropertyChangeEvent;
-import java.beans.PropertyChangeListener;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,7 +11,10 @@ import android.content.Context;
 
 import com.badlogic.gdx.math.Vector2;
 import com.secondhand.debug.MyDebug;
-import com.secondhand.model.*;
+import com.secondhand.model.BlackHole;
+import com.secondhand.model.Entity;
+import com.secondhand.model.GameWorld;
+import com.secondhand.model.Player;
 import com.secondhand.view.entities.BlackHoleView;
 import com.secondhand.view.entities.EntityView;
 import com.secondhand.view.entity.FadingNotifierText;
@@ -31,8 +32,6 @@ public class GamePlayScene extends GameScene{
 	private List<EntityView> entityViewList;
 
 	private GameWorld gameWorld;
-
-	private Vector2 cachedCameraCenter;
 	
 	private Physics physics;
 	
@@ -98,7 +97,7 @@ public class GamePlayScene extends GameScene{
 		final Player player = gameWorld.getPlayer();
 		player.getShape().detachSelf();
 		attachChild(player.getShape());
-		engine.getCamera().setChaseEntity(player.getShape());
+		engine.getCamera().setChaseEntity(player.getShape());//playerView
 
 		registerUpdateHandler(this.physics.getPhysicsWorld());
 
@@ -119,7 +118,7 @@ public class GamePlayScene extends GameScene{
 	
 		// we'll need to be able to restore the camera when returning to the
 		// menu.
-		cachedCameraCenter = new Vector2(smoothCamera.getCenterX(),
+		gameWorld.setCameraPos(smoothCamera.getCenterX(),
 				smoothCamera.getCenterY());
 
 		setupView();
@@ -142,14 +141,15 @@ public class GamePlayScene extends GameScene{
 		smoothCamera.setBoundsEnabled(false);
 		this.smoothCamera.setBounds(0, this.smoothCamera.getWidth(), 0,
 				this.smoothCamera.getHeight());
-		smoothCamera.setCenter(this.cachedCameraCenter.x,
-				this.cachedCameraCenter.y);
+		smoothCamera.setCenter(gameWorld.getCameraX(),
+				gameWorld.getCameraY());
 		// smoothCamera.setBoundsEnabled(true);
 
 		// don't show the HUD in the menu.
 		hud.setCamera(null);
 	}
 	
+	@Override
 	public void onSwitchScene() {
 		super.onSwitchScene();
 		resetCamera();

@@ -62,7 +62,7 @@ public final class HighScoreList {
 					context.openFileOutput(FILE_NAME, Context.MODE_PRIVATE)));
 
 			
-			for(Entry entry: this.highScoreList) {
+			for(final Entry entry: this.highScoreList) {
 				writer.write(entry.name + "\n");
 				writer.write(entry.score + "\n");
 			}

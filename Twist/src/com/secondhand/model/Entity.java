@@ -11,7 +11,7 @@ import com.badlogic.gdx.physics.box2d.Body;
 public abstract class Entity {
 
 	private Body body;
-	private final IShape shape;
+	private IShape shape;
 	private boolean isEdible;
 	protected final IPhysics physics;
 
@@ -20,7 +20,7 @@ public abstract class Entity {
 
 	public Entity(final Shape shape, final boolean isEdible,
 			final GameWorld level) {
-		this.shape = shape;
+		//this.shape = shape;
 		this.isEdible = isEdible;
 		this.physics = level.getPhysics();
 		this.gameWorld = level;
@@ -32,19 +32,11 @@ public abstract class Entity {
 		//registerBody(body); 
 	}
 
-	public float getX() {
-		return shape.getX();
-	}
-
 	public abstract boolean isCircle();
 
-	public float getY() {
-		return shape.getY();
-	}
-
-	public Body getBody() {
+	/*public Body getBody() {
 		return body;
-	}
+	}*/
 
 	public IShape getShape() {
 		return shape;
@@ -65,11 +57,15 @@ public abstract class Entity {
 	public abstract float getRadius();
 
 	public float getCenterX() {
-		return getX();
+		return physics.getCenterX();
 	}
 
 	public float getCenterY() {
-		return getY();
+		return physics.getCenterY();
+	}
+	
+	public Body getBody(){
+		return body;
 	}
 
 	// how much every unit(pixel) of radius is worth in points.
@@ -87,7 +83,7 @@ public abstract class Entity {
 
 	}
 
-	// detaching should be done by view or physics
+	// detaching should be done by view
 	public void destroyEntity() {
 
 		// we can't remove the body within a contact listener
@@ -105,10 +101,9 @@ public abstract class Entity {
 	}
 
 	private void scheduleBodyForDeletion() {
-
 		//pcs.firePropertyChange(propertyName, oldValue, newValue)
 		
-		physics.setConnector(this.getShape());
+		//physics.setConnector(this.getShape());
 		
 
 		this.gameWorld.getEntityManager().scheduleEntityForDeletion(this);
@@ -130,7 +125,7 @@ public abstract class Entity {
 		return this instanceof Player ? false : true;
 	}
 	
-	public void addPropertyChangeListener(PropertyChangeListener listener){
+	public void addPropertyChangeListener(final PropertyChangeListener listener){
 		pcs.addPropertyChangeListener(listener);
 	}
 }

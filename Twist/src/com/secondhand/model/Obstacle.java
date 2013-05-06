@@ -7,7 +7,7 @@ import com.secondhand.view.opengl.TexturedPolygon;
 import com.secondhand.view.resource.TextureRegions;
 
 public class Obstacle extends PolygonEntity {
-
+		
 	public Obstacle(final Vector2 position,  final List<Vector2> polygon, final GameWorld level) {
 		this(new TexturedPolygon(position.x, position.y,
 				polygon,

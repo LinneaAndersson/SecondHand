@@ -3,6 +3,7 @@ package com.secondhand.view.entities;
 import java.beans.PropertyChangeEvent;
 
 import org.anddev.andengine.extension.physics.box2d.util.constants.PhysicsConstants;
+
 import com.badlogic.gdx.physics.box2d.CircleShape;
 import com.secondhand.model.IPhysics;
 import com.secondhand.debug.MyDebug;
@@ -11,11 +12,9 @@ import com.secondhand.view.opengl.Circle;
 
 public class BlackHoleView extends EntityView {
 
-	//Circle circle;
-	//Body body;
 	private final BlackHole mBlackHole;
 
-	public BlackHoleView(BlackHole blackHole) {
+	public BlackHoleView(final BlackHole blackHole) {
 		super(blackHole, new Circle(blackHole.getPosX(), blackHole.getPosY(),
 				blackHole.getRadius()));
 		mBlackHole = blackHole;
@@ -39,7 +38,7 @@ public class BlackHoleView extends EntityView {
 		if (event.getPropertyName().equalsIgnoreCase("radius")) {
 			changeSize();
 		} else if(event.getPropertyName().equalsIgnoreCase("move")){
-			mBlackHole.getPhysics().applyImpulse(getBody(), (Float)event.getOldValue(), (Float)event.getNewValue(), mBlackHole.getMaxSpeed());
+			//mBlackHole.getPhysics().applyImpulse(getBody(), (Float)event.getOldValue(), (Float)event.getNewValue(), mBlackHole.getMaxSpeed());
 		}
 	}
 

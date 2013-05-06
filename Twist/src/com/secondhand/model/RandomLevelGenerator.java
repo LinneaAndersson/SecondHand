@@ -37,41 +37,29 @@ public class RandomLevelGenerator {
 	private final Random rng;
 
 	RandomLevelGenerator(final Player player, final GameWorld level) {
-		MyDebug.d("first");
 		rng = new Random();
-		MyDebug.d("first");
 		this.levelNumber = level.getLevelNumber()-1;
 		this.level = level;
-		MyDebug.d("first");
 		this.levelWidth = level.getLevelWidth();
 		this.levelHeight = level.getLevelHeight();
-		MyDebug.d("first");
 		world = new World(this.levelWidth, this.levelHeight);
-		MyDebug.d("first");
 		this.player = player;
-		MyDebug.d("first");
 		// make sure entities are not placed on top of player
-		MyDebug.d("player" + player);
-		MyDebug.d("players x" + player.getCenterX());
-		MyDebug.d("players radius" + player.getRadius());
+	
 		final World.Polygon poly = PolygonFactory.createCircle(new Vector2(
 				player.getCenterX(), player.getCenterY()), player.getRadius());
-		MyDebug.d("first");
 		world.addToWorld(poly);
-		MyDebug.d("first");
 
 		this.playerMaxSize = player.getMaxSize();
-		MyDebug.d("first");
+		
 		this.enemyList = new ArrayList<Enemy>();
 		this.entityList = new ArrayList<Entity>();
 		// to make it easier to place out the entities.
-		MyDebug.d("first");
 		placeOutLevelEntities();
-		MyDebug.d("first");
+		MyDebug.d("Done in randomLevelGenerator");
 	}
 
 	private void placeOutEnemies() {
-		
 		Enemy enemy = new Enemy(new Vector2(200, 200), 50, level);
 		enemy.setMaxSpeed(8+(this.levelNumber-1)*2);
 		entityList.add(enemy);
@@ -91,15 +79,15 @@ public class RandomLevelGenerator {
 		for (int i = 0; i < ENEMIES; ++i) {
 
 			float radius;
-
+			MyDebug.d("cant get nextFloat");
 			radius = RandomUtil.nextFloat(rng, Enemy.getMinSize(),
 					Enemy.getMaxSize());
 
 			while (true) {
-
+				MyDebug.d("cant get nextInt");
 				xAxis = rng.nextInt(this.levelWidth);
 				yAxis = rng.nextInt(this.levelHeight);
-
+				MyDebug.d("cant create poly");
 				final World.Polygon poly = PolygonFactory.createCircle(
 						new Vector2(xAxis, yAxis), radius);
 
@@ -110,8 +98,9 @@ public class RandomLevelGenerator {
 				}
 
 			}
-
+			MyDebug.d("cant create new Enemy");
 			enemy = new Enemy(new Vector2(xAxis, yAxis), radius, level);
+			MyDebug.d("cant set enemyMaxspeed");
 			enemy.setMaxSpeed(8+(this.levelNumber-1)*2);
 			entityList.add(enemy);
 			enemyList.add(enemy);

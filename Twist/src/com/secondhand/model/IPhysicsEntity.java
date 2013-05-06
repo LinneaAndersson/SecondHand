@@ -19,4 +19,6 @@ public interface IPhysicsEntity {
 	Body createType(IShape shape, Entity entity);
 
 	Body getBody();
+
+	public void setLinearDamping(float f);
 }

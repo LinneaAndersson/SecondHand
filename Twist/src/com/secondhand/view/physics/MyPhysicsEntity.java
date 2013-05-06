@@ -113,6 +113,12 @@ public class MyPhysicsEntity implements IPhysicsEntity{
 		public Body getBody(){
 			return body;
 		}
+
+		@Override
+		public void setLinearDamping(float linearDamping) {
+			body.setLinearDamping(linearDamping);
+			
+		}
 		
 
 

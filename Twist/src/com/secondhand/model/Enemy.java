@@ -19,8 +19,9 @@ public class Enemy extends BlackHole {
 		MyDebug.d("is it null in Enemy" + level.getPhysics());
 
 		// makes the enemy move much smother
-		physics.getBody().setLinearDamping(1.2f);
-
+		//This does not work, why??
+		//physics.setLinearDamping(1.2f);
+		MyDebug.d("is it null in Enemy" + level.getPhysics());
 	}
 
 	public float getHuntingArea() {

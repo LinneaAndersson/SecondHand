@@ -18,18 +18,18 @@ public abstract class BlackHole extends CircleEntity {
 	
 	private boolean canEatInedibles;
 	
-	private float[] position;
+	private Vector2 position;
 		
 	//I put this in BlackHole, so enemy black holes will also have scores
 	// but placing it here made coding the eating logic much more convenient.
 	// but we can simply ignore the score for enemy black holes.
 	private  int score;
 
-	public BlackHole(final float[] position, final float radius,
+	public BlackHole(final Vector2 position, final float radius,
 			final GameWorld level,
 			final float maxSpeed, final int startingScore) {
 		// TODO load texture instead of creating Circle
-		super(new Circle(position[0], position[1], radius), true, level);
+		super(new Circle(position.x, position.y, radius), true, level);
 		MyDebug.d("now we create BlackHole");
 		this.position = position;
 		this.maxSpeed = maxSpeed;
@@ -37,18 +37,18 @@ public abstract class BlackHole extends CircleEntity {
 		this.canEatInedibles = false;
 	}
 	
-	public BlackHole(final float[] position, final float radius,
+	public BlackHole(final Vector2 position, final float radius,
 			final GameWorld level,
 			final float maxSpeed) {
 		this(position, radius, level, maxSpeed, 0);
 	}
 	
 	public float getPosX(){
-		return position[0];
+		return position.y;
 	}
 
 	public float getPosY(){
-	return position[1];
+	return position.y;
 	}
 	
 	public boolean canEatInedibles() {

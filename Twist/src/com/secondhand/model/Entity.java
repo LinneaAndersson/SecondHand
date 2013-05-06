@@ -6,11 +6,8 @@ import java.beans.PropertyChangeSupport;
 import org.anddev.andengine.entity.shape.IShape;
 import org.anddev.andengine.entity.shape.Shape;
 
-import com.badlogic.gdx.physics.box2d.Body;
-
 public abstract class Entity {
 
-	//private Body body;
 	private IShape shape;
 	private boolean isEdible;
 	protected IPhysicsEntity physics;
@@ -26,11 +23,6 @@ public abstract class Entity {
 		bodyScheduledForDeletion = false;
 	}
 
-	/*public void setBody(Body body) {
-		this.body = body;
-		//registerBody(body); 
-	}*/
-	
 	public void setPhysics(IPhysicsEntity physics){
 		this.physics = physics;
 		createType();
@@ -67,10 +59,6 @@ public abstract class Entity {
 		return physics.getCenterY();
 	}
 	
-	/*public Body getBody(){
-		return body;
-	}*/
-
 	// how much every unit(pixel) of radius is worth in points.
 	public abstract float getScoreWorth();
 
@@ -86,7 +74,8 @@ public abstract class Entity {
 
 	}
 
-	// TODO detaching should be done by view
+	// TODO detaching should be done by view or physics, wherever 
+	// we save the shape
 	public void destroyEntity() {
 
 		// we can't remove the body within a contact listener
@@ -106,9 +95,6 @@ public abstract class Entity {
 	private void scheduleBodyForDeletion() {
 		//pcs.firePropertyChange(propertyName, oldValue, newValue)
 		
-		//physics.setConnector(this.getShape());
-		
-
 		this.gameWorld.getEntityManager().scheduleEntityForDeletion(this);
 
 		this.bodyScheduledForDeletion = true;

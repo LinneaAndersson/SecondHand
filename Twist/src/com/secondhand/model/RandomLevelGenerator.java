@@ -62,7 +62,7 @@ public class RandomLevelGenerator {
 
 	private void placeOutEnemies() {
 		
-		Enemy enemy = new Enemy(new float[]{200, 200}, 50, level);
+		Enemy enemy = new Enemy(new Vector2(200, 200), 50, level);
 		enemy.setMaxSpeed(8+(this.levelNumber-1)*2);
 		entityList.add(enemy);
 		enemyList.add(enemy);
@@ -101,7 +101,7 @@ public class RandomLevelGenerator {
 
 			}
 
-			enemy = new Enemy(new float[]{xAxis, yAxis}, radius, level);
+			enemy = new Enemy(new Vector2(xAxis, yAxis), radius, level);
 			enemy.setMaxSpeed(8+(this.levelNumber-1)*2);
 			entityList.add(enemy);
 			enemyList.add(enemy);

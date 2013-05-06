@@ -35,7 +35,7 @@ public class GameWorld {
 		MyDebug.d("now we have created GameWorld");
 		this.levelHeight = 1700 * 2;
 		MyDebug.d("now we have created GameWorld");
-		this.entityManager = new EntityManager(new Player(new float[]{50,50},
+		this.entityManager = new EntityManager(new Player(new Vector2(50,50),
 				30, this));
 		MyDebug.d("now we have created GameWorld");
 		mPhysic.setWorldBounds(levelWidth, levelHeight);

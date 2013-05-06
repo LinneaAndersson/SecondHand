@@ -41,7 +41,7 @@ public class Player extends BlackHole {
 
 
 	// =============================================
-	public Player(final float[] position, final float radius,
+	public Player(final Vector2 position, final float radius,
 			final GameWorld gameWorld, final int startingLives,
 			final int startingScore) {
 		super(position, radius, gameWorld, PLAYER_MAX_SPEED, startingScore);
@@ -57,7 +57,7 @@ public class Player extends BlackHole {
 
 	}
 
-	public Player(final float[] position, final float radius,
+	public Player(final Vector2 position, final float radius,
 			final GameWorld gameWorld) {
 		this(position, radius, gameWorld, STARTING_LIVES, 0);
 	}

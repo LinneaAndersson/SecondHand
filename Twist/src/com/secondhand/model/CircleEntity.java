@@ -1,6 +1,5 @@
 package com.secondhand.model;
 
-import com.secondhand.debug.MyDebug;
 import com.secondhand.view.opengl.Circle;
 
 public abstract class CircleEntity extends Entity {

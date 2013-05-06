@@ -111,6 +111,7 @@ public abstract class GameMenuScene extends MenuScene implements IGameScene {
 		this.isLoaded = true;
 	}
 	
+	@Override
 	public boolean isLoaded() {
 		return this.isLoaded;
 	}

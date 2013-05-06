@@ -38,7 +38,7 @@ public class World {
 	}
 
 	public boolean isUnoccupied(final World.Polygon polygon) {
-		for(Vector2 edge: polygon.edges) {
+		for(final Vector2 edge: polygon.edges) {
 			if(!isWithinWorldBounds(edge))
 				return false;
 		}
@@ -83,7 +83,7 @@ public class World {
 	}
 
 	private boolean noIntersection(final World.Polygon polygon) {
-		for(World.Polygon otherPolygon : polygons) {
+		for(final World.Polygon otherPolygon : polygons) {
 			if(sat(polygon, otherPolygon)) {
 				return false;
 			}
@@ -98,7 +98,7 @@ public class World {
 
 		public Polygon(final Vector2 position, final List<Vector2> edges) {
 			this.edges = new ArrayList<Vector2>();
-			for(Vector2 edge: edges) {
+			for(final Vector2 edge: edges) {
 				this.edges.add(new Vector2(edge.x + position.x, edge.y + position.y));
 			}
 		}

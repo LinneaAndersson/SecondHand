@@ -19,7 +19,7 @@ public class Enemy extends BlackHole {
 		MyDebug.d("is it null in Enemy" + level.getPhysics());
 
 		// makes the enemy move much smother
-		getBody().setLinearDamping(1.2f);
+		physics.getBody().setLinearDamping(1.2f);
 
 	}
 
@@ -35,7 +35,8 @@ public class Enemy extends BlackHole {
 		return MIN_SIZE;
 	}
 
-	public void setMaxSpeed(float maxSpeed) {
+	@Override
+	public void setMaxSpeed(final float maxSpeed) {
 		enemyMaxSpeed = maxSpeed;
 	}
 
@@ -117,11 +118,13 @@ public class Enemy extends BlackHole {
 		MyDebug.d("Enemy: Retreat");
 
 	}
-
+	
+	@Override
 	protected void handlePowerUp(final PowerUp powerUp) {
 		// enemies can't eat powerups :(
 	}
 
+	@Override
 	protected void wasEaten() {
 		this.gameWorld.getEntityManager().removeEnemyFromList(this);
 		super.wasEaten();

@@ -40,7 +40,7 @@ public class PhysicsEnemyUtil {
 
 				return 0;
 			}
-		}, enemy.getBody().getWorldCenter(), entity.getBody().getWorldCenter());
+		}, enemy.getPhysics().getBody().getWorldCenter(), entity.getPhysics().getBody().getWorldCenter());
 
 		return straightLine;
 	}
@@ -51,7 +51,7 @@ public class PhysicsEnemyUtil {
 
 	// clarify: a point 5-10 length-units in front of where the enemy is moving.
 	public Vector2 dangerClose(final Enemy enemy) {
-		final Vector2 v = enemy.getBody().getWorldCenter();
+		final Vector2 v = enemy.getPhysics().getBody().getWorldCenter();
 		//Vector2 v2 = enemy.getBody().getLinearVelocity();
 		physics.rayCast(new RayCastCallback(){
 

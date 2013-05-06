@@ -89,7 +89,7 @@ public abstract class BlackHole extends CircleEntity {
 	}
 	
 	// moves in the specified direction. If max speed is reached, then no movement is performed.
-	public void move(Vector2 position) {
+	public void move(final Vector2 position) {
 		physics.applyImpulse(position.x, position.y, maxSpeed);
 	}
 
@@ -120,7 +120,7 @@ public abstract class BlackHole extends CircleEntity {
 		onGrow();
 
 		// now we must also increase the size of the circle physics body
-		final CircleShape shape = (CircleShape) getBody().getFixtureList()
+		final CircleShape shape = (CircleShape) physics.getBody().getFixtureList()
 				.get(0).getShape();
 		shape.setRadius(this.getRadius()
 				/ PhysicsConstants.PIXEL_TO_METER_RATIO_DEFAULT);

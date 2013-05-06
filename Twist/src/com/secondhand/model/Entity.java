@@ -34,9 +34,9 @@ public abstract class Entity {
 
 	public abstract boolean isCircle();
 
-	public Body getBody() {
+	/*public Body getBody() {
 		return body;
-	}
+	}*/
 
 	public IShape getShape() {
 		return shape;
@@ -118,7 +118,7 @@ public abstract class Entity {
 		return this instanceof Player ? false : true;
 	}
 	
-	public void addPropertyChangeListener(PropertyChangeListener listener){
+	public void addPropertyChangeListener(final PropertyChangeListener listener){
 		pcs.addPropertyChangeListener(listener);
 	}
 }

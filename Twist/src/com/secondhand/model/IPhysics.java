@@ -14,7 +14,7 @@ public interface IPhysics {
 	void removeWorldBounds();
 
 	// Add your body to the physicWorld
-	void registerBody(final Entity entity, final Body body);
+	void registerBody(final Entity entity, final Body body, final IShape shape);
 
 	// delete your body from physicsWorld
 	void deleteBody(final boolean scheduledForDeletion);
@@ -22,6 +22,8 @@ public interface IPhysics {
 	float getCenterX();
 
 	float getCenterY();
+	
+	Body getBody();
 
 	// apply linear impulse on the body
 	void applyImpulse(final float posX, final float posY, final float maxSpeed);

@@ -30,7 +30,7 @@ public class RandomLevelGenerator {
 
 	private final GameWorld level;
 
-	final World world;
+	private final World world;
 	private final Random rng;
 
 	RandomLevelGenerator(final Player player, final GameWorld level) {

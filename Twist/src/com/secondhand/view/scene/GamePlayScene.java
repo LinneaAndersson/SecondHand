@@ -149,6 +149,7 @@ public class GamePlayScene extends GameScene{
 		hud.setCamera(null);
 	}
 	
+	@Override
 	public void onSwitchScene() {
 		super.onSwitchScene();
 		resetCamera();

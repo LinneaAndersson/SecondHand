@@ -21,7 +21,7 @@ public class GameWorld {
 	
 	private Vector2 cameraPosition;
 
-	public GameWorld(IPhysics physics) {
+	public GameWorld(final IPhysics physics) {
 		mPhysic = physics;
 		mPhysic.setGameWorld(this);
 		support = new PropertyChangeSupport(this);
@@ -38,7 +38,7 @@ public class GameWorld {
 		return this.support;
 	}
 
-	public void addListener(PropertyChangeListener listener) {
+	public void addListener(final PropertyChangeListener listener) {
 		support.addPropertyChangeListener(listener);
 		getPlayer().addListener(listener);
 	}
@@ -66,7 +66,7 @@ public class GameWorld {
 		return cameraPosition.y;
 	}
 	
-	public void setCameraPos(float posX, float posY){
+	public void setCameraPos(final float posX, final float posY){
 		cameraPosition = new Vector2(posX, posY);
 	}
 

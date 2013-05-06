@@ -26,19 +26,17 @@ import com.secondhand.view.opengl.Polygon;
 public class Physics implements IPhysics {
 	private PhysicsWorld physicsWorld;
 	private PhysicsConnector physicsConnector;
+	//TODO only enemy needs the util class
 	private final PhysicsEnemyUtil enemyUtil;
 	private CollisionResolver collisionResolver;
 	private final PhysicsWorldBounds bounds;
 	private GameWorld gameWorld;
 	private Body body;
 
-	// no vector needed because its zero gravity. And if the constructor
-	// needs an vector that means we need to to import Vector2
-	// wherever we creates Physics
-	// TODO:remove vector2.
-
 	public Physics() {
-
+		
+		// TODO remove physicsWorld from constructor
+		// and put worldBoundries somewhere else
 		physicsWorld = new PhysicsWorld(new Vector2(), true);
 		bounds = new PhysicsWorldBounds(physicsWorld);
 		enemyUtil = new PhysicsEnemyUtil(physicsWorld);
@@ -51,7 +49,7 @@ public class Physics implements IPhysics {
 		return this.physicsWorld;
 	}
 
-	public void setPhysicsWorld(PhysicsWorld physicsWorld) {
+	public void setPhysicsWorld(final PhysicsWorld physicsWorld) {
 		this.physicsWorld = physicsWorld;
 	}
 
@@ -81,10 +79,11 @@ public class Physics implements IPhysics {
 	}
 
 	// @Override
-	public void registerBody(final Entity entity, final Body body) {
+	public void registerBody(final Entity entity, final Body body,
+			final IShape shape) {
 		body.setUserData(entity);
-		physicsConnector = new CustomPhysicsConnector(entity.getShape(),
-				entity.isCircle(), body, true, entity.getRotation());
+		physicsConnector = new CustomPhysicsConnector(shape, entity.isCircle(),
+				body, true, entity.getRotation());
 		physicsWorld.registerPhysicsConnector(physicsConnector);
 	}
 
@@ -168,7 +167,7 @@ public class Physics implements IPhysics {
 			body = PhysicsFactory.createCircleBody(physicsWorld, rectangle,
 					BodyType.DynamicBody, FixtureDefs.POWER_UP_FIXTURE_DEF);
 		}
-		registerBody(entity, body);
+		registerBody(entity, body, shape);
 
 		return body;
 	}
@@ -178,6 +177,11 @@ public class Physics implements IPhysics {
 		this.gameWorld = gameWorld;
 		this.collisionResolver = new CollisionResolver(gameWorld);
 
+	}
+
+	@Override
+	public Body getBody() {
+		return body;
 	}
 
 }

@@ -210,9 +210,6 @@ public class GamePlayScene extends GameScene{
 
 		smoothCamera.setZoomFactorDirect(1.0f);
 		
-		// TODO: gameworld should probably handle this one.
-		gameWorld.getPlayer().setRadius(30);
-		
 		registerNewLevel();
 	}
 

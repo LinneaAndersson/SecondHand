@@ -32,7 +32,7 @@ public class GameWorld {
 		MyDebug.d("In creating GameWorld");
 		support = new PropertyChangeSupport(this);
 
-		player = new Player(new float[]{50,50},30, this);
+		player = new Player(new Vector2(50,50),30, this);
 		this.entityManager = new EntityManager(player);
 		MyDebug.d("In creating GameWorld");
 		this.levelWidth = 1700 * 2;
@@ -42,9 +42,10 @@ public class GameWorld {
 	//before this we have to add GamePlaySceneController as a listener and set physics to the player
 	public void generateNewLevelEntities(){
 		MyDebug.d("In generateNewLevelEntities");
-		MyDebug.d("In generateNewLevelEntities");
-		
-		MyDebug.d("In generateNewLevelEntities");
+		MyDebug.d("now we have created GameWorld");
+		this.entityManager = new EntityManager(new Player(new Vector2(50,50),
+				30, this));
+		MyDebug.d("now we have created GameWorld");
 		mPhysic.setWorldBounds(levelWidth, levelHeight);
 		MyDebug.d("In generateNewLevelEntities");
 		generateNewLevelEntities(STARTING_LEVEL);
@@ -118,6 +119,9 @@ public class GameWorld {
 		generateNewLevelEntities(this.levelNumber);
 		
 		mPhysic.setWorldBounds(levelWidth, levelHeight);
+		
+		// moved this here from gameplayscene
+		getPlayer().setRadius(30);
 		
 		// then notify the view of this, so that it can place out the new
 		// Entities in AndEngine for rendering.

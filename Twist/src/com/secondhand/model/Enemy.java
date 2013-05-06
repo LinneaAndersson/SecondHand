@@ -13,20 +13,16 @@ public class Enemy extends BlackHole {
 
 	private float huntingArea;
 
+	@Override
+	public void createType() {
+		huntingArea = getHuntingArea();
+	}
+	
 	public Enemy(final Vector2 vector, final float radius, final GameWorld level) {
 		super(vector, radius, level, enemyMaxSpeed);
-		huntingArea = getHuntingArea();
-		MyDebug.d("is it null in Enemy" + level.getPhysics());
-
-		// makes the enemy move much smother
-		//This does not work, why??
+		
 		//physics.setLinearDamping(1.2f);
 		
-		// The problem is that this method is called in the
-		// constructor. The body hasn't yet been initialized!
-		// to solve the problem the method need to be called elsewhere
-		// at a later time. 
-		MyDebug.d("is it null in Enemy" + level.getPhysics());
 	}
 
 	public float getHuntingArea() {

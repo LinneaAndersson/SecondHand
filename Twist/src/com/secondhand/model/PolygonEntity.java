@@ -19,9 +19,8 @@ public abstract class PolygonEntity extends Entity {
 		super(polygon, isEdible, level);
 		
 		
-		
+		// TODO polygon belong in view
 		this.polygon = polygon;
-		//TODO move this away from here
 		
 	}
 	

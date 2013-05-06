@@ -112,6 +112,9 @@ MyDebug.d("now we have created GameWorld");
 		
 		mPhysic.setWorldBounds(levelWidth, levelHeight);
 		
+		// moved this here from gameplayscene
+		getPlayer().setRadius(30);
+		
 		// then notify the view of this, so that it can place out the new
 		// Entities in AndEngine for rendering.
 		support.firePropertyChange("NextLevel", false, true);

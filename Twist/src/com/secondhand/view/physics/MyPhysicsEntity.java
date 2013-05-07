@@ -21,8 +21,8 @@ public class MyPhysicsEntity implements IPhysicsEntity{
 	private final PhysicsConnector physicsConnector;
 	private final IShape shape;
 
-	public MyPhysicsEntity(PhysicsWorld physicsWorld, final Entity entity , final IShape shape,
-			Body body){
+	public MyPhysicsEntity(final PhysicsWorld physicsWorld, final Entity entity , final IShape shape,
+			final Body body){
 		this.physicsWorld = physicsWorld;
 
 		body.setUserData(entity);
@@ -45,7 +45,7 @@ public class MyPhysicsEntity implements IPhysicsEntity{
 	}
 	
 	public void setRadius(final float radius) {
-		final CircleShape shape = (CircleShape) getBody().getFixtureList()
+		final CircleShape shape = (CircleShape) body.getFixtureList()
 				.get(0).getShape();
 		shape.setRadius(radius
 				/ PhysicsConstants.PIXEL_TO_METER_RATIO_DEFAULT);
@@ -122,7 +122,7 @@ public class MyPhysicsEntity implements IPhysicsEntity{
 		}*/
 
 	@Override
-	public void setLinearDamping(float linearDamping) {
+	public void setLinearDamping(final float linearDamping) {
 		body.setLinearDamping(linearDamping);
 
 	}
@@ -140,7 +140,7 @@ public class MyPhysicsEntity implements IPhysicsEntity{
 
 	// TODO physics
 	private Vector2 getCenterOfMass(){
-		final Vector2 v = new Vector2(getBody().getMassData().center.x, getBody().getMassData().center.y) ;
+		final Vector2 v = new Vector2(body.getMassData().center.x, body.getMassData().center.y) ;
 		
 		return new Vector2(v.x * PhysicsConstants.PIXEL_TO_METER_RATIO_DEFAULT,
 				v.y * PhysicsConstants.PIXEL_TO_METER_RATIO_DEFAULT);

@@ -10,8 +10,6 @@ public abstract class RectangleEntity extends Entity {
 	public RectangleEntity(final RectangularShape rectangle, final boolean isEdible, final GameWorld level) {
 		super(rectangle, isEdible, level);
 		
-		
-		
 		this.rectangle = rectangle;
 	}
 	

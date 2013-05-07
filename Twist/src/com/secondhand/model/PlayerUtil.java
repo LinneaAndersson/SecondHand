@@ -40,6 +40,7 @@ public class PlayerUtil {
 		private static final long serialVersionUID = 1L;
 
 		public PowerList(final Player player) {
+			super();
 			this.player = player;
 		}
 

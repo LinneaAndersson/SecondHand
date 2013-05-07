@@ -1,8 +1,6 @@
 	
 package com.secondhand.model;
 
-
-import com.secondhand.debug.MyDebug;
 import com.secondhand.model.powerup.PowerUp;
 
 public abstract class BlackHole extends CircleEntity {

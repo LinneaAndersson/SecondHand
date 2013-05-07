@@ -3,8 +3,6 @@ package com.secondhand.model;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 
-import com.secondhand.debug.MyDebug;
-
 
 public class GameWorld {
 
@@ -25,16 +23,12 @@ public class GameWorld {
 	private Vector2 cameraPosition;
 
 	public GameWorld(final IPhysicsWorld physics) {
-		MyDebug.d("In creating GameWorld");
 		mPhysic = physics;
-		MyDebug.d("In creating GameWorld");
 		mPhysic.setGameWorld(this);
-		MyDebug.d("In creating GameWorld");
 		support = new PropertyChangeSupport(this);
 
 		player = new Player(new Vector2(50,50),30, this);
 		this.entityManager = new EntityManager(player);
-		MyDebug.d("In creating GameWorld");
 		this.levelWidth = 1700 * 2;
 		this.levelHeight = 1700 * 2;
 	}
@@ -62,14 +56,11 @@ public class GameWorld {
 		this.levelNumber = levelNumber;
 		this.entityManager.getPlayer().setMaxSize(80);
 		
-		MyDebug.d("I guess its the last time");
 		final RandomLevelGenerator randomLevelGenerator = new RandomLevelGenerator(
 				this.entityManager.getPlayer(), this);
 
 		this.entityManager.setEntityList(randomLevelGenerator.entityList);
 		this.entityManager.setEnemyList(randomLevelGenerator.enemyList);
-		MyDebug.d("done generateNewLevelEntities");
-
 	}
 	
 	public float getCameraX(){

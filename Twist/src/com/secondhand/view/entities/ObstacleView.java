@@ -10,11 +10,6 @@ import com.secondhand.view.physics.FixtureDefs;
 import com.secondhand.view.resource.TextureRegions;
 
 public class ObstacleView extends PolygonView {
-
-	/*, new TexturedPolygon(position.x, position.y,
-	polygon,
-	TextureRegions.getInstance().obstacleTexture)*/
-	
 	
 	public ObstacleView(final PhysicsWorld physicsWorld, final Obstacle obstacle) {
 		// create polygon body. 

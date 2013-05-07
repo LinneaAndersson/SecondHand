@@ -3,15 +3,36 @@ package com.secondhand.view.entities;
 import java.beans.PropertyChangeEvent;
 
 import org.anddev.andengine.entity.shape.IShape;
+import org.anddev.andengine.entity.sprite.Sprite;
 import org.anddev.andengine.extension.physics.box2d.PhysicsWorld;
 
 import com.badlogic.gdx.physics.box2d.Body;
+import com.secondhand.model.Obstacle;
 import com.secondhand.model.powerup.PowerUp;
+import com.secondhand.view.opengl.TexturedPolygon;
+import com.secondhand.view.physics.FixtureDefs;
+import com.secondhand.view.resource.TextureRegions;
 
-public class PowerUpView extends EntityView {
+public class PowerUpView extends RectangleView {
 	
-	public PowerUpView(final PhysicsWorld physicsWorld, final PowerUp powerUp, final IShape shape, final Body body) {
-		super(physicsWorld, powerUp, shape, body);
+	
+	/*
+	public ObstacleView(final PhysicsWorld physicsWorld, final Obstacle obstacle) {
+		// create polygon body. 
+		super(physicsWorld, obstacle,new TexturedPolygon(obstacle.getPosition().x, obstacle.getPosition().y,
+				obstacle.getPolygon(),
+				TextureRegions.getInstance().obstacleTexture)
+		, FixtureDefs.OBSTACLE_FIXTURE_DEF);
+	}*/
+	
+	
+	public PowerUpView(final PhysicsWorld physicsWorld, final PowerUp powerUp) {
+		super(physicsWorld, 
+				powerUp,
+				
+				
+				new Sprite(powerUp.ge, position.y, WIDTH, HEIGHT, TextureRegions.getInstance().getPowerUpTexture(powerUpType))
+				, FixtureDefs.POWER_UP_FIXTURE_DEF);
 	}
 
 	@Override

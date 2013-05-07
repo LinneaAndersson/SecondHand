@@ -31,7 +31,7 @@ public class PowerUpView extends RectangleView {
 				powerUp,
 				
 				new Sprite(powerUp.getPosition().x, powerUp.getPosition().y, powerUp.getWidth(), 
-						powerUp.getHeight(), TextureRegions.getInstance().getPowerUpTexture(powerUpType))
+						powerUp.getHeight(), TextureRegions.getInstance().getPowerUpTexture(powerUp.getPowerUpType()))
 				, FixtureDefs.POWER_UP_FIXTURE_DEF);
 	}
 

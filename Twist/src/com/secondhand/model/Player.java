@@ -142,13 +142,6 @@ public class Player extends BlackHole {
 	public void addListener(final PropertyChangeListener observer) {
 		util.addListener(observer);
 	}
-
-	@Override
-	public void setRadius(final float radius) {
-		super.setRadius(radius);
-		util.setRadius(radius);
-	}
-
 	public void reachToTouch(final Vector2 touch) {
 		util.reachToTouch(touch);
 	}
@@ -167,7 +160,7 @@ public class Player extends BlackHole {
 	}
 
 	public void moveToNeededPositionIfNecessary() {
-		if (needsToMovePosition != null) {
+		if (needsToMovePosition != null) {	
 			this.physics.setTransform(needsToMovePosition);
 			needsToMovePosition = null;
 		}

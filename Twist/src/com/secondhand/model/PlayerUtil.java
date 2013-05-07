@@ -114,14 +114,5 @@ public class PlayerUtil {
 		sceneSupport.firePropertyChange(name, oldValue, newValue);
 	}
 
-	// TODO handle by view
-	public void setRadius(final float radius) {
-		final float newRadius = player.getRadius();
-		final CircleShape shape = (CircleShape) player.getPhysics().getBody()
-				.getFixtureList().get(0).getShape();
-		shape.setRadius(player.getRadius()
-				/ PhysicsConstants.PIXEL_TO_METER_RATIO_DEFAULT);
-		fireObject("PlayerRadius", 0f, newRadius);
-	}
 
 }

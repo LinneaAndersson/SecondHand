@@ -2,18 +2,11 @@ package com.secondhand.model;
 
 import java.util.List;
 
-import com.secondhand.view.opengl.Polygon;
-import com.secondhand.view.opengl.TexturedPolygon;
-import com.secondhand.view.resource.TextureRegions;
-
 public class Obstacle extends PolygonEntity {
-		
-	public Obstacle(final Vector2 position,  final List<Vector2> polygon, final GameWorld level) {
-		super(, level);
-	}
 	
-	public Obstacle(final Polygon polygon, final GameWorld level) {
-		super(polygon, false, level);
+	
+	public Obstacle(final Vector2 position,  final List<Vector2> polygon, final GameWorld level) {
+		super(position, polygon, false, level);
 	}
 	
 	@Override

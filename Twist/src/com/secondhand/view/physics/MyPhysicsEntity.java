@@ -1,5 +1,7 @@
 package com.secondhand.view.physics;
 
+import java.util.List;
+
 import org.anddev.andengine.entity.shape.IShape;
 import org.anddev.andengine.extension.physics.box2d.PhysicsConnector;
 import org.anddev.andengine.extension.physics.box2d.PhysicsWorld;
@@ -120,11 +122,6 @@ public class MyPhysicsEntity implements IPhysicsEntity{
 		}*/
 
 	@Override
-	public Body getBody(){
-		return body;
-	}
-
-	@Override
 	public void setLinearDamping(float linearDamping) {
 		body.setLinearDamping(linearDamping);
 
@@ -141,6 +138,31 @@ public class MyPhysicsEntity implements IPhysicsEntity{
 		this.shape.detachSelf();
 	}
 
+	// TODO physics
+	private Vector2 getCenterOfMass(){
+		final Vector2 v = new Vector2(getBody().getMassData().center.x, getBody().getMassData().center.y) ;
+		
+		return new Vector2(v.x * PhysicsConstants.PIXEL_TO_METER_RATIO_DEFAULT,
+				v.y * PhysicsConstants.PIXEL_TO_METER_RATIO_DEFAULT);
+	}
+	
+	@Override
+	public float computePolygonRadius(final List<com.secondhand.model.Vector2> polygon) {
+		
+		// we define the radius to be the maximum length between the center of mass
+		// and a vertex in the polygon. 
+		
+		float maxLength = 0;
+		
+		final Vector2 center = getCenterOfMass();
 
-
+		for(int i = 0; i < polygon.size(); ++i) {
+			final float length = (float)Math.sqrt(Math.pow(polygon.get(i).x - center.x, 2) + Math.pow(polygon.get(i).y - center.y, 2));
+			if(length > maxLength) {
+				maxLength = length;
+			}
+		}
+		
+		return maxLength;
+	}
 }

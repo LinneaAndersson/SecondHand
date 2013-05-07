@@ -15,6 +15,7 @@ public interface IPhysicsWorld {
 	boolean isStraightLine(final Entity entity, final Enemy enemy);
 
 	// check the collision between entities
+	// should not be in model. 
 	void checkCollision(final Contact contact);
 
 	// checks if the rectangular area i UnOccupied

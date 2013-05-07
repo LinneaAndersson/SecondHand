@@ -98,7 +98,7 @@ public abstract class Entity {
 		removeEntity();
 	}
 
-	public boolean getRotation() {
+	public boolean isRotating() {
 		return this instanceof Player ? false : true;
 	}
 	

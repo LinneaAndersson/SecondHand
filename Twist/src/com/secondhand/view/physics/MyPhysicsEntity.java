@@ -27,7 +27,7 @@ public class MyPhysicsEntity implements IPhysicsEntity {
 
 		body.setUserData(entity);
 		physicsConnector = new CustomPhysicsConnector(shape, entity.isCircle(),
-				body, true, entity.getRotation());
+				body, true, entity.isRotating());
 		physicsWorld.registerPhysicsConnector(physicsConnector);
 
 		this.body = body;

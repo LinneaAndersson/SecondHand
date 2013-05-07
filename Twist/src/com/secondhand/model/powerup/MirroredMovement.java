@@ -1,6 +1,5 @@
 package com.secondhand.model.powerup;
 
-import com.secondhand.debug.MyDebug;
 import com.secondhand.model.GameWorld;
 import com.secondhand.model.Player;
 import com.secondhand.model.Vector2;

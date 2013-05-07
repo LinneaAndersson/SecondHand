@@ -12,7 +12,7 @@ public abstract class PowerUp extends RectangleEntity {
 	public final static int HEIGHT = 64;
 	
 	protected float duration;
-	private PowerUpType powerUpType;
+	private final PowerUpType powerUpType;
 	
 	public PowerUp (final Vector2 position, final PowerUpType powerUpType, final GameWorld level, final float duration) {
 		super(position, WIDTH, HEIGHT,true,  level);

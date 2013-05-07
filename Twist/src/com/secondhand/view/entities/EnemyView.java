@@ -21,7 +21,7 @@ public class EnemyView extends BlackHoleView{
 	}
 
 	@Override
-	public void propertyChange(PropertyChangeEvent event) {
+	public void propertyChange(final PropertyChangeEvent event) {
 		if(event.getPropertyName().equalsIgnoreCase("stopMovement")){
 			stopMovement();
 		} else if (event.getPropertyName().equalsIgnoreCase("setConnector")){

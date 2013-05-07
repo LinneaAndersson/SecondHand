@@ -32,7 +32,7 @@ public class PowerUpView extends RectangleView {
 	}
 
 	@Override
-	public void propertyChange(PropertyChangeEvent arg0) {
+	public void propertyChange(final PropertyChangeEvent arg0) {
 		
 	}
 	

@@ -1,9 +1,6 @@
 package com.secondhand.view.scene;
 
 
-import java.util.ArrayList;
-import java.util.List;
-
 import org.anddev.andengine.engine.Engine;
 import org.anddev.andengine.engine.camera.hud.HUD;
 import org.anddev.andengine.extension.physics.box2d.PhysicsWorld;
@@ -12,18 +9,15 @@ import android.content.Context;
 
 import com.badlogic.gdx.math.Vector2;
 import com.secondhand.debug.MyDebug;
-import com.secondhand.model.BlackHole;
 import com.secondhand.model.Entity;
 import com.secondhand.model.GameWorld;
 import com.secondhand.model.IPhysicsWorld;
 import com.secondhand.model.Player;
-import com.secondhand.view.entities.BlackHoleView;
 import com.secondhand.view.entities.EntityView;
 import com.secondhand.view.entities.PlayerView;
 import com.secondhand.view.entity.FadingNotifierText;
 import com.secondhand.view.entity.ScoreLivesText;
 import com.secondhand.view.opengl.StarsBackground;
-import com.secondhand.view.physics.MyPhysicsEntity;
 import com.secondhand.view.physics.MyPhysicsWorld;
 import com.secondhand.view.resource.Sounds;
 
@@ -33,12 +27,10 @@ public class GamePlayScene extends GameScene{
 
 	private ScoreLivesText scoreLivesText;
 	
-	private List<EntityView> entityViewList;
-
 	private GameWorld gameWorld;
 	
 	private IPhysicsWorld physics;
-	private PhysicsWorld physicsWorld;
+	private final PhysicsWorld physicsWorld;
 	
 	public void setPhysics(final IPhysicsWorld physics) {
 		this.physics = physics;
@@ -60,7 +52,6 @@ public class GamePlayScene extends GameScene{
 
 	public void registerNewLevel() {
 		
-		entityViewList = new ArrayList();
 		
 		final float width = gameWorld.getLevelWidth();
 		final float height = gameWorld.getLevelHeight();
@@ -81,46 +72,33 @@ public class GamePlayScene extends GameScene{
 
 		this.smoothCamera.setBounds(0, width, 0, height);
 
-		/*for (final Entity entity : gameWorld.getEntityManager().getEntityList()) {
-			if (!entity.getShape().hasParent()){
-				
-				if(entity instanceof BlackHole){
-				//entityViewList.add(new BlackHoleView((BlackHole) entity));
-				//MyDebug.d("new BlackHOleView created!");
-				}
-				
-				attachChild(entity.getShape());
+		for (final Entity entity : gameWorld.getEntityManager().getEntityList()) {
+			
+			EntityView entityView;
+			if(entity instanceof Planet) {
+				entityView = new PlanetView
 			}
-		}*/
+			
+			
+		}
 	}
+	
 
 	private void setupView() {
-		MyDebug.i("In setupView gameplayscene");
-		final float width = gameWorld.getLevelWidth();
-		final float height = gameWorld.getLevelHeight();
-		MyDebug.i("In setupView gameplayscene");
-		this.smoothCamera.setBounds(0, width, 0, height);
-		this.smoothCamera.setBoundsEnabled(true);
 		// setup the player
 		
 		
 		// create player view.
 		PlayerView playerView = new PlayerView(physicsWorld, gameWorld.getPlayer());
 		//gameWorld.getPlayer().setPhysics(new MyPhysicsEntity(physicsWorld));
-		
-		MyDebug.i("In setupView gameplayscene");
-		final Player player = gameWorld.getPlayer();
-		MyDebug.i("In setupView gameplayscene");
 			
-		MyDebug.i("In setupView gameplayscene");
 		attachChild(playerView.getShape());
-		MyDebug.i("In setupView gameplayscene");
 		engine.getCamera().setChaseEntity(playerView.getShape());//playerView
-		MyDebug.i("In setupView gameplayscene");
 
 		registerUpdateHandler(physicsWorld);
 
 		// setup the HUD
+		final Player player = gameWorld.getPlayer();
 		hud = new HUD();
 		this.scoreLivesText = new ScoreLivesText(new Vector2(10, 10),
 				player.getScore(), player.getLives());

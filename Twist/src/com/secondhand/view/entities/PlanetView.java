@@ -1,19 +1,18 @@
 package com.secondhand.view.entities;
 
-import java.beans.PropertyChangeEvent;
+import org.anddev.andengine.extension.physics.box2d.PhysicsWorld;
 
-import com.secondhand.model.Entity;
-import com.secondhand.view.opengl.Circle;
-/*
-public class PlanetView extends EntityView {
+import com.secondhand.model.Planet;
+import com.secondhand.view.opengl.TexturedCircle;
+import com.secondhand.view.physics.FixtureDefs;
+import com.secondhand.view.resource.TextureRegions;
 
-	public PlanetView(final Entity entity) {
-		super(entity, new Circle(0,0,0));
+public class PlanetView extends CircleView {
+
+	public PlanetView(final PhysicsWorld physicsWorld,
+			final Planet planet) {
+		super(physicsWorld, planet, new TexturedCircle(planet.getCenterX(), planet.getCenterY(), planet.getRadius(),
+				TextureRegions.getInstance().getPlanetTexture(planet.getPlanetType())),
+				FixtureDefs.PLANET_FIXTURE_DEF);
 	}
-
-	@Override
-	public void propertyChange(final PropertyChangeEvent event) {
-		
-	}
-
-}*/
+}

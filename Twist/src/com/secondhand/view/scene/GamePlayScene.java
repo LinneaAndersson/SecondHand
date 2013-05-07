@@ -77,6 +77,7 @@ public class GamePlayScene extends GameScene{
 		attachChild(new StarsBackground(100, 3.0f, width, height));
 		this.attachChild(new StarsBackground(130, 1.0f, width, height));
 
+		MyDebug.d("width: " + width + " height" + height);
 		this.smoothCamera.setBounds(0, width, 0, height);
 
 		for (final Entity entity : gameWorld.getEntityManager().getEntityList()) {
@@ -102,10 +103,8 @@ public class GamePlayScene extends GameScene{
 	private void setupView() {
 		// setup the player
 		
-		
 		// create player view.
 		final PlayerView playerView = new PlayerView(physicsWorld, gameWorld.getPlayer());
-		//gameWorld.getPlayer().setPhysics(new MyPhysicsEntity(physicsWorld));
 			
 		attachChild(playerView.getShape());
 		engine.getCamera().setChaseEntity(playerView.getShape());//playerView
@@ -128,9 +127,6 @@ public class GamePlayScene extends GameScene{
 		// we'll need to be able to restore the camera when returning to the
 		// menu.
 		
-		gameWorld.setCameraPos(smoothCamera.getCenterX(),
-				smoothCamera.getCenterY());
-	
 		setupView();
 		registerNewLevel();
 		engine.getCamera().setHUD(hud);

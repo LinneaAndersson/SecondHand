@@ -19,7 +19,7 @@ public class RectangleView extends EntityView {
 	}
 
 	@Override
-	public void propertyChange(PropertyChangeEvent arg0) {
+	public void propertyChange(final PropertyChangeEvent arg0) {
 		// TODO Auto-generated method stub
 		
 	}

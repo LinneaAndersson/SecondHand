@@ -2,14 +2,10 @@ package com.secondhand.view.entities;
 
 import java.beans.PropertyChangeEvent;
 
-import org.anddev.andengine.entity.shape.IShape;
 import org.anddev.andengine.entity.sprite.Sprite;
 import org.anddev.andengine.extension.physics.box2d.PhysicsWorld;
 
-import com.badlogic.gdx.physics.box2d.Body;
-import com.secondhand.model.Obstacle;
 import com.secondhand.model.powerup.PowerUp;
-import com.secondhand.view.opengl.TexturedPolygon;
 import com.secondhand.view.physics.FixtureDefs;
 import com.secondhand.view.resource.TextureRegions;
 

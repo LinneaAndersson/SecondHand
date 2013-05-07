@@ -1,5 +1,6 @@
 package com.secondhand.view.entities;
 
+import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 
 import org.anddev.andengine.entity.shape.IShape;
@@ -42,5 +43,8 @@ public abstract class EntityView implements PropertyChangeListener {
 	public IShape getShape(){
 		return shape;
 	}
-	
+
+	@Override
+	public void propertyChange(final PropertyChangeEvent event) {
+	}
 }

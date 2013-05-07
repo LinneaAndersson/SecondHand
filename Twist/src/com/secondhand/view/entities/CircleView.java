@@ -1,7 +1,5 @@
 package com.secondhand.view.entities;
 
-import java.beans.PropertyChangeEvent;
-
 import org.anddev.andengine.extension.physics.box2d.PhysicsFactory;
 import org.anddev.andengine.extension.physics.box2d.PhysicsWorld;
 
@@ -20,7 +18,4 @@ public class CircleView extends EntityView {
 						circle.getX(), circle.getY(), circle.getRadius(),circle.getRotation(), BodyType.DynamicBody, fixtureDef));
 	}
 
-	@Override
-	public void propertyChange(PropertyChangeEvent event) {
-	}
 }

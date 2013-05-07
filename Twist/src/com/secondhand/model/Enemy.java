@@ -99,8 +99,6 @@ public class Enemy extends BlackHole {
 				move(new Vector2(getCenterX() - entity.getCenterX(),
 						getCenterY() - entity.getCenterY()));
 
-			} else {
-
 			}
 			if (huntingArea != getHuntingArea()) {
 				huntingArea = getHuntingArea();

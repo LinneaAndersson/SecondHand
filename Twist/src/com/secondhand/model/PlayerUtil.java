@@ -6,7 +6,6 @@ import java.util.ArrayList;
 
 import org.anddev.andengine.extension.physics.box2d.util.constants.PhysicsConstants;
 
-import com.badlogic.gdx.physics.box2d.CircleShape;
 import com.secondhand.model.powerup.PowerUp;
 
 // I decided to refactor some code from player because the that class was so large
@@ -64,6 +63,7 @@ public class PlayerUtil {
 	public void reachToTouch(final Vector2 touch) {
 		Vector2 forcePosition;
 
+		// get rid of PIXEL_TO_METER_RATIO_DEFAULT to the view.
 		if (this.isMirroredMovement()) {
 			final Vector2 v1 = new Vector2(touch.x - player.getCenterX(),
 					touch.y - player.getCenterY());

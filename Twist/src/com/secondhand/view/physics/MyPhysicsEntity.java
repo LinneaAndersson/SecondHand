@@ -169,7 +169,8 @@ public class MyPhysicsEntity implements IPhysicsEntity{
 	@Override
 	public void setTransform(final com.secondhand.model.Vector2 position) {
 
-		body.setTransform(new com.badlogic.gdx.math.Vector2(position.x, position.y),
+		body.setTransform(new com.badlogic.gdx.math.Vector2(position.x / PhysicsConstants.PIXEL_TO_METER_RATIO_DEFAULT, 
+				position.y / PhysicsConstants.PIXEL_TO_METER_RATIO_DEFAULT),
 				body.getAngle());
 		
 	}

@@ -2,10 +2,6 @@ package com.secondhand.model;
 
 import java.util.List;
 
-import org.anddev.andengine.extension.physics.box2d.util.constants.PhysicsConstants;
-
-import com.secondhand.view.opengl.Polygon;
-
 public abstract class PolygonEntity extends Entity {
 		
 	//protected final Polygon polygon;

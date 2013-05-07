@@ -3,8 +3,6 @@ package com.secondhand.model;
 import java.beans.PropertyChangeListener;
 import java.util.List;
 
-import org.anddev.andengine.extension.physics.box2d.util.constants.PhysicsConstants;
-
 import com.secondhand.debug.MyDebug;
 import com.secondhand.model.powerup.PowerUp;
 
@@ -142,6 +140,7 @@ public class Player extends BlackHole {
 	public void addListener(final PropertyChangeListener observer) {
 		util.addListener(observer);
 	}
+	
 	public void reachToTouch(final Vector2 touch) {
 		util.reachToTouch(touch);
 	}
@@ -154,9 +153,7 @@ public class Player extends BlackHole {
 	// - Sincerely, Eric
 	public void setNeedsToMovePosition(final Vector2 position) {
 
-		needsToMovePosition = new Vector2(position.x
-				/ PhysicsConstants.PIXEL_TO_METER_RATIO_DEFAULT, position.y
-				/ PhysicsConstants.PIXEL_TO_METER_RATIO_DEFAULT);
+		needsToMovePosition = new Vector2(position.x, position.y);
 	}
 
 	public void moveToNeededPositionIfNecessary() {

@@ -18,4 +18,7 @@ public interface IPhysicsEntity {
 	Body getBody();
 
 	void setLinearDamping(float f);
+	
+	// detach from andengine rendering. 
+	void detachSelf();
 }

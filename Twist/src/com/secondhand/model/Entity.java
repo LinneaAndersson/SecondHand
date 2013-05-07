@@ -69,7 +69,7 @@ public abstract class Entity {
 
 		// Detach the shape from AndEngine-rendering
 		// do this from IPhysicsEntity instead.
-		getShape().detachSelf();
+		this.physics.detachSelf();
 	}
 
 	private boolean bodyScheduledForDeletion;

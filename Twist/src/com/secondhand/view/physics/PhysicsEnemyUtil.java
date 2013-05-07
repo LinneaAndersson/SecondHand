@@ -3,6 +3,7 @@ package com.secondhand.view.physics;
 import org.anddev.andengine.extension.physics.box2d.PhysicsWorld;
 
 import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.Fixture;
 import com.badlogic.gdx.physics.box2d.RayCastCallback;
 import com.secondhand.model.Enemy;
@@ -40,7 +41,7 @@ public class PhysicsEnemyUtil {
 
 				return 0;
 			}
-		}, enemy.getPhysics().getBody().getWorldCenter(), entity.getPhysics().getBody().getWorldCenter());
+		}, new Vector2(enemy.getCenterX(),enemy.getCenterY()) , new Vector2(enemy.getCenterX(),enemy.getCenterY()));
 
 		return straightLine;
 	}
@@ -51,7 +52,11 @@ public class PhysicsEnemyUtil {
 
 	// clarify: a point 5-10 length-units in front of where the enemy is moving.
 	public Vector2 dangerClose(final Enemy enemy) {
-		final Vector2 v = enemy.getPhysics().getBody().getWorldCenter();
+		
+		// hope this works, otherwise Andreas will have to fix it. 
+		final Vector2 v = new Vector2(enemy.getCenterX(), enemy.getCenterY());   //enemy.getPhysics().getBody().getWorldCenter();
+		
+		
 		//Vector2 v2 = enemy.getBody().getLinearVelocity();
 		physics.rayCast(new RayCastCallback(){
 

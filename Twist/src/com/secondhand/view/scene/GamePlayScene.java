@@ -105,7 +105,7 @@ public class GamePlayScene extends GameScene{
 		
 		
 		// create player view.
-		PlayerView playerView = new PlayerView(physicsWorld, gameWorld.getPlayer());
+		final PlayerView playerView = new PlayerView(physicsWorld, gameWorld.getPlayer());
 		//gameWorld.getPlayer().setPhysics(new MyPhysicsEntity(physicsWorld));
 			
 		attachChild(playerView.getShape());

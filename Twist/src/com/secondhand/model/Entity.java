@@ -3,45 +3,33 @@ package com.secondhand.model;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 
-import org.anddev.andengine.entity.shape.IShape;
-import org.anddev.andengine.entity.shape.Shape;
-
-import com.badlogic.gdx.physics.box2d.Body;
-import com.secondhand.debug.MyDebug;
-
 public abstract class Entity {
 
-	private IShape shape;
 	private boolean isEdible;
 	protected IPhysicsEntity physics;
-
+	
+	// only the initial postion. the updated position is later fetched by physics. 
+	
 	protected final GameWorld gameWorld;
 	protected PropertyChangeSupport pcs = new PropertyChangeSupport(this);
 
-	public Entity(final Shape shape, final boolean isEdible,
+	public Entity(final boolean isEdible,
 			final GameWorld level) {
 		//this.shape = shape;
 		this.isEdible = isEdible;
 		this.gameWorld = level;
 		bodyScheduledForDeletion = false;
-		MyDebug.d("now we have created a entity");
 	}
 
-	public void setPhysics(IPhysicsEntity physics){
+	public void setPhysics(final IPhysicsEntity physics){
 		this.physics = physics;
 		createType();
-		MyDebug.d("is this null?" +this.getCenterX());
-		MyDebug.d("is this null?" +this.getCenterY());
-		MyDebug.d("is this null?" +this.getRadius());
 	}
 	
 	public abstract void createType();
 
 	public abstract boolean isCircle();
 
-	public IShape getShape() {
-		return shape;
-	}
 
 	public boolean isEdible() {
 		return this.isEdible;
@@ -56,14 +44,6 @@ public abstract class Entity {
 	}
 
 	public abstract float getRadius();
-
-	public float getCenterX() {
-		return physics.getCenterX();
-	}
-
-	public float getCenterY() {
-		return physics.getCenterY();
-	}
 	
 	// how much every unit(pixel) of radius is worth in points.
 	public abstract float getScoreWorth();

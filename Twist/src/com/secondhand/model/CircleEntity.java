@@ -1,6 +1,5 @@
 package com.secondhand.model;
 
-import com.secondhand.debug.MyDebug;
 import com.secondhand.view.opengl.Circle;
 
 public abstract class CircleEntity extends Entity {
@@ -8,6 +7,9 @@ public abstract class CircleEntity extends Entity {
 	protected final Circle circle;
 	
 	protected final float radius;
+	
+	private final Vector2 position;
+
 	
 	public CircleEntity(final Vector2 position, final float radius, final boolean isEdible, final GameWorld level) {  
 		super(position,isEdible,level);
@@ -24,10 +26,6 @@ public abstract class CircleEntity extends Entity {
 	public void createType(){
 	}
 	
-	public void setRadius(final float radius) {
-		// do this on body instead.
-		circle.setRadius(radius);
-	}	
 	
 	@Override 
 	public float getRadius() {
@@ -37,5 +35,14 @@ public abstract class CircleEntity extends Entity {
 		else
 			return this.radius;
 	}
+	
+	/*
+	 * 	public float getCenterX() {
+		return physics.getCenterX();
+	}
+
+	public float getCenterY() {
+		return physics.getCenterY();
+	}*/
 
 }

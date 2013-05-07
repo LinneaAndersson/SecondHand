@@ -172,4 +172,10 @@ public abstract class BlackHole extends CircleEntity {
 	}	
 	
 	
+	public void setRadius(final float radius) {
+		// do this on body instead.
+		circle.setRadius(radius);
+		foreifjoj;
+		//this.physics
+	}	
 }

@@ -30,7 +30,7 @@ public class MyPhysicsEntity implements IPhysicsEntity{
 	}
 	
 	// TODO andengine or box2d coordinates?
-		@Override
+	/*	@Override
 		public float getCenterX() {
 			return body.getWorldCenter().x;
 		}
@@ -38,7 +38,7 @@ public class MyPhysicsEntity implements IPhysicsEntity{
 		@Override
 		public float getCenterY() {
 			return body.getWorldCenter().y;
-		}
+		}*/
 		/*
 		@Override
 		public void registerBody(final Entity entity, final Body body, final IShape shape) {

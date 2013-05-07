@@ -24,4 +24,7 @@ public interface IPhysicsEntity {
 
 	float computePolygonRadius(final List<Vector2> polygon);
 
+	void setTransform(final Vector2 position);
+
 }
+

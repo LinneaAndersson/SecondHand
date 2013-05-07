@@ -165,4 +165,12 @@ public class MyPhysicsEntity implements IPhysicsEntity{
 		
 		return maxLength;
 	}
+
+	@Override
+	public void setTransform(final com.secondhand.model.Vector2 position) {
+
+		body.setTransform(new com.badlogic.gdx.math.Vector2(position.x, position.y),
+				body.getAngle());
+		
+	}
 }

@@ -24,10 +24,10 @@ public class PlayerView extends BlackHoleView {
 		}else if (propertyName.equals(Player.POWER_UP_SOUND)) {
 			Sounds.getInstance().powerUpSound.play();
 		}else if (propertyName.equals(Player.ADD_POWER_UP)) {
-			player.getShape().setColor(1f, 0, 0);
+			this.shape.setColor(1f, 0, 0);
 		} else if (propertyName.equals(Player.REMOVE_POWER_UP)) {
 			if (player.getPowerUps().isEmpty()) {
-				player.getShape().setColor(1f, 1f, 1f);
+				this.shape.setColor(1f, 1f, 1f);
 			}
 		} else if (propertyName.equals(Player.GROW_SOUND)) {
 			Sounds.getInstance().growSound.play();

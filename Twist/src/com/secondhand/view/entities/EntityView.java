@@ -14,7 +14,7 @@ import com.secondhand.view.physics.CustomPhysicsConnector;
 import com.secondhand.view.physics.MyPhysicsEntity;
 
 public abstract class EntityView implements PropertyChangeListener {
-	private final IShape shape;
+	protected final IShape shape;
 	//Need this for physics.
 	private final Entity entity;
 	private final Body body;

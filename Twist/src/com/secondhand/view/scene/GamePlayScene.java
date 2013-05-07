@@ -108,7 +108,8 @@ public class GamePlayScene extends GameScene{
 			
 		attachChild(playerView.getShape());
 		engine.getCamera().setChaseEntity(playerView.getShape());//playerView
-
+		smoothCamera.setBoundsEnabled(true);
+		
 		registerUpdateHandler(physicsWorld);
 
 		// setup the HUD

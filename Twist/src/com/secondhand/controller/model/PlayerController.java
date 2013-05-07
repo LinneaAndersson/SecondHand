@@ -6,7 +6,9 @@ import org.anddev.andengine.engine.handler.timer.TimerHandler;
 import com.secondhand.model.Player;
 import com.secondhand.model.powerup.PowerUp;
 
-public class PlayerController {
+public final class PlayerController {
+	
+	private PlayerController() {}
 
 	public static TimerHandler createTimer(final Player player, final PowerUp powerUp) {
 		return new TimerHandler(powerUp.getDuration(), new ITimerCallback() {

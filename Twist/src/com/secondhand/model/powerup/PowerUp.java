@@ -1,15 +1,10 @@
 package com.secondhand.model.powerup;
 
-import org.anddev.andengine.entity.primitive.BaseRectangle;
-import org.anddev.andengine.entity.primitive.Rectangle;
-import org.anddev.andengine.entity.sprite.Sprite;
-
 import com.secondhand.model.GameWorld;
 import com.secondhand.model.Player;
 import com.secondhand.model.RectangleEntity;
 import com.secondhand.model.Vector2;
 import com.secondhand.model.resource.PowerUpType;
-import com.secondhand.view.resource.TextureRegions;
 
 public abstract class PowerUp extends RectangleEntity {
 		
@@ -17,20 +12,17 @@ public abstract class PowerUp extends RectangleEntity {
 	public final static int HEIGHT = 64;
 	
 	protected float duration;
-	
-	public PowerUp(final BaseRectangle rectangle, final GameWorld level, final float duration) {
-		super(rectangle, true, level);
-		this.duration = duration;
-	}
+	private PowerUpType powerUpType;
 	
 	public PowerUp (final Vector2 position, final PowerUpType powerUpType, final GameWorld level, final float duration) {
-		this(new Sprite(position.x, position.y, WIDTH, HEIGHT, TextureRegions.getInstance().getPowerUpTexture(powerUpType)), level, duration);
+		super(position, WIDTH, HEIGHT,true,  level);
+		this.duration = duration;
+		this.powerUpType = powerUpType;
 	}
 	
-	// this constructor is easier to test. 
-	public PowerUp (final Vector2 position, final GameWorld level, final float duration) {
-		this(new Rectangle(position.x, position.y, WIDTH, HEIGHT), level, duration);
-	}	
+	public PowerUpType getPowerUpType() {
+		return this.powerUpType;
+	}
 	
 	public float getDuration() {
 		return duration;
@@ -40,8 +32,9 @@ public abstract class PowerUp extends RectangleEntity {
 	
 	public void deactivateEffect(final Player player) {
 		/* 	TODO: Reset player texture or whatever it is the powerup changes (should be taken care of in PowerUpView) */
-		if (player.getPowerUps().isEmpty())
-			player.getCircle().setColor(1f, 1f, 1f);
+		// TODO: do this in view instead.
+		/*if (player.getPowerUps().isEmpty())
+			player.getCircle().setColor(1f, 1f, 1f);*/
 	}
 	
 	@Override

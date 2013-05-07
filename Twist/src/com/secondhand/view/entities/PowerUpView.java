@@ -30,8 +30,8 @@ public class PowerUpView extends RectangleView {
 		super(physicsWorld, 
 				powerUp,
 				
-				
-				new Sprite(powerUp.ge, position.y, WIDTH, HEIGHT, TextureRegions.getInstance().getPowerUpTexture(powerUpType))
+				new Sprite(powerUp.getPosition().x, powerUp.getPosition().y, powerUp.getWidth(), 
+						powerUp.getHeight(), TextureRegions.getInstance().getPowerUpTexture(powerUpType))
 				, FixtureDefs.POWER_UP_FIXTURE_DEF);
 	}
 

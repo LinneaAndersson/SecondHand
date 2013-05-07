@@ -105,19 +105,17 @@ public class GamePlayScene extends GameScene{
 		
 		
 		// create player view.
-		new PlayerView(physicsWorld, gameWorld.getPlayer());
+		PlayerView playerView = new PlayerView(physicsWorld, gameWorld.getPlayer());
 		//gameWorld.getPlayer().setPhysics(new MyPhysicsEntity(physicsWorld));
 		
 		MyDebug.i("In setupView gameplayscene");
 		final Player player = gameWorld.getPlayer();
 		MyDebug.i("In setupView gameplayscene");
-		if(player.getShape() != null) {
-			player.getShape().detachSelf();
-		}	
+			
 		MyDebug.i("In setupView gameplayscene");
-		attachChild(player.getShape());
+		attachChild(playerView.getShape());
 		MyDebug.i("In setupView gameplayscene");
-		engine.getCamera().setChaseEntity(player.getShape());//playerView
+		engine.getCamera().setChaseEntity(playerView.getShape());//playerView
 		MyDebug.i("In setupView gameplayscene");
 
 		registerUpdateHandler(physicsWorld);

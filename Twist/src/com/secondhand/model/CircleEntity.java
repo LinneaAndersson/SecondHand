@@ -1,19 +1,13 @@
 package com.secondhand.model;
 
-import com.secondhand.view.opengl.Circle;
-
-public abstract class CircleEntity extends Entity {
-	
-	protected final Circle circle;
-	
+public abstract class CircleEntity extends Entity {	
 	protected final float radius;
 	
 	private final Vector2 position;
 
-	
 	public CircleEntity(final Vector2 position, final float radius, final boolean isEdible, final GameWorld level) {  
-		super(position,isEdible,level);
-		  
+		super(isEdible,level);
+		this.position = position;
 		this.radius = radius;
 	}
 	
@@ -36,13 +30,18 @@ public abstract class CircleEntity extends Entity {
 			return this.radius;
 	}
 	
-	/*
-	 * 	public float getCenterX() {
-		return physics.getCenterX();
+	 public float getCenterX() {
+		 if(this.physics != null)
+			 return this.getCenterX();
+		 else
+			 return this.position.x;
 	}
-
-	public float getCenterY() {
-		return physics.getCenterY();
-	}*/
+	 
+	 public float getCenterY() {
+		 if(this.physics != null)
+			 return this.getCenterY();
+		 else
+			 return this.position.y;
+	}
 
 }

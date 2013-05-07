@@ -30,20 +30,15 @@ public class MyPhysicsEntity implements IPhysicsEntity{
 	}
 
 	// TODO andengine or box2d coordinates?
-	/*	@Override
-		public float getCenterX() {
-			return body.getWorldCenter().x;
-		}
+	@Override
+	public float getCenterX() {
+		return body.getWorldCenter().x;
+	}
 
-		@Override
-		public float getCenterY() {
-			return body.getWorldCenter().y;
-		}*/
-	/*
-		@Override
-		public void registerBody(final Entity entity, final Body body, final IShape shape) {
-
-		}*/
+	@Override
+	public float getCenterY() {
+		return body.getWorldCenter().y;
+	}
 
 	// andEngine or box2d coordinates in? and depending on from
 	// where we call the method we could perhaps have an vector as input.

@@ -4,9 +4,9 @@ import com.badlogic.gdx.physics.box2d.Body;
 
 public interface IPhysicsEntity {
 	
-	/*float getCenterX();
+	float getCenterX();
 	
-	float getCenterY();*/
+	float getCenterY();
 	
 	float getRadius();
 	

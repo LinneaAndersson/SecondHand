@@ -30,6 +30,7 @@ public class MyPhysicsEntity implements IPhysicsEntity{
 				body, true, entity.getRotation());
 		physicsWorld.registerPhysicsConnector(physicsConnector);
 
+		this.body = body;
 		this.shape = shape;
 	}
 

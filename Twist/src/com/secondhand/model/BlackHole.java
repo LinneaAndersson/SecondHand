@@ -26,7 +26,6 @@ public abstract class BlackHole extends CircleEntity {
 			final float maxSpeed, final int startingScore) {
 		// TODO load texture instead of creating Circle
 		super(position, radius, true, level);
-		MyDebug.d("now we create BlackHole");
 		this.position = position;
 		this.maxSpeed = maxSpeed;
 		this.score = startingScore;

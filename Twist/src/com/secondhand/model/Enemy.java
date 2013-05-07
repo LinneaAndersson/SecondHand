@@ -124,7 +124,6 @@ public class Enemy extends BlackHole {
 
 	public void retreat(final Entity danger) {
 		MyDebug.d("Enemy: Retreat");
-
 	}
 	
 	@Override

@@ -19,9 +19,7 @@ public class PlayerView extends BlackHoleView {
 		final String propertyName = event.getPropertyName();
 		final Player player =  (Player) getEntity();
 		
-		if(propertyName.equalsIgnoreCase("Radius")){
-			changeSize();
-		}else if (propertyName.equals(Player.POWER_UP_SOUND)) {
+		if (propertyName.equals(Player.POWER_UP_SOUND)) {
 			Sounds.getInstance().powerUpSound.play();
 		}else if (propertyName.equals(Player.ADD_POWER_UP)) {
 			this.shape.setColor(1f, 0, 0);

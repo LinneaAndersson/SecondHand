@@ -1,13 +1,7 @@
 	
 package com.secondhand.model;
 
-
-import org.anddev.andengine.extension.physics.box2d.util.constants.PhysicsConstants;
-
-import com.badlogic.gdx.physics.box2d.CircleShape;
-import com.secondhand.debug.MyDebug;
 import com.secondhand.model.powerup.PowerUp;
-import com.secondhand.view.opengl.Circle;
 
 public abstract class BlackHole extends CircleEntity {
 
@@ -29,8 +23,7 @@ public abstract class BlackHole extends CircleEntity {
 			final GameWorld level,
 			final float maxSpeed, final int startingScore) {
 		// TODO load texture instead of creating Circle
-		super(new Circle(position.x, position.y, radius), true, level);
-		MyDebug.d("now we create BlackHole");
+		super(position, radius, true, level);
 		this.position = position;
 		this.maxSpeed = maxSpeed;
 		this.score = startingScore;
@@ -76,7 +69,6 @@ public abstract class BlackHole extends CircleEntity {
 	}
 
 	private void increaseSize(final float increase) {
-		pcs.firePropertyChange("radius", getRadius(), getRadius() + increase);
 		setRadius(getRadius() + increase);
 	}
 
@@ -88,14 +80,6 @@ public abstract class BlackHole extends CircleEntity {
 			return false;
 		}
 		return this.getRadius() > entity.getRadius();
-	}
-	
-	// moves in the specified direction. If max speed is reached, then no movement is performed.
-
-	public void move(final float posX, final float posY) {
-		pcs.firePropertyChange("move", (int)posX, (int)posY);
-		//physics.applyImpulse(getBody(), posX, posY, maxSpeed);
-		physics.applyImpulse(posX, posY, maxSpeed);
 	}
 		
 	public void move(final Vector2 position) {
@@ -128,13 +112,6 @@ public abstract class BlackHole extends CircleEntity {
 		this.increaseSize(radiusInc);
 		onGrow();
 
-		// now we must also increase the size of the circle physics body
-		// TODO fire an event here instead and let the view handle
-		// increasing the size
-		final CircleShape shape = (CircleShape) physics.getBody().getFixtureList()
-				.get(0).getShape();
-		shape.setRadius(this.getRadius()
-				/ PhysicsConstants.PIXEL_TO_METER_RATIO_DEFAULT);
 
 		entity.wasEaten();	
 	}
@@ -171,5 +148,9 @@ public abstract class BlackHole extends CircleEntity {
 		return 3;
 	}	
 	
+	public void setRadius(final float radius) {
+
+		this.physics.setRadius(radius);
 	
+	}	
 }

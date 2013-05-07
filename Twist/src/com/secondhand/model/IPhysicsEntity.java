@@ -1,24 +1,32 @@
 package com.secondhand.model;
 
-import org.anddev.andengine.entity.shape.IShape;
-
-import com.badlogic.gdx.physics.box2d.Body;
+import java.util.List;
 
 public interface IPhysicsEntity {
 	
-	public float getCenterX();
+	float getCenterX();
 	
-	public float getCenterY();
+	float getCenterY();
 	
-	public void registerBody(final Entity entity, final Body body, final IShape shape);
+	float getRadius();
+	
+	void setRadius(final float radius);
 	
 	void deleteBody(boolean scheduledBody);
 
+	/// apply impulse to world center. 
 	void applyImpulse(float posX, float posY, float maxSpeed);
 
-	Body createType(IShape shape, Entity entity);
+	void applyImpulse(Vector2 impulsePosition, Vector2 impulse);
+	
+	void setLinearDamping(float f);
+	
+	// detach from andengine rendering. 
+	void detachSelf();
 
-	Body getBody();
+	float computePolygonRadius(final List<Vector2> polygon);
 
-	public void setLinearDamping(float f);
+	void setTransform(final Vector2 position);
+
 }
+

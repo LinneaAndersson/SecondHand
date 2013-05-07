@@ -1,8 +1,6 @@
 package com.secondhand.model;
 
-import org.anddev.andengine.entity.shape.IShape;
 
-import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.Contact;
 
 public interface IPhysicsWorld {
@@ -17,6 +15,7 @@ public interface IPhysicsWorld {
 	boolean isStraightLine(final Entity entity, final Enemy enemy);
 
 	// check the collision between entities
+	// should not be in model. 
 	void checkCollision(final Contact contact);
 
 	// checks if the rectangular area i UnOccupied

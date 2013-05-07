@@ -6,7 +6,7 @@ import java.util.ArrayList;
 
 import org.anddev.andengine.extension.physics.box2d.util.constants.PhysicsConstants;
 
-import com.badlogic.gdx.physics.box2d.CircleShape;
+import com.secondhand.debug.MyDebug;
 import com.secondhand.model.powerup.PowerUp;
 
 // I decided to refactor some code from player because the that class was so large
@@ -21,6 +21,7 @@ public class PlayerUtil {
 	public PlayerUtil(final Player player) {
 		this.player = player;
 		list = new PowerList(player);
+		this.isMirroredMovement = false;
 	}
 
 	public boolean isMirroredMovement() {
@@ -41,6 +42,7 @@ public class PlayerUtil {
 		private static final long serialVersionUID = 1L;
 
 		public PowerList(final Player player) {
+			super();
 			this.player = player;
 		}
 
@@ -60,10 +62,10 @@ public class PlayerUtil {
 		}
 	}
 
-	// TODO need to sync this with physics
 	public void reachToTouch(final Vector2 touch) {
 		Vector2 forcePosition;
 
+		// get rid of PIXEL_TO_METER_RATIO_DEFAULT to the view.
 		if (this.isMirroredMovement()) {
 			final Vector2 v1 = new Vector2(touch.x - player.getCenterX(),
 					touch.y - player.getCenterY());
@@ -87,18 +89,23 @@ public class PlayerUtil {
 		if (this.isMirroredMovement) {
 			force.mul(-1);
 		}
-
+		
 		force.x = force.x / PhysicsConstants.PIXEL_TO_METER_RATIO_DEFAULT;
 		force.y = force.y / PhysicsConstants.PIXEL_TO_METER_RATIO_DEFAULT;
 
 		force.x = force.x / force.len();
 		force.y = force.y / force.len();
 
-		force.mul(3);
+		force.mul(2);
+		
+		MyDebug.d("mirrored: "+ this.isMirroredMovement);
+		MyDebug.d("force: "+ (force.x * PhysicsConstants.PIXEL_TO_METER_RATIO_DEFAULT) + " " +
+				force.y *PhysicsConstants.PIXEL_TO_METER_RATIO_DEFAULT);
+		MyDebug.d("forcePosition: "+ (forcePosition.x * PhysicsConstants.PIXEL_TO_METER_RATIO_DEFAULT) + " " +
+				forcePosition.y *PhysicsConstants.PIXEL_TO_METER_RATIO_DEFAULT);
 
-		player.getPhysics().getBody().applyLinearImpulse(new com.badlogic.gdx.math.Vector2(force.x, force.y), 
-				new com.badlogic.gdx.math.Vector2(forcePosition.x, forcePosition.y));
-
+		player.physics.applyImpulse(force, forcePosition);
+	
 	}
 
 	public void addListener(final PropertyChangeListener observer) {
@@ -114,14 +121,5 @@ public class PlayerUtil {
 		sceneSupport.firePropertyChange(name, oldValue, newValue);
 	}
 
-	// TODO handle by view
-	public void setRadius(final float radius) {
-		final float newRadius = player.getRadius();
-		final CircleShape shape = (CircleShape) player.getPhysics().getBody()
-				.getFixtureList().get(0).getShape();
-		shape.setRadius(player.getRadius()
-				/ PhysicsConstants.PIXEL_TO_METER_RATIO_DEFAULT);
-		fireObject("PlayerRadius", 0f, newRadius);
-	}
 
 }

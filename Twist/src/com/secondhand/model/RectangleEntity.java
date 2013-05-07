@@ -1,18 +1,29 @@
 package com.secondhand.model;
 
-import org.anddev.andengine.entity.shape.RectangularShape;
 
 
 public abstract class RectangleEntity extends Entity {
+		
+
+	private final Vector2 position;
+	private final float width;
+	private final float height;
 	
-	protected RectangularShape rectangle;
+	/*public PolygonEntity(final Vector2 position,  final List<Vector2> polygon, 
+			final boolean isEdible, final GameWorld level) {
+		super(isEdible, level);
+		
+		this.position = position;
+		this.polygon = polygon;
+	}*/
 	
-	public RectangleEntity(final RectangularShape rectangle, final boolean isEdible, final GameWorld level) {
-		super(rectangle, isEdible, level);
-		
-		
-		
-		this.rectangle = rectangle;
+	
+	public RectangleEntity(final Vector2 position, final float width, 
+			final float height, final boolean isEdible, final GameWorld level) {
+		super(isEdible, level);
+		this.position = position;
+		this.width = width;
+		this.height = height;
 	}
 	
 	@Override
@@ -23,8 +34,7 @@ public abstract class RectangleEntity extends Entity {
 	
 	@Override
 	public void createType(){
-		physics.createType(rectangle, this);
-	}
+	}	
 	
 	@Override
 	public boolean isCircle(){
@@ -32,15 +42,14 @@ public abstract class RectangleEntity extends Entity {
 	}
 	
 	public float getWidth() {
-		return this.rectangle.getWidth();
+		return this.width;
+	}
+	
+	public Vector2 getPosition() {
+		return this.position;
 	}
 	
 	public float getHeight() {
-		return this.rectangle.getHeight();
-	}
-	
-
-	public RectangularShape getRectangle() {
-		return this.rectangle;
+		return this.height;
 	}
 }

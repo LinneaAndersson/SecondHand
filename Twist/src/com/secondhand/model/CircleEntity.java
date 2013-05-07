@@ -1,22 +1,14 @@
 package com.secondhand.model;
 
-import com.secondhand.debug.MyDebug;
-import com.secondhand.view.opengl.Circle;
+public abstract class CircleEntity extends Entity {	
+	protected final float radius;
+	
+	private final Vector2 position;
 
-public abstract class CircleEntity extends Entity {
-	
-	protected final Circle circle;
-	
-	public CircleEntity(final Circle circle, final boolean isEdible, final GameWorld level) {
-		
-		  super(circle,isEdible,level);
-		  MyDebug.d("Now we create Circle");
-		  // the body should be created in the view instead. 
-		  
-		  
-		
-		this.circle = circle;
-		MyDebug.d("Nw we create Circle");
+	public CircleEntity(final Vector2 position, final float radius, final boolean isEdible, final GameWorld level) {  
+		super(isEdible,level);
+		this.position = position;
+		this.radius = radius;
 	}
 	
 	@Override
@@ -26,22 +18,32 @@ public abstract class CircleEntity extends Entity {
 	
 	@Override
 	public void createType(){
-		//physics.createType(circle,this);
-		MyDebug.d("creating playerType" + physics);
-		physics.createType(circle,this); 
-		  MyDebug.d("Now we have created playerType");
 	}
 	
-	public void setRadius(final float radius) {
-		circle.setRadius(radius);
-	}	
 	
 	@Override 
 	public float getRadius() {
-		return circle.getRadius();
+		if(this.physics != null)
+			// return for body
+			return this.physics.getRadius();
+		else
+			return this.radius;
+	}
+	
+	@Override
+	 public float getCenterX() {
+		 if(this.physics != null)
+			 return super.getCenterX();
+		 else
+			 return this.position.x;
+	}
+	 
+	@Override
+	 public float getCenterY() {
+		 if(this.physics != null)
+			 return super.getCenterY();
+		 else
+			 return this.position.y;
 	}
 
-	public Circle getCircle() {
-		return circle;
-	}
 }

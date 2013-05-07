@@ -1,6 +1,5 @@
 package com.secondhand.model;
 
-import java.beans.PropertyChangeSupport;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -31,23 +30,22 @@ public class RandomLevelGenerator {
 
 	private final GameWorld level;
 
-	PropertyChangeSupport pcs;
-	
 	private final World world;
 	private final Random rng;
 
 	RandomLevelGenerator(final Player player, final GameWorld level) {
 		rng = new Random();
-		this.levelNumber = level.getLevelNumber()-1;
+		this.levelNumber = level.getLevelNumber();
 		this.level = level;
-		this.levelWidth = level.getLevelWidth();
-		this.levelHeight = level.getLevelHeight();
+		this.levelWidth = 1000 * this.levelNumber;
+		this.levelHeight = 1000 * this.levelNumber;
 		world = new World(this.levelWidth, this.levelHeight);
 		this.player = player;
 		// make sure entities are not placed on top of player
 	
+		// TODO: generate player position for level.
 		final World.Polygon poly = PolygonFactory.createCircle(new Vector2(
-				player.getCenterX(), player.getCenterY()), player.getRadius());
+				120 /*player.getCenterX()*/,120/* player.getCenterY()*/), 40);
 		world.addToWorld(poly);
 
 		this.playerMaxSize = player.getMaxSize();
@@ -60,14 +58,9 @@ public class RandomLevelGenerator {
 	}
 
 	private void placeOutEnemies() {
-		Enemy enemy = new Enemy(new Vector2(200, 200), 50, level);
-		enemy.setMaxSpeed(8+(this.levelNumber-1)*2);
-		entityList.add(enemy);
-		enemyList.add(enemy);
+		Enemy enemy;		
 
-		
-
-		final int ENEMIES;
+		int ENEMIES;
 	//	Enemy enemy;
 		//Instead of making to many enemies we will make them go faster.
 		if (levelNumber < 4) {
@@ -75,19 +68,17 @@ public class RandomLevelGenerator {
 		} else {
 			ENEMIES = 8;
 		}
-
+		ENEMIES = 0;
+		
 		for (int i = 0; i < ENEMIES; ++i) {
 
 			float radius;
-			MyDebug.d("cant get nextFloat");
 			radius = RandomUtil.nextFloat(rng, Enemy.getMinSize(),
 					Enemy.getMaxSize());
 
 			while (true) {
-				MyDebug.d("cant get nextInt");
 				xAxis = rng.nextInt(this.levelWidth);
 				yAxis = rng.nextInt(this.levelHeight);
-				MyDebug.d("cant create poly");
 				final World.Polygon poly = PolygonFactory.createCircle(
 						new Vector2(xAxis, yAxis), radius);
 
@@ -98,9 +89,7 @@ public class RandomLevelGenerator {
 				}
 
 			}
-			MyDebug.d("cant create new Enemy");
 			enemy = new Enemy(new Vector2(xAxis, yAxis), radius, level);
-			MyDebug.d("cant set enemyMaxspeed");
 			enemy.setMaxSpeed(8+(this.levelNumber-1)*2);
 			entityList.add(enemy);
 			enemyList.add(enemy);
@@ -109,29 +98,9 @@ public class RandomLevelGenerator {
 
 	}
 
-	/*
-	 * private boolean isTooCloseToOtherEntity(final float xAxis, final float y,
-	 * final float radius) { // setting high values for this constant will cause
-	 * long level generation times, so be careful. final float MINIMUM_DISTANCE
-	 * = 60;
-	 * 
-	 * for(final Entity entity: this.entityList) { if(entity instanceof
-	 * CircleEntity) { final Circle other = (Circle)entity.getShape();
-	 * 
-	 * final float dx = Math.abs(x - other.getX()); final float dy = Math.abs(y
-	 * - other.getY());
-	 * 
-	 * final float dist = (float)Math.sqrt(dx*dx + dy*dy) - radius -
-	 * other.getRadius();
-	 * 
-	 * if(dist < MINIMUM_DISTANCE) { return true; } } }
-	 * 
-	 * return false; }
-	 */
-
 	private void placeOutObstacles() {
 
-		final int OBSTACLES = this.levelNumber * 5;
+		final int OBSTACLES = 0; //this.levelNumber * 5;
 
 		for (int i = 0; i < OBSTACLES; ++i) {
 
@@ -156,7 +125,7 @@ public class RandomLevelGenerator {
 	}
 
 	private void placeOutPowerUps() {
-		final int POWER_UPS = 5 * this.levelNumber;
+		final int POWER_UPS = 0; //5 * this.levelNumber;
 
 		for (int i = 0; i < POWER_UPS; ++i) {
 
@@ -179,32 +148,32 @@ public class RandomLevelGenerator {
 		}
 	}
 
+	
 	private void placeOutPlanets() {
 		MyDebug.d("The level is = " + levelNumber);
 		final float K = 1.2f;
-		final int MINIMUM_PLAYER_EATABLE;
+		int MINIMUM_PLAYER_EATABLE;
 		if (this.levelNumber < 10) {
 			MINIMUM_PLAYER_EATABLE = 50 - (this.levelNumber) * 3;
 		} else {
 			MINIMUM_PLAYER_EATABLE = 10;
 		}
-		MyDebug.d(" eatable = " + MINIMUM_PLAYER_EATABLE);
+		MINIMUM_PLAYER_EATABLE = 0;
 		int numPlayerEatable = 0;
 
-		final float MAX_SIZE = player.getRadius()*4f;
+		final float MAX_SIZE = 60 /*player.getRadius()*/*4f;
 
-		final float MIN_SIZE = player.getRadius() - 20;
+		final float MIN_SIZE = 40 /*player.getRadius()*/ - 20;
 
-		final int PLANETS = 50; // (int)( 25 * this.levelNumber * K);
+		final int PLANETS = 0; // (int)( 25 * this.levelNumber * K);
 		float radius;
 
-		MyDebug.d("There are " + entityList.size() + " entitys out there before adding planets");
 		//Start with the smaller planets.
 		for (int i = 0; i < MINIMUM_PLAYER_EATABLE; ++i) {
 
 			while (true) {
 				radius = RandomUtil.nextFloat(rng, MIN_SIZE,
-						player.getRadius());
+						40 /*player.getRadius()*/);
 
 				xAxis = rng.nextInt(this.levelWidth);
 				yAxis = rng.nextInt(this.levelHeight);
@@ -212,7 +181,7 @@ public class RandomLevelGenerator {
 				final World.Polygon poly = PolygonFactory.createCircle(
 						new Vector2(xAxis, yAxis), radius);
 
-				if (world.addToWorld(poly)&& radius<player.getRadius()) {
+				if (world.addToWorld(poly)&& radius< 40 /*player.getRadius()*/) {
 					numPlayerEatable++;
 					break;
 				}
@@ -220,10 +189,9 @@ public class RandomLevelGenerator {
 			entityList.add(new Planet(new Vector2(xAxis, yAxis), radius,
 					RandomUtil.randomEnum(rng, PlanetType.class), level));
 		}
-		MyDebug.d("there are " + entityList.size() + " entitys out there after adding eatable planets");
 		for (int i = MINIMUM_PLAYER_EATABLE ; i<PLANETS ; i++ ) {
 			while (true) {
-				radius = RandomUtil.nextFloat(rng, player.getRadius(),
+				radius = RandomUtil.nextFloat(rng, 40 /*player.getRadius()*/,
 						MAX_SIZE);
 
 				xAxis = rng.nextInt(this.levelWidth);

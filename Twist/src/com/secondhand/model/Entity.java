@@ -3,22 +3,19 @@ package com.secondhand.model;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 
-import org.anddev.andengine.entity.shape.IShape;
-import org.anddev.andengine.entity.shape.Shape;
-
-import com.badlogic.gdx.physics.box2d.Body;
-import com.secondhand.debug.MyDebug;
+import org.anddev.andengine.extension.physics.box2d.util.constants.PhysicsConstants;
 
 public abstract class Entity {
 
-	private IShape shape;
 	private boolean isEdible;
 	protected IPhysicsEntity physics;
-
+	
+	// only the initial postion. the updated position is later fetched by physics. 
+	
 	protected final GameWorld gameWorld;
 	protected PropertyChangeSupport pcs = new PropertyChangeSupport(this);
 
-	public Entity(final Shape shape, final boolean isEdible,
+	public Entity(final boolean isEdible,
 			final GameWorld level) {
 		//this.shape = shape;
 		this.isEdible = isEdible;
@@ -26,22 +23,15 @@ public abstract class Entity {
 		bodyScheduledForDeletion = false;
 	}
 
-	public void setPhysics(IPhysicsEntity physics){
+	public void setPhysics(final IPhysicsEntity physics){
 		this.physics = physics;
 		createType();
-		MyDebug.d("is this null?" +this.getCenterX());
-		MyDebug.d("is this null?" +this.getCenterY());
-		MyDebug.d("is this null?" +this.getRadius());
 	}
 	
 	public abstract void createType();
 
 	public abstract boolean isCircle();
 
-
-	public IShape getShape() {
-		return shape;
-	}
 
 	public boolean isEdible() {
 		return this.isEdible;
@@ -56,14 +46,6 @@ public abstract class Entity {
 	}
 
 	public abstract float getRadius();
-
-	public float getCenterX() {
-		return physics.getCenterX();
-	}
-
-	public float getCenterY() {
-		return physics.getCenterY();
-	}
 	
 	// how much every unit(pixel) of radius is worth in points.
 	public abstract float getScoreWorth();
@@ -88,8 +70,8 @@ public abstract class Entity {
 		scheduleBodyForDeletion();
 
 		// Detach the shape from AndEngine-rendering
-		getShape().detachSelf();
-
+		// do this from IPhysicsEntity instead.
+		this.physics.detachSelf();
 	}
 
 	private boolean bodyScheduledForDeletion;
@@ -123,4 +105,14 @@ public abstract class Entity {
 	public void addPropertyChangeListener(final PropertyChangeListener listener){
 		pcs.addPropertyChangeListener(listener);
 	}
+
+	
+	 public float getCenterX() {
+		 return this.physics.getCenterX() * PhysicsConstants.PIXEL_TO_METER_RATIO_DEFAULT;
+	}
+	 
+	 public float getCenterY() {
+		return  this.physics.getCenterY() * PhysicsConstants.PIXEL_TO_METER_RATIO_DEFAULT;
+	}
+
 }

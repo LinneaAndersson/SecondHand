@@ -2,17 +2,16 @@ package com.secondhand.view.entities;
 
 import java.beans.PropertyChangeEvent;
 
+import org.anddev.andengine.extension.physics.box2d.PhysicsWorld;
+
 import com.secondhand.model.Player;
 import com.secondhand.view.resource.Sounds;
 
 // what? the controller should be handling the PropertyChangeListener, not the view!
 public class PlayerView extends BlackHoleView {
-/*
-	private Engine engine;
-	private GameWorld gameWorld;*/
-	
-	public PlayerView(final Player player){
-		super(player);
+
+	public PlayerView(final PhysicsWorld physicsWorld, final Player player){
+		super(physicsWorld, player);
 	}
 	
 	@Override
@@ -20,15 +19,13 @@ public class PlayerView extends BlackHoleView {
 		final String propertyName = event.getPropertyName();
 		final Player player =  (Player) getEntity();
 		
-		if(propertyName.equalsIgnoreCase("Radius")){
-			changeSize();
-		}else if (propertyName.equals(Player.POWER_UP_SOUND)) {
+		if (propertyName.equals(Player.POWER_UP_SOUND)) {
 			Sounds.getInstance().powerUpSound.play();
 		}else if (propertyName.equals(Player.ADD_POWER_UP)) {
-			player.getShape().setColor(1f, 0, 0);
+			this.shape.setColor(1f, 0, 0);
 		} else if (propertyName.equals(Player.REMOVE_POWER_UP)) {
 			if (player.getPowerUps().isEmpty()) {
-				player.getShape().setColor(1f, 1f, 1f);
+				this.shape.setColor(1f, 1f, 1f);
 			}
 		} else if (propertyName.equals(Player.GROW_SOUND)) {
 			Sounds.getInstance().growSound.play();

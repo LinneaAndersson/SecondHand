@@ -7,16 +7,12 @@ public abstract class CircleEntity extends Entity {
 	
 	protected final Circle circle;
 	
-	public CircleEntity(final Circle circle, final boolean isEdible, final GameWorld level) {
-		
-		  super(circle,isEdible,level);
-		  MyDebug.d("Now we create Circle");
-		  // the body should be created in the view instead. 
+	protected final float radius;
+	
+	public CircleEntity(final Vector2 position, final float radius, final boolean isEdible, final GameWorld level) {  
+		super(position,isEdible,level);
 		  
-		  
-		
-		this.circle = circle;
-		MyDebug.d("Nw we create Circle");
+		this.radius = radius;
 	}
 	
 	@Override
@@ -26,20 +22,20 @@ public abstract class CircleEntity extends Entity {
 	
 	@Override
 	public void createType(){
-		MyDebug.d("creating playerType" + physics);
-		  MyDebug.d("Now we have created playerType");
 	}
 	
 	public void setRadius(final float radius) {
+		// do this on body instead.
 		circle.setRadius(radius);
 	}	
 	
 	@Override 
 	public float getRadius() {
-		return circle.getRadius();
+		if(this.physics != null)
+			// return for body
+			return this.physics.getRadius();
+		else
+			return this.radius;
 	}
 
-	public Circle getCircle() {
-		return circle;
-	}
 }

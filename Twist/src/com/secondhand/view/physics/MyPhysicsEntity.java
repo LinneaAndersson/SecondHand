@@ -9,11 +9,13 @@ import com.badlogic.gdx.physics.box2d.Body;
 import com.secondhand.debug.MyDebug;
 import com.secondhand.model.Entity;
 import com.secondhand.model.IPhysicsEntity;
+import com.secondhand.view.opengl.Circle;
 
 public class MyPhysicsEntity implements IPhysicsEntity{
 	private Body body;
-	private PhysicsWorld physicsWorld;
-	private PhysicsConnector physicsConnector;
+	private final PhysicsWorld physicsWorld;
+	private final PhysicsConnector physicsConnector;
+	private final IShape shape;
 	
 	public MyPhysicsEntity(PhysicsWorld physicsWorld, final Entity entity , final IShape shape,
 			Body body){
@@ -24,7 +26,7 @@ public class MyPhysicsEntity implements IPhysicsEntity{
 				body, true, entity.getRotation());
 		physicsWorld.registerPhysicsConnector(physicsConnector);
 		
-	
+		this.shape = shape;
 	}
 	
 	// TODO andengine or box2d coordinates?
@@ -115,11 +117,17 @@ public class MyPhysicsEntity implements IPhysicsEntity{
 		public Body getBody(){
 			return body;
 		}
-
+		
 		@Override
 		public void setLinearDamping(float linearDamping) {
 			body.setLinearDamping(linearDamping);
 			
+		}
+
+		@Override
+		public float getRadius() {
+			final Circle circle = (Circle)this.shape;
+			return circle.getRadius();
 		}
 		
 

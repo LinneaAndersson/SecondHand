@@ -1,7 +1,5 @@
 package com.secondhand.model;
 
-import org.anddev.andengine.entity.shape.IShape;
-
 import com.badlogic.gdx.physics.box2d.Body;
 
 public interface IPhysicsEntity {
@@ -9,6 +7,8 @@ public interface IPhysicsEntity {
 	float getCenterX();
 	
 	float getCenterY();
+	
+	float getRadius();
 	
 	void deleteBody(boolean scheduledBody);
 

@@ -58,14 +58,9 @@ public class RandomLevelGenerator {
 	}
 
 	private void placeOutEnemies() {
-		Enemy enemy = new Enemy(new Vector2(200, 200), 50, level);
-		enemy.setMaxSpeed(8+(this.levelNumber-1)*2);
-		entityList.add(enemy);
-		enemyList.add(enemy);
+		Enemy enemy;		
 
-		
-
-		final int ENEMIES;
+		int ENEMIES;
 	//	Enemy enemy;
 		//Instead of making to many enemies we will make them go faster.
 		if (levelNumber < 4) {
@@ -73,7 +68,8 @@ public class RandomLevelGenerator {
 		} else {
 			ENEMIES = 8;
 		}
-
+		ENEMIES = 0;
+		
 		for (int i = 0; i < ENEMIES; ++i) {
 
 			float radius;
@@ -102,29 +98,9 @@ public class RandomLevelGenerator {
 
 	}
 
-	/*
-	 * private boolean isTooCloseToOtherEntity(final float xAxis, final float y,
-	 * final float radius) { // setting high values for this constant will cause
-	 * long level generation times, so be careful. final float MINIMUM_DISTANCE
-	 * = 60;
-	 * 
-	 * for(final Entity entity: this.entityList) { if(entity instanceof
-	 * CircleEntity) { final Circle other = (Circle)entity.getShape();
-	 * 
-	 * final float dx = Math.abs(x - other.getX()); final float dy = Math.abs(y
-	 * - other.getY());
-	 * 
-	 * final float dist = (float)Math.sqrt(dx*dx + dy*dy) - radius -
-	 * other.getRadius();
-	 * 
-	 * if(dist < MINIMUM_DISTANCE) { return true; } } }
-	 * 
-	 * return false; }
-	 */
-
 	private void placeOutObstacles() {
 
-		final int OBSTACLES = this.levelNumber * 5;
+		final int OBSTACLES = 0; //this.levelNumber * 5;
 
 		for (int i = 0; i < OBSTACLES; ++i) {
 
@@ -149,7 +125,7 @@ public class RandomLevelGenerator {
 	}
 
 	private void placeOutPowerUps() {
-		final int POWER_UPS = 5 * this.levelNumber;
+		final int POWER_UPS = 0; //5 * this.levelNumber;
 
 		for (int i = 0; i < POWER_UPS; ++i) {
 
@@ -176,19 +152,20 @@ public class RandomLevelGenerator {
 	private void placeOutPlanets() {
 		MyDebug.d("The level is = " + levelNumber);
 		final float K = 1.2f;
-		final int MINIMUM_PLAYER_EATABLE;
+		int MINIMUM_PLAYER_EATABLE;
 		if (this.levelNumber < 10) {
 			MINIMUM_PLAYER_EATABLE = 50 - (this.levelNumber) * 3;
 		} else {
 			MINIMUM_PLAYER_EATABLE = 10;
 		}
+		MINIMUM_PLAYER_EATABLE = 0;
 		int numPlayerEatable = 0;
 
 		final float MAX_SIZE = 60 /*player.getRadius()*/*4f;
 
 		final float MIN_SIZE = 40 /*player.getRadius()*/ - 20;
 
-		final int PLANETS = 50; // (int)( 25 * this.levelNumber * K);
+		final int PLANETS = 0; // (int)( 25 * this.levelNumber * K);
 		float radius;
 
 		//Start with the smaller planets.

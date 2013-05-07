@@ -2,7 +2,6 @@ package com.secondhand.controller;
 
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
-import java.util.List;
 
 import org.anddev.andengine.entity.Entity;
 import org.anddev.andengine.entity.scene.Scene;
@@ -10,12 +9,10 @@ import org.anddev.andengine.entity.scene.Scene.IOnSceneTouchListener;
 import org.anddev.andengine.input.touch.TouchEvent;
 
 import com.secondhand.debug.MyDebug;
-import com.secondhand.model.EntityManager;
 import com.secondhand.model.GameWorld;
 import com.secondhand.model.Player;
 import com.secondhand.model.Vector2;
 import com.secondhand.model.resource.HighScoreList;
-import com.secondhand.view.physics.MyPhysicsEntity;
 import com.secondhand.view.scene.AllScenes;
 import com.secondhand.view.scene.GamePlayScene;
 
@@ -77,7 +74,7 @@ final class GamePlaySceneController extends Entity implements
 
 				final HighScoreList.Entry newEntry = new HighScoreList.Entry(
 						InputDialogManager.input, gameWorld.getPlayer()
-								.getScore());
+						.getScore());
 				HighScoreList.getInstance().insertInHighScoreList(newEntry);
 				InputDialogManager.showing = false;
 
@@ -102,14 +99,7 @@ final class GamePlaySceneController extends Entity implements
 	@Override
 	public void propertyChange(final PropertyChangeEvent event) {
 		final String eventName = event.getPropertyName();
-		if (event.getSource().getClass() == EntityManager.class) {
-/*
-			List <com.secondhand.model.Entity> list = (List<com.secondhand.model.Entity>) event.getNewValue();
-			for (int i = 0; i<list.size() ; i++){
-					list.get(i).setPhysics(new MyPhysicsEntity(this.gamePlayScene.getPhysicsWorld()));
-			}*/
-
-		} else if (event.getSource().getClass() == GameWorld.class) {
+		if (event.getSource().getClass() == GameWorld.class) {
 
 			if (eventName.equals(Player.INCREASE_SCORE)) {
 				this.gamePlayScene.updateScore((Integer) event.getNewValue());

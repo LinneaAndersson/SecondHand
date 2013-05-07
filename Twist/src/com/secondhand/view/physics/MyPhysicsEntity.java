@@ -3,9 +3,11 @@ package com.secondhand.view.physics;
 import org.anddev.andengine.entity.shape.IShape;
 import org.anddev.andengine.extension.physics.box2d.PhysicsConnector;
 import org.anddev.andengine.extension.physics.box2d.PhysicsWorld;
+import org.anddev.andengine.extension.physics.box2d.util.constants.PhysicsConstants;
 
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
+import com.badlogic.gdx.physics.box2d.CircleShape;
 import com.secondhand.debug.MyDebug;
 import com.secondhand.model.Entity;
 import com.secondhand.model.IPhysicsEntity;
@@ -38,6 +40,15 @@ public class MyPhysicsEntity implements IPhysicsEntity{
 	@Override
 	public float getCenterY() {
 		return body.getWorldCenter().y;
+	}
+	
+	public void setRadius(final float radius) {
+		final CircleShape shape = (CircleShape) getBody().getFixtureList()
+				.get(0).getShape();
+		shape.setRadius(radius
+				/ PhysicsConstants.PIXEL_TO_METER_RATIO_DEFAULT);
+		final Circle circle = (Circle)this.shape;
+		circle.setRadius(radius);
 	}
 
 	// andEngine or box2d coordinates in? and depending on from

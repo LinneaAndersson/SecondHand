@@ -10,6 +10,8 @@ public interface IPhysicsEntity {
 	
 	float getRadius();
 	
+	void setRadius(final float radius);
+	
 	void deleteBody(boolean scheduledBody);
 
 	void applyImpulse(float posX, float posY, float maxSpeed);

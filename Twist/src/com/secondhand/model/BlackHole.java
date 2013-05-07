@@ -29,7 +29,7 @@ public abstract class BlackHole extends CircleEntity {
 			final GameWorld level,
 			final float maxSpeed, final int startingScore) {
 		// TODO load texture instead of creating Circle
-		super(null, true, level);
+		super(position, radius, true, level);
 		MyDebug.d("now we create BlackHole");
 		this.position = position;
 		this.maxSpeed = maxSpeed;
@@ -76,7 +76,6 @@ public abstract class BlackHole extends CircleEntity {
 	}
 
 	private void increaseSize(final float increase) {
-		pcs.firePropertyChange("radius", getRadius(), getRadius() + increase);
 		setRadius(getRadius() + increase);
 	}
 
@@ -128,13 +127,6 @@ public abstract class BlackHole extends CircleEntity {
 		this.increaseSize(radiusInc);
 		onGrow();
 
-		// now we must also increase the size of the circle physics body
-		// TODO fire an event here instead and let the view handle
-		// increasing the size
-		final CircleShape shape = (CircleShape) physics.getBody().getFixtureList()
-				.get(0).getShape();
-		shape.setRadius(this.getRadius()
-				/ PhysicsConstants.PIXEL_TO_METER_RATIO_DEFAULT);
 
 		entity.wasEaten();	
 	}
@@ -171,11 +163,9 @@ public abstract class BlackHole extends CircleEntity {
 		return 3;
 	}	
 	
-	
 	public void setRadius(final float radius) {
-		// do this on body instead.
-		circle.setRadius(radius);
-		foreifjoj;
-		//this.physics
+
+		this.physics.setRadius(radius);
+	
 	}	
 }

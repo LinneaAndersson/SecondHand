@@ -9,12 +9,20 @@ import android.content.Context;
 
 import com.badlogic.gdx.math.Vector2;
 import com.secondhand.debug.MyDebug;
+import com.secondhand.model.Enemy;
 import com.secondhand.model.Entity;
 import com.secondhand.model.GameWorld;
 import com.secondhand.model.IPhysicsWorld;
+import com.secondhand.model.Obstacle;
+import com.secondhand.model.Planet;
 import com.secondhand.model.Player;
+import com.secondhand.model.powerup.PowerUp;
+import com.secondhand.view.entities.EnemyView;
 import com.secondhand.view.entities.EntityView;
+import com.secondhand.view.entities.ObstacleView;
+import com.secondhand.view.entities.PlanetView;
 import com.secondhand.view.entities.PlayerView;
+import com.secondhand.view.entities.PowerUpView;
 import com.secondhand.view.entity.FadingNotifierText;
 import com.secondhand.view.entity.ScoreLivesText;
 import com.secondhand.view.opengl.StarsBackground;
@@ -74,12 +82,20 @@ public class GamePlayScene extends GameScene{
 
 		for (final Entity entity : gameWorld.getEntityManager().getEntityList()) {
 			
-			EntityView entityView;
+			EntityView entityView = null;
 			if(entity instanceof Planet) {
-				entityView = new PlanetView
+				entityView = new PlanetView(this.physicsWorld, (Planet) entity);
+			} else if(entity instanceof Enemy) {
+				entityView = new EnemyView(this.physicsWorld, (Enemy) entity);
+			} else if(entity instanceof Obstacle) {
+				entityView = new ObstacleView(this.physicsWorld, (Obstacle) entity);
+			} else if(entity instanceof PowerUp) {
+				entityView = new PowerUpView(this.physicsWorld, (PowerUp) entity);
+			} else {
+				MyDebug.e("invalid entity found in entityList");
 			}
 			
-			
+			this.attachChild(entityView.getShape());
 		}
 	}
 	

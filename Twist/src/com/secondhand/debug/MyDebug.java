@@ -117,6 +117,7 @@ public final class MyDebug{
 				Log.e(sDebugTag, pMessage, pThrowable);
 			}
 		}
+		System.exit(1);
 	}
 
 	// ===========================================================

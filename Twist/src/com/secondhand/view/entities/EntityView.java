@@ -6,11 +6,8 @@ import org.anddev.andengine.entity.shape.IShape;
 import org.anddev.andengine.extension.physics.box2d.PhysicsWorld;
 
 import com.badlogic.gdx.physics.box2d.Body;
-import com.badlogic.gdx.physics.box2d.FixtureDef;
-import com.secondhand.model.CircleEntity;
 import com.secondhand.model.Entity;
-import com.secondhand.view.opengl.Circle;
-import com.secondhand.view.physics.CustomPhysicsConnector;
+import com.secondhand.view.opengl.Polygon;
 import com.secondhand.view.physics.MyPhysicsEntity;
 
 public abstract class EntityView implements PropertyChangeListener {
@@ -20,11 +17,16 @@ public abstract class EntityView implements PropertyChangeListener {
 	private final Body body;
 	
 	public EntityView(final PhysicsWorld physicsWorld, final Entity entity , final IShape shape,
-			Body body){
+			final Body body){
 		this.shape=shape;
 		this.entity = entity;
 		entity.addPropertyChangeListener(this);
 		this.body = body;
+		
+		// TODO: figure out some better way to do this.
+		if(shape instanceof Polygon) {
+			((Polygon) shape).setBody(body);
+		}
 		
 		entity.setPhysics(	new MyPhysicsEntity(physicsWorld, entity, shape, body));
 	}

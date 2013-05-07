@@ -180,7 +180,7 @@ public class MyPhysicsEntity implements IPhysicsEntity{
 	public void applyImpulse(final com.secondhand.model.Vector2 impulsePosition,
 		final	com.secondhand.model.Vector2 impulse) {
 		
-		body.applyLinearImpulse(new com.badlogic.gdx.math.Vector2(impulse.x, impulse.y), 
-				new com.badlogic.gdx.math.Vector2(impulsePosition.x, impulsePosition.y));
+		body.applyLinearImpulse(new Vector2(impulse.x, impulse.y), 
+				new Vector2(impulsePosition.x, impulsePosition.y));
 	}
 }

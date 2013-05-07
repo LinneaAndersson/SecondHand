@@ -1,6 +1,5 @@
 package com.secondhand.view.scene;
 
-
 import org.anddev.andengine.engine.Engine;
 import org.anddev.andengine.engine.camera.hud.HUD;
 import org.anddev.andengine.extension.physics.box2d.PhysicsWorld;
@@ -29,40 +28,40 @@ import com.secondhand.view.opengl.StarsBackground;
 import com.secondhand.view.physics.MyPhysicsWorld;
 import com.secondhand.view.resource.Sounds;
 
-public class GamePlayScene extends GameScene{
+public class GamePlayScene extends GameScene {
 
 	private HUD hud;
 
 	private ScoreLivesText scoreLivesText;
-	
+
 	private GameWorld gameWorld;
-	
+
 	private IPhysicsWorld physics;
 	private final PhysicsWorld physicsWorld;
-	
+
 	public void setPhysics(final IPhysicsWorld physics) {
 		this.physics = physics;
 	}
 
 	public GamePlayScene(final Engine engine, final Context context) {
 		super(engine, context);
-		physicsWorld = new PhysicsWorld(new Vector2(),true);
+		physicsWorld = new PhysicsWorld(new Vector2(), true);
 		physics = new MyPhysicsWorld(physicsWorld);
 	}
 
 	public GameWorld getGameWorld() {
 		return this.gameWorld;
 	}
-	
-	public PhysicsWorld getPhysicsWorld(){
+
+	public PhysicsWorld getPhysicsWorld() {
 		return this.physicsWorld;
 	}
 
 	public void registerNewLevel() {
-		
+
 		final float width = gameWorld.getLevelWidth();
 		final float height = gameWorld.getLevelHeight();
-		
+
 		// TODO: get this background to work.
 		/*
 		 * final List<TextureRegion> starsTextures = new
@@ -81,24 +80,25 @@ public class GamePlayScene extends GameScene{
 		this.smoothCamera.setBounds(0, width, 0, height);
 
 		for (final Entity entity : gameWorld.getEntityManager().getEntityList()) {
-			
+
 			EntityView entityView = null;
-			if(entity instanceof Planet) {
+			if (entity instanceof Planet) {
 				entityView = new PlanetView(this.physicsWorld, (Planet) entity);
-			} else if(entity instanceof Enemy) {
+			} else if (entity instanceof Enemy) {
 				entityView = new EnemyView(this.physicsWorld, (Enemy) entity);
-			} else if(entity instanceof Obstacle) {
-				entityView = new ObstacleView(this.physicsWorld, (Obstacle) entity);
-			} else if(entity instanceof PowerUp) {
-				entityView = new PowerUpView(this.physicsWorld, (PowerUp) entity);
+			} else if (entity instanceof Obstacle) {
+				entityView = new ObstacleView(this.physicsWorld,
+						(Obstacle) entity);
+			} else if (entity instanceof PowerUp) {
+				entityView = new PowerUpView(this.physicsWorld,
+						(PowerUp) entity);
 			} else {
 				MyDebug.e("invalid entity found in entityList");
 			}
-			
+
 			this.attachChild(entityView.getShape());
 		}
 	}
-	
 
 	private void setupView() {
 		final float width = gameWorld.getLevelWidth();
@@ -106,23 +106,27 @@ public class GamePlayScene extends GameScene{
 		this.smoothCamera.setBounds(0, width, 0, height);
 		this.smoothCamera.setBoundsEnabled(true);
 		// setup the player
-		/*final Player player = gameWorld.getPlayer();
-		MyDebug.i("In setupView gameplayscene");
-		playerView.getShape().detachSelf();
-		MyDebug.i("In setupView gameplayscene");
-		attachChild(player.getShape());
-		MyDebug.i("In setupView gameplayscene");
-		engine.getCamera().setChaseEntity(player.getShape());//playerView
-		MyDebug.i("In setupView gameplayscene");
-		// setup the player*/
-		
+		/*
+		 * final Player player = gameWorld.getPlayer();
+		 * MyDebug.i("In setupView gameplayscene");
+		 * playerView.getShape().detachSelf();
+		 * MyDebug.i("In setupView gameplayscene");
+		 * attachChild(player.getShape());
+		 * MyDebug.i("In setupView gameplayscene");
+		 * engine.getCamera().setChaseEntity(player.getShape());//playerView
+		 * MyDebug.i("In setupView gameplayscene"); // setup the player
+		 */
+
 		// create player view.
-		final PlayerView playerView = new PlayerView(physicsWorld, gameWorld.getPlayer());
-			
+		final PlayerView playerView = new PlayerView(physicsWorld,
+				gameWorld.getPlayer());
+
 		attachChild(playerView.getShape());
-		engine.getCamera().setChaseEntity(playerView.getShape());//playerView
+		engine.getCamera().setChaseEntity(playerView.getShape());// playerView
 		smoothCamera.setBoundsEnabled(true);
-		
+		gameWorld.setCameraPos(smoothCamera.getCenterX(),
+				smoothCamera.getCenterY());
+
 		registerUpdateHandler(physicsWorld);
 
 		// setup the HUD
@@ -136,11 +140,11 @@ public class GamePlayScene extends GameScene{
 	@Override
 	public void loadScene() {
 		super.loadScene();
-		
+
 		this.gameWorld = new GameWorld(physics);
 		// we'll need to be able to restore the camera when returning to the
 		// menu.
-		
+
 		setupView();
 		registerNewLevel();
 		engine.getCamera().setHUD(hud);
@@ -158,14 +162,13 @@ public class GamePlayScene extends GameScene{
 		smoothCamera.setBoundsEnabled(false);
 		this.smoothCamera.setBounds(0, this.smoothCamera.getWidth(), 0,
 				this.smoothCamera.getHeight());
-		smoothCamera.setCenter(gameWorld.getCameraX(),
-				gameWorld.getCameraY());
+		smoothCamera.setCenter(gameWorld.getCameraX(), gameWorld.getCameraY());
 		// smoothCamera.setBoundsEnabled(true);
 
 		// don't show the HUD in the menu.
 		hud.setCamera(null);
 	}
-	
+
 	@Override
 	public void onSwitchScene() {
 		super.onSwitchScene();
@@ -205,7 +208,7 @@ public class GamePlayScene extends GameScene{
 		Sounds.getInstance().winSound.play();
 
 		smoothCamera.setZoomFactorDirect(1.0f);
-		
+
 		registerNewLevel();
 	}
 
@@ -218,6 +221,6 @@ public class GamePlayScene extends GameScene{
 	}
 
 	public void onPlayerWallCollision() {
-		Sounds.getInstance().obstacleCollisionSound.play();	
+		Sounds.getInstance().obstacleCollisionSound.play();
 	}
 }

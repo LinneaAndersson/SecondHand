@@ -16,12 +16,12 @@ public class MirroredMovement extends PowerUp {
 
 	}
 
-	@Override
+	/*@Override
 	public void activateEffect(final Player player) {
 		MyDebug.d("applying mirrored movement");
 		player.getCircle().setColor(1f, 0, 1f);
 		player.setMirroredMovement(true);
-	}
+	}*/
 	
 	@Override
 	public void deactivateEffect(final Player player) {

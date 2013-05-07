@@ -15,12 +15,12 @@ public class Shield extends PowerUp {
 		super(position, PowerUpType.SHIELD, level, DURATION);
 	}
 
-	@Override
+	/*@Override
 	public void activateEffect(final Player player) {
 		MyDebug.d("applying score up");
 		player.getCircle().setColor(0, 1f, 0);
 		player.setIsEdible(false);
-	}
+	}*/
 	
 	@Override
 	public void deactivateEffect(final Player player) {

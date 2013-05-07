@@ -12,11 +12,11 @@ public class GameWorld {
 
 	private final IPhysicsWorld mPhysic;
 
-	private final int levelWidth;
-	private final int levelHeight;
+	private int levelWidth;
+	private int levelHeight;
 
 	private int levelNumber;
-	private Player player;
+	private final Player player;
 
 	private final PropertyChangeSupport support;
 	
@@ -29,16 +29,14 @@ public class GameWorld {
 
 		player = new Player(new Vector2(50,50),30, this);
 		this.entityManager = new EntityManager(player);
-		this.levelWidth = 1700 * 2;
-		this.levelHeight = 1700 * 2;
-	}
-	
-	//before this we have to add GamePlaySceneController as a listener and set physics to the player
-	public void generateNewLevelEntities(){
-		this.entityManager = new EntityManager(player);
-		mPhysic.setWorldBounds(levelWidth, levelHeight);
-		generateNewLevelEntities(STARTING_LEVEL);
 		
+		this.entityManager = new EntityManager(player);
+		
+		// first load the new level entities:
+		
+		generateNewLevelEntities(STARTING_LEVEL);
+		mPhysic.setWorldBounds(levelWidth, levelHeight);
+				
 	}
 	
 	public PropertyChangeSupport getPropertyChangeSupport() {
@@ -59,6 +57,8 @@ public class GameWorld {
 		final RandomLevelGenerator randomLevelGenerator = new RandomLevelGenerator(
 				this.entityManager.getPlayer(), this);
 
+		this.levelWidth = randomLevelGenerator.levelWidth;
+		this.levelHeight = randomLevelGenerator.levelHeight;
 		this.entityManager.setEntityList(randomLevelGenerator.entityList);
 		this.entityManager.setEnemyList(randomLevelGenerator.enemyList);
 	}
@@ -91,7 +91,7 @@ public class GameWorld {
 		return levelHeight;
 	}
 
-	public void nextLevel() {
+	private void nextLevel() {
 
 		++this.levelNumber;
 
@@ -106,9 +106,6 @@ public class GameWorld {
 		generateNewLevelEntities(this.levelNumber);
 		
 		mPhysic.setWorldBounds(levelWidth, levelHeight);
-		
-		// moved this here from gameplayscene
-		getPlayer().setRadius(30);
 		
 		// then notify the view of this, so that it can place out the new
 		// Entities in AndEngine for rendering.
@@ -146,7 +143,7 @@ public class GameWorld {
 
 	// remove every entity(both from the physics world and andengine rendering)
 	// from the world expect for the player.
-	public void clearLevel() {
+	private void clearLevel() {
 		this.entityManager.removeAllEntitiesExpectForPlayer();
 	}
 
@@ -154,7 +151,7 @@ public class GameWorld {
 		sendTouchInput(v);
 	}
 	
-	public void addPropertyChangeListener(PropertyChangeListener listener){
+	public void addPropertyChangeListener(final PropertyChangeListener listener){
 		support.addPropertyChangeListener(listener);
 	}
 }

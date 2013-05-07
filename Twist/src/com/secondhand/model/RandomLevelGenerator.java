@@ -1,6 +1,5 @@
 package com.secondhand.model;
 
-import java.beans.PropertyChangeSupport;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -31,17 +30,15 @@ public class RandomLevelGenerator {
 
 	private final GameWorld level;
 
-	PropertyChangeSupport pcs;
-	
 	private final World world;
 	private final Random rng;
 
 	RandomLevelGenerator(final Player player, final GameWorld level) {
 		rng = new Random();
-		this.levelNumber = level.getLevelNumber()-1;
+		this.levelNumber = level.getLevelNumber();
 		this.level = level;
-		this.levelWidth = level.getLevelWidth();
-		this.levelHeight = level.getLevelHeight();
+		this.levelWidth = 1000 * this.levelNumber;
+		this.levelHeight = 1000 * this.levelNumber;
 		world = new World(this.levelWidth, this.levelHeight);
 		this.player = player;
 		// make sure entities are not placed on top of player

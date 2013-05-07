@@ -60,7 +60,6 @@ public class GamePlayScene extends GameScene{
 
 	public void registerNewLevel() {
 		
-		
 		final float width = gameWorld.getLevelWidth();
 		final float height = gameWorld.getLevelHeight();
 		
@@ -124,26 +123,17 @@ public class GamePlayScene extends GameScene{
 	@Override
 	public void loadScene() {
 		super.loadScene();
-	
-		MyDebug.i("creating game world");
 		
 		this.gameWorld = new GameWorld(physics);
-		MyDebug.i("Done game world");
-		gameWorld.generateNewLevelEntities();
-		MyDebug.i("Done set physics for player");
 		// we'll need to be able to restore the camera when returning to the
 		// menu.
 		
 		gameWorld.setCameraPos(smoothCamera.getCenterX(),
 				smoothCamera.getCenterY());
-		MyDebug.i("done setCamera");
-
+	
 		setupView();
-		MyDebug.i("done setupView");
 		registerNewLevel();
-		MyDebug.i("done registernewLevel");
 		engine.getCamera().setHUD(hud);
-
 	}
 
 	// reset camera before the menu is shown

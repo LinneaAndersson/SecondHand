@@ -1,10 +1,8 @@
 package com.secondhand.view.physics;
 
-import org.anddev.andengine.extension.physics.box2d.PhysicsConnector;
 import org.anddev.andengine.extension.physics.box2d.PhysicsWorld;
 
 import com.badlogic.gdx.math.Vector2;
-import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.Contact;
 import com.secondhand.model.CollisionResolver;
 import com.secondhand.model.Enemy;
@@ -14,15 +12,13 @@ import com.secondhand.model.IPhysicsWorld;
 
 public class MyPhysicsWorld implements IPhysicsWorld {
 	private PhysicsWorld physicsWorld;
-	private PhysicsConnector physicsConnector;
 	// TODO only enemy needs the util class
 	private final PhysicsEnemyUtil enemyUtil;
 	private CollisionResolver collisionResolver;
 	private final PhysicsWorldBounds bounds;
 	private GameWorld gameWorld;
-	private Body body;
 
-	public MyPhysicsWorld(PhysicsWorld physicsWorld){
+	public MyPhysicsWorld(final PhysicsWorld physicsWorld){
 
 		// TODO remove physicsWorld from constructor
 		// and put worldBoundries somewhere else

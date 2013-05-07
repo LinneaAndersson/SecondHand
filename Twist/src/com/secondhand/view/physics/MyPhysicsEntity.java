@@ -16,7 +16,7 @@ import com.secondhand.model.IPhysicsEntity;
 import com.secondhand.view.opengl.Circle;
 
 public class MyPhysicsEntity implements IPhysicsEntity{
-	private Body body;
+	private final Body body;
 	private final PhysicsWorld physicsWorld;
 	private final PhysicsConnector physicsConnector;
 	private final IShape shape;

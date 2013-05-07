@@ -103,4 +103,13 @@ public abstract class Entity {
 	public void addPropertyChangeListener(final PropertyChangeListener listener){
 		pcs.addPropertyChangeListener(listener);
 	}
+
+	 public float getCenterX() {
+			 return this.getCenterX();
+	}
+	 
+	 public float getCenterY() {
+		 return this.getCenterY();
+	}
+
 }

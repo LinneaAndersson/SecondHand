@@ -30,6 +30,7 @@ public abstract class CircleEntity extends Entity {
 			return this.radius;
 	}
 	
+	@Override
 	 public float getCenterX() {
 		 if(this.physics != null)
 			 return this.getCenterX();
@@ -37,6 +38,7 @@ public abstract class CircleEntity extends Entity {
 			 return this.position.x;
 	}
 	 
+	@Override
 	 public float getCenterY() {
 		 if(this.physics != null)
 			 return this.getCenterY();

@@ -15,14 +15,14 @@ import com.secondhand.model.Entity;
 import com.secondhand.model.IPhysicsEntity;
 import com.secondhand.view.opengl.Circle;
 
-public class MyPhysicsEntity implements IPhysicsEntity{
+public class MyPhysicsEntity implements IPhysicsEntity {
 	private final Body body;
 	private final PhysicsWorld physicsWorld;
 	private final PhysicsConnector physicsConnector;
 	private final IShape shape;
 
-	public MyPhysicsEntity(final PhysicsWorld physicsWorld, final Entity entity , final IShape shape,
-			final Body body){
+	public MyPhysicsEntity(final PhysicsWorld physicsWorld,
+			final Entity entity, final IShape shape, final Body body) {
 		this.physicsWorld = physicsWorld;
 
 		body.setUserData(entity);
@@ -44,13 +44,12 @@ public class MyPhysicsEntity implements IPhysicsEntity{
 	public float getCenterY() {
 		return body.getWorldCenter().y;
 	}
-	
+
 	public void setRadius(final float radius) {
-		final CircleShape shape = (CircleShape) body.getFixtureList()
-				.get(0).getShape();
-		shape.setRadius(radius
-				/ PhysicsConstants.PIXEL_TO_METER_RATIO_DEFAULT);
-		final Circle circle = (Circle)this.shape;
+		final CircleShape shape = (CircleShape) body.getFixtureList().get(0)
+				.getShape();
+		shape.setRadius(radius / PhysicsConstants.PIXEL_TO_METER_RATIO_DEFAULT);
+		final Circle circle = (Circle) this.shape;
 		circle.setRadius(radius);
 	}
 
@@ -92,35 +91,31 @@ public class MyPhysicsEntity implements IPhysicsEntity{
 	}
 
 	/*
-		@Override
-		public Body createType(final IShape shape, final Entity entity) {
-			MyDebug.d("in createtype in Myphysics...");
-			if (entity instanceof Obstacle) {
-				final Polygon polygon = (Polygon) shape;
-				body = MyPhysicsFactory.createPolygonBody(physicsWorld, polygon,
-						BodyType.DynamicBody, FixtureDefs.OBSTACLE_FIXTURE_DEF);
-			} else if (entity instanceof Planet) {
-				final Circle circle = (Circle) shape;
-				body = PhysicsFactory.createCircleBody(physicsWorld, circle.getX(),
-						circle.getY(), circle.getRadius(), circle.getRotation(),
-						BodyType.DynamicBody, FixtureDefs.PLANET_FIXTURE_DEF);
-			} else if (entity instanceof CircleEntity) {
-				MyDebug.d("in createtype in Myphysics...");
-				final Circle circle = (Circle) shape;
-				MyDebug.d("in createtype in Myphysics..." + circle.getX() + "    " + circle.getY() + "   " + circle.getRadius() + "    " + circle.getRotation());
-				body = PhysicsFactory.createCircleBody(physicsWorld, circle.getX(),
-						circle.getY(), circle.getRadius(), circle.getRotation(),
-						BodyType.DynamicBody, FixtureDefs.BLACK_HOLE_FIXTURE_DEF);
-				MyDebug.d("in createtype in Myphysics...");
-			} else if (entity instanceof RectangleEntity) {
-				final RectangularShape rectangle = (RectangularShape) shape;
-				body = PhysicsFactory.createCircleBody(physicsWorld, rectangle,
-						BodyType.DynamicBody, FixtureDefs.POWER_UP_FIXTURE_DEF);
-			}
-			registerBody(entity, body, shape);
-
-			return body;
-		}*/
+	 * @Override public Body createType(final IShape shape, final Entity entity)
+	 * { MyDebug.d("in createtype in Myphysics..."); if (entity instanceof
+	 * Obstacle) { final Polygon polygon = (Polygon) shape; body =
+	 * MyPhysicsFactory.createPolygonBody(physicsWorld, polygon,
+	 * BodyType.DynamicBody, FixtureDefs.OBSTACLE_FIXTURE_DEF); } else if
+	 * (entity instanceof Planet) { final Circle circle = (Circle) shape; body =
+	 * PhysicsFactory.createCircleBody(physicsWorld, circle.getX(),
+	 * circle.getY(), circle.getRadius(), circle.getRotation(),
+	 * BodyType.DynamicBody, FixtureDefs.PLANET_FIXTURE_DEF); } else if (entity
+	 * instanceof CircleEntity) { MyDebug.d("in createtype in Myphysics...");
+	 * final Circle circle = (Circle) shape;
+	 * MyDebug.d("in createtype in Myphysics..." + circle.getX() + "    " +
+	 * circle.getY() + "   " + circle.getRadius() + "    " +
+	 * circle.getRotation()); body =
+	 * PhysicsFactory.createCircleBody(physicsWorld, circle.getX(),
+	 * circle.getY(), circle.getRadius(), circle.getRotation(),
+	 * BodyType.DynamicBody, FixtureDefs.BLACK_HOLE_FIXTURE_DEF);
+	 * MyDebug.d("in createtype in Myphysics..."); } else if (entity instanceof
+	 * RectangleEntity) { final RectangularShape rectangle = (RectangularShape)
+	 * shape; body = PhysicsFactory.createCircleBody(physicsWorld, rectangle,
+	 * BodyType.DynamicBody, FixtureDefs.POWER_UP_FIXTURE_DEF); }
+	 * registerBody(entity, body, shape);
+	 * 
+	 * return body; }
+	 */
 
 	@Override
 	public void setLinearDamping(final float linearDamping) {
@@ -130,7 +125,7 @@ public class MyPhysicsEntity implements IPhysicsEntity{
 
 	@Override
 	public float getRadius() {
-		final Circle circle = (Circle)this.shape;
+		final Circle circle = (Circle) this.shape;
 		return circle.getRadius();
 	}
 
@@ -140,47 +135,60 @@ public class MyPhysicsEntity implements IPhysicsEntity{
 	}
 
 	// TODO physics
-	private Vector2 getCenterOfMass(){
-		final Vector2 v = new Vector2(body.getMassData().center.x, body.getMassData().center.y) ;
-		
+	private Vector2 getCenterOfMass() {
+		final Vector2 v = new Vector2(body.getMassData().center.x,
+				body.getMassData().center.y);
+
 		return new Vector2(v.x * PhysicsConstants.PIXEL_TO_METER_RATIO_DEFAULT,
 				v.y * PhysicsConstants.PIXEL_TO_METER_RATIO_DEFAULT);
 	}
-	
+
 	@Override
-	public float computePolygonRadius(final List<com.secondhand.model.Vector2> polygon) {
-		
-		// we define the radius to be the maximum length between the center of mass
-		// and a vertex in the polygon. 
-		
+	public float computePolygonRadius(
+			final List<com.secondhand.model.Vector2> polygon) {
+
+		// we define the radius to be the maximum length between the center of
+		// mass
+		// and a vertex in the polygon.
+
 		float maxLength = 0;
-		
+
 		final Vector2 center = getCenterOfMass();
 
-		for(int i = 0; i < polygon.size(); ++i) {
-			final float length = (float)Math.sqrt(Math.pow(polygon.get(i).x - center.x, 2) + Math.pow(polygon.get(i).y - center.y, 2));
-			if(length > maxLength) {
+		for (int i = 0; i < polygon.size(); ++i) {
+			final float length = (float) Math.sqrt(Math.pow(polygon.get(i).x
+					- center.x, 2)
+					+ Math.pow(polygon.get(i).y - center.y, 2));
+			if (length > maxLength) {
 				maxLength = length;
 			}
 		}
-		
+
 		return maxLength;
 	}
 
 	@Override
 	public void setTransform(final com.secondhand.model.Vector2 position) {
 
-		body.setTransform(new com.badlogic.gdx.math.Vector2(position.x / PhysicsConstants.PIXEL_TO_METER_RATIO_DEFAULT, 
-				position.y / PhysicsConstants.PIXEL_TO_METER_RATIO_DEFAULT),
+		body.setTransform(new com.badlogic.gdx.math.Vector2(position.x
+				/ PhysicsConstants.PIXEL_TO_METER_RATIO_DEFAULT, position.y
+				/ PhysicsConstants.PIXEL_TO_METER_RATIO_DEFAULT),
 				body.getAngle());
-		
+
 	}
 
 	@Override
-	public void applyImpulse(final com.secondhand.model.Vector2 impulsePosition,
-		final	com.secondhand.model.Vector2 impulse) {
-		
-		body.applyLinearImpulse(new Vector2(impulse.x, impulse.y), 
-				new Vector2(impulsePosition.x, impulsePosition.y));
+	public void applyImpulse(final com.secondhand.model.Vector2 impulse,
+			final com.secondhand.model.Vector2 impulsePosition) {
+
+		body.applyLinearImpulse(new Vector2(impulse.x, impulse.y), new Vector2(
+				impulsePosition.x, impulsePosition.y));
+	}
+
+	@Override
+	public void stopMovment() {
+		body.setAngularVelocity(0);
+		body.setLinearVelocity(0, 0);
+
 	}
 }

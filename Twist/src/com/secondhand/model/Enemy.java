@@ -17,15 +17,10 @@ public class Enemy extends BlackHole {
 	public void createType() {
 		huntingArea = getHuntingArea();
 	}
-	
+
 	public Enemy(final Vector2 vector, final float radius, final GameWorld level) {
 		super(vector, radius, level, enemyMaxSpeed);
 		huntingArea = getHuntingArea();
-
-		// makes the enemy move much smother
-		//This does not work, why??
-		//physics.setLinearDamping(1.2f);
-		//physics.setLinearDamping(1.2f);
 	}
 
 	public float getHuntingArea() {
@@ -118,17 +113,16 @@ public class Enemy extends BlackHole {
 	}
 
 	private void stopMovement() {
-		//TODO better to make a method in physics for this
+		physics.stopMovment();
 		pcs.firePropertyChange("stopMovement", 0, 0);
-		//this.getBody().setLinearVelocity(new Vector2());
-		//this.getBody().setAngularVelocity(0);
+
 
 	}
 
 	public void retreat(final Entity danger) {
 		MyDebug.d("Enemy: Retreat");
 	}
-	
+
 	@Override
 	protected void handlePowerUp(final PowerUp powerUp) {
 		// enemies can't eat powerups :(

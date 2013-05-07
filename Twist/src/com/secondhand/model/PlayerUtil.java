@@ -96,9 +96,8 @@ public class PlayerUtil {
 
 		force.mul(3);
 
-		player.getPhysics().getBody().applyLinearImpulse(new com.badlogic.gdx.math.Vector2(force.x, force.y), 
-				new com.badlogic.gdx.math.Vector2(forcePosition.x, forcePosition.y));
-
+		player.physics.applyImpulse(force, forcePosition);
+	
 	}
 
 	public void addListener(final PropertyChangeListener observer) {

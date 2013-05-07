@@ -17,6 +17,8 @@ public interface IPhysicsEntity {
 	/// apply impulse to world center. 
 	void applyImpulse(float posX, float posY, float maxSpeed);
 
+	void applyImpulse(Vector2 impulsePosition, Vector2 impulse);
+	
 	void setLinearDamping(float f);
 	
 	// detach from andengine rendering. 

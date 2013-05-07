@@ -173,4 +173,12 @@ public class MyPhysicsEntity implements IPhysicsEntity{
 				body.getAngle());
 		
 	}
+
+	@Override
+	public void applyImpulse(final com.secondhand.model.Vector2 impulsePosition,
+		final	com.secondhand.model.Vector2 impulse) {
+		
+		body.applyLinearImpulse(new com.badlogic.gdx.math.Vector2(impulse.x, impulse.y), 
+				new com.badlogic.gdx.math.Vector2(impulsePosition.x, impulsePosition.y));
+	}
 }

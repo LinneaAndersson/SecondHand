@@ -24,7 +24,6 @@ public abstract class Entity {
 		this.isEdible = isEdible;
 		this.gameWorld = level;
 		bodyScheduledForDeletion = false;
-		MyDebug.d("now we have created a entity");
 	}
 
 	public void setPhysics(IPhysicsEntity physics){

@@ -96,14 +96,11 @@ public class GamePlayScene extends GameScene{
 	}
 
 	private void setupView() {
-		MyDebug.i("In setupView gameplayscene");
 		final float width = gameWorld.getLevelWidth();
 		final float height = gameWorld.getLevelHeight();
-		MyDebug.i("In setupView gameplayscene");
 		this.smoothCamera.setBounds(0, width, 0, height);
 		this.smoothCamera.setBoundsEnabled(true);
 		// setup the player
-		MyDebug.i("In setupView gameplayscene");
 		final Player player = gameWorld.getPlayer();
 		MyDebug.i("In setupView gameplayscene");
 		player.getShape().detachSelf();

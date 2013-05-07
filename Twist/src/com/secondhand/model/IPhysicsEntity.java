@@ -14,8 +14,8 @@ public interface IPhysicsEntity {
 	
 	void deleteBody(boolean scheduledBody);
 
+	/// apply impulse to world center. 
 	void applyImpulse(float posX, float posY, float maxSpeed);
-
 
 	void setLinearDamping(float f);
 	

@@ -1,8 +1,5 @@
 package com.secondhand.model;
 
-
-import com.badlogic.gdx.physics.box2d.Contact;
-
 public interface IPhysicsWorld {
 
 	// Make your Entities stay on the screen
@@ -13,10 +10,6 @@ public interface IPhysicsWorld {
 
 	// checks if enemy has staight line to the entity
 	boolean isStraightLine(final Entity entity, final Enemy enemy);
-
-	// check the collision between entities
-	// should not be in model. 
-	void checkCollision(final Contact contact);
 
 	// checks if the rectangular area i UnOccupied
 	boolean isAreaUnOccupied(final float x, final float y, final float r);

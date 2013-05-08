@@ -52,8 +52,6 @@ public class MyPhysicsWorld implements IPhysicsWorld {
 		bounds.removeBounds();
 	}
 
-	
-	@Override
 	public void checkCollision(final Contact contact) {
 		collisionResolver.checkCollision(contact.getFixtureA().getBody()
 				.getUserData(), contact.getFixtureB().getBody().getUserData());

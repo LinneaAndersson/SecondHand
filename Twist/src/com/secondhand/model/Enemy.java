@@ -114,9 +114,6 @@ public class Enemy extends BlackHole {
 
 	private void stopMovement() {
 		physics.stopMovment();
-		pcs.firePropertyChange("stopMovement", 0, 0);
-
-
 	}
 
 	public void retreat(final Entity danger) {

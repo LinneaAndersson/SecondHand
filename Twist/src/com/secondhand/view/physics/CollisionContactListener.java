@@ -5,14 +5,12 @@ import com.badlogic.gdx.physics.box2d.ContactImpulse;
 import com.badlogic.gdx.physics.box2d.ContactListener;
 import com.badlogic.gdx.physics.box2d.Manifold;
 import com.secondhand.debug.MyDebug;
-import com.secondhand.model.IPhysicsWorld;
 
 public final class CollisionContactListener implements ContactListener {
 
+	private final MyPhysicsWorld physics;
 	
-	private final IPhysicsWorld physics;
-	
-	public CollisionContactListener(final IPhysicsWorld physics) {
+	public CollisionContactListener(final MyPhysicsWorld physics) {
 		this.physics = physics;
 	}
 	

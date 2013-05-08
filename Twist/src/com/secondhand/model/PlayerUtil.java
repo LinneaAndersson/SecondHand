@@ -86,7 +86,7 @@ public class PlayerUtil {
 		force.x = force.x / force.len();
 		force.y = force.y / force.len();
 
-		force.mul(30);
+		force.mul(40);
 		
 		player.physics.applyImpulse(force, forcePosition);
 	

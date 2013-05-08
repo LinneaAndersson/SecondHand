@@ -165,7 +165,7 @@ public class Player extends BlackHole {
 
 	protected void handlePowerUp(final PowerUp powerUp) {
 
-		util.fireObject(POWER_UP_SOUND, null, null);
+		pcs.firePropertyChange(POWER_UP_SOUND, null, null);
 
 		addPowerUp(powerUp);
 
@@ -174,18 +174,19 @@ public class Player extends BlackHole {
 
 	@Override
 	protected void onGrow() {
-		util.fireObject(GROW_SOUND, null, null);
+		pcs.firePropertyChange(GROW_SOUND, null, null);
 	}
 
 	@Override
 	protected void entityWasTooBigToEat(final Entity entity) {
-		util.fireObject(BIGGER_ENTITY_COLLISION_SOUND, null, null);
+		MyDebug.d("entity too big to eat");
+		pcs.firePropertyChange(BIGGER_ENTITY_COLLISION_SOUND, null, null);
 	}
 
 	@Override
 	protected void wasEaten() {
 		
-		util.fireObject(PLAYER_KILLED_SOUND, null, null);
+		pcs.firePropertyChange(PLAYER_KILLED_SOUND, null, null);
 
 		// We override the default behaviour for wasEaten. We don't want the
 		// player to

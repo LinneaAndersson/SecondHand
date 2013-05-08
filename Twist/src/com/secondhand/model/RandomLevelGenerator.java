@@ -45,7 +45,7 @@ public class RandomLevelGenerator {
 	
 		// TODO: generate player position for level.
 		final World.Polygon poly = PolygonFactory.createCircle(new Vector2(
-				120 /*player.getCenterX()*/,120/* player.getCenterY()*/), 40);
+				player.getInitialPosition().x, player.getInitialPosition().y), 40);
 		world.addToWorld(poly);
 
 		this.playerMaxSize = player.getMaxSize();
@@ -100,7 +100,7 @@ public class RandomLevelGenerator {
 
 	private void placeOutObstacles() {
 
-		final int OBSTACLES = 0; //this.levelNumber * 5;
+		final int OBSTACLES = this.levelNumber * 5;
 
 		for (int i = 0; i < OBSTACLES; ++i) {
 
@@ -161,11 +161,11 @@ public class RandomLevelGenerator {
 		MINIMUM_PLAYER_EATABLE = 0;
 		int numPlayerEatable = 0;
 
-		final float MAX_SIZE = 60 /*player.getRadius()*/*4f;
+		final float MAX_SIZE = player.getRadius()*4f;
 
-		final float MIN_SIZE = 40 /*player.getRadius()*/ - 20;
+		final float MIN_SIZE = player.getRadius() - 20;
 
-		final int PLANETS = 0; // (int)( 25 * this.levelNumber * K);
+		final int PLANETS = (int)( 25 * this.levelNumber * K);
 		float radius;
 
 		//Start with the smaller planets.
@@ -210,12 +210,11 @@ public class RandomLevelGenerator {
 		}
 	}
 
-	// private int check
 	private void placeOutLevelEntities() {
 
 		placeOutObstacles();
 		MyDebug.d("done placing out obstacles");
-		placeOutPlanets();
+		//placeOutPlanets();
 		MyDebug.d("done placing out planets");
 		placeOutPowerUps();
 		MyDebug.d("done placing out power ups");

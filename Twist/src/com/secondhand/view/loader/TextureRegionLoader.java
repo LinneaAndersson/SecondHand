@@ -20,7 +20,7 @@ public class TextureRegionLoader extends Loader {
 		}
 		return instance;
 	}
-	
+		
 	public TextureRegion loadTextureRegion(final String fileName, final int width, 
 			final int height, final TextureOptions textureOptions) {
 		

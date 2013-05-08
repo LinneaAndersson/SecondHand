@@ -34,7 +34,6 @@ public class MyPhysicsEntity implements IPhysicsEntity {
 		this.shape = shape;
 	}
 
-	// TODO andengine or box2d coordinates?
 	@Override
 	public float getCenterX() {
 		return body.getWorldCenter().x  * PhysicsConstants.PIXEL_TO_METER_RATIO_DEFAULT;
@@ -104,7 +103,6 @@ public class MyPhysicsEntity implements IPhysicsEntity {
 		this.shape.detachSelf();
 	}
 
-	// TODO physics
 	private Vector2 getCenterOfMass() {
 		final Vector2 v = new Vector2(body.getMassData().center.x,
 				body.getMassData().center.y);

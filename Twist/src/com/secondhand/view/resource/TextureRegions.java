@@ -54,7 +54,7 @@ public class TextureRegions {
 		powerUpTextures = new EnumMap<PowerUpType, TextureRegion>(PowerUpType.class);
 		
 		for (final PowerUpType powerUpType : PowerUpType.values()) {
-			final TextureRegion planetTexture = TextureRegionLoader.getInstance().loadTextureRegion(TEXTURE_BASEPATH+"powerup_box.png", 64, 64,
+			final TextureRegion planetTexture = TextureRegionLoader.getInstance().loadTextureRegion(TEXTURE_BASEPATH+powerUpType.getPath(), 64, 64,
 					TextureOptions.REPEATING_BILINEAR);
 			powerUpTextures.put(powerUpType, planetTexture);
 		}

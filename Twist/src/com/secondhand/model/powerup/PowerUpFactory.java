@@ -15,7 +15,6 @@ public final class PowerUpFactory {
 
 	// used for level generation., 
 	public static PowerUp getRandomPowerUp(final Vector2 position, final GameWorld gameWorld, final Random rng) {
-		
 		final int rand = rng.nextInt(NUM_POWER_UPS);
 		
 		

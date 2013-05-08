@@ -24,8 +24,8 @@ public class MyPhysicsWorld implements IPhysicsWorld {
 		this.physicsWorld = physicsWorld;
 		bounds = new PhysicsWorldBounds(physicsWorld);
 		enemyUtil = new PhysicsEnemyUtil(physicsWorld);
-		this.physicsWorld.setVelocityIterations(16);
-		this.physicsWorld.setPositionIterations(16);
+		this.physicsWorld.setVelocityIterations(8);
+		this.physicsWorld.setPositionIterations(8);
 
 	}
 

@@ -42,7 +42,6 @@ public class RandomLevelGenerator {
 		this.player = player;
 		// make sure entities are not placed on top of player
 	
-		// TODO: generate player position for level.
 		final World.Polygon poly = PolygonFactory.createCircle(new Vector2(
 				player.getInitialPosition().x, player.getInitialPosition().y), 40);
 		world.addToWorld(poly);

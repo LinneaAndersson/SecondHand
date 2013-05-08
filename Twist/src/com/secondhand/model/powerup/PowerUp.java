@@ -33,7 +33,6 @@ public abstract class PowerUp extends RectangleEntity {
 	
 	public void deactivateEffect(final Player player) {
 		/* 	TODO: Reset player texture or whatever it is the powerup changes (should be taken care of in PowerUpView) */
-		// TODO: do this in view instead.
 		/*if (player.getPowerUps().isEmpty())
 			player.getCircle().setColor(1f, 1f, 1f);*/
 	}

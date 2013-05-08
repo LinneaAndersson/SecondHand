@@ -61,8 +61,6 @@ public abstract class Entity {
 		destroyEntity();
 	}
 
-	// TODO detaching should be done by view or physics, wherever 
-	// we save the shape
 	public void destroyEntity() {
 
 		// we can't remove the body within a contact listener

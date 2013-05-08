@@ -46,7 +46,7 @@ public class RandomLevelGenerator {
 				player.getInitialPosition().x, player.getInitialPosition().y), 40);
 		world.addToWorld(poly);
 
-		this.playerMaxSize = 31 *  (this.levelNumber-1);
+		this.playerMaxSize = 30 * this.levelNumber;
 		
 		this.enemyList = new ArrayList<Enemy>();
 		this.entityList = new ArrayList<Entity>();
@@ -119,7 +119,7 @@ public class RandomLevelGenerator {
 	}
 
 	private void placeOutPowerUps() {
-		final int POWER_UPS = 0; //5 * this.levelNumber;
+		final int POWER_UPS = 20 * this.levelNumber;
 
 		for (int i = 0; i < POWER_UPS; ++i) {
 

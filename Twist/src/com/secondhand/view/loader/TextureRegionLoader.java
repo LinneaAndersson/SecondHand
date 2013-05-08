@@ -21,10 +21,6 @@ public class TextureRegionLoader extends Loader {
 		return instance;
 	}
 	
-	public void setAssetBasePath(final String path) {
-		BitmapTextureAtlasTextureRegionFactory.setAssetBasePath(path);
-	}
-	
 	public TextureRegion loadTextureRegion(final String fileName, final int width, 
 			final int height, final TextureOptions textureOptions) {
 		

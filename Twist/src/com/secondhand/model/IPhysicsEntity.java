@@ -15,7 +15,7 @@ public interface IPhysicsEntity {
 	void deleteBody();
 
 	/// apply impulse to world center. 
-	void applyImpulse(float posX, float posY, float maxSpeed);
+	void applyImpulse(Vector2 impulsePosition, float maxSpeed);
 
 	void applyImpulse(Vector2 impulsePosition, Vector2 impulse);
 	

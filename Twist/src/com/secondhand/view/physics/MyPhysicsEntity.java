@@ -36,12 +36,14 @@ public class MyPhysicsEntity implements IPhysicsEntity {
 
 	@Override
 	public float getCenterX() {
-		return body.getWorldCenter().x  * PhysicsConstants.PIXEL_TO_METER_RATIO_DEFAULT;
+		return body.getWorldCenter().x
+				* PhysicsConstants.PIXEL_TO_METER_RATIO_DEFAULT;
 	}
 
 	@Override
 	public float getCenterY() {
-		return body.getWorldCenter().y * PhysicsConstants.PIXEL_TO_METER_RATIO_DEFAULT;
+		return body.getWorldCenter().y
+				* PhysicsConstants.PIXEL_TO_METER_RATIO_DEFAULT;
 	}
 
 	public void setRadius(final float radius) {
@@ -60,7 +62,6 @@ public class MyPhysicsEntity implements IPhysicsEntity {
 
 		MyDebug.i(physicsConnector.getBody() + " destruction complete");
 	}
-
 
 	@Override
 	public void setLinearDamping(final float linearDamping) {
@@ -127,33 +128,32 @@ public class MyPhysicsEntity implements IPhysicsEntity {
 	// be done in model. Entity instead of body and then somehow get body?
 	// All entities that need this function are enemies and player.
 	@Override
-	public void applyImpulse(final float posX, final float posY,
+	public void applyImpulse(final com.secondhand.model.Vector2 force,
 			final float maxSpeed) {
-	
-		final Vector2 force = new Vector2(posX, posY);
-	
+
 		final Vector2 velocity = new Vector2(body.getLinearVelocity());
-	
-		if (velocity.add(force).len() > maxSpeed) {
+
+		final Vector2 impulse = new Vector2(force.x, force.y);
+		if (velocity.add(impulse).len() > maxSpeed) {
 			// Check if new velocity doesn't exceed maxSpeed!
 			return;
 		}
-	
-		body.applyLinearImpulse(force, body.getWorldCenter());
-	
+
+		body.applyLinearImpulse(impulse, body.getWorldCenter());
+
 	}
 
 	@Override
 	public void applyImpulse(final com.secondhand.model.Vector2 impulse,
 			final com.secondhand.model.Vector2 impulsePosition) {
 
-		body.applyLinearImpulse(
-				new Vector2(
-						impulse.x / PhysicsConstants.PIXEL_TO_METER_RATIO_DEFAULT, 
-						impulse.y / PhysicsConstants.PIXEL_TO_METER_RATIO_DEFAULT), 
-				new Vector2(
-						impulsePosition.x/ PhysicsConstants.PIXEL_TO_METER_RATIO_DEFAULT, 
-						impulsePosition.y / PhysicsConstants.PIXEL_TO_METER_RATIO_DEFAULT));
+		body.applyLinearImpulse(new Vector2(impulse.x
+				/ PhysicsConstants.PIXEL_TO_METER_RATIO_DEFAULT, impulse.y
+				/ PhysicsConstants.PIXEL_TO_METER_RATIO_DEFAULT), new Vector2(
+				impulsePosition.x
+						/ PhysicsConstants.PIXEL_TO_METER_RATIO_DEFAULT,
+				impulsePosition.y
+						/ PhysicsConstants.PIXEL_TO_METER_RATIO_DEFAULT));
 	}
 
 	@Override

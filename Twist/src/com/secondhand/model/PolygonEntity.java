@@ -9,14 +9,12 @@ public abstract class PolygonEntity extends Entity {
 	// polygon won't be allowed to grow.
 	private float radius; 
 	
-	private final Vector2 position;
 	private final List<Vector2> polygon;
 	
 	public PolygonEntity(final Vector2 position,  final List<Vector2> polygon, 
 			final boolean isEdible, final GameWorld level) {
-		super(isEdible, level);
+		super(position, isEdible, level);
 		
-		this.position = position;
 		this.polygon = polygon;
 	}
 	
@@ -25,9 +23,6 @@ public abstract class PolygonEntity extends Entity {
 		return false;
 	}
 	
-	public Vector2 getPosition() {
-		return this.position;
-	}
 	
 	public List<Vector2> getPolygon() {
 		return this.polygon;

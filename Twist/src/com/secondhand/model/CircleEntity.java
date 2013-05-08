@@ -3,11 +3,8 @@ package com.secondhand.model;
 public abstract class CircleEntity extends Entity {	
 	protected final float radius;
 	
-	private final Vector2 position;
-
 	public CircleEntity(final Vector2 position, final float radius, final boolean isEdible, final GameWorld level) {  
-		super(isEdible,level);
-		this.position = position;
+		super(position, isEdible,level);
 		this.radius = radius;
 	}
 	
@@ -29,21 +26,4 @@ public abstract class CircleEntity extends Entity {
 		else
 			return this.radius;
 	}
-	
-	@Override
-	 public float getCenterX() {
-		 if(this.physics != null)
-			 return super.getCenterX();
-		 else
-			 return this.position.x;
-	}
-	 
-	@Override
-	 public float getCenterY() {
-		 if(this.physics != null)
-			 return super.getCenterY();
-		 else
-			 return this.position.y;
-	}
-
 }

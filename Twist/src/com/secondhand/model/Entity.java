@@ -12,13 +12,19 @@ public abstract class Entity {
 	
 	protected final GameWorld gameWorld;
 	protected PropertyChangeSupport pcs = new PropertyChangeSupport(this);
+	private final Vector2 initialPosition;
 
-	public Entity(final boolean isEdible,
+	public Entity(final Vector2 position, final boolean isEdible,
 			final GameWorld level) {
 		//this.shape = shape;
 		this.isEdible = isEdible;
+		this.initialPosition = position;
 		this.gameWorld = level;
 		bodyScheduledForDeletion = false;
+	}
+	
+	public Vector2 getInitialPosition() {
+		return this.initialPosition;
 	}
 
 	public void setPhysics(final IPhysicsEntity physics){

@@ -108,24 +108,13 @@ public class GamePlayScene extends GameScene {
 		this.smoothCamera.setBounds(0, width, 0, height);
 		this.smoothCamera.setBoundsEnabled(true);
 		// setup the player
-		/*
-		 * final Player player = gameWorld.getPlayer();
-		 * MyDebug.i("In setupView gameplayscene");
-		 * playerView.getShape().detachSelf();
-		 * MyDebug.i("In setupView gameplayscene");
-		 * attachChild(player.getShape());
-		 * MyDebug.i("In setupView gameplayscene");
-		 * engine.getCamera().setChaseEntity(player.getShape());//playerView
-		 * MyDebug.i("In setupView gameplayscene"); // setup the player
-		 */
 
 		// create player view.
 		final PlayerView playerView = new PlayerView(physicsWorld,
 				gameWorld.getPlayer());
 
 		attachChild(playerView.getShape());
-		engine.getCamera().setChaseEntity(playerView.getShape());// playerView
-		smoothCamera.setBoundsEnabled(true);
+		engine.getCamera().setChaseEntity(playerView.getShape());
 		
 		initialCameraPos = new Vector2(smoothCamera.getCenterX(),
 				smoothCamera.getCenterY());

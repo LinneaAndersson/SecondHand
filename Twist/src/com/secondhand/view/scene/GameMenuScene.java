@@ -34,7 +34,6 @@ public abstract class GameMenuScene extends MenuScene implements IGameScene {
 		this.engine = engine;
 	}
 
-
 	protected int layoutHeadline(final String headline) {
 		// the vertical spacing around the headline.
 		final int headlineSpacing = 40;

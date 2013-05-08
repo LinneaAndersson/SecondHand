@@ -5,10 +5,11 @@ import java.util.List;
 
 import com.secondhand.model.Vector2;
 
-public class Polygon {
+public class Polygon extends Shape {
 	public List<Vector2> edges;
 
 	public Polygon(final Vector2 position, final List<Vector2> edges) {
+		super();
 		this.edges = new ArrayList<Vector2>();
 		for(final Vector2 edge: edges) {
 			this.edges.add(new Vector2(edge.x + position.x, edge.y + position.y));

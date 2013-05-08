@@ -3,8 +3,6 @@ package com.secondhand.model.sat;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.anddev.andengine.util.MathUtils;
-
 import com.secondhand.model.Vector2;
 
 
@@ -23,6 +21,13 @@ public final class PolygonFactory {
 		return new Polygon(position, edges);
 	}
 	
+	private static final float PI = (float) Math.PI;
+	private static final float DEG_TO_RAD = PI / 180.0f;
+	
+	private static final float degToRad(final float pDegree) {
+		return DEG_TO_RAD * pDegree;
+	}
+	
 	public static Polygon createCircle(final Vector2 center,  final float radius) {
 	
 		final List<Vector2> edges = new ArrayList<Vector2>();
@@ -33,8 +38,8 @@ public final class PolygonFactory {
 	    	// the right most
 	    	// the left most one.
 
-	    	final float x = (float) (center.x + Math.cos(MathUtils.degToRad(360 - i)) * radius);
-	    	final float y = (float) (center.y + Math.sin(MathUtils.degToRad(360 - i)) * radius);
+	    	final float x = (float) (center.x + Math.cos(degToRad(360 - i)) * radius);
+	    	final float y = (float) (center.y + Math.sin(degToRad(360 - i)) * radius);
 	    	edges.add(new Vector2(x,y));
 	    }	
 	    

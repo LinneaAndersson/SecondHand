@@ -3,8 +3,8 @@ package com.secondhand.model.sat;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.secondhand.model.Vector2;
 
-import com.badlogic.gdx.math.Vector2;
 
 
 import junit.framework.TestCase;

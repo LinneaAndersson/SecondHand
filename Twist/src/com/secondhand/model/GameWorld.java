@@ -3,6 +3,8 @@ package com.secondhand.model;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 
+import com.secondhand.debug.MyDebug;
+
 public class GameWorld {
 
 	private final EntityManager entityManager;
@@ -71,22 +73,31 @@ public class GameWorld {
 	}
 
 	private void nextLevel() {
+		
+		MyDebug.d("now let's go to the next level. ");
 
 		++this.levelNumber;
 
 		// destroy the entities expect for player
+		MyDebug.d("clearing level");
 		clearLevel();
 		
+		
+		MyDebug.d("remove world bounds");
 		this.mPhysic.removeWorldBounds();
 		
 		// first load the new level entities:
+		MyDebug.d("generate new level entities");
 		generateNewLevelEntities(this.levelNumber);
 		
+		MyDebug.d("set world bounds");
 		mPhysic.setWorldBounds(levelWidth, levelHeight);
 		
 		// then notify the view of this, so that it can place out the new
 		// Entities in AndEngine for rendering.
+		MyDebug.d("fire property change");
 		support.firePropertyChange("NextLevel", false, true);
+		MyDebug.d("now level has been changed");
 	}
 
 	// update game world for this frame.

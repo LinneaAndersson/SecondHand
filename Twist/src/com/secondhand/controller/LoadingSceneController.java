@@ -68,7 +68,6 @@ class LoadingSceneController extends Entity {
 				
 				// preoload gameplay scene. 
 				sceneController.getSceneManager().getScene(AllScenes.GAME_PLAY_SCENE).loadScene();
-				MyDebug.d("now we should be preloading the level scene");
 			}
 
 		}

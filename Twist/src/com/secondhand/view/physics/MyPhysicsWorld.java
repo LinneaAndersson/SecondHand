@@ -69,7 +69,6 @@ public class MyPhysicsWorld implements IPhysicsWorld {
 
 	@Override
 	public void setContactListener() {
-		MyDebug.d("setContactListener");
 		physicsWorld.setContactListener(new CollisionContactListener(this));
 
 	}

@@ -18,8 +18,7 @@ public class PlayerView extends BlackHoleView {
 	@Override
 	public void propertyChange(final PropertyChangeEvent event) {
 		
-		MyDebug.d("player property change!");
-		
+
 		final String propertyName = event.getPropertyName();
 		final Player player =  (Player) getEntity();
 		

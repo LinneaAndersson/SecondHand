@@ -104,7 +104,6 @@ final class GamePlaySceneController extends Entity implements
 				this.gamePlayScene.updateLives((Integer) event.getNewValue());
 			} else if (eventName.equals("PlayerRadius")) {
 				// TODO: is never sent from player for some reason; fix.
-				MyDebug.d("eric");
 				this.gamePlayScene.apaptCameraToGrowingPlayer(
 						(Float) event.getNewValue(),
 						(Float) event.getOldValue());

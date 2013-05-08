@@ -15,11 +15,8 @@ public class EntityManager {
 	private final Player player;
 	
 	public EntityManager(final Player player) {
-		MyDebug.d("now we are creating EntityManager");
 		this.scheduledForDeletionEntities = new Stack<Entity>();
-		MyDebug.d("now we are creating EntityManager");
 		this.player = player;
-		MyDebug.d("now we are creating EntityManager");
 	}
 	
 	public void setEntityList(final List<Entity> entityList) {

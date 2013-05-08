@@ -53,7 +53,6 @@ public class RandomLevelGenerator {
 		this.entityList = new ArrayList<Entity>();
 		// to make it easier to place out the entities.
 		placeOutLevelEntities();
-		MyDebug.d("Done in randomLevelGenerator");
 	}
 
 	private void placeOutEnemies() {

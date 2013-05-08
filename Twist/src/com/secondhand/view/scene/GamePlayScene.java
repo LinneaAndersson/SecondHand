@@ -78,7 +78,6 @@ public class GamePlayScene extends GameScene {
 		attachChild(new StarsBackground(100, 3.0f, width, height));
 		this.attachChild(new StarsBackground(130, 1.0f, width, height));
 
-		MyDebug.d("width: " + width + " height" + height);
 		this.smoothCamera.setBounds(0, width, 0, height);
 
 		for (final Entity entity : gameWorld.getEntityManager().getEntityList()) {
@@ -96,6 +95,7 @@ public class GamePlayScene extends GameScene {
 						(PowerUp) entity);
 			} else {
 				MyDebug.e("invalid entity found in entityList");
+				System.exit(1);
 			}
 
 			this.attachChild(entityView.getShape());

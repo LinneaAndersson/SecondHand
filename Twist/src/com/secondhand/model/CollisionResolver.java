@@ -28,8 +28,6 @@ public final class CollisionResolver {
 
 	public void checkCollision(final Object a, final Object b) {
 		
-		MyDebug.d("checkCollision");
-		
 		// if one or both is null, then we are dealing with a collision
 		// involving one or
 		// two non-entities

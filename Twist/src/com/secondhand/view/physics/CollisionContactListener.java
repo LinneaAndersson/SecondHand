@@ -4,7 +4,6 @@ import com.badlogic.gdx.physics.box2d.Contact;
 import com.badlogic.gdx.physics.box2d.ContactImpulse;
 import com.badlogic.gdx.physics.box2d.ContactListener;
 import com.badlogic.gdx.physics.box2d.Manifold;
-import com.secondhand.debug.MyDebug;
 
 public final class CollisionContactListener implements ContactListener {
 
@@ -21,7 +20,6 @@ public final class CollisionContactListener implements ContactListener {
 	 */
 	@Override
 	public void beginContact(final Contact contact) {
-		MyDebug.d("beginContact");
 		physics.checkCollision(contact);
 	}
 

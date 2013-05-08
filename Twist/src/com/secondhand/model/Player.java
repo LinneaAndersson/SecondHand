@@ -49,7 +49,6 @@ public class Player extends BlackHole {
 		util = new PlayerUtil(this);
 		powerUpList = util.getPowerUpList();
 
-		MyDebug.d("Player is created!");
 	}
 
 	public Player(final Vector2 position, final float radius,
@@ -179,7 +178,6 @@ public class Player extends BlackHole {
 
 	@Override
 	protected void entityWasTooBigToEat(final Entity entity) {
-		MyDebug.d("entity too big to eat");
 		pcs.firePropertyChange(BIGGER_ENTITY_COLLISION_SOUND, null, null);
 	}
 

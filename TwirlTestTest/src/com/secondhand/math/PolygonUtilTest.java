@@ -3,8 +3,7 @@ package com.secondhand.math;
 import java.util.ArrayList;
 import java.util.List;
 
-
-import com.badlogic.gdx.math.Vector2;
+import com.secondhand.model.Vector2;
 import com.secondhand.model.util.PolygonUtil;
 
 

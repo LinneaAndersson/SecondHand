@@ -14,13 +14,11 @@ import com.secondhand.view.physics.MyPhysicsEntity;
 public abstract class EntityView implements PropertyChangeListener {
 	protected final IShape shape;
 	//Need this for physics.
-	private final Entity entity;
 	private final Body body;
 	
 	public EntityView(final PhysicsWorld physicsWorld, final Entity entity , final IShape shape,
 			final Body body){
 		this.shape=shape;
-		this.entity = entity;
 		entity.addPropertyChangeListener(this);
 		this.body = body;
 		
@@ -34,10 +32,6 @@ public abstract class EntityView implements PropertyChangeListener {
 	
 	public Body getBody() {
 		return this.body;
-	}
-	
-	public Entity getEntity() {
-		return this.entity;
 	}
 	
 	public IShape getShape(){

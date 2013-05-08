@@ -20,16 +20,16 @@ public class PlayerView extends BlackHoleView {
 		
 
 		final String propertyName = event.getPropertyName();
-		final Player player =  (Player) getEntity();
 		
 		if (propertyName.equals(Player.POWER_UP_SOUND)) {
 			Sounds.getInstance().powerUpSound.play();
 		}else if (propertyName.equals(Player.ADD_POWER_UP)) {
 			this.shape.setColor(1f, 0, 0);
 		} else if (propertyName.equals(Player.REMOVE_POWER_UP)) {
-			if (player.getPowerUps().isEmpty()) {
+			// the model should also be doing this check, this is not something the view should be doing.
+			/*if (player.getPowerUps().isEmpty()) {
 				this.shape.setColor(1f, 1f, 1f);
-			}
+			}*/
 		} else if (propertyName.equals(Player.GROW_SOUND)) {
 			Sounds.getInstance().growSound.play();
 		} else if (propertyName.equals(Player.BIGGER_ENTITY_COLLISION_SOUND)) {

@@ -8,7 +8,7 @@ import junit.framework.TestCase;
 
 public class TestDoubleScore extends TestCase {
 
-	public void testActivateEffect() {
+/*	public void testActivateEffect() {
 		GameWorld world = new GameWorld();
 		Player player = new Player(new Vector2(), 10, world, 1, 0);
 		DoubleScore powerUp = new DoubleScore(new Vector2(), world);
@@ -17,6 +17,6 @@ public class TestDoubleScore extends TestCase {
 		powerUp.activateEffect(player);
 		player.increaseScore(inc);
 		assertEquals(inc*player.getScoreMultiplier(), player.getScore());
-	}
+	}*/
 	
 }

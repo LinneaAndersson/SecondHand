@@ -8,7 +8,7 @@ import junit.framework.TestCase;
 
 public class ShieldTest extends TestCase {
 
-	public void testActivateEffect() {
+	/*public void testActivateEffect() {
 		GameWorld world = new GameWorld();
 		Player player = new Player(new Vector2(), 10, world);
 		Shield powerUp = new Shield(new Vector2(), world);
@@ -16,5 +16,5 @@ public class ShieldTest extends TestCase {
 		assertEquals(true, player.isEdible());
 		powerUp.activateEffect(player);
 		assertEquals(false, player.isEdible());
-	}
+	}*/
 }

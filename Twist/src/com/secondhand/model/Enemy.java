@@ -94,9 +94,10 @@ public class Enemy extends BlackHole {
 				// MyDebug.d("Enemy: applyMovement towards " +
 				// entity.getClass());
 				// closeToDanger();
-				move(new Vector2(getCenterX() - entity.getCenterX(),
-						getCenterY() - entity.getCenterY()));
-
+				physics.applyImpulse(
+						new Vector2(getCenterX() - entity.getCenterX(),
+								getCenterY() - entity.getCenterY()),
+						new Vector2(getCenterX(), getCenterY()));
 			}
 			if (huntingArea != getHuntingArea()) {
 				huntingArea = getHuntingArea();

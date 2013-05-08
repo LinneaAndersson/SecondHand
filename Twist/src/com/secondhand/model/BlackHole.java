@@ -1,6 +1,7 @@
 	
 package com.secondhand.model;
 
+import com.secondhand.model.Vector2;
 import com.secondhand.model.powerup.PowerUp;
 
 public abstract class BlackHole extends CircleEntity {
@@ -79,10 +80,6 @@ public abstract class BlackHole extends CircleEntity {
 			return false;
 		}
 		return this.getRadius() > entity.getRadius();
-	}
-		
-	public void move(final Vector2 position) {
-		physics.applyImpulse(position.x, position.y, maxSpeed);
 	}
 
 	protected abstract void handlePowerUp(final PowerUp powerUp);

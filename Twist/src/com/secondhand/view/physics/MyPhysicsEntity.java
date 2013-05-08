@@ -52,28 +52,6 @@ public class MyPhysicsEntity implements IPhysicsEntity {
 		circle.setRadius(radius);
 	}
 
-	// andEngine or box2d coordinates in? and depending on from
-	// where we call the method we could perhaps have an vector as input.
-	// We souldn't need to do much more here, all other calculations should
-	// be done in model. Entity instead of body and then somehow get body?
-	// All entities that need this function are enemies and player.
-	@Override
-	public void applyImpulse(final float posX, final float posY,
-			final float maxSpeed) {
-
-		final Vector2 force = new Vector2(posX, posY);
-
-		final Vector2 velocity = new Vector2(body.getLinearVelocity());
-
-		if (velocity.add(force).len() > maxSpeed) {
-			// Check if new velocity doesn't exceed maxSpeed!
-			return;
-		}
-
-		body.applyLinearImpulse(force, body.getWorldCenter());
-
-	}
-
 	@Override
 	public void deleteBody() {
 		physicsWorld.unregisterPhysicsConnector(physicsConnector);
@@ -141,6 +119,28 @@ public class MyPhysicsEntity implements IPhysicsEntity {
 				/ PhysicsConstants.PIXEL_TO_METER_RATIO_DEFAULT),
 				body.getAngle());
 
+	}
+
+	// andEngine or box2d coordinates in? and depending on from
+	// where we call the method we could perhaps have an vector as input.
+	// We souldn't need to do much more here, all other calculations should
+	// be done in model. Entity instead of body and then somehow get body?
+	// All entities that need this function are enemies and player.
+	@Override
+	public void applyImpulse(final float posX, final float posY,
+			final float maxSpeed) {
+	
+		final Vector2 force = new Vector2(posX, posY);
+	
+		final Vector2 velocity = new Vector2(body.getLinearVelocity());
+	
+		if (velocity.add(force).len() > maxSpeed) {
+			// Check if new velocity doesn't exceed maxSpeed!
+			return;
+		}
+	
+		body.applyLinearImpulse(force, body.getWorldCenter());
+	
 	}
 
 	@Override

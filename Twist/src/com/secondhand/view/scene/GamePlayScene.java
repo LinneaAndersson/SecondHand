@@ -52,9 +52,6 @@ public class GamePlayScene extends GameScene {
 	}
 
 	public void registerNewLevel() {
-		
-		MyDebug.d("registering new level");
-
 		final float width = gameWorld.getLevelWidth();
 		final float height = gameWorld.getLevelHeight();
 
@@ -94,8 +91,6 @@ public class GamePlayScene extends GameScene {
 
 			this.attachChild(entityView.getShape());
 		}
-		
-		MyDebug.d("resigsted new level");
 	}
 
 	private void setupView() {

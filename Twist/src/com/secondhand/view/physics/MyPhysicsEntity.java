@@ -76,11 +76,7 @@ public class MyPhysicsEntity implements IPhysicsEntity {
 	}
 
 	@Override
-	public void deleteBody(final boolean scheduledBody) {
-		if (!scheduledBody) {
-			throw new IllegalStateException("Body not scheduled for deletion!");
-		}
-
+	public void deleteBody() {
 		physicsWorld.unregisterPhysicsConnector(physicsConnector);
 
 		MyDebug.i(physicsConnector.getBody() + " will be destroyed");

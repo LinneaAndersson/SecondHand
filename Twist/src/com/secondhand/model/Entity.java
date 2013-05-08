@@ -8,15 +8,12 @@ public abstract class Entity {
 	private boolean isEdible;
 	protected IPhysicsEntity physics;
 	
-	// only the initial postion. the updated position is later fetched by physics. 
-	
 	protected final GameWorld gameWorld;
 	protected PropertyChangeSupport pcs = new PropertyChangeSupport(this);
 	private final Vector2 initialPosition;
 
 	public Entity(final Vector2 position, final boolean isEdible,
 			final GameWorld level) {
-		//this.shape = shape;
 		this.isEdible = isEdible;
 		this.initialPosition = position;
 		this.gameWorld = level;
@@ -29,10 +26,10 @@ public abstract class Entity {
 
 	public void setPhysics(final IPhysicsEntity physics){
 		this.physics = physics;
-		createType();
+		onPhysicsAssigned();
 	}
 	
-	public abstract void createType();
+	public abstract void onPhysicsAssigned();
 
 	public abstract boolean isCircle();
 
@@ -80,21 +77,14 @@ public abstract class Entity {
 
 	private boolean bodyScheduledForDeletion;
 
-	private boolean isBodyScheduledForDeletion() {
-		return this.bodyScheduledForDeletion;
-	}
-
 	private void scheduleBodyForDeletion() {
-		//pcs.firePropertyChange(propertyName, oldValue, newValue)
-		
 		this.gameWorld.getEntityManager().scheduleEntityForDeletion(this);
-
 		this.bodyScheduledForDeletion = true;
 	}
 
 	// only valid when the body has been scheduled for deletion.
 	public void deleteBody() {
-		physics.deleteBody(isBodyScheduledForDeletion());
+		physics.deleteBody();
 	}
 
 	// called when this entity is eaten up.

@@ -12,7 +12,7 @@ public interface IPhysicsEntity {
 	
 	void setRadius(final float radius);
 	
-	void deleteBody(boolean scheduledBody);
+	void deleteBody();
 
 	/// apply impulse to world center. 
 	void applyImpulse(float posX, float posY, float maxSpeed);

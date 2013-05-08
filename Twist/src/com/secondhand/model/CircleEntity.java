@@ -14,7 +14,7 @@ public abstract class CircleEntity extends Entity {
 	}
 	
 	@Override
-	public void createType(){
+	public void onPhysicsAssigned(){
 	}
 	
 	

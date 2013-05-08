@@ -19,7 +19,7 @@ public abstract class RectangleEntity extends Entity {
 	}
 	
 	@Override
-	public void createType(){
+	public void onPhysicsAssigned(){
 	}	
 	
 	@Override

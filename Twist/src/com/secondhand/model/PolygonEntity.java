@@ -28,7 +28,7 @@ public abstract class PolygonEntity extends Entity {
 		return this.polygon;
 	}
 	
-	public void createType(){
+	public void onPhysicsAssigned(){
 		this.radius = this.physics.computePolygonRadius(getPolygon());
 	}
 	

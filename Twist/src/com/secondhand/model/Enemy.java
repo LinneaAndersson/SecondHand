@@ -14,7 +14,7 @@ public class Enemy extends BlackHole {
 	private float huntingArea;
 
 	@Override
-	public void createType() {
+	public void onPhysicsAssigned() {
 		huntingArea = getHuntingArea();
 	}
 

@@ -39,7 +39,6 @@ final class GamePlaySceneController extends Entity implements
 		// receive gameworld property change in controller.
 		gameWorld.addListener(this);
 
-		
 		gameWorld.getPhysics().setContactListener();
 	}
 

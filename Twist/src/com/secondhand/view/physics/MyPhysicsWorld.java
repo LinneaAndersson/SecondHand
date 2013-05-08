@@ -17,7 +17,6 @@ public class MyPhysicsWorld implements IPhysicsWorld {
 	private final PhysicsEnemyUtil enemyUtil;
 	private CollisionResolver collisionResolver;
 	private final PhysicsWorldBounds bounds;
-	private GameWorld gameWorld;
 
 	public MyPhysicsWorld(final PhysicsWorld physicsWorld){
 
@@ -76,10 +75,9 @@ public class MyPhysicsWorld implements IPhysicsWorld {
 		physicsWorld.setContactListener(new CollisionContactListener(this));
 
 	}
+	
 	@Override
 	public void setGameWorld(final GameWorld gameWorld) {
-		this.gameWorld = gameWorld;
 		this.collisionResolver = new CollisionResolver(gameWorld);
-
 	}
 }

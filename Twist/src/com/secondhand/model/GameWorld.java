@@ -3,10 +3,9 @@ package com.secondhand.model;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 
-
 public class GameWorld {
 
-	private EntityManager entityManager;
+	private final EntityManager entityManager;
 
 	private static final int STARTING_LEVEL = 2;
 
@@ -16,27 +15,18 @@ public class GameWorld {
 	private int levelHeight;
 
 	private int levelNumber;
-	private final Player player;
-
-	private final PropertyChangeSupport support;
 	
-	private Vector2 cameraPosition;
+	private final PropertyChangeSupport support;
 
 	public GameWorld(final IPhysicsWorld physics) {
 		mPhysic = physics;
 		mPhysic.setGameWorld(this);
 		support = new PropertyChangeSupport(this);
 
-		player = new Player(new Vector2(50,50),30, this);
-		this.entityManager = new EntityManager(player);
-		
-		this.entityManager = new EntityManager(player);
-		
-		// first load the new level entities:
+		this.entityManager = new EntityManager( new Player(new Vector2(50,50),30, this));
 		
 		generateNewLevelEntities(STARTING_LEVEL);
-		mPhysic.setWorldBounds(levelWidth, levelHeight);
-				
+		mPhysic.setWorldBounds(levelWidth, levelHeight);		
 	}
 	
 	public PropertyChangeSupport getPropertyChangeSupport() {
@@ -62,18 +52,7 @@ public class GameWorld {
 		this.entityManager.setEntityList(randomLevelGenerator.entityList);
 		this.entityManager.setEnemyList(randomLevelGenerator.enemyList);
 	}
-	
-	public float getCameraX(){
-		return cameraPosition.x;
-	}
-	
-	public float getCameraY(){
-		return cameraPosition.y;
-	}
-	
-	public void setCameraPos(final float posX, final float posY){
-		cameraPosition = new Vector2(posX, posY);
-	}
+
 
 	public int getLevelNumber() {
 		return levelNumber;
@@ -94,8 +73,6 @@ public class GameWorld {
 	private void nextLevel() {
 
 		++this.levelNumber;
-
-		// destroy old level
 
 		// destroy the entities expect for player
 		clearLevel();

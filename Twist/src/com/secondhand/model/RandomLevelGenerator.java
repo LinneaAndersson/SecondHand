@@ -13,7 +13,6 @@ import com.secondhand.model.sat.World;
 import com.secondhand.model.util.PolygonUtil;
 import com.secondhand.model.util.RandomUtil;
 
-// TODO: this generation of levels seems to be a bit slow, so we probably need a level loading screen.	
 public class RandomLevelGenerator {
 
 	private final int levelNumber;

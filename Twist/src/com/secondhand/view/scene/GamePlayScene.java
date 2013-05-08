@@ -38,6 +38,8 @@ public class GamePlayScene extends GameScene {
 
 	private IPhysicsWorld physics;
 	private final PhysicsWorld physicsWorld;
+	
+	private Vector2 initialCameraPos;
 
 	public void setPhysics(final IPhysicsWorld physics) {
 		this.physics = physics;
@@ -124,7 +126,8 @@ public class GamePlayScene extends GameScene {
 		attachChild(playerView.getShape());
 		engine.getCamera().setChaseEntity(playerView.getShape());// playerView
 		smoothCamera.setBoundsEnabled(true);
-		gameWorld.setCameraPos(smoothCamera.getCenterX(),
+		
+		initialCameraPos = new Vector2(smoothCamera.getCenterX(),
 				smoothCamera.getCenterY());
 
 		registerUpdateHandler(physicsWorld);
@@ -162,8 +165,7 @@ public class GamePlayScene extends GameScene {
 		smoothCamera.setBoundsEnabled(false);
 		this.smoothCamera.setBounds(0, this.smoothCamera.getWidth(), 0,
 				this.smoothCamera.getHeight());
-		smoothCamera.setCenter(gameWorld.getCameraX(), gameWorld.getCameraY());
-		// smoothCamera.setBoundsEnabled(true);
+		smoothCamera.setCenter(initialCameraPos.x,initialCameraPos.y);
 
 		// don't show the HUD in the menu.
 		hud.setCamera(null);

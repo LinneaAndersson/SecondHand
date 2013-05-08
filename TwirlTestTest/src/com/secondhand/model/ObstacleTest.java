@@ -7,7 +7,7 @@ import junit.framework.TestCase;
 
 import com.badlogic.gdx.math.Vector2;
 import com.secondhand.view.opengl.Polygon;
-
+/*
 public class ObstacleTest extends TestCase{
 
 	public void testConstructor() {
@@ -41,4 +41,4 @@ public class ObstacleTest extends TestCase{
 		
 	}
 	
-}
+}*/

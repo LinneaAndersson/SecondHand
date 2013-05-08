@@ -8,15 +8,17 @@ import org.anddev.andengine.entity.scene.Scene;
 import org.anddev.andengine.entity.scene.Scene.IOnSceneTouchListener;
 import org.anddev.andengine.input.touch.TouchEvent;
 
+import com.secondhand.controller.model.PlayerController;
 import com.secondhand.debug.MyDebug;
 import com.secondhand.model.GameWorld;
 import com.secondhand.model.Player;
+import com.secondhand.model.powerup.PowerUp;
 import com.secondhand.model.Vector2;
 import com.secondhand.model.resource.HighScoreList;
 import com.secondhand.view.scene.AllScenes;
 import com.secondhand.view.scene.GamePlayScene;
 
-final class GamePlaySceneController extends Entity {
+final class GamePlaySceneController extends Entity implements PropertyChangeListener {
 
 	private final GameWorld gameWorld;
 	private final GamePlayScene gamePlayScene;
@@ -33,6 +35,9 @@ final class GamePlaySceneController extends Entity {
 
 		this.gamePlayScene.attachChild(this);
 
+		//PlayerUtil adds this Controller as a listener
+		this.gameWorld.getPlayer().addListener(this);
+		
 		scene.setOnSceneTouchListener(new GameSceneTouchListener());
 
 		gameWorld.getPhysics().setContactListener();
@@ -86,6 +91,17 @@ final class GamePlaySceneController extends Entity {
 
 		} else {
 			gameWorld.updateGameWorld();
+		}
+	}
+
+	@Override
+	public void propertyChange(PropertyChangeEvent event) {
+		final String name = event.getPropertyName();
+		
+		if (name.equals(Player.ADD_POWER_UP)) {
+			Player player = gameWorld.getPlayer();
+			PowerUp powerUp = (PowerUp) event.getNewValue();
+			this.sceneController.getSceneManager().registerUpdateHander(PlayerController.createTimer(player, powerUp));
 		}
 	}
 }

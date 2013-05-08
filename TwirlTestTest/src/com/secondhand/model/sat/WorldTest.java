@@ -101,6 +101,30 @@ public class WorldTest extends TestCase {
 		
 		Polygon rect3 = PolygonFactory.createCircle(new Vector2(3.5f, 1), 1);
 		assertTrue(world.isUnoccupied(rect3));
-	
 	}
+
+	// with a circle and a polygon. 
+	public void testCreateCircle2() {
+
+		World world = new World(100, 100);
+
+		List<Vector2> edges = new ArrayList();
+		edges.add(new Vector2(0, 0));
+		edges.add(new Vector2(3,1));
+		edges.add(new Vector2(4,3));
+		edges.add(new Vector2(3,4));
+		edges.add(new Vector2(0,3));
+		Polygon polygon = new Polygon(new Vector2(0,0), edges);
+		
+		world.addToWorld(polygon);
+	
+		
+		Polygon rect2 = PolygonFactory.createCircle(new Vector2(6,3), 1);
+		assertTrue(world.isUnoccupied(rect2));
+
+		Polygon rect3 = PolygonFactory.createCircle(new Vector2(4, 3), 1);
+		assertFalse(world.isUnoccupied(rect3));
+	}
+
+	
 }

@@ -79,6 +79,7 @@ public class Player extends BlackHole {
 	@Override
 	public void increaseScore(final int increase) {
 		super.increaseScore((int) this.getScoreMultiplier() * increase);
+		MyDebug.d("changing score");
 		util.fireInt(INCREASE_SCORE, 0, getScore());
 	}
 
@@ -137,6 +138,7 @@ public class Player extends BlackHole {
 	}
 
 	public void addListener(final PropertyChangeListener observer) {
+		MyDebug.d("adding listener: " + observer.toString());
 		util.addListener(observer);
 	}
 	

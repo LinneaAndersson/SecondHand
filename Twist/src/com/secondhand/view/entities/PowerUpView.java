@@ -11,17 +11,6 @@ import com.secondhand.view.resource.TextureRegions;
 
 public class PowerUpView extends RectangleView {
 	
-	
-	/*
-	public ObstacleView(final PhysicsWorld physicsWorld, final Obstacle obstacle) {
-		// create polygon body. 
-		super(physicsWorld, obstacle,new TexturedPolygon(obstacle.getPosition().x, obstacle.getPosition().y,
-				obstacle.getPolygon(),
-				TextureRegions.getInstance().obstacleTexture)
-		, FixtureDefs.OBSTACLE_FIXTURE_DEF);
-	}*/
-	
-	
 	public PowerUpView(final PhysicsWorld physicsWorld, final PowerUp powerUp) {
 		super(physicsWorld, 
 				powerUp,

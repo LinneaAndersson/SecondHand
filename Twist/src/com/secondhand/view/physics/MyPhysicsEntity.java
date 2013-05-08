@@ -37,12 +37,12 @@ public class MyPhysicsEntity implements IPhysicsEntity {
 	// TODO andengine or box2d coordinates?
 	@Override
 	public float getCenterX() {
-		return body.getWorldCenter().x;
+		return body.getWorldCenter().x  * PhysicsConstants.PIXEL_TO_METER_RATIO_DEFAULT;
 	}
 
 	@Override
 	public float getCenterY() {
-		return body.getWorldCenter().y;
+		return body.getWorldCenter().y * PhysicsConstants.PIXEL_TO_METER_RATIO_DEFAULT;
 	}
 
 	public void setRadius(final float radius) {
@@ -90,32 +90,6 @@ public class MyPhysicsEntity implements IPhysicsEntity {
 		MyDebug.i(physicsConnector.getBody() + " destruction complete");
 	}
 
-	/*
-	 * @Override public Body createType(final IShape shape, final Entity entity)
-	 * { MyDebug.d("in createtype in Myphysics..."); if (entity instanceof
-	 * Obstacle) { final Polygon polygon = (Polygon) shape; body =
-	 * MyPhysicsFactory.createPolygonBody(physicsWorld, polygon,
-	 * BodyType.DynamicBody, FixtureDefs.OBSTACLE_FIXTURE_DEF); } else if
-	 * (entity instanceof Planet) { final Circle circle = (Circle) shape; body =
-	 * PhysicsFactory.createCircleBody(physicsWorld, circle.getX(),
-	 * circle.getY(), circle.getRadius(), circle.getRotation(),
-	 * BodyType.DynamicBody, FixtureDefs.PLANET_FIXTURE_DEF); } else if (entity
-	 * instanceof CircleEntity) { MyDebug.d("in createtype in Myphysics...");
-	 * final Circle circle = (Circle) shape;
-	 * MyDebug.d("in createtype in Myphysics..." + circle.getX() + "    " +
-	 * circle.getY() + "   " + circle.getRadius() + "    " +
-	 * circle.getRotation()); body =
-	 * PhysicsFactory.createCircleBody(physicsWorld, circle.getX(),
-	 * circle.getY(), circle.getRadius(), circle.getRotation(),
-	 * BodyType.DynamicBody, FixtureDefs.BLACK_HOLE_FIXTURE_DEF);
-	 * MyDebug.d("in createtype in Myphysics..."); } else if (entity instanceof
-	 * RectangleEntity) { final RectangularShape rectangle = (RectangularShape)
-	 * shape; body = PhysicsFactory.createCircleBody(physicsWorld, rectangle,
-	 * BodyType.DynamicBody, FixtureDefs.POWER_UP_FIXTURE_DEF); }
-	 * registerBody(entity, body, shape);
-	 * 
-	 * return body; }
-	 */
 
 	@Override
 	public void setLinearDamping(final float linearDamping) {
@@ -181,8 +155,13 @@ public class MyPhysicsEntity implements IPhysicsEntity {
 	public void applyImpulse(final com.secondhand.model.Vector2 impulse,
 			final com.secondhand.model.Vector2 impulsePosition) {
 
-		body.applyLinearImpulse(new Vector2(impulse.x, impulse.y), new Vector2(
-				impulsePosition.x, impulsePosition.y));
+		body.applyLinearImpulse(
+				new Vector2(
+						impulse.x / PhysicsConstants.PIXEL_TO_METER_RATIO_DEFAULT, 
+						impulse.y / PhysicsConstants.PIXEL_TO_METER_RATIO_DEFAULT), 
+				new Vector2(
+						impulsePosition.x/ PhysicsConstants.PIXEL_TO_METER_RATIO_DEFAULT, 
+						impulsePosition.y / PhysicsConstants.PIXEL_TO_METER_RATIO_DEFAULT));
 	}
 
 	@Override

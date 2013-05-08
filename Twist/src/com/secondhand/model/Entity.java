@@ -3,8 +3,6 @@ package com.secondhand.model;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 
-import org.anddev.andengine.extension.physics.box2d.util.constants.PhysicsConstants;
-
 public abstract class Entity {
 
 	private boolean isEdible;
@@ -108,11 +106,11 @@ public abstract class Entity {
 
 	
 	 public float getCenterX() {
-		 return this.physics.getCenterX() * PhysicsConstants.PIXEL_TO_METER_RATIO_DEFAULT;
+		 return this.physics.getCenterX();
 	}
 	 
 	 public float getCenterY() {
-		return  this.physics.getCenterY() * PhysicsConstants.PIXEL_TO_METER_RATIO_DEFAULT;
+		return  this.physics.getCenterY();
 	}
 
 }

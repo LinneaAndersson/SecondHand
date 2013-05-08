@@ -4,9 +4,6 @@ import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 import java.util.ArrayList;
 
-import org.anddev.andengine.extension.physics.box2d.util.constants.PhysicsConstants;
-
-import com.secondhand.debug.MyDebug;
 import com.secondhand.model.powerup.PowerUp;
 
 // I decided to refactor some code from player because the that class was so large
@@ -73,14 +70,10 @@ public class PlayerUtil {
 			final Vector2 v2 = new Vector2(player.getCenterX(),
 					player.getCenterY());
 			v2.add(v1);
-			forcePosition = new Vector2(v2.x
-					/ PhysicsConstants.PIXEL_TO_METER_RATIO_DEFAULT, v2.y
-					/ PhysicsConstants.PIXEL_TO_METER_RATIO_DEFAULT);
+			forcePosition = new Vector2(v2.x, v2.y);
 		} else {
 
-			forcePosition = new Vector2(touch.x
-					/ PhysicsConstants.PIXEL_TO_METER_RATIO_DEFAULT, touch.y
-					/ PhysicsConstants.PIXEL_TO_METER_RATIO_DEFAULT);
+			forcePosition = new Vector2(touch.x, touch.y);
 		}
 
 		final Vector2 force = new Vector2((player.getCenterX() - touch.x),
@@ -89,21 +82,12 @@ public class PlayerUtil {
 		if (this.isMirroredMovement) {
 			force.mul(-1);
 		}
-		
-		force.x = force.x / PhysicsConstants.PIXEL_TO_METER_RATIO_DEFAULT;
-		force.y = force.y / PhysicsConstants.PIXEL_TO_METER_RATIO_DEFAULT;
 
 		force.x = force.x / force.len();
 		force.y = force.y / force.len();
 
-		force.mul(2);
+		force.mul(30);
 		
-		MyDebug.d("mirrored: "+ this.isMirroredMovement);
-		MyDebug.d("force: "+ (force.x * PhysicsConstants.PIXEL_TO_METER_RATIO_DEFAULT) + " " +
-				force.y *PhysicsConstants.PIXEL_TO_METER_RATIO_DEFAULT);
-		MyDebug.d("forcePosition: "+ (forcePosition.x * PhysicsConstants.PIXEL_TO_METER_RATIO_DEFAULT) + " " +
-				forcePosition.y *PhysicsConstants.PIXEL_TO_METER_RATIO_DEFAULT);
-
 		player.physics.applyImpulse(force, forcePosition);
 	
 	}

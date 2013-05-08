@@ -16,8 +16,7 @@ import com.secondhand.model.resource.HighScoreList;
 import com.secondhand.view.scene.AllScenes;
 import com.secondhand.view.scene.GamePlayScene;
 
-final class GamePlaySceneController extends Entity implements
-		PropertyChangeListener {
+final class GamePlaySceneController extends Entity {
 
 	private final GameWorld gameWorld;
 	private final GamePlayScene gamePlayScene;
@@ -35,9 +34,6 @@ final class GamePlaySceneController extends Entity implements
 		this.gamePlayScene.attachChild(this);
 
 		scene.setOnSceneTouchListener(new GameSceneTouchListener());
-
-		// receive gameworld property change in controller.
-		gameWorld.addListener(this);
 
 		gameWorld.getPhysics().setContactListener();
 	}
@@ -92,31 +88,4 @@ final class GamePlaySceneController extends Entity implements
 			gameWorld.updateGameWorld();
 		}
 	}
-
-	// not a very good solution bellow but it can do for now
-	@Override
-	public void propertyChange(final PropertyChangeEvent event) {
-		
-		final String eventName = event.getPropertyName();
-
-		if (eventName.equals(Player.INCREASE_SCORE)) {
-			MyDebug.d("update score");
-			this.gamePlayScene.updateScore((Integer) event.getNewValue());
-		} else if (eventName.equals(Player.INCREASE_LIFE)) {
-			this.gamePlayScene.updateLives((Integer) event.getNewValue());
-		} else if (eventName.equals("PlayerRadius")) {
-			// TODO: is never sent from player for some reason; fix.
-			this.gamePlayScene.apaptCameraToGrowingPlayer(
-					(Float) event.getNewValue(),
-					(Float) event.getOldValue());
-		} else if (eventName.equals("NextLevel")) {
-			this.gamePlayScene.newLevelStarted();
-			//TODO: now readd listeners n stuff
-		} else if (eventName.equals("NextLevel")) {
-			this.gamePlayScene.newLevelStarted();
-		} else if (eventName.equals("PlayerWallCollision")) {
-			this.gamePlayScene.onPlayerWallCollision();
-		}
-	}
-
 }

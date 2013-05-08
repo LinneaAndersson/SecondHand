@@ -62,7 +62,6 @@ public class PlayerUtil {
 	public void reachToTouch(final Vector2 touch) {
 		Vector2 forcePosition;
 
-		// get rid of PIXEL_TO_METER_RATIO_DEFAULT to the view.
 		if (this.isMirroredMovement()) {
 			final Vector2 v1 = new Vector2(touch.x - player.getCenterX(),
 					touch.y - player.getCenterY());

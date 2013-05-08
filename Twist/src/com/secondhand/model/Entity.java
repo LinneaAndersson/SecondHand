@@ -17,7 +17,6 @@ public abstract class Entity {
 		this.isEdible = isEdible;
 		this.initialPosition = position;
 		this.gameWorld = level;
-		bodyScheduledForDeletion = false;
 	}
 	
 	public Vector2 getInitialPosition() {
@@ -75,11 +74,8 @@ public abstract class Entity {
 		this.physics.detachSelf();
 	}
 
-	private boolean bodyScheduledForDeletion;
-
 	private void scheduleBodyForDeletion() {
 		this.gameWorld.getEntityManager().scheduleEntityForDeletion(this);
-		this.bodyScheduledForDeletion = true;
 	}
 
 	// only valid when the body has been scheduled for deletion.

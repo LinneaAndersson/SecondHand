@@ -4,9 +4,6 @@ import java.util.List;
 
 public abstract class PolygonEntity extends Entity {
 		
-	//protected final Polygon polygon;
-	
-	// polygon won't be allowed to grow.
 	private float radius; 
 	
 	private final List<Vector2> polygon;

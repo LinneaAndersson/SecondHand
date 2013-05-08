@@ -11,7 +11,6 @@ import com.secondhand.debug.MyDebug;
 import com.secondhand.model.Enemy;
 import com.secondhand.model.Entity;
 import com.secondhand.model.GameWorld;
-import com.secondhand.model.IPhysicsWorld;
 import com.secondhand.model.Obstacle;
 import com.secondhand.model.Planet;
 import com.secondhand.model.Player;
@@ -36,19 +35,12 @@ public class GamePlayScene extends GameScene {
 
 	private GameWorld gameWorld;
 
-	private IPhysicsWorld physics;
-	private final PhysicsWorld physicsWorld;
+	private PhysicsWorld physicsWorld;
 	
 	private Vector2 initialCameraPos;
 
-	public void setPhysics(final IPhysicsWorld physics) {
-		this.physics = physics;
-	}
-
 	public GamePlayScene(final Engine engine, final Context context) {
 		super(engine, context);
-		physicsWorld = new PhysicsWorld(new Vector2(), true);
-		physics = new MyPhysicsWorld(physicsWorld);
 	}
 
 	public GameWorld getGameWorld() {
@@ -132,8 +124,10 @@ public class GamePlayScene extends GameScene {
 	@Override
 	public void loadScene() {
 		super.loadScene();
+		
+		physicsWorld = new PhysicsWorld(new Vector2(), true);
 
-		this.gameWorld = new GameWorld(physics);
+		this.gameWorld = new GameWorld(new MyPhysicsWorld(physicsWorld));
 		// we'll need to be able to restore the camera when returning to the
 		// menu.
 

@@ -8,7 +8,6 @@ import org.anddev.andengine.entity.scene.Scene;
 import org.anddev.andengine.entity.scene.Scene.IOnSceneTouchListener;
 import org.anddev.andengine.input.touch.TouchEvent;
 
-import com.secondhand.debug.MyDebug;
 import com.secondhand.model.GameWorld;
 import com.secondhand.model.Player;
 import com.secondhand.model.Vector2;
@@ -109,7 +108,7 @@ final class GamePlaySceneController extends Entity implements
 						(Float) event.getOldValue());
 			} else if (eventName.equals("NextLevel")) {
 				this.gamePlayScene.newLevelStarted();
-				// now add listeners n stuff
+				//TODO: now readd listeners n stuff
 			} else if (eventName.equals("NextLevel")) {
 				this.gamePlayScene.newLevelStarted();
 			} else if (eventName.equals("PlayerWallCollision")) {

@@ -4,7 +4,6 @@ import org.anddev.andengine.extension.physics.box2d.PhysicsWorld;
 
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Contact;
-import com.secondhand.debug.MyDebug;
 import com.secondhand.model.CollisionResolver;
 import com.secondhand.model.Enemy;
 import com.secondhand.model.Entity;
@@ -22,7 +21,7 @@ public class MyPhysicsWorld implements IPhysicsWorld {
 
 		// TODO remove physicsWorld from constructor
 		// and put worldBoundries somewhere else
-		this.physicsWorld = new PhysicsWorld(new Vector2(), true);
+		this.physicsWorld = physicsWorld;
 		bounds = new PhysicsWorldBounds(physicsWorld);
 		enemyUtil = new PhysicsEnemyUtil(physicsWorld);
 		this.physicsWorld.setVelocityIterations(16);

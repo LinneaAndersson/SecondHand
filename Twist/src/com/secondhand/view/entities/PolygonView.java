@@ -1,7 +1,5 @@
 package com.secondhand.view.entities;
 
-import java.beans.PropertyChangeEvent;
-
 import org.anddev.andengine.extension.physics.box2d.PhysicsWorld;
 
 import com.badlogic.gdx.physics.box2d.BodyDef.BodyType;
@@ -19,7 +17,4 @@ public class PolygonView extends EntityView {
 				MyPhysicsFactory.createPolygonBody(physicsWorld, polygon, BodyType.DynamicBody, fixtureDef));
 	}
 
-	@Override
-	public void propertyChange(final PropertyChangeEvent event) {
-	}
 }

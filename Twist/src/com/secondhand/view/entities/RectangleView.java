@@ -1,7 +1,5 @@
 package com.secondhand.view.entities;
 
-import java.beans.PropertyChangeEvent;
-
 import org.anddev.andengine.entity.shape.RectangularShape;
 import org.anddev.andengine.extension.physics.box2d.PhysicsFactory;
 import org.anddev.andengine.extension.physics.box2d.PhysicsWorld;
@@ -16,11 +14,5 @@ public class RectangleView extends EntityView {
 			final FixtureDef fixtureDef) {
 		super(physicsWorld, rectangleEntity, rectangle,
 				PhysicsFactory.createBoxBody(physicsWorld, rectangle, BodyType.DynamicBody, fixtureDef));
-	}
-
-	@Override
-	public void propertyChange(final PropertyChangeEvent arg0) {
-		// TODO Auto-generated method stub
-		
 	}
 }

@@ -58,15 +58,12 @@ public class RandomLevelGenerator {
 	private void placeOutEnemies() {
 		Enemy enemy;		
 
-		int ENEMIES;
-	//	Enemy enemy;
-		//Instead of making to many enemies we will make them go faster.
+		final int ENEMIES;
 		if (levelNumber < 4) {
 			ENEMIES = 2 * (this.levelNumber);
 		} else {
 			ENEMIES = 8;
 		}
-		ENEMIES = 0;
 		
 		for (int i = 0; i < ENEMIES; ++i) {
 

@@ -17,7 +17,6 @@ public abstract class CircleEntity extends Entity {
 	public void onPhysicsAssigned(){
 	}
 	
-	
 	@Override 
 	public float getRadius() {
 		if(this.physics != null)

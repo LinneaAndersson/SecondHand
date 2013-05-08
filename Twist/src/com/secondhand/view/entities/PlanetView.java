@@ -11,7 +11,7 @@ public class PlanetView extends CircleView {
 
 	public PlanetView(final PhysicsWorld physicsWorld,
 			final Planet planet) {
-		super(physicsWorld, planet, new TexturedCircle(planet.getCenterX(), planet.getCenterY(), planet.getRadius(),
+		super(physicsWorld, planet, new TexturedCircle(planet.getInitialPosition().x, planet.getInitialPosition().y, planet.getRadius(),
 				TextureRegions.getInstance().getPlanetTexture(planet.getPlanetType())),
 				FixtureDefs.PLANET_FIXTURE_DEF);
 	}

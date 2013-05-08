@@ -96,7 +96,6 @@ public abstract class Entity {
 		pcs.addPropertyChangeListener(listener);
 	}
 
-	
 	 public float getCenterX() {
 		 return this.physics.getCenterX();
 	}

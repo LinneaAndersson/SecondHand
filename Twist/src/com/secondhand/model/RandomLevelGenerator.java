@@ -36,8 +36,8 @@ public class RandomLevelGenerator {
 		rng = new Random();
 		this.levelNumber = level.getLevelNumber();
 		this.level = level;
-		this.levelWidth = 1000 * this.levelNumber;
-		this.levelHeight = 1000 * this.levelNumber;
+		this.levelWidth = 2000 * this.levelNumber;
+		this.levelHeight = 2000 * this.levelNumber;
 		world = new World(this.levelWidth, this.levelHeight);
 		this.player = player;
 		// make sure entities are not placed on top of player
@@ -148,18 +148,15 @@ public class RandomLevelGenerator {
 
 	
 	private void placeOutPlanets() {
-		MyDebug.d("The level is = " + levelNumber);
 		final float K = 1.2f;
 		int MINIMUM_PLAYER_EATABLE;
 		if (this.levelNumber < 10) {
-			MINIMUM_PLAYER_EATABLE = 50 - (this.levelNumber) * 3;
+			MINIMUM_PLAYER_EATABLE = 20; //50 - (this.levelNumber) * 3;
 		} else {
 			MINIMUM_PLAYER_EATABLE = 10;
 		}
-		MINIMUM_PLAYER_EATABLE = 0;
-		int numPlayerEatable = 0;
-
-		final float MAX_SIZE = player.getRadius()*4f;
+	
+		final float MAX_SIZE = player.getRadius()*2f;
 
 		final float MIN_SIZE = player.getRadius() - 20;
 
@@ -171,7 +168,7 @@ public class RandomLevelGenerator {
 
 			while (true) {
 				radius = RandomUtil.nextFloat(rng, MIN_SIZE,
-						40 /*player.getRadius()*/);
+						player.getRadius());
 
 				xAxis = rng.nextInt(this.levelWidth);
 				yAxis = rng.nextInt(this.levelHeight);
@@ -179,8 +176,7 @@ public class RandomLevelGenerator {
 				final World.Polygon poly = PolygonFactory.createCircle(
 						new Vector2(xAxis, yAxis), radius);
 
-				if (world.addToWorld(poly)&& radius< 40 /*player.getRadius()*/) {
-					numPlayerEatable++;
+				if (world.addToWorld(poly)&& radius< 40 * player.getRadius()) {
 					break;
 				}
 			}
@@ -189,7 +185,7 @@ public class RandomLevelGenerator {
 		}
 		for (int i = MINIMUM_PLAYER_EATABLE ; i<PLANETS ; i++ ) {
 			while (true) {
-				radius = RandomUtil.nextFloat(rng, 40 /*player.getRadius()*/,
+				radius = RandomUtil.nextFloat(rng, MIN_SIZE,
 						MAX_SIZE);
 
 				xAxis = rng.nextInt(this.levelWidth);
@@ -212,7 +208,7 @@ public class RandomLevelGenerator {
 
 		placeOutObstacles();
 		MyDebug.d("done placing out obstacles");
-		//placeOutPlanets();
+		placeOutPlanets();
 		MyDebug.d("done placing out planets");
 		placeOutPowerUps();
 		MyDebug.d("done placing out power ups");

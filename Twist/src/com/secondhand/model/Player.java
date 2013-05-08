@@ -143,6 +143,7 @@ public class Player extends BlackHole {
 	}
 	
 	public void reachToTouch(final Vector2 touch) {
+		MyDebug.d("player should now handle touch even");
 		util.reachToTouch(touch);
 	}
 

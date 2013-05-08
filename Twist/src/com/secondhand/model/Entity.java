@@ -59,7 +59,6 @@ public abstract class Entity {
 		this.gameWorld.getEntityManager().removeEntityFromList(this);
 
 		destroyEntity();
-
 	}
 
 	// TODO detaching should be done by view or physics, wherever 

@@ -78,8 +78,6 @@ public class MyPhysicsEntity implements IPhysicsEntity {
 	public void deleteBody() {
 		physicsWorld.unregisterPhysicsConnector(physicsConnector);
 
-		MyDebug.i(physicsConnector.getBody() + " will be destroyed");
-
 		physicsWorld.destroyBody(physicsConnector.getBody());
 
 		MyDebug.i(physicsConnector.getBody() + " destruction complete");

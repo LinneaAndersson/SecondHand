@@ -47,7 +47,7 @@ public class RandomLevelGenerator {
 				player.getInitialPosition().x, player.getInitialPosition().y), 40);
 		world.addToWorld(poly);
 
-		this.playerMaxSize = player.getMaxSize();
+		this.playerMaxSize = 31; //40 * this.levelNumber;
 		
 		this.enemyList = new ArrayList<Enemy>();
 		this.entityList = new ArrayList<Entity>();

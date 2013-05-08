@@ -42,11 +42,11 @@ public class GameWorld {
 	// generate the level entities of a new level.
 	private void generateNewLevelEntities(final int levelNumber) {
 		this.levelNumber = levelNumber;
-		this.entityManager.getPlayer().setMaxSize(80);
 		
 		final RandomLevelGenerator randomLevelGenerator = new RandomLevelGenerator(
 				this.entityManager.getPlayer(), this);
 
+		this.entityManager.getPlayer().setMaxSize(randomLevelGenerator.playerMaxSize);
 		this.levelWidth = randomLevelGenerator.levelWidth;
 		this.levelHeight = randomLevelGenerator.levelHeight;
 		this.entityManager.setEntityList(randomLevelGenerator.entityList);

@@ -5,6 +5,7 @@ import java.util.Stack;
 
 import com.secondhand.debug.MyDebug;
 
+
 // Manages all the entities of the GameWorld
 public class EntityManager {
 	
@@ -71,8 +72,15 @@ public class EntityManager {
 	public void removeAllEntitiesExpectForPlayer() {
 		// player is not stored in entity list.
 		for(final Entity entity: this.entityList) {
-			entity.destroyEntity();
+			if(entity instanceof Player) 
+				MyDebug.d("LOOKS LIKE WE DELETED PLAYER");
+			entity.deleteBody();
 		}
+		
+		this.scheduledForDeletionEntities.clear();
+
+		this.entityList.clear();
+		this.enemyList.clear();
 	}
 	
 }

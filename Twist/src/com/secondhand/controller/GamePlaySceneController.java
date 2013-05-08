@@ -8,16 +8,17 @@ import org.anddev.andengine.entity.scene.Scene;
 import org.anddev.andengine.entity.scene.Scene.IOnSceneTouchListener;
 import org.anddev.andengine.input.touch.TouchEvent;
 
+import com.secondhand.controller.model.PlayerController;
 import com.secondhand.debug.MyDebug;
 import com.secondhand.model.GameWorld;
 import com.secondhand.model.Player;
+import com.secondhand.model.powerup.PowerUp;
 import com.secondhand.model.Vector2;
 import com.secondhand.model.resource.HighScoreList;
 import com.secondhand.view.scene.AllScenes;
 import com.secondhand.view.scene.GamePlayScene;
 
-final class GamePlaySceneController extends Entity implements
-		PropertyChangeListener {
+final class GamePlaySceneController extends Entity implements PropertyChangeListener {
 
 	private final GameWorld gameWorld;
 	private final GamePlayScene gamePlayScene;
@@ -34,10 +35,10 @@ final class GamePlaySceneController extends Entity implements
 
 		this.gamePlayScene.attachChild(this);
 
+		//PlayerUtil adds this Controller as a listener
+		this.gameWorld.getPlayer().addListener(this);
+		
 		scene.setOnSceneTouchListener(new GameSceneTouchListener());
-
-		// receive gameworld property change in controller.
-		gameWorld.addListener(this);
 
 		gameWorld.getPhysics().setContactListener();
 	}
@@ -93,30 +94,14 @@ final class GamePlaySceneController extends Entity implements
 		}
 	}
 
-	// not a very good solution bellow but it can do for now
 	@Override
-	public void propertyChange(final PropertyChangeEvent event) {
+	public void propertyChange(PropertyChangeEvent event) {
+		final String name = event.getPropertyName();
 		
-		final String eventName = event.getPropertyName();
-
-		if (eventName.equals(Player.INCREASE_SCORE)) {
-			MyDebug.d("update score");
-			this.gamePlayScene.updateScore((Integer) event.getNewValue());
-		} else if (eventName.equals(Player.INCREASE_LIFE)) {
-			this.gamePlayScene.updateLives((Integer) event.getNewValue());
-		} else if (eventName.equals("PlayerRadius")) {
-			// TODO: is never sent from player for some reason; fix.
-			this.gamePlayScene.apaptCameraToGrowingPlayer(
-					(Float) event.getNewValue(),
-					(Float) event.getOldValue());
-		} else if (eventName.equals("NextLevel")) {
-			this.gamePlayScene.newLevelStarted();
-			//TODO: now readd listeners n stuff
-		} else if (eventName.equals("NextLevel")) {
-			this.gamePlayScene.newLevelStarted();
-		} else if (eventName.equals("PlayerWallCollision")) {
-			this.gamePlayScene.onPlayerWallCollision();
+		if (name.equals(Player.ADD_POWER_UP)) {
+			Player player = gameWorld.getPlayer();
+			PowerUp powerUp = (PowerUp) event.getNewValue();
+			this.sceneController.getSceneManager().registerUpdateHander(PlayerController.createTimer(player, powerUp));
 		}
 	}
-
 }

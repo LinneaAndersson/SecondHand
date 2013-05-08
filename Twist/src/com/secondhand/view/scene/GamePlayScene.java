@@ -1,5 +1,8 @@
 package com.secondhand.view.scene;
 
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
+
 import org.anddev.andengine.engine.Engine;
 import org.anddev.andengine.engine.camera.hud.HUD;
 import org.anddev.andengine.extension.physics.box2d.PhysicsWorld;
@@ -27,7 +30,7 @@ import com.secondhand.view.opengl.StarsBackground;
 import com.secondhand.view.physics.MyPhysicsWorld;
 import com.secondhand.view.resource.Sounds;
 
-public class GamePlayScene extends GameScene {
+public class GamePlayScene extends GameScene implements PropertyChangeListener {
 
 	private HUD hud;
 
@@ -36,7 +39,7 @@ public class GamePlayScene extends GameScene {
 	private GameWorld gameWorld;
 
 	private PhysicsWorld physicsWorld;
-	
+
 	private Vector2 initialCameraPos;
 
 	public GamePlayScene(final Engine engine, final Context context) {
@@ -52,6 +55,7 @@ public class GamePlayScene extends GameScene {
 	}
 
 	public void registerNewLevel() {
+		
 		final float width = gameWorld.getLevelWidth();
 		final float height = gameWorld.getLevelHeight();
 
@@ -106,7 +110,7 @@ public class GamePlayScene extends GameScene {
 
 		attachChild(playerView.getShape());
 		engine.getCamera().setChaseEntity(playerView.getShape());
-		
+
 		initialCameraPos = new Vector2(smoothCamera.getCenterX(),
 				smoothCamera.getCenterY());
 
@@ -123,10 +127,14 @@ public class GamePlayScene extends GameScene {
 	@Override
 	public void loadScene() {
 		super.loadScene();
-		
+
 		physicsWorld = new PhysicsWorld(new Vector2(), true);
 
 		this.gameWorld = new GameWorld(new MyPhysicsWorld(physicsWorld));
+		
+		// receive gameworld property change.
+		gameWorld.addListener(this);
+		
 		// we'll need to be able to restore the camera when returning to the
 		// menu.
 
@@ -206,5 +214,30 @@ public class GamePlayScene extends GameScene {
 
 	public void onPlayerWallCollision() {
 		Sounds.getInstance().obstacleCollisionSound.play();
+	}
+
+	@Override
+	public void propertyChange(final PropertyChangeEvent event) {
+
+		final String eventName = event.getPropertyName();
+
+		if (eventName.equals(Player.INCREASE_SCORE)) {
+			MyDebug.d("update score");
+			updateScore((Integer) event.getNewValue());
+		} else if (eventName.equals(Player.INCREASE_LIFE)) {
+			updateLives((Integer) event.getNewValue());
+		} else if (eventName.equals("PlayerRadius")) {
+			// TODO: is never sent from player for some reason; fix.
+			apaptCameraToGrowingPlayer(
+					(Float) event.getNewValue(),
+					(Float) event.getOldValue());
+		} else if (eventName.equals("NextLevel")) {
+			newLevelStarted();
+			//TODO: now readd listeners n stuff
+		} else if (eventName.equals("NextLevel")) {
+			newLevelStarted();
+		} else if (eventName.equals("PlayerWallCollision")) {
+			onPlayerWallCollision();
+		}
 	}
 }

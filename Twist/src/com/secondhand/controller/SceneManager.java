@@ -1,6 +1,7 @@
 package com.secondhand.controller;
 
 import org.anddev.andengine.engine.Engine;
+import org.anddev.andengine.engine.handler.IUpdateHandler;
 
 import android.content.Context;
 
@@ -100,4 +101,7 @@ final class SceneManager {
 		this.setCurrentSceneEnum(scene );
 	}
 	
+	public void registerUpdateHander(final IUpdateHandler updateHandler) {
+		this.engine.registerUpdateHandler(updateHandler);
+	}
 }

@@ -8,6 +8,7 @@ import com.secondhand.debug.MyDebug;
 import com.secondhand.model.powerup.PowerUp;
 import com.secondhand.model.powerup.PowerUpFactory;
 import com.secondhand.model.resource.PlanetType;
+import com.secondhand.model.sat.Polygon;
 import com.secondhand.model.sat.PolygonFactory;
 import com.secondhand.model.sat.World;
 import com.secondhand.model.util.PolygonUtil;
@@ -42,7 +43,7 @@ public class RandomLevelGenerator {
 		this.player = player;
 		// make sure entities are not placed on top of player
 	
-		final World.Polygon poly = PolygonFactory.createCircle(new Vector2(
+		final Polygon poly = PolygonFactory.createCircle(new Vector2(
 				player.getInitialPosition().x, player.getInitialPosition().y), 40);
 		world.addToWorld(poly);
 
@@ -73,7 +74,7 @@ public class RandomLevelGenerator {
 			while (true) {
 				xAxis = rng.nextInt(this.levelWidth);
 				yAxis = rng.nextInt(this.levelHeight);
-				final World.Polygon poly = PolygonFactory.createCircle(
+				final Polygon poly = PolygonFactory.createCircle(
 						new Vector2(xAxis, yAxis), radius);
 
 				// addToWorld add the polygon if it is unoccupied otherwise it
@@ -100,12 +101,15 @@ public class RandomLevelGenerator {
 
 			final List<Vector2> edges = PolygonUtil.getRandomPolygon();
 
+			MyDebug.d("obstacle:" + i);
+			
 			while (true) {
+				
 
 				xAxis = rng.nextInt(this.levelWidth);
 				yAxis = rng.nextInt(this.levelHeight);
 
-				final World.Polygon poly = new World.Polygon(new Vector2(xAxis,
+				final Polygon poly = new Polygon(new Vector2(xAxis,
 						yAxis), edges);
 
 				if (world.addToWorld(poly)) {
@@ -128,7 +132,7 @@ public class RandomLevelGenerator {
 				xAxis = rng.nextInt(this.levelWidth);
 				yAxis = rng.nextInt(this.levelHeight);
 
-				final World.Polygon poly = PolygonFactory.createRectangle(
+				final Polygon poly = PolygonFactory.createRectangle(
 						new Vector2(xAxis, yAxis), PowerUp.WIDTH,
 						PowerUp.HEIGHT);
 
@@ -158,9 +162,13 @@ public class RandomLevelGenerator {
 
 		final int PLANETS = (int)( 25 * this.levelNumber * K);
 		float radius;
+		
+		int planetCounter = 0;
 
 		//Start with the smaller planets.
-		for (int i = 0; i < MINIMUM_PLAYER_EATABLE; ++i) {
+		for (int i = 0; i < MINIMUM_PLAYER_EATABLE; ++i, planetCounter++) {
+			
+			MyDebug.d("planet" + planetCounter);
 
 			while (true) {
 				radius = RandomUtil.nextFloat(rng, MIN_SIZE,
@@ -169,7 +177,7 @@ public class RandomLevelGenerator {
 				xAxis = rng.nextInt(this.levelWidth);
 				yAxis = rng.nextInt(this.levelHeight);
 
-				final World.Polygon poly = PolygonFactory.createCircle(
+				final Polygon poly = PolygonFactory.createCircle(
 						new Vector2(xAxis, yAxis), radius);
 
 				if (world.addToWorld(poly)&& radius< 40 * player.getRadius()) {
@@ -179,7 +187,10 @@ public class RandomLevelGenerator {
 			entityList.add(new Planet(new Vector2(xAxis, yAxis), radius,
 					RandomUtil.randomEnum(rng, PlanetType.class), level));
 		}
-		for (int i = MINIMUM_PLAYER_EATABLE ; i<PLANETS ; i++ ) {
+		for (int i = MINIMUM_PLAYER_EATABLE ; i<PLANETS ; i++, planetCounter++) {
+			
+			MyDebug.d("planet" + planetCounter);
+			
 			while (true) {
 				radius = RandomUtil.nextFloat(rng, MIN_SIZE,
 						MAX_SIZE);
@@ -187,7 +198,7 @@ public class RandomLevelGenerator {
 				xAxis = rng.nextInt(this.levelWidth);
 				yAxis = rng.nextInt(this.levelHeight);
 
-				final World.Polygon poly = PolygonFactory.createCircle(
+				final Polygon poly = PolygonFactory.createCircle(
 						new Vector2(xAxis, yAxis), radius);
 
 				if (world.addToWorld(poly)) {

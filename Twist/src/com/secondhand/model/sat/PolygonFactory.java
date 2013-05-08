@@ -12,7 +12,7 @@ public final class PolygonFactory {
 
 	private PolygonFactory() {}
 	
-	public static World.Polygon createRectangle(final Vector2 position, final int width, final int height) {
+	public static Polygon createRectangle(final Vector2 position, final int width, final int height) {
 		final List<Vector2> edges = new ArrayList<Vector2>();
 		
 		edges.add(new Vector2(0,0));
@@ -20,10 +20,10 @@ public final class PolygonFactory {
 		edges.add(new Vector2(width,height));
 		edges.add(new Vector2(0,height));
 		
-		return new World.Polygon(position, edges);
+		return new Polygon(position, edges);
 	}
 	
-	public static World.Polygon createCircle(final Vector2 center,  final float radius) {
+	public static Polygon createCircle(final Vector2 center,  final float radius) {
 	
 		final List<Vector2> edges = new ArrayList<Vector2>();
 		
@@ -38,7 +38,7 @@ public final class PolygonFactory {
 	    	edges.add(new Vector2(x,y));
 	    }	
 	    
-		return new World.Polygon(new Vector2(0,0), edges);
+		return new Polygon(new Vector2(0,0), edges);
 	}
 	
 }

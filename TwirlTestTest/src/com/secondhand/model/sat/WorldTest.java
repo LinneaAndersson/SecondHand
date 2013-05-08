@@ -22,7 +22,7 @@ public class WorldTest extends TestCase {
 		edges.add(new Vector2(0,0));
 		edges.add(new Vector2(-20,0));
 		
-		World.Polygon polygon = new World.Polygon(new Vector2(20,20), edges);
+		Polygon polygon = new Polygon(new Vector2(20,20), edges);
 		
 		assertTrue(world.isUnoccupied(polygon));
 		
@@ -31,7 +31,7 @@ public class WorldTest extends TestCase {
 		edges2.add(new Vector2(20,0));
 		edges2.add(new Vector2(20,20));
 		edges2.add(new Vector2(0,20));
-		World.Polygon polygon2 = new World.Polygon(new Vector2(10,10), edges2);
+		Polygon polygon2 = new Polygon(new Vector2(10,10), edges2);
 		
 		assertTrue(world.isUnoccupied(polygon2));
 		
@@ -40,7 +40,7 @@ public class WorldTest extends TestCase {
 		
 		assertFalse(world.isUnoccupied(polygon2));
 		
-		World.Polygon polygon3 = new World.Polygon(new Vector2(30,10), edges2);
+		Polygon polygon3 = new Polygon(new Vector2(30,10), edges2);
 		assertTrue(world.isUnoccupied(polygon3));
 		
 	}
@@ -57,7 +57,7 @@ public class WorldTest extends TestCase {
 		edges.add(new Vector2(3,4));
 		edges.add(new Vector2(0,3));
 		
-		World.Polygon polygon = new World.Polygon(new Vector2(0,0), edges);
+		Polygon polygon = new Polygon(new Vector2(0,0), edges);
 		
 		assertTrue(world.isUnoccupied(polygon));
 		
@@ -65,7 +65,7 @@ public class WorldTest extends TestCase {
 		edges2.add(new Vector2(0,1));
 		edges2.add(new Vector2(2,0));
 		edges2.add(new Vector2(2,1));
-		World.Polygon polygon2 = new World.Polygon(new Vector2(3,2), edges2);
+		Polygon polygon2 = new Polygon(new Vector2(3,2), edges2);
 		
 		assertTrue(world.isUnoccupied(polygon2));
 		
@@ -78,13 +78,13 @@ public class WorldTest extends TestCase {
 		
 		World world = new World(100, 100);
 		
-		World.Polygon rect1 = PolygonFactory.createRectangle(new Vector2(0,0), 10, 10);
+		Polygon rect1 = PolygonFactory.createRectangle(new Vector2(0,0), 10, 10);
 		world.addToWorld(rect1);
 		
-		World.Polygon rect2 = PolygonFactory.createRectangle(new Vector2(5,5), 10, 10);
+		Polygon rect2 = PolygonFactory.createRectangle(new Vector2(5,5), 10, 10);
 		assertFalse(world.isUnoccupied(rect2));
 		
-		World.Polygon rect3 = PolygonFactory.createRectangle(new Vector2(11, 11), 10, 10);
+		Polygon rect3 = PolygonFactory.createRectangle(new Vector2(11, 11), 10, 10);
 		assertTrue(world.isUnoccupied(rect3));
 		
 	}
@@ -93,13 +93,13 @@ public class WorldTest extends TestCase {
 	
 	World world = new World(100, 100);
 		
-		World.Polygon rect1 = PolygonFactory.createCircle(new Vector2(1,1), 1);
+		Polygon rect1 = PolygonFactory.createCircle(new Vector2(1,1), 1);
 		world.addToWorld(rect1);
 		
-		World.Polygon rect2 = PolygonFactory.createCircle(new Vector2(2,1), 1);
+		Polygon rect2 = PolygonFactory.createCircle(new Vector2(2,1), 1);
 		assertFalse(world.isUnoccupied(rect2));
 		
-		World.Polygon rect3 = PolygonFactory.createCircle(new Vector2(3.5f, 1), 1);
+		Polygon rect3 = PolygonFactory.createCircle(new Vector2(3.5f, 1), 1);
 		assertTrue(world.isUnoccupied(rect3));
 	
 	}

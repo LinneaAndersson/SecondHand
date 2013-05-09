@@ -57,6 +57,7 @@ class SceneController {
 			new GamePlaySceneController(this.sceneManager.getGamePlayScene(), this);
 		} 
 		 
+		
 				
 	}
 	

@@ -25,28 +25,28 @@ engine.graphics.synthesis.texture.FilterBlend
 Layer_Func. 0 Opacity 1.0 Inv._Alpha false transformation 1.0 0.0 0.0 0.0 1.0 0.0 0.0 0.0 1.0 endparameters
 241 188
 engine.graphics.synthesis.texture.FilterBlend
-Layer_Func. 0 Opacity 0.5 Inv._Alpha false transformation 1.0 0.0 0.0 0.0 1.0 0.0 0.0 0.0 1.0 endparameters
+Layer_Func. 0 Opacity 0.75 Inv._Alpha false transformation 1.0 0.0 0.0 0.0 1.0 0.0 0.0 0.0 1.0 endparameters
 190 284
 engine.graphics.synthesis.texture.FilterEmboss
 Strength 1.0 Angle 45.0 transformation 1.0 0.0 0.0 0.0 1.0 0.0 0.0 0.0 1.0 endparameters
-395 194
+394 194
 engine.graphics.synthesis.texture.FilterBlend
-Layer_Func. 0 Opacity 0.5 Inv._Alpha false transformation 1.0 0.0 0.0 0.0 1.0 0.0 0.0 0.0 1.0 endparameters
+Layer_Func. 0 Opacity 0.75 Inv._Alpha false transformation 1.0 0.0 0.0 0.0 1.0 0.0 0.0 0.0 1.0 endparameters
 488 44
 engine.graphics.synthesis.texture.PatternBitmap
 Image /Users/SecondHand/Twist/assets/gfx/2x_text.png Resolution Interpolation 1 transformation 1.0 0.0 0.0 0.0 1.0 0.0 0.0 0.0 1.0 endparameters
 613 204
 engine.graphics.synthesis.texture.FilterBlend
-Layer_Func. 0 Opacity 0.625 Inv._Alpha false transformation 1.0 0.0 0.0 0.0 1.0 0.0 0.0 0.0 1.0 endparameters
+Layer_Func. 0 Opacity 0.75 Inv._Alpha false transformation 1.0 0.0 0.0 0.0 1.0 0.0 0.0 0.0 1.0 endparameters
 676 69
 engine.graphics.synthesis.texture.PatternBitmap
 Image /Users/SecondHand/Twist/assets/gfx/key_hole.png Resolution Interpolation 1 transformation 1.0 0.0 0.0 0.0 1.0 0.0 0.0 0.0 1.0 endparameters
 773 80
 engine.graphics.synthesis.texture.PatternBitmap
 Image /Users/SecondHand/Twist/assets/gfx/arrows.png Resolution Interpolation 1 transformation 1.0 0.0 0.0 0.0 1.0 0.0 0.0 0.0 1.0 endparameters
-784 215
+783 215
 engine.graphics.synthesis.texture.FilterBlend
-Layer_Func. 0 Opacity 0.625 Inv._Alpha false transformation 1.0 0.0 0.0 0.0 1.0 0.0 0.0 0.0 1.0 endparameters
+Layer_Func. 0 Opacity 0.75 Inv._Alpha false transformation 1.0 0.0 0.0 0.0 1.0 0.0 0.0 0.0 1.0 endparameters
 17
 2 3 1
 1 4 0

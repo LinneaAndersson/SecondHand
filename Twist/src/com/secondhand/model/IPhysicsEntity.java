@@ -28,7 +28,5 @@ public interface IPhysicsEntity {
 	
 	void stopMovment();
 
-	void setRadius(float radius);
-
 }
 

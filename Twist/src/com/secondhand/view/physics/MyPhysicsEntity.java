@@ -64,15 +64,6 @@ public class MyPhysicsEntity implements IPhysicsEntity {
 
 		MyDebug.i(physicsConnector.getBody() + " destruction complete");
 	}
-	
-	 @Override
-	   public void setRadius(final float radius) {
-	     final CircleShape shape = (CircleShape) body.getFixtureList().get(0)
-	         .getShape();
-	     shape.setRadius(radius / PhysicsConstants.PIXEL_TO_METER_RATIO_DEFAULT);
-	     final Circle circle = (Circle) this.shape;
-	     circle.setRadius(radius);
-	   }
 	 
 
 	@Override

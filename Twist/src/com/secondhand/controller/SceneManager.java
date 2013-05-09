@@ -5,7 +5,6 @@ import org.anddev.andengine.engine.handler.IUpdateHandler;
 
 import android.content.Context;
 
-import com.secondhand.debug.MyDebug;
 import com.secondhand.view.scene.AllScenes;
 import com.secondhand.view.scene.GamePlayScene;
 import com.secondhand.view.scene.HighScoreScene;

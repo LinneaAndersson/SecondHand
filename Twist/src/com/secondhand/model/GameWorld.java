@@ -3,8 +3,6 @@ package com.secondhand.model;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 
-import com.secondhand.debug.MyDebug;
-
 public class GameWorld {
 
 	private final EntityManager entityManager;

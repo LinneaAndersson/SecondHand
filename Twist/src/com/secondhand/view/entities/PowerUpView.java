@@ -1,7 +1,5 @@
 package com.secondhand.view.entities;
 
-import java.beans.PropertyChangeEvent;
-
 import org.anddev.andengine.entity.sprite.Sprite;
 import org.anddev.andengine.extension.physics.box2d.PhysicsWorld;
 

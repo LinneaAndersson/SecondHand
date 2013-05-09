@@ -2,7 +2,6 @@ package com.secondhand.controller;
 
 import org.anddev.andengine.entity.Entity;
 
-import com.secondhand.debug.MyDebug;
 import com.secondhand.model.resource.HighScoreList;
 import com.secondhand.model.resource.LocalizationStrings;
 import com.secondhand.view.resource.Sounds;

@@ -27,7 +27,6 @@ import com.secondhand.view.entities.PlayerView;
 import com.secondhand.view.entities.PowerUpView;
 import com.secondhand.view.entity.FadingNotifierText;
 import com.secondhand.view.entity.ScoreLivesText;
-import com.secondhand.view.opengl.StarsBackground;
 import com.secondhand.view.physics.MyPhysicsWorld;
 import com.secondhand.view.resource.Sounds;
 import com.secondhand.view.resource.TextureRegions;

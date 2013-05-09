@@ -1,6 +1,5 @@
 package com.secondhand.model;
 
-import com.secondhand.debug.MyDebug;
 
 public final class CollisionResolver {
 

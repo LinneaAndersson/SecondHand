@@ -3,10 +3,10 @@ package com.secondhand.view.entities;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 
-import org.anddev.andengine.extension.physics.box2d.PhysicsWorld;
-import org.anddev.andengine.extension.physics.box2d.util.constants.PhysicsConstants;
 import org.anddev.andengine.entity.shape.RectangularShape;
 import org.anddev.andengine.entity.sprite.Sprite;
+import org.anddev.andengine.extension.physics.box2d.PhysicsWorld;
+import org.anddev.andengine.extension.physics.box2d.util.constants.PhysicsConstants;
 import org.anddev.andengine.opengl.texture.region.TextureRegion;
 
 import com.badlogic.gdx.physics.box2d.CircleShape;

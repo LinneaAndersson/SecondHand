@@ -13,6 +13,7 @@ import android.content.Context;
  */
 public abstract class GameScene extends Scene implements IGameScene {
 
+	
 	protected final SmoothCamera smoothCamera;
 	protected final Engine engine;
 	protected final Context context;

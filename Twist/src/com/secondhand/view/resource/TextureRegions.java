@@ -24,8 +24,8 @@ public class TextureRegions {
 	public Map<PlanetType, TextureRegion> planetTextures;
 	
 	public Map<PowerUpType, TextureRegion> powerUpTextures;
-	
-	public AssetBitmapTextureAtlasSource starsTexture;
+
+	public TextureRegion starsTexture;
 	
 	private static TextureRegions instance;
 	
@@ -67,7 +67,8 @@ public class TextureRegions {
 		this.obstacleTexture = TextureRegionLoader.getInstance().loadTextureRegion(TEXTURE_BASEPATH+"obstacle.png", 256, 256,
 				TextureOptions.REPEATING_BILINEAR);
 	
-		this.starsTexture = TextureRegionLoader.getInstance().loadAssetBitmapTextureAtlasSource(TEXTURE_BASEPATH+"stars.png");
+		this.starsTexture = TextureRegionLoader.getInstance().loadTextureRegion(TEXTURE_BASEPATH+"stars.png", 256, 256,
+				TextureOptions.BILINEAR_PREMULTIPLYALPHA);
 
 		this.playerSprite = TextureRegionLoader.getInstance().loadTextureRegion(TEXTURE_BASEPATH+"player.png", 256, 256,
 				TextureOptions.BILINEAR_PREMULTIPLYALPHA);

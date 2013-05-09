@@ -5,7 +5,6 @@ import java.beans.PropertyChangeListener;
 
 import org.anddev.andengine.engine.Engine;
 import org.anddev.andengine.engine.camera.hud.HUD;
-import org.anddev.andengine.entity.scene.background.RepeatingSpriteBackground;
 import org.anddev.andengine.extension.physics.box2d.PhysicsWorld;
 
 import android.content.Context;
@@ -27,9 +26,9 @@ import com.secondhand.view.entities.PlayerView;
 import com.secondhand.view.entities.PowerUpView;
 import com.secondhand.view.entity.FadingNotifierText;
 import com.secondhand.view.entity.ScoreLivesText;
+import com.secondhand.view.opengl.StarsBackground;
 import com.secondhand.view.physics.MyPhysicsWorld;
 import com.secondhand.view.resource.Sounds;
-import com.secondhand.view.resource.TextureRegions;
 
 public class GamePlayScene extends GameScene implements PropertyChangeListener {
 
@@ -42,6 +41,8 @@ public class GamePlayScene extends GameScene implements PropertyChangeListener {
 	private PhysicsWorld physicsWorld;
 
 	private Vector2 initialCameraPos;
+	
+	private StarsBackground[] starsBackgrounds = new StarsBackground[3];
 
 	public GamePlayScene(final Engine engine, final Context context) {
 		super(engine, context);
@@ -59,25 +60,21 @@ public class GamePlayScene extends GameScene implements PropertyChangeListener {
 		
 		final float width = gameWorld.getLevelWidth();
 		final float height = gameWorld.getLevelHeight();
+		
+		
+		// clear the old background.
+		if(starsBackgrounds[0] != null) {
+			this.detachChild(starsBackgrounds[0]);
+			this.detachChild(starsBackgrounds[1]);
+			this.detachChild(starsBackgrounds[2]);
 
-		// TODO: get this background to work.
-		/*
-		 * final List<TextureRegion> starsTextures = new
-		 * ArrayList<TextureRegion>();
-		 * starsTextures.add(TextureRegions.getInstance().starsTexture);
-		 * this.attachChild(new RandomRepeatingBackground(starsTextures, width,
-		 * height));
-		 */
-
-		this.setBackground(
-				new RepeatingSpriteBackground(this.smoothCamera.getWidth(), 
-						this.smoothCamera.getHeight(), this.engine.getTextureManager(),
-						TextureRegions.getInstance().starsTexture));
-
+		}
+		
 		// starry sky
-		/*attachChild(new StarsBackground(50, 5.0f, width, height));
-		attachChild(new StarsBackground(100, 3.0f, width, height));
-		this.attachChild(new StarsBackground(130, 1.0f, width, height));*/
+
+		attachChild(starsBackgrounds[0] =new StarsBackground(50 * this.gameWorld.getLevelNumber(), 1.5f, width, height));
+		attachChild(starsBackgrounds[1] =new StarsBackground(100 * this.gameWorld.getLevelNumber(), 1.3f, width, height));
+		attachChild(starsBackgrounds[2] =new StarsBackground(130 * this.gameWorld.getLevelNumber(), 1.0f, width, height));
 
 		this.smoothCamera.setBounds(0, width, 0, height);
 

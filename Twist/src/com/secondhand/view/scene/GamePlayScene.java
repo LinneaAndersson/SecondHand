@@ -5,6 +5,7 @@ import java.beans.PropertyChangeListener;
 
 import org.anddev.andengine.engine.Engine;
 import org.anddev.andengine.engine.camera.hud.HUD;
+import org.anddev.andengine.entity.scene.background.RepeatingSpriteBackground;
 import org.anddev.andengine.extension.physics.box2d.PhysicsWorld;
 
 import android.content.Context;
@@ -29,6 +30,7 @@ import com.secondhand.view.entity.ScoreLivesText;
 import com.secondhand.view.opengl.StarsBackground;
 import com.secondhand.view.physics.MyPhysicsWorld;
 import com.secondhand.view.resource.Sounds;
+import com.secondhand.view.resource.TextureRegions;
 
 public class GamePlayScene extends GameScene implements PropertyChangeListener {
 
@@ -68,10 +70,15 @@ public class GamePlayScene extends GameScene implements PropertyChangeListener {
 		 * height));
 		 */
 
+		this.setBackground(
+				new RepeatingSpriteBackground(this.smoothCamera.getWidth(), 
+						this.smoothCamera.getHeight(), this.engine.getTextureManager(),
+						TextureRegions.getInstance().starsTexture));
+
 		// starry sky
-		attachChild(new StarsBackground(50, 5.0f, width, height));
+		/*attachChild(new StarsBackground(50, 5.0f, width, height));
 		attachChild(new StarsBackground(100, 3.0f, width, height));
-		this.attachChild(new StarsBackground(130, 1.0f, width, height));
+		this.attachChild(new StarsBackground(130, 1.0f, width, height));*/
 
 		this.smoothCamera.setBounds(0, width, 0, height);
 

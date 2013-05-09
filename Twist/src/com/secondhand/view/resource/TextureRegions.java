@@ -4,6 +4,7 @@ import java.util.EnumMap;
 import java.util.Map;
 
 import org.anddev.andengine.opengl.texture.TextureOptions;
+import org.anddev.andengine.opengl.texture.atlas.bitmap.source.AssetBitmapTextureAtlasSource;
 import org.anddev.andengine.opengl.texture.region.TextureRegion;
 
 import com.secondhand.model.resource.PlanetType;
@@ -22,7 +23,7 @@ public class TextureRegions {
 	
 	public Map<PowerUpType, TextureRegion> powerUpTextures;
 	
-	//public TextureRegion starsTexture;
+	public AssetBitmapTextureAtlasSource starsTexture;
 	
 	private static TextureRegions instance;
 	
@@ -64,8 +65,7 @@ public class TextureRegions {
 		this.obstacleTexture = TextureRegionLoader.getInstance().loadTextureRegion(TEXTURE_BASEPATH+"obstacle.png", 256, 256,
 				TextureOptions.REPEATING_BILINEAR);
 	
+		this.starsTexture = TextureRegionLoader.getInstance().loadAssetBitmapTextureAtlasSource(TEXTURE_BASEPATH+"stars.png");
 
-	/*	this.starsTexture = TextureRegionLoader.getInstance().loadTextureRegion(TEXTURE_BASEPATH+"stars.png", 256, 256,
-				TextureOptions.REPEATING_BILINEAR);*/
 	}	
 }

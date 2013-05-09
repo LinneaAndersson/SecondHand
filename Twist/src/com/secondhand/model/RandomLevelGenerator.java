@@ -219,7 +219,7 @@ public class RandomLevelGenerator {
 		MyDebug.d("done placing out planets");
 		placeOutPowerUps();
 		MyDebug.d("done placing out power ups");
-		//placeOutEnemies();
+		placeOutEnemies();
 		MyDebug.d("done placing out enemies");
 
 	}

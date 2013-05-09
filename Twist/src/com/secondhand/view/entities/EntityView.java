@@ -7,6 +7,7 @@ import org.anddev.andengine.entity.shape.IShape;
 import org.anddev.andengine.extension.physics.box2d.PhysicsWorld;
 
 import com.badlogic.gdx.physics.box2d.Body;
+import com.secondhand.debug.MyDebug;
 import com.secondhand.model.Entity;
 import com.secondhand.view.opengl.Polygon;
 import com.secondhand.view.physics.MyPhysicsEntity;
@@ -21,6 +22,13 @@ public abstract class EntityView implements PropertyChangeListener {
 		this.shape=shape;
 		entity.addPropertyChangeListener(this);
 		this.body = body;
+		
+		// we always want to cull shapes.
+		if(!shape.isCullingEnabled()) {
+			shape.setCullingEnabled(true);
+		}
+		
+		MyDebug.d(shape.toString() + " is culled: " + shape.isCullingEnabled());
 		
 		// TODO: figure out some better way to do this.
 		if(shape instanceof Polygon) {

@@ -33,3 +33,5 @@ class LoadingTextController extends Entity {
 		super.onManagedUpdate(pSecondsElapsed);
 	}
 }
+
+

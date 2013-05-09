@@ -3,6 +3,7 @@ package com.secondhand.view.loader;
 import org.anddev.andengine.opengl.texture.TextureOptions;
 import org.anddev.andengine.opengl.texture.atlas.bitmap.BitmapTextureAtlas;
 import org.anddev.andengine.opengl.texture.atlas.bitmap.BitmapTextureAtlasTextureRegionFactory;
+import org.anddev.andengine.opengl.texture.atlas.bitmap.source.AssetBitmapTextureAtlasSource;
 import org.anddev.andengine.opengl.texture.region.TextureRegion;
 
 import com.secondhand.debug.MyDebug;
@@ -41,5 +42,9 @@ public class TextureRegionLoader extends Loader {
 
 	public TextureRegion loadTextureRegion(final String fileName, final int width, final int height) {
 		return loadTextureRegion(fileName, width, height, TextureOptions.BILINEAR_PREMULTIPLYALPHA);
+	}
+	
+	public AssetBitmapTextureAtlasSource loadAssetBitmapTextureAtlasSource(final String fileName) {
+		return new AssetBitmapTextureAtlasSource(this.context, fileName);
 	}
 }

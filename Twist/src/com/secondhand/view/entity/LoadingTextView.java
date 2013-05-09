@@ -71,3 +71,4 @@ public class LoadingTextView extends ChangeableText {
 	
 	}
 }
+

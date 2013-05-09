@@ -5,6 +5,7 @@ import java.util.Arrays;
 import org.anddev.andengine.entity.text.ChangeableText;
 
 import com.badlogic.gdx.math.Vector2;
+import com.secondhand.model.resource.LocalizationStrings;
 import com.secondhand.view.resource.Fonts;
 
 // used to show the score and lives in the HUD.
@@ -20,8 +21,20 @@ public final class ScoreLivesText extends ChangeableText {
 		return new String(exmarks);
 	}
 	
+	private static String scoreString;
+	private static String livesString;
+	
+	
 	public static String constructString(final String score, final String lives) {
-		return "Score: " + score + "  Lives: " + lives;
+		
+		// cache them
+		if(scoreString == null || livesString == null) {
+			scoreString = LocalizationStrings.getInstance().getLocalizedString("score_string");
+			livesString = LocalizationStrings.getInstance().getLocalizedString("lives_string");
+			
+		}
+		
+		return scoreString + score + " " +  livesString + lives;
 	}
 	
 	public static String constructString(final int score, final int lives) {

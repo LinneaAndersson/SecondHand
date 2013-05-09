@@ -15,4 +15,7 @@
     <string name="high_score_dialog_title">Du kom in på poänglistan!</string>
     <string name="high_score_dialog_message">Namn:</string>
     	
+    <string name="score_string">Poäng: </string>
+    <string name="lives_string">Liv: </string>
+    
 </resources>

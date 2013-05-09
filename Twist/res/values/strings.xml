@@ -12,4 +12,8 @@
     <string name="high_score_dialog_title">Made it to high score!</string>
     <string name="high_score_dialog_message">Name:</string>
     	
+    <string name="score_string">Score: </string>
+    <string name="lives_string">Lives: </string>
+    
+    
 </resources>

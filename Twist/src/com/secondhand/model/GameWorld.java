@@ -91,6 +91,7 @@ public class GameWorld {
 		support.firePropertyChange("NextLevel", false, true);
 	}
 
+	
 	// update game world for this frame.
 	public void updateGameWorld() {
 		if (checkPlayerBigEnough()) {

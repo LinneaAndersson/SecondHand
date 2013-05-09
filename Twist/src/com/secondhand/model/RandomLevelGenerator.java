@@ -58,6 +58,12 @@ public class RandomLevelGenerator {
 
 	private void placeOutEnemies() {
 		Enemy enemy;
+		
+		enemy = new Enemy(new Vector2(200, 200), 60, level);
+		enemy.setMaxSpeed(8+(this.levelNumber-1)*2);
+		entityList.add(enemy);
+		enemyList.add(enemy);
+		
 
 		final int ENEMIES;
 		if (levelNumber < 4) {

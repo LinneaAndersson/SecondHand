@@ -81,8 +81,8 @@ public class MainActivity extends BaseGameActivity {
             if (pID == TEXT_INPUT_DIALOG) {
             	final AlertDialog.Builder alert = new AlertDialog.Builder(this);
 
-            	alert.setTitle("Made it to high score!");
-            	alert.setMessage("Your Name");
+            	alert.setTitle(LocalizationStrings.getInstance().getLocalizedString("high_score_dialog_title"));
+            	alert.setMessage(LocalizationStrings.getInstance().getLocalizedString("high_score_dialog_message"));
 
             	// Set an EditText view to get user input 
             	final EditText input = new EditText(this);

@@ -3,18 +3,16 @@
 
     <string name="app_name">Twirl</string>
     
-    
     <string name="loading">Laddar Resurser</string>
     <string name="loading_level">Laddar Nivå</string>
     
-    
-       <string name="menu_new_game">Nytt Spel</string>
-    
-    <string name="menu_settings">Inställningar</string>
+    <string name="menu_new_game">Nytt Spel</string>
     
     <!-- TODO: come up with a better translation for "high score" -->
     <string name="menu_high_score">Poänglista</string>
     
-    <string name="menu_volume">Volym</string>
     
+    <string name="high_score_dialog_title">Du kom in på poänglistan!</string>
+    <string name="high_score_dialog_message">Namn:</string>
+    	
 </resources>

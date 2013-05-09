@@ -22,6 +22,7 @@ public abstract class EntityView implements PropertyChangeListener {
 			final Body body){
 		this.shape=shape;
 		entity.addPropertyChangeListener(this);
+		MyDebug.d("this is a : " + this);
 		this.body = body;
 		this.entity=entity;
 		
@@ -50,5 +51,6 @@ public abstract class EntityView implements PropertyChangeListener {
 
 	@Override
 	public void propertyChange(final PropertyChangeEvent event) {
+		MyDebug.d("in propertychange in entityView");
 	}
 }

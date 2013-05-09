@@ -133,13 +133,14 @@ public class MyPhysicsEntity implements IPhysicsEntity {
 
 		final Vector2 velocity = body.getLinearVelocity();
 
-		final Vector2 impulse = new Vector2(force.x, force.y);
-		if (velocity.add(impulse).len() > maxSpeed) {
+		final Vector2 impulse = new Vector2(force.x
+				/ PhysicsConstants.PIXEL_TO_METER_RATIO_DEFAULT, force.y
+				/ PhysicsConstants.PIXEL_TO_METER_RATIO_DEFAULT);
+		final float speed = velocity.add(impulse).len();
+		if (speed > maxSpeed) {
 			// Check if new velocity doesn't exceed maxSpeed!
-			MyDebug.d("Enemy: return");
 			return;
 		}
-		MyDebug.d("Enemy: Impulse");
 		body.applyLinearImpulse(impulse, body.getWorldCenter());
 
 	}

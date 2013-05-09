@@ -5,7 +5,7 @@ Color_Mapping 2 0.0 0.0 0.0 1.0 0.0 1.0 1.0 1.0 1.0 1.0 Cell_Type 4 Distance_ 0 
 232 155
 engine.graphics.synthesis.texture.PatternCellular
 Color_Mapping 2 1.0 1.0 0.0 1.0 0.096618354 0.0 0.0 0.0 1.0 0.28502417 Cell_Type 0 Distance_ 0 PointGen 1 Seed 0 Intensity 1.0 Jitter 0.625 NumPoints 64 RandColor false Periodic true transformation 1.0 0.0 0.0 0.0 1.0 0.0 0.0 0.0 1.0 endparameters
-454 217
+424 208
 engine.graphics.synthesis.texture.PatternCellular
 Color_Mapping 2 0.6 0.6 0.6 1.0 0.0 0.0 0.0 0.0 1.0 0.04347826 Cell_Type 0 Distance_ 0 PointGen 0 Seed 0 Intensity 0.75 Jitter 0.625 NumPoints 64 RandColor false Periodic true transformation 1.0 0.0 0.0 0.0 1.0 0.0 0.0 0.0 1.0 endparameters
 111 276

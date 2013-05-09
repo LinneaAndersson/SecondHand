@@ -2,6 +2,8 @@ package com.secondhand.view.scene;
 
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.anddev.andengine.engine.Engine;
 import org.anddev.andengine.engine.camera.hud.HUD;
@@ -42,6 +44,7 @@ public class GamePlayScene extends GameScene implements PropertyChangeListener {
 
 	private Vector2 initialCameraPos;
 	
+	
 	private StarsBackground[] starsBackgrounds = new StarsBackground[3];
 
 	public GamePlayScene(final Engine engine, final Context context) {
@@ -57,6 +60,7 @@ public class GamePlayScene extends GameScene implements PropertyChangeListener {
 	}
 
 	public void registerNewLevel() {
+		
 		
 		final float width = gameWorld.getLevelWidth();
 		final float height = gameWorld.getLevelHeight();
@@ -94,7 +98,7 @@ public class GamePlayScene extends GameScene implements PropertyChangeListener {
 			} else {
 				MyDebug.e("invalid entity found in entityList");
 				System.exit(1);
-			}
+			}	
 
 			this.attachChild(entityView.getShape());
 		}

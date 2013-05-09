@@ -75,6 +75,7 @@ public class EntityManager {
 			if(entity instanceof Player) 
 				MyDebug.d("LOOKS LIKE WE DELETED PLAYER");
 			entity.deleteBody();
+			entity.getPhysics().detachSelf();
 		}
 		
 		this.scheduledForDeletionEntities.clear();

@@ -51,8 +51,10 @@ public class GameWorld {
 		this.entityManager.getPlayer().setMaxSize(randomLevelGenerator.playerMaxSize);
 		this.levelWidth = randomLevelGenerator.levelWidth;
 		this.levelHeight = randomLevelGenerator.levelHeight;
+		
+		
 		this.entityManager.setEntityList(randomLevelGenerator.entityList);
-		this.entityManager.setEnemyList(randomLevelGenerator.enemyList);
+		this.entityManager.setEnemyList(randomLevelGenerator.enemyList);	
 	}
 
 

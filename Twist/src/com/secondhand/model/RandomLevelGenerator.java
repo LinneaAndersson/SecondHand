@@ -45,7 +45,8 @@ public class RandomLevelGenerator {
 		// make sure entities are not placed on top of player
 
 		final Circle circle = new Circle(new Vector2(
-				player.getInitialPosition().x, player.getInitialPosition().y), 40);
+				player.getInitialPosition().x, player.getInitialPosition().y),
+				40);
 		world.addToWorld(circle);
 
 		this.playerMaxSize = 30 * this.levelNumber;
@@ -58,14 +59,8 @@ public class RandomLevelGenerator {
 
 	private void placeOutEnemies() {
 		Enemy enemy;
-		
-		enemy = new Enemy(new Vector2(200, 200), 60, level);
-		enemy.setMaxSpeed(8+(this.levelNumber-1)*2);
-		entityList.add(enemy);
-		enemyList.add(enemy);
-		
 
-		/*final int ENEMIES;
+		final int ENEMIES;
 		if (levelNumber < 4) {
 			ENEMIES = 2 * (this.levelNumber);
 		} else {
@@ -81,7 +76,8 @@ public class RandomLevelGenerator {
 			while (true) {
 				xAxis = rng.nextInt(this.levelWidth);
 				yAxis = rng.nextInt(this.levelHeight);
-				final Circle circle = new Circle(new Vector2(xAxis, yAxis), radius);
+				final Circle circle = new Circle(new Vector2(xAxis, yAxis),
+						radius);
 
 				// addToWorld add the polygon if it is unoccupied otherwise it
 				// returns false
@@ -91,11 +87,11 @@ public class RandomLevelGenerator {
 
 			}
 			enemy = new Enemy(new Vector2(xAxis, yAxis), radius, level);
-			enemy.setMaxSpeed(8+(this.levelNumber-1)*2);
+			enemy.setMaxSpeed(8 + (this.levelNumber - 1) * 2);
 			entityList.add(enemy);
 			enemyList.add(enemy);
 
-		}*/
+		}
 
 	}
 
@@ -111,12 +107,11 @@ public class RandomLevelGenerator {
 
 			while (true) {
 
-
 				xAxis = rng.nextInt(this.levelWidth);
 				yAxis = rng.nextInt(this.levelHeight);
 
-				final Polygon poly = new Polygon(new Vector2(xAxis,
-						yAxis), edges);
+				final Polygon poly = new Polygon(new Vector2(xAxis, yAxis),
+						edges);
 
 				if (world.addToWorld(poly)) {
 					break;
@@ -124,7 +119,7 @@ public class RandomLevelGenerator {
 			}
 
 			entityList
-			.add(new Obstacle(new Vector2(xAxis, yAxis), edges, level));
+					.add(new Obstacle(new Vector2(xAxis, yAxis), edges, level));
 		}
 	}
 
@@ -152,59 +147,59 @@ public class RandomLevelGenerator {
 		}
 	}
 
-
 	private void placeOutPlanets() {
 		final float K = 1.2f;
 		int MINIMUM_PLAYER_EATABLE;
 		if (this.levelNumber < 10) {
-			MINIMUM_PLAYER_EATABLE = 20; //50 - (this.levelNumber) * 3;
+			MINIMUM_PLAYER_EATABLE = 20; // 50 - (this.levelNumber) * 3;
 		} else {
 			MINIMUM_PLAYER_EATABLE = 10;
 		}
 
-		final float MAX_SIZE = player.getRadius()*8f;
+		final float MAX_SIZE = player.getRadius() * 8f;
 
 		final float MIN_SIZE = player.getRadius() - 20;
 
-		final int PLANETS = (int)( 25 * this.levelNumber * K);
+		final int PLANETS = (int) (25 * this.levelNumber * K);
 		float radius;
 
 		int planetCounter = 0;
 
-		//Start with the smaller planets.
+		// Start with the smaller planets.
 		for (int i = 0; i < MINIMUM_PLAYER_EATABLE; ++i, planetCounter++) {
 
 			MyDebug.d("planet" + planetCounter);
 
 			while (true) {
-				radius = RandomUtil.nextFloat(rng, MIN_SIZE,
-						player.getRadius());
+				radius = RandomUtil
+						.nextFloat(rng, MIN_SIZE, player.getRadius());
 
 				xAxis = rng.nextInt(this.levelWidth);
 				yAxis = rng.nextInt(this.levelHeight);
 
-				final Circle circle = new Circle(
-						new Vector2(xAxis, yAxis), radius);
+				final Circle circle = new Circle(new Vector2(xAxis, yAxis),
+						radius);
 
-				if (world.addToWorld(circle)&& radius< 40 * player.getRadius()) {
+				if (world.addToWorld(circle)
+						&& radius < 40 * player.getRadius()) {
 					break;
 				}
 			}
 			entityList.add(new Planet(new Vector2(xAxis, yAxis), radius,
 					RandomUtil.randomEnum(rng, PlanetType.class), level));
 		}
-		for (int i = MINIMUM_PLAYER_EATABLE ; i<PLANETS ; i++, planetCounter++) {
+		for (int i = MINIMUM_PLAYER_EATABLE; i < PLANETS; i++, planetCounter++) {
 
 			MyDebug.d("planet" + planetCounter);
 
 			while (true) {
-				radius = RandomUtil.nextFloat(rng, MIN_SIZE,
-						MAX_SIZE);
+				radius = RandomUtil.nextFloat(rng, MIN_SIZE, MAX_SIZE);
 
 				xAxis = rng.nextInt(this.levelWidth);
 				yAxis = rng.nextInt(this.levelHeight);
 
-				final Circle circle = new Circle(new Vector2(xAxis, yAxis), radius);
+				final Circle circle = new Circle(new Vector2(xAxis, yAxis),
+						radius);
 
 				if (world.addToWorld(circle)) {
 					break;

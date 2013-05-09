@@ -91,11 +91,10 @@ public class Enemy extends BlackHole {
 		if (entity != null) {
 
 			if (this.gameWorld.getPhysics().isStraightLine(entity, this)) {
-				MyDebug.d("Enemy: applyMovement towards " + entity.getClass());
 				// closeToDanger();
 				physics.applyImpulse(
 						new Vector2(entity.getCenterX() - getCenterX(),
-								entity.getCenterY() - getCenterY()),
+								entity.getCenterY() - getCenterY()).mul(0.002f),
 						getMaxSpeed());
 			}
 			if (huntingArea != getHuntingArea()) {

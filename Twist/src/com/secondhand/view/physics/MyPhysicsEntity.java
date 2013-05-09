@@ -130,12 +130,9 @@ public class MyPhysicsEntity implements IPhysicsEntity {
 	@Override
 	public void applyImpulse(final com.secondhand.model.Vector2 force,
 			final float maxSpeed) {
-
 		final Vector2 velocity = body.getLinearVelocity();
 
-		final Vector2 impulse = new Vector2(force.x
-				/ PhysicsConstants.PIXEL_TO_METER_RATIO_DEFAULT, force.y
-				/ PhysicsConstants.PIXEL_TO_METER_RATIO_DEFAULT);
+		final Vector2 impulse = new Vector2(force.x, force.y);
 		final float speed = velocity.add(impulse).len();
 		if (speed > maxSpeed) {
 			// Check if new velocity doesn't exceed maxSpeed!

@@ -12,6 +12,7 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.CircleShape;
 import com.secondhand.debug.MyDebug;
+import com.secondhand.model.BlackHole;
 import com.secondhand.model.Entity;
 import com.secondhand.model.IPhysicsEntity;
 import com.secondhand.view.opengl.Circle;
@@ -27,8 +28,16 @@ public class MyPhysicsEntity implements IPhysicsEntity {
 		this.physicsWorld = physicsWorld;
 
 		body.setUserData(entity);
-		physicsConnector = new CustomPhysicsConnector(shape, entity.isCircle(),
-				body, true, entity.isRotating());
+		
+		
+		// will have to do for now.
+		if(!(entity instanceof BlackHole)) 
+			physicsConnector = new CustomPhysicsConnector(shape, entity.isCircle(),
+					body, true, entity.isRotating());
+		else 
+			physicsConnector = new PhysicsConnector(shape,
+					body, true, entity.isRotating());
+			
 		physicsWorld.registerPhysicsConnector(physicsConnector);
 
 		this.body = body;
@@ -45,7 +54,7 @@ public class MyPhysicsEntity implements IPhysicsEntity {
 	public float getCenterY() {
 		return body.getWorldCenter().y
 				* PhysicsConstants.PIXEL_TO_METER_RATIO_DEFAULT;
-	}
+	}	
 
 	public void setRadius(final float radius) {
 		final CircleShape shape = (CircleShape) body.getFixtureList().get(0)

@@ -25,8 +25,7 @@ public class CircleView extends EntityView {
 	
 		super(physicsWorld, circleEntity, rectangle,
 				PhysicsFactory.createCircleBody(physicsWorld,
-						circleEntity.getInitialPosition().x, circleEntity.getInitialPosition().y, circleEntity.getRadius(), 
-						rectangle.getRotation(), 
+						rectangle,
 						BodyType.DynamicBody, fixtureDef));
 	}
 

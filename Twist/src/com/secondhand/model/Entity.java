@@ -3,6 +3,7 @@ package com.secondhand.model;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 
+
 public abstract class Entity {
 
 	private boolean isEdible;

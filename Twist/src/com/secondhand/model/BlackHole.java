@@ -1,7 +1,6 @@
 
 package com.secondhand.model;
 
-
 import com.secondhand.model.powerup.PowerUp;
 
 public abstract class BlackHole extends CircleEntity {
@@ -138,7 +137,9 @@ public abstract class BlackHole extends CircleEntity {
 	}	
 
 	public void setRadius(final float radius) {
+		
 		this.pcs.firePropertyChange("radius", 0, radius);
+		
 
 	}	
 }

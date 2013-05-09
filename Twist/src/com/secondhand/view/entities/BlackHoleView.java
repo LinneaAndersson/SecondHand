@@ -5,6 +5,7 @@ import java.beans.PropertyChangeListener;
 
 import org.anddev.andengine.extension.physics.box2d.PhysicsWorld;
 import org.anddev.andengine.extension.physics.box2d.util.constants.PhysicsConstants;
+import org.anddev.andengine.entity.shape.RectangularShape;
 import org.anddev.andengine.entity.sprite.Sprite;
 import org.anddev.andengine.opengl.texture.region.TextureRegion;
 
@@ -28,23 +29,25 @@ public class BlackHoleView extends CircleView implements PropertyChangeListener{
 				FixtureDefs.BLACK_HOLE_FIXTURE_DEF);
 		
 	}
-	protected void changeSize(int size) {
-		/*final CircleShape shape = (CircleShape) getShape();
-		shape.setRadius(size
-				/ PhysicsConstants.PIXEL_TO_METER_RATIO_DEFAULT);*/
-		MyDebug.d("in changeSize");
-
-		final CircleShape shape = (CircleShape) body.getFixtureList().get(0)
+	protected void changeSize(float size) {
+		final CircleShape shape = (CircleShape) this.body.getFixtureList().get(0)
 				.getShape();
-		shape.setRadius(entity.getRadius() / PhysicsConstants.PIXEL_TO_METER_RATIO_DEFAULT);
-		final Circle circle = (Circle) this.shape;
-		circle.setRadius(entity.getRadius());
+		shape.setRadius(size / PhysicsConstants.PIXEL_TO_METER_RATIO_DEFAULT);
+		MyDebug.d("what the duck!  !   " + this.shape);
+		
+		final RectangularShape circle = (RectangularShape) this.shape;
+		MyDebug.d("what the duck!!");
+		circle.setSize(size*2, size*2);
+		MyDebug.d("what the duck!!");
 	}
 
 	@Override
 	public void propertyChange(PropertyChangeEvent event) {
+		
 		if (event.getPropertyName().equalsIgnoreCase("radius")) {
-			this.changeSize((Integer) event.getNewValue());
+			float newValue = (Float) event.getNewValue();
+			this.changeSize(newValue);
+			MyDebug.d("what the duck!!");
 		}
 	}
 

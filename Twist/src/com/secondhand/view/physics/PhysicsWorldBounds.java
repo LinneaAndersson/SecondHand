@@ -49,5 +49,6 @@ public class PhysicsWorldBounds {
 			this.physicsWorld.destroyBody(bodies[i]);
 			this.worldBounds[i].detachSelf();
 		}
+		
 	}
 }

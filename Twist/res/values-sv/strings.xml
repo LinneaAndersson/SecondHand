@@ -17,5 +17,7 @@
     	
     <string name="score_string">Poäng: </string>
     <string name="lives_string">Liv: </string>
+    <string name="completion_string">Färdig: </string>
+    
     
 </resources>

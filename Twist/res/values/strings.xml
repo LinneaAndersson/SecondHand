@@ -14,6 +14,7 @@
     	
     <string name="score_string">Score: </string>
     <string name="lives_string">Lives: </string>
+    <string name="completion_string">Completion: </string>
     
     
 </resources>

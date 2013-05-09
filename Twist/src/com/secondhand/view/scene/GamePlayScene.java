@@ -123,7 +123,7 @@ public class GamePlayScene extends GameScene implements PropertyChangeListener {
 		final Player player = gameWorld.getPlayer();
 		hud = new HUD();
 		this.scoreLivesText = new ScoreLivesText(new Vector2(10, 10),
-				player.getScore(), player.getLives());
+				player.getScore(), player.getLives(), 0f );
 		hud.attachChild(scoreLivesText);
 	}
 
@@ -234,6 +234,16 @@ public class GamePlayScene extends GameScene implements PropertyChangeListener {
 			apaptCameraToGrowingPlayer(
 					(Float) event.getNewValue(),
 					(Float) event.getOldValue());
+			
+			
+			final float newRadius = (Float) event.getNewValue();
+			
+			float completion = (
+					newRadius -GameWorld.PLAYER_STARTING_SIZE) / 
+					(float)gameWorld.getPlayer().getMaxSize();
+			
+			this.scoreLivesText.setCompletionRatio(completion);
+			
 		} else if (eventName.equals("NextLevel")) {
 			newLevelStarted();
 		} else if (eventName.equals("NextLevel")) {

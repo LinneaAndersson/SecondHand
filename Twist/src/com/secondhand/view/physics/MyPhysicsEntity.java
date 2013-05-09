@@ -38,7 +38,6 @@ public class MyPhysicsEntity implements IPhysicsEntity {
 					body, true, entity.isRotating());
 			
 		physicsWorld.registerPhysicsConnector(physicsConnector);
-
 		this.body = body;
 		this.shape = shape;
 	}
@@ -70,6 +69,7 @@ public class MyPhysicsEntity implements IPhysicsEntity {
 		body.setLinearDamping(linearDamping);
 
 	}
+	
 
 	@Override
 	public float getRadius() {

@@ -15,3 +15,4 @@ public class Obstacle extends PolygonEntity {
 		return 2;
 	}
 }
+

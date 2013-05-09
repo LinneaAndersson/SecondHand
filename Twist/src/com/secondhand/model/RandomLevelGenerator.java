@@ -129,7 +129,7 @@ public class RandomLevelGenerator {
 	}
 
 	private void placeOutPowerUps() {
-		final int POWER_UPS = 5 * this.levelNumber;
+		final int POWER_UPS = 20 * this.levelNumber;
 
 		for (int i = 0; i < POWER_UPS; ++i) {
 

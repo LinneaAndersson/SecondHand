@@ -65,7 +65,7 @@ public class RandomLevelGenerator {
 		enemyList.add(enemy);
 		
 
-		final int ENEMIES;
+		/*final int ENEMIES;
 		if (levelNumber < 4) {
 			ENEMIES = 2 * (this.levelNumber);
 		} else {
@@ -95,7 +95,7 @@ public class RandomLevelGenerator {
 			entityList.add(enemy);
 			enemyList.add(enemy);
 
-		}
+		}*/
 
 	}
 

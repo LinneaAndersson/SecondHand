@@ -27,7 +27,6 @@ public class BlackHoleView extends CircleView implements PropertyChangeListener{
 		final CircleShape shape = (CircleShape) this.body.getFixtureList().get(0)
 				.getShape();
 		shape.setRadius(size / PhysicsConstants.PIXEL_TO_METER_RATIO_DEFAULT);
-
 		final Circle circle = (Circle) this.shape;
 		circle.setRadius(size);
 	}

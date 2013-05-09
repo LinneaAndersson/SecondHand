@@ -1,6 +1,5 @@
 package com.secondhand.view.entities;
 
-import org.anddev.andengine.entity.shape.RectangularShape;
 import org.anddev.andengine.extension.physics.box2d.PhysicsFactory;
 import org.anddev.andengine.extension.physics.box2d.PhysicsWorld;
 
@@ -19,14 +18,4 @@ public class CircleView extends EntityView {
 				PhysicsFactory.createCircleBody(physicsWorld,
 						circle.getX(), circle.getY(), circle.getRadius(),circle.getRotation(), BodyType.DynamicBody, fixtureDef));
 	}
-	
-	public CircleView(final PhysicsWorld physicsWorld, final CircleEntity circleEntity , final RectangularShape rectangle,
-			final FixtureDef fixtureDef) {
-	
-		super(physicsWorld, circleEntity, rectangle,
-				PhysicsFactory.createCircleBody(physicsWorld,
-						rectangle,
-						BodyType.DynamicBody, fixtureDef));
-	}
-
 }

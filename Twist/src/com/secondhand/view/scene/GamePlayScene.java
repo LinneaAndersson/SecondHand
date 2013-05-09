@@ -2,8 +2,6 @@ package com.secondhand.view.scene;
 
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
-import java.util.ArrayList;
-import java.util.List;
 
 import org.anddev.andengine.engine.Engine;
 import org.anddev.andengine.engine.camera.hud.HUD;
@@ -12,7 +10,6 @@ import org.anddev.andengine.extension.physics.box2d.PhysicsWorld;
 import android.content.Context;
 
 import com.badlogic.gdx.math.Vector2;
-import com.secondhand.debug.MyDebug;
 import com.secondhand.model.Enemy;
 import com.secondhand.model.Entity;
 import com.secondhand.model.GameWorld;
@@ -230,12 +227,10 @@ public class GamePlayScene extends GameScene implements PropertyChangeListener {
 		final String eventName = event.getPropertyName();
 
 		if (eventName.equals(Player.INCREASE_SCORE)) {
-			MyDebug.d("update score");
 			updateScore((Integer) event.getNewValue());
 		} else if (eventName.equals(Player.INCREASE_LIFE)) {
 			updateLives((Integer) event.getNewValue());
 		} else if (eventName.equals("radius")) {
-			MyDebug.d("radius event");
 			apaptCameraToGrowingPlayer(
 					(Float) event.getNewValue(),
 					(Float) event.getOldValue());

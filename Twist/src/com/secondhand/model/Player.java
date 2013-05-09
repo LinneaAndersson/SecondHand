@@ -3,7 +3,6 @@ package com.secondhand.model;
 import java.beans.PropertyChangeListener;
 import java.util.List;
 
-import com.secondhand.debug.MyDebug;
 import com.secondhand.model.powerup.PowerUp;
 
 public class Player extends BlackHole {
@@ -79,7 +78,6 @@ public class Player extends BlackHole {
 	@Override
 	public void increaseScore(final int increase) {
 		super.increaseScore((int) this.getScoreMultiplier() * increase);
-		MyDebug.d("changing score");
 		util.fireInt(INCREASE_SCORE, 0, getScore());
 	}
 
@@ -138,13 +136,11 @@ public class Player extends BlackHole {
 	}
 
 	public void addListener(final PropertyChangeListener observer) {
-		MyDebug.d("adding listener: " + observer.toString());
 		util.addListener(observer);
 		this.pcs.addPropertyChangeListener(observer);
 	}
 	
 	public void reachToTouch(final Vector2 touch) {
-		MyDebug.d("player should now handle touch even");
 		util.reachToTouch(touch);
 	}
 

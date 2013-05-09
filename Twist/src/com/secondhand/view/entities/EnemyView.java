@@ -17,9 +17,5 @@ public class EnemyView extends BlackHoleView{
 		getBody().setLinearDamping(1.2f);
 	}
 
-	public void stopMovement(){
-		//this.getBody().setLinearVelocity(new Vector2());
-		this.getBody().setAngularVelocity(0);
-	}
 
 }

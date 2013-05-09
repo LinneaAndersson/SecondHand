@@ -10,7 +10,6 @@ import org.anddev.andengine.extension.physics.box2d.util.constants.PhysicsConsta
 
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
-import com.badlogic.gdx.physics.box2d.CircleShape;
 import com.secondhand.debug.MyDebug;
 import com.secondhand.model.Entity;
 import com.secondhand.model.IPhysicsEntity;
@@ -45,15 +44,6 @@ public class MyPhysicsEntity implements IPhysicsEntity {
 	public float getCenterY() {
 		return body.getWorldCenter().y
 				* PhysicsConstants.PIXEL_TO_METER_RATIO_DEFAULT;
-	}
-
-	@Override
-	public void setRadius(final float radius) {
-		final CircleShape shape = (CircleShape) body.getFixtureList().get(0)
-				.getShape();
-		shape.setRadius(radius / PhysicsConstants.PIXEL_TO_METER_RATIO_DEFAULT);
-		final Circle circle = (Circle) this.shape;
-		circle.setRadius(radius);
 	}
 
 	@Override

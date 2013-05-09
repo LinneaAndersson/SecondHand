@@ -15,13 +15,15 @@ import com.secondhand.view.physics.MyPhysicsEntity;
 public abstract class EntityView implements PropertyChangeListener {
 	protected final IShape shape;
 	//Need this for physics.
-	private final Body body;
+	protected final Body body;
+	protected final Entity entity;
 	
 	public EntityView(final PhysicsWorld physicsWorld, final Entity entity , final IShape shape,
 			final Body body){
 		this.shape=shape;
 		entity.addPropertyChangeListener(this);
 		this.body = body;
+		this.entity=entity;
 		
 		// we always want to cull shapes.
 		if(!shape.isCullingEnabled()) {

@@ -20,8 +20,8 @@ public class BlackHoleView extends CircleView implements PropertyChangeListener{
 	public BlackHoleView(final PhysicsWorld physicsWorld,
 			final BlackHole blackHole, final TextureRegion textureRegion) {
 		super(physicsWorld, blackHole, new Sprite(
-				blackHole.getInitialPosition().x- blackHole.getRadius(), 
-				blackHole.getInitialPosition().y - blackHole.getRadius(), 
+				blackHole.getInitialPosition().x, 
+				blackHole.getInitialPosition().y, 
 				blackHole.getRadius() * 2,
 				blackHole.getRadius() * 2,
 				textureRegion

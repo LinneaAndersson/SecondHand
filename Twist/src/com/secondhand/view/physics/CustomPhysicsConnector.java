@@ -34,7 +34,7 @@ public class CustomPhysicsConnector extends PhysicsConnector {
 			if(!isCircle) {
 				x -=  this.mShapeHalfBaseWidth;
 				y -=  this.mShapeHalfBaseHeight;
-				
+					
 			}
 			
 			shape.setPosition(x , y);

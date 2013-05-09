@@ -56,6 +56,7 @@ public class MyPhysicsEntity implements IPhysicsEntity {
 				* PhysicsConstants.PIXEL_TO_METER_RATIO_DEFAULT;
 	}	
 
+	@Override
 	public void setRadius(final float radius) {
 		final CircleShape shape = (CircleShape) body.getFixtureList().get(0)
 				.getShape();

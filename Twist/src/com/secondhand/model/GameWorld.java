@@ -7,7 +7,9 @@ public class GameWorld {
 
 	private final EntityManager entityManager;
 
-	private static final int STARTING_LEVEL = 2;
+	private static final int STARTING_LEVEL = 1;
+	
+	public static final int PLAYER_STARTING_SIZE = 30;
 
 	private final IPhysicsWorld mPhysic;
 
@@ -23,7 +25,7 @@ public class GameWorld {
 		mPhysic.setGameWorld(this);
 		support = new PropertyChangeSupport(this);
 
-		this.entityManager = new EntityManager( new Player(new Vector2(50,50),30, this));
+		this.entityManager = new EntityManager( new Player(new Vector2(50,50),PLAYER_STARTING_SIZE, this));
 		
 		generateNewLevelEntities(STARTING_LEVEL);
 		mPhysic.setWorldBounds(levelWidth, levelHeight);		
@@ -107,10 +109,6 @@ public class GameWorld {
 		return this.entityManager.getPlayer();
 	}
 
-	public void sendTouchInput(final Vector2 v) {
-		this.getPlayer().reachToTouch(v);
-	}
-
 	public boolean checkPlayerBigEnough() {
 		return this.getPlayer().getRadius() >= this.getPlayer().getMaxSize();
 	}
@@ -126,7 +124,7 @@ public class GameWorld {
 	}
 
 	public void updateWithTouchInput(final Vector2 v) {
-		sendTouchInput(v);
+		this.getPlayer().reachToTouch(v);		
 	}
 	
 	public void addPropertyChangeListener(final PropertyChangeListener listener){

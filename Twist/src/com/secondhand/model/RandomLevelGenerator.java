@@ -49,7 +49,7 @@ public class RandomLevelGenerator {
 				40);
 		world.addToWorld(circle);
 
-		this.playerMaxSize = 30 * this.levelNumber;
+		this.playerMaxSize =  GameWorld.PLAYER_STARTING_SIZE *( this.levelNumber+1);
 
 		this.enemyList = new ArrayList<Enemy>();
 		this.entityList = new ArrayList<Entity>();

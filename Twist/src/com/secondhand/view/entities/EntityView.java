@@ -30,8 +30,6 @@ public abstract class EntityView implements PropertyChangeListener {
 			shape.setCullingEnabled(true);
 		}
 		
-		MyDebug.d(shape.toString() + " is culled: " + shape.isCullingEnabled());
-		
 		// TODO: figure out some better way to do this.
 		if(shape instanceof Polygon) {
 			((Polygon) shape).setBody(body);

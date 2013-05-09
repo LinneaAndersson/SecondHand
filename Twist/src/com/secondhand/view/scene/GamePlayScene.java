@@ -229,18 +229,18 @@ public class GamePlayScene extends GameScene implements PropertyChangeListener {
 			updateScore((Integer) event.getNewValue());
 		} else if (eventName.equals(Player.INCREASE_LIFE)) {
 			updateLives((Integer) event.getNewValue());
-		} else if (eventName.equals("PlayerRadius")) {
-			// TODO: is never sent from player for some reason; fix.
+		} else if (eventName.equals("radius")) {
+			MyDebug.d("radius event");
 			apaptCameraToGrowingPlayer(
 					(Float) event.getNewValue(),
 					(Float) event.getOldValue());
 		} else if (eventName.equals("NextLevel")) {
 			newLevelStarted();
-			//TODO: now readd listeners n stuff
 		} else if (eventName.equals("NextLevel")) {
 			newLevelStarted();
 		} else if (eventName.equals("PlayerWallCollision")) {
 			onPlayerWallCollision();
 		}
+		
 	}
 }

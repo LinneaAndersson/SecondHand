@@ -140,6 +140,7 @@ public class Player extends BlackHole {
 	public void addListener(final PropertyChangeListener observer) {
 		MyDebug.d("adding listener: " + observer.toString());
 		util.addListener(observer);
+		this.pcs.addPropertyChangeListener(observer);
 	}
 	
 	public void reachToTouch(final Vector2 touch) {

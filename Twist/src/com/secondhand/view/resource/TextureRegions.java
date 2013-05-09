@@ -18,6 +18,8 @@ public class TextureRegions {
 	
 
 	public TextureRegion playerSprite;
+	public TextureRegion enemySprite;
+	
 	public TextureRegion obstacleTexture;
 	public Map<PlanetType, TextureRegion> planetTextures;
 	
@@ -67,5 +69,11 @@ public class TextureRegions {
 	
 		this.starsTexture = TextureRegionLoader.getInstance().loadAssetBitmapTextureAtlasSource(TEXTURE_BASEPATH+"stars.png");
 
+		this.playerSprite = TextureRegionLoader.getInstance().loadTextureRegion(TEXTURE_BASEPATH+"player.png", 256, 256,
+				TextureOptions.BILINEAR_PREMULTIPLYALPHA);
+
+		this.enemySprite = TextureRegionLoader.getInstance().loadTextureRegion(TEXTURE_BASEPATH+"enemy.png", 256, 256,
+				TextureOptions.BILINEAR_PREMULTIPLYALPHA);
+		
 	}	
 }

@@ -3,6 +3,7 @@ package com.secondhand.view.physics;
 import java.util.List;
 
 import org.anddev.andengine.entity.shape.IShape;
+import org.anddev.andengine.entity.shape.RectangularShape;
 import org.anddev.andengine.extension.physics.box2d.PhysicsConnector;
 import org.anddev.andengine.extension.physics.box2d.PhysicsWorld;
 import org.anddev.andengine.extension.physics.box2d.util.constants.PhysicsConstants;
@@ -72,8 +73,15 @@ public class MyPhysicsEntity implements IPhysicsEntity {
 
 	@Override
 	public float getRadius() {
-		final Circle circle = (Circle) this.shape;
-		return circle.getRadius();
+		
+		if(this.shape instanceof  RectangularShape) {
+			final RectangularShape rectangle = (RectangularShape) this.shape;
+			return rectangle.getWidth() / 2.0f;
+		} else {
+			final Circle circle = (Circle)this.shape;
+			return circle.getRadius();
+		}
+		
 	}
 
 	@Override

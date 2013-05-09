@@ -119,6 +119,7 @@ public final class MyDebug{
 		}
 		System.exit(1);
 	}
+	
 
 	// ===========================================================
 	// Inner and Anonymous Classes

@@ -3,8 +3,6 @@ package com.secondhand.view.entities;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 
-import org.anddev.andengine.entity.shape.RectangularShape;
-import org.anddev.andengine.entity.sprite.Sprite;
 import org.anddev.andengine.extension.physics.box2d.PhysicsWorld;
 import org.anddev.andengine.extension.physics.box2d.util.constants.PhysicsConstants;
 import org.anddev.andengine.opengl.texture.region.TextureRegion;
@@ -19,13 +17,9 @@ public class BlackHoleView extends CircleView implements PropertyChangeListener{
 
 	public BlackHoleView(final PhysicsWorld physicsWorld,
 			final BlackHole blackHole, final TextureRegion textureRegion) {
-		super(physicsWorld, blackHole, new Sprite(
-				blackHole.getInitialPosition().x, 
-				blackHole.getInitialPosition().y, 
-				blackHole.getRadius() * 2,
-				blackHole.getRadius() * 2,
-				textureRegion
-				),
+		super(physicsWorld, blackHole, 
+				new Circle(blackHole.getInitialPosition().x, blackHole.getInitialPosition().y,
+						blackHole.getRadius()),
 				FixtureDefs.BLACK_HOLE_FIXTURE_DEF);
 		
 	}
@@ -33,13 +27,9 @@ public class BlackHoleView extends CircleView implements PropertyChangeListener{
 		final CircleShape shape = (CircleShape) this.body.getFixtureList().get(0)
 				.getShape();
 		shape.setRadius(size / PhysicsConstants.PIXEL_TO_METER_RATIO_DEFAULT);
-		if(this instanceof PlayerView){
-		final RectangularShape circle = (RectangularShape) this.shape;
-		circle.setSize(size*2, size*2);
-		} else {
-			final Circle circle = (Circle) this.shape;
-			circle.setRadius(size);
-		}
+
+		final Circle circle = (Circle) this.shape;
+		circle.setRadius(size);
 	}
 
 	@Override

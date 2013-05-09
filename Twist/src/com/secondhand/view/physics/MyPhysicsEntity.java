@@ -3,7 +3,6 @@ package com.secondhand.view.physics;
 import java.util.List;
 
 import org.anddev.andengine.entity.shape.IShape;
-import org.anddev.andengine.entity.shape.RectangularShape;
 import org.anddev.andengine.extension.physics.box2d.PhysicsConnector;
 import org.anddev.andengine.extension.physics.box2d.PhysicsWorld;
 import org.anddev.andengine.extension.physics.box2d.util.constants.PhysicsConstants;
@@ -29,14 +28,8 @@ public class MyPhysicsEntity implements IPhysicsEntity {
 		body.setUserData(entity);
 		
 		
-		// will have to do for now.
-		if(!(entity instanceof BlackHole)) 
-			physicsConnector = new CustomPhysicsConnector(shape, entity.isCircle(),
-					body, true, entity.isRotating());
-		else 
-			physicsConnector = new PhysicsConnector(shape,
-					body, true, entity.isRotating());
-			
+		physicsConnector = new CustomPhysicsConnector(shape, entity.isCircle(),
+				body, true, entity.isRotating());
 		physicsWorld.registerPhysicsConnector(physicsConnector);
 
 		this.body = body;
@@ -73,15 +66,8 @@ public class MyPhysicsEntity implements IPhysicsEntity {
 
 	@Override
 	public float getRadius() {
-		
-		if(this.shape instanceof  RectangularShape) {
-			final RectangularShape rectangle = (RectangularShape) this.shape;
-			return rectangle.getWidth() / 2.0f;
-		} else {
-			final Circle circle = (Circle)this.shape;
-			return circle.getRadius();
-		}
-		
+		final Circle circle = (Circle)this.shape;
+		return circle.getRadius();
 	}
 
 	@Override

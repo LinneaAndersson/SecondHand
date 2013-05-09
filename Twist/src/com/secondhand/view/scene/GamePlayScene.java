@@ -61,7 +61,8 @@ public class GamePlayScene extends GameScene implements PropertyChangeListener {
 
 	public void registerNewLevel() {
 		
-		
+		this.smoothCamera.setZoomFactor(1.0f);
+	
 		final float width = gameWorld.getLevelWidth();
 		final float height = gameWorld.getLevelHeight();
 		

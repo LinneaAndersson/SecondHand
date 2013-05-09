@@ -88,6 +88,8 @@ public class GameWorld {
 		
 		mPhysic.setWorldBounds(levelWidth, levelHeight);
 		
+		this.getPlayer().setRadius(PLAYER_STARTING_SIZE);
+		
 		// then notify the view of this, so that it can place out the new
 		// Entities in AndEngine for rendering.
 		support.firePropertyChange("NextLevel", false, true);

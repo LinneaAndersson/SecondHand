@@ -22,7 +22,7 @@ public class TextureRegions {
 	
 	public Map<PowerUpType, TextureRegion> powerUpTextures;
 	
-	public TextureRegion starsTexture;
+	//public TextureRegion starsTexture;
 	
 	private static TextureRegions instance;
 	
@@ -51,6 +51,7 @@ public class TextureRegions {
 			planetTextures.put(planetType, planetTexture);
 		}
 		
+		
 		powerUpTextures = new EnumMap<PowerUpType, TextureRegion>(PowerUpType.class);
 		
 		for (final PowerUpType powerUpType : PowerUpType.values()) {
@@ -64,7 +65,7 @@ public class TextureRegions {
 				TextureOptions.REPEATING_BILINEAR);
 	
 
-		this.starsTexture = TextureRegionLoader.getInstance().loadTextureRegion(TEXTURE_BASEPATH+"stars.png", 256, 256,
-				TextureOptions.REPEATING_BILINEAR);
+	/*	this.starsTexture = TextureRegionLoader.getInstance().loadTextureRegion(TEXTURE_BASEPATH+"stars.png", 256, 256,
+				TextureOptions.REPEATING_BILINEAR);*/
 	}	
 }

@@ -37,9 +37,10 @@ public class PlayerView extends BlackHoleView {
 				this.shape.setColor(powerUp.getR(), powerUp.getG(), powerUp.getB());
 		} else if (propertyName.equals(Player.REMOVE_POWER_UP)) {
 			// reset player color. 
-			// TODO:if player has no other powerup, then reset player color.
-			// we'll do this for now. 
-			this.shape.setColor(1f, 1f, 1f);
+			//if player has no other powerup, then reset player color.
+			final Player player = (Player)event.getSource();
+			if(player.getPowerUps().size() == 0)
+				this.shape.setColor(1f, 1f, 1f);
 		} else if (propertyName.equals(Player.GROW_SOUND)) {
 			Sounds.getInstance().growSound.play();
 		} else if (propertyName.equals(Player.BIGGER_ENTITY_COLLISION_SOUND)) {

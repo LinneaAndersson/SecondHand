@@ -120,7 +120,7 @@ public class Enemy extends BlackHole {
 	}
 
 	@Override
-	protected void handlePowerUp(final PowerUp powerUp) {
+	protected void handlePowerUp(final IPowerUp powerUp) {
 		// enemies can't eat powerups :(
 	}
 

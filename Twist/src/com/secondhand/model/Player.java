@@ -4,7 +4,6 @@ import java.beans.PropertyChangeListener;
 import java.util.List;
 
 import com.secondhand.model.physics.Vector2;
-import com.secondhand.model.powerup.PowerUp;
 
 public class Player extends BlackHole {
 	
@@ -25,7 +24,7 @@ public class Player extends BlackHole {
 
 	private Vector2 needsToMovePosition;
 
-	private final List<PowerUp> powerUpList;
+	private final List<IPowerUp> powerUpList;
 
 	private PlayerUtil util;
 
@@ -119,18 +118,18 @@ public class Player extends BlackHole {
 		changeLives(+1);
 	}
 
-	public List<PowerUp> getPowerUps() {
+	public List<IPowerUp> getPowerUps() {
 		return powerUpList;
 	}
 
-	public void removePowerUp(final PowerUp powerUp) {
+	public void removePowerUp(final IPowerUp powerUp) {
 		this.powerUpList.remove(powerUp);
 		
 
 		pcs.firePropertyChange(REMOVE_POWER_UP, null, powerUp);
 	}
 
-	public void addPowerUp(final PowerUp powerUp) {
+	public void addPowerUp(final IPowerUp powerUp) {
 		this.powerUpList.add(powerUp);
 		
 		
@@ -170,14 +169,15 @@ public class Player extends BlackHole {
 			needsToMovePosition = null;
 		}
 	}
-
-	protected void handlePowerUp(final PowerUp powerUp) {
+	
+	@Override
+	protected void handlePowerUp(final IPowerUp powerUp) {
 
 		pcs.firePropertyChange(POWER_UP_SOUND, null, null);
 
 		addPowerUp(powerUp);
 
-		powerUp.wasEaten();
+		powerUp.eaten();
 	}
 
 	@Override

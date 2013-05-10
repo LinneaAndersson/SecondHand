@@ -57,7 +57,7 @@ public class RandomLevelGenerator {
 		placeOutLevelEntities();
 	}
 
-	private void placeOutEnemies() {
+	private void placeOutEnemies(int number) {
 		Enemy enemy;
 
 		final int ENEMIES;
@@ -95,7 +95,7 @@ public class RandomLevelGenerator {
 
 	}
 
-	private void placeOutObstacles() {
+	private void placeOutObstacles(int number) {
 
 		final int OBSTACLES = this.levelNumber * 5;
 
@@ -123,10 +123,8 @@ public class RandomLevelGenerator {
 		}
 	}
 
-	private void placeOutPowerUps() {
-		final int POWER_UPS = 5 * this.levelNumber;
-
-		for (int i = 0; i < POWER_UPS; ++i) {
+	private void placeOutPowerUps(int number) {
+		for (int i = 0; i < number; ++i) {
 
 			while (true) {
 
@@ -147,18 +145,15 @@ public class RandomLevelGenerator {
 		}
 	}
 
-	private void placeOutPlanets() {
+	private void placeOutPlanets(final int NUMBER_EATABLE, final int NUMBER, final float MIN_SIZE, final float MAX_SIZE) {
 		final float K = 1.2f;
-		int MINIMUM_PLAYER_EATABLE;
+		
+		/*int MINIMUM_PLAYER_EATABLE;
 		if (this.levelNumber < 10) {
 			MINIMUM_PLAYER_EATABLE = 20; // 50 - (this.levelNumber) * 3;
 		} else {
 			MINIMUM_PLAYER_EATABLE = 10;
-		}
-
-		final float MAX_SIZE = player.getRadius() * 8f;
-
-		final float MIN_SIZE = player.getRadius() - 20;
+		}*/
 
 		final int PLANETS = (int) (25 * this.levelNumber * K);
 		float radius;
@@ -166,7 +161,7 @@ public class RandomLevelGenerator {
 		int planetCounter = 0;
 
 		// Start with the smaller planets.
-		for (int i = 0; i < MINIMUM_PLAYER_EATABLE; ++i, planetCounter++) {
+		for (int i = 0; i < NUMBER_EATABLE; ++i, planetCounter++) {
 
 			MyDebug.d("planet" + planetCounter);
 
@@ -188,7 +183,7 @@ public class RandomLevelGenerator {
 			entityList.add(new Planet(new Vector2(xAxis, yAxis), radius,
 					RandomUtil.randomEnum(rng, PlanetType.class), level));
 		}
-		for (int i = MINIMUM_PLAYER_EATABLE; i < PLANETS; i++, planetCounter++) {
+		for (int i = NUMBER_EATABLE; i < PLANETS; i++, planetCounter++) {
 
 			MyDebug.d("planet" + planetCounter);
 
@@ -213,13 +208,13 @@ public class RandomLevelGenerator {
 
 	private void placeOutLevelEntities() {
 
-		placeOutObstacles();
+		placeOutObstacles(5);
 		MyDebug.d("done placing out obstacles");
-		placeOutPlanets();
+		placeOutPlanets(25,40,(player.getRadius()/4),player.getRadius()*4);
 		MyDebug.d("done placing out planets");
-		placeOutPowerUps();
+		placeOutPowerUps(5);
 		MyDebug.d("done placing out power ups");
-		placeOutEnemies();
+		placeOutEnemies(5);
 		MyDebug.d("done placing out enemies");
 
 	}

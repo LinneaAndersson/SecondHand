@@ -21,19 +21,18 @@ import com.secondhand.view.scene.GamePlayScene;
 final class GamePlaySceneController extends Entity implements PropertyChangeListener {
 
 	private final GameWorld gameWorld;
-	private final GamePlayScene gamePlayScene;
 	private final SceneController sceneController;
 
 	public GamePlaySceneController(final GamePlayScene scene,
 			final SceneController sceneController) {
 		super();
 		
-		this.gamePlayScene = scene;
+		final GamePlayScene gamePlayScene = scene;
 		this.sceneController = sceneController;
 
 		gameWorld = scene.getGameWorld();
 
-		this.gamePlayScene.attachChild(this);
+		gamePlayScene.attachChild(this);
 
 		//PlayerUtil adds this Controller as a listener
 		this.gameWorld.getPlayer().addListener(this);
@@ -94,13 +93,13 @@ final class GamePlaySceneController extends Entity implements PropertyChangeList
 	}
 
 	@Override
-	public void propertyChange(PropertyChangeEvent event) {
+	public void propertyChange(final PropertyChangeEvent event) {
 		final String name = event.getPropertyName();
 		
 		if (name.equals(Player.ADD_POWER_UP)) {
 			MyDebug.d("property change in controller");
-			Player player = gameWorld.getPlayer();
-			PowerUp powerUp = (PowerUp) event.getNewValue();
+			final Player player = gameWorld.getPlayer();
+			final PowerUp powerUp = (PowerUp) event.getNewValue();
 			this.sceneController.getSceneManager().registerUpdateHander(PlayerController.createTimer(player, powerUp));
 		}
 	}

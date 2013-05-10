@@ -26,8 +26,7 @@ public class SpeedUp extends PowerUp {
 	
 	@Override
 	public void activateEffect(final Player player) {
-		/*MyDebug.d("applying speed up");
-		player.getCircle().setColor(0, 0, 1f);
+		/*
 		player.setMaxSpeed(player.getMaxSpeed()*factor);*/
 	}
 	
@@ -42,4 +41,9 @@ public class SpeedUp extends PowerUp {
 		if(!hasAnother)
 			player.setMaxSpeed(player.getMaxSpeed()/factor);	
 	}
+	
+
+	public float getR() {return 0f;}
+	public float getG() {return 0f;}
+	public float getB() {return 1f;}
 }

@@ -7,7 +7,9 @@ import com.secondhand.debug.MyDebug;
 import com.secondhand.model.powerup.PowerUp;
 
 public class Player extends BlackHole {
+	
 
+	
 	private String name;
 
 	// starting lives for a new player.
@@ -79,7 +81,9 @@ public class Player extends BlackHole {
 	@Override
 	public void increaseScore(final int increase) {
 		super.increaseScore((int) this.getScoreMultiplier() * increase);
-		util.fireInt(INCREASE_SCORE, 0, getScore());
+		
+		
+		pcs.firePropertyChange(INCREASE_SCORE, (int)0, (int)getScore());
 	}
 
 	public void setScoreMultiplier(final float scoreMultiplier) {
@@ -92,7 +96,8 @@ public class Player extends BlackHole {
 
 	private void changeLives(final int change) {
 		lives += change;
-		util.fireInt(INCREASE_LIFE, 0, lives);
+		
+		pcs.firePropertyChange(INCREASE_LIFE, (int)0, (int)lives);
 	}
 
 	// the player loses a life
@@ -121,12 +126,16 @@ public class Player extends BlackHole {
 	public void removePowerUp(final PowerUp powerUp) {
 		MyDebug.d("now we deattach the powerup");
 		this.powerUpList.remove(powerUp);
-		util.fireObject(REMOVE_POWER_UP, null, powerUp);
+		
+
+		pcs.firePropertyChange(REMOVE_POWER_UP, null, powerUp);
 	}
 
 	public void addPowerUp(final PowerUp powerUp) {
 		this.powerUpList.add(powerUp);
-		util.fireObject(ADD_POWER_UP, null, powerUp);
+		
+		
+		pcs.firePropertyChange(ADD_POWER_UP, null, powerUp);
 	}
 
 	public void setName(final String name) {
@@ -138,7 +147,6 @@ public class Player extends BlackHole {
 	}
 
 	public void addListener(final PropertyChangeListener observer) {
-		util.addListener(observer);
 		this.pcs.addPropertyChangeListener(observer);
 	}
 	

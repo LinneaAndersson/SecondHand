@@ -98,6 +98,7 @@ final class GamePlaySceneController extends Entity implements PropertyChangeList
 		final String name = event.getPropertyName();
 		
 		if (name.equals(Player.ADD_POWER_UP)) {
+			MyDebug.d("property change in controller");
 			Player player = gameWorld.getPlayer();
 			PowerUp powerUp = (PowerUp) event.getNewValue();
 			this.sceneController.getSceneManager().registerUpdateHander(PlayerController.createTimer(player, powerUp));

@@ -17,8 +17,7 @@ public class MirroredMovement extends PowerUp {
 
 	@Override
 	public void activateEffect(final Player player) {
-		/*MyDebug.d("applying mirrored movement");
-		player.getCircle().setColor(1f, 0, 1f);
+		/*
 		player.setMirroredMovement(true);*/
 	}
 	
@@ -31,4 +30,9 @@ public class MirroredMovement extends PowerUp {
 		
 		player.setMirroredMovement(!hasAnother);
 	}
+	
+
+	public float getR() {return 1f;}
+	public float getG() {return 0f;}
+	public float getB() {return 1f;}
 }

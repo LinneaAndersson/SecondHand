@@ -17,7 +17,7 @@ public final class PowerUpFactory {
 	public static PowerUp getRandomPowerUp(final Vector2 position, final GameWorld gameWorld, final Random rng) {
 		final int rand = rng.nextInt(NUM_POWER_UPS);
 		
-		return new ScoreUp(position, gameWorld);
+		return new DoubleScore(position, gameWorld);
 		
 		/*if(rand == 0) {
 			return new EatObstacle(position, gameWorld);

@@ -16,8 +16,7 @@ public class Shield extends PowerUp {
 
 	@Override
 	public void activateEffect(final Player player) {
-		/*MyDebug.d("applying score up");
-		player.getCircle().setColor(0, 1f, 0);
+		/*
 		player.setIsEdible(false);*/
 	}
 	
@@ -32,4 +31,9 @@ public class Shield extends PowerUp {
 		
 		player.setIsEdible(!hasAnother);
 	}
+	
+
+	public float getR() {return 0f;}
+	public float getG() {return 1f;}
+	public float getB() {return 0f;}
 }

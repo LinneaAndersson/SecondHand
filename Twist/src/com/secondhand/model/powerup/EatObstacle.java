@@ -17,8 +17,7 @@ public class EatObstacle extends PowerUp {
 
 	@Override
 	public void activateEffect(final Player player) {
-		/*MyDebug.d("applying eat obstacle");
-		player.getCircle().setColor(1f, 0, 0);
+		/*
 		player.setCanEatInedibles(true);*/
 	}
 	
@@ -31,4 +30,8 @@ public class EatObstacle extends PowerUp {
 		
 		player.setCanEatInedibles(!hasAnother);
 	}
+	
+	public float getR() {return 1f;}
+	public float getG() {return 0f;}
+	public float getB() {return 0f;}
 }

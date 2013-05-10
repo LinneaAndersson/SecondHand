@@ -9,6 +9,7 @@ public class EnemyView extends BlackHoleView{
 
 	public EnemyView(final PhysicsWorld physicsWorld, final Enemy enemy) {
 		super(physicsWorld, enemy);
+		this.shape.setColor(1f, 0, 0);
 
 		getBody().setLinearDamping(1.2f);
 	}

@@ -520,10 +520,6 @@
             <ruleset>Naming Rules</ruleset>
         </rule>
         <rule>
-            <name>NPathComplexity</name>
-            <ruleset>Code Size Rules</ruleset>
-        </rule>
-        <rule>
             <name>OptimizableToArrayCall</name>
             <ruleset>Design Rules</ruleset>
         </rule>

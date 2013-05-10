@@ -28,14 +28,9 @@ public abstract class PowerUp extends RectangleEntity {
 		return duration;
 	}
 	
-	// TODO: should be abstract, fix
-	public void activateEffect(final Player player) {}
+	public abstract void activateEffect(final Player player);
 	
-	public void deactivateEffect(final Player player) {
-		/* 	TODO: Reset player texture or whatever it is the powerup changes (should be taken care of in PowerUpView) */
-		/*if (player.getPowerUps().isEmpty())
-			player.getCircle().setColor(1f, 1f, 1f);*/
-	}
+	public void deactivateEffect(final Player player) { }
 	
 	@Override
 	public float getScoreWorth() {
@@ -58,8 +53,16 @@ public abstract class PowerUp extends RectangleEntity {
 			if (powerUp.getClass() == this.getClass()) // old was DoubleScore.getClass() but this should be right?
 				hasAnother = true;
 		}
-		return hasAnother;
-		
+		return hasAnother;	
 	}
+	
+	// how to color the player when the powerup is applied.
+	// red, green, blue values, from 0 to 1
+	// you can ignore these values for powerups with a duration of 1. 
+	// I know that this is technically part of the view, but then we'd have to create a 
+	// separate view class for every fucking powerup, and I don't really have the energy to do that. 
+	public float getR() {return 1f;}
+	public float getG() {return 1f;}
+	public float getB() {return 1f;}
 	
 }

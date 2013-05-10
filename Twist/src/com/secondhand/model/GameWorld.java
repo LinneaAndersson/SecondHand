@@ -7,7 +7,9 @@ public class GameWorld {
 
 	private final EntityManager entityManager;
 
-	private static final int STARTING_LEVEL = 2;
+	private static final int STARTING_LEVEL = 1;
+	
+	public static final int PLAYER_STARTING_SIZE = 30;
 
 	private final IPhysicsWorld mPhysic;
 
@@ -23,7 +25,7 @@ public class GameWorld {
 		mPhysic.setGameWorld(this);
 		support = new PropertyChangeSupport(this);
 
-		this.entityManager = new EntityManager( new Player(new Vector2(50,50),30, this));
+		this.entityManager = new EntityManager( new Player(new Vector2(50,50),PLAYER_STARTING_SIZE, this));
 		
 		generateNewLevelEntities(STARTING_LEVEL);
 		mPhysic.setWorldBounds(levelWidth, levelHeight);		
@@ -49,8 +51,10 @@ public class GameWorld {
 		this.entityManager.getPlayer().setMaxSize(randomLevelGenerator.playerMaxSize);
 		this.levelWidth = randomLevelGenerator.levelWidth;
 		this.levelHeight = randomLevelGenerator.levelHeight;
+		
+		
 		this.entityManager.setEntityList(randomLevelGenerator.entityList);
-		this.entityManager.setEnemyList(randomLevelGenerator.enemyList);
+		this.entityManager.setEnemyList(randomLevelGenerator.enemyList);	
 	}
 
 
@@ -84,6 +88,8 @@ public class GameWorld {
 		
 		mPhysic.setWorldBounds(levelWidth, levelHeight);
 		
+		this.getPlayer().setRadius(PLAYER_STARTING_SIZE);
+		
 		// then notify the view of this, so that it can place out the new
 		// Entities in AndEngine for rendering.
 		support.firePropertyChange("NextLevel", false, true);
@@ -107,10 +113,6 @@ public class GameWorld {
 		return this.entityManager.getPlayer();
 	}
 
-	public void sendTouchInput(final Vector2 v) {
-		this.getPlayer().reachToTouch(v);
-	}
-
 	public boolean checkPlayerBigEnough() {
 		return this.getPlayer().getRadius() >= this.getPlayer().getMaxSize();
 	}
@@ -126,7 +128,7 @@ public class GameWorld {
 	}
 
 	public void updateWithTouchInput(final Vector2 v) {
-		sendTouchInput(v);
+		this.getPlayer().reachToTouch(v);		
 	}
 	
 	public void addPropertyChangeListener(final PropertyChangeListener listener){

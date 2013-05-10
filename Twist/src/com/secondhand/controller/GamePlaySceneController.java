@@ -48,7 +48,6 @@ final class GamePlaySceneController extends Entity implements PropertyChangeList
 		public boolean onSceneTouchEvent(final Scene pScene,
 				final TouchEvent pSceneTouchEvent) {
 			if (pSceneTouchEvent.getAction() == TouchEvent.ACTION_DOWN) {
-				MyDebug.d("touch event");
 				final float posX = pSceneTouchEvent.getX();
 				final float posY = pSceneTouchEvent.getY();
 				gameWorld.updateWithTouchInput(new Vector2(posX, posY));
@@ -99,6 +98,7 @@ final class GamePlaySceneController extends Entity implements PropertyChangeList
 		final String name = event.getPropertyName();
 		
 		if (name.equals(Player.ADD_POWER_UP)) {
+			MyDebug.d("property change in controller");
 			Player player = gameWorld.getPlayer();
 			PowerUp powerUp = (PowerUp) event.getNewValue();
 			this.sceneController.getSceneManager().registerUpdateHander(PlayerController.createTimer(player, powerUp));

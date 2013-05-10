@@ -12,12 +12,9 @@ public class ScoreUp extends PowerUp {
 	
 	public ScoreUp(final Vector2 position,
 			final  GameWorld level) {
-		super(position, PowerUpType.SCORE_UP, level, DURATION);
-		
-		// multiply by player score multiplyer here for getText
+		super(position, PowerUpType.SCORE_UP, level, DURATION);	
 	}
 
-	// TODO: should probably used getScoreValue instead here.
 	public int getScoreBonus() {
 		return SCORE_BONUS;
 	}

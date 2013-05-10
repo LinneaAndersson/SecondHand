@@ -24,12 +24,13 @@ public class SpeedUp extends PowerUp {
 		factor = newFactor;
 	}
 	
-	/*@Override
+	@Override
 	public void activateEffect(final Player player) {
-		MyDebug.d("applying speed up");
-		player.getCircle().setColor(0, 0, 1f);
-		player.setMaxSpeed(player.getMaxSpeed()*factor);
-	}*/
+		// TODO: fix this one. 
+		// max speed is no longer used in move, so we need to fix this.
+		/*
+		player.setMaxSpeed(player.getMaxSpeed()*factor);*/
+	}
 	
 	@Override
 	public void deactivateEffect(final Player player) {
@@ -37,9 +38,11 @@ public class SpeedUp extends PowerUp {
 		final boolean hasAnother = super.hasAnother(player);
 		
 		if(!hasAnother)
-			super.deactivateEffect(player);
-		
-		if(!hasAnother)
 			player.setMaxSpeed(player.getMaxSpeed()/factor);	
 	}
+	
+
+	public float getR() {return 0f;}
+	public float getG() {return 0f;}
+	public float getB() {return 1f;}
 }

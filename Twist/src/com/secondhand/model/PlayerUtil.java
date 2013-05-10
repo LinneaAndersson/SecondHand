@@ -12,8 +12,6 @@ public class PlayerUtil {
 	private final Player player;
 	private final PowerList list;
 	private boolean isMirroredMovement;
-	private final PropertyChangeSupport sceneSupport = new PropertyChangeSupport(
-			this);
 
 	public PlayerUtil(final Player player) {
 		this.player = player;
@@ -89,19 +87,6 @@ public class PlayerUtil {
 		
 		player.physics.applyImpulse(force, forcePosition);
 	
-	}
-
-	public void addListener(final PropertyChangeListener observer) {
-		sceneSupport.addPropertyChangeListener(observer);
-	}
-
-	public void fireObject(final String name, final Object oldValue,
-			final Object newValue) {
-		sceneSupport.firePropertyChange(name, oldValue, newValue);
-	}
-
-	public void fireInt(final String name, final int oldValue, final int newValue) {
-		sceneSupport.firePropertyChange(name, oldValue, newValue);
 	}
 
 

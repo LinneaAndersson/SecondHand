@@ -1,8 +1,16 @@
 package com.secondhand.model.powerup;
 
+import java.util.Random;
+
+import com.secondhand.debug.MyDebug;
+import com.secondhand.model.GameWorld;
+import com.secondhand.model.Player;
+import com.secondhand.model.Vector2;
+import com.secondhand.model.resource.PowerUpType;
+
 
 // TODO: won't work for some fucking reason. Fix it.
-/*
+
 public class RandomPowerUp extends PowerUp {
 
 	private final PowerUp randomPowerUp;
@@ -14,8 +22,9 @@ public class RandomPowerUp extends PowerUp {
 		final Random rng = new Random();
 		final int rand = rng.nextInt(PowerUpFactory.NUM_POWER_UPS-1);
 		
+		
 		if(rand == 0) {
-			randomPowerUp = new EatObstacle(position, gameWorld);
+			randomPowerUp =  new EatObstacle(position, gameWorld);
 		} else if(rand == 1) {
 			randomPowerUp =  new ExtraLife(position, gameWorld);
 		}else if(rand == 2) {
@@ -26,10 +35,12 @@ public class RandomPowerUp extends PowerUp {
 			randomPowerUp =  new Shield(position, gameWorld);
 		}else if(rand == 5) {
 			randomPowerUp =  new SpeedUp(position, gameWorld);
-		} else 
+		} else if(rand == 6) {
+			randomPowerUp =  new DoubleScore(position, gameWorld);
+		} else if(rand == 7) {
+			randomPowerUp =  new MirroredMovement(position, gameWorld);
+		} else
 			randomPowerUp = null;
-		
-		randomPowerUp.getShape().setVisible(false);
 		
 		this.duration = randomPowerUp.getDuration();
 	}
@@ -51,4 +62,8 @@ public class RandomPowerUp extends PowerUp {
 	public String getText(){
 		return this.randomPowerUp.getText();
 	}
-}*/
+	
+	public float getR() {return this.randomPowerUp.getR();}
+	public float getG() {return this.randomPowerUp.getG();}
+	public float getB() {return this.randomPowerUp.getB();}
+}

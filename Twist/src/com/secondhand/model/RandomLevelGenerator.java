@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-import com.secondhand.debug.MyDebug;
 import com.secondhand.model.powerup.PowerUp;
 import com.secondhand.model.powerup.PowerUpFactory;
 import com.secondhand.model.resource.PlanetType;
@@ -111,7 +110,6 @@ public class RandomLevelGenerator {
 			enemyList.add(enemy);
 
 		}
-		MyDebug.d("enemyList.size() = " + enemyList.size());
 
 	}
 
@@ -172,8 +170,6 @@ public class RandomLevelGenerator {
 
 		// Start with the smaller planets.
 		for (int i = 0; i < NUMBER_EATABLE; ++i, planetCounter++) {
-			
-			MyDebug.d("radius" + playerRadius);
 
 			while (true) {
 				radius = RandomUtil
@@ -194,8 +190,6 @@ public class RandomLevelGenerator {
 					RandomUtil.randomEnum(rng, PlanetType.class), level));
 		}
 		for (int i = NUMBER_EATABLE; i < PLANETS; i++, planetCounter++) {
-
-			MyDebug.d("planet" + planetCounter);
 
 			while (true) {
 				radius = RandomUtil.nextFloat(rng, MIN_SIZE, MAX_SIZE);
@@ -272,8 +266,6 @@ public class RandomLevelGenerator {
 			ENEMIES[0] = 60;
 			ENEMIES[1] = 55;
 		}
-		MyDebug.d(" levelnumber : " + this.levelNumber);
-		MyDebug.d(" Enemies : " + ENEMIES[1]);
 		return ENEMIES;
 	}
 }

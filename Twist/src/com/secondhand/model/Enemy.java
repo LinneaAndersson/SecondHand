@@ -7,7 +7,7 @@ import com.secondhand.model.powerup.PowerUp;
 
 public class Enemy extends BlackHole {
 
-	private static float enemyMaxSpeed;
+	private static float enemyMaxSpeed=2;
 	private static final float MAX_SIZE = 40;
 	private static final float MIN_SIZE = 20;
 
@@ -19,9 +19,8 @@ public class Enemy extends BlackHole {
 	}
 
 	public Enemy(final Vector2 vector, final float radius, final GameWorld level) {
-		super(vector, radius, level, 2*level.getLevelNumber());
+		super(vector, radius, level, enemyMaxSpeed);
 		huntingArea = getHuntingArea();
-		enemyMaxSpeed = 2*level.getLevelNumber();
 	}
 
 	public float getHuntingArea() {
@@ -39,6 +38,7 @@ public class Enemy extends BlackHole {
 	@Override
 	public void setMaxSpeed(final float maxSpeed) {
 		enemyMaxSpeed = maxSpeed;
+		super.setMaxSpeed(maxSpeed);
 	}
 
 	// player has highest chase-priority

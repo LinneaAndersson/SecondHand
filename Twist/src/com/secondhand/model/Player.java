@@ -202,4 +202,9 @@ public class Player extends BlackHole {
 
 		kill();
 	}
+	
+	private void setSoundEffect(){
+		
+	}
+	
 }

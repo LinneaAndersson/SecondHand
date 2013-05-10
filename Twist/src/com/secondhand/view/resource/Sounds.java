@@ -38,4 +38,29 @@ public class Sounds {
 			
 	}
 	
+	public Sound getSound(String soundName){
+		if(soundName.equalsIgnoreCase("PowerUp"))
+			return powerUpSound;
+		
+		if(soundName.equalsIgnoreCase("grow"))
+			return growSound;
+		
+		if(soundName.equalsIgnoreCase("obstacleCollision"))
+			return obstacleCollisionSound;
+		
+		if(soundName.equalsIgnoreCase("Beep"))
+			return beep;
+		
+		if(soundName.equalsIgnoreCase("playerKilled"))
+			return playerKilledSound;
+		
+		if(soundName.equalsIgnoreCase("Win"))
+			return winSound;
+	
+		if(soundName.equalsIgnoreCase("Highscore"))
+			return highScoreEntry;
+		
+		return null;
+	}
+	
 }

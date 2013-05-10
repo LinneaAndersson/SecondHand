@@ -2,6 +2,7 @@ package com.secondhand.view.entities;
 
 import java.beans.PropertyChangeEvent;
 
+import org.anddev.andengine.audio.sound.Sound;
 import org.anddev.andengine.extension.physics.box2d.PhysicsWorld;
 
 import com.secondhand.model.Player;
@@ -19,7 +20,7 @@ public class PlayerView extends BlackHoleView {
 	@Override
 	public void propertyChange(final PropertyChangeEvent event) {
 		super.propertyChange(event);
-
+		
 		final String propertyName = event.getPropertyName();
 
 		if (propertyName.equals(Player.POWER_UP_SOUND)) {

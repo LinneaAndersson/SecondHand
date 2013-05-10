@@ -10,6 +10,7 @@ import org.anddev.andengine.extension.physics.box2d.PhysicsWorld;
 import android.content.Context;
 
 import com.badlogic.gdx.math.Vector2;
+import com.secondhand.debug.MyDebug;
 import com.secondhand.model.Enemy;
 import com.secondhand.model.Entity;
 import com.secondhand.model.GameWorld;

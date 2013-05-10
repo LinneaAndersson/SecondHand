@@ -164,11 +164,11 @@ public class Player extends BlackHole {
 
 	protected void handlePowerUp(final PowerUp powerUp) {
 
-		/*pcs.firePropertyChange(POWER_UP_SOUND, null, null);
+		pcs.firePropertyChange(POWER_UP_SOUND, null, null);
 
-		addPowerUp(powerUp);
+		//addPowerUp(powerUp);
 
-		powerUp.wasEaten();*/
+		powerUp.wasEaten();
 	}
 
 	@Override

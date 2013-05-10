@@ -35,8 +35,9 @@ public abstract class Entity {
 		return this.isEdible;
 	}
 	
-	public IPhysicsEntity getPhysics(){
-		return this.physics;
+	public void detachSelf() {
+		physics.detachSelf();
+
 	}
 
 	public void setIsEdible(final boolean isEdible) {
@@ -83,10 +84,9 @@ public abstract class Entity {
 		removeEntity();
 	}
 
-	public boolean isRotating() {
-		return this instanceof Player ? false : true;
+/*	public boolean isRotating() {
 	}
-	
+*/	
 	public void addPropertyChangeListener(final PropertyChangeListener listener){
 		pcs.addPropertyChangeListener(listener);
 	}

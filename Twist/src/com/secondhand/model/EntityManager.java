@@ -71,7 +71,7 @@ public class EntityManager {
 		// player is not stored in entity list.
 		for(final Entity entity: this.entityList) {
 			entity.deleteBody();
-			entity.getPhysics().detachSelf();
+			entity.detachSelf();
 		}
 		
 		this.scheduledForDeletionEntities.clear();

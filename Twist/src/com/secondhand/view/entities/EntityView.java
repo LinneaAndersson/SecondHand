@@ -8,12 +8,10 @@ import org.anddev.andengine.extension.physics.box2d.PhysicsWorld;
 
 import com.badlogic.gdx.physics.box2d.Body;
 import com.secondhand.model.Entity;
-import com.secondhand.view.opengl.Polygon;
 import com.secondhand.view.physics.MyPhysicsEntity;
 
 public abstract class EntityView implements PropertyChangeListener {
 	protected final IShape shape;
-	//Need this for physics.
 	protected final Body body;
 	protected final Entity entity;
 	
@@ -29,10 +27,6 @@ public abstract class EntityView implements PropertyChangeListener {
 			shape.setCullingEnabled(true);
 		}
 		
-		// TODO: figure out some better way to do this.
-		if(shape instanceof Polygon) {
-			((Polygon) shape).setBody(body);
-		}
 		
 		entity.setPhysics(	new MyPhysicsEntity(physicsWorld, entity, shape, body));
 	}

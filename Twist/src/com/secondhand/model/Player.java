@@ -124,7 +124,6 @@ public class Player extends BlackHole {
 	}
 
 	public void removePowerUp(final PowerUp powerUp) {
-		MyDebug.d("now we deattach the powerup");
 		this.powerUpList.remove(powerUp);
 		
 

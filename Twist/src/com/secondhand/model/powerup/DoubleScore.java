@@ -29,9 +29,6 @@ public class DoubleScore extends PowerUp {
 		MyDebug.d("deactivate double score");
 		final boolean hasAnother = super.hasAnother(player);
 		
-		if(!hasAnother)
-			super.deactivateEffect(player);
-		
 		player.setScoreMultiplier(hasAnother ? MULT : 1);
 	}
 	

@@ -26,6 +26,8 @@ public class SpeedUp extends PowerUp {
 	
 	@Override
 	public void activateEffect(final Player player) {
+		// TODO: fix this one. 
+		// max speed is no longer used in move, so we need to fix this.
 		/*
 		player.setMaxSpeed(player.getMaxSpeed()*factor);*/
 	}
@@ -34,9 +36,6 @@ public class SpeedUp extends PowerUp {
 	public void deactivateEffect(final Player player) {
 		
 		final boolean hasAnother = super.hasAnother(player);
-		
-		if(!hasAnother)
-			super.deactivateEffect(player);
 		
 		if(!hasAnother)
 			player.setMaxSpeed(player.getMaxSpeed()/factor);	

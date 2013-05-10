@@ -37,9 +37,4 @@ public class RandomTeleport extends PowerUp {
 				y));
 	}
 
-	@Override
-	public void deactivateEffect(final Player player) {
-
-	}
-
 }

@@ -16,18 +16,13 @@ public class Shield extends PowerUp {
 
 	@Override
 	public void activateEffect(final Player player) {
-		/*
-		player.setIsEdible(false);*/
+		player.setIsEdible(false);
 	}
 	
 	@Override
 	public void deactivateEffect(final Player player) {
 		
 		final boolean hasAnother = super.hasAnother(player);
-		
-		if(!hasAnother)
-			super.deactivateEffect(player);
-		
 		
 		player.setIsEdible(!hasAnother);
 	}

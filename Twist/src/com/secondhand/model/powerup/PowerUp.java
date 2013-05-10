@@ -1,12 +1,13 @@
 package com.secondhand.model.powerup;
 
 import com.secondhand.model.GameWorld;
+import com.secondhand.model.IPowerUp;
 import com.secondhand.model.Player;
 import com.secondhand.model.RectangleEntity;
 import com.secondhand.model.physics.Vector2;
 import com.secondhand.model.resource.PowerUpType;
 
-public abstract class PowerUp extends RectangleEntity {
+public abstract class PowerUp extends RectangleEntity implements IPowerUp {
 		
 	public final static int WIDTH = 64;
 	public final static int HEIGHT = 64;
@@ -49,7 +50,7 @@ public abstract class PowerUp extends RectangleEntity {
 	
 	public boolean hasAnother(final Player player) {
 		boolean hasAnother = false;
-		for (final PowerUp powerUp : player.getPowerUps()) {
+		for (final IPowerUp powerUp : player.getPowerUps()) {
 			if (powerUp.getClass() == this.getClass()) // old was DoubleScore.getClass() but this should be right?
 				hasAnother = true;
 		}
@@ -64,5 +65,9 @@ public abstract class PowerUp extends RectangleEntity {
 	public float getR() {return 1f;}
 	public float getG() {return 1f;}
 	public float getB() {return 1f;}
+	
+	public void eaten(){
+		super.wasEaten();
+	}
 	
 }

@@ -2,7 +2,6 @@
 package com.secondhand.model;
 
 import com.secondhand.model.physics.Vector2;
-import com.secondhand.model.powerup.PowerUp;
 
 public abstract class BlackHole extends CircleEntity {
 
@@ -82,7 +81,7 @@ public abstract class BlackHole extends CircleEntity {
 		return this.getRadius() > entity.getRadius();
 	}
 
-	protected abstract void handlePowerUp(final PowerUp powerUp);
+	protected abstract void handlePowerUp(final IPowerUp powerUp);
 
 	protected void onGrow() {
 	}
@@ -114,9 +113,9 @@ public abstract class BlackHole extends CircleEntity {
 
 	public void eatEntity(final Entity entity) {
 
-		if(entity instanceof PowerUp) {
+		if(entity instanceof IPowerUp) {
 			// custom handling
-			handlePowerUp((PowerUp)entity);
+			handlePowerUp((IPowerUp)entity);
 		} else if(entity instanceof BlackHole) {
 			final BlackHole otherBlackHole = (BlackHole)entity;
 

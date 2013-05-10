@@ -30,7 +30,7 @@ public class PlayerUtil {
 		return list;
 	}
 
-	private class PowerList extends ArrayList<PowerUp> {
+	private class PowerList extends ArrayList<IPowerUp> {
 
 		private final Player player;
 		private static final long serialVersionUID = 1L;
@@ -41,7 +41,7 @@ public class PlayerUtil {
 		}
 
 		@Override
-		public boolean add(final PowerUp object) {
+		public boolean add(final IPowerUp object) {
 			object.activateEffect(player);
 			return super.add(object);
 		}
@@ -51,7 +51,7 @@ public class PlayerUtil {
 			final boolean value = super.remove(object); // Priority: The list is
 														// empty when you remove
 														// last PowerUp
-			((PowerUp) object).deactivateEffect(player);
+			((IPowerUp) object).deactivateEffect(player);
 			return value;
 		}
 	}

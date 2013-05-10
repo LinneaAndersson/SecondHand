@@ -49,7 +49,8 @@ public class RandomLevelGenerator {
 				40);
 		world.addToWorld(circle);
 
-		this.playerMaxSize =  GameWorld.PLAYER_STARTING_SIZE *( this.levelNumber+1);
+		this.playerMaxSize = GameWorld.PLAYER_STARTING_SIZE
+				* (this.levelNumber + 1);
 
 		this.enemyList = new ArrayList<Enemy>();
 		this.entityList = new ArrayList<Entity>();
@@ -57,17 +58,34 @@ public class RandomLevelGenerator {
 		placeOutLevelEntities();
 	}
 
-	private void placeOutEnemies(int number) {
+	private void placeOutEnemies(final int ENEMIES, final int EATABLE_ENEMIES) {
 		Enemy enemy;
 
-		final int ENEMIES;
-		if (levelNumber < 4) {
-			ENEMIES = 2 * (this.levelNumber);
-		} else {
-			ENEMIES = 8;
-		}
+		for (int i = 0; i < EATABLE_ENEMIES; ++i) {
 
-		for (int i = 0; i < ENEMIES; ++i) {
+
+			while (true) {
+				float radius;
+				radius = RandomUtil
+						.nextFloat(rng, Enemy.getMinSize(), player.getRadius());
+
+				xAxis = rng.nextInt(this.levelWidth);
+				yAxis = rng.nextInt(this.levelHeight);
+
+				final Circle circle = new Circle(new Vector2(xAxis, yAxis),
+						radius);
+
+				if (world.addToWorld(circle)
+						&& radius < 40 * player.getRadius()) {
+					break;
+				}
+				enemy = new Enemy(new Vector2(xAxis, yAxis), radius, level);
+				enemy.setMaxSpeed(8 + (this.levelNumber - 1) * 2);
+				entityList.add(enemy);
+				enemyList.add(enemy);
+			}
+		}
+		for (int i = EATABLE_ENEMIES; i < ENEMIES; ++i) {
 
 			float radius;
 			radius = RandomUtil.nextFloat(rng, Enemy.getMinSize(),
@@ -95,15 +113,11 @@ public class RandomLevelGenerator {
 
 	}
 
-	private void placeOutObstacles(int number) {
-
-		final int OBSTACLES = this.levelNumber * 5;
+	private void placeOutObstacles(final int OBSTACLES) {
 
 		for (int i = 0; i < OBSTACLES; ++i) {
 
 			final List<Vector2> edges = PolygonUtil.getRandomPolygon();
-
-			MyDebug.d("obstacle:" + i);
 
 			while (true) {
 
@@ -119,7 +133,7 @@ public class RandomLevelGenerator {
 			}
 
 			entityList
-					.add(new Obstacle(new Vector2(xAxis, yAxis), edges, level));
+			.add(new Obstacle(new Vector2(xAxis, yAxis), edges, level));
 		}
 	}
 
@@ -145,15 +159,15 @@ public class RandomLevelGenerator {
 		}
 	}
 
-	private void placeOutPlanets(final int NUMBER_EATABLE, final int NUMBER, final float MIN_SIZE, final float MAX_SIZE) {
+	private void placeOutPlanets(final int NUMBER_EATABLE, final int NUMBER,
+			final float MIN_SIZE, final float MAX_SIZE) {
 		final float K = 1.2f;
-		
-		/*int MINIMUM_PLAYER_EATABLE;
-		if (this.levelNumber < 10) {
-			MINIMUM_PLAYER_EATABLE = 20; // 50 - (this.levelNumber) * 3;
-		} else {
-			MINIMUM_PLAYER_EATABLE = 10;
-		}*/
+
+		/*
+		 * int MINIMUM_PLAYER_EATABLE; if (this.levelNumber < 10) {
+		 * MINIMUM_PLAYER_EATABLE = 20; // 50 - (this.levelNumber) * 3; } else {
+		 * MINIMUM_PLAYER_EATABLE = 10; }
+		 */
 
 		final int PLANETS = (int) (25 * this.levelNumber * K);
 		float radius;
@@ -208,14 +222,60 @@ public class RandomLevelGenerator {
 
 	private void placeOutLevelEntities() {
 
-		placeOutObstacles(5);
-		MyDebug.d("done placing out obstacles");
-		placeOutPlanets(25,40,(player.getRadius()/4),player.getRadius()*4);
-		MyDebug.d("done placing out planets");
-		placeOutPowerUps(5);
-		MyDebug.d("done placing out power ups");
-		placeOutEnemies(5);
-		MyDebug.d("done placing out enemies");
+		placeOutObstacles(newObstacles());
 
+		int[] numPlanets= newPlanets();
+		placeOutPlanets(numPlanets[0], numPlanets[1], (player.getRadius() / 4),
+				player.getRadius() * 4);
+
+		placeOutPowerUps(10);
+
+		int[] numEnemies= newEnemies();
+		placeOutEnemies(numEnemies[0],numEnemies[1]);
+
+	}
+
+	// checks witch level and placing out the Obstacles after difficulty.
+	private int newObstacles() {
+
+		if (levelNumber == 1) {
+			return 0;
+		} else if (levelNumber == 2){
+			return 5;
+		} else {
+			return 10;
+		}
+	}
+
+	// checks witch level and placing out the Planets after difficulty.
+	private int[] newPlanets() {
+		int[] list = new int[2];
+		if (levelNumber == 1) {
+			list[0]=40;
+			list[1]=50;
+		} else if (levelNumber == 2) {
+			list[0]=30;
+			list[1]=45;
+		} else if (levelNumber == 3){
+			list[0]=20;
+			list[1]=40;
+		} else {
+			list[0]=5;
+			list[1]=20;
+		}
+		return list;
+	}
+
+	// checks witch level and placing out the Planets after difficulty.
+	private int[] newEnemies() {
+		final int[] ENEMIES = new int[2];
+		if (levelNumber < 4) {
+			ENEMIES[0] = 4 * (this.levelNumber);
+			ENEMIES[1] = 2 * this.levelNumber;
+		} else {
+			ENEMIES[0] = 25;
+			ENEMIES[1] = 20;
+		}
+		return ENEMIES;
 	}
 }

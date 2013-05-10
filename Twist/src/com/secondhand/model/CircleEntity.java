@@ -8,10 +8,6 @@ public abstract class CircleEntity extends Entity {
 		this.radius = radius;
 	}
 	
-	@Override
-	public boolean isCircle(){
-		return true;
-	}
 	
 	@Override
 	public void onPhysicsAssigned(){

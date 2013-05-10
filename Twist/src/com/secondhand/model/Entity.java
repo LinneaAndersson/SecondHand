@@ -31,9 +31,6 @@ public abstract class Entity {
 	
 	public abstract void onPhysicsAssigned();
 
-	public abstract boolean isCircle();
-
-
 	public boolean isEdible() {
 		return this.isEdible;
 	}

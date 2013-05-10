@@ -7,7 +7,6 @@ import org.anddev.andengine.entity.shape.IShape;
 import org.anddev.andengine.extension.physics.box2d.PhysicsWorld;
 
 import com.badlogic.gdx.physics.box2d.Body;
-import com.secondhand.debug.MyDebug;
 import com.secondhand.model.Entity;
 import com.secondhand.view.opengl.Polygon;
 import com.secondhand.view.physics.MyPhysicsEntity;

@@ -14,9 +14,8 @@ public final class PowerUpFactory {
 	public static final int NUM_POWER_UPS = 9;
 
 	// used for level generation., 
-	public static PowerUp getRandomPowerUp(final Vector2 position, final GameWorld gameWorld, final Random rng) {
+	public static PowerUp getRandomPowerUp(final Vector2 position, final GameWorld gameWorld, final Random rng) { 
 		final int rand = rng.nextInt(NUM_POWER_UPS);
-		
 		
 		if(rand == 0) {
 			return new EatObstacle(position, gameWorld);

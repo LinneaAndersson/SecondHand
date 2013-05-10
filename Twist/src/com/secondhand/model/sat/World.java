@@ -69,7 +69,7 @@ public class World {
 			final Circle circle1 = (Circle) shape1;
 			final Circle circle2 = (Circle) shape2;
 
-			Vector2 v = new Vector2(circle1.position.x - circle2.position.x, circle1.position.y - circle2.position.y);
+			final Vector2 v = new Vector2(circle1.position.x - circle2.position.x, circle1.position.y - circle2.position.y);
 
 			// normal circle collision check.
 

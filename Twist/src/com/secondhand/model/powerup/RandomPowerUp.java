@@ -59,7 +59,7 @@ public class RandomPowerUp extends PowerUp {
 	}
 
 	@Override
-	public String getText(){
+	public String getText(){	
 		return this.randomPowerUp.getText();
 	}
 	

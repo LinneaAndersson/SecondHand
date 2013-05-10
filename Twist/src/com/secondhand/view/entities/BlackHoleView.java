@@ -5,8 +5,6 @@ import java.beans.PropertyChangeListener;
 
 import org.anddev.andengine.extension.physics.box2d.PhysicsWorld;
 import org.anddev.andengine.extension.physics.box2d.util.constants.PhysicsConstants;
-import org.anddev.andengine.opengl.texture.region.TextureRegion;
-
 import com.badlogic.gdx.physics.box2d.CircleShape;
 import com.secondhand.model.BlackHole;
 import com.secondhand.view.opengl.Circle;
@@ -15,14 +13,14 @@ import com.secondhand.view.physics.FixtureDefs;
 public class BlackHoleView extends CircleView implements PropertyChangeListener{
 
 	public BlackHoleView(final PhysicsWorld physicsWorld,
-			final BlackHole blackHole, final TextureRegion textureRegion) {
+			final BlackHole blackHole) {
 		super(physicsWorld, blackHole, 
 				new Circle(blackHole.getInitialPosition().x, blackHole.getInitialPosition().y,
 						blackHole.getRadius()),
 				FixtureDefs.BLACK_HOLE_FIXTURE_DEF);
 		
 	}
-	protected void changeSize(float size) {
+	protected void changeSize(final float size) {
 		final CircleShape shape = (CircleShape) this.body.getFixtureList().get(0)
 				.getShape();
 		shape.setRadius(size / PhysicsConstants.PIXEL_TO_METER_RATIO_DEFAULT);
@@ -31,10 +29,10 @@ public class BlackHoleView extends CircleView implements PropertyChangeListener{
 	}
 
 	@Override
-	public void propertyChange(PropertyChangeEvent event) {
+	public void propertyChange(final PropertyChangeEvent event) {
 		
 		if (event.getPropertyName().equalsIgnoreCase("radius")) {
-			float newValue = (Float) event.getNewValue();
+			final float newValue = (Float) event.getNewValue();
 			this.changeSize(newValue);
 		}
 	}

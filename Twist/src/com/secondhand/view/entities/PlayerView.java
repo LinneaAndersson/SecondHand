@@ -8,14 +8,13 @@ import com.secondhand.debug.MyDebug;
 import com.secondhand.model.Player;
 import com.secondhand.model.powerup.PowerUp;
 import com.secondhand.view.resource.Sounds;
-import com.secondhand.view.resource.TextureRegions;
 
 // what? the controller should be handling the PropertyChangeListener, not the view!
 //The view can be a propertychangeListener
 public class PlayerView extends BlackHoleView {
 
 	public PlayerView(final PhysicsWorld physicsWorld, final Player player){
-		super(physicsWorld, player, TextureRegions.getInstance().playerSprite);
+		super(physicsWorld, player);
 	}
 
 	@Override

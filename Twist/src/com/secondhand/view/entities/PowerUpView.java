@@ -9,15 +9,13 @@ import com.secondhand.view.resource.TextureRegions;
 
 public class PowerUpView extends RectangleView {
 
-	private final PowerUp powerUp;
-	
+
 	public PowerUpView(final PhysicsWorld physicsWorld, final PowerUp powerUp) {
 		super(physicsWorld, 
 				powerUp,
 				new Sprite(powerUp.getInitialPosition().x, powerUp.getInitialPosition().y, powerUp.getWidth(), 
 						powerUp.getHeight(), TextureRegions.getInstance().getPowerUpTexture(powerUp.getPowerUpType()))
 				, FixtureDefs.POWER_UP_FIXTURE_DEF);
-		this.powerUp = powerUp;
 	}
 
 

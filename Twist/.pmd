@@ -220,10 +220,6 @@
             <ruleset>Coupling Rules</ruleset>
         </rule>
         <rule>
-            <name>CyclomaticComplexity</name>
-            <ruleset>Code Size Rules</ruleset>
-        </rule>
-        <rule>
             <name>DataflowAnomalyAnalysis</name>
             <ruleset>Controversial Rules</ruleset>
         </rule>

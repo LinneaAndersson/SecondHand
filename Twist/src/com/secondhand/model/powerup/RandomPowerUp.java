@@ -8,9 +8,6 @@ import com.secondhand.model.Player;
 import com.secondhand.model.Vector2;
 import com.secondhand.model.resource.PowerUpType;
 
-
-// TODO: won't work for some fucking reason. Fix it.
-
 public class RandomPowerUp extends PowerUp {
 
 	private final PowerUp randomPowerUp;
@@ -47,14 +44,11 @@ public class RandomPowerUp extends PowerUp {
 
 	@Override
 	public void activateEffect(final Player player) {
-		MyDebug.d("applying random powerup up");
 		this.randomPowerUp.activateEffect(player);
 	}
 	
 	@Override
 	public void deactivateEffect(final Player player) {
-		MyDebug.d("unapplying random powerup up");
-		
 		this.randomPowerUp.deactivateEffect(player);
 	}
 

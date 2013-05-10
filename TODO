@@ -1,0 +1,42 @@
+==================================================================
+Important things that must be done for the success of the project:
+
+- Implementation
+
+* Better level transition
+* Improve the level generation
+* Fix PowerUpFactory.
+* Write unit tests for the model(start doing this once we know that the model is 100% stable )
+* Make sure that the entities are not placed top of each other in the level generation
+* Fix the enemy AI; the enemies should not chase powerups.
+* Fix the speedup powerup(it does not currently work)
+* The double score powerup also needs some fixing, see the TODO in DoubleScore.java
+
+* Replace some property changes with some kind of interface or
+callback method instead.
+I'm talking about stuff like
+	pcs.firePropertyChange(GROW_SOUND, null, null);
+	pcs.firePropertyChange(PLAYER_KILLED_SOUND, null, null);
+
+Causing a soundeffect to be played has nothing do with a property
+change. The markers will probably not like that at all. We should probably
+use some kind of interface or callback method instead.
+
+
+- Documentation
+
+* Update the user cases to reflect the changes we've made during the coding
+* We must also update the class diagram for the model(in the RAD).
+* Describe the MVC model in the SDD(the model is what primarily
+should be described, though)
+* Make 2 sequence diagrams(use something like graphviz)
+
+
+=================================
+Things we can do if we have time:
+
+* Make a prettier hud.
+* make the menus look prettier.
+* Player movement with particles.
+* Feel free to add other items here.
+

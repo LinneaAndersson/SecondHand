@@ -1,12 +1,11 @@
 package com.secondhand.model.powerup;
 
-import com.secondhand.debug.MyDebug;
 import com.secondhand.model.GameWorld;
 import com.secondhand.model.Player;
 import com.secondhand.model.Vector2;
 import com.secondhand.model.resource.PowerUpType;
 
-// TOOD: this does not yet work for the ScoreUp powerup, fix this.
+// TODO: this does not yet work for the ScoreUp powerup, fix this.
 public class DoubleScore extends PowerUp {
 	
 	private final static float DURATION = 10;
@@ -20,13 +19,11 @@ public class DoubleScore extends PowerUp {
 
 	@Override
 	public void activateEffect(final Player player) {
-		MyDebug.d("activate double score");
 		player.setScoreMultiplier(2);
 	}
 	
 	@Override
 	public void deactivateEffect(final Player player) {
-		MyDebug.d("deactivate double score");
 		final boolean hasAnother = super.hasAnother(player);
 		
 		player.setScoreMultiplier(hasAnother ? MULT : 1);

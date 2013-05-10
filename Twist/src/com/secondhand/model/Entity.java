@@ -83,10 +83,7 @@ public abstract class Entity {
 	protected void wasEaten() {
 		removeEntity();
 	}
-
-/*	public boolean isRotating() {
-	}
-*/	
+	
 	public void addPropertyChangeListener(final PropertyChangeListener listener){
 		pcs.addPropertyChangeListener(listener);
 	}
@@ -98,5 +95,4 @@ public abstract class Entity {
 	 public float getCenterY() {
 		return  this.physics.getCenterY();
 	}
-
 }

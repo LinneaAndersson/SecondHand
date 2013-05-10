@@ -14,13 +14,13 @@ public class EatObstacle extends PowerUp {
 		super(position, PowerUpType.EAT_OBSTACLE, level, DURATION);
 
 	}
-/*
+
 	@Override
 	public void activateEffect(final Player player) {
-		MyDebug.d("applying eat obstacle");
+		/*MyDebug.d("applying eat obstacle");
 		player.getCircle().setColor(1f, 0, 0);
-		player.setCanEatInedibles(true);
-	}*/
+		player.setCanEatInedibles(true);*/
+	}
 	
 	@Override
 	public void deactivateEffect(final Player player) {

@@ -28,14 +28,9 @@ public abstract class PowerUp extends RectangleEntity {
 		return duration;
 	}
 	
-	// TODO: should be abstract, fix
-	public void activateEffect(final Player player) {}
+	public abstract void activateEffect(final Player player);
 	
-	public void deactivateEffect(final Player player) {
-		/* 	TODO: Reset player texture or whatever it is the powerup changes (should be taken care of in PowerUpView) */
-		/*if (player.getPowerUps().isEmpty())
-			player.getCircle().setColor(1f, 1f, 1f);*/
-	}
+	public void deactivateEffect(final Player player) { }
 	
 	@Override
 	public float getScoreWorth() {

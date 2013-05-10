@@ -16,12 +16,12 @@ public class DoubleScore extends PowerUp {
 			final GameWorld level) {
 		super(position, PowerUpType.DOUBLE_SCORE, level, DURATION);
 	}
-/*
+
 	@Override
 	public void activateEffect(final Player player) {
-		player.getCircle().setColor(1f, 1f, 0);
-		player.setScoreMultiplier(2);
-	}*/
+		/*player.getCircle().setColor(1f, 1f, 0);
+		player.setScoreMultiplier(2);*/
+	}
 	
 	@Override
 	public void deactivateEffect(final Player player) {

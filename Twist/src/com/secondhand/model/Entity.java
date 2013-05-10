@@ -31,15 +31,13 @@ public abstract class Entity {
 	
 	public abstract void onPhysicsAssigned();
 
-	public abstract boolean isCircle();
-
-
 	public boolean isEdible() {
 		return this.isEdible;
 	}
 	
-	public IPhysicsEntity getPhysics(){
-		return this.physics;
+	public void detachSelf() {
+		physics.detachSelf();
+
 	}
 
 	public void setIsEdible(final boolean isEdible) {
@@ -85,10 +83,6 @@ public abstract class Entity {
 	protected void wasEaten() {
 		removeEntity();
 	}
-
-	public boolean isRotating() {
-		return this instanceof Player ? false : true;
-	}
 	
 	public void addPropertyChangeListener(final PropertyChangeListener listener){
 		pcs.addPropertyChangeListener(listener);
@@ -101,5 +95,4 @@ public abstract class Entity {
 	 public float getCenterY() {
 		return  this.physics.getCenterY();
 	}
-
 }

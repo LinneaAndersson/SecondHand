@@ -22,11 +22,6 @@ public abstract class RectangleEntity extends Entity {
 	public void onPhysicsAssigned(){
 	}	
 	
-	@Override
-	public boolean isCircle(){
-		return false;
-	}
-	
 	public float getWidth() {
 		return this.width;
 	}

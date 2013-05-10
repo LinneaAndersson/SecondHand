@@ -7,7 +7,7 @@ import com.secondhand.model.powerup.PowerUp;
 
 public class Enemy extends BlackHole {
 
-	private static float enemyMaxSpeed=2;
+	private static float enemyMaxSpeed = 2;
 	private static final float MAX_SIZE = 40;
 	private static final float MIN_SIZE = 20;
 
@@ -44,6 +44,7 @@ public class Enemy extends BlackHole {
 	// player has highest chase-priority
 	public void moveEnemy(final Entity player, final List<Entity> entityList) {
 		if (isCloseToEntity(player) && canEat(player)) {
+			// MyDebug.d("enemy" + getRadius()+ " " + player.getRadius());
 			dangerCheck(player);
 		} else {
 			dangerCheck(getHighesPriority(entityList));
@@ -69,12 +70,11 @@ public class Enemy extends BlackHole {
 	private Entity getHighesPriority(final List<Entity> entityList) {
 		Entity entity = null;
 		for (final Entity e : entityList) {
-
-			if (e.getClass() != PowerUp.class && isCloseToEntity(e)
-					&& canEat(e)) {
-				entity = getSmaller(entity, e);
+			if (!(e instanceof PowerUp)) {
+				if (isCloseToEntity(e) && canEat(e)) {
+					entity = getSmaller(entity, e);
+				}
 			}
-
 		}
 		return entity;
 	}
@@ -94,8 +94,8 @@ public class Enemy extends BlackHole {
 			if (this.gameWorld.getPhysics().isStraightLine(entity, this)) {
 				// closeToDanger();
 				physics.applyImpulse(
-						new Vector2(entity.getCenterX() - getCenterX(),
-								entity.getCenterY() - getCenterY()).mul(0.002f),
+						new Vector2(entity.getCenterX() - getCenterX(), entity
+								.getCenterY() - getCenterY()).mul(0.002f),
 						getMaxSpeed());
 			}
 			if (huntingArea != getHuntingArea()) {

@@ -4,8 +4,10 @@
 *.snapshot
 *.war
 /TODO
+/master
 /rad
 /tood
 TwirlTestTest/bin
 Twist/bin
 Twist/gen
+.DS_Store

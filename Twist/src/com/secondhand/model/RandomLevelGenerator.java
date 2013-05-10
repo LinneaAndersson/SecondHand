@@ -251,8 +251,8 @@ public class RandomLevelGenerator {
 	private int[] newPlanets() {
 		int[] list = new int[2];
 		if (levelNumber == 1) {
-			list[0]=40;
-			list[1]=50;
+			list[0]=20;
+			list[1]=30;
 		} else if (levelNumber == 2) {
 			list[0]=30;
 			list[1]=45;
@@ -270,8 +270,8 @@ public class RandomLevelGenerator {
 	private int[] newEnemies() {
 		final int[] ENEMIES = new int[2];
 		if (levelNumber < 4) {
-			ENEMIES[0] = 4 * (this.levelNumber);
-			ENEMIES[1] = 2 * this.levelNumber;
+			ENEMIES[0] = 7 * (this.levelNumber);
+			ENEMIES[1] = 5 * this.levelNumber;
 		} else {
 			ENEMIES[0] = 25;
 			ENEMIES[1] = 20;

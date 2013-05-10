@@ -8,7 +8,7 @@ import com.secondhand.model.CollisionResolver;
 import com.secondhand.model.Enemy;
 import com.secondhand.model.Entity;
 import com.secondhand.model.GameWorld;
-import com.secondhand.model.IPhysicsWorld;
+import com.secondhand.model.physics.IPhysicsWorld;
 
 public class MyPhysicsWorld implements IPhysicsWorld {
 	private PhysicsWorld physicsWorld;

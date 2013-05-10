@@ -3,7 +3,7 @@ package com.secondhand.model.sat;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.secondhand.model.Vector2;
+import com.secondhand.model.physics.Vector2;
 
 public class Polygon extends Shape {
 	public List<Vector2> edges;

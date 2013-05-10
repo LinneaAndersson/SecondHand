@@ -3,6 +3,9 @@ package com.secondhand.model;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 
+import com.secondhand.model.physics.IPhysicsEntity;
+import com.secondhand.model.physics.Vector2;
+
 
 public abstract class Entity {
 

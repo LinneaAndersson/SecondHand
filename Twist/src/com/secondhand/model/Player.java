@@ -3,6 +3,7 @@ package com.secondhand.model;
 import java.beans.PropertyChangeListener;
 import java.util.List;
 
+import com.secondhand.model.physics.Vector2;
 import com.secondhand.model.powerup.PowerUp;
 
 public class Player extends BlackHole {

@@ -5,7 +5,7 @@ import java.util.List;
 import org.anddev.andengine.opengl.buffer.BufferObject;
 import org.anddev.andengine.opengl.util.FastFloatBuffer;
 
-import com.secondhand.model.Vector2;
+import com.secondhand.model.physics.Vector2;
 
 
 public class PolygonTextureRegionBuffer extends BufferObject {

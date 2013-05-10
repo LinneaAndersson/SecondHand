@@ -3,6 +3,9 @@ package com.secondhand.model;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 
+import com.secondhand.model.physics.IPhysicsWorld;
+import com.secondhand.model.physics.Vector2;
+
 public class GameWorld {
 
 	private final EntityManager entityManager;

@@ -12,8 +12,8 @@ import com.badlogic.gdx.physics.box2d.Body;
 import com.secondhand.debug.MyDebug;
 import com.secondhand.model.CircleEntity;
 import com.secondhand.model.Entity;
-import com.secondhand.model.IPhysicsEntity;
 import com.secondhand.model.Player;
+import com.secondhand.model.physics.IPhysicsEntity;
 import com.secondhand.view.opengl.Circle;
 
 public class MyPhysicsEntity implements IPhysicsEntity {
@@ -86,7 +86,7 @@ public class MyPhysicsEntity implements IPhysicsEntity {
 
 	@Override
 	public float computePolygonRadius(
-			final List<com.secondhand.model.Vector2> polygon) {
+			final List<com.secondhand.model.physics.Vector2> polygon) {
 
 		// we define the radius to be the maximum length between the center of
 		// mass
@@ -109,7 +109,7 @@ public class MyPhysicsEntity implements IPhysicsEntity {
 	}
 
 	@Override
-	public void setTransform(final com.secondhand.model.Vector2 position) {
+	public void setTransform(final com.secondhand.model.physics.Vector2 position) {
 
 		body.setTransform(new com.badlogic.gdx.math.Vector2(position.x
 				/ PhysicsConstants.PIXEL_TO_METER_RATIO_DEFAULT, position.y
@@ -124,7 +124,7 @@ public class MyPhysicsEntity implements IPhysicsEntity {
 	// be done in model. Entity instead of body and then somehow get body?
 	// All entities that need this function are enemies and player.
 	@Override
-	public void applyImpulse(final com.secondhand.model.Vector2 force,
+	public void applyImpulse(final com.secondhand.model.physics.Vector2 force,
 			final float maxSpeed) {
 		final Vector2 velocity = body.getLinearVelocity();
 
@@ -139,8 +139,8 @@ public class MyPhysicsEntity implements IPhysicsEntity {
 	}
 
 	@Override
-	public void applyImpulse(final com.secondhand.model.Vector2 impulse,
-			final com.secondhand.model.Vector2 impulsePosition) {
+	public void applyImpulse(final com.secondhand.model.physics.Vector2 impulse,
+			final com.secondhand.model.physics.Vector2 impulsePosition) {
 
 		body.applyLinearImpulse(new Vector2(impulse.x
 				/ PhysicsConstants.PIXEL_TO_METER_RATIO_DEFAULT, impulse.y

@@ -2,6 +2,7 @@ package com.secondhand.model;
 
 import java.util.ArrayList;
 
+import com.secondhand.model.physics.Vector2;
 import com.secondhand.model.powerup.PowerUp;
 
 // I decided to refactor some code from player because the that class was so large

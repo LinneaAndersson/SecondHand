@@ -1,6 +1,7 @@
-package com.secondhand.model;
+package com.secondhand.model.physics;
 
 import java.util.List;
+
 
 public interface IPhysicsEntity {
 	

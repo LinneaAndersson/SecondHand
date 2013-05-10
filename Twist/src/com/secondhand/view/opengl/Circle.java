@@ -11,7 +11,7 @@ import org.anddev.andengine.entity.shape.Shape;
 import org.anddev.andengine.opengl.util.GLHelper;
 import org.anddev.andengine.opengl.vertex.VertexBuffer;
 
-import com.secondhand.model.Vector2;
+import com.secondhand.model.physics.Vector2;
 
 
 /**

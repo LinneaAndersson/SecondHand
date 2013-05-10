@@ -6,7 +6,7 @@ import java.util.List;
 import org.anddev.andengine.opengl.util.FastFloatBuffer;
 import org.anddev.andengine.opengl.vertex.VertexBuffer;
 
-import com.secondhand.model.Vector2;
+import com.secondhand.model.physics.Vector2;
 
 
 

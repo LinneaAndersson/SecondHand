@@ -2,6 +2,8 @@ package com.secondhand.model;
 
 import java.util.List;
 
+import com.secondhand.model.physics.Vector2;
+
 public class Obstacle extends PolygonEntity {
 	
 	

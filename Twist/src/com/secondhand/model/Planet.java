@@ -1,5 +1,6 @@
 package com.secondhand.model;
 
+import com.secondhand.model.physics.Vector2;
 import com.secondhand.model.resource.PlanetType;
 
 public class Planet extends CircleEntity {

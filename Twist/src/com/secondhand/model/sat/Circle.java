@@ -1,6 +1,6 @@
 package com.secondhand.model.sat;
 
-import com.secondhand.model.Vector2;
+import com.secondhand.model.physics.Vector2;
 
 public class Circle extends Shape {
 	

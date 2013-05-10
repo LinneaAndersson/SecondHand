@@ -12,7 +12,7 @@ import com.secondhand.controller.model.PlayerController;
 import com.secondhand.debug.MyDebug;
 import com.secondhand.model.GameWorld;
 import com.secondhand.model.Player;
-import com.secondhand.model.Vector2;
+import com.secondhand.model.physics.Vector2;
 import com.secondhand.model.powerup.PowerUp;
 import com.secondhand.model.resource.HighScoreList;
 import com.secondhand.view.scene.AllScenes;

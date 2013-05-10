@@ -1,5 +1,7 @@
 package com.secondhand.model;
 
+import com.secondhand.model.physics.Vector2;
+
 public abstract class CircleEntity extends Entity {	
 	protected final float radius;
 	

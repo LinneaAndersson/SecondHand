@@ -8,7 +8,7 @@ import org.anddev.andengine.extension.physics.box2d.PhysicsWorld;
 import com.secondhand.controller.model.PlayerController;
 import com.secondhand.model.GameWorld;
 import com.secondhand.model.Player;
-import com.secondhand.model.Vector2;
+import com.secondhand.model.physics.Vector2;
 import com.secondhand.model.resource.PowerUpType;
 import com.secondhand.view.physics.MyPhysicsWorld;
 

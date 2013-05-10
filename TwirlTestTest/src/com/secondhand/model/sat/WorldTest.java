@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.secondhand.debug.MyDebug;
-import com.secondhand.model.Vector2;
+import com.secondhand.model.physics.Vector2;
 
 
 

@@ -9,7 +9,7 @@ import org.anddev.andengine.engine.camera.Camera;
 import org.anddev.andengine.opengl.texture.region.TextureRegion;
 import org.anddev.andengine.opengl.util.GLHelper;
 
-import com.secondhand.model.Vector2;
+import com.secondhand.model.physics.Vector2;
 
 
 /**

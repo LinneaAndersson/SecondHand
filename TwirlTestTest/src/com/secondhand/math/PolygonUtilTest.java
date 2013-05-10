@@ -3,7 +3,7 @@ package com.secondhand.math;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.secondhand.model.Vector2;
+import com.secondhand.model.physics.Vector2;
 import com.secondhand.model.util.PolygonUtil;
 
 

@@ -2,7 +2,6 @@ package com.secondhand.model.powerup;
 
 import java.util.Random;
 
-import com.secondhand.debug.MyDebug;
 import com.secondhand.model.GameWorld;
 import com.secondhand.model.Player;
 import com.secondhand.model.physics.Vector2;

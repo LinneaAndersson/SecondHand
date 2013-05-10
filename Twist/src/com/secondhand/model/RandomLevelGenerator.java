@@ -33,7 +33,7 @@ public class RandomLevelGenerator {
 
 	private final World world;
 	private final Random rng;
-	private final float playerRadius = 30.0f;
+	private static final float PLAYER_RADIUS = 30.0f;
 
 	RandomLevelGenerator(final Player player, final GameWorld level) {
 		rng = new Random();
@@ -68,7 +68,7 @@ public class RandomLevelGenerator {
 			while (true) {
 				
 				radius = RandomUtil
-						.nextFloat(rng, Enemy.getMinSize(), this.playerRadius);
+						.nextFloat(rng, Enemy.getMinSize(), this.PLAYER_RADIUS);
 
 				xAxis = rng.nextInt(this.levelWidth);
 				yAxis = rng.nextInt(this.levelHeight);
@@ -77,7 +77,7 @@ public class RandomLevelGenerator {
 						radius);
 
 				if (world.addToWorld(circle)
-						&& radius < 40 * playerRadius) {
+						&& radius < 40 * PLAYER_RADIUS) {
 					break;
 				}
 			}
@@ -138,7 +138,7 @@ public class RandomLevelGenerator {
 		}
 	}
 
-	private void placeOutPowerUps(int number) {
+	private void placeOutPowerUps(final int number) {
 		for (int i = 0; i < number; ++i) {
 
 			while (true) {
@@ -174,7 +174,7 @@ public class RandomLevelGenerator {
 
 			while (true) {
 				radius = RandomUtil
-						.nextFloat(rng, MIN_SIZE, playerRadius);
+						.nextFloat(rng, MIN_SIZE, PLAYER_RADIUS);
 
 				xAxis = rng.nextInt(this.levelWidth);
 				yAxis = rng.nextInt(this.levelHeight);
@@ -183,7 +183,7 @@ public class RandomLevelGenerator {
 						radius);
 
 				if (world.addToWorld(circle)
-						&& radius < 40 * playerRadius) {
+						&& radius < 40 * PLAYER_RADIUS) {
 					break;
 				}
 			}
@@ -215,13 +215,13 @@ public class RandomLevelGenerator {
 
 		placeOutObstacles(newObstacles());
 
-		int[] numPlanets= newPlanets();
-		placeOutPlanets(numPlanets[0], numPlanets[1], (playerRadius / 4),
-				playerRadius * 6);
+		final int[] numPlanets= newPlanets();
+		placeOutPlanets(numPlanets[0], numPlanets[1], (PLAYER_RADIUS / 4),
+				PLAYER_RADIUS * 6);
 
 		placeOutPowerUps(10);
 
-		int[] numEnemies= newEnemies();
+		final int[] numEnemies= newEnemies();
 		placeOutEnemies(numEnemies[0],numEnemies[1]);
 
 	}

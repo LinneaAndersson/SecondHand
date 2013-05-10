@@ -2,7 +2,6 @@ package com.secondhand.view.entities;
 
 import java.beans.PropertyChangeEvent;
 
-import org.anddev.andengine.audio.sound.Sound;
 import org.anddev.andengine.extension.physics.box2d.PhysicsWorld;
 
 import com.secondhand.model.Player;

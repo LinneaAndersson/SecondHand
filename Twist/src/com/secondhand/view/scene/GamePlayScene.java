@@ -251,6 +251,15 @@ public class GamePlayScene extends GameScene implements PropertyChangeListener {
 			newLevelStarted();
 		} else if (eventName.equals("PlayerWallCollision")) {
 			onPlayerWallCollision();
+		} 
+		
+		else if (eventName.equals(Player.ADD_POWER_UP)) {
+			PowerUp powerUp = (PowerUp) event.getNewValue();
+			if(powerUp.hasText()) {
+				showFadingTextNotifier(powerUp.getText(),
+						new Vector2(powerUp.getCenterX(), powerUp.getCenterY()));
+			}
+	
 		}
 		
 	}

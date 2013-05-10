@@ -17,8 +17,9 @@ public final class PowerUpFactory {
 	public static PowerUp getRandomPowerUp(final Vector2 position, final GameWorld gameWorld, final Random rng) {
 		final int rand = rng.nextInt(NUM_POWER_UPS);
 		
+		return new ExtraLife(position, gameWorld);
 		
-		if(rand == 0) {
+		/*if(rand == 0) {
 			return new EatObstacle(position, gameWorld);
 		} else if(rand == 1) {
 			return new ExtraLife(position, gameWorld);
@@ -35,6 +36,6 @@ public final class PowerUpFactory {
 		} else if(rand == 7) {
 			return new MirroredMovement(position, gameWorld);
 		}else
-			return null;
+			return null;*/
 	}
 }

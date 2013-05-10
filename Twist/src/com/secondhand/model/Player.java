@@ -3,6 +3,7 @@ package com.secondhand.model;
 import java.beans.PropertyChangeListener;
 import java.util.List;
 
+import com.secondhand.debug.MyDebug;
 import com.secondhand.model.powerup.PowerUp;
 
 public class Player extends BlackHole {
@@ -118,6 +119,7 @@ public class Player extends BlackHole {
 	}
 
 	public void removePowerUp(final PowerUp powerUp) {
+		MyDebug.d("now we deattach the powerup");
 		this.powerUpList.remove(powerUp);
 		util.fireObject(REMOVE_POWER_UP, null, powerUp);
 	}
@@ -166,7 +168,7 @@ public class Player extends BlackHole {
 
 		pcs.firePropertyChange(POWER_UP_SOUND, null, null);
 
-		//addPowerUp(powerUp);
+		addPowerUp(powerUp);
 
 		powerUp.wasEaten();
 	}

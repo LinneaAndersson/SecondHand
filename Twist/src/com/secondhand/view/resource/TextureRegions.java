@@ -4,7 +4,6 @@ import java.util.EnumMap;
 import java.util.Map;
 
 import org.anddev.andengine.opengl.texture.TextureOptions;
-import org.anddev.andengine.opengl.texture.atlas.bitmap.source.AssetBitmapTextureAtlasSource;
 import org.anddev.andengine.opengl.texture.region.TextureRegion;
 
 import com.secondhand.model.resource.PlanetType;

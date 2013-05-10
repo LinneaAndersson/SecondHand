@@ -239,7 +239,7 @@ public class GamePlayScene extends GameScene implements PropertyChangeListener {
 			
 			final float newRadius = (Float) event.getNewValue();
 			
-			float completion =2*(
+			final float completion =2*(
 					newRadius -GameWorld.PLAYER_STARTING_SIZE) / 
 					(float)gameWorld.getPlayer().getMaxSize();
 			

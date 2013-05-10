@@ -29,8 +29,8 @@ public class MyPhysicsEntity implements IPhysicsEntity {
 		body.setUserData(entity);
 		
 		
-		physicsConnector = new CustomPhysicsConnector(shape, entity instanceof CircleEntity,
-				body, true, entity instanceof Player);
+		physicsConnector = new CustomPhysicsConnector(shape, true/*entity instanceof CircleEntity*/,
+				body, true, false /*entity instanceof Player*/);
 		physicsWorld.registerPhysicsConnector(physicsConnector);
 		this.body = body;
 		this.shape = shape;

@@ -98,6 +98,7 @@ public class GameWorld {
 	
 	// update game world for this frame.
 	public void updateGameWorld() {
+		
 		if (checkPlayerBigEnough()) {
 			nextLevel();
 		} else {

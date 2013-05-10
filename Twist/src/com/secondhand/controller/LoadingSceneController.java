@@ -34,7 +34,7 @@ class LoadingSceneController extends Entity {
 		} else if(this.nextScene == AllScenes.GAME_PLAY_SCENE) {
 			loadingScene.getLoadingTextView().startAnimation(LocalizationStrings.getInstance().getLocalizedString("loading_level"));
 		}
-		
+			
 		loadingScene.load(new LoadingDoneCallBack());
 	}
 	

@@ -2,7 +2,6 @@ package com.secondhand.model;
 
 import java.util.List;
 
-import com.secondhand.debug.MyDebug;
 import com.secondhand.model.powerup.PowerUp;
 
 public class Enemy extends BlackHole {
@@ -117,7 +116,6 @@ public class Enemy extends BlackHole {
 	}
 
 	public void retreat(final Entity danger) {
-		MyDebug.d("Enemy: Retreat");
 	}
 
 	@Override

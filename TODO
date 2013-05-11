@@ -13,14 +13,7 @@ Important things that must be done for the success of the project:
 * The powerUps doesn't sync body and shape
 
 * Replace some property changes with some kind of interface or
-callback method instead.
-I'm talking about stuff like
-	pcs.firePropertyChange(GROW_SOUND, null, null);
-	pcs.firePropertyChange(PLAYER_KILLED_SOUND, null, null);
-
-Causing a soundeffect to be played has nothing do with a property
-change. The markers will probably not like that at all. We should probably
-use some kind of interface or callback method instead.
+callback method instead. - Done, but just changed the propertyChange.
 
 
 - Documentation

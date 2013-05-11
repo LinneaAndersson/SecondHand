@@ -2,6 +2,8 @@ package com.secondhand.view.resource;
 
 import org.anddev.andengine.audio.sound.Sound;
 
+import com.secondhand.model.GameWorld;
+import com.secondhand.model.Player;
 import com.secondhand.model.resource.SoundType;
 import com.secondhand.view.loader.SoundLoader;
 
@@ -38,27 +40,19 @@ public class Sounds {
 			
 	}
 	
-	public Sound getSound(String soundName){
-		if(soundName.equalsIgnoreCase("PowerUp"))
+	public Sound getPlayerSound(String playerSound){
+		if(Player.ADD_POWER_UP.equalsIgnoreCase(playerSound))
 			return powerUpSound;
 		
-		if(soundName.equalsIgnoreCase("grow"))
+		if(Player.GROW_SOUND.equalsIgnoreCase(playerSound))
 			return growSound;
 		
-		if(soundName.equalsIgnoreCase("obstacleCollision"))
+		if(Player.BIGGER_ENTITY_COLLISION_SOUND.equalsIgnoreCase(playerSound))
 			return obstacleCollisionSound;
 		
-		if(soundName.equalsIgnoreCase("Beep"))
-			return beep;
-		
-		if(soundName.equalsIgnoreCase("playerKilled"))
+		if(Player.PLAYER_KILLED_SOUND.equalsIgnoreCase(playerSound))
 			return playerKilledSound;
-		
-		if(soundName.equalsIgnoreCase("Win"))
-			return winSound;
 	
-		if(soundName.equalsIgnoreCase("Highscore"))
-			return highScoreEntry;
 		
 		return null;
 	}

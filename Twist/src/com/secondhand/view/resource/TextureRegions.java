@@ -8,7 +8,7 @@ import org.anddev.andengine.opengl.texture.region.TextureRegion;
 
 import com.secondhand.model.resource.PlanetType;
 import com.secondhand.model.resource.PowerUpType;
-import com.secondhand.view.loader.TextureRegionLoader;
+import com.secondhand.view.resource.loader.TextureRegionLoader;
 
 
 public class TextureRegions {

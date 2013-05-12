@@ -1,4 +1,4 @@
-package com.secondhand.view.loader;
+package com.secondhand.view.resource.loader;
 
 import java.io.IOException;
 

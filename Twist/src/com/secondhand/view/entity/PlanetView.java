@@ -1,4 +1,4 @@
-package com.secondhand.view.entities;
+package com.secondhand.view.entity;
 
 import org.anddev.andengine.extension.physics.box2d.PhysicsWorld;
 

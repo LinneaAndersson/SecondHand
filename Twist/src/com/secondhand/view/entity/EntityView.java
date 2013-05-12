@@ -1,4 +1,4 @@
-package com.secondhand.view.entities;
+package com.secondhand.view.entity;
 
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;

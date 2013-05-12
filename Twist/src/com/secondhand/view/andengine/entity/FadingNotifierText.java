@@ -1,4 +1,4 @@
-package com.secondhand.view.entity;
+package com.secondhand.view.andengine.entity;
 
 import javax.microedition.khronos.opengles.GL10;
 

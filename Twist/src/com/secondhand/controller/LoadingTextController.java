@@ -2,7 +2,7 @@ package com.secondhand.controller;
 
 import org.anddev.andengine.entity.Entity;
 
-import com.secondhand.view.entity.LoadingTextView;
+import com.secondhand.view.andengine.entity.LoadingTextView;
 
 class LoadingTextController extends Entity {
 	

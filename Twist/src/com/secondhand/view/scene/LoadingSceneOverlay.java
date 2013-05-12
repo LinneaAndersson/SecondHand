@@ -5,7 +5,7 @@ import org.anddev.andengine.engine.camera.Camera;
 import org.anddev.andengine.entity.Entity;
 import org.anddev.andengine.entity.primitive.Rectangle;
 
-import com.secondhand.view.entity.LoadingTextView;
+import com.secondhand.view.andengine.entity.LoadingTextView;
 
 // a transparent overlay that can be used as a loading scene. 
 public class LoadingSceneOverlay extends Entity{

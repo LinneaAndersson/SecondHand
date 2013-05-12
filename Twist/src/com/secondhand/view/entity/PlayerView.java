@@ -1,10 +1,9 @@
-package com.secondhand.view.entities;
+package com.secondhand.view.entity;
 
 import java.beans.PropertyChangeEvent;
 
 import org.anddev.andengine.extension.physics.box2d.PhysicsWorld;
 
-import com.secondhand.debug.MyDebug;
 import com.secondhand.model.Player;
 import com.secondhand.model.powerup.PowerUp;
 import com.secondhand.view.resource.Sounds;

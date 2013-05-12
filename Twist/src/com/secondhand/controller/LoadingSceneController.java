@@ -60,11 +60,7 @@ class LoadingSceneController extends Entity {
 				TextureRegions.getInstance().load();
 				Sounds.getInstance().load();
 			} else if(nextScene == AllScenes.GAME_PLAY_SCENE) {
-				
-			
-				// find some better place to register this.
-				//sceneController.getSceneManager().getGamePlayScene().setPhysics(new Physics());
-				
+					
 				// preoload gameplay scene. 
 				sceneController.getSceneManager().getScene(AllScenes.GAME_PLAY_SCENE).loadScene();
 			}

@@ -36,8 +36,6 @@ public class Polygon extends Shape {
 	private Body mBody;
 	private PolygonShape mPolygonShape;
 
-	/* private final float mMaxLength; */
-
 	public Polygon(final Vector2 position, final List<Vector2> polygon) {
 		this(position.x, position.y, polygon);
 
@@ -71,9 +69,6 @@ public class Polygon extends Shape {
 		this.mPolygonVertexBuffer = new PolygonVertexBuffer(
 				this.mPolygon.size(), GL11.GL_STATIC_DRAW, true);
 		this.updateVertexBuffer();
-
-		// used in the culling logic
-		// this.mMaxLength = computeMaxLength(polygon);
 	}
 
 	public List<Vector2> getPolygon() {

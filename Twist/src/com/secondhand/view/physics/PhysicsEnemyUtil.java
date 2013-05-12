@@ -55,8 +55,7 @@ public class PhysicsEnemyUtil {
 		// hope this works, otherwise Andreas will have to fix it. 
 		final Vector2 v = new Vector2(enemy.getCenterX(), enemy.getCenterY());   //enemy.getPhysics().getBody().getWorldCenter();
 		
-		
-		//Vector2 v2 = enemy.getBody().getLinearVelocity();
+	
 		physics.rayCast(new RayCastCallback(){
 
 			@Override

@@ -156,8 +156,6 @@ public class GamePlayScene extends GameScene implements PropertyChangeListener {
 		// reset zoom
 		smoothCamera.setZoomFactor(1.0f);
 
-		// camera.setCenter(camera.getWidth()/2, camera.getHeight()/2);
-
 		smoothCamera.setBoundsEnabled(false);
 		this.smoothCamera.setBounds(0, this.smoothCamera.getWidth(), 0,
 				this.smoothCamera.getHeight());

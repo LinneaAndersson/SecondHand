@@ -20,10 +20,8 @@ callback method instead. - Done, but just changed the propertyChange.
 
 * Update the user cases to reflect the changes we've made during the coding
 * We must also update the class diagram for the model(in the RAD).
-* Describe the MVC model in the SDD(the model is what primarily
-should be described, though)
+* Describe the MVC model in the SDD.
 * Make 2 sequence diagrams(use something like graphviz)
-
 
 =================================
 Things we can do if we have time:

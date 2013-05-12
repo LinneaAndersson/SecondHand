@@ -8,7 +8,7 @@ Important things that must be done for the success of the project:
 * Fix PowerUpFactory.
 * Write unit tests for the model(start doing this once we know that the model is 100% stable )
 * Make sure that the entities are not placed top of each other in the level generation
-* Fix the speedup powerup(it does not currently work)
+* Fix a texture for slowdown powerup.
 * The double score powerup also needs some fixing, see the TODO in DoubleScore.java
 * The powerUps doesn't sync body and shape
 

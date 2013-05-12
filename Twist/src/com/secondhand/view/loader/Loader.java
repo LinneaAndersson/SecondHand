@@ -4,7 +4,7 @@ import org.anddev.andengine.engine.Engine;
 
 import android.content.Context;
 
-public abstract class Loader implements ILoader {
+public class Loader {
 	
 	protected Engine engine;
 	protected Context context;

@@ -90,11 +90,7 @@ public abstract class BlackHole extends CircleEntity {
 
 
 	public void eatEntityUtil(final Entity entity) {
-		// for now we won't handle black holes eating other black holes.	
-		/*if(entity instanceof BlackHole)
-			return;*/
-
-
+		
 		if(!this.canEat(entity)) {
 			entityWasTooBigToEat(entity);
 			return;	

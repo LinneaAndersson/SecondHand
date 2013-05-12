@@ -1,4 +1,4 @@
-package com.secondhand.controller.model;
+package com.secondhand.controller;
 
 import org.anddev.andengine.engine.handler.timer.ITimerCallback;
 import org.anddev.andengine.engine.handler.timer.TimerHandler;

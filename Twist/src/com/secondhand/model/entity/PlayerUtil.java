@@ -11,7 +11,10 @@ class PlayerUtil {
 	private final PowerList list;
 	private boolean isMirroredMovement;
 
-	public PlayerUtil(final Player player) {
+	
+	public static final float PLAYER_SPEED = 40;
+
+ 	public PlayerUtil(final Player player) {
 		this.player = player;
 		list = new PowerList(player);
 		this.isMirroredMovement = false;
@@ -79,12 +82,11 @@ class PlayerUtil {
 		}
 
 		force.x = force.x / force.len();
-		force.y = force.y / force.len();
+		force.y = force.y / force.len();		
 
-		force.mul(40);
+		force.mul(player.getSpeedMultiplier() * PLAYER_SPEED);
 		
 		player.physics.applyImpulse(force, forcePosition);
-	
 	}
 
 

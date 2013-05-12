@@ -6,21 +6,19 @@ import java.util.List;
 import com.secondhand.model.physics.Vector2;
 
 public class Player extends BlackHole {
-	
 
-	
 	private String name;
 
 	// starting lives for a new player.
 	private static final int STARTING_LIVES = 1;
-
-	private static final int PLAYER_MAX_SPEED = 20;
 
 	private int lives;
 
 	private int maxSize;
 
 	private float scoreMultiplier;
+	
+	private float speedMultiplier;
 
 	private Vector2 needsToMovePosition;
 
@@ -44,6 +42,7 @@ public class Player extends BlackHole {
 			final GameWorld gameWorld, final int startingLives) {
 		super(position, radius, gameWorld);
 		
+		this.speedMultiplier = 1;
 		this.lives = startingLives;
 		this.scoreMultiplier = 1;
 		util = new PlayerUtil(this);
@@ -92,6 +91,16 @@ public class Player extends BlackHole {
 		return this.scoreMultiplier;
 	}
 
+	
+	public void setSpeedMultiplier(final float speedMultiplier) {
+		this.speedMultiplier = speedMultiplier;
+	}
+
+	public float getSpeedMultiplier() {
+		return this.speedMultiplier;
+	}
+	
+	
 	private void changeLives(final int change) {
 		lives += change;
 		

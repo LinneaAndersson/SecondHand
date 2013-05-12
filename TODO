@@ -29,4 +29,6 @@ Things we can do if we have time:
 * make the menus look prettier.
 * Player movement with particles.
 * Feel free to add other items here.
+* Make the Player grow bigger more smooth. (grow in small steps)
+* When collision, remove bodies earlier.
 

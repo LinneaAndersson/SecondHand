@@ -3,7 +3,7 @@ package com.secondhand.controller;
 import org.anddev.andengine.engine.handler.timer.ITimerCallback;
 import org.anddev.andengine.engine.handler.timer.TimerHandler;
 
-import com.secondhand.model.Player;
+import com.secondhand.model.entity.Player;
 import com.secondhand.model.powerup.PowerUp;
 
 public final class PlayerController {

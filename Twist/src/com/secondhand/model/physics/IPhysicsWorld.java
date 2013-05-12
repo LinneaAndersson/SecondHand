@@ -1,8 +1,8 @@
 package com.secondhand.model.physics;
 
-import com.secondhand.model.Enemy;
-import com.secondhand.model.Entity;
-import com.secondhand.model.GameWorld;
+import com.secondhand.model.entity.Enemy;
+import com.secondhand.model.entity.Entity;
+import com.secondhand.model.entity.GameWorld;
 
 public interface IPhysicsWorld {
 

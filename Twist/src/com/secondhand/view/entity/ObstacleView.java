@@ -2,7 +2,7 @@ package com.secondhand.view.entity;
 
 import org.anddev.andengine.extension.physics.box2d.PhysicsWorld;
 
-import com.secondhand.model.Obstacle;
+import com.secondhand.model.entity.Obstacle;
 import com.secondhand.view.opengl.TexturedPolygon;
 import com.secondhand.view.physics.FixtureDefs;
 import com.secondhand.view.resource.TextureRegions;

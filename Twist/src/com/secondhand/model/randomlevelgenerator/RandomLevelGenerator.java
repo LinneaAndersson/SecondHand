@@ -4,12 +4,12 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-import com.secondhand.model.Enemy;
-import com.secondhand.model.Entity;
-import com.secondhand.model.GameWorld;
-import com.secondhand.model.Obstacle;
-import com.secondhand.model.Planet;
-import com.secondhand.model.Player;
+import com.secondhand.model.entity.Enemy;
+import com.secondhand.model.entity.Entity;
+import com.secondhand.model.entity.GameWorld;
+import com.secondhand.model.entity.Obstacle;
+import com.secondhand.model.entity.Planet;
+import com.secondhand.model.entity.Player;
 import com.secondhand.model.physics.Vector2;
 import com.secondhand.model.powerup.PowerUp;
 import com.secondhand.model.powerup.PowerUpFactory;

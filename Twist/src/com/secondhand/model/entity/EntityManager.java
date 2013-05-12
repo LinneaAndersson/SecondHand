@@ -1,4 +1,4 @@
-package com.secondhand.model;
+package com.secondhand.model.entity;
 
 import java.util.List;
 import java.util.Stack;

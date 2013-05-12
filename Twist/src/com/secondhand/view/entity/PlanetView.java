@@ -2,7 +2,7 @@ package com.secondhand.view.entity;
 
 import org.anddev.andengine.extension.physics.box2d.PhysicsWorld;
 
-import com.secondhand.model.Planet;
+import com.secondhand.model.entity.Planet;
 import com.secondhand.view.opengl.TexturedCircle;
 import com.secondhand.view.physics.FixtureDefs;
 import com.secondhand.view.resource.TextureRegions;

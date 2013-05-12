@@ -1,4 +1,4 @@
-package com.secondhand.model;
+package com.secondhand.model.entity;
 
 public final class CollisionResolver {
 

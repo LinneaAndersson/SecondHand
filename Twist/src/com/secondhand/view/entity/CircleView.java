@@ -5,7 +5,7 @@ import org.anddev.andengine.extension.physics.box2d.PhysicsWorld;
 
 import com.badlogic.gdx.physics.box2d.BodyDef.BodyType;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
-import com.secondhand.model.CircleEntity;
+import com.secondhand.model.entity.CircleEntity;
 import com.secondhand.view.opengl.Circle;
 
 public class CircleView extends EntityView {

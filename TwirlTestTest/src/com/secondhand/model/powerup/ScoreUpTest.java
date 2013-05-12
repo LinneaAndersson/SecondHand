@@ -1,8 +1,8 @@
 package com.secondhand.model.powerup;
 
 import com.badlogic.gdx.math.Vector2;
-import com.secondhand.model.GameWorld;
-import com.secondhand.model.Player;
+import com.secondhand.model.entity.GameWorld;
+import com.secondhand.model.entity.Player;
 
 import junit.framework.TestCase;
 

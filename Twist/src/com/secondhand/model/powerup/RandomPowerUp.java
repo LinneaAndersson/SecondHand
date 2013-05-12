@@ -2,8 +2,8 @@ package com.secondhand.model.powerup;
 
 import java.util.Random;
 
-import com.secondhand.model.GameWorld;
-import com.secondhand.model.Player;
+import com.secondhand.model.entity.GameWorld;
+import com.secondhand.model.entity.Player;
 import com.secondhand.model.physics.Vector2;
 import com.secondhand.model.resource.PowerUpType;
 

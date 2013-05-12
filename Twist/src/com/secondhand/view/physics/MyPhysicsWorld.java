@@ -4,10 +4,10 @@ import org.anddev.andengine.extension.physics.box2d.PhysicsWorld;
 
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Contact;
-import com.secondhand.model.CollisionResolver;
-import com.secondhand.model.Enemy;
-import com.secondhand.model.Entity;
-import com.secondhand.model.GameWorld;
+import com.secondhand.model.entity.CollisionResolver;
+import com.secondhand.model.entity.Enemy;
+import com.secondhand.model.entity.Entity;
+import com.secondhand.model.entity.GameWorld;
 import com.secondhand.model.physics.IPhysicsWorld;
 
 public class MyPhysicsWorld implements IPhysicsWorld {

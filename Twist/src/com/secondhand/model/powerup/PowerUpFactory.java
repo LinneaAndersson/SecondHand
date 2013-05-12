@@ -2,7 +2,7 @@ package com.secondhand.model.powerup;
 
 import java.util.Random;
 
-import com.secondhand.model.GameWorld;
+import com.secondhand.model.entity.GameWorld;
 import com.secondhand.model.physics.Vector2;
 
 // TODO: maybe we should make some powerups, like the ExtraLife powerup, more rare than the others. 

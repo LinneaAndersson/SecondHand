@@ -1,5 +1,5 @@
 
-package com.secondhand.model;
+package com.secondhand.model.entity;
 
 import com.secondhand.model.physics.Vector2;
 

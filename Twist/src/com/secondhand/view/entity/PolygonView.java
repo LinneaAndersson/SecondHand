@@ -4,7 +4,7 @@ import org.anddev.andengine.extension.physics.box2d.PhysicsWorld;
 
 import com.badlogic.gdx.physics.box2d.BodyDef.BodyType;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
-import com.secondhand.model.PolygonEntity;
+import com.secondhand.model.entity.PolygonEntity;
 import com.secondhand.view.opengl.Polygon;
 import com.secondhand.view.physics.MyPhysicsFactory;
 

@@ -9,8 +9,8 @@ import org.anddev.andengine.entity.scene.Scene.IOnSceneTouchListener;
 import org.anddev.andengine.input.touch.TouchEvent;
 
 import com.secondhand.debug.MyDebug;
-import com.secondhand.model.GameWorld;
-import com.secondhand.model.Player;
+import com.secondhand.model.entity.GameWorld;
+import com.secondhand.model.entity.Player;
 import com.secondhand.model.physics.Vector2;
 import com.secondhand.model.powerup.PowerUp;
 import com.secondhand.model.resource.HighScoreList;

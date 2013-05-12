@@ -2,8 +2,8 @@ package com.secondhand.view.resource;
 
 import org.anddev.andengine.audio.sound.Sound;
 
-import com.secondhand.model.GameWorld;
-import com.secondhand.model.Player;
+import com.secondhand.model.entity.GameWorld;
+import com.secondhand.model.entity.Player;
 import com.secondhand.model.resource.SoundType;
 import com.secondhand.view.loader.SoundLoader;
 

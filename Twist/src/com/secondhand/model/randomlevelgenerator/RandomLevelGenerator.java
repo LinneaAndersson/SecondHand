@@ -1,21 +1,25 @@
-package com.secondhand.model;
+package com.secondhand.model.randomlevelgenerator;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+import com.secondhand.model.Enemy;
+import com.secondhand.model.Entity;
+import com.secondhand.model.GameWorld;
+import com.secondhand.model.Obstacle;
+import com.secondhand.model.Planet;
+import com.secondhand.model.Player;
 import com.secondhand.model.physics.Vector2;
 import com.secondhand.model.powerup.PowerUp;
 import com.secondhand.model.powerup.PowerUpFactory;
+import com.secondhand.model.randomlevelgenerator.sat.Circle;
+import com.secondhand.model.randomlevelgenerator.sat.Polygon;
+import com.secondhand.model.randomlevelgenerator.sat.PolygonFactory;
+import com.secondhand.model.randomlevelgenerator.sat.World;
 import com.secondhand.model.resource.PlanetType;
-import com.secondhand.model.sat.Circle;
-import com.secondhand.model.sat.Polygon;
-import com.secondhand.model.sat.PolygonFactory;
-import com.secondhand.model.sat.World;
-import com.secondhand.model.util.PolygonUtil;
-import com.secondhand.model.util.RandomUtil;
 
-class RandomLevelGenerator {
+public class RandomLevelGenerator {
 
 	private final int levelNumber;
 
@@ -35,7 +39,7 @@ class RandomLevelGenerator {
 	private final Random rng;
 	private static final float PLAYER_RADIUS = 30.0f;
 
-	RandomLevelGenerator(final Player player, final GameWorld level) {
+	public RandomLevelGenerator(final Player player, final GameWorld level) {
 		rng = new Random();
 		this.levelNumber = level.getLevelNumber();
 		this.level = level;

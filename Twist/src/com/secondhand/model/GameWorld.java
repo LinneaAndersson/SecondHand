@@ -6,6 +6,7 @@ import java.util.List;
 
 import com.secondhand.model.physics.IPhysicsWorld;
 import com.secondhand.model.physics.Vector2;
+import com.secondhand.model.randomlevelgenerator.RandomLevelGenerator;
 
 public class GameWorld {
 

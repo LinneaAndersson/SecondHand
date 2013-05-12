@@ -1,4 +1,4 @@
-	package com.secondhand.model.util;
+	package com.secondhand.model.randomlevelgenerator;
 
 import java.util.ArrayList;
 import java.util.List;

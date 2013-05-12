@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import com.secondhand.model.physics.Vector2;
 
 // I decided to refactor some code from player because the that class was so large
-public class PlayerUtil {
+class PlayerUtil {
 
 	private final Player player;
 	private final PowerList list;

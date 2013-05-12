@@ -15,7 +15,7 @@ import com.secondhand.model.sat.World;
 import com.secondhand.model.util.PolygonUtil;
 import com.secondhand.model.util.RandomUtil;
 
-public class RandomLevelGenerator {
+class RandomLevelGenerator {
 
 	private final int levelNumber;
 

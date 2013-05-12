@@ -1,6 +1,5 @@
 package com.secondhand.model;
 
-
 public final class CollisionResolver {
 
 	private final GameWorld gameWorld;

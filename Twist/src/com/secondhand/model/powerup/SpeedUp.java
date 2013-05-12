@@ -8,28 +8,17 @@ import com.secondhand.model.resource.PowerUpType;
 public class SpeedUp extends PowerUp {
 
 	private final static float DURATION = 10;
-	private int factor = 3;
+	private final static int FACTOR = 2;
 	
 	public SpeedUp(final Vector2 position, 
 			final GameWorld level) {
 		super(position, PowerUpType.SPEED_UP, level, DURATION);
 		
 	}
-
-	public int getFactor() {
-		return factor;
-	}
-	
-	public void setFactor(final int newFactor) {
-		factor = newFactor;
-	}
 	
 	@Override
 	public void activateEffect(final Player player) {
-		// TODO: fix this one. 
-		// max speed is no longer used in move, so we need to fix this.
-		/*
-		player.setMaxSpeed(player.getMaxSpeed()*factor);*/
+		player.setSpeedMultiplier(FACTOR);
 	}
 	
 	@Override
@@ -37,8 +26,8 @@ public class SpeedUp extends PowerUp {
 		
 		final boolean hasAnother = super.hasAnother(player);
 		
-		/*if(!hasAnother)
-			player.setMaxSpeed(player.getMaxSpeed()/factor);	*/
+		if(!hasAnother)
+			player.setSpeedMultiplier(player.getSpeedMultiplier()/FACTOR);
 	}
 	
 

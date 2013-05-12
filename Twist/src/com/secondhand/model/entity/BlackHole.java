@@ -12,7 +12,7 @@ public abstract class BlackHole extends CircleEntity {
 
 	private boolean canEatInedibles;
 
-	private Vector2 position;
+	private final Vector2 position;
 
 	//I put this in BlackHole, so enemy black holes will also have scores
 	// but placing it here made coding the eating logic much more convenient.
@@ -21,18 +21,11 @@ public abstract class BlackHole extends CircleEntity {
 
 	public BlackHole(final Vector2 position, final float radius,
 			final GameWorld level,
-			final float maxSpeed, final int startingScore) {
+			final float maxSpeed) {
 		super(position, radius, true, level);
 		this.position = position;
 		this.maxSpeed = maxSpeed;
-		this.score = startingScore;
 		this.canEatInedibles = false;
-	}
-
-	public BlackHole(final Vector2 position, final float radius,
-			final GameWorld level,
-			final float maxSpeed) {
-		this(position, radius, level, maxSpeed, 0);
 	}
 
 	public float getPosX(){
@@ -121,6 +114,7 @@ public abstract class BlackHole extends CircleEntity {
 			else
 				this.eatEntityUtil(otherBlackHole);
 		} else {
+			// else, just eat the entity.
 			eatEntityUtil(entity);
 		}
 

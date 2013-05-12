@@ -41,9 +41,8 @@ public class Player extends BlackHole {
 
 	// =============================================
 	public Player(final Vector2 position, final float radius,
-			final GameWorld gameWorld, final int startingLives,
-			final int startingScore) {
-		super(position, radius, gameWorld, PLAYER_MAX_SPEED, startingScore);
+			final GameWorld gameWorld, final int startingLives) {
+		super(position, radius, gameWorld, PLAYER_MAX_SPEED);
 		
 		this.lives = startingLives;
 		this.scoreMultiplier = 1;
@@ -54,7 +53,7 @@ public class Player extends BlackHole {
 
 	public Player(final Vector2 position, final float radius,
 			final GameWorld gameWorld) {
-		this(position, radius, gameWorld, STARTING_LIVES, 0);
+		this(position, radius, gameWorld, STARTING_LIVES);
 	}
 
 	public boolean isMirroredMovement() {

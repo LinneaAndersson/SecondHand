@@ -11,7 +11,7 @@ public final class PowerUpFactory {
 
 	private PowerUpFactory() {}
 	
-	public static final int NUM_POWER_UPS = 9;
+	public static final int NUM_POWER_UPS = 10;
 
 	// used for level generation., 
 	public static PowerUp getRandomPowerUp(final Vector2 position, final GameWorld gameWorld, final Random rng) { 
@@ -35,8 +35,9 @@ public final class PowerUpFactory {
 			return new MirroredMovement(position, gameWorld);
 		} else if(rand == 8) {
 			return new RandomPowerUp(position, gameWorld);
+		}else if(rand == 9) {
+			return new SpeedDown(position, gameWorld);
 		}
-		
 		else
 			return null;
 	}

@@ -35,7 +35,9 @@ public class RandomPowerUp extends PowerUp {
 			randomPowerUp =  new DoubleScore(position, gameWorld);
 		} else if(rand == 7) {
 			randomPowerUp =  new MirroredMovement(position, gameWorld);
-		} else
+		} else if(rand == 8) {
+			randomPowerUp =  new SpeedDown(position, gameWorld);
+		}else
 			randomPowerUp = null;
 		
 		this.duration = randomPowerUp.getDuration();

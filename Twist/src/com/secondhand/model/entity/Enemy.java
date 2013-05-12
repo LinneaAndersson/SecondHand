@@ -6,11 +6,13 @@ import com.secondhand.model.physics.Vector2;
 
 public class Enemy extends BlackHole {
 
-	private static float enemyMaxSpeed = 2;
+	private static final float ENEMY_MAX_SPEED = 2;
 	private static final float MAX_SIZE = 40;
 	private static final float MIN_SIZE = 20;
 
 	private float huntingArea;
+	
+	private float maxSpeed;
 
 	@Override
 	public void onPhysicsAssigned() {
@@ -18,8 +20,9 @@ public class Enemy extends BlackHole {
 	}
 
 	public Enemy(final Vector2 vector, final float radius, final GameWorld level) {
-		super(vector, radius, level, enemyMaxSpeed);
+		super(vector, radius, level);
 		huntingArea = getHuntingArea();
+		this.maxSpeed = ENEMY_MAX_SPEED;
 	}
 
 	public float getHuntingArea() {
@@ -34,10 +37,12 @@ public class Enemy extends BlackHole {
 		return MIN_SIZE;
 	}
 
-	@Override
 	public void setMaxSpeed(final float maxSpeed) {
-		enemyMaxSpeed = maxSpeed;
-		super.setMaxSpeed(maxSpeed);
+		this.maxSpeed = maxSpeed;
+	}
+	
+	public float getMaxSpeed() {
+		return maxSpeed;
 	}
 
 	// player has highest chase-priority

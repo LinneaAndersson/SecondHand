@@ -37,8 +37,8 @@ public class SpeedUp extends PowerUp {
 		
 		final boolean hasAnother = super.hasAnother(player);
 		
-		if(!hasAnother)
-			player.setMaxSpeed(player.getMaxSpeed()/factor);	
+		/*if(!hasAnother)
+			player.setMaxSpeed(player.getMaxSpeed()/factor);	*/
 	}
 	
 

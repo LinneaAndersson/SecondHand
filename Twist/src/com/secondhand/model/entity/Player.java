@@ -42,7 +42,7 @@ public class Player extends BlackHole {
 	// =============================================
 	public Player(final Vector2 position, final float radius,
 			final GameWorld gameWorld, final int startingLives) {
-		super(position, radius, gameWorld, PLAYER_MAX_SPEED);
+		super(position, radius, gameWorld);
 		
 		this.lives = startingLives;
 		this.scoreMultiplier = 1;

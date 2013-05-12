@@ -8,7 +8,6 @@ public abstract class BlackHole extends CircleEntity {
 	// only a 1/5 of the masses of the eaten bodies is used in the growth
 	private static final float GROWTH_FACTOR = 0.2f;
 
-	private float maxSpeed;
 
 	private boolean canEatInedibles;
 
@@ -20,11 +19,10 @@ public abstract class BlackHole extends CircleEntity {
 	private  int score;
 
 	public BlackHole(final Vector2 position, final float radius,
-			final GameWorld level,
-			final float maxSpeed) {
+			final GameWorld level) {
 		super(position, radius, true, level);
 		this.position = position;
-		this.maxSpeed = maxSpeed;
+		
 		this.canEatInedibles = false;
 	}
 
@@ -52,13 +50,6 @@ public abstract class BlackHole extends CircleEntity {
 		score += increase;
 	}
 
-	public float getMaxSpeed() {
-		return maxSpeed;
-	}
-
-	public void setMaxSpeed(final float maxSpeed) {
-		this.maxSpeed = maxSpeed;
-	}
 
 	private void increaseSize(final float increase) {
 		setRadius(getRadius() + increase);

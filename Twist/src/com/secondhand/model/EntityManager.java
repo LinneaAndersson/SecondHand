@@ -5,7 +5,7 @@ import java.util.Stack;
 
 
 // Manages all the entities of the GameWorld
-public class EntityManager {
+class EntityManager {
 	
 	private List<Entity> entityList;
 	private List<Enemy> enemyList;

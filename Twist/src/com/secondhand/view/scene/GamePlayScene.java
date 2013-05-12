@@ -81,7 +81,7 @@ public class GamePlayScene extends GameScene implements PropertyChangeListener {
 
 		this.smoothCamera.setBounds(0, width, 0, height);
 
-		for (final Entity entity : gameWorld.getEntityManager().getEntityList()) {
+		for (final Entity entity : gameWorld.getEntityList()) {
 
 			EntityView entityView = null;
 			if (entity instanceof Planet) {

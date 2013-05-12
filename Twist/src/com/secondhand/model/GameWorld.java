@@ -2,6 +2,7 @@ package com.secondhand.model;
 
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
+import java.util.List;
 
 import com.secondhand.model.physics.IPhysicsWorld;
 import com.secondhand.model.physics.Vector2;
@@ -117,6 +118,10 @@ public class GameWorld {
 		return this.entityManager.getPlayer();
 	}
 
+	public List<Entity> getEntityList(){
+		return this.entityManager.getEntityList();
+	}
+		
 	public boolean checkPlayerBigEnough() {
 		return this.getPlayer().getRadius() >= this.getPlayer().getMaxSize();
 	}

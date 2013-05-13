@@ -8,7 +8,7 @@ public class EatObstacle extends PowerUp {
 
 	private final static float DURATION = 5;
 	
-	public EatObstacle(final Vector2 position, Player player) {
+	public EatObstacle(final Vector2 position,final  Player player) {
 		super(position, PowerUpType.EAT_OBSTACLE, DURATION, player);
 
 	}

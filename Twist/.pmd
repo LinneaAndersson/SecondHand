@@ -204,10 +204,6 @@
             <ruleset>Design Rules</ruleset>
         </rule>
         <rule>
-            <name>CollapsibleIfStatements</name>
-            <ruleset>Basic Rules</ruleset>
-        </rule>
-        <rule>
             <name>CompareObjectsWithEquals</name>
             <ruleset>Design Rules</ruleset>
         </rule>

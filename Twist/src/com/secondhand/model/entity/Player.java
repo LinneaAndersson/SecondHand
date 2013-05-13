@@ -26,7 +26,7 @@ public class Player extends BlackHole {
 
 	private PlayerUtil util;
 	
-	private int[] RGB = new int[3];
+	private final int[] RGB = new int[3];
 
 	// ============== EVENT-CONSTANTS ==============
 	public final static String INCREASE_SCORE = "IncreaseScore";

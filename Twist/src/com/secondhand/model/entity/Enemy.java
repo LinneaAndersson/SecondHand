@@ -74,7 +74,7 @@ public class Enemy extends BlackHole {
 	private Entity getHighesPriority(final List<Entity> entityList) {
 		Entity entity = null;
 		for (final Entity e : entityList) {
-			if (!(e instanceof IPowerUp)) {
+			if (!(e instanceof IPowerUp)) { 
 				if (isCloseToEntity(e) && canEat(e)) {
 					entity = getSmaller(entity, e);
 				}
@@ -128,10 +128,5 @@ public class Enemy extends BlackHole {
 	@Override
 	protected void handlePowerUp(final IPowerUp powerUp) {
 		// enemies can't eat powerups :(
-	}
-
-	@Override
-	protected void wasEaten() {
-		super.wasEaten();
 	}
 }

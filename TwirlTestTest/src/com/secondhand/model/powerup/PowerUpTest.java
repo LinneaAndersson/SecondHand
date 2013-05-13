@@ -13,7 +13,7 @@ import com.secondhand.model.resource.PowerUpType;
 import com.secondhand.view.physics.MyPhysicsWorld;
 
 public class PowerUpTest extends TestCase {
-	
+	/*
 	public void testGetTimer() {
 		float duration = 10;
 		GameWorld level = new GameWorld(new MyPhysicsWorld(new PhysicsWorld(new com.badlogic.gdx.math.Vector2(),false)));

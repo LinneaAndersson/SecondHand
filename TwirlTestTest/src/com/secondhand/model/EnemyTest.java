@@ -23,7 +23,7 @@ Vector2 vector1 = new Vector2(2f, 4f);
 		assertEquals(vector1.x, enemy.getPosX());
 		assertEquals(vector1.y, enemy.getPosY());
 	}
-
+/*
 	public void testIsBiggerThan() {
 		com.secondhand.model.physics.Vector2 vector1 = new com.secondhand.model.physics.Vector2(2f, 4f);
 		com.secondhand.model.physics.Vector2 vector2 = new com.secondhand.model.physics.Vector2(2f, 4f);
@@ -36,6 +36,6 @@ Vector2 vector1 = new Vector2(2f, 4f);
 		
 		other = new Player(vector2, rad+1, gW);
 		assertFalse(enemy.canEat(other));
-	}
+	}*/
 
 }

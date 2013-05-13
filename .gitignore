@@ -10,3 +10,5 @@ TwirlTestTest/bin
 Twist/bin
 Twist/gen
 .DS_Store
+
+TwirlTestTest/bin/*

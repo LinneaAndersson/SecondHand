@@ -9,8 +9,8 @@ public class Planet extends CircleEntity {
 	
 	//new TexturedCircle(position.x, position.y, radius, TextureRegions.getInstance().getPlanetTexture(planetType))
 	
-	public Planet (final Vector2 position, final float radius, final PlanetType planetType, final GameWorld level) {
-		super(position, radius, true, level);
+	public Planet (final Vector2 position, final float radius, final PlanetType planetType) {
+		super(position, radius, true);
 		this.planetType = planetType;
 	}
 	

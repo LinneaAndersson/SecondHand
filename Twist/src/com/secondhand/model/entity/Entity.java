@@ -12,15 +12,14 @@ public abstract class Entity {
 	private boolean isEdible;
 	protected IPhysicsEntity physics;
 	
-	protected final GameWorld gameWorld;
+	protected static EntityManager entityManager;
 	protected PropertyChangeSupport pcs = new PropertyChangeSupport(this);
 	private final Vector2 initialPosition;
 
-	public Entity(final Vector2 position, final boolean isEdible,
-			final GameWorld level) {
+	public Entity(final Vector2 position, final boolean isEdible) {
 		this.isEdible = isEdible;
 		this.initialPosition = position;
-		this.gameWorld = level;
+		this.entityManager=entityManager;
 	}
 	
 	public Vector2 getInitialPosition() {
@@ -42,6 +41,10 @@ public abstract class Entity {
 		physics.detachSelf();
 
 	}
+	
+	public void setEntityManager(EntityManager entityManager){
+		this.entityManager=entityManager;
+	}
 
 	public void setIsEdible(final boolean isEdible) {
 		this.isEdible = isEdible;
@@ -58,7 +61,7 @@ public abstract class Entity {
 
 	// remove this entity from andengine rendering and the physics world.
 	private void removeEntity() {
-		this.gameWorld.getEntityManager().removeEntityFromList(this);
+		this.entityManager.removeEntityFromList(this);
 
 		destroyEntity();
 	}
@@ -74,7 +77,7 @@ public abstract class Entity {
 	}
 
 	private void scheduleBodyForDeletion() {
-		this.gameWorld.getEntityManager().scheduleEntityForDeletion(this);
+		this.entityManager.scheduleEntityForDeletion(this);
 	}
 
 	// only valid when the body has been scheduled for deletion.

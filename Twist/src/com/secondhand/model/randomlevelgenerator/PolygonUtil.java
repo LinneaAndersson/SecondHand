@@ -7,7 +7,7 @@ import java.util.Random;
 import com.secondhand.model.physics.Vector2;
 
 
-final class PolygonUtil {
+public final class PolygonUtil {
 
 	private PolygonUtil() {}	
 	

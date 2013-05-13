@@ -11,7 +11,7 @@ public class Shield extends PowerUp {
 	
 	public Shield(final Vector2 position,
 			final GameWorld level) {
-		super(position, PowerUpType.SHIELD, level, DURATION);
+		super(position, PowerUpType.SHIELD, DURATION);
 	}
 
 	@Override

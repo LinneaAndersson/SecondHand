@@ -12,7 +12,7 @@ public class SpeedDown extends PowerUp {
 	
 	public SpeedDown(final Vector2 position, 
 			final GameWorld level) {
-		super(position, PowerUpType.SPEED_UP, level, DURATION);
+		super(position, PowerUpType.SPEED_UP, DURATION);
 		
 	}
 	

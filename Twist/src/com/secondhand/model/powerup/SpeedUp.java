@@ -12,7 +12,7 @@ public class SpeedUp extends PowerUp {
 	
 	public SpeedUp(final Vector2 position, 
 			final GameWorld level) {
-		super(position, PowerUpType.SPEED_UP, level, DURATION);
+		super(position, PowerUpType.SPEED_UP, DURATION);
 		
 	}
 	

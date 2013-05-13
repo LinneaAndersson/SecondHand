@@ -10,11 +10,13 @@ import com.secondhand.model.resource.PowerUpType;
 public class RandomTeleport extends PowerUp {
 
 	private final static float DURATION = 0;
+	private final GameWorld gameWorld;
 	
 	
 	public RandomTeleport(final Vector2 position, 
 			final GameWorld level) {
-		super(position, PowerUpType.RANDOM_TELEPORT, level, DURATION);
+		super(position, PowerUpType.RANDOM_TELEPORT, DURATION);
+		this.gameWorld = level;
 	}
 
 	@Override

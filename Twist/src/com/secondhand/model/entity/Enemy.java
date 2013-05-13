@@ -19,8 +19,8 @@ public class Enemy extends BlackHole {
 		huntingArea = getHuntingArea();
 	}
 
-	public Enemy(final Vector2 vector, final float radius, final GameWorld level) {
-		super(vector, radius, level);
+	public Enemy(final Vector2 vector, final float radius) {
+		super(vector, radius);
 		huntingArea = getHuntingArea();
 		this.maxSpeed = ENEMY_MAX_SPEED;
 	}
@@ -95,7 +95,7 @@ public class Enemy extends BlackHole {
 		// TODO change the null-check to something nicer
 		if (entity != null) {
 
-			if (this.gameWorld.getPhysics().isStraightLine(entity, this)) {
+			if (this.physics.isStraightLine(entity, this)) {
 				// closeToDanger();
 				physics.applyImpulse(
 						new Vector2(entity.getCenterX() - getCenterX(), entity
@@ -130,7 +130,7 @@ public class Enemy extends BlackHole {
 
 	@Override
 	protected void wasEaten() {
-		this.gameWorld.getEntityManager().removeEnemyFromList(this);
+		this.entityManager.removeEnemyFromList(this);
 		super.wasEaten();
 	}
 }

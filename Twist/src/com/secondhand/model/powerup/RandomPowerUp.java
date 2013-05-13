@@ -13,7 +13,7 @@ public class RandomPowerUp extends PowerUp {
 
 	public RandomPowerUp(final Vector2 position,
 			final  GameWorld gameWorld) {
-		super(position, PowerUpType.RANDOM_POWER_UP, gameWorld, 0);
+		super(position, PowerUpType.RANDOM_POWER_UP, 0);
 
 		final Random rng = new Random();
 		final int rand = rng.nextInt(PowerUpFactory.NUM_POWER_UPS-1);

@@ -12,9 +12,6 @@ public interface IPhysicsWorld {
 	// Remove your WorldBounds.
 	void removeWorldBounds();
 
-	// checks if enemy has staight line to the entity
-	boolean isStraightLine(final Entity entity, final Enemy enemy);
-
 	// checks if the rectangular area i UnOccupied
 	boolean isAreaUnOccupied(final float x, final float y, final float r);
 

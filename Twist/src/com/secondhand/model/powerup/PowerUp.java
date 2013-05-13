@@ -1,6 +1,5 @@
 package com.secondhand.model.powerup;
 
-import com.secondhand.model.entity.GameWorld;
 import com.secondhand.model.entity.IPowerUp;
 import com.secondhand.model.entity.Player;
 import com.secondhand.model.entity.RectangleEntity;
@@ -15,8 +14,8 @@ public abstract class PowerUp extends RectangleEntity implements IPowerUp {
 	protected float duration;
 	private final PowerUpType powerUpType;
 	
-	public PowerUp (final Vector2 position, final PowerUpType powerUpType, final GameWorld level, final float duration) {
-		super(position, WIDTH, HEIGHT,true,  level);
+	public PowerUp (final Vector2 position, final PowerUpType powerUpType, final float duration) {
+		super(position, WIDTH, HEIGHT,true);
 		this.duration = duration;
 		this.powerUpType = powerUpType;
 	}

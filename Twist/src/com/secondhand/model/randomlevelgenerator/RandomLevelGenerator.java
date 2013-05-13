@@ -85,7 +85,7 @@ public class RandomLevelGenerator {
 					break;
 				}
 			}
-			enemy = new Enemy(new Vector2(xAxis, yAxis), radius, level);
+			enemy = new Enemy(new Vector2(xAxis, yAxis), radius);
 			enemy.setMaxSpeed(this.levelNumber*2);
 			entityList.add(enemy);
 			enemyList.add(enemy);
@@ -109,7 +109,7 @@ public class RandomLevelGenerator {
 				}
 
 			}
-			enemy = new Enemy(new Vector2(xAxis, yAxis), radius, level);
+			enemy = new Enemy(new Vector2(xAxis, yAxis), radius);
 			enemy.setMaxSpeed(2 + (this.levelNumber - 1) * 2);
 			entityList.add(enemy);
 			enemyList.add(enemy);
@@ -138,7 +138,7 @@ public class RandomLevelGenerator {
 			}
 
 			entityList
-			.add(new Obstacle(new Vector2(xAxis, yAxis), edges, level));
+			.add(new Obstacle(new Vector2(xAxis, yAxis), edges));
 		}
 	}
 
@@ -192,7 +192,7 @@ public class RandomLevelGenerator {
 				}
 			}
 			entityList.add(new Planet(new Vector2(xAxis, yAxis), radius,
-					RandomUtil.randomEnum(rng, PlanetType.class), level));
+					RandomUtil.randomEnum(rng, PlanetType.class)));
 		}
 		for (int i = NUMBER_EATABLE; i < PLANETS; i++, planetCounter++) {
 
@@ -211,7 +211,7 @@ public class RandomLevelGenerator {
 
 			}
 			entityList.add(new Planet(new Vector2(xAxis, yAxis), radius,
-					RandomUtil.randomEnum(rng, PlanetType.class), level));
+					RandomUtil.randomEnum(rng, PlanetType.class)));
 		}
 	}
 

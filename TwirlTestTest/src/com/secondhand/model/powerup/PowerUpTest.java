@@ -5,7 +5,7 @@ import junit.framework.TestCase;
 import org.anddev.andengine.engine.handler.timer.TimerHandler;
 import org.anddev.andengine.extension.physics.box2d.PhysicsWorld;
 
-import com.secondhand.controller.model.PlayerController;
+import com.secondhand.controller.PlayerController;
 import com.secondhand.model.entity.GameWorld;
 import com.secondhand.model.entity.Player;
 import com.secondhand.model.physics.Vector2;
@@ -18,7 +18,7 @@ public class PowerUpTest extends TestCase {
 		float duration = 10;
 		GameWorld level = new GameWorld(new MyPhysicsWorld(new PhysicsWorld(new com.badlogic.gdx.math.Vector2(),false)));
 		Player player = new Player(new Vector2(), 10, level);
-		PowerUp powerUp = new PowerUp(new Vector2(), PowerUpType.DOUBLE_SCORE, level, duration) {
+		PowerUp powerUp = new PowerUp(new Vector2(), PowerUpType.DOUBLE_SCORE, duration) {
 			@Override
 			public void activateEffect(Player player) {}
 		};
@@ -37,7 +37,7 @@ public class PowerUpTest extends TestCase {
 		final Vector2 position = new Vector2(2,2);
 		float dur = 5;
 		
-		PowerUp pu1 = new PowerUp(position, PowerUpType.DOUBLE_SCORE, gW, dur) {
+		PowerUp pu1 = new PowerUp(position, PowerUpType.DOUBLE_SCORE, dur) {
 			@Override
 			public void activateEffect(Player player) {
 				

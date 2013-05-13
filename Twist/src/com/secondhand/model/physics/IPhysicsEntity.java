@@ -2,6 +2,9 @@ package com.secondhand.model.physics;
 
 import java.util.List;
 
+import com.secondhand.model.entity.Enemy;
+import com.secondhand.model.entity.Entity;
+
 
 public interface IPhysicsEntity {
 	
@@ -28,6 +31,9 @@ public interface IPhysicsEntity {
 	void setTransform(final Vector2 position);
 	
 	void stopMovment();
+	
+	// checks if enemy has staight line to the entity
+	boolean isStraightLine(final Entity entity, final Enemy enemy);
 
 }
 

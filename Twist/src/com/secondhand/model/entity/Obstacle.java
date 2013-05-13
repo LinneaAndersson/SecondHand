@@ -7,8 +7,8 @@ import com.secondhand.model.physics.Vector2;
 public class Obstacle extends PolygonEntity {
 	
 	
-	public Obstacle(final Vector2 position,  final List<Vector2> polygon, final GameWorld level) {
-		super(position, polygon, false, level);
+	public Obstacle(final Vector2 position,  final List<Vector2> polygon) {
+		super(position, polygon, false);
 	}
 	
 	@Override

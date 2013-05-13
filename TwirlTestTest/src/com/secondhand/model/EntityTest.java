@@ -8,11 +8,8 @@ import junit.framework.TestCase;
 
 public class EntityTest extends TestCase {
 	
-	public void testConstructor() {
-		Vector2 position = new Vector2();
-		boolean isEdible = true;
-		
-		Entity entity = new Entity(position,isEdible) {
+	public Entity getNewEntity(Vector2 position, boolean isEdible) {
+		return  new Entity(position,isEdible) {
 			@Override
 			public void onPhysicsAssigned() {}
 			@Override
@@ -20,8 +17,19 @@ public class EntityTest extends TestCase {
 			@Override
 			public float getRadius() {return 0;}
 		};
+	}
+	
+	public void testConstructor() {
+		Vector2 position = new Vector2();
+		boolean isEdible = true;
+		
+		Entity entity = getNewEntity(position, isEdible);
 		
 		assertEquals(position, entity.getInitialPosition());
 		assertEquals(isEdible, entity.isEdible());
+	}
+	
+	public void testGetScoreValue() {
+		
 	}
 }

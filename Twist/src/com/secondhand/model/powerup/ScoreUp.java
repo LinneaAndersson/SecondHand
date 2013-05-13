@@ -10,6 +10,8 @@ public class ScoreUp extends PowerUp {
 	private final static float DURATION = 0;
 	private final static int SCORE_BONUS = 10;
 	
+	private Player player;
+	
 	public ScoreUp(final Vector2 position,
 			final  GameWorld level) {
 		super(position, PowerUpType.SCORE_UP, DURATION);	
@@ -21,11 +23,12 @@ public class ScoreUp extends PowerUp {
 	
 	@Override
 	public void activateEffect(final Player player) {
+		this.player = player;
 		player.increaseScore(SCORE_BONUS);
 	}
 
 	@Override
 	public String getText(){
-		return getScoreBonus() +"+";
+		return (int)(this.player.getScoreMultiplier() * SCORE_BONUS) +"+";
 	}
 }

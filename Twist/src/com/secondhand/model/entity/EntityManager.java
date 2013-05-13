@@ -90,7 +90,7 @@ class EntityManager implements PropertyChangeListener{
 	}
 
 	@Override
-	public void propertyChange(PropertyChangeEvent event) {
+	public void propertyChange(final PropertyChangeEvent event) {
 		if(event.getPropertyName().equalsIgnoreCase("isScheduleForDeletion")){
 			scheduleEntityForDeletion((Entity) (event.getNewValue()));
 		}

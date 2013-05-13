@@ -1,7 +1,5 @@
 package com.secondhand.model.physics;
 
-import com.secondhand.model.entity.Enemy;
-import com.secondhand.model.entity.Entity;
 import com.secondhand.model.entity.GameWorld;
 
 public interface IPhysicsWorld {

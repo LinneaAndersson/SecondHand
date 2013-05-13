@@ -27,6 +27,7 @@ public class Player extends BlackHole {
 	private PlayerUtil util;
 	
 	//For playerView to get the color of player
+	// The color will change!
 	private int[] RGB = new int[3];
 
 	// ============== EVENT-CONSTANTS ==============

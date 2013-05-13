@@ -11,6 +11,7 @@ class LoadingTextController extends Entity {
 	private static final float SECONDS_PER_STRING = 0.3f;
 
 	
+	
 	private float secondsPassedSinceLastUpdate;
 
 	private final LoadingTextView view;

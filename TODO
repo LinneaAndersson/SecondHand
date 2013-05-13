@@ -4,7 +4,6 @@ Important things that must be done for the success of the project:
 - Implementation
 
 * Write unit tests for the model(start doing this once we know that the model is 100% stable )
-* Make sure that the entities are not placed top of each other in the level generation
 * Fix a texture for slowdown powerup.
 * We sometimes get negative lives for some reason.
 * Replace some property changes with some kind of interface or

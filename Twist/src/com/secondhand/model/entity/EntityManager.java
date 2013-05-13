@@ -64,6 +64,7 @@ class EntityManager implements PropertyChangeListener{
 		this.player.moveToNeededPositionIfNecessary();
 	}
 	
+	
 	public void removeEntityFromList(final Entity entity) {
 		this.entityList.remove(entity);
 	}

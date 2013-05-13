@@ -26,7 +26,9 @@ public class Player extends BlackHole {
 
 	private PlayerUtil util;
 	
-	private final int[] RGB = new int[3];
+	//For playerView to get the color of player
+	// The color will change!
+	private int[] RGB = new int[3];
 
 	// ============== EVENT-CONSTANTS ==============
 	public final static String INCREASE_SCORE = "IncreaseScore";
@@ -192,6 +194,10 @@ public class Player extends BlackHole {
 	
 	public int[] getRGB(){
 		return RGB;
+	}
+	
+	public void setRGB(int[] RGB){
+		this.RGB = RGB;
 	}
 
 	@Override

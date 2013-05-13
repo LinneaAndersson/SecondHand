@@ -195,6 +195,10 @@ public class Player extends BlackHole {
 	public int[] getRGB(){
 		return RGB;
 	}
+	
+	public void setRGB(int[] RGB){
+		this.RGB = RGB;
+	}
 
 	@Override
 	protected void onGrow() {

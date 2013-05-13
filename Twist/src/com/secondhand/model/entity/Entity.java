@@ -11,15 +11,12 @@ public abstract class Entity {
 
 	private boolean isEdible;
 	protected IPhysicsEntity physics;
-	
-	protected static EntityManager entityManager;
 	protected PropertyChangeSupport pcs = new PropertyChangeSupport(this);
 	private final Vector2 initialPosition;
 
 	public Entity(final Vector2 position, final boolean isEdible) {
 		this.isEdible = isEdible;
 		this.initialPosition = position;
-		this.entityManager=entityManager;
 	}
 	
 	public Vector2 getInitialPosition() {
@@ -40,10 +37,6 @@ public abstract class Entity {
 	public void detachSelf() {
 		physics.detachSelf();
 
-	}
-	
-	public void setEntityManager(EntityManager entityManager){
-		this.entityManager=entityManager;
 	}
 
 	public void setIsEdible(final boolean isEdible) {

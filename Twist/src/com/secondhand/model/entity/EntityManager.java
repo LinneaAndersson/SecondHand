@@ -55,6 +55,8 @@ class EntityManager implements PropertyChangeListener{
 		while(!scheduledForDeletionEntities.empty()) {
 				final Entity entity = scheduledForDeletionEntities.pop();
 				removeEntityFromList(entity);
+				if(entity instanceof Enemy)
+					removeEnemyFromList((Enemy)entity);
 				entity.deleteBody();
 		}
 		

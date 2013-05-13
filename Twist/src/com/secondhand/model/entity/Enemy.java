@@ -132,7 +132,6 @@ public class Enemy extends BlackHole {
 
 	@Override
 	protected void wasEaten() {
-		this.entityManager.removeEnemyFromList(this);
 		super.wasEaten();
 	}
 }

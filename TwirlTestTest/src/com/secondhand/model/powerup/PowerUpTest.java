@@ -18,7 +18,7 @@ public class PowerUpTest extends TestCase {
 		float duration = 10;
 		GameWorld level = new GameWorld(new MyPhysicsWorld(new PhysicsWorld(new com.badlogic.gdx.math.Vector2(),false)));
 		Player player = new Player(new Vector2(), 10, level);
-		PowerUp powerUp = new PowerUp(new Vector2(), PowerUpType.DOUBLE_SCORE, duration) {
+		PowerUp powerUp = new PowerUp(new Vector2(), PowerUpType.DOUBLE_SCORE, duration, null) {
 			@Override
 			public void activateEffect(Player player) {}
 		};
@@ -37,7 +37,7 @@ public class PowerUpTest extends TestCase {
 		final Vector2 position = new Vector2(2,2);
 		float dur = 5;
 		
-		PowerUp pu1 = new PowerUp(position, PowerUpType.DOUBLE_SCORE, dur) {
+		PowerUp pu1 = new PowerUp(position, PowerUpType.DOUBLE_SCORE, dur, null) {
 			@Override
 			public void activateEffect(Player player) {
 				

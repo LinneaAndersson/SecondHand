@@ -12,31 +12,31 @@ public class RandomPowerUp extends PowerUp {
 	private final PowerUp randomPowerUp;
 
 	public RandomPowerUp(final Vector2 position,
-			final  GameWorld gameWorld) {
-		super(position, PowerUpType.RANDOM_POWER_UP, 0);
+			final  GameWorld gameWorld, Player player) {
+		super(position, PowerUpType.RANDOM_POWER_UP, 0, player);
 
 		final Random rng = new Random();
 		final int rand = rng.nextInt(PowerUpFactory.NUM_POWER_UPS-1);
 		
 		
 		if(rand == 0) {
-			randomPowerUp =  new EatObstacle(position);
+			randomPowerUp =  new EatObstacle(position, player);
 		} else if(rand == 1) {
-			randomPowerUp =  new ExtraLife(position);
+			randomPowerUp =  new ExtraLife(position, player);
 		}else if(rand == 2) {
-			randomPowerUp =  new RandomTeleport(position, gameWorld);
+			randomPowerUp =  new RandomTeleport(position, gameWorld, player);
 		}else if(rand == 3) {
-			randomPowerUp =  new ScoreUp(position);
+			randomPowerUp =  new ScoreUp(position, player);
 		}else if(rand == 4) {
-			randomPowerUp =  new Shield(position);
+			randomPowerUp =  new Shield(position, player);
 		}else if(rand == 5) {
-			randomPowerUp =  new SpeedUp(position);
+			randomPowerUp =  new SpeedUp(position, player);
 		} else if(rand == 6) {
-			randomPowerUp =  new DoubleScore(position);
+			randomPowerUp =  new DoubleScore(position, player);
 		} else if(rand == 7) {
-			randomPowerUp =  new MirroredMovement(position);
+			randomPowerUp =  new MirroredMovement(position, player);
 		} else if(rand == 8) {
-			randomPowerUp =  new SpeedDown(position);
+			randomPowerUp =  new SpeedDown(position, player);
 		}else
 			randomPowerUp = null;
 		

@@ -8,8 +8,8 @@ public class ExtraLife extends PowerUp {
 
 	private final static float DURATION = 0;
 	
-	public ExtraLife(final Vector2 position) {
-		super(position, PowerUpType.EXTRA_LIFE, DURATION);
+	public ExtraLife(final Vector2 position,Player player) {
+		super(position, PowerUpType.EXTRA_LIFE, DURATION, player);
 	}
 
 	@Override

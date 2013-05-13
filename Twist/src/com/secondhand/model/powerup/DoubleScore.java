@@ -12,8 +12,8 @@ public class DoubleScore extends PowerUp {
 	
 	private final static float MULT = 2;
 	
-	public DoubleScore(final Vector2 position) {
-		super(position, PowerUpType.DOUBLE_SCORE, DURATION);
+	public DoubleScore(final Vector2 position, Player player) {
+		super(position, PowerUpType.DOUBLE_SCORE, DURATION, player);
 	}
 
 	@Override

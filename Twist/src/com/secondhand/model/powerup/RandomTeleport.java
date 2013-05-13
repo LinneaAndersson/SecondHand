@@ -14,8 +14,8 @@ public class RandomTeleport extends PowerUp {
 	
 	
 	public RandomTeleport(final Vector2 position, 
-			final GameWorld level) {
-		super(position, PowerUpType.RANDOM_TELEPORT, DURATION);
+			final GameWorld level,Player player) {
+		super(position, PowerUpType.RANDOM_TELEPORT, DURATION, player);
 		this.gameWorld = level;
 	}
 

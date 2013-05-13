@@ -25,6 +25,8 @@ public class Player extends BlackHole {
 	private final List<IPowerUp> powerUpList;
 
 	private PlayerUtil util;
+	
+	private int[] RGB = new int[3];
 
 	// ============== EVENT-CONSTANTS ==============
 	public final static String INCREASE_SCORE = "IncreaseScore";
@@ -46,6 +48,9 @@ public class Player extends BlackHole {
 		this.scoreMultiplier = 1;
 		util = new PlayerUtil(this);
 		powerUpList = util.getPowerUpList();
+		RGB[0]=0;
+		RGB[1]=0;
+		RGB[2]=0;
 
 	}
 
@@ -183,6 +188,10 @@ public class Player extends BlackHole {
 		addPowerUp(powerUp);
 
 		powerUp.eaten();
+	}
+	
+	public int[] getRGB(){
+		return RGB;
 	}
 
 	@Override

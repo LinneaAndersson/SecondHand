@@ -160,7 +160,7 @@ public class RandomLevelGenerator {
 			}
 
 			entityList.add(PowerUpFactory.getRandomPowerUp(new Vector2(xAxis,
-					yAxis), level, rng));
+					yAxis), level, rng,level.getPlayer()));
 		}
 	}
 

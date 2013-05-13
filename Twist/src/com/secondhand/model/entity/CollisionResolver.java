@@ -1,4 +1,5 @@
 package com.secondhand.model.entity;
+import com.secondhand.model.powerup.PowerUp;
 
 public final class CollisionResolver {
 
@@ -15,6 +16,10 @@ public final class CollisionResolver {
 		Entity other;
 		if (entityA instanceof BlackHole) {
 			blackHole = (BlackHole) entityA;
+			/*if(entityB instanceof PowerUp){
+				((PowerUp) entityB).activatePowerUp();
+				return;
+			}*/
 			other = entityB;
 		} else {
 			other = entityA;

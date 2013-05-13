@@ -31,6 +31,7 @@ public class GameWorld {
 		support = new PropertyChangeSupport(this);
 
 		this.entityManager = new EntityManager( new Player(new Vector2(50,50),PLAYER_STARTING_SIZE));
+
 		
 		generateNewLevelEntities(STARTING_LEVEL);
 		mPhysic.setWorldBounds(levelWidth, levelHeight);		

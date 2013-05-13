@@ -1,5 +1,7 @@
 package com.secondhand.model.powerup;
 
+import java.util.List;
+
 import com.secondhand.model.entity.IPowerUp;
 import com.secondhand.model.entity.Player;
 import com.secondhand.model.entity.RectangleEntity;
@@ -13,11 +15,13 @@ public abstract class PowerUp extends RectangleEntity implements IPowerUp {
 	
 	protected float duration;
 	private final PowerUpType powerUpType;
+	private final Player player;
 	
-	public PowerUp (final Vector2 position, final PowerUpType powerUpType, final float duration) {
+	public PowerUp (final Vector2 position, final PowerUpType powerUpType, final float duration, Player player) {
 		super(position, WIDTH, HEIGHT,true);
 		this.duration = duration;
 		this.powerUpType = powerUpType;
+		this.player = player;
 	}
 	
 	@Override
@@ -80,5 +84,23 @@ public abstract class PowerUp extends RectangleEntity implements IPowerUp {
 	public void eaten(){
 		super.wasEaten();
 	}
+
+	/*public void activatePowerUp() {
+		
+	}
+
+	public void removePowerUp(PowerUp powerUp) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public List<PowerUp> getPowerUps() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
+	public void addPowerUp(){
+		
+	}*/
 	
 }

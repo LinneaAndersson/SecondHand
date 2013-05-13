@@ -61,7 +61,7 @@ public abstract class Entity {
 
 	// remove this entity from andengine rendering and the physics world.
 	private void removeEntity() {
-		this.entityManager.removeEntityFromList(this);
+		//this.entityManager.removeEntityFromList(this);
 
 		destroyEntity();
 	}
@@ -77,7 +77,8 @@ public abstract class Entity {
 	}
 
 	private void scheduleBodyForDeletion() {
-		this.entityManager.scheduleEntityForDeletion(this);
+		pcs.firePropertyChange("isScheduleForDeletion", null, this);
+		//this.entityManager.scheduleEntityForDeletion(this);
 	}
 
 	// only valid when the body has been scheduled for deletion.

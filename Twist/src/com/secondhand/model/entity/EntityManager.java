@@ -1,11 +1,13 @@
 package com.secondhand.model.entity;
 
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
 import java.util.List;
 import java.util.Stack;
 
 
 // Manages all the entities of the GameWorld
-class EntityManager {
+class EntityManager implements PropertyChangeListener{
 	
 	private List<Entity> entityList;
 	private List<Enemy> enemyList;
@@ -16,10 +18,14 @@ class EntityManager {
 	public EntityManager(final Player player) {
 		this.scheduledForDeletionEntities = new Stack<Entity>();
 		this.player = player;
+		player.addListener(this);
 	}
 	
 	public void setEntityList(final List<Entity> entityList) {
 		this.entityList = entityList;
+		for(Entity entity:entityList){
+			entity.addPropertyChangeListener(this);
+		}
 	}
 	
 	public void setEnemyList(final List<Enemy> enemyList) {
@@ -48,6 +54,7 @@ class EntityManager {
 		// remove bodies scheduled for deletion.
 		while(!scheduledForDeletionEntities.empty()) {
 				final Entity entity = scheduledForDeletionEntities.pop();
+				removeEntityFromList(entity);
 				entity.deleteBody();
 		}
 		
@@ -78,6 +85,14 @@ class EntityManager {
 
 		this.entityList.clear();
 		this.enemyList.clear();
+	}
+
+	@Override
+	public void propertyChange(PropertyChangeEvent event) {
+		if(event.getPropertyName().equalsIgnoreCase("isScheduleForDeletion")){
+			scheduleEntityForDeletion((Entity) (event.getNewValue()));
+		}
+		
 	}
 	
 }

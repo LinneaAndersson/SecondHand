@@ -6,10 +6,15 @@ Important things that must be done for the success of the project:
 * Write unit tests for the model(start doing this once we know that the model is 100% stable )
 * Make sure that the entities are not placed top of each other in the level generation
 * Fix a texture for slowdown powerup.
-* The double score powerup also needs some fixing, see the TODO in DoubleScore.java
 * We sometimes get negative lives for some reason.
 * Replace some property changes with some kind of interface or
 callback method instead. - Done, but just changed the propertyChange.
+
+* In the HighScoreList and LocalizationStrings classes there is code
+that uses the android operating system to load files and access the
+localization strings. This means that our model is tied to the android
+operating system. Refactor out the code that uses the Android OS
+to the view, or something.
 
 - Documentation
 

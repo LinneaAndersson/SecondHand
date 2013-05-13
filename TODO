@@ -14,7 +14,7 @@ callback method instead. - Done, but just changed the propertyChange.
 that uses the android operating system to load files and access the
 localization strings. This means that our model is tied to the android
 operating system. Refactor out the code that uses the Android OS
-to the view, or something.
+to the view, or somethingx.
 
 - Documentation
 

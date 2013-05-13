@@ -220,8 +220,8 @@ public class RandomLevelGenerator {
 		placeOutObstacles(newObstacles());
 
 		final int[] numPlanets= newPlanets();
-		placeOutPlanets(numPlanets[0], numPlanets[1], (PLAYER_RADIUS / 4),
-				PLAYER_RADIUS * 6);
+		placeOutPlanets(numPlanets[0], numPlanets[1], (PLAYER_RADIUS / 1.1f),
+				PLAYER_RADIUS * 10);
 
 		placeOutPowerUps(10);
 

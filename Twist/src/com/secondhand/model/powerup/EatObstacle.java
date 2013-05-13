@@ -11,7 +11,7 @@ public class EatObstacle extends PowerUp {
 	
 	public EatObstacle(final Vector2 position,
 			final GameWorld level) {
-		super(position, PowerUpType.EAT_OBSTACLE, level, DURATION);
+		super(position, PowerUpType.EAT_OBSTACLE, DURATION);
 
 	}
 

@@ -14,7 +14,7 @@ public class ScoreUp extends PowerUp {
 	
 	public ScoreUp(final Vector2 position,
 			final  GameWorld level) {
-		super(position, PowerUpType.SCORE_UP, level, DURATION);	
+		super(position, PowerUpType.SCORE_UP, DURATION);	
 	}
 
 	public int getScoreBonus() {

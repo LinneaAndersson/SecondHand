@@ -13,7 +13,6 @@ import com.secondhand.model.physics.IPhysicsWorld;
 public class MyPhysicsWorld implements IPhysicsWorld {
 	private PhysicsWorld physicsWorld;
 	// TODO only enemy needs the util class
-	private final PhysicsEnemyUtil enemyUtil;
 	private CollisionResolver collisionResolver;
 	private final PhysicsWorldBounds bounds;
 
@@ -23,7 +22,6 @@ public class MyPhysicsWorld implements IPhysicsWorld {
 		// and put worldBoundries somewhere else
 		this.physicsWorld = physicsWorld;
 		bounds = new PhysicsWorldBounds(physicsWorld);
-		enemyUtil = new PhysicsEnemyUtil(physicsWorld);
 		this.physicsWorld.setVelocityIterations(8);
 		this.physicsWorld.setPositionIterations(8);
 
@@ -54,11 +52,6 @@ public class MyPhysicsWorld implements IPhysicsWorld {
 	public void checkCollision(final Contact contact) {
 		collisionResolver.checkCollision(contact.getFixtureA().getBody()
 				.getUserData(), contact.getFixtureB().getBody().getUserData());
-	}
-
-	@Override
-	public boolean isStraightLine(final Entity entity, final Enemy enemy) {
-		return enemyUtil.straightLine(entity, enemy);
 	}
 
 	public boolean isAreaUnOccupied(final float x, final float y, final float r) {

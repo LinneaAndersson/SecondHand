@@ -11,7 +11,7 @@ public class MirroredMovement extends PowerUp {
 	
 	public MirroredMovement(final Vector2 position,
 			final GameWorld level) {
-		super(position, PowerUpType.MIRRORED_MOVEMENT, level, DURATION);
+		super(position, PowerUpType.MIRRORED_MOVEMENT, DURATION);
 
 	}
 

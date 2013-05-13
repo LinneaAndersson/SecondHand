@@ -14,7 +14,7 @@ public class DoubleScore extends PowerUp {
 	
 	public DoubleScore(final Vector2 position,
 			final GameWorld level) {
-		super(position, PowerUpType.DOUBLE_SCORE, level, DURATION);
+		super(position, PowerUpType.DOUBLE_SCORE, DURATION);
 	}
 
 	@Override

@@ -11,8 +11,8 @@ public abstract class PolygonEntity extends Entity {
 	private final List<Vector2> polygon;
 	
 	public PolygonEntity(final Vector2 position,  final List<Vector2> polygon, 
-			final boolean isEdible, final GameWorld level) {
-		super(position, isEdible, level);
+			final boolean isEdible) {
+		super(position, isEdible);
 		
 		this.polygon = polygon;
 	}

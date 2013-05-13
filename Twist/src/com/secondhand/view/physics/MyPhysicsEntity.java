@@ -10,10 +10,12 @@ import org.anddev.andengine.extension.physics.box2d.util.constants.PhysicsConsta
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.secondhand.debug.MyDebug;
+import com.secondhand.model.entity.Enemy;
 import com.secondhand.model.entity.CircleEntity;
 import com.secondhand.model.entity.Entity;
 import com.secondhand.model.entity.Player;
 import com.secondhand.model.physics.IPhysicsEntity;
+import com.secondhand.model.physics.IPhysicsWorld;
 import com.secondhand.view.opengl.Circle;
 
 public class MyPhysicsEntity implements IPhysicsEntity {
@@ -21,11 +23,12 @@ public class MyPhysicsEntity implements IPhysicsEntity {
 	private final PhysicsWorld physicsWorld;
 	private final PhysicsConnector physicsConnector;
 	private final IShape shape;
+	private final PhysicsEnemyUtil enemyUtil;
 
 	public MyPhysicsEntity(final PhysicsWorld physicsWorld,
 			final Entity entity, final IShape shape, final Body body) {
 		this.physicsWorld = physicsWorld;
-
+		enemyUtil = new PhysicsEnemyUtil(physicsWorld);
 		body.setUserData(entity);
 		
 		
@@ -74,6 +77,7 @@ public class MyPhysicsEntity implements IPhysicsEntity {
 	@Override
 	public void detachSelf() {
 		this.shape.detachSelf();
+		deleteBody();
 	}
 
 	private Vector2 getCenterOfMass() {
@@ -82,6 +86,11 @@ public class MyPhysicsEntity implements IPhysicsEntity {
 
 		return new Vector2(v.x * PhysicsConstants.PIXEL_TO_METER_RATIO_DEFAULT,
 				v.y * PhysicsConstants.PIXEL_TO_METER_RATIO_DEFAULT);
+	}
+	
+	@Override
+	public boolean isStraightLine(final Entity entity, final Enemy enemy) {
+		return enemyUtil.straightLine(entity, enemy);
 	}
 
 	@Override

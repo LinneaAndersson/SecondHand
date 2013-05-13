@@ -11,7 +11,7 @@ public class ExtraLife extends PowerUp {
 	
 	public ExtraLife(final Vector2 position,
 			final  GameWorld level) {
-		super(position, PowerUpType.EXTRA_LIFE, level, DURATION);
+		super(position, PowerUpType.EXTRA_LIFE, DURATION);
 	}
 
 	@Override

@@ -8,8 +8,8 @@ public abstract class RectangleEntity extends Entity {
 	private final float height;
 	
 	public RectangleEntity(final Vector2 position, final float width, 
-			final float height, final boolean isEdible, final GameWorld level) {
-		super(position, isEdible, level);
+			final float height, final boolean isEdible) {
+		super(position, isEdible);
 		this.width = width;
 		this.height = height;
 	}

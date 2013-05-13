@@ -252,7 +252,7 @@ public class GamePlayScene extends GameScene implements PropertyChangeListener {
 		} 
 		
 		else if (eventName.equals(Player.ADD_POWER_UP)) {
-			PowerUp powerUp = (PowerUp) event.getNewValue();
+			final PowerUp powerUp = (PowerUp) event.getNewValue();
 			if(powerUp.hasText()) {
 				showFadingTextNotifier(powerUp.getText(),
 						new Vector2(powerUp.getCenterX(), powerUp.getCenterY()));

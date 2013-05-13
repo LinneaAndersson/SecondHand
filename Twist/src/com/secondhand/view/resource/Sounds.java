@@ -2,7 +2,6 @@ package com.secondhand.view.resource;
 
 import org.anddev.andengine.audio.sound.Sound;
 
-import com.secondhand.model.entity.GameWorld;
 import com.secondhand.model.entity.Player;
 import com.secondhand.model.resource.SoundType;
 import com.secondhand.view.resource.loader.SoundLoader;
@@ -40,7 +39,7 @@ public class Sounds {
 			
 	}
 	
-	public Sound getPlayerSound(String playerSound){
+	public Sound getPlayerSound(final String playerSound){
 		if(Player.ADD_POWER_UP.equalsIgnoreCase(playerSound))
 			return powerUpSound;
 		

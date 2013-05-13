@@ -17,11 +17,9 @@ callback method instead. - Done, but just changed the propertyChange.
 
 - Documentation
 
-* Update user case next level
-* Update user case powerup
 * Update the UC Enemy move to reflect how we ended up implementing the enemy AI.
-Andreas should be the one to do this, as he was the one who implemented a majority of it, so he understands
-it the best.
+Andreas should be the one to do this, as he was the one who
+implemented a majority of it, so he understands it the best.
 * We must also update the class diagram for the model(in the RAD).
 * Describe the MVC model in the SDD.
 * Make 2 sequence diagrams(use something like graphviz)

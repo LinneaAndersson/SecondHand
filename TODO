@@ -3,9 +3,6 @@ Important things that must be done for the success of the project:
 
 - Implementation
 
-* Better level transition
-* Improve the level generation
-* Fix PowerUpFactory.
 * Write unit tests for the model(start doing this once we know that the model is 100% stable )
 * Make sure that the entities are not placed top of each other in the level generation
 * Fix a texture for slowdown powerup.
@@ -30,7 +27,9 @@ Things we can do if we have time:
 * Make a prettier hud.
 * make the menus look prettier.
 * Player movement with particles.
-* Feel free to add other items here.
 * Make the Player grow bigger more smooth. (grow in small steps)
 * When collision, remove bodies earlier.
+* Better level transition
+* Improve the level generation
+* Fix PowerUpFactory.
 

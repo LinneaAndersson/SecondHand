@@ -36,35 +36,5 @@ public class Circle extends Shape {
         final Vector2 dist_v = new Vector2(this.position.x - closest.x, this.position.y - closest.y);
         return dist_v.len() < this.radius;
 	}
-		
-	public Vector2[] getAxes(final Polygon polygon) {
-		Vector2[] axes = new Vector2[1];
 
-		
-		Vector2 closest = polygon.edges.get(0);
-		float closestDist = new Vector2(this.position.x - closest.x , this.position.y - closest.y).len();
-		
-		for(int i = 1; i < polygon.edges.size(); ++i) {
-			Vector2 point = polygon.edges.get(i);
-			final float dist = new Vector2(this.position.x - point.x , this.position.y - point.y).len();
-			if(dist < closestDist) {
-				closestDist = dist;
-				closest = point;
-			}
-		}
-		
-		axes[0] = new Vector2(this.position.x - closest.x , this.position.y - closest.y);
-		
-		return axes;
-
-	}
-	
-	public Projection project(final Vector2 axis) {
-
-		float min = axis.dot(new Vector2(0,0));
-		final float max = min + this.radius;
-		min -= this.radius;			
-		
-		return new Projection(min, max);
-	}
 }

@@ -74,50 +74,7 @@ public class World {
 		else if(((shape1 instanceof Polygon) && (shape2 instanceof Circle)) ||
 				(shape1 instanceof Circle && shape2 instanceof Polygon)) {
 			
-			/*final Polygon poly1;
-			final Circle circle1;
-			
-			if(shape1 instanceof Polygon) {
-				poly1 = (Polygon)shape1;
-				circle1 = (Circle)shape2;
-			} else {
-				poly1 = (Polygon)shape2;
-				circle1 = (Circle)shape1;
-			}
-
-			final Vector2[] axes1 = poly1.getAxes();
-			final Vector2[] axes2 = circle1.getAxes(poly1);
-			// loop over the axes1
-			for (int i = 0; i < axes1.length; i++) {
-				final Vector2 axis = new Vector2(axes1[i]);
-				// project both shapes onto the axis
-				final  Projection p1 = poly1.project(axis);
-				final  Projection p2 = circle1.project(axis);
-				// do the projections overlap?
-				if (!p1.overlap(p2)) {
-					return false;
-					
-				}
-			}
-			// loop over the axes2
-			for (int i = 0; i < axes2.length; i++) {
-				final Vector2 axis = new Vector2(axes2[i]);
-				// project both shapes onto the axis
-				final  Projection p1 = poly1.project(axis);
-				final  Projection p2 = circle1.project(axis);
-				// do the projections overlap?
-				if (!p1.overlap(p2)) {
-					// also handle containment.
-					return false;
-					
-				}
-			}
-			// if we get here then we know that every axis had overlap on it
-			// so we can guarantee an intersection
-			return true;
-			*/
-
-			Polygon polygon = null;
+				Polygon polygon = null;
 			Circle circle = null;
 
 			if(shape1 instanceof Polygon) {
@@ -146,21 +103,6 @@ public class World {
 			
 			return false;
 
-			
-			
-			/*
-
-		    for (int i = 0; i < polygon.edges.size(); ++i) {
-
-		    	final Vector2 dist = new Vector2(circle.position.x - polygon.edges.get(i).x,
-		    			circle.position.y - polygon.edges.get(i).y);
-
-		        if (dist.len() < circle.radius)
-		        	return true;
-
-		    }
-
-		    return false;*/
 		} else {
 
 			return polygonPolygonSAT(shape1, shape2);

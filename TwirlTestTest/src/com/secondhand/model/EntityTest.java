@@ -12,13 +12,13 @@ public class EntityTest extends TestCase {
 	private final static int SCORE_WORTH = 2;
 	
 	public Entity getNewEntity(Vector2 position, boolean isEdible) {
-		return  new Entity(position,isEdible) {
+		return new Entity(position,isEdible) {
 			@Override
 			public void onPhysicsAssigned() {}
 			@Override
 			public float getScoreWorth() { return SCORE_WORTH; }
 			@Override
-			public float getRadius() {return RADIUS;}
+			public float getRadius() { return RADIUS; }
 		};
 	}
 	

@@ -1,6 +1,5 @@
 package com.secondhand.model.powerup;
 
-import com.secondhand.model.entity.GameWorld;
 import com.secondhand.model.entity.Player;
 import com.secondhand.model.physics.Vector2;
 import com.secondhand.model.resource.PowerUpType;
@@ -9,8 +8,7 @@ public class EatObstacle extends PowerUp {
 
 	private final static float DURATION = 5;
 	
-	public EatObstacle(final Vector2 position,
-			final GameWorld level) {
+	public EatObstacle(final Vector2 position) {
 		super(position, PowerUpType.EAT_OBSTACLE, DURATION);
 
 	}

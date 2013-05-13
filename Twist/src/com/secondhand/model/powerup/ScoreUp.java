@@ -1,6 +1,5 @@
 package com.secondhand.model.powerup;
 
-import com.secondhand.model.entity.GameWorld;
 import com.secondhand.model.entity.Player;
 import com.secondhand.model.physics.Vector2;
 import com.secondhand.model.resource.PowerUpType;
@@ -12,8 +11,7 @@ public class ScoreUp extends PowerUp {
 	
 	private Player player;
 	
-	public ScoreUp(final Vector2 position,
-			final  GameWorld level) {
+	public ScoreUp(final Vector2 position) {
 		super(position, PowerUpType.SCORE_UP, DURATION);	
 	}
 

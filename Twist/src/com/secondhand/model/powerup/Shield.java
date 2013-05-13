@@ -1,6 +1,5 @@
 package com.secondhand.model.powerup;
 
-import com.secondhand.model.entity.GameWorld;
 import com.secondhand.model.entity.Player;
 import com.secondhand.model.physics.Vector2;
 import com.secondhand.model.resource.PowerUpType;
@@ -9,8 +8,7 @@ public class Shield extends PowerUp {
 	
 	private final static float DURATION = 4;
 	
-	public Shield(final Vector2 position,
-			final GameWorld level) {
+	public Shield(final Vector2 position) {
 		super(position, PowerUpType.SHIELD, DURATION);
 	}
 

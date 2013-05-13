@@ -20,23 +20,23 @@ public class RandomPowerUp extends PowerUp {
 		
 		
 		if(rand == 0) {
-			randomPowerUp =  new EatObstacle(position, gameWorld);
+			randomPowerUp =  new EatObstacle(position);
 		} else if(rand == 1) {
-			randomPowerUp =  new ExtraLife(position, gameWorld);
+			randomPowerUp =  new ExtraLife(position);
 		}else if(rand == 2) {
 			randomPowerUp =  new RandomTeleport(position, gameWorld);
 		}else if(rand == 3) {
-			randomPowerUp =  new ScoreUp(position, gameWorld);
+			randomPowerUp =  new ScoreUp(position);
 		}else if(rand == 4) {
-			randomPowerUp =  new Shield(position, gameWorld);
+			randomPowerUp =  new Shield(position);
 		}else if(rand == 5) {
-			randomPowerUp =  new SpeedUp(position, gameWorld);
+			randomPowerUp =  new SpeedUp(position);
 		} else if(rand == 6) {
-			randomPowerUp =  new DoubleScore(position, gameWorld);
+			randomPowerUp =  new DoubleScore(position);
 		} else if(rand == 7) {
-			randomPowerUp =  new MirroredMovement(position, gameWorld);
+			randomPowerUp =  new MirroredMovement(position);
 		} else if(rand == 8) {
-			randomPowerUp =  new SpeedDown(position, gameWorld);
+			randomPowerUp =  new SpeedDown(position);
 		}else
 			randomPowerUp = null;
 		

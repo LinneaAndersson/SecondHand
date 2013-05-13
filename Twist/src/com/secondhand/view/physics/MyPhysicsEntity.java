@@ -15,7 +15,6 @@ import com.secondhand.model.entity.CircleEntity;
 import com.secondhand.model.entity.Entity;
 import com.secondhand.model.entity.Player;
 import com.secondhand.model.physics.IPhysicsEntity;
-import com.secondhand.model.physics.IPhysicsWorld;
 import com.secondhand.view.opengl.Circle;
 
 public class MyPhysicsEntity implements IPhysicsEntity {

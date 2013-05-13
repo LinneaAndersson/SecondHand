@@ -19,7 +19,6 @@ public class PlayerView extends BlackHoleView {
 	@Override
 	public void propertyChange(final PropertyChangeEvent event) {
 		super.propertyChange(event);
-		
 		final String propertyName = event.getPropertyName();
 		
 
@@ -30,11 +29,12 @@ public class PlayerView extends BlackHoleView {
 			}
 			
 		}else if (  propertyName.equals(Player.ADD_POWER_UP)) {
-			
+			final Player player = (Player)event.getSource();
 			Sounds.getInstance().getPlayerSound(Player.ADD_POWER_UP).play();
 			final PowerUp powerUp = ((PowerUp) event.getNewValue());
+			int[] RGB = player.getRGB();
 			if(powerUp.getDuration() != 0)
-				this.shape.setColor(powerUp.getR(), powerUp.getG(), powerUp.getB());
+				this.shape.setColor(RGB[0], RGB[1], RGB[2]);
 			
 		} else if (propertyName.equals(Player.REMOVE_POWER_UP)) {	
 			

@@ -80,6 +80,8 @@ public class Enemy extends BlackHole {
 				}
 			}
 		}
+		
+		
 		return entity;
 	}
 

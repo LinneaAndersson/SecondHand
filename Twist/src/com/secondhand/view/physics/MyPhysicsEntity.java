@@ -10,7 +10,9 @@ import org.anddev.andengine.extension.physics.box2d.util.constants.PhysicsConsta
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.secondhand.debug.MyDebug;
+import com.secondhand.model.entity.CircleEntity;
 import com.secondhand.model.entity.Entity;
+import com.secondhand.model.entity.Player;
 import com.secondhand.model.physics.IPhysicsEntity;
 import com.secondhand.view.opengl.Circle;
 
@@ -27,8 +29,8 @@ public class MyPhysicsEntity implements IPhysicsEntity {
 		body.setUserData(entity);
 		
 		
-		physicsConnector = new CustomPhysicsConnector(shape, true/*entity instanceof CircleEntity*/,
-				body, true, false /*entity instanceof Player*/);
+		physicsConnector = new CustomPhysicsConnector(shape, entity instanceof CircleEntity,
+				body, true, !(entity instanceof Player));
 		physicsWorld.registerPhysicsConnector(physicsConnector);
 		this.body = body;
 		this.shape = shape;

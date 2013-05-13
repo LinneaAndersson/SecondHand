@@ -11,7 +11,7 @@ Important things that must be done for the success of the project:
 * Fix a texture for slowdown powerup.
 * The double score powerup also needs some fixing, see the TODO in DoubleScore.java
 * The powerUps doesn't sync body and shape
-
+* We sometimes get negative lives for some reason.
 * Replace some property changes with some kind of interface or
 callback method instead. - Done, but just changed the propertyChange.
 

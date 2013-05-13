@@ -59,6 +59,8 @@ public abstract class Entity {
 		destroyEntity();
 	}
 
+	/* TODO: Just always use this instead of removeEntity and wasEaten?
+	 * All those two methods do is call this one. */
 	public void destroyEntity() {
 
 		// we can't remove the body within a contact listener

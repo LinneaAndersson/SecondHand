@@ -9,7 +9,7 @@ public class SpeedUp extends PowerUp {
 	private final static float DURATION = 10;
 	private final static int FACTOR = 2;
 	
-	public SpeedUp(final Vector2 position, Player player) {
+	public SpeedUp(final Vector2 position, final Player player) {
 		super(position, PowerUpType.SPEED_UP, DURATION, player);
 		
 	}

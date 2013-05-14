@@ -9,7 +9,7 @@ public class SpeedDown extends PowerUp {
 	private final static float DURATION = 10;
 	private final static float FACTOR = 0.5f;
 	
-	public SpeedDown(final Vector2 position, Player player) {
+	public SpeedDown(final Vector2 position, final Player player) {
 		super(position, PowerUpType.SPEED_DOWN, DURATION, player);
 		
 	}

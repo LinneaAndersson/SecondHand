@@ -15,7 +15,7 @@ public class RandomPowerUp extends PowerUp {
 
 	
 	public RandomPowerUp(final Vector2 position,
-			final  IGameWorld gameWorld, Player player) {
+			final  IGameWorld gameWorld, final Player player) {
 		super(position, PowerUpType.RANDOM_POWER_UP, 0, player);
 
 		final Random rng = new Random();

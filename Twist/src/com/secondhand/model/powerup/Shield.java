@@ -8,7 +8,7 @@ public class Shield extends PowerUp {
 	
 	private final static float DURATION = 4;
 	
-	public Shield(final Vector2 position,Player player) {
+	public Shield(final Vector2 position, final Player player) {
 		super(position, PowerUpType.SHIELD, DURATION, player);
 	}
 

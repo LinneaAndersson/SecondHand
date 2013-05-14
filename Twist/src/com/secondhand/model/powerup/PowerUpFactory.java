@@ -63,7 +63,7 @@ public final class PowerUpFactory {
 	}
 	
 	private class Weight {
-		private int powerUp;
+		private final int powerUp;
 		public int weight;
 		
 		public Weight(final int powerUp, final int weight) {

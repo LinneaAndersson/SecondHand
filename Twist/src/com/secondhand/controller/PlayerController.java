@@ -15,13 +15,6 @@ public final class PlayerController {
 	public static TimerHandler createTimer(final Player player) {
 		thisPowerUp = (PowerUp) PowerUpList.getInstance().get(0); 
 		return new TimerHandler(thisPowerUp.getDuration(), new ITimerCallback() {
-			/*private Player user = player; 
-			@Override
-			public void onTimePassed(final TimerHandler pTimerHandler) {
-				if (user.getPowerUps().contains(powerUp))
-					user.removePowerUp(powerUp);
-			}*/
-			//PowerUp will take care of everything that has to do with PowerUps.
 			
 			@Override
 			public void onTimePassed(final TimerHandler pTimerHandler) {

@@ -85,11 +85,8 @@ public abstract class PowerUp extends RectangleEntity implements IPowerUp {
 	}
 
 	public void activatePowerUp() {
-		MyDebug.d("In activatePowerUp in PowerUp");
 		addPowerUp();
-		MyDebug.d("In activatePowerUp in PowerUp");
 		eaten();
-		MyDebug.d("In activatePowerUp in PowerUp");
 	}
 
 	public void removePowerUp() {
@@ -103,7 +100,6 @@ public abstract class PowerUp extends RectangleEntity implements IPowerUp {
 	
 	public void addPowerUp(){
 		this.getPowerUps().add(this);
-		MyDebug.d("In addPowerUp in PowerUp");
 	}
 	
 }

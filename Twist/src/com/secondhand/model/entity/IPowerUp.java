@@ -23,4 +23,8 @@ public interface IPowerUp {
 	float getB();
 
 	void eaten();
+	
+	// rarity of this powerup. Given on a scale from 1-10.
+	// where 1 is dirt common and 10 is super rare. 
+	int getRarity();
 }

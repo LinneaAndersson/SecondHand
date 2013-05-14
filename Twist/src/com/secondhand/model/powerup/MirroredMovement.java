@@ -29,4 +29,9 @@ public class MirroredMovement extends PowerUp {
 	public float getR() {return 1f;}
 	public float getG() {return 0f;}
 	public float getB() {return 1f;}
+
+	// make it common, so that it's more annoying :)
+	@Override
+	public int getRarity() { return 3; }
+
 }

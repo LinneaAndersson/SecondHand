@@ -145,9 +145,7 @@ public class Player extends BlackHole {
 	public void addPowerUp(final IPowerUp powerUp) {
 		//this.powerUpList.add(powerUp);
 		
-		MyDebug.d("in addPowerUp n Player");
 		pcs.firePropertyChange(ADD_POWER_UP, null, powerUp);
-		MyDebug.d("in addPowerUp n Player");
 	}
 
 	public void setName(final String name) {

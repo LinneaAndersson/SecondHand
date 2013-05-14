@@ -53,7 +53,8 @@ public class RandomLevelGenerator {
 		generateRandomLevel(player);
 	}
 
-	private void placeOutEnemies(final int ENEMIES, final int EATABLE_ENEMIES) {
+	private void placeOutEnemies(final int ENEMIES, final int EATABLE_ENEMIES,
+			final float ENEMY_EXTRA_RADIUS) {
 		Enemy enemy;
 
 		for (int i = 0; i < EATABLE_ENEMIES; ++i) {
@@ -68,10 +69,9 @@ public class RandomLevelGenerator {
 				y = rng.nextInt(this.levelHeight);
 
 				final Circle circle = new Circle(new Vector2(x, y),
-						radius);
+						radius + ENEMY_EXTRA_RADIUS);
 
-				if (world.addToWorld(circle)
-						&& radius < 40 * GameWorld.PLAYER_STARTING_SIZE) {
+				if (world.addToWorld(circle)) {
 					break;
 				}
 			}
@@ -90,7 +90,7 @@ public class RandomLevelGenerator {
 				x = rng.nextInt(this.levelWidth);
 				y = rng.nextInt(this.levelHeight);
 				final Circle circle = new Circle(new Vector2(x, y),
-						radius);
+						radius + ENEMY_EXTRA_RADIUS);
 
 				// addToWorld add the polygon if it is unoccupied otherwise it
 				// returns false
@@ -127,12 +127,11 @@ public class RandomLevelGenerator {
 				}
 			}
 
-			entityList
-			.add(new Obstacle(new Vector2(x, y), edges));
+			entityList.add(new Obstacle(new Vector2(x, y), edges));
 		}
 	}
 
-	private void placeOutPowerUps(final int number) {
+	private void placeOutPowerUps(final int number, final float POWER_UP_EXTRA_SIZE) {
 		for (int i = 0; i < number; ++i) {
 
 			while (true) {
@@ -141,8 +140,8 @@ public class RandomLevelGenerator {
 				y = rng.nextInt(this.levelHeight);
 
 				final Polygon poly = PolygonFactory.createRectangle(
-						new Vector2(x, y), PowerUp.WIDTH,
-						PowerUp.HEIGHT);
+						new Vector2(x - POWER_UP_EXTRA_SIZE, y-POWER_UP_EXTRA_SIZE), PowerUp.WIDTH + POWER_UP_EXTRA_SIZE,
+						PowerUp.HEIGHT+ POWER_UP_EXTRA_SIZE);
 
 				if (world.addToWorld(poly)) {
 					break;
@@ -155,7 +154,7 @@ public class RandomLevelGenerator {
 	}
 
 	private void placeOutPlanets(final int NUMBER_EATABLE, final int NUMBER,
-			final float MIN_SIZE, final float MAX_SIZE) {
+			final float MIN_SIZE, final float MAX_SIZE, final float PLANET_EXTRA_RADIUS) {
 
 		float radius;
 
@@ -170,26 +169,25 @@ public class RandomLevelGenerator {
 				y = rng.nextInt(this.levelHeight);
 
 				final Circle circle = new Circle(new Vector2(x, y),
-						radius);
+						radius + PLANET_EXTRA_RADIUS);
 
-				if (world.addToWorld(circle)
-						&& radius < 40 * GameWorld.PLAYER_STARTING_SIZE) {
+				if (world.addToWorld(circle)) {
 					break;
 				}
 			}
 			entityList.add(new Planet(new Vector2(x, y), radius,
 					RandomUtil.randomEnum(rng, PlanetType.class)));
 		}
-		for (int i = NUMBER_EATABLE; i < NUMBER; i++) {
+		for (int i = 0; i < NUMBER; i++) {
 
 			while (true) {
-				radius = RandomUtil.nextFloat(rng, MIN_SIZE, MAX_SIZE);
+				radius = RandomUtil.nextFloat(rng, GameWorld.PLAYER_STARTING_SIZE, MAX_SIZE);
 
 				x = rng.nextInt(this.levelWidth);
 				y = rng.nextInt(this.levelHeight);
 
 				final Circle circle = new Circle(new Vector2(x, y),
-						radius);
+						radius + PLANET_EXTRA_RADIUS);
 
 				if (world.addToWorld(circle)) {
 					break;
@@ -207,9 +205,19 @@ public class RandomLevelGenerator {
 		this.levelHeight = 2000 * this.levelNumber;
 		this.world = new World(this.levelWidth, this.levelHeight);
 		
+		// We want to ensure that things are not placed too close to each other.
+		// so we make the collision bodies of these things a little bigger than they
+		// really are.
+		final float PLAYER_EXTRA_RADIUS = 20;
+		final float PLANET_EXTRA_RADIUS = 20;
+		
+		final float POWER_UP_EXTRA_SIZE = 20;
+		
+		final float ENEMY_EXTRA_RADIUS = 20;
+		
 		final Circle circle = new Circle(new Vector2(
 				player.getInitialPosition().x, player.getInitialPosition().y),
-				player.getRadius());
+				player.getRadius() + PLAYER_EXTRA_RADIUS);
 		world.addToWorld(circle);
 
 		this.playerMaxSize = GameWorld.PLAYER_STARTING_SIZE * (this.levelNumber + 1);
@@ -219,13 +227,14 @@ public class RandomLevelGenerator {
 
 		placeOutPlanets(10 * levelNumber, // number player eatable
 
-				5 * levelNumber, // number bigger than player.
+				8 * levelNumber, // number bigger than player.
 				(GameWorld.PLAYER_STARTING_SIZE / 1.1f),
-				GameWorld.PLAYER_STARTING_SIZE * 10);
+				GameWorld.PLAYER_STARTING_SIZE * 7,
+				PLANET_EXTRA_RADIUS);
 
-		placeOutPowerUps(10);
+		placeOutPowerUps(10, POWER_UP_EXTRA_SIZE);
 
-		placeOutEnemies(10 * this.levelNumber,4 * this.levelNumber);
+		placeOutEnemies(10 * this.levelNumber,4 * this.levelNumber, ENEMY_EXTRA_RADIUS);
 
 	}
 }

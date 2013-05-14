@@ -10,7 +10,7 @@ public final class PolygonFactory {
 
 	private PolygonFactory() {}
 	
-	public static Polygon createRectangle(final Vector2 position, final int width, final int height) {
+	public static Polygon createRectangle(final Vector2 position, final float width, final float height) {
 		final List<Vector2> edges = new ArrayList<Vector2>();
 		
 		edges.add(new Vector2(0,0));

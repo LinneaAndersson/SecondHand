@@ -129,6 +129,8 @@ public class Enemy extends BlackHole {
 	}
 
 	public void retreatFrom(final Entity danger) {
+		physics.applyImpulse(new Vector2(getCenterX() - danger.getCenterX(),
+				getCenterY() - danger.getCenterY()).mul(0.02f), getMaxSpeed());
 	}
 
 	@Override

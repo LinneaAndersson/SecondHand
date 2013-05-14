@@ -41,8 +41,9 @@ public class Enemy extends BlackHole {
 		return (getRadius() * getRadius() * (float) Math.PI) + 5;
 	}
 
+	//Sets the speed with the absolute value of maxSpeed
 	public void setMaxSpeed(final float maxSpeed) {
-		this.maxSpeed = maxSpeed;
+			this.maxSpeed = Math.abs(maxSpeed);
 	}
 
 	public float getMaxSpeed() {
@@ -88,15 +89,14 @@ public class Enemy extends BlackHole {
 	private Entity getHighesPriority(final List<Entity> entityList) {
 		Entity entity = null;
 		for (final Entity e : entityList) {
-			if (e instanceof CircleEntity) {
-				if (isCloseToEntity(e, huntingArea) && canEat(e)) {
+			if (e instanceof CircleEntity && isCloseToEntity(e, huntingArea) && canEat(e)) {
 					if (entity instanceof Enemy && !(e instanceof Enemy)) {
 
 					} else {
 						entity = getSmaller(entity, e);
 					}
 				}
-			}
+			
 		}
 
 		return entity;

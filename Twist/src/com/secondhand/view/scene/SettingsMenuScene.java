@@ -4,7 +4,7 @@ import org.anddev.andengine.engine.Engine;
 
 import android.content.Context;
 
-import com.secondhand.model.resource.LocalizationStrings;
+import com.secondhand.view.resource.LocalizationStrings;
 
 
 public class SettingsMenuScene extends GameMenuScene{

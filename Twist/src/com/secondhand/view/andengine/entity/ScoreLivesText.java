@@ -5,8 +5,8 @@ import java.util.Arrays;
 import org.anddev.andengine.entity.text.ChangeableText;
 
 import com.badlogic.gdx.math.Vector2;
-import com.secondhand.model.resource.LocalizationStrings;
 import com.secondhand.view.resource.Fonts;
+import com.secondhand.view.resource.LocalizationStrings;
 
 // used to show the score and lives, and the completion in the HUD.
 public final class ScoreLivesText extends ChangeableText {

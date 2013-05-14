@@ -25,6 +25,12 @@ public class MirroredMovement extends PowerUp {
 		player.setMirroredMovement(hasAnother);
 	}
 	
+	@Override
+	public void removePowerUp() {
+		super.removePowerUp();
+		player.setMirroredMovement(false);
+	}
+	
 
 	public float getR() {return 1f;}
 	public float getG() {return 0f;}

@@ -14,18 +14,18 @@ public class Player extends BlackHole {
 
 	private int lives;
 
+	private boolean isMirroredMovement;
+
 	private int maxSize;
 
 	private float scoreMultiplier;
-	
+
 	private float speedMultiplier;
 
 	private Vector2 needsToMovePosition;
 
-	private PlayerUtil util;
-	
 	private SoundType soundType = null;
-	
+
 	//For playerView to get the color of player
 	// The color will change!
 	private float[] RGB = new float[3];
@@ -38,11 +38,11 @@ public class Player extends BlackHole {
 	// =============================================
 	public Player(final Vector2 position, final float radius, final int startingLives) {
 		super(position, radius);
-		
+
 		this.speedMultiplier = 1;
 		this.lives = startingLives;
 		this.scoreMultiplier = 1;
-		util = new PlayerUtil(this);
+		isMirroredMovement = false;
 		RGB[0]=0;
 		RGB[1]=0;
 		RGB[2]=0;
@@ -51,14 +51,6 @@ public class Player extends BlackHole {
 
 	public Player(final Vector2 position, final float radius) {
 		this(position, radius, STARTING_LIVES);
-	}
-
-	public boolean isMirroredMovement() {
-		return util.isMirroredMovement();
-	}
-
-	public void setMirroredMovement(final boolean mirrored) {
-		util.setMirroredMovement(mirrored);
 	}
 
 	public int getLives() {
@@ -76,8 +68,8 @@ public class Player extends BlackHole {
 	@Override
 	public void increaseScore(final int increase) {
 		super.increaseScore((int) this.getScoreMultiplier() * increase);
-		
-		
+
+
 		pcs.firePropertyChange(INCREASE_SCORE, (int)0, (int)getScore());
 	}
 
@@ -89,7 +81,7 @@ public class Player extends BlackHole {
 		return this.scoreMultiplier;
 	}
 
-	
+
 	public void setSpeedMultiplier(final float speedMultiplier) {
 		this.speedMultiplier = speedMultiplier;
 	}
@@ -97,11 +89,11 @@ public class Player extends BlackHole {
 	public float getSpeedMultiplier() {
 		return this.speedMultiplier;
 	}
-	
-	
+
+
 	private void changeLives(final int change) {
 		lives += change;
-		
+
 		pcs.firePropertyChange(INCREASE_LIFE, (int)0, (int)lives);
 	}
 
@@ -135,10 +127,6 @@ public class Player extends BlackHole {
 	public void addListener(final PropertyChangeListener observer) {
 		this.pcs.addPropertyChangeListener(observer);
 	}
-	
-	public void reachToTouch(final Vector2 touch) {
-		util.reachToTouch(touch);
-	}
 
 	// used to implement teleport, because you can't change the position inside
 	// a contact
@@ -157,11 +145,11 @@ public class Player extends BlackHole {
 			needsToMovePosition = null;
 		}
 	}
-	
+
 	public float[] getRGB(){
 		return RGB;
 	}
-	
+
 	public void setRGB(float[] RGB){
 		this.RGB = RGB;
 		pcs.firePropertyChange("color", null, RGB);
@@ -188,14 +176,54 @@ public class Player extends BlackHole {
 
 		kill();
 	}
-	
+
 	public void setSoundType(final SoundType sound){
 		soundType = sound;
 		pcs.firePropertyChange("Sound", null, sound);
 	}
-	
+
 	public SoundType getSoundType(){
 		return soundType;
 	}
-	
+
+
+
+	public boolean isMirroredMovement() {
+		return this.isMirroredMovement;
+	}
+
+	public void setMirroredMovement(final boolean mirrored) {
+		this.isMirroredMovement = mirrored;
+	}
+
+	public void reachToTouch(final Vector2 touch) {
+		Vector2 forcePosition;
+
+		if (this.isMirroredMovement()) {
+			final Vector2 v1 = new Vector2(touch.x - this.getCenterX(),
+					touch.y - this.getCenterY());
+			v1.mul(-1);
+			final Vector2 v2 = new Vector2(this.getCenterX(),
+					this.getCenterY());
+			v2.add(v1);
+			forcePosition = new Vector2(v2.x, v2.y);
+		} else {
+
+			forcePosition = new Vector2(touch.x, touch.y);
+		}
+
+		final Vector2 force = new Vector2((this.getCenterX() - touch.x),
+				this.getCenterY() - touch.y);
+
+		if (this.isMirroredMovement) {
+			force.mul(-1);
+		}
+
+		force.x = force.x / force.len();
+		force.y = force.y / force.len();		
+
+		force.mul(this.getSpeedMultiplier() * 40);
+
+		this.physics.applyImpulse(force, forcePosition);
+	}
 }

@@ -14,7 +14,7 @@ public abstract class PowerUp extends RectangleEntity implements IPowerUp {
 	
 	protected float duration;
 	private final PowerUpType powerUpType;
-	private final Player player;
+	protected final Player player;
 	private float[] RGB = new float[3];
 	
 	public PowerUp (final Vector2 position, final PowerUpType powerUpType, final float duration, Player player) {

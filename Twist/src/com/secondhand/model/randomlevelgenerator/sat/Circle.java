@@ -36,5 +36,4 @@ public class Circle extends Shape {
         final Vector2 dist_v = new Vector2(this.position.x - closest.x, this.position.y - closest.y);
         return dist_v.len() < this.radius;
 	}
-
 }

@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import com.secondhand.model.entity.IPowerUp;
 import com.secondhand.model.entity.Player;
 
-class PowerUpList extends ArrayList<IPowerUp> {
+public class PowerUpList extends ArrayList<IPowerUp> {
 
 	
 	// NOT FINISHED!
@@ -38,5 +38,9 @@ class PowerUpList extends ArrayList<IPowerUp> {
 			instance = new PowerUpList();
 		}
 		return instance;
+	}
+
+	public void setPlayer(Player player) {
+		this.player = player;
 	}
 }

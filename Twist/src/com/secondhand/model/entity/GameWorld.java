@@ -6,6 +6,7 @@ import java.util.List;
 
 import com.secondhand.model.physics.IPhysicsWorld;
 import com.secondhand.model.physics.Vector2;
+import com.secondhand.model.powerup.PowerUpList;
 import com.secondhand.model.randomlevelgenerator.RandomLevelGenerator;
 
 public class GameWorld {
@@ -31,7 +32,7 @@ public class GameWorld {
 		support = new PropertyChangeSupport(this);
 
 		this.entityManager = new EntityManager( new Player(new Vector2(50,50),PLAYER_STARTING_SIZE));
-
+		PowerUpList.getInstance().setPlayer(entityManager.getPlayer());
 		
 		generateNewLevelEntities(STARTING_LEVEL);
 		mPhysic.setWorldBounds(levelWidth, levelHeight);		

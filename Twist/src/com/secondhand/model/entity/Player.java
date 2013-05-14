@@ -3,6 +3,7 @@ package com.secondhand.model.entity;
 import java.beans.PropertyChangeListener;
 import java.util.List;
 
+import com.secondhand.debug.MyDebug;
 import com.secondhand.model.physics.Vector2;
 
 public class Player extends BlackHole {
@@ -22,7 +23,7 @@ public class Player extends BlackHole {
 
 	private Vector2 needsToMovePosition;
 
-	private final List<IPowerUp> powerUpList;
+	//private final List<IPowerUp> powerUpList;
 
 	private PlayerUtil util;
 	
@@ -49,7 +50,7 @@ public class Player extends BlackHole {
 		this.lives = startingLives;
 		this.scoreMultiplier = 1;
 		util = new PlayerUtil(this);
-		powerUpList = util.getPowerUpList();
+		//powerUpList = util.getPowerUpList();
 		RGB[0]=0;
 		RGB[1]=0;
 		RGB[2]=0;
@@ -131,21 +132,22 @@ public class Player extends BlackHole {
 		changeLives(+1);
 	}
 
-	public List<IPowerUp> getPowerUps() {
+	/*public List<IPowerUp> getPowerUps() {
 		return powerUpList;
-	}
+	}*/
 
 	public void removePowerUp(final IPowerUp powerUp) {
-		this.powerUpList.remove(powerUp);
+		//this.powerUpList.remove(powerUp);
 		
 		pcs.firePropertyChange(REMOVE_POWER_UP, null, powerUp);
 	}
 
 	public void addPowerUp(final IPowerUp powerUp) {
-		this.powerUpList.add(powerUp);
+		//this.powerUpList.add(powerUp);
 		
-		
+		MyDebug.d("in addPowerUp n Player");
 		pcs.firePropertyChange(ADD_POWER_UP, null, powerUp);
+		MyDebug.d("in addPowerUp n Player");
 	}
 
 	public void setName(final String name) {
@@ -189,7 +191,7 @@ public class Player extends BlackHole {
 
 		addPowerUp(powerUp);
 
-		powerUp.eaten();
+		//powerUp.eaten();
 	}
 	
 	public int[] getRGB(){

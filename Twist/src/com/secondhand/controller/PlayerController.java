@@ -12,19 +12,19 @@ public final class PlayerController {
 
 	public static TimerHandler createTimer(final Player player, final PowerUp powerUp) {
 		return new TimerHandler(powerUp.getDuration(), new ITimerCallback() {
-			private Player user = player; 
+			/*private Player user = player; 
 			@Override
 			public void onTimePassed(final TimerHandler pTimerHandler) {
 				if (user.getPowerUps().contains(powerUp))
 					user.removePowerUp(powerUp);
-			}
-			/*//PowerUp will take care of everything that has to do with PowerUps.
+			}*/
+			//PowerUp will take care of everything that has to do with PowerUps.
 			private PowerUp thisPowerUp = powerUp; 
 			@Override
 			public void onTimePassed(final TimerHandler pTimerHandler) {
-				if (( thisPowerUp.getPowerUps()).contains(powerUp))
-					thisPowerUp.removePowerUp(powerUp);
-			}*/
+				if ((thisPowerUp.getPowerUps()).contains(powerUp))
+					thisPowerUp.removePowerUp();
+			}
 		});
 	}
 }

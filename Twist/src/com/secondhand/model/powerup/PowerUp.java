@@ -2,6 +2,7 @@ package com.secondhand.model.powerup;
 
 import java.util.List;
 
+import com.secondhand.debug.MyDebug;
 import com.secondhand.model.entity.IPowerUp;
 import com.secondhand.model.entity.Player;
 import com.secondhand.model.entity.RectangleEntity;
@@ -59,7 +60,7 @@ public abstract class PowerUp extends RectangleEntity implements IPowerUp {
 	@Override
 	public boolean hasAnother(final Player player) {
 		boolean hasAnother = false;
-		for (final IPowerUp powerUp : player.getPowerUps()) {
+		for (final IPowerUp powerUp : getPowerUps()) {
 			if (powerUp.getClass() == this.getClass()) // old was DoubleScore.getClass() but this should be right?
 				hasAnother = true;
 		}
@@ -85,22 +86,26 @@ public abstract class PowerUp extends RectangleEntity implements IPowerUp {
 		super.wasEaten();
 	}
 
-	/*public void activatePowerUp() {
-		
+	public void activatePowerUp() {
+		MyDebug.d("In activatePowerUp in PowerUp");
+		addPowerUp();
+		MyDebug.d("In activatePowerUp in PowerUp");
+		eaten();
+		MyDebug.d("In activatePowerUp in PowerUp");
 	}
 
-	public void removePowerUp(PowerUp powerUp) {
-		// TODO Auto-generated method stub
-		
+	public void removePowerUp() {
+		this.getPowerUps().remove(this);
 	}
 
-	public List<PowerUp> getPowerUps() {
+	public PowerUpList getPowerUps() {
 		// TODO Auto-generated method stub
-		return null;
+		return PowerUpList.getInstance();
 	}
 	
 	public void addPowerUp(){
-		
-	}*/
+		this.getPowerUps().add(this);
+		MyDebug.d("In addPowerUp in PowerUp");
+	}
 	
 }

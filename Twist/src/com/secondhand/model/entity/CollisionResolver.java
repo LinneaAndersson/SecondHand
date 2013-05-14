@@ -1,5 +1,8 @@
 package com.secondhand.model.entity;
 
+import com.secondhand.debug.MyDebug;
+import com.secondhand.model.powerup.*;
+
 public final class CollisionResolver {
 
 	private final GameWorld gameWorld;
@@ -15,17 +18,24 @@ public final class CollisionResolver {
 		Entity other;
 		if (entityA instanceof BlackHole) {
 			blackHole = (BlackHole) entityA;
-			/*if(entityB instanceof PowerUp){
+			if(entityB instanceof PowerUp && entityA instanceof Player){
+				MyDebug.d("In handlelackHoleCollision 1");
 				((PowerUp) entityB).activatePowerUp();
-				return;
-			}*/
+				MyDebug.d("In handlelackHoleCollision 1");
+			}
 			other = entityB;
 		} else {
+			if(entityA instanceof PowerUp && entityB instanceof Player){
+				MyDebug.d("In handlelackHoleCollision 2");
+				((PowerUp) entityA).activatePowerUp();
+				MyDebug.d("In handlelackHoleCollision 2");
+			}
 			other = entityA;
 			blackHole = (BlackHole) entityB;
 		}
-
+		MyDebug.d("In handlelackHoleCollision");
 		blackHole.eatEntity(other);
+		MyDebug.d("In handlelackHoleCollision");
 	}
 
 	public void checkCollision(final Object a, final Object b) {

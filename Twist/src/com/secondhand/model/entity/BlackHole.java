@@ -64,8 +64,6 @@ public abstract class BlackHole extends CircleEntity {
 		return this.getRadius() > entity.getRadius();
 	}
 
-	protected abstract void handlePowerUp(final IPowerUp powerUp);
-
 	protected void onGrow() {
 	}
 
@@ -93,8 +91,7 @@ public abstract class BlackHole extends CircleEntity {
 	public void eatEntity(final Entity entity) {
 
 		if(entity instanceof IPowerUp) {
-			// custom handling
-			handlePowerUp((IPowerUp)entity);
+			return;
 		} else if(entity instanceof BlackHole) {
 			final BlackHole otherBlackHole = (BlackHole)entity;
 

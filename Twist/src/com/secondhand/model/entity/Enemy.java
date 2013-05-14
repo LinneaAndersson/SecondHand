@@ -117,8 +117,4 @@ public class Enemy extends BlackHole {
 	public void retreat(final Entity danger) {
 	}
 
-	@Override
-	protected void handlePowerUp(final IPowerUp powerUp) {
-		// enemies can't eat powerups :(
-	}
 }

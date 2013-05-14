@@ -6,6 +6,7 @@ import org.anddev.andengine.extension.physics.box2d.PhysicsWorld;
 
 import com.secondhand.model.entity.Player;
 import com.secondhand.model.powerup.PowerUp;
+import com.secondhand.model.resource.SoundType;
 import com.secondhand.view.resource.Sounds;
 
 // what? the controller should be handling the PropertyChangeListener, not the view!
@@ -24,8 +25,8 @@ public class PlayerView extends BlackHoleView {
 
 		if (propertyName.equalsIgnoreCase("sound")) {
 
-			if(Sounds.getInstance().getPlayerSound(((String)event.getNewValue())) != null){
-				Sounds.getInstance().getPlayerSound((String)(event.getNewValue())).play();
+			if(Sounds.getInstance().getPlayerSound(((SoundType)event.getNewValue())) != null){
+				Sounds.getInstance().getPlayerSound((SoundType)(event.getNewValue())).play();
 			}
 
 		}else if (  propertyName.equalsIgnoreCase("color")) {

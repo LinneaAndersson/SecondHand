@@ -22,8 +22,6 @@ public class Player extends BlackHole {
 
 	private Vector2 needsToMovePosition;
 
-	//private final List<IPowerUp> powerUpList;
-
 	private PlayerUtil util;
 	
 	private SoundType soundType = null;
@@ -36,12 +34,6 @@ public class Player extends BlackHole {
 	public final static String INCREASE_SCORE = "IncreaseScore";
 	public final static String INCREASE_LIFE = "IncreaseLife";
 	public final static String ADD_POWER_UP = "AddPowerUp";
-	public final static String REMOVE_POWER_UP = "RemovePowerUp";
-	public final static String POWER_UP_SOUND = "PowerUpSound";
-	public final static String GROW_SOUND = "GrowSound";
-	public final static String BIGGER_ENTITY_COLLISION_SOUND = "PlayerBiggerEntityCollision";
-	public final static String PLAYER_KILLED_SOUND = "PlayerKilled";
-
 
 	// =============================================
 	public Player(final Vector2 position, final float radius, final int startingLives) {

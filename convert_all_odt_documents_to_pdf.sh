@@ -10,7 +10,7 @@ elif [[ "$unamestr" == 'Darwin' ]]; then
     libre_office_path='/Applications/LibreOffice.app/Contents/MacOS/soffice'
 fi
 
-declare -a arr=(rad meeting)
+declare -a arr=(rad meeting sdd)
 
 for dir in ${arr[@]}
 do

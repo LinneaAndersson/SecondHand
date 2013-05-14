@@ -217,42 +217,19 @@ public class RandomLevelGenerator {
 
 	private void placeOutLevelEntities() {
 
-		placeOutObstacles(newObstacles());
+		placeOutObstacles(levelNumber * 10);
 
 		final int[] numPlanets= newPlanets();
-		placeOutPlanets(numPlanets[0], numPlanets[1], (GameWorld.PLAYER_STARTING_SIZE / 1.1f),
+		placeOutPlanets(10 * levelNumber, // number player eatable
+				
+				5 * levelNumber, // number bigger than player.
+				(GameWorld.PLAYER_STARTING_SIZE / 1.1f),
 				GameWorld.PLAYER_STARTING_SIZE * 10);
 
 		placeOutPowerUps(10);
 
 	final int[] numEnemies= newEnemies();
-		placeOutEnemies(numEnemies[0],numEnemies[1]);
+		placeOutEnemies(10 * this.levelNumber,4 * this.levelNumber);
 
-	}
-
-	private int newObstacles() {
-		return levelNumber * 10;
-	}
-
-	private int[] newPlanets() {
-		
-		
-		int[] list = new int[2];
-		
-		list[0] = 10 * levelNumber;
-		list[0] = 5 * levelNumber;
-		
-		return list;
-	}
-
-	// checks witch level and placing out the Planets after difficulty.
-	private int[] newEnemies() {
-		
-		final int[] ENEMIES = new int[2];
-		
-		ENEMIES[0] = 10 * this.levelNumber;
-		ENEMIES[1] = 4 * this.levelNumber;
-		
-		return ENEMIES;
 	}
 }

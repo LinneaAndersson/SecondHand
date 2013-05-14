@@ -15,8 +15,10 @@ public abstract class PowerUp extends RectangleEntity implements IPowerUp {
 	protected float duration;
 	private final PowerUpType powerUpType;
 	protected final Player player;
-	private final float[] RGB = new float[3];
 	
+	private final float DEFAULT_COLOR_VALUE = 1f;
+	private final float[] RGB = new float[3];	
+
 	public PowerUp (final Vector2 position, final PowerUpType powerUpType, final float duration, final Player player) {
 		super(position, WIDTH, HEIGHT,true);
 		this.duration = duration;
@@ -72,13 +74,13 @@ public abstract class PowerUp extends RectangleEntity implements IPowerUp {
 	// I know that this is technically part of the view, but then we'd have to create a 
 	// separate view class for every fucking powerup, and I don't really have the energy to do that. 
 	@Override
-	public float getR() {return 1f;}
+	public float getR() {return DEFAULT_COLOR_VALUE;}
 	
 	@Override
-	public float getG() {return 1f;}
+	public float getG() {return DEFAULT_COLOR_VALUE;}
 	
 	@Override
-	public float getB() {return 1f;}
+	public float getB() {return DEFAULT_COLOR_VALUE;}
 	
 	@Override
 	public void eaten(){
@@ -92,9 +94,9 @@ public abstract class PowerUp extends RectangleEntity implements IPowerUp {
 	}
 
 	public void removePowerUp() {
-		RGB[0]=1f;
-		RGB[1]=1f;
-		RGB[2]=1f;
+		RGB[0] = DEFAULT_COLOR_VALUE;
+		RGB[1] = DEFAULT_COLOR_VALUE;
+		RGB[2] = DEFAULT_COLOR_VALUE;
 		player.setRGB(RGB);
 		this.getPowerUps().remove(this);
 	}

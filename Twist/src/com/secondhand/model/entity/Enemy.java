@@ -112,16 +112,6 @@ public class Enemy extends BlackHole {
 		}
 	}
 
-	// checks if there is something uneatable close by
-	// in movement direction
-	/*private void closeToDanger() {
-
-	}*/
-/*
-	private void stopMovement() {
-		physics.stopMovment();
-	}*/
-
 	public void retreat(final Entity danger) {
 	}
 

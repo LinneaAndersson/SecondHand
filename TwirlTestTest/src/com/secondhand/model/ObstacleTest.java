@@ -13,7 +13,10 @@ public class ObstacleTest extends TestCase{
 		Vector2 position = new Vector2();
 		ArrayList<Vector2> polygon = new ArrayList<Vector2>();
 		
-		Obstacle obstacle = new Obstacle(position, polygon);		
+		Obstacle obstacle = new Obstacle(position, polygon);
+		
+		assertEquals(position, obstacle.getInitialPosition());
+		assertEquals(polygon, obstacle.getPolygon());
 	}
 	
 }

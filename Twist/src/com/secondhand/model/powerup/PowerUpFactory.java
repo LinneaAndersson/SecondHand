@@ -109,18 +109,4 @@ public final class PowerUpFactory {
 			}
 		}
 	}
-	
-	/*
-	 * weights.add(new Weight(1, DoubleScore.getFrequency()));
-		weights.add(new Weight(2, EatObstacle.getFrequency()));
-		weights.add(new Weight(3, ExtraLife.getFrequency()));
-		weights.add(new Weight(4, MirroredMovement.getFrequency()));
-		weights.add(new Weight(5, RandomPowerUp.getFrequency()));
-		weights.add(new Weight(6, RandomTeleport.getFrequency()));
-		weights.add(new Weight(7, ScoreUp.getFrequency()));
-		weights.add(new Weight(8, Shield.getFrequency()));
-		weights.add(new Weight(9, SpeedDown.getFrequency()));
-		weights.add(new Weight(10, SpeedUp.getFrequency()));
-		*/
-	
 }

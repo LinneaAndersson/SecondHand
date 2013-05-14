@@ -25,5 +25,4 @@ Things we can do if we have time:
 * When collision, remove bodies earlier.
 * Better level transition
 * Improve the level generation
-* Fix PowerUpFactory.
 

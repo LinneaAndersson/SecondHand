@@ -105,6 +105,7 @@ public abstract class PowerUp extends RectangleEntity implements IPowerUp {
 	}
 	
 	public void addPowerUp(){
+		this.activateEffect(player);
 		RGB[0]=this.getR();
 		RGB[1]=this.getG();
 		RGB[2]=this.getB();

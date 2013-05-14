@@ -19,12 +19,6 @@ public class PowerUpList extends ArrayList<IPowerUp> {
 	}
 
 	@Override
-	public boolean add(final IPowerUp object) {
-		object.activateEffect(player);
-		return super.add(object);
-	}
-
-	@Override
 	public boolean remove(final Object object) {
 		final boolean value = super.remove(object); // Priority: The list is
 		// empty when you remove
@@ -38,9 +32,5 @@ public class PowerUpList extends ArrayList<IPowerUp> {
 			instance = new PowerUpList();
 		}
 		return instance;
-	}
-
-	public void setPlayer(Player player) {
-		this.player = player;
 	}
 }

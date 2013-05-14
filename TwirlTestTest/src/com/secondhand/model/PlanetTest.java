@@ -2,26 +2,21 @@ package com.secondhand.model;
 
 import junit.framework.TestCase;
 
-import org.anddev.andengine.opengl.buffer.BufferObjectManager;
-
-import com.badlogic.gdx.math.Vector2;
+import com.secondhand.model.entity.Planet;
+import com.secondhand.model.physics.Vector2;
+import com.secondhand.model.resource.PlanetType;
 
 public class PlanetTest extends TestCase{
 
-	/*
 	public void testConstructor() {
-
-		final GameWorld gW = new GameWorld();		
+		final Vector2 position = new Vector2();
+		final float radius = 10;
+		final PlanetType planetType = PlanetType.BLOOD;
 		
-		Vector2 pos = new Vector2(2f, 4f);
-		float rad = 3.2f;
+		final Planet planet = new Planet(position, radius, planetType);
 		
-		Planet planet = new Planet(pos, rad, gW);
-		
-		assertEquals(rad, planet.getRadius());
-		assertEquals(pos.x, planet.getX());
-		assertEquals(pos.y, planet.getY());
-		assertEquals(true, planet.isEdible());
+		assertEquals(position, planet.getInitialPosition());
+		assertEquals(radius, planet.getRadius());
+		assertEquals(planetType, planet.getPlanetType());
 	}
-	*/
 }

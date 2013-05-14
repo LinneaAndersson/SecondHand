@@ -30,4 +30,7 @@ public class DoubleScore extends PowerUp {
 	public float getR() {return 1f;}
 	public float getG() {return 1f;}
 	public float getB() {return 0f;}
+	
+	@Override
+	public int getRarity() { return 5; }
 }

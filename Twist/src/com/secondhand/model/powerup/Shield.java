@@ -29,4 +29,9 @@ public class Shield extends PowerUp {
 	public float getR() {return 0f;}
 	public float getG() {return 1f;}
 	public float getB() {return 0f;}
+
+	// pretty useful, so it's rare
+	@Override
+	public int getRarity() { return 6; }
+
 }

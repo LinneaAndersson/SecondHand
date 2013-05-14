@@ -29,4 +29,8 @@ public class ScoreUp extends PowerUp {
 	public String getText(){
 		return (int)(this.player.getScoreMultiplier() * SCORE_BONUS) +"+";
 	}
+
+	@Override
+	public int getRarity() { return 2; }
+
 }

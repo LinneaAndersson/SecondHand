@@ -32,4 +32,9 @@ public class SpeedUp extends PowerUp {
 	public float getR() {return 0f;}
 	public float getG() {return 0f;}
 	public float getB() {return 1f;}
+
+
+	// a fast player can be hard to control, so it's not that good of powerup, so it's rather common. 
+	@Override
+	public int getRarity() { return 4; }
 }

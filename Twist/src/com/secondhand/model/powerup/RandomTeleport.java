@@ -2,7 +2,7 @@ package com.secondhand.model.powerup;
 
 import java.util.Random;
 
-import com.secondhand.model.entity.GameWorld;
+import com.secondhand.model.entity.IGameWorld;
 import com.secondhand.model.entity.Player;
 import com.secondhand.model.physics.Vector2;
 import com.secondhand.model.resource.PowerUpType;
@@ -10,11 +10,11 @@ import com.secondhand.model.resource.PowerUpType;
 public class RandomTeleport extends PowerUp {
 
 	private final static float DURATION = 0;
-	private final GameWorld gameWorld;
+	private final IGameWorld gameWorld;
 	
 	
 	public RandomTeleport(final Vector2 position, 
-			final GameWorld level,Player player) {
+			final IGameWorld level,Player player) {
 		super(position, PowerUpType.RANDOM_TELEPORT, DURATION, player);
 		this.gameWorld = level;
 	}
@@ -38,5 +38,9 @@ public class RandomTeleport extends PowerUp {
 		player.setNeedsToMovePosition(new Vector2(x,
 				y));
 	}
+
+	
+	@Override
+	public int getRarity() { return 5; }
 
 }

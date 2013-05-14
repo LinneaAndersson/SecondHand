@@ -11,7 +11,7 @@ public class Enemy extends BlackHole {
 	private static final float MIN_SIZE = 20;
 
 	private float huntingArea;
-	
+
 	private float maxSpeed;
 
 	@Override
@@ -37,34 +37,49 @@ public class Enemy extends BlackHole {
 		return MIN_SIZE;
 	}
 
+	public float getDangerArea() {
+		return (getRadius() * getRadius() * (float) Math.PI) + 5;
+	}
+
 	public void setMaxSpeed(final float maxSpeed) {
 		this.maxSpeed = maxSpeed;
 	}
-	
+
 	public float getMaxSpeed() {
 		return maxSpeed;
 	}
 
 	// player has highest chase-priority
 	public void moveEnemy(final Entity player, final List<Entity> entityList) {
-		if (isCloseToEntity(player) && canEat(player)) {
+		danger(player, entityList);
+		if (isCloseToEntity(player, huntingArea) && canEat(player)) {
 			dangerCheck(player);
 		} else {
 			dangerCheck(getHighesPriority(entityList));
 		}
+	}
+
+	private void danger(final Entity player, final List<Entity> entityList) {
+		if (isCloseToEntity(player, getDangerArea())) {
+			retreatFrom(player);
+		} else {
+			for (final Entity e : entityList) {
+				if (e instanceof Enemy && isCloseToEntity(e, getDangerArea())) {
+					retreatFrom(e);
+				}
+			}
+		}
 
 	}
 
-	// checks if enemy is close enough to start chasing
-	// the entity
-	private boolean isCloseToEntity(final Entity entity) {
+	// checks if the entity is within the specified margin
+	private boolean isCloseToEntity(final Entity entity, final float margin) {
 
 		final float dx = entity.getCenterX() - this.getCenterX();
 
 		final float dy = entity.getCenterY() - this.getCenterY();
 
-		return dx * dx + dy * dy <= huntingArea;
-
+		return dx * dx + dy * dy <= margin;
 	}
 
 	// chase after smallest entity first
@@ -74,17 +89,16 @@ public class Enemy extends BlackHole {
 		Entity entity = null;
 		for (final Entity e : entityList) {
 			if (!(e instanceof IPowerUp)) {
-				if (isCloseToEntity(e) && canEat(e)) {
-					if(entity instanceof Enemy && !(e instanceof Enemy)){
-						
-					}else{
-					entity = getSmaller(entity, e);
+				if (isCloseToEntity(e, huntingArea) && canEat(e)) {
+					if (entity instanceof Enemy && !(e instanceof Enemy)) {
+
+					} else {
+						entity = getSmaller(entity, e);
 					}
 				}
 			}
 		}
-		
-		
+
 		return entity;
 	}
 
@@ -114,7 +128,9 @@ public class Enemy extends BlackHole {
 		}
 	}
 
-	public void retreat(final Entity danger) {
+	public void retreatFrom(final Entity danger) {
+		physics.applyImpulse(new Vector2(getCenterX() - danger.getCenterX(),
+				getCenterY() - danger.getCenterY()).mul(0.02f), getMaxSpeed());
 	}
 
 }

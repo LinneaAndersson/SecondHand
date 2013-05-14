@@ -5,6 +5,8 @@ import java.util.List;
 
 import com.secondhand.debug.MyDebug;
 import com.secondhand.model.physics.Vector2;
+import com.secondhand.model.resource.SoundType;
+import com.secondhand.view.resource.Sounds;
 
 public class Player extends BlackHole {
 
@@ -27,9 +29,11 @@ public class Player extends BlackHole {
 
 	private PlayerUtil util;
 	
+	private SoundType soundType = null;
+	
 	//For playerView to get the color of player
 	// The color will change!
-	private int[] RGB = new int[3];
+	private float[] RGB = new float[3];
 
 	// ============== EVENT-CONSTANTS ==============
 	public final static String INCREASE_SCORE = "IncreaseScore";
@@ -50,7 +54,6 @@ public class Player extends BlackHole {
 		this.lives = startingLives;
 		this.scoreMultiplier = 1;
 		util = new PlayerUtil(this);
-		//powerUpList = util.getPowerUpList();
 		RGB[0]=0;
 		RGB[1]=0;
 		RGB[2]=0;
@@ -142,11 +145,11 @@ public class Player extends BlackHole {
 		pcs.firePropertyChange(REMOVE_POWER_UP, null, powerUp);
 	}
 
-	public void addPowerUp(final IPowerUp powerUp) {
+	/*public void addPowerUp(final IPowerUp powerUp) {
 		//this.powerUpList.add(powerUp);
 		
 		pcs.firePropertyChange(ADD_POWER_UP, null, powerUp);
-	}
+	}*/
 
 	public void setName(final String name) {
 		this.name = name;
@@ -185,19 +188,20 @@ public class Player extends BlackHole {
 	@Override
 	protected void handlePowerUp(final IPowerUp powerUp) {
 
-		pcs.firePropertyChange("sound", null, POWER_UP_SOUND);
+	//	pcs.firePropertyChange("sound", null, POWER_UP_SOUND);
 
-		addPowerUp(powerUp);
+		//addPowerUp(powerUp);
 
 		//powerUp.eaten();
 	}
 	
-	public int[] getRGB(){
+	public float[] getRGB(){
 		return RGB;
 	}
 	
-	public void setRGB(int[] RGB){
+	public void setRGB(float[] RGB){
 		this.RGB = RGB;
+		pcs.firePropertyChange("color", null, RGB);
 	}
 
 	@Override
@@ -212,8 +216,7 @@ public class Player extends BlackHole {
 
 	@Override
 	protected void wasEaten() {
-		
-		pcs.firePropertyChange("Sound", null, PLAYER_KILLED_SOUND);
+		setSoundType(SoundType.PLAYER_KILLED_SOUND);
 
 		// We override the default behaviour for wasEaten. We don't want the
 		// player to
@@ -221,6 +224,15 @@ public class Player extends BlackHole {
 		// reposition the player and lose a life.
 
 		kill();
+	}
+	
+	public void setSoundType(final SoundType sound){
+		soundType = sound;
+		//pcs.firePropertyChange("Sound", null, sound);
+	}
+	
+	public SoundType getSoundType(){
+		return soundType;
 	}
 	
 }

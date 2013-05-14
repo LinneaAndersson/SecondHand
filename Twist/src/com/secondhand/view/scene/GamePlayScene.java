@@ -14,6 +14,7 @@ import com.secondhand.debug.MyDebug;
 import com.secondhand.model.entity.Enemy;
 import com.secondhand.model.entity.Entity;
 import com.secondhand.model.entity.GameWorld;
+import com.secondhand.model.entity.IGameWorld;
 import com.secondhand.model.entity.Obstacle;
 import com.secondhand.model.entity.Planet;
 import com.secondhand.model.entity.Player;
@@ -36,7 +37,7 @@ public class GamePlayScene extends GameScene implements PropertyChangeListener {
 
 	private ScoreLivesText scoreLivesText;
 
-	private GameWorld gameWorld;
+	private IGameWorld gameWorld;
 
 	private PhysicsWorld physicsWorld;
 
@@ -49,7 +50,7 @@ public class GamePlayScene extends GameScene implements PropertyChangeListener {
 		super(engine, context);
 	}
 
-	public GameWorld getGameWorld() {
+	public IGameWorld getGameWorld() {
 		return this.gameWorld;
 	}
 

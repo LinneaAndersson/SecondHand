@@ -45,34 +45,4 @@ public class PhysicsEnemyUtil {
 		return straightLine;
 	}
 
-	// need to raycast in the direction the enemy is moving
-	// the ray shouldn't be to long: radius + 5-10?
-	// so how to decide the second point for the ray?
-
-	// clarify: a point 5-10 length-units in front of where the enemy is moving.
-	public Vector2 dangerClose(final Enemy enemy) {
-		
-		// hope this works, otherwise Andreas will have to fix it. 
-		final Vector2 v = new Vector2(enemy.getCenterX(), enemy.getCenterY());   //enemy.getPhysics().getBody().getWorldCenter();
-		
-	
-		physics.rayCast(new RayCastCallback(){
-
-			@Override
-			public float reportRayFixture(final Fixture fixture,final  Vector2 point,
-					final Vector2 normal, final float fraction) {
-				if(fixture.getBody().getUserData() != null){
-					if(enemy.canEat((Entity)fixture.getBody().getUserData())){
-						return 0;
-					}else{
-						enemy.retreat((Entity)fixture.getBody().getUserData());
-					}
-				}
-				return 0;
-			}
-
-		},v, null);// <--- the second point of the ray should go here
-		return null;
-
-	}
 }

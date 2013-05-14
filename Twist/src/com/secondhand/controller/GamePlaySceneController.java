@@ -9,7 +9,7 @@ import org.anddev.andengine.entity.scene.Scene.IOnSceneTouchListener;
 import org.anddev.andengine.input.touch.TouchEvent;
 
 import com.secondhand.debug.MyDebug;
-import com.secondhand.model.entity.GameWorld;
+import com.secondhand.model.entity.IGameWorld;
 import com.secondhand.model.entity.Player;
 import com.secondhand.model.physics.Vector2;
 import com.secondhand.model.powerup.PowerUp;
@@ -19,7 +19,7 @@ import com.secondhand.view.scene.GamePlayScene;
 
 final class GamePlaySceneController extends Entity implements PropertyChangeListener {
 
-	private final GameWorld gameWorld;
+	private final IGameWorld gameWorld;
 	private final SceneController sceneController;
 
 	public GamePlaySceneController(final GamePlayScene scene,

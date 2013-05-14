@@ -6,6 +6,7 @@ import com.secondhand.model.entity.Player;
 import com.secondhand.model.entity.RectangleEntity;
 import com.secondhand.model.physics.Vector2;
 import com.secondhand.model.resource.PowerUpType;
+import com.secondhand.model.resource.SoundType;
 
 public abstract class PowerUp extends RectangleEntity implements IPowerUp {
 		
@@ -15,6 +16,7 @@ public abstract class PowerUp extends RectangleEntity implements IPowerUp {
 	protected float duration;
 	private final PowerUpType powerUpType;
 	private final Player player;
+	private float[] RGB = new float[3];
 	
 	public PowerUp (final Vector2 position, final PowerUpType powerUpType, final float duration, Player player) {
 		super(position, WIDTH, HEIGHT,true);
@@ -90,6 +92,10 @@ public abstract class PowerUp extends RectangleEntity implements IPowerUp {
 	}
 
 	public void removePowerUp() {
+		RGB[0]=1f;
+		RGB[1]=1f;
+		RGB[2]=1f;
+		player.setRGB(RGB);
 		this.getPowerUps().remove(this);
 	}
 
@@ -99,6 +105,11 @@ public abstract class PowerUp extends RectangleEntity implements IPowerUp {
 	}
 	
 	public void addPowerUp(){
+		RGB[0]=this.getR();
+		RGB[1]=this.getG();
+		RGB[2]=this.getB();
+		player.setRGB(RGB);
+		player.setSoundType(SoundType.POWERUP_SOUND);
 		this.getPowerUps().add(this);
 	}
 	

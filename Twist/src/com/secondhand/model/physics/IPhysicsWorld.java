@@ -1,6 +1,6 @@
 package com.secondhand.model.physics;
 
-import com.secondhand.model.entity.GameWorld;
+import com.secondhand.model.entity.IGameWorld;
 
 public interface IPhysicsWorld {
 
@@ -17,5 +17,5 @@ public interface IPhysicsWorld {
 	void setContactListener();
 
 	// connect this to gameWorld
-	void setGameWorld(final GameWorld gameWorld);
+	void setGameWorld(final IGameWorld gameWorld);
 }

@@ -20,29 +20,31 @@ public class PlayerView extends BlackHoleView {
 	public void propertyChange(final PropertyChangeEvent event) {
 		super.propertyChange(event);
 		final String propertyName = event.getPropertyName();
-		
+
 
 		if (propertyName.equalsIgnoreCase("sound")) {
-			
+
 			if(Sounds.getInstance().getPlayerSound(((String)event.getNewValue())) != null){
-			Sounds.getInstance().getPlayerSound((String)(event.getNewValue())).play();
+				Sounds.getInstance().getPlayerSound((String)(event.getNewValue())).play();
 			}
-			
-		}else if (  propertyName.equals(Player.ADD_POWER_UP)) {
-			final Player player = (Player)event.getSource();
+
+		}else if (  propertyName.equalsIgnoreCase("color")) {
+			/*
 			Sounds.getInstance().getPlayerSound(Player.ADD_POWER_UP).play();
 			final PowerUp powerUp = ((PowerUp) event.getNewValue());
-			int[] RGB = player.getRGB();
-			//if(powerUp.getDuration() != 0)
-				//this.shape.setColor(RGB[0], RGB[1], RGB[2]);
-			
-		} else if (propertyName.equals(Player.REMOVE_POWER_UP)) {	
-			
+
+			if(powerUp.getDuration() != 0)*/
+			final Player player = (Player)event.getSource();
+			float[] RGB = player.getRGB();
+			this.shape.setColor(RGB[0], RGB[1], RGB[2]);
+
+			//} else if (propertyName.equals(Player.REMOVE_POWER_UP)) {	
+			//this.shape.setColor(1f, 1f, 1f);
 			//if player has no other powerup, then reset player color.
 			//final Player player = (Player)event.getSource();
 			//if(player.getPowerUps().size() == 0)
-				//this.shape.setColor(1f, 1f, 1f);
-		
+
+
 		}
 	}
 }

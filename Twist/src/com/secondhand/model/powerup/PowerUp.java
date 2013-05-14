@@ -1,7 +1,5 @@
 package com.secondhand.model.powerup;
 
-import java.util.List;
-
 import com.secondhand.model.entity.IPowerUp;
 import com.secondhand.model.entity.Player;
 import com.secondhand.model.entity.RectangleEntity;
@@ -68,7 +66,7 @@ public abstract class PowerUp extends RectangleEntity implements IPowerUp {
 	
 	// how to color the player when the powerup is applied.
 	// red, green, blue values, from 0 to 1
-	// you can ignore these values for powerups with a duration of 1. 
+	// you can ignore these values for powerups with a duration of 0. 
 	// I know that this is technically part of the view, but then we'd have to create a 
 	// separate view class for every fucking powerup, and I don't really have the energy to do that. 
 	@Override

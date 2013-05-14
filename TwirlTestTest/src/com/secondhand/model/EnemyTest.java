@@ -14,14 +14,14 @@ public class EnemyTest extends TestCase {
 	
 
 	public void testConstructor() {
-Vector2 vector1 = new Vector2(2f, 4f);
+		Vector2 vector1 = new Vector2(2f, 4f);
 		float rad = 3.2f;
 
 		Enemy enemy = new Enemy(vector1, rad);
-
+		Vector2 enemyPosition = enemy.getInitialPosition();
 		assertEquals(rad, enemy.getRadius());
-		assertEquals(vector1.x, enemy.getPosX());
-		assertEquals(vector1.y, enemy.getPosY());
+		assertEquals(vector1.x, enemyPosition.x);
+		assertEquals(vector1.y, enemyPosition.y);
 	}
 /*
 	public void testIsBiggerThan() {

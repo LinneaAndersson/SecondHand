@@ -1,7 +1,5 @@
 package com.secondhand.model.entity;
 
-import java.util.ArrayList;
-
 import com.secondhand.model.physics.Vector2;
 
 // I decided to refactor some code from player because the that class was so large

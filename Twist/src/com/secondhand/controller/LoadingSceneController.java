@@ -2,8 +2,8 @@ package com.secondhand.controller;
 
 import org.anddev.andengine.entity.Entity;
 
-import com.secondhand.model.resource.HighScoreList;
-import com.secondhand.model.resource.LocalizationStrings;
+import com.secondhand.view.resource.HighScoreList;
+import com.secondhand.view.resource.LocalizationStrings;
 import com.secondhand.view.resource.Sounds;
 import com.secondhand.view.resource.TextureRegions;
 import com.secondhand.view.scene.AllScenes;

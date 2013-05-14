@@ -9,12 +9,6 @@ Important things that must be done for the success of the project:
 * Replace some property changes with some kind of interface or
 callback method instead. - Done, but just changed the propertyChange.
 
-* In the HighScoreList and LocalizationStrings classes there is code
-that uses the android operating system to load files and access the
-localization strings. This means that our model is tied to the android
-operating system. Refactor out the code that uses the Android OS
-to the view, or somethingxp.
-
 - Documentation
 
 * We must also update the class diagram for the model(in the RAD).

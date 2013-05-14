@@ -26,5 +26,6 @@ public interface IPowerUp {
 	
 	// frequency of this powerup. Given on a scale from 1-10.
 	// where 10 is dirt common and 1 is super rare. 
-	int getFrequency();
+	// static now, but must be specified for every powerup.
+	//int getFrequency();
 }

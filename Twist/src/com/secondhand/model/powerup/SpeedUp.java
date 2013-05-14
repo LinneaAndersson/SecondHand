@@ -35,6 +35,5 @@ public class SpeedUp extends PowerUp {
 
 
 	// a fast player can be hard to control, so it's not that good of powerup, so it's rather common. 
-	@Override
-	public int getFrequency() { return 6; }
+	public static int getFrequency() { return 6; }
 }

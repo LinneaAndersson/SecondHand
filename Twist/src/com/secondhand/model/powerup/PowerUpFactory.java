@@ -1,45 +1,126 @@
 package com.secondhand.model.powerup;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
+import com.secondhand.debug.MyDebug;
 import com.secondhand.model.entity.IGameWorld;
 import com.secondhand.model.entity.Player;
 import com.secondhand.model.physics.Vector2;
 
-// TODO: maybe we should make some powerups, like the ExtraLife powerup, more rare than the others. 
-// so we should give them lower frequencies of appearing. 
+// Uses the second method described here:
+// http://www.electricmonk.nl/log/2009/12/23/weighted-random-distribution/
+// to do a Weighted Random Distribution of powerups. 
 public final class PowerUpFactory {
 
-	private PowerUpFactory() {}
+	private final List<Weight> weights;
+	private final int totalWeight;
 	
-	public static final int NUM_POWER_UPS = 10;
-
-	// used for level generation., 
-	public static PowerUp getRandomPowerUp(final Vector2 position, final IGameWorld gameWorld, final Random rng, Player player) { 
-		final int rand = rng.nextInt(NUM_POWER_UPS);
+	public PowerUpFactory() {
+		weights = new ArrayList<Weight>();
 		
-		if(rand == 0) {
-			return new EatObstacle(position, player);
-		} else if(rand == 1) {
-			return new ExtraLife(position, player);
-		}else if(rand == 2) {
-			return new RandomTeleport(position, gameWorld, player);
-		}else if(rand == 3) {
-			return new ScoreUp(position, player);
-		}else if(rand == 4) {
-			return new Shield(position, player);
-		}else if(rand == 5) {
-			return new SpeedUp(position, player);
-		} else if(rand == 6) {
-			return new DoubleScore(position, player);
-		} else if(rand == 7) {
-			return new MirroredMovement(position, player);
-		} else if(rand == 8) {
-			return new RandomPowerUp(position, gameWorld, player);
-		}else if(rand == 9) {
-			return new SpeedDown(position, player);
+		weights.add(new Weight(1, DoubleScore.getFrequency()));
+		weights.add(new Weight(2, EatObstacle.getFrequency()));
+		weights.add(new Weight(3, ExtraLife.getFrequency()));
+		weights.add(new Weight(4, MirroredMovement.getFrequency()));
+		weights.add(new Weight(5, RandomPowerUp.getFrequency()));
+		weights.add(new Weight(6, RandomTeleport.getFrequency()));
+		weights.add(new Weight(7, ScoreUp.getFrequency()));
+		weights.add(new Weight(8, Shield.getFrequency()));
+		weights.add(new Weight(9, SpeedDown.getFrequency()));
+		weights.add(new Weight(10, SpeedUp.getFrequency()));
+		
+		
+		int tw = 0;
+		for(Weight weight: this.weights) {
+			tw += weight.weight;
 		}
-		else
-			return null;
+		this.totalWeight = tw;
 	}
+	
+	
+	// used for level generation., 
+	public PowerUp getRandomPowerUp(final Vector2 position, final IGameWorld gameWorld, final Random rng, final Player player) { 
+		
+		// do the Weighted Random Distribution
+		final int index = rng.nextInt(totalWeight);
+		int s = 0;
+		Weight result = null;
+		for(Weight weight: this.weights) {
+			s += weight.weight;
+			if (s > index) {
+				result = weight;
+				break;
+			}
+		}
+		
+		// now construct the randomized powerup:
+		
+		return result.constructPowerUp(position, gameWorld, player);
+		
+	
+	}
+	
+	private class Weight {
+		private int powerUp;
+		public int weight;
+		
+		public Weight(final int powerUp, final int weight) {
+			this.powerUp = powerUp;
+			this.weight = weight;
+		}
+		
+		public PowerUp constructPowerUp(final Vector2 position, final IGameWorld gameWorld, final Player player) {
+			if(powerUp == 1) {
+				MyDebug.d("double score");
+				return new DoubleScore(position,  player);
+			} else if(powerUp == 2) {
+				MyDebug.d("eat obstacle");
+				return new EatObstacle(position,  player);
+			} else if(powerUp == 3) {
+				MyDebug.d("extra life");
+				return new ExtraLife(position,  player);
+			} else if(powerUp == 4) {
+				MyDebug.d("mirrored movement");
+				return new MirroredMovement(position,  player);
+			} else if(powerUp == 5) {
+				MyDebug.d("random powerup");
+				return new RandomPowerUp(position, gameWorld,  player);
+			} else if(powerUp == 6) {
+				MyDebug.d("random teleport");
+				return new RandomTeleport(position, gameWorld,  player);
+			} else if(powerUp == 7) {
+				MyDebug.d("score up");
+				return new ScoreUp(position,  player);
+			} else if(powerUp == 8) {
+				MyDebug.d("shield");
+				return new Shield(position,  player);
+			} else if(powerUp == 9) {
+				MyDebug.d("speedown");
+				return new SpeedDown(position,  player);
+			} else if(powerUp == 10) {
+				MyDebug.d("speedup");
+				return new SpeedUp(position,  player);
+			} 
+			else {
+				MyDebug.d("null returned!");
+				return null;
+			}
+		}
+	}
+	
+	/*
+	 * weights.add(new Weight(1, DoubleScore.getFrequency()));
+		weights.add(new Weight(2, EatObstacle.getFrequency()));
+		weights.add(new Weight(3, ExtraLife.getFrequency()));
+		weights.add(new Weight(4, MirroredMovement.getFrequency()));
+		weights.add(new Weight(5, RandomPowerUp.getFrequency()));
+		weights.add(new Weight(6, RandomTeleport.getFrequency()));
+		weights.add(new Weight(7, ScoreUp.getFrequency()));
+		weights.add(new Weight(8, Shield.getFrequency()));
+		weights.add(new Weight(9, SpeedDown.getFrequency()));
+		weights.add(new Weight(10, SpeedUp.getFrequency()));
+		*/
+	
 }

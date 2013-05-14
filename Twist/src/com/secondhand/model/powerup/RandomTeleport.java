@@ -40,7 +40,6 @@ public class RandomTeleport extends PowerUp {
 	}
 
 	
-	@Override
-	public int getFrequency() { return 5; }
+	public static int getFrequency() { return 5; }
 
 }

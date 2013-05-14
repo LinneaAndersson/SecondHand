@@ -31,7 +31,6 @@ public class Shield extends PowerUp {
 	public float getB() {return 0f;}
 
 	// pretty useful, so it's rare
-	@Override
-	public int getFrequency() { return 4; }
+	public static int getFrequency() { return 4; }
 
 }

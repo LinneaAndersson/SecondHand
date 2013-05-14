@@ -40,6 +40,9 @@ public class RandomLevelGenerator {
 	private final Random rng;
 	private static final float PLAYER_RADIUS = 30.0f;
 
+
+	private final PowerUpFactory powerUpFactory;
+	
 	public RandomLevelGenerator(final Player player, final IGameWorld level) {
 		rng = new Random();
 		this.levelNumber = level.getLevelNumber();
@@ -50,6 +53,8 @@ public class RandomLevelGenerator {
 		this.player = player;
 		// make sure entities are not placed on top of player
 
+		powerUpFactory = new PowerUpFactory();
+		
 		final Circle circle = new Circle(new Vector2(
 				player.getInitialPosition().x, player.getInitialPosition().y),
 				40);
@@ -160,7 +165,7 @@ public class RandomLevelGenerator {
 				}
 			}
 
-			entityList.add(PowerUpFactory.getRandomPowerUp(new Vector2(xAxis,
+			entityList.add(powerUpFactory.getRandomPowerUp(new Vector2(xAxis,
 					yAxis), level, rng,level.getPlayer()));
 		}
 	}

@@ -11,12 +11,15 @@ public class RandomPowerUp extends PowerUp {
 
 	private final PowerUp randomPowerUp;
 
+	private static final int NUM_POWER_UPS = 10;
+
+	
 	public RandomPowerUp(final Vector2 position,
 			final  IGameWorld gameWorld, Player player) {
 		super(position, PowerUpType.RANDOM_POWER_UP, 0, player);
 
 		final Random rng = new Random();
-		final int rand = rng.nextInt(PowerUpFactory.NUM_POWER_UPS-1);
+		final int rand = rng.nextInt(NUM_POWER_UPS-1);
 		
 		
 		if(rand == 0) {
@@ -63,6 +66,5 @@ public class RandomPowerUp extends PowerUp {
 	public float getB() {return this.randomPowerUp.getB();}
 
 
-	@Override
-	public int getFrequency() { return 6; }
+	public static int getFrequency() { return 6; }
 }

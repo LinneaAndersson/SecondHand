@@ -29,8 +29,7 @@ public class EatObstacle extends PowerUp {
 	public float getG() {return 0f;}
 	public float getB() {return 0f;}
 
-	@Override
-	public int getFrequency() { return 3; }
+	public static int getFrequency() { return 3; }
 
 }
 

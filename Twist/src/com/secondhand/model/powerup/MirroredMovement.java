@@ -31,7 +31,6 @@ public class MirroredMovement extends PowerUp {
 	public float getB() {return 1f;}
 
 	// make it common, so that it's more annoying :)
-	@Override
-	public int getFrequency() { return 8; }
+	public static int getFrequency() { return 8; }
 
 }

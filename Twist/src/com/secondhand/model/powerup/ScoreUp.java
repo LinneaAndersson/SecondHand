@@ -30,7 +30,6 @@ public class ScoreUp extends PowerUp {
 		return (int)(this.player.getScoreMultiplier() * SCORE_BONUS) +"+";
 	}
 
-	@Override
-	public int getFrequency() { return 9; }
+	public static int getFrequency() { return 9; }
 
 }

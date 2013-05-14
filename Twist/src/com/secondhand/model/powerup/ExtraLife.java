@@ -22,7 +22,6 @@ public class ExtraLife extends PowerUp {
 		return "1UP";
 	}
 	
-	@Override
-	public int getFrequency() { return 2; }
+	public static int getFrequency() { return 2; }
 
 }

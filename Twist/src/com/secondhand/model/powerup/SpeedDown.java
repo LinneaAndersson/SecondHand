@@ -34,7 +34,6 @@ public class SpeedDown extends PowerUp {
 	public float getB() {return 1f;}
 
 	// it's annoying, so it should be common so that it's even more annoying :)
-	@Override
-	public int getFrequency() { return 7; }
+	public static int getFrequency() { return 7; }
 
 }

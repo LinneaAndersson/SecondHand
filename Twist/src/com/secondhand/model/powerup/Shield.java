@@ -32,6 +32,6 @@ public class Shield extends PowerUp {
 
 	// pretty useful, so it's rare
 	@Override
-	public int getRarity() { return 6; }
+	public int getFrequency() { return 4; }
 
 }

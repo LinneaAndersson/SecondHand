@@ -30,7 +30,7 @@ public class EatObstacle extends PowerUp {
 	public float getB() {return 0f;}
 
 	@Override
-	public int getRarity() { return 8; }
+	public int getFrequency() { return 3; }
 
 }
 

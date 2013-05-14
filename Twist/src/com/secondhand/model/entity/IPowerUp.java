@@ -24,7 +24,7 @@ public interface IPowerUp {
 
 	void eaten();
 	
-	// rarity of this powerup. Given on a scale from 1-10.
-	// where 1 is dirt common and 10 is super rare. 
-	int getRarity();
+	// frequency of this powerup. Given on a scale from 1-10.
+	// where 10 is dirt common and 1 is super rare. 
+	int getFrequency();
 }

@@ -31,6 +31,6 @@ public class ScoreUp extends PowerUp {
 	}
 
 	@Override
-	public int getRarity() { return 2; }
+	public int getFrequency() { return 9; }
 
 }

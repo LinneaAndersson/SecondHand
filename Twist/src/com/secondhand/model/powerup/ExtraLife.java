@@ -23,6 +23,6 @@ public class ExtraLife extends PowerUp {
 	}
 	
 	@Override
-	public int getRarity() { return 9; }
+	public int getFrequency() { return 2; }
 
 }

@@ -64,5 +64,5 @@ public class RandomPowerUp extends PowerUp {
 
 
 	@Override
-	public int getRarity() { return 4; }
+	public int getFrequency() { return 6; }
 }

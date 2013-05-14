@@ -32,6 +32,6 @@ public class MirroredMovement extends PowerUp {
 
 	// make it common, so that it's more annoying :)
 	@Override
-	public int getRarity() { return 3; }
+	public int getFrequency() { return 8; }
 
 }

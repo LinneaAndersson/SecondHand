@@ -35,6 +35,6 @@ public class SpeedDown extends PowerUp {
 
 	// it's annoying, so it should be common so that it's even more annoying :)
 	@Override
-	public int getRarity() { return 3; }
+	public int getFrequency() { return 7; }
 
 }

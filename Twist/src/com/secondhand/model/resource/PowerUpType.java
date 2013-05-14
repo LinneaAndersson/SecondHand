@@ -7,6 +7,7 @@ public enum PowerUpType {
 		RANDOM_TELEPORT("random_teleport_power_up.png"),
 		SCORE_UP("score_up_power_up.png"),
 		SPEED_UP("speed_up_power_up.png"),
+		SPEED_DOWN("speed_down_power_up.png"),
 		EXTRA_LIFE("extra_life_power_up.jpg"),
 		RANDOM_POWER_UP("random_power_up.png"),
 		DOUBLE_SCORE("double_score_power_up.png"),

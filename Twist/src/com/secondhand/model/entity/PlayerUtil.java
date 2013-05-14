@@ -8,7 +8,6 @@ import com.secondhand.model.physics.Vector2;
 class PlayerUtil {
 
 	private final Player player;
-	private final PowerList list;
 	private boolean isMirroredMovement;
 
 	
@@ -16,7 +15,6 @@ class PlayerUtil {
 
  	public PlayerUtil(final Player player) {
 		this.player = player;
-		list = new PowerList(player);
 		this.isMirroredMovement = false;
 	}
 
@@ -27,37 +25,7 @@ class PlayerUtil {
 	public void setMirroredMovement(final boolean mirrored) {
 		this.isMirroredMovement = mirrored;
 	}
-
-	public PowerList getPowerUpList() {
-		return list;
-	}
-
-	private class PowerList extends ArrayList<IPowerUp> {
-
-		private final Player player;
-		private static final long serialVersionUID = 1L;
-
-		public PowerList(final Player player) {
-			super();
-			this.player = player;
-		}
-
-		@Override
-		public boolean add(final IPowerUp object) {
-			object.activateEffect(player);
-			return super.add(object);
-		}
-
-		@Override
-		public boolean remove(final Object object) {
-			final boolean value = super.remove(object); // Priority: The list is
-														// empty when you remove
-														// last PowerUp
-			((IPowerUp) object).deactivateEffect(player);
-			return value;
-		}
-	}
-
+	
 	public void reachToTouch(final Vector2 touch) {
 		Vector2 forcePosition;
 

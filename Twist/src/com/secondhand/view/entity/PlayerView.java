@@ -8,8 +8,6 @@ import com.secondhand.model.entity.Player;
 import com.secondhand.model.resource.SoundType;
 import com.secondhand.view.resource.Sounds;
 
-// what? the controller should be handling the PropertyChangeListener, not the view!
-//The view can be a propertychangeListener
 public class PlayerView extends BlackHoleView {
 
 	public PlayerView(final PhysicsWorld physicsWorld, final Player player){
@@ -20,8 +18,7 @@ public class PlayerView extends BlackHoleView {
 	public void propertyChange(final PropertyChangeEvent event) {
 		super.propertyChange(event);
 		final String propertyName = event.getPropertyName();
-
-
+		
 		if (propertyName.equalsIgnoreCase("sound")) {
 
 			if(Sounds.getInstance().getPlayerSound(((SoundType)event.getNewValue())) != null){
@@ -29,21 +26,10 @@ public class PlayerView extends BlackHoleView {
 			}
 
 		}else if (  propertyName.equalsIgnoreCase("color")) {
-			/*
-			Sounds.getInstance().getPlayerSound(Player.ADD_POWER_UP).play();
-			final PowerUp powerUp = ((PowerUp) event.getNewValue());
-
-			if(powerUp.getDuration() != 0)*/
+			
 			final Player player = (Player)event.getSource();
 			float[] RGB = player.getRGB();
 			this.shape.setColor(RGB[0], RGB[1], RGB[2]);
-
-			//} else if (propertyName.equals(Player.REMOVE_POWER_UP)) {	
-			//this.shape.setColor(1f, 1f, 1f);
-			//if player has no other powerup, then reset player color.
-			//final Player player = (Player)event.getSource();
-			//if(player.getPowerUps().size() == 0)
-
 
 		}
 	}

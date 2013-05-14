@@ -19,8 +19,8 @@ public class EatObstacle extends PowerUp {
 	}
 	
 	@Override
-	public void deactivateEffect(final Player player) {
-		final boolean hasAnother = super.hasAnother(player);
+	public void deactivateEffect() {
+		final boolean hasAnother = super.hasAnother();
 		
 		player.setCanEatInedibles(!hasAnother);
 	}

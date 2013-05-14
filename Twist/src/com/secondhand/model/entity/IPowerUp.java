@@ -10,13 +10,11 @@ public interface IPowerUp {
 	
 	void activateEffect(final Player player);
 	
-	void deactivateEffect(final Player player);
-	
 	boolean hasText();
 	
 	String getText();
 	
-	boolean hasAnother(final Player player);
+	boolean hasAnother();
 	
 	float getR();
 	float getG();
@@ -25,6 +23,8 @@ public interface IPowerUp {
 	void eaten();
 
 	void activatePowerUp();
+
+	void deactivateEffect();
 	
 	// frequency of this powerup. Given on a scale from 1-10.
 	// where 10 is dirt common and 1 is super rare. 

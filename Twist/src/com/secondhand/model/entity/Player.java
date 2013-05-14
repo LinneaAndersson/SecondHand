@@ -68,8 +68,6 @@ public class Player extends BlackHole {
 	@Override
 	public void increaseScore(final int increase) {
 		super.increaseScore((int) this.getScoreMultiplier() * increase);
-
-
 		pcs.firePropertyChange(INCREASE_SCORE, (int)0, (int)getScore());
 	}
 

@@ -2,6 +2,7 @@ package com.secondhand.model.powerup;
 
 import java.util.ArrayList;
 
+import com.secondhand.debug.MyDebug;
 import com.secondhand.model.entity.IPowerUp;
 import com.secondhand.model.entity.Player;
 
@@ -23,7 +24,7 @@ public class PowerUpList extends ArrayList<IPowerUp> {
 		final boolean value = super.remove(object); // Priority: The list is
 		// empty when you remove
 		// last PowerUp
-		((IPowerUp) object).deactivateEffect(player);
+		((IPowerUp) object).deactivateEffect();
 		return value;
 	}
 

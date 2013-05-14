@@ -52,8 +52,8 @@ public class RandomPowerUp extends PowerUp {
 	}
 	
 	@Override
-	public void deactivateEffect(final Player player) {
-		this.randomPowerUp.deactivateEffect(player);
+	public void deactivateEffect() {
+		this.randomPowerUp.deactivateEffect();
 	}
 
 	@Override

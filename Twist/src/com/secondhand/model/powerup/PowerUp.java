@@ -1,5 +1,6 @@
 package com.secondhand.model.powerup;
 
+import com.secondhand.debug.MyDebug;
 import com.secondhand.model.entity.IPowerUp;
 import com.secondhand.model.entity.Player;
 import com.secondhand.model.entity.RectangleEntity;
@@ -38,7 +39,7 @@ public abstract class PowerUp extends RectangleEntity implements IPowerUp {
 	public abstract void activateEffect(final Player player);
 	
 	@Override
-	public void deactivateEffect(final Player player) { }
+	public void deactivateEffect() { }
 	
 	@Override
 	public float getScoreWorth() {
@@ -57,7 +58,7 @@ public abstract class PowerUp extends RectangleEntity implements IPowerUp {
 	}
 	
 	@Override
-	public boolean hasAnother(final Player player) {
+	public boolean hasAnother() {
 		boolean hasAnother = false;
 		for (final IPowerUp powerUp : getPowerUps()) {
 			if (powerUp.getClass() == this.getClass()) // old was DoubleScore.getClass() but this should be right?
@@ -105,13 +106,14 @@ public abstract class PowerUp extends RectangleEntity implements IPowerUp {
 	}
 	
 	public void addPowerUp(){
+		this.getPowerUps().add(this);
 		this.activateEffect(player);
 		RGB[0]=this.getR();
 		RGB[1]=this.getG();
 		RGB[2]=this.getB();
 		player.setRGB(RGB);
 		player.setSoundType(SoundType.POWERUP_SOUND);
-		this.getPowerUps().add(this);
+		
 	}
 	
 }

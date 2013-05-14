@@ -48,7 +48,6 @@ public class Enemy extends BlackHole {
 	// player has highest chase-priority
 	public void moveEnemy(final Entity player, final List<Entity> entityList) {
 		if (isCloseToEntity(player) && canEat(player)) {
-			// MyDebug.d("enemy" + getRadius()+ " " + player.getRadius());
 			dangerCheck(player);
 		} else {
 			dangerCheck(getHighesPriority(entityList));
@@ -74,9 +73,13 @@ public class Enemy extends BlackHole {
 	private Entity getHighesPriority(final List<Entity> entityList) {
 		Entity entity = null;
 		for (final Entity e : entityList) {
-			if (!(e instanceof IPowerUp)) { 
+			if (!(e instanceof IPowerUp)) {
 				if (isCloseToEntity(e) && canEat(e)) {
+					if(entity instanceof Enemy && !(e instanceof Enemy)){
+						
+					}else{
 					entity = getSmaller(entity, e);
+					}
 				}
 			}
 		}
@@ -98,7 +101,6 @@ public class Enemy extends BlackHole {
 		if (entity != null) {
 
 			if (this.physics.isStraightLine(entity, this)) {
-				// closeToDanger();
 				physics.applyImpulse(
 						new Vector2(entity.getCenterX() - getCenterX(), entity
 								.getCenterY() - getCenterY()).mul(0.002f),

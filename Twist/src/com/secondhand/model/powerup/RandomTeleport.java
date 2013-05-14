@@ -39,4 +39,8 @@ public class RandomTeleport extends PowerUp {
 				y));
 	}
 
+	
+	@Override
+	public int getRarity() { return 5; }
+
 }

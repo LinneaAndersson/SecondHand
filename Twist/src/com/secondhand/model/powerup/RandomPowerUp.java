@@ -61,4 +61,8 @@ public class RandomPowerUp extends PowerUp {
 	public float getR() {return this.randomPowerUp.getR();}
 	public float getG() {return this.randomPowerUp.getG();}
 	public float getB() {return this.randomPowerUp.getB();}
+
+
+	@Override
+	public int getRarity() { return 4; }
 }

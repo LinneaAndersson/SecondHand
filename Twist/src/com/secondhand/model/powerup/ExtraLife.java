@@ -21,4 +21,8 @@ public class ExtraLife extends PowerUp {
 	public String getText(){
 		return "1UP";
 	}
+	
+	@Override
+	public int getRarity() { return 9; }
+
 }

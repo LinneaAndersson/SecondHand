@@ -28,7 +28,7 @@ public class PlayerView extends BlackHoleView {
 		}else if (  propertyName.equalsIgnoreCase("color")) {
 			
 			final Player player = (Player)event.getSource();
-			float[] RGB = player.getRGB();
+			final float[] RGB = player.getRGB();
 			this.shape.setColor(RGB[0], RGB[1], RGB[2]);
 
 		}

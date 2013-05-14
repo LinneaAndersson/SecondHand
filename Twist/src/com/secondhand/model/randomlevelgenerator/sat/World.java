@@ -3,7 +3,6 @@ package com.secondhand.model.randomlevelgenerator.sat;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.secondhand.debug.MyDebug;
 import com.secondhand.model.physics.Vector2;
 
 

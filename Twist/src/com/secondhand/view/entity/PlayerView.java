@@ -5,7 +5,6 @@ import java.beans.PropertyChangeEvent;
 import org.anddev.andengine.extension.physics.box2d.PhysicsWorld;
 
 import com.secondhand.model.entity.Player;
-import com.secondhand.model.powerup.PowerUp;
 import com.secondhand.model.resource.SoundType;
 import com.secondhand.view.resource.Sounds;
 

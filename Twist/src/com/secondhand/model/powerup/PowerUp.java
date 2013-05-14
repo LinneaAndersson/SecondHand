@@ -1,6 +1,5 @@
 package com.secondhand.model.powerup;
 
-import com.secondhand.debug.MyDebug;
 import com.secondhand.model.entity.IPowerUp;
 import com.secondhand.model.entity.Player;
 import com.secondhand.model.entity.RectangleEntity;
@@ -86,6 +85,7 @@ public abstract class PowerUp extends RectangleEntity implements IPowerUp {
 		super.wasEaten();
 	}
 
+	@Override
 	public void activatePowerUp() {
 		addPowerUp();
 		eaten();

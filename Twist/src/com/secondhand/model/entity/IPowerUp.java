@@ -23,6 +23,8 @@ public interface IPowerUp {
 	float getB();
 
 	void eaten();
+
+	void activatePowerUp();
 	
 	// frequency of this powerup. Given on a scale from 1-10.
 	// where 10 is dirt common and 1 is super rare. 

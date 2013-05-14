@@ -1,7 +1,5 @@
 package com.secondhand.model.entity;
 
-import com.secondhand.debug.MyDebug;
-import com.secondhand.model.powerup.*;
 
 public final class CollisionResolver {
 
@@ -18,13 +16,13 @@ public final class CollisionResolver {
 		Entity other;
 		if (entityA instanceof BlackHole) {
 			blackHole = (BlackHole) entityA;
-			if(entityB instanceof PowerUp && entityA instanceof Player){
-				((PowerUp) entityB).activatePowerUp();
+			if (entityB instanceof IPowerUp && entityA instanceof Player) {
+				((IPowerUp) entityB).activatePowerUp();
 			}
 			other = entityB;
 		} else {
-			if(entityA instanceof PowerUp && entityB instanceof Player){
-				((PowerUp) entityA).activatePowerUp();
+			if (entityA instanceof IPowerUp && entityB instanceof Player) {
+				((IPowerUp) entityA).activatePowerUp();
 			}
 			other = entityA;
 			blackHole = (BlackHole) entityB;
@@ -33,7 +31,7 @@ public final class CollisionResolver {
 	}
 
 	public void checkCollision(final Object a, final Object b) {
-		
+
 		// if one or both is null, then we are dealing with a collision
 		// involving one or
 		// two non-entities
@@ -44,7 +42,7 @@ public final class CollisionResolver {
 			if (a instanceof Player || b instanceof Player) {
 				this.gameWorld.getPropertyChangeSupport().firePropertyChange(
 						"PlayerWallCollision", false, true);
-				
+
 			}
 			return;
 		}

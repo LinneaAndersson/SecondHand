@@ -5,6 +5,7 @@ import java.beans.PropertyChangeListener;
 
 import org.anddev.andengine.extension.physics.box2d.PhysicsWorld;
 import org.anddev.andengine.extension.physics.box2d.util.constants.PhysicsConstants;
+
 import com.badlogic.gdx.physics.box2d.CircleShape;
 import com.secondhand.model.entity.BlackHole;
 import com.secondhand.view.opengl.Circle;

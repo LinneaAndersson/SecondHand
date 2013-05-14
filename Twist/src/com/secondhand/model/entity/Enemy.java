@@ -88,7 +88,7 @@ public class Enemy extends BlackHole {
 	private Entity getHighesPriority(final List<Entity> entityList) {
 		Entity entity = null;
 		for (final Entity e : entityList) {
-			if (!(e instanceof IPowerUp)) {
+			if (e instanceof CircleEntity) {
 				if (isCloseToEntity(e, huntingArea) && canEat(e)) {
 					if (entity instanceof Enemy && !(e instanceof Enemy)) {
 

@@ -4,7 +4,6 @@ Important things that must be done for the success of the project:
 - Implementation
 
 * Write unit tests for the model(start doing this once we know that the model is 100% stable )
-* Fix a texture for slowdown powerup.
 * We sometimes get negative lives for some reason.
 * Replace some property changes with some kind of interface or
 callback method instead. - Done, but just changed the propertyChange.
@@ -25,5 +24,5 @@ Things we can do if we have time:
 * When collision, remove bodies earlier.
 * Better level transition
 * Improve the level generation
-* Fix PowerUpFactory.
-
+* Fix better textures for the following powerups: "eat obstacle",
+* "Score up", "shield", "speed down"

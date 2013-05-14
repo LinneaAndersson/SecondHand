@@ -10,7 +10,7 @@ public class SpeedDown extends PowerUp {
 	private final static float FACTOR = 0.5f;
 	
 	public SpeedDown(final Vector2 position, Player player) {
-		super(position, PowerUpType.SPEED_UP, DURATION, player);
+		super(position, PowerUpType.SPEED_DOWN, DURATION, player);
 		
 	}
 	
@@ -34,7 +34,6 @@ public class SpeedDown extends PowerUp {
 	public float getB() {return 1f;}
 
 	// it's annoying, so it should be common so that it's even more annoying :)
-	@Override
-	public int getRarity() { return 3; }
+	public static int getFrequency() { return 7; }
 
 }

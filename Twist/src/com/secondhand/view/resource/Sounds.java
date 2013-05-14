@@ -39,17 +39,18 @@ public class Sounds {
 			
 	}
 	
-	public Sound getPlayerSound(final String playerSound){
-		if(Player.ADD_POWER_UP.equalsIgnoreCase(playerSound))
+	public Sound getPlayerSound(final SoundType playerSound){
+		
+		if(playerSound == SoundType.POWERUP_SOUND)
 			return powerUpSound;
 		
-		if(Player.GROW_SOUND.equalsIgnoreCase(playerSound))
+		if(playerSound == SoundType.GROW_SOUND)
 			return growSound;
 		
-		if(Player.BIGGER_ENTITY_COLLISION_SOUND.equalsIgnoreCase(playerSound))
+		if(playerSound == SoundType.OBSTACLE_COLLISION_SOUND)
 			return obstacleCollisionSound;
 		
-		if(Player.PLAYER_KILLED_SOUND.equalsIgnoreCase(playerSound))
+		if(playerSound == SoundType.PLAYER_KILLED_SOUND)
 			return playerKilledSound;
 	
 		

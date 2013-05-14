@@ -30,7 +30,6 @@ public class World {
 			shapes.add(shape);
 			return true;
 		}
-		MyDebug.d("returned false!");
 		return false;
 	}
 

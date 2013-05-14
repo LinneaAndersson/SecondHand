@@ -1,12 +1,9 @@
 package com.secondhand.model.entity;
 
 import java.beans.PropertyChangeListener;
-import java.util.List;
 
-import com.secondhand.debug.MyDebug;
 import com.secondhand.model.physics.Vector2;
 import com.secondhand.model.resource.SoundType;
-import com.secondhand.view.resource.Sounds;
 
 public class Player extends BlackHole {
 
@@ -25,8 +22,6 @@ public class Player extends BlackHole {
 
 	private Vector2 needsToMovePosition;
 
-	//private final List<IPowerUp> powerUpList;
-
 	private PlayerUtil util;
 	
 	private SoundType soundType = null;
@@ -39,12 +34,6 @@ public class Player extends BlackHole {
 	public final static String INCREASE_SCORE = "IncreaseScore";
 	public final static String INCREASE_LIFE = "IncreaseLife";
 	public final static String ADD_POWER_UP = "AddPowerUp";
-	public final static String REMOVE_POWER_UP = "RemovePowerUp";
-	public final static String POWER_UP_SOUND = "PowerUpSound";
-	public final static String GROW_SOUND = "GrowSound";
-	public final static String BIGGER_ENTITY_COLLISION_SOUND = "PlayerBiggerEntityCollision";
-	public final static String PLAYER_KILLED_SOUND = "PlayerKilled";
-
 
 	// =============================================
 	public Player(final Vector2 position, final float radius, final int startingLives) {
@@ -135,22 +124,6 @@ public class Player extends BlackHole {
 		changeLives(+1);
 	}
 
-	/*public List<IPowerUp> getPowerUps() {
-		return powerUpList;
-	}*/
-
-	public void removePowerUp(final IPowerUp powerUp) {
-		//this.powerUpList.remove(powerUp);
-		
-		pcs.firePropertyChange(REMOVE_POWER_UP, null, powerUp);
-	}
-
-	/*public void addPowerUp(final IPowerUp powerUp) {
-		//this.powerUpList.add(powerUp);
-		
-		pcs.firePropertyChange(ADD_POWER_UP, null, powerUp);
-	}*/
-
 	public void setName(final String name) {
 		this.name = name;
 	}
@@ -185,16 +158,6 @@ public class Player extends BlackHole {
 		}
 	}
 	
-	@Override
-	protected void handlePowerUp(final IPowerUp powerUp) {
-
-	//	pcs.firePropertyChange("sound", null, POWER_UP_SOUND);
-
-		//addPowerUp(powerUp);
-
-		//powerUp.eaten();
-	}
-	
 	public float[] getRGB(){
 		return RGB;
 	}
@@ -206,12 +169,12 @@ public class Player extends BlackHole {
 
 	@Override
 	protected void onGrow() {
-		pcs.firePropertyChange("sound", null, GROW_SOUND);
+		setSoundType(SoundType.GROW_SOUND);
 	}
 
 	@Override
 	protected void entityWasTooBigToEat(final Entity entity) {
-		pcs.firePropertyChange("sound", null, BIGGER_ENTITY_COLLISION_SOUND);
+		setSoundType(SoundType.OBSTACLE_COLLISION_SOUND);
 	}
 
 	@Override
@@ -228,7 +191,7 @@ public class Player extends BlackHole {
 	
 	public void setSoundType(final SoundType sound){
 		soundType = sound;
-		//pcs.firePropertyChange("Sound", null, sound);
+		pcs.firePropertyChange("Sound", null, sound);
 	}
 	
 	public SoundType getSoundType(){

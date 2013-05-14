@@ -133,8 +133,4 @@ public class Enemy extends BlackHole {
 				getCenterY() - danger.getCenterY()).mul(0.02f), getMaxSpeed());
 	}
 
-	@Override
-	protected void handlePowerUp(final IPowerUp powerUp) {
-		// enemies can't eat powerups :(
-	}
 }

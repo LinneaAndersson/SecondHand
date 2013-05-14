@@ -95,7 +95,7 @@ final class GamePlaySceneController extends Entity implements PropertyChangeList
 		final String name = event.getPropertyName();
 		MyDebug.d("property change in controller outside + name= " + name);
 		
-		if (name.equalsIgnoreCase("color")) {
+		if (name.equalsIgnoreCase(Player.COLOR)) {
 			MyDebug.d("property change in controller");
 			final Player player = gameWorld.getPlayer();
 			this.sceneController.getSceneManager().registerUpdateHander(PlayerController.createTimer(player));

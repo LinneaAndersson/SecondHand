@@ -9,6 +9,7 @@ import com.secondhand.model.powerup.PowerUp;
 import com.secondhand.model.powerup.PowerUpList;
 
 public final class PlayerController {
+	
 	private static PowerUp thisPowerUp;
 	private PlayerController() {}
 

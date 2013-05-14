@@ -231,7 +231,7 @@ public class RandomLevelGenerator {
 
 		placeOutPowerUps(10);
 
-		final int[] numEnemies= newEnemies();
+	final int[] numEnemies= newEnemies();
 		placeOutEnemies(numEnemies[0],numEnemies[1]);
 
 	}

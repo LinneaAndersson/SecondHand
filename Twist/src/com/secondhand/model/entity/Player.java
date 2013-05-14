@@ -34,7 +34,8 @@ public class Player extends BlackHole {
 	public final static String INCREASE_SCORE = "IncreaseScore";
 	public final static String INCREASE_LIFE = "IncreaseLife";
 	public final static String ADD_POWER_UP = "AddPowerUp";
-
+	public final static String SOUND = "Sound";
+	public final static String COLOR = "color";
 	// =============================================
 	public Player(final Vector2 position, final float radius, final int startingLives) {
 		super(position, radius);
@@ -150,7 +151,7 @@ public class Player extends BlackHole {
 
 	public void setRGB(float[] RGB){
 		this.RGB = RGB;
-		pcs.firePropertyChange("color", null, RGB);
+		pcs.firePropertyChange(COLOR, null, RGB);
 	}
 
 	@Override
@@ -177,7 +178,7 @@ public class Player extends BlackHole {
 
 	public void setSoundType(final SoundType sound){
 		soundType = sound;
-		pcs.firePropertyChange("Sound", null, sound);
+		pcs.firePropertyChange(SOUND, null, sound);
 	}
 
 	public SoundType getSoundType(){

@@ -19,13 +19,13 @@ public class PlayerView extends BlackHoleView {
 		super.propertyChange(event);
 		final String propertyName = event.getPropertyName();
 		
-		if (propertyName.equalsIgnoreCase("sound")) {
+		if (propertyName.equalsIgnoreCase(Player.SOUND)) {
 
 			if(Sounds.getInstance().getPlayerSound(((SoundType)event.getNewValue())) != null){
 				Sounds.getInstance().getPlayerSound((SoundType)(event.getNewValue())).play();
 			}
 
-		}else if (  propertyName.equalsIgnoreCase("color")) {
+		}else if (  propertyName.equalsIgnoreCase(Player.COLOR)) {
 			
 			final Player player = (Player)event.getSource();
 			final float[] RGB = player.getRGB();

@@ -2,7 +2,7 @@ package com.secondhand.model.powerup;
 
 import java.util.Random;
 
-import com.secondhand.model.entity.GameWorld;
+import com.secondhand.model.entity.IGameWorld;
 import com.secondhand.model.entity.Player;
 import com.secondhand.model.physics.Vector2;
 
@@ -15,7 +15,7 @@ public final class PowerUpFactory {
 	public static final int NUM_POWER_UPS = 10;
 
 	// used for level generation., 
-	public static PowerUp getRandomPowerUp(final Vector2 position, final GameWorld gameWorld, final Random rng, Player player) { 
+	public static PowerUp getRandomPowerUp(final Vector2 position, final IGameWorld gameWorld, final Random rng, Player player) { 
 		final int rand = rng.nextInt(NUM_POWER_UPS);
 		
 		if(rand == 0) {

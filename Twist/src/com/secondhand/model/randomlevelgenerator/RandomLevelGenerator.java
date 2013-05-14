@@ -7,6 +7,7 @@ import java.util.Random;
 import com.secondhand.model.entity.Enemy;
 import com.secondhand.model.entity.Entity;
 import com.secondhand.model.entity.GameWorld;
+import com.secondhand.model.entity.IGameWorld;
 import com.secondhand.model.entity.Obstacle;
 import com.secondhand.model.entity.Planet;
 import com.secondhand.model.entity.Player;
@@ -33,13 +34,13 @@ public class RandomLevelGenerator {
 	public final List<Entity> entityList;
 	public final List<Enemy> enemyList;
 
-	private final GameWorld level;
+	private final IGameWorld level;
 
 	private final World world;
 	private final Random rng;
 	private static final float PLAYER_RADIUS = 30.0f;
 
-	public RandomLevelGenerator(final Player player, final GameWorld level) {
+	public RandomLevelGenerator(final Player player, final IGameWorld level) {
 		rng = new Random();
 		this.levelNumber = level.getLevelNumber();
 		this.level = level;

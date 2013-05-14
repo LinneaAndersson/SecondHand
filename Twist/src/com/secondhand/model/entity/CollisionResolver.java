@@ -5,10 +5,10 @@ import com.secondhand.model.powerup.*;
 
 public final class CollisionResolver {
 
-	private final GameWorld gameWorld;
+	private final IGameWorld gameWorld;
 
-	public CollisionResolver(final GameWorld gameWorld) {
-		this.gameWorld = gameWorld;
+	public CollisionResolver(final IGameWorld gameWorld2) {
+		this.gameWorld = gameWorld2;
 	}
 
 	private void handleBlackHoleCollision(final Entity entityA,

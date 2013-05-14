@@ -2,7 +2,7 @@ package com.secondhand.model.powerup;
 
 import java.util.Random;
 
-import com.secondhand.model.entity.GameWorld;
+import com.secondhand.model.entity.IGameWorld;
 import com.secondhand.model.entity.Player;
 import com.secondhand.model.physics.Vector2;
 import com.secondhand.model.resource.PowerUpType;
@@ -12,7 +12,7 @@ public class RandomPowerUp extends PowerUp {
 	private final PowerUp randomPowerUp;
 
 	public RandomPowerUp(final Vector2 position,
-			final  GameWorld gameWorld, Player player) {
+			final  IGameWorld gameWorld, Player player) {
 		super(position, PowerUpType.RANDOM_POWER_UP, 0, player);
 
 		final Random rng = new Random();

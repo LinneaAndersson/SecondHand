@@ -216,7 +216,6 @@ public class GamePlayScene extends GameScene implements PropertyChangeListener {
 	public void newLevelStarted() {
 		Sounds.getInstance().winSound.play();
 
-		smoothCamera.setZoomFactorDirect(1.0f);
 		registerNewLevel();
 	}
 

@@ -68,7 +68,7 @@ public class MyPhysicsEntity implements IPhysicsEntity {
 	@Override
 	public void detachSelf() {
 		this.shape.detachSelf();
-		deleteBody();
+		//deleteBody();
 	}
 
 	private Vector2 getCenterOfMass() {

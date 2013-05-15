@@ -63,8 +63,6 @@ public abstract class Entity {
 		// we can't remove the body within a contact listener
 		scheduleBodyForDeletion();
 
-		// Detach the shape from AndEngine-rendering
-		// do this from IPhysicsEntity instead.
 		this.physics.detachSelf();
 	}
 

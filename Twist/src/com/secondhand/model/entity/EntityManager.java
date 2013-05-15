@@ -5,8 +5,6 @@ import java.beans.PropertyChangeListener;
 import java.util.List;
 import java.util.Stack;
 
-import com.secondhand.debug.MyDebug;
-
 
 // Manages all the entities of the GameWorld
 class EntityManager implements PropertyChangeListener{

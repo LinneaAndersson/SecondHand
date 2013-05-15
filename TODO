@@ -10,7 +10,7 @@ callback method instead. - Done, but just changed the propertyChange.
 * "1Up" and "10+" notifications in HUD does not seem to work.
 * sometimes you are not delegated to the high score scene after game over,
 rather, the game just goes on with negative lives.
-
+* Level change seems to be broken for now.
 
 - Documentation
 

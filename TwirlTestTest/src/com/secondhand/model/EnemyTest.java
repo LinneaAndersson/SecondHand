@@ -164,7 +164,8 @@ public class EnemyTest extends TestCase {
 		Player playerOutOfRange = new Player(new Vector2(200f, 200f), 2.0f);
 		Player playerInRangeClose = new Player(new Vector2(2f, 2f), 2.0f);
 		Player playerInRange = new Player(new Vector2(6f, 6f), 2.0f);
-		Player playerInRangeNotStrightLine = new Player(new Vector2(6f, 6f), 2.0f);
+		Player playerInRangeNotStrightLine = new Player(new Vector2(6f, 6f),
+				2.0f);
 
 		new EnemyTestPhysicsEntity(playerOutOfRange, true);
 		new EnemyTestPhysicsEntity(playerInRangeClose, true);
@@ -174,71 +175,31 @@ public class EnemyTest extends TestCase {
 		// A constant to multiply with when enemy will move.
 		float enemyHuntingArea = 0.002f;
 
-		// First I will check with enemy radius bigger than the other Entities
+		// 1. I will check with enemy radius bigger than the other Entities
 
-		// First case: Planet is in Enemies huntingrange, player isnt. Enemy
-		// will go for Planet
+		// 1.1 Planet is in Enemies huntingrange.
 		List<Entity> entityList = new ArrayList();
 		entityList.add(new Planet(new Vector2(3f, 3f), 2.0f, PlanetType.DRUGS));
 		new EnemyTestPhysicsEntity(entityList.get(0), true);
 
+		// 1.1.1 When player is out of range, enemy will move against planet.
 		enemy.moveEnemy(playerOutOfRange, entityList);
-
 		// Checks the impulse-value (horizontal)
 		assertEquals(enemyPhysics.getImpulseVector().x, (entityList.get(0)
 				.getInitialPosition().x - enemy.getInitialPosition().x)
 				* enemyHuntingArea);
+
 		// Checks the impulse-value (vertical)
 		assertEquals(enemyPhysics.getImpulseVector().y, (entityList.get(0)
 				.getInitialPosition().y - enemy.getInitialPosition().y)
 				* enemyHuntingArea);
 
-		// Second case: Planet and Player are not in range for enemy to find
-		// them. So enemy dont move.
-		entityList.clear();
-		entityList.add(new Planet(new Vector2(300f, 200f), 2.0f,
-				PlanetType.DRUGS));
-		new EnemyTestPhysicsEntity(entityList.get(0), true);
-
-		// sets the impulse-value to 0,0 to see if position will change after
-		// move.
+		// 1.1.2 when player is in range and closer to enemy, enemy will move
+		// against
+		// player.
+		// sets the impulse-value to 0,0 to see if it will move against Player.
 		enemyPhysics.applyImpulse(new Vector2(0, 0), 0);
-
-		enemy.moveEnemy(playerOutOfRange, entityList);
-
-		assertEquals(enemyPhysics.getImpulseVector().x, 0.0f);
-		assertEquals(enemyPhysics.getImpulseVector().y, 0.0f);
-
-		// Third case: Player is in the range for huntingArea and Planet isn't.
-		// Enemy will go for Player.
-		entityList.clear();
-		entityList
-		.add(new Planet(new Vector2(300, 200), 2.0f, PlanetType.DRUGS));
-		new EnemyTestPhysicsEntity(entityList.get(0), true);
-
-		enemyPhysics.applyImpulse(new Vector2(0, 0), 0);
-
-		enemy.moveEnemy(playerInRange, entityList);
-
-		assertEquals(
-				enemyPhysics.getImpulseVector().x,
-				(playerInRange.getInitialPosition().x - enemy
-						.getInitialPosition().x) * enemyHuntingArea);
-		assertEquals(
-				enemyPhysics.getImpulseVector().y,
-				(playerInRange.getInitialPosition().y - enemy
-						.getInitialPosition().y) * enemyHuntingArea);
-
-		// fourth case: player and planet is in range is in the range, player
-		// closer to enemy. Enemy will move against Player.
-		entityList.clear();
-		entityList.add(new Planet(new Vector2(4f, 4f), 2.0f, PlanetType.DRUGS));
-		new EnemyTestPhysicsEntity(entityList.get(0), true);
-
-		enemyPhysics.applyImpulse(new Vector2(0, 0), 0);
-
 		enemy.moveEnemy(playerInRangeClose, entityList);
-
 		assertEquals(
 				enemyPhysics.getImpulseVector().x,
 				(playerInRangeClose.getInitialPosition().x - enemy
@@ -248,17 +209,10 @@ public class EnemyTest extends TestCase {
 				(playerInRangeClose.getInitialPosition().y - enemy
 						.getInitialPosition().y) * enemyHuntingArea);
 
-		// fifth case: player and planet is in range is in the range, planet
-		// closer to enemy. Enemy will move against Player.
-		entityList.clear();
-		entityList.add(new Planet(new Vector2(2f, 4f), 2.0f, PlanetType.DRUGS));
-		new EnemyTestPhysicsEntity(entityList.get(0), true);
-
-		// sets the impulse-value to 0,0 to see if it will move against Player.
+		// 1.1.3 Player is in range, further away from enemy than Planet. Enemy
+		// still chase Player
 		enemyPhysics.applyImpulse(new Vector2(0, 0), 0);
-
 		enemy.moveEnemy(playerInRange, entityList);
-
 		assertEquals(
 				enemyPhysics.getImpulseVector().x,
 				(playerInRange.getInitialPosition().x - enemy
@@ -268,34 +222,65 @@ public class EnemyTest extends TestCase {
 				(playerInRange.getInitialPosition().y - enemy
 						.getInitialPosition().y) * enemyHuntingArea);
 
-		// sixth case: Obstacle and PowerUp in the range of Enemy. Enemy will
-		// not chase them. If a eatable-entity(Player or Planet) is in range and there is straightLine then
+		// 1.2 Planet are not in range for enemy.
+		entityList.clear();
+		entityList.add(new Planet(new Vector2(300f, 200f), 2.0f,
+				PlanetType.DRUGS));
+		new EnemyTestPhysicsEntity(entityList.get(0), true);
+
+		// 1.2.1 Player are not in range
+		enemyPhysics.applyImpulse(new Vector2(0, 0), 0);
+		enemy.moveEnemy(playerOutOfRange, entityList);
+		assertEquals(enemyPhysics.getImpulseVector().x, 0.0f);
+		assertEquals(enemyPhysics.getImpulseVector().y, 0.0f);
+
+		// 1.2.2 Player are in range
+
+		// Third case: Player is in the range for huntingArea and Planet isn't.
+		// Enemy will go for Player.
+		enemyPhysics.applyImpulse(new Vector2(0, 0), 0);
+		enemy.moveEnemy(playerInRange, entityList);
+		assertEquals(
+				enemyPhysics.getImpulseVector().x,
+				(playerInRange.getInitialPosition().x - enemy
+						.getInitialPosition().x) * enemyHuntingArea);
+		assertEquals(
+				enemyPhysics.getImpulseVector().y,
+				(playerInRange.getInitialPosition().y - enemy
+						.getInitialPosition().y) * enemyHuntingArea);
+
+		// 1.3 Obstacle and PowerUp in the range of Enemy. Enemy will
+		// not chase them. If a eatable-entity(Player or Planet) is in range and
+		// there is straightLine then
 		// enemy will chase the eatable-entity.
 		entityList.clear();
 		entityList.add(new Obstacle(new Vector2(2f, 4f), new ArrayList()));
-		entityList.add(new RandomPowerUp(new Vector2(4f, 4f), null,
-				playerOutOfRange));
+		entityList.add(new RandomPowerUp(new Vector2(4f, 4f), null));
 
 		new EnemyTestPhysicsEntity(entityList.get(0), true);
 		new EnemyTestPhysicsEntity(entityList.get(1), true);
 
 		enemyPhysics.applyImpulse(new Vector2(0, 0), 0);
 
-		// Don't want player to make any difference
+		// 1.3.1 Don't want player to make any difference-not in range
 		enemy.moveEnemy(playerOutOfRange, entityList);
 		assertEquals(enemyPhysics.getImpulseVector().x, 0.0f);
 		assertEquals(enemyPhysics.getImpulseVector().y, 0.0f);
 
-		//player in range, but not straight line. No chasing!
+		// 1.3.2 player in range, but not straight line. No chasing!
 		enemyNotStraightLine.moveEnemy(playerInRangeNotStrightLine, entityList);
 		assertEquals(enemyPhysicsNotStraightLine.getImpulseVector().x, 0.0f);
 		assertEquals(enemyPhysicsNotStraightLine.getImpulseVector().y, 0.0f);
 
-		//player in range and straight line, enemy will chase.
+		// 1.3.3 player in range and straight line, enemy will chase.
 		enemyNotStraightLine.moveEnemy(playerInRange, entityList);
-		assertEquals(enemyPhysics.getImpulseVector().x, (playerInRange.getInitialPosition().x - enemy
-				.getInitialPosition().x) * enemyHuntingArea);
-				assertEquals(enemyPhysics.getImpulseVector().y, (playerInRange.getInitialPosition().x - enemy
+		assertEquals(
+				enemyPhysics.getImpulseVector().x,
+				(playerInRange.getInitialPosition().x - enemy
+						.getInitialPosition().x) * enemyHuntingArea);
+		assertEquals(
+				enemyPhysics.getImpulseVector().y,
+				(playerInRange.getInitialPosition().x - enemy
 						.getInitialPosition().x) * enemyHuntingArea);
 
 	}

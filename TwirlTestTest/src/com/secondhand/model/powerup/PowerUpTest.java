@@ -28,7 +28,7 @@ public class PowerUpTest extends TestCase {
 		assertEquals(duration, powerUp.getDuration());
 	}
 	
-	public void testHasAnother() {
+	/*public void testHasAnother() {
 		PowerUpList powerUpList = PowerUpList.getInstance();
 		
 		// Same PowerUpType but different positions,radius etc..
@@ -36,7 +36,7 @@ public class PowerUpTest extends TestCase {
 		powerUpList.add(getNewPowerUp(new Vector2(1,1), PowerUpType.DOUBLE_SCORE, 10, new Player(new Vector2(1,1), 10)));
 		
 		assertTrue(powerUpList.get(0).hasAnother());
-	}
+	}*/
 	
 	public void testRemovePowerUp() {
 		

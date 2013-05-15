@@ -6,7 +6,7 @@ import com.secondhand.model.physics.Vector2;
 
 public class Obstacle extends PolygonEntity {
 	
-	private final float SCORE_WORTH = 2;
+	private final static float SCORE_WORTH = 2;
 	
 	public Obstacle(final Vector2 position,  final List<Vector2> polygon) {
 		super(position, polygon, false);

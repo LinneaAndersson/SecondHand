@@ -151,24 +151,24 @@ public class Player extends BlackHole {
 		return RGB;
 	}
 
-	public void setRGB(float[] RGB){
+	public void setRGB(final float[] RGB){
 		this.RGB = RGB;
 		pcs.firePropertyChange(COLOR, null, RGB);
 	}
 
 	@Override
 	protected void onGrow() {
-		setSoundType(SoundType.GROW_SOUND);
+		playSound(SoundType.GROW_SOUND);
 	}
 
 	@Override
 	protected void entityWasTooBigToEat(final Entity entity) {
-		setSoundType(SoundType.OBSTACLE_COLLISION_SOUND);
+		playSound(SoundType.OBSTACLE_COLLISION_SOUND);
 	}
 
 	@Override
 	protected void wasEaten() {
-		setSoundType(SoundType.PLAYER_KILLED_SOUND);
+		playSound(SoundType.PLAYER_KILLED_SOUND);
 
 		// We override the default behaviour for wasEaten. We don't want the
 		// player to
@@ -178,15 +178,9 @@ public class Player extends BlackHole {
 		kill();
 	}
 
-	public void setSoundType(final SoundType sound){
-		soundType = sound;
+	public void playSound(final SoundType sound){
 		pcs.firePropertyChange(SOUND, null, sound);
 	}
-
-	public SoundType getSoundType(){
-		return soundType;
-	}
-
 
 
 	public boolean isMirroredMovement() {

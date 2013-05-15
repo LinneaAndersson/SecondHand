@@ -92,9 +92,7 @@ public class Enemy extends BlackHole {
 		Entity entity = null;
 		for (final Entity e : entityList) {
 			if (e instanceof CircleEntity && isCloseToEntity(e, huntingArea) && canEat(e)) {
-					if (entity instanceof Enemy && !(e instanceof Enemy)) {
-
-					} else {
+					if (!(entity instanceof Enemy && !(e instanceof Enemy))) {
 						entity = getSmaller(entity, e);
 					}
 				}

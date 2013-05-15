@@ -81,10 +81,11 @@ public abstract class BlackHole extends CircleEntity {
 
 		this.increaseScore(entity.getScoreValue());
 
-		// increase the size of the rendered circle.
-		final float radiusInc = entity.getRadius() * GROWTH_FACTOR;
-		this.increaseSize(radiusInc);
-		onGrow();
+		if(entity.getRadius() != 0) {
+			final float radiusInc = entity.getRadius() * GROWTH_FACTOR;
+			this.increaseSize(radiusInc);
+			onGrow();
+		}
 
 		entity.wasEaten();
 	}
@@ -98,7 +99,7 @@ public abstract class BlackHole extends CircleEntity {
 				otherBlackHole.eatEntity(this);
 			else
 				this.eatEntityUtil(otherBlackHole);
-		} else if (entity instanceof CircleEntity) {
+		} else {
 			// else, just eat the entity.
 			eatEntityUtil(entity);
 		}
@@ -111,8 +112,11 @@ public abstract class BlackHole extends CircleEntity {
 	}
 
 	@Override
-	public void setRadius(final float radius) {	
-		this.pcs.firePropertyChange("radius", this.getRadius(), radius);
+	public void setRadius(final float radius) {
+		
+		
 		super.setRadius(radius);
+		
+		this.pcs.firePropertyChange("radius", this.getRadius(), radius);
 	}
 }

@@ -4,7 +4,7 @@ import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 import java.util.ArrayList;
 
-public class PowerUpList extends ArrayList<IPowerUp> {
+public final class PowerUpList extends ArrayList<IPowerUp> {
 
 	
 	// NOT FINISHED!
@@ -16,12 +16,10 @@ public class PowerUpList extends ArrayList<IPowerUp> {
 	
 	public static final String ADD_POWERUP = "addPowerUp";
 	
-	public PowerUpList() {
-		super();
-	}
+	private PowerUpList()  {super();}
 
 	@Override
-	public boolean add(IPowerUp powerUp) {
+	public boolean add(final IPowerUp powerUp) {
 		pcs.firePropertyChange(ADD_POWERUP, null, powerUp);
 		powerUp.activatePowerUp();
 		return super.add(powerUp);
@@ -32,7 +30,7 @@ public class PowerUpList extends ArrayList<IPowerUp> {
 		final boolean value = super.remove(object); // Priority: The list is
 		// empty when you remove
 		// last PowerUp
-		IPowerUp powerUp = (IPowerUp) object;
+		final IPowerUp powerUp = (IPowerUp) object;
 		powerUp.resetPlayerColor();
 		powerUp.deactivateEffect(hasAnother(powerUp));
 		return value;
@@ -45,11 +43,11 @@ public class PowerUpList extends ArrayList<IPowerUp> {
 		return instance;
 	}
 
-	public void addListener(PropertyChangeListener listener) {
+	public void addListener(final PropertyChangeListener listener) {
 		pcs.addPropertyChangeListener(listener);
 	}
 	
-	public boolean hasAnother(IPowerUp powerUp) {
+	public boolean hasAnother(final IPowerUp powerUp) {
 		boolean hasAnother = false;
 		for (final IPowerUp otherPowerUp : this) {
 			if (otherPowerUp.getClass() == powerUp.getClass()) 

@@ -53,10 +53,7 @@ public abstract class Entity {
 	}
 
 	// remove this entity from andengine rendering and the physics world.
-	private void removeEntity() {
-		//this.entityManager.removeEntityFromList(this);
-
-		destroyEntity();
+	private void removeEntity() {		destroyEntity();
 	}
 
 	/* TODO: Just always use this instead of removeEntity and wasEaten?
@@ -73,7 +70,6 @@ public abstract class Entity {
 
 	private void scheduleBodyForDeletion() {
 		pcs.firePropertyChange("isScheduleForDeletion", null, this);
-		//this.entityManager.scheduleEntityForDeletion(this);
 	}
 
 	// only valid when the body has been scheduled for deletion.
@@ -97,4 +93,6 @@ public abstract class Entity {
 	 public float getCenterY() {
 		return  this.physics.getCenterY();
 	}
+	 
+	 
 }

@@ -236,7 +236,7 @@ public class RandomLevelGenerator {
 
 		placeOutPowerUps(10, POWER_UP_EXTRA_SIZE);
 
-		placeOutEnemies(10 * this.levelNumber,4 * this.levelNumber, ENEMY_EXTRA_RADIUS);
+		//placeOutEnemies(10 * this.levelNumber,4 * this.levelNumber, ENEMY_EXTRA_RADIUS);
 
 	}
 }

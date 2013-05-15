@@ -16,6 +16,7 @@ public class PowerUpListTest extends TestCase {
 	
 	public void testAdd() {
 		final PowerUpList powerUpList = PowerUpList.getInstance();
+		powerUpList.setPlayer(new Player(new Vector2(), 10));
 		
 		class AddPowerUpListener implements PropertyChangeListener {
 			

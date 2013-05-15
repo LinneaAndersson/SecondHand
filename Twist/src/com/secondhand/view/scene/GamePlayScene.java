@@ -83,17 +83,28 @@ public class GamePlayScene extends GameScene implements PropertyChangeListener {
 	
 		this.smoothCamera.setBounds(0, width, 0, height);
 
+		MyDebug.d("1");
 		for (final Entity entity : gameWorld.getEntityList()) {
+			
 			MyDebug.d("next Level start attach");
 			EntityView entityView = null;
+			MyDebug.d("2");
 			if (entity instanceof Planet) {
+				MyDebug.d("3");
 				entityView = new PlanetView(this.physicsWorld, (Planet) entity);
+				
 			} else if (entity instanceof Enemy) {
+				MyDebug.d("5");
+				
 				entityView = new EnemyView(this.physicsWorld, (Enemy) entity);
 			} else if (entity instanceof Obstacle) {
+				MyDebug.d("6");
+				
 				entityView = new ObstacleView(this.physicsWorld,
 						(Obstacle) entity);
 			} else if (entity instanceof PowerUp) {
+				MyDebug.d("7");
+				
 				entityView = new PowerUpView(this.physicsWorld,
 						(PowerUp) entity);
 			} else {
@@ -101,6 +112,9 @@ public class GamePlayScene extends GameScene implements PropertyChangeListener {
 
 				System.exit(1);
 			}	
+			
+			MyDebug.d("4");
+			
 			MyDebug.d("next Level attach entity");
 			this.attachChild(entityView.getShape());
 		}

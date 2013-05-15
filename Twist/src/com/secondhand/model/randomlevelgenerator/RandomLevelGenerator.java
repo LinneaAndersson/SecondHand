@@ -222,7 +222,7 @@ public class RandomLevelGenerator {
 				player.getRadius() + PLAYER_EXTRA_RADIUS);
 		world.addToWorld(circle);
 
-		this.playerMaxSize = 31; //GameWorld.PLAYER_STARTING_SIZE * (this.levelNumber + 1);
+		this.playerMaxSize = GameWorld.PLAYER_STARTING_SIZE * (this.levelNumber + 1);
 
 		// place out entities.
 		placeOutObstacles(levelNumber * 10);
@@ -236,7 +236,7 @@ public class RandomLevelGenerator {
 
 		placeOutPowerUps(10, POWER_UP_EXTRA_SIZE);
 
-		//placeOutEnemies(10 * this.levelNumber,4 * this.levelNumber, ENEMY_EXTRA_RADIUS);
+		placeOutEnemies(10 * this.levelNumber,4 * this.levelNumber, ENEMY_EXTRA_RADIUS);
 
 	}
 }

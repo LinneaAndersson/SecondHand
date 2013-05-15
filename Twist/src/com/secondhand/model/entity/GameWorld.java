@@ -12,7 +12,7 @@ public class GameWorld implements IGameWorld {
 
 	private final EntityManager entityManager;
 
-	private static final int STARTING_LEVEL = 1;
+	private static final int STARTING_LEVEL = 2	;
 
 	public static final int PLAYER_STARTING_SIZE = 30;
 
@@ -110,6 +110,7 @@ public class GameWorld implements IGameWorld {
 
 		if (checkPlayerBigEnough()) {
 			nextLevel();
+			//System.gc(); // NOPMD
 		} else {
 			this.entityManager.updateEntities();
 		}

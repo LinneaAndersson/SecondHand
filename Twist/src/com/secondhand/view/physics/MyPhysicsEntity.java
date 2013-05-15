@@ -52,12 +52,10 @@ public class MyPhysicsEntity implements IPhysicsEntity {
 	@Override
 	public void deleteBody() {
 		physicsWorld.unregisterPhysicsConnector(physicsConnector);
-
-		physicsWorld.destroyBody(physicsConnector.getBody());
+		physicsWorld.destroyBody(body);
 
 		MyDebug.i(physicsConnector.getBody() + " destruction complete");
 	}
-	 
 
 	@Override
 	public void setLinearDamping(final float linearDamping) {
@@ -68,7 +66,6 @@ public class MyPhysicsEntity implements IPhysicsEntity {
 	@Override
 	public void detachSelf() {
 		this.shape.detachSelf();
-		//deleteBody();
 	}
 
 	private Vector2 getCenterOfMass() {

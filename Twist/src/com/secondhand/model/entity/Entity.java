@@ -97,4 +97,6 @@ public abstract class Entity {
 	 public float getCenterY() {
 		return  this.physics.getCenterY();
 	}
+	 
+	 
 }

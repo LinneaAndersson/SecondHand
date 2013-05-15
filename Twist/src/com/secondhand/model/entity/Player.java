@@ -150,7 +150,7 @@ public class Player extends BlackHole {
 		return RGB;
 	}
 
-	public void setRGB(float[] RGB){
+	public void setRGB(final float[] RGB){
 		this.RGB = RGB;
 		pcs.firePropertyChange(COLOR, null, RGB);
 	}

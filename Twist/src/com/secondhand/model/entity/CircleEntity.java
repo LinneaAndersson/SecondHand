@@ -17,9 +17,10 @@ public abstract class CircleEntity extends Entity {
 	
 	@Override 
 	public float getRadius() {
-		if(this.physics != null)
-			return this.physics.getRadius();
-		else
-			return this.radius;
+		return this.radius;
+	}
+	
+	public void setRadius(final float radius){
+		this.radius = radius;
 	}
 }

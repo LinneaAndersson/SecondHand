@@ -22,6 +22,11 @@ public abstract class BlackHole extends CircleEntity {
 
 		this.canEatInedibles = false;
 	}
+	
+	@Override
+	public float getRadius(){
+		return radius;
+	}
 
 	public float getPosX() {
 		return position.y;
@@ -106,7 +111,9 @@ public abstract class BlackHole extends CircleEntity {
 		return 3;
 	}
 
+	@Override
 	public void setRadius(final float radius) {
+		super.setRadius(radius);
 		this.pcs.firePropertyChange("radius", this.getRadius(), radius);
 	}
 }

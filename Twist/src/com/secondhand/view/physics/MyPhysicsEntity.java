@@ -15,7 +15,6 @@ import com.secondhand.model.entity.Enemy;
 import com.secondhand.model.entity.Entity;
 import com.secondhand.model.entity.Player;
 import com.secondhand.model.physics.IPhysicsEntity;
-import com.secondhand.view.opengl.Circle;
 
 public class MyPhysicsEntity implements IPhysicsEntity {
 	private final Body body;
@@ -64,13 +63,6 @@ public class MyPhysicsEntity implements IPhysicsEntity {
 	public void setLinearDamping(final float linearDamping) {
 		body.setLinearDamping(linearDamping);
 
-	}
-	
-
-	@Override
-	public float getRadius() {
-		final Circle circle = (Circle)this.shape;
-		return circle.getRadius();
 	}
 
 	@Override

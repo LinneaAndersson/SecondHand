@@ -12,8 +12,6 @@ public interface IPhysicsEntity {
 	
 	float getCenterY();
 	
-	float getRadius();
-	
 	void deleteBody();
 
 	/// apply impulse to world center. 

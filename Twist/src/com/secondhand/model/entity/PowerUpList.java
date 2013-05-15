@@ -6,9 +6,6 @@ import java.util.ArrayList;
 
 public final class PowerUpList extends ArrayList<IPowerUp> {
 
-	
-	// NOT FINISHED!
-	
 	private static final long serialVersionUID = 1L;
 	private static PowerUpList instance;
 	

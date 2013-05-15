@@ -7,6 +7,7 @@ import org.anddev.andengine.extension.physics.box2d.PhysicsWorld;
 import org.anddev.andengine.extension.physics.box2d.util.constants.PhysicsConstants;
 
 import com.badlogic.gdx.physics.box2d.CircleShape;
+import com.secondhand.debug.MyDebug;
 import com.secondhand.model.entity.BlackHole;
 import com.secondhand.view.opengl.Circle;
 import com.secondhand.view.physics.FixtureDefs;
@@ -33,7 +34,10 @@ public class BlackHoleView extends CircleView implements PropertyChangeListener{
 	public void propertyChange(final PropertyChangeEvent event) {
 		
 		if (event.getPropertyName().equalsIgnoreCase("radius")) {
+			
 			final float newValue = (Float) event.getNewValue();
+			
+			MyDebug.d("new radius in view: " + newValue);
 			this.changeSize(newValue);
 		}
 	}

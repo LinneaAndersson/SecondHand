@@ -33,7 +33,6 @@ public class Player extends BlackHole {
 	// ============== EVENT-CONSTANTS ==============
 	public final static String INCREASE_SCORE = "IncreaseScore";
 	public final static String INCREASE_LIFE = "IncreaseLife";
-	public final static String ADD_POWER_UP = "AddPowerUp";
 	public final static String SOUND = "Sound";
 	public final static String COLOR = "color";
 	public final static float DEFAULT_COLOR_VALUE = 1f;

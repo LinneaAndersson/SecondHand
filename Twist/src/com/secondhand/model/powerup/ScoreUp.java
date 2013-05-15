@@ -9,8 +9,6 @@ public class ScoreUp extends PowerUp {
 	private final static float DURATION = 0;
 	private final static int SCORE_BONUS = 10;
 	
-	private Player player;
-	
 	public ScoreUp(final Vector2 position, final Player player) {
 		super(position, PowerUpType.SCORE_UP, DURATION, player);	
 	}
@@ -21,7 +19,6 @@ public class ScoreUp extends PowerUp {
 	
 	@Override
 	public void activateEffect(final Player player) {
-		this.player = player;
 		player.increaseScore(SCORE_BONUS);
 	}
 

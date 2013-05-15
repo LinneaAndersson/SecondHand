@@ -18,6 +18,7 @@ import com.secondhand.model.entity.IGameWorld;
 import com.secondhand.model.entity.Obstacle;
 import com.secondhand.model.entity.Planet;
 import com.secondhand.model.entity.Player;
+import com.secondhand.model.entity.PowerUpList;
 import com.secondhand.model.powerup.PowerUp;
 import com.secondhand.view.andengine.entity.FadingNotifierText;
 import com.secondhand.view.andengine.entity.ScoreLivesText;
@@ -252,7 +253,7 @@ public class GamePlayScene extends GameScene implements PropertyChangeListener {
 			onPlayerWallCollision();
 		} 
 		
-		else if (eventName.equals(Player.ADD_POWER_UP)) {
+		else if (eventName.equals(PowerUpList.ADD_POWERUP)) {
 			final PowerUp powerUp = (PowerUp) event.getNewValue();
 			if(powerUp.hasText()) {
 				showFadingTextNotifier(powerUp.getText(),

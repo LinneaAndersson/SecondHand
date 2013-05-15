@@ -9,8 +9,8 @@ public class SpeedUp extends PowerUp {
 	private final static float DURATION = 10;
 	private final static int FACTOR = 2;
 	
-	public SpeedUp(final Vector2 position, final Player player) {
-		super(position, PowerUpType.SPEED_UP, DURATION, player);
+	public SpeedUp(final Vector2 position) {
+		super(position, PowerUpType.SPEED_UP, DURATION);
 		
 	}
 	
@@ -20,12 +20,11 @@ public class SpeedUp extends PowerUp {
 	}
 	
 	@Override
-	public void deactivateEffect(boolean hasAnother) {
+	public void deactivateEffect(final boolean hasAnother) {
 		if(!hasAnother)
 			player.setSpeedMultiplier(player.getSpeedMultiplier()/FACTOR);
 	}
 	
-
 	public float getR() {return 0f;}
 	public float getG() {return 0f;}
 	public float getB() {return 1f;}

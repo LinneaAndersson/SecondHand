@@ -14,15 +14,14 @@ public abstract class PowerUp extends RectangleEntity implements IPowerUp {
 	
 	protected float duration;
 	private final PowerUpType powerUpType;
-	protected final Player player;
+	protected Player player;
 	
 	private final float[] RGB = new float[3];	
 
-	public PowerUp (final Vector2 position, final PowerUpType powerUpType, final float duration, final Player player) {
+	public PowerUp (final Vector2 position, final PowerUpType powerUpType, final float duration) {
 		super(position, WIDTH, HEIGHT,true);
 		this.duration = duration;
 		this.powerUpType = powerUpType;
-		this.player = player;
 	}
 	
 	@Override
@@ -36,7 +35,7 @@ public abstract class PowerUp extends RectangleEntity implements IPowerUp {
 	}
 	
 	@Override
-	public void deactivateEffect(boolean hasAnother) {
+	public void deactivateEffect(final boolean hasAnother) {
 	}
 	
 	@Override
@@ -80,9 +79,12 @@ public abstract class PowerUp extends RectangleEntity implements IPowerUp {
 	}
 
 	@Override
-	public void activatePowerUp() {
+	public void activatePowerUp(final Player player) {
+		this.player = player;
 		this.activateEffect(player);
 		changePlayerColor();
+		
+		// wait, don't we already do this somewhere else
 		player.playSound(SoundType.POWERUP_SOUND);
 		eaten();
 	}

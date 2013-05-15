@@ -22,7 +22,7 @@ public interface IPowerUp {
 
 	void eaten();
 
-	void activatePowerUp();
+	void activatePowerUp(final Player player);
 
 	void deactivateEffect(boolean hasAnother);
 	

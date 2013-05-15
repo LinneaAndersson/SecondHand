@@ -14,8 +14,8 @@ public class RandomTeleport extends PowerUp {
 	
 	
 	public RandomTeleport(final Vector2 position, 
-			final IGameWorld level, final Player player) {
-		super(position, PowerUpType.RANDOM_TELEPORT, DURATION, player);
+			final IGameWorld level) {
+		super(position, PowerUpType.RANDOM_TELEPORT, DURATION);
 		this.gameWorld = level;
 	}
 
@@ -23,20 +23,14 @@ public class RandomTeleport extends PowerUp {
 	public void activateEffect(final Player player) {
 	
 		final Random rng = new Random();
-		float x,y;
+		
 		final float r = player.getRadius();
 		
-		while(true) {
 			
-			x = rng.nextInt(gameWorld.getLevelWidth());
-			y = rng.nextInt(gameWorld.getLevelHeight());
-			
-			if(this.gameWorld.getPhysics().isAreaUnOccupied(x, y, r))
-				break;
-		}
-			
-		player.setNeedsToMovePosition(new Vector2(x,
-				y));
+		player.setNeedsToMovePosition(this.gameWorld.getPhysics().getRandomUnOccupiedArea(
+				this.gameWorld.getLevelWidth(),
+				this.gameWorld.getLevelHeight(),
+				r, rng));
 	}
 
 	

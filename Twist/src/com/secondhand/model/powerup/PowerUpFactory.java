@@ -6,7 +6,6 @@ import java.util.Random;
 
 import com.secondhand.debug.MyDebug;
 import com.secondhand.model.entity.IGameWorld;
-import com.secondhand.model.entity.Player;
 import com.secondhand.model.physics.Vector2;
 
 // Uses the second method described here:
@@ -41,7 +40,7 @@ public final class PowerUpFactory {
 	
 	
 	// used for level generation., 
-	public PowerUp getRandomPowerUp(final Vector2 position, final IGameWorld gameWorld, final Random rng, final Player player) { 
+	public PowerUp getRandomPowerUp(final Vector2 position, final IGameWorld gameWorld, final Random rng) { 
 		
 		// do the Weighted Random Distribution
 		final int index = rng.nextInt(totalWeight);
@@ -57,7 +56,7 @@ public final class PowerUpFactory {
 		
 		// now construct the randomized powerup:
 		
-		return result.constructPowerUp(position, gameWorld, player);
+		return result.constructPowerUp(position, gameWorld);
 		
 	
 	}
@@ -71,37 +70,37 @@ public final class PowerUpFactory {
 			this.weight = weight;
 		}
 		
-		public PowerUp constructPowerUp(final Vector2 position, final IGameWorld gameWorld, final Player player) {
+		public PowerUp constructPowerUp(final Vector2 position, final IGameWorld gameWorld) {
 			if(powerUp == 1) {
 				MyDebug.d("double score");
-				return new DoubleScore(position,  player);
+				return new DoubleScore(position);
 			} else if(powerUp == 2) {
 				MyDebug.d("eat obstacle");
-				return new EatObstacle(position,  player);
+				return new EatObstacle(position);
 			} else if(powerUp == 3) {
 				MyDebug.d("extra life");
-				return new ExtraLife(position,  player);
+				return new ExtraLife(position);
 			} else if(powerUp == 4) {
 				MyDebug.d("mirrored movement");
-				return new MirroredMovement(position,  player);
+				return new MirroredMovement(position);
 			} else if(powerUp == 5) {
 				MyDebug.d("random powerup");
-				return new RandomPowerUp(position, gameWorld,  player);
+				return new RandomPowerUp(position, gameWorld);
 			} else if(powerUp == 6) {
 				MyDebug.d("random teleport");
-				return new RandomTeleport(position, gameWorld,  player);
+				return new RandomTeleport(position, gameWorld);
 			} else if(powerUp == 7) {
 				MyDebug.d("score up");
-				return new ScoreUp(position,  player);
+				return new ScoreUp(position);
 			} else if(powerUp == 8) {
 				MyDebug.d("shield");
-				return new Shield(position,  player);
+				return new Shield(position);
 			} else if(powerUp == 9) {
 				MyDebug.d("speedown");
-				return new SpeedDown(position,  player);
+				return new SpeedDown(position);
 			} else if(powerUp == 10) {
 				MyDebug.d("speedup");
-				return new SpeedUp(position,  player);
+				return new SpeedUp(position);
 			} 
 			else {
 				MyDebug.d("null returned!");

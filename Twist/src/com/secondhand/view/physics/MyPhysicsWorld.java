@@ -1,5 +1,7 @@
 package com.secondhand.view.physics;
 
+import java.util.Random;
+
 import org.anddev.andengine.extension.physics.box2d.PhysicsWorld;
 
 import com.badlogic.gdx.math.Vector2;
@@ -66,5 +68,22 @@ public class MyPhysicsWorld implements IPhysicsWorld {
 	@Override
 	public void setGameWorld(final IGameWorld gameWorld) {
 		this.collisionResolver = new CollisionResolver(gameWorld);
+	}
+
+	
+	@Override
+	public com.secondhand.model.physics.Vector2 getRandomUnOccupiedArea(final int worldWidth, final int worldHeight, final float r, final Random rng){	
+		
+		float x, y;
+		
+		while(true) {
+			
+			x = rng.nextInt(worldWidth);
+			y = rng.nextInt(worldHeight);
+			
+			if(isAreaUnOccupied(x, y, r))
+				break;
+		}
+		return new com.secondhand.model.physics.Vector2(x,y);
 	}
 }

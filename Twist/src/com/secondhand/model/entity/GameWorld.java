@@ -3,6 +3,7 @@ package com.secondhand.model.entity;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 import java.util.List;
+import java.util.Random;
 
 import com.secondhand.model.physics.IPhysicsWorld;
 import com.secondhand.model.physics.Vector2;
@@ -11,8 +12,10 @@ import com.secondhand.model.randomlevelgenerator.RandomLevelGenerator;
 public class GameWorld implements IGameWorld {
 
 	private final EntityManager entityManager;
+	
+	private Random rng = new Random();
 
-	private static final int STARTING_LEVEL = 2	;
+	private static final int STARTING_LEVEL = 1;
 
 	public static final int PLAYER_STARTING_SIZE = 30;
 
@@ -26,15 +29,15 @@ public class GameWorld implements IGameWorld {
 	private final PropertyChangeSupport support;
 
 	public GameWorld(final IPhysicsWorld physics) {
-		mPhysic = physics;
-		mPhysic.setGameWorld(this);
-		support = new PropertyChangeSupport(this);
-
-		this.entityManager = new EntityManager(new Player(new Vector2(50, 50),
-				PLAYER_STARTING_SIZE));
-
+		// reset player
+		PowerUpList.getInstance().setPlayer(null);
+		this.mPhysic = physics;
+		this.mPhysic.setGameWorld(this);
+		this.support = new PropertyChangeSupport(this);
+		this.entityManager = new EntityManager();
+		
 		generateNewLevelEntities(STARTING_LEVEL);
-		mPhysic.setWorldBounds(levelWidth, levelHeight);
+		PowerUpList.getInstance().setPlayer(this.entityManager.getPlayer());
 	}
 
 	@Override
@@ -51,17 +54,32 @@ public class GameWorld implements IGameWorld {
 	// generate the level entities of a new level.
 	private void generateNewLevelEntities(final int levelNumber) {
 		this.levelNumber = levelNumber;
+			
+		final RandomLevelGenerator randomLevelGenerator =  new RandomLevelGenerator(this);
+		
+		// player hasn't yet been created
+		if(this.entityManager.getPlayer() == null) {
+			
+			// now create the new player
+			final Player player = new Player(randomLevelGenerator.playerPosition,
+					randomLevelGenerator.playerInitialSize);
+			player.setMaxSize(randomLevelGenerator.playerMaxSize);
+			this.entityManager.setPlayer(player);
+		}else {
+			
+			final Player player = this.entityManager.getPlayer();
+			player.setRadius(randomLevelGenerator.playerInitialSize);
+			player.setNeedsToMovePosition(randomLevelGenerator.playerPosition);
+			player.setMaxSize(randomLevelGenerator.playerMaxSize);	
+		}
 
-		final RandomLevelGenerator randomLevelGenerator = new RandomLevelGenerator(
-				this.entityManager.getPlayer(), this);
-
-		this.entityManager.getPlayer().setMaxSize(
-				randomLevelGenerator.playerMaxSize);
 		this.levelWidth = randomLevelGenerator.levelWidth;
 		this.levelHeight = randomLevelGenerator.levelHeight;
 
 		this.entityManager.setEntityList(randomLevelGenerator.entityList);
 		this.entityManager.setEnemyList(randomLevelGenerator.enemyList);
+		
+		mPhysic.setWorldBounds(this.levelWidth, this.levelHeight);
 	}
 
 	@Override

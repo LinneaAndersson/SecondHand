@@ -11,8 +11,8 @@ public class DoubleScore extends PowerUp {
 	
 	private final static float MULT = 2;
 	
-	public DoubleScore(final Vector2 position, final Player player) {
-		super(position, PowerUpType.DOUBLE_SCORE, DURATION, player);
+	public DoubleScore(final Vector2 position) {
+		super(position, PowerUpType.DOUBLE_SCORE, DURATION);
 	}
 
 	@Override
@@ -21,7 +21,7 @@ public class DoubleScore extends PowerUp {
 	}
 	
 	@Override
-	public void deactivateEffect(boolean hasAnother) {		
+	public void deactivateEffect(final boolean hasAnother) {		
 		player.setScoreMultiplier(hasAnother ? MULT : 1);
 	}
 	

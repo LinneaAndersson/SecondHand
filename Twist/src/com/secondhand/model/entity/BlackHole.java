@@ -1,5 +1,6 @@
 package com.secondhand.model.entity;
 
+import com.secondhand.debug.MyDebug;
 import com.secondhand.model.physics.Vector2;
 
 public abstract class BlackHole extends CircleEntity {
@@ -73,7 +74,6 @@ public abstract class BlackHole extends CircleEntity {
 	}
 
 	public void eatEntityUtil(final Entity entity) {
-
 		if (!this.canEat(entity)) {
 			entityWasTooBigToEat(entity);
 			return;
@@ -90,10 +90,9 @@ public abstract class BlackHole extends CircleEntity {
 	}
 
 	public void eatEntity(final Entity entity) {
-
+		
 		if (entity instanceof BlackHole) {
 			final BlackHole otherBlackHole = (BlackHole) entity;
-
 			// instead of eating, you will be eaten!
 			if (otherBlackHole.canEat(this))
 				otherBlackHole.eatEntity(this);
@@ -112,8 +111,8 @@ public abstract class BlackHole extends CircleEntity {
 	}
 
 	@Override
-	public void setRadius(final float radius) {
-		super.setRadius(radius);
+	public void setRadius(final float radius) {	
 		this.pcs.firePropertyChange("radius", this.getRadius(), radius);
+		super.setRadius(radius);
 	}
 }

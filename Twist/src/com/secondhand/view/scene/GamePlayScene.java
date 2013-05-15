@@ -79,11 +79,11 @@ public class GamePlayScene extends GameScene implements PropertyChangeListener {
 		attachChild(starsBackgrounds[0] =new StarsBackground(50 * this.gameWorld.getLevelNumber(), 1.5f, width, height));
 		attachChild(starsBackgrounds[1] =new StarsBackground(100 * this.gameWorld.getLevelNumber(), 1.3f, width, height));
 		attachChild(starsBackgrounds[2] =new StarsBackground(130 * this.gameWorld.getLevelNumber(), 1.0f, width, height));
-
+	
 		this.smoothCamera.setBounds(0, width, 0, height);
 
 		for (final Entity entity : gameWorld.getEntityList()) {
-
+			MyDebug.d("next Level start attach");
 			EntityView entityView = null;
 			if (entity instanceof Planet) {
 				entityView = new PlanetView(this.physicsWorld, (Planet) entity);
@@ -97,11 +97,13 @@ public class GamePlayScene extends GameScene implements PropertyChangeListener {
 						(PowerUp) entity);
 			} else {
 				MyDebug.e("invalid entity found in entityList");
+
 				System.exit(1);
 			}	
-
+			MyDebug.d("next Level attach entity");
 			this.attachChild(entityView.getShape());
 		}
+		MyDebug.d("next Level attach done");
 	}
 
 	private void setupView() {
@@ -205,7 +207,6 @@ public class GamePlayScene extends GameScene implements PropertyChangeListener {
 		Sounds.getInstance().winSound.play();
 
 		smoothCamera.setZoomFactorDirect(1.0f);
-
 		registerNewLevel();
 	}
 
@@ -244,8 +245,6 @@ public class GamePlayScene extends GameScene implements PropertyChangeListener {
 			
 			this.scoreLivesText.setCompletionRatio(completion);
 			
-		} else if (eventName.equals("NextLevel")) {
-			newLevelStarted();
 		} else if (eventName.equals("NextLevel")) {
 			newLevelStarted();
 		} else if (eventName.equals("PlayerWallCollision")) {

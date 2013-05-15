@@ -83,7 +83,7 @@ public abstract class PowerUp extends RectangleEntity implements IPowerUp {
 	public void activatePowerUp() {
 		this.activateEffect(player);
 		changePlayerColor();
-		player.setSoundType(SoundType.POWERUP_SOUND);
+		player.playSound(SoundType.POWERUP_SOUND);
 		eaten();
 	}
 

@@ -1,5 +1,6 @@
 package com.secondhand.model.entity;
 
+import com.secondhand.debug.MyDebug;
 import com.secondhand.model.physics.Vector2;
 
 public abstract class BlackHole extends CircleEntity {
@@ -81,9 +82,11 @@ public abstract class BlackHole extends CircleEntity {
 
 		this.increaseScore(entity.getScoreValue());
 
-		final float radiusInc = entity.getRadius() * GROWTH_FACTOR;
-		this.increaseSize(radiusInc);
-		onGrow();
+		if(entity.getRadius() != 0) {
+			final float radiusInc = entity.getRadius() * GROWTH_FACTOR;
+			this.increaseSize(radiusInc);
+			onGrow();
+		}
 
 		entity.wasEaten();
 	}
@@ -112,7 +115,10 @@ public abstract class BlackHole extends CircleEntity {
 
 	@Override
 	public void setRadius(final float radius) {
+		
+		
 		super.setRadius(radius);
+		
 		this.pcs.firePropertyChange("radius", this.getRadius(), radius);
 	}
 }

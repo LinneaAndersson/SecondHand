@@ -3,8 +3,12 @@ package com.secondhand.model;
 import java.util.ArrayList;
 import java.util.List;
 
+import junit.framework.Assert;
 import junit.framework.TestCase;
 import org.anddev.andengine.extension.physics.box2d.PhysicsWorld;
+
+import android.test.AssertionFailedError;
+
 import com.secondhand.model.entity.Enemy;
 import com.secondhand.model.entity.Entity;
 import com.secondhand.model.entity.Planet;
@@ -17,6 +21,8 @@ public class EnemyTest extends TestCase {
 	Vector2 vector = new Vector2(2f, 4f);
 	public float value;
 
+	// This class in a class for testing enemy-methods. It just checks value and
+	// return them.
 	private class EnemyTestPhysicsEntity implements IPhysicsEntity {
 		Entity entity;
 		public Vector2 testVector;
@@ -89,11 +95,14 @@ public class EnemyTest extends TestCase {
 		assertEquals(vector.x, enemyPosition.x);
 		assertEquals(vector.y, enemyPosition.y);
 
-		float rad1 = -3.2f;
-
-		Enemy enemy1 = new Enemy(vector, rad1);
-		assertNotSame(rad1, enemy1.getRadius());
-		assertEquals(Math.abs(rad1), enemy1.getRadius());
+		//Cannot have a negativ radius
+		try {
+			enemy.setRadius(-1);
+			
+			assertTrue(false);
+		} catch (AssertionError er) {
+			assertTrue(true);
+		}
 	}
 
 	public void testIsBiggerThan() {
@@ -122,15 +131,22 @@ public class EnemyTest extends TestCase {
 		assertEquals(enemy.getDangerArea(), 5 + (rad * rad * (float) Math.PI));
 	}
 
-	// The Enemy just have a positiv speed (and 0).
+	
 	public void testSetAndGetMaxSpeed() {
 		float rad = 2.2f;
 		Enemy enemy = new Enemy(vector, rad);
-		enemy.setMaxSpeed(-10f);
-		assertFalse(enemy.getMaxSpeed() == -10f);
-		assertTrue(enemy.getMaxSpeed() == 10f);
+		
 		enemy.setMaxSpeed(10000f);
 		assertTrue(enemy.getMaxSpeed() == 10000f);
+		
+		// The Enemy just have a positiv speed (and 0).
+		try {
+			enemy.setMaxSpeed(-1);
+			
+			assertTrue(false);
+		} catch (AssertionError er) {
+			assertTrue(true);
+		}
 
 	}
 
@@ -148,17 +164,18 @@ public class EnemyTest extends TestCase {
 		entityList.add(new Planet(new Vector2(3f, 3f), 2.0f, PlanetType.DRUGS));
 		new EnemyTestPhysicsEntity(player);
 		new EnemyTestPhysicsEntity(entityList.get(0));
-		
+
 		EnemyTestPhysicsEntity enemyPhysics = new EnemyTestPhysicsEntity(enemy);
 		enemy.moveEnemy(player, entityList);
-		
-		assertEquals(
-				enemyPhysics.getImpulseVector().x, (entityList.get(0).getInitialPosition().x
-						- enemy.getInitialPosition().x)* 0.002f );
-		
-		assertEquals(
-				enemyPhysics.getImpulseVector().y,(entityList.get(0)
-						.getInitialPosition().y - enemy.getInitialPosition().y)*0.002f);
+
+		// Checks the impulse-value (horizontal)
+		assertEquals(enemyPhysics.getImpulseVector().x,
+				(entityList.get(0).getInitialPosition().x - enemy
+						.getInitialPosition().x) * 0.002f);
+		// Checks the impulse-value (vertical)
+		assertEquals(enemyPhysics.getImpulseVector().y,
+				(entityList.get(0).getInitialPosition().y - enemy
+						.getInitialPosition().y) * 0.002f);
 
 		// Second case: Enemy is closer to player, but not in the range for
 		// hunting player, i.e the game will move against planet

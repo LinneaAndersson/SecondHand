@@ -43,9 +43,10 @@ public class Enemy extends BlackHole {
 		return (getRadius() * getRadius() * (float) Math.PI) + DANGER_MARGIN;
 	}
 
-	//Sets the speed with the absolute value of maxSpeed
+	//Cannot be negativ!!
 	public void setMaxSpeed(final float maxSpeed) {
-			this.maxSpeed = Math.abs(maxSpeed);
+		if(maxSpeed < 0 ) throw new AssertionError();
+			this.maxSpeed = maxSpeed;
 	}
 
 	public float getMaxSpeed() {

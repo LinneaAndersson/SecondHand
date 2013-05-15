@@ -37,7 +37,9 @@ public class PowerUpList extends ArrayList<IPowerUp> {
 		final boolean value = super.remove(object); // Priority: The list is
 		// empty when you remove
 		// last PowerUp
-		((IPowerUp) object).deactivateEffect();
+		PowerUp powerUp = (PowerUp) object;
+		powerUp.resetPlayerColor();
+		powerUp.deactivateEffect();
 		return value;
 	}
 

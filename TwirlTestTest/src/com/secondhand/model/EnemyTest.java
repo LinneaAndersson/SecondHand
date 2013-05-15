@@ -24,10 +24,12 @@ public class EnemyTest extends TestCase {
 	private class EnemyTestPhysicsEntity implements IPhysicsEntity {
 		Entity entity;
 		public Vector2 testVector;
+		boolean isStraightLine;
 
-		public EnemyTestPhysicsEntity(Entity entity) {
+		public EnemyTestPhysicsEntity(Entity entity, boolean isStraightLine) {
 			this.entity = entity;
 			entity.setPhysics(this);
+			this.isStraightLine = isStraightLine;
 		}
 
 		@Override
@@ -76,7 +78,7 @@ public class EnemyTest extends TestCase {
 
 		@Override
 		public boolean isStraightLine(Entity entity, Enemy enemy) {
-			return true;
+			return isStraightLine;
 		}
 
 		public Vector2 getImpulseVector() {
@@ -151,17 +153,23 @@ public class EnemyTest extends TestCase {
 		Vector2 vector = new Vector2(2f, 4f);
 		float rad = 3.2f;
 		Enemy enemy = new Enemy(vector, rad);
+		Enemy enemyNotStraightLine = new Enemy(vector, rad);
 
-		EnemyTestPhysicsEntity enemyPhysics = new EnemyTestPhysicsEntity(enemy);
+		EnemyTestPhysicsEntity enemyPhysics = new EnemyTestPhysicsEntity(enemy,
+				true);
+		EnemyTestPhysicsEntity enemyPhysicsNotStraightLine = new EnemyTestPhysicsEntity(
+				enemyNotStraightLine, false);
 
 		// different Player for different case.
 		Player playerOutOfRange = new Player(new Vector2(200f, 200f), 2.0f);
 		Player playerInRangeClose = new Player(new Vector2(2f, 2f), 2.0f);
 		Player playerInRange = new Player(new Vector2(6f, 6f), 2.0f);
+		Player playerInRangeNotStrightLine = new Player(new Vector2(6f, 6f), 2.0f);
 
-		new EnemyTestPhysicsEntity(playerOutOfRange);
-		new EnemyTestPhysicsEntity(playerInRange);
-		new EnemyTestPhysicsEntity(playerInRangeClose);
+		new EnemyTestPhysicsEntity(playerOutOfRange, true);
+		new EnemyTestPhysicsEntity(playerInRangeClose, true);
+		new EnemyTestPhysicsEntity(playerInRange, true);
+		new EnemyTestPhysicsEntity(playerInRangeNotStrightLine, true);
 
 		// A constant to multiply with when enemy will move.
 		float enemyHuntingArea = 0.002f;
@@ -172,7 +180,7 @@ public class EnemyTest extends TestCase {
 		// will go for Planet
 		List<Entity> entityList = new ArrayList();
 		entityList.add(new Planet(new Vector2(3f, 3f), 2.0f, PlanetType.DRUGS));
-		new EnemyTestPhysicsEntity(entityList.get(0));
+		new EnemyTestPhysicsEntity(entityList.get(0), true);
 
 		enemy.moveEnemy(playerOutOfRange, entityList);
 
@@ -190,7 +198,7 @@ public class EnemyTest extends TestCase {
 		entityList.clear();
 		entityList.add(new Planet(new Vector2(300f, 200f), 2.0f,
 				PlanetType.DRUGS));
-		new EnemyTestPhysicsEntity(entityList.get(0));
+		new EnemyTestPhysicsEntity(entityList.get(0), true);
 
 		// sets the impulse-value to 0,0 to see if position will change after
 		// move.
@@ -205,8 +213,8 @@ public class EnemyTest extends TestCase {
 		// Enemy will go for Player.
 		entityList.clear();
 		entityList
-				.add(new Planet(new Vector2(300, 200), 2.0f, PlanetType.DRUGS));
-		new EnemyTestPhysicsEntity(entityList.get(0));
+		.add(new Planet(new Vector2(300, 200), 2.0f, PlanetType.DRUGS));
+		new EnemyTestPhysicsEntity(entityList.get(0), true);
 
 		enemyPhysics.applyImpulse(new Vector2(0, 0), 0);
 
@@ -225,7 +233,7 @@ public class EnemyTest extends TestCase {
 		// closer to enemy. Enemy will move against Player.
 		entityList.clear();
 		entityList.add(new Planet(new Vector2(4f, 4f), 2.0f, PlanetType.DRUGS));
-		new EnemyTestPhysicsEntity(entityList.get(0));
+		new EnemyTestPhysicsEntity(entityList.get(0), true);
 
 		enemyPhysics.applyImpulse(new Vector2(0, 0), 0);
 
@@ -244,7 +252,7 @@ public class EnemyTest extends TestCase {
 		// closer to enemy. Enemy will move against Player.
 		entityList.clear();
 		entityList.add(new Planet(new Vector2(2f, 4f), 2.0f, PlanetType.DRUGS));
-		new EnemyTestPhysicsEntity(entityList.get(0));
+		new EnemyTestPhysicsEntity(entityList.get(0), true);
 
 		// sets the impulse-value to 0,0 to see if it will move against Player.
 		enemyPhysics.applyImpulse(new Vector2(0, 0), 0);
@@ -261,22 +269,34 @@ public class EnemyTest extends TestCase {
 						.getInitialPosition().y) * enemyHuntingArea);
 
 		// sixth case: Obstacle and PowerUp in the range of Enemy. Enemy will
-		// not chase them.
+		// not chase them. If a eatable-entity(Player or Planet) is in range and there is straightLine then
+		// enemy will chase the eatable-entity.
 		entityList.clear();
 		entityList.add(new Obstacle(new Vector2(2f, 4f), new ArrayList()));
-		entityList.add(new RandomPowerUp(new Vector2(2f, 4f), null,
+		entityList.add(new RandomPowerUp(new Vector2(4f, 4f), null,
 				playerOutOfRange));
 
-		// Don't want player to make any difference
-		new EnemyTestPhysicsEntity(entityList.get(0));
-		new EnemyTestPhysicsEntity(entityList.get(1));
+		new EnemyTestPhysicsEntity(entityList.get(0), true);
+		new EnemyTestPhysicsEntity(entityList.get(1), true);
 
 		enemyPhysics.applyImpulse(new Vector2(0, 0), 0);
 
+		// Don't want player to make any difference
 		enemy.moveEnemy(playerOutOfRange, entityList);
-
 		assertEquals(enemyPhysics.getImpulseVector().x, 0.0f);
 		assertEquals(enemyPhysics.getImpulseVector().y, 0.0f);
+
+		//player in range, but not straight line. No chasing!
+		enemyNotStraightLine.moveEnemy(playerInRangeNotStrightLine, entityList);
+		assertEquals(enemyPhysicsNotStraightLine.getImpulseVector().x, 0.0f);
+		assertEquals(enemyPhysicsNotStraightLine.getImpulseVector().y, 0.0f);
+
+		//player in range and straight line, enemy will chase.
+		enemyNotStraightLine.moveEnemy(playerInRange, entityList);
+		assertEquals(enemyPhysics.getImpulseVector().x, (playerInRange.getInitialPosition().x - enemy
+				.getInitialPosition().x) * enemyHuntingArea);
+				assertEquals(enemyPhysics.getImpulseVector().y, (playerInRange.getInitialPosition().x - enemy
+						.getInitialPosition().x) * enemyHuntingArea);
 
 	}
 }

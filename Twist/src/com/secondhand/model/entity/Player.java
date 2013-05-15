@@ -36,6 +36,7 @@ public class Player extends BlackHole {
 	public final static String ADD_POWER_UP = "AddPowerUp";
 	public final static String SOUND = "Sound";
 	public final static String COLOR = "color";
+	public final static float DEFAULT_COLOR_VALUE = 1f;
 	// =============================================
 	public Player(final Vector2 position, final float radius, final int startingLives) {
 		super(position, radius);
@@ -44,9 +45,9 @@ public class Player extends BlackHole {
 		this.lives = startingLives;
 		this.scoreMultiplier = 1;
 		isMirroredMovement = false;
-		RGB[0]=0;
-		RGB[1]=0;
-		RGB[2]=0;
+		RGB[0] = DEFAULT_COLOR_VALUE;
+		RGB[1] = DEFAULT_COLOR_VALUE;
+		RGB[2] = DEFAULT_COLOR_VALUE;
 
 	}
 

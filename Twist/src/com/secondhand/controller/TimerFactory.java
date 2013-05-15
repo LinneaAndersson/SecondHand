@@ -17,9 +17,9 @@ public final class TimerFactory {
 			private PowerUp timerPowerUp = powerUp;
 			@Override
 			public void onTimePassed(final TimerHandler pTimerHandler) {
-				if (timerPowerUp.getPowerUps().contains(timerPowerUp)){
+				if (PowerUpList.getInstance().contains(timerPowerUp)){
 					MyDebug.d("in playerControll with PowerUp:" + timerPowerUp);
-					timerPowerUp.removePowerUp();
+					PowerUpList.getInstance().remove(timerPowerUp);
 				}
 			}
 		});

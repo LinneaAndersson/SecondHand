@@ -16,7 +16,6 @@ public abstract class PowerUp extends RectangleEntity implements IPowerUp {
 	private final PowerUpType powerUpType;
 	protected final Player player;
 	
-	private final float DEFAULT_COLOR_VALUE = 1f;
 	private final float[] RGB = new float[3];	
 
 	public PowerUp (final Vector2 position, final PowerUpType powerUpType, final float duration, final Player player) {
@@ -37,12 +36,6 @@ public abstract class PowerUp extends RectangleEntity implements IPowerUp {
 	}
 	
 	@Override
-	public abstract void activateEffect(final Player player);
-	
-	@Override
-	public void deactivateEffect() { }
-	
-	@Override
 	public float getScoreWorth() {
 		throw new IllegalStateException("cannot score points for eating powerup");
 
@@ -61,7 +54,7 @@ public abstract class PowerUp extends RectangleEntity implements IPowerUp {
 	@Override
 	public boolean hasAnother() {
 		boolean hasAnother = false;
-		for (final IPowerUp powerUp : getPowerUps()) {
+		for (final IPowerUp powerUp : PowerUpList.getInstance()) {
 			if (powerUp.getClass() == this.getClass()) // old was DoubleScore.getClass() but this should be right?
 				hasAnother = true;
 		}
@@ -74,13 +67,13 @@ public abstract class PowerUp extends RectangleEntity implements IPowerUp {
 	// I know that this is technically part of the view, but then we'd have to create a 
 	// separate view class for every fucking powerup, and I don't really have the energy to do that. 
 	@Override
-	public float getR() {return DEFAULT_COLOR_VALUE;}
+	public float getR() {return Player.DEFAULT_COLOR_VALUE;}
 	
 	@Override
-	public float getG() {return DEFAULT_COLOR_VALUE;}
+	public float getG() {return Player.DEFAULT_COLOR_VALUE;}
 	
 	@Override
-	public float getB() {return DEFAULT_COLOR_VALUE;}
+	public float getB() {return Player.DEFAULT_COLOR_VALUE;}
 	
 	@Override
 	public void eaten(){
@@ -89,32 +82,25 @@ public abstract class PowerUp extends RectangleEntity implements IPowerUp {
 
 	@Override
 	public void activatePowerUp() {
-		addPowerUp();
+		this.activateEffect(player);
+		changePlayerColor();
+		player.setSoundType(SoundType.POWERUP_SOUND);
 		eaten();
 	}
 
-	public void removePowerUp() {
-		RGB[0] = DEFAULT_COLOR_VALUE;
-		RGB[1] = DEFAULT_COLOR_VALUE;
-		RGB[2] = DEFAULT_COLOR_VALUE;
+	public void resetPlayerColor() {
+		RGB[0] = Player.DEFAULT_COLOR_VALUE;
+		RGB[1] = Player.DEFAULT_COLOR_VALUE;
+		RGB[2] = Player.DEFAULT_COLOR_VALUE;
 		player.setRGB(RGB);
-		this.getPowerUps().remove(this);
 	}
 
-	public PowerUpList getPowerUps() {
-		// TODO Auto-generated method stub
-		return PowerUpList.getInstance();
-	}
 	
-	public void addPowerUp(){
-		this.getPowerUps().add(this);
-		this.activateEffect(player);
-		RGB[0]=this.getR();
-		RGB[1]=this.getG();
-		RGB[2]=this.getB();
-		player.setRGB(RGB);
-		player.setSoundType(SoundType.POWERUP_SOUND);
-		
+	public void changePlayerColor(){
+		RGB[0] = this.getR();
+		RGB[1] = this.getG();
+		RGB[2] = this.getB();
+		player.setRGB(RGB);		
 	}
 	
 }

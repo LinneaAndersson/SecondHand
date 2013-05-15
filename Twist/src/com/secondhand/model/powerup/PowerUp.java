@@ -36,6 +36,9 @@ public abstract class PowerUp extends RectangleEntity implements IPowerUp {
 	}
 	
 	@Override
+	public void deactivateEffect() { }
+	
+	@Override
 	public float getScoreWorth() {
 		throw new IllegalStateException("cannot score points for eating powerup");
 

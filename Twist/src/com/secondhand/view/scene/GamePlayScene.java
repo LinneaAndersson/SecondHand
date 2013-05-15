@@ -126,15 +126,14 @@ public class GamePlayScene extends GameScene implements PropertyChangeListener {
 		final float height = gameWorld.getLevelHeight();
 		this.smoothCamera.setBounds(0, width, 0, height);
 		this.smoothCamera.setBoundsEnabled(true);
-		// setup the player
 
-		// create player view.
+
 		final PlayerView playerView = new PlayerView(physicsWorld,
 				gameWorld.getPlayer());
-
 		attachChild(playerView.getShape());
 		engine.getCamera().setChaseEntity(playerView.getShape());
 
+		// we want to restore the camera when returning to the menu. 
 		initialCameraPos = new Vector2(smoothCamera.getCenterX(),
 				smoothCamera.getCenterY());
 
@@ -156,12 +155,8 @@ public class GamePlayScene extends GameScene implements PropertyChangeListener {
 
 		this.gameWorld = new GameWorld(new MyPhysicsWorld(physicsWorld));
 		
-		// receive gameworld property change.
 		gameWorld.addListener(this);
 		
-		// we'll need to be able to restore the camera when returning to the
-		// menu.
-
 		setupView();
 		registerNewLevel();
 		engine.getCamera().setHUD(hud);

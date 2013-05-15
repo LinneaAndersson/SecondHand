@@ -12,7 +12,10 @@ rather, the game just goes on with negative lives.
 * Examine if the line
 PowerUpList.getInstance().addListener(this);
 in GamePlaySceneController can possibly cause a memory leak.
-x
+
+
+
+
 - Documentation
 
 * We must also update the class diagram for the model(in the RAD).
@@ -22,6 +25,8 @@ x
 =================================
 Things we can do if we have time:
 
+* Make sure that the fading score notifiers are shown closer to the
+* actual powerups
 * Make a prettier hud.
 * make the menus look prettier.
 * Player movement with particles.

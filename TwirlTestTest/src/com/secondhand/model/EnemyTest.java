@@ -4,17 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import junit.framework.TestCase;
-
-import org.anddev.andengine.entity.shape.IShape;
 import org.anddev.andengine.extension.physics.box2d.PhysicsWorld;
-import org.anddev.andengine.opengl.texture.atlas.bitmap.source.decorator.shape.CircleBitmapTextureAtlasSourceDecoratorShape;
-
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.graphics.drawable.shapes.Shape;
-
-import com.badlogic.gdx.physics.box2d.Body;
-import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.secondhand.model.entity.Enemy;
 import com.secondhand.model.entity.Entity;
 import com.secondhand.model.entity.Planet;
@@ -22,10 +12,51 @@ import com.secondhand.model.entity.Player;
 import com.secondhand.model.physics.IPhysicsEntity;
 import com.secondhand.model.physics.Vector2;
 import com.secondhand.model.resource.PlanetType;
-import com.secondhand.view.physics.MyPhysicsEntity;
 
 public class EnemyTest extends TestCase {
 	Vector2 vector = new Vector2(2f, 4f);
+	
+	public IPhysicsEntity getPhysicsEntity(){
+		return new IPhysicsEntity(){
+			public float value;
+			public Vector2 vector;
+			@Override
+			public float getCenterX() {return 0;}
+
+			@Override
+			public float getCenterY() {return 0;}
+
+			@Override
+			public void deleteBody() {}
+
+			@Override
+			public void applyImpulse(Vector2 impulsePosition, float maxSpeed) {
+				this.vector=impulsePosition;
+			}
+
+			@Override
+			public void applyImpulse(Vector2 impulsePosition, Vector2 impulse) {
+			}
+
+			@Override
+			public void setLinearDamping(float f) {}
+
+			@Override
+			public void detachSelf() {}
+
+			@Override
+			public float computePolygonRadius(List<Vector2> polygon) {return value;}
+
+			@Override
+			public void setTransform(Vector2 position) {}
+
+			@Override
+			public void stopMovment() {}
+
+			@Override
+			public boolean isStraightLine(Entity entity, Enemy enemy) {return false;}
+		};
+	}
 
 	public void testConstructor() {
 		float rad = 3.2f;
@@ -82,18 +113,17 @@ public class EnemyTest extends TestCase {
 	}
 
 	public void testMoveEnemy() {
-		float rad = 2.2f;
-		Enemy enemy = new Enemy(new Vector2(500, 500), rad);
-		PhysicsWorld physicsWorld = new PhysicsWorld(new Vector2(),true);
-		IShape shape = new CircleBitmapTextureAtlasSourceDecoratorShape();
-		IPhysicsEntity physicsEntity = new MyPhysicsEntity(physicsWorld, enemy, shape, new Body()) {
+		
+		float rad = 3.2f;
+		Enemy enemy = new Enemy(new Vector2(2f, 4f), rad);
+		PhysicsWorld physicsWorld = new PhysicsWorld(new com.badlogic.gdx.math.Vector2(),true);
+		
+		/*IShape shape = new Circle(enemy.getInitialPosition().x, enemy.getInitialPosition().y,
+				enemy.getRadius());
+		Body body = PhysicsFactory.createCircleBody(physicsWorld,
+				shape.getX(), shape.getY(), enemy.getRadius(), shape.getRotation(), BodyType.DynamicBody, FixtureDefs.BLACK_HOLE_FIXTURE_DEF);
+				IPhysicsEntity physicsEntity = new MyPhysicsEntity(physicsWorld, enemy, shape, body);*/
 
-			@Override
-			public void draw(Canvas canvas, Paint paint) {
-				// TODO Auto-generated method stub
-
-			}
-		}, body)
 		// First I will check with enemy radius bigger than the other Entities
 
 		// First case: Enemy is closer to Planet so enemy will move against
@@ -101,8 +131,10 @@ public class EnemyTest extends TestCase {
 		List<Entity> entityList = new ArrayList();
 		Player player = new Player(new Vector2(200, 200), 2.0f);
 		entityList
-		.add(new Planet(new Vector2(300, 200), 2.0f, PlanetType.DRUGS));
-
+		.add(new Planet(new Vector2(450, 500), 2.0f, PlanetType.DRUGS));
+		
+		enemy.moveEnemy(player, entityList);
+		assertFalse(enemy.getCenterX() == 200);
 
 		// Second case: Enemy is closer to player, but not in the range for
 		// hunting player, i.e the game will move against planet

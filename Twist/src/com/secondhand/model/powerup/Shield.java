@@ -8,8 +8,8 @@ public class Shield extends PowerUp {
 	
 	private final static float DURATION = 4;
 	
-	public Shield(final Vector2 position, final Player player) {
-		super(position, PowerUpType.SHIELD, DURATION, player);
+	public Shield(final Vector2 position) {
+		super(position, PowerUpType.SHIELD, DURATION);
 	}
 
 	@Override
@@ -18,7 +18,7 @@ public class Shield extends PowerUp {
 	}
 	
 	@Override
-	public void deactivateEffect(boolean hasAnother) {
+	public void deactivateEffect(final boolean hasAnother) {
 		player.setIsEdible(!hasAnother);
 	}
 	

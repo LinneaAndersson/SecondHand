@@ -36,3 +36,8 @@ Things we can do if we have time:
 * Improve the level generation
 * Fix better textures for the following powerups: "eat obstacle",
 * "Score up", "shield", "speed down"
+
+
+=========================================================
+Things we will never do because they're fucking pointless
+* Move physics out of the MVC.

@@ -13,10 +13,13 @@ class EntityManager implements PropertyChangeListener{
 	private List<Enemy> enemyList;
 	private final Stack<Entity> scheduledForDeletionEntities;
 
-	private final Player player;
+	private Player player;
 	
-	public EntityManager(final Player player) {
+	public EntityManager() {
 		this.scheduledForDeletionEntities = new Stack<Entity>();
+	}
+
+	public void setPlayer(final Player player) {
 		this.player = player;
 		player.addListener(this);
 	}

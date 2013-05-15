@@ -4,14 +4,12 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-import com.secondhand.debug.MyDebug;
 import com.secondhand.model.entity.Enemy;
 import com.secondhand.model.entity.Entity;
 import com.secondhand.model.entity.GameWorld;
 import com.secondhand.model.entity.IGameWorld;
 import com.secondhand.model.entity.Obstacle;
 import com.secondhand.model.entity.Planet;
-import com.secondhand.model.entity.Player;
 import com.secondhand.model.physics.Vector2;
 import com.secondhand.model.powerup.PowerUp;
 import com.secondhand.model.powerup.PowerUpFactory;
@@ -27,32 +25,36 @@ public class RandomLevelGenerator {
 
 	public int levelWidth;
 	public int levelHeight;
+	
 	public int playerMaxSize;
-
+	public Vector2 playerPosition;
+	public float playerInitialSize;
+	
 	private float x;
 	private float y;
 	
-	public final List<Entity> entityList;
-	public final List<Enemy> enemyList;
+	public List<Entity> entityList;
+	public List<Enemy> enemyList;
 
-	private final IGameWorld level;
+	private final IGameWorld gameWorld;
 
 	private World world;
 	private final Random rng;
 
 	private final PowerUpFactory powerUpFactory;
 	
-	public RandomLevelGenerator(final Player player, final IGameWorld level) {
-		// initialize
-		MyDebug.d("next Level generate");
+	
+	public RandomLevelGenerator(final IGameWorld gameWorld) {
+			
 		this.rng = new Random();
-		this.levelNumber = level.getLevelNumber();
-		this.level = level;
+		this.levelNumber = gameWorld.getLevelNumber();
+		this.gameWorld = gameWorld;
 		this.enemyList = new ArrayList<Enemy>();
 		this.entityList = new ArrayList<Entity>();
 		this.powerUpFactory = new PowerUpFactory();
 		
-		generateRandomLevel(player);
+		generateRandomLevel();
+
 	}
 
 	private void placeOutEnemies(final int ENEMIES, final int EATABLE_ENEMIES,
@@ -151,7 +153,7 @@ public class RandomLevelGenerator {
 			}
 
 			entityList.add(powerUpFactory.getRandomPowerUp(new Vector2(x,
-					y), level, rng,level.getPlayer()));
+					y), gameWorld, rng));
 		}
 	}
 
@@ -200,8 +202,33 @@ public class RandomLevelGenerator {
 					RandomUtil.randomEnum(rng, PlanetType.class)));
 		}
 	}
+	
+	// returns the cirle hitbox of the player. 
+	private Circle placeOutPlayer() {
+		
+		this.playerInitialSize = GameWorld.PLAYER_STARTING_SIZE;
+		this.playerMaxSize = GameWorld.PLAYER_STARTING_SIZE * (this.levelNumber + 1);
+		
+		final float MINIMUM_DISTANCE_FROM_BORDERS = 30;
+		
+		this.playerPosition = new Vector2();
+		
+		this.playerPosition.x = RandomUtil.nextFloat(rng, 
+				this.playerInitialSize + MINIMUM_DISTANCE_FROM_BORDERS, 
+				this.levelWidth - this.playerInitialSize - MINIMUM_DISTANCE_FROM_BORDERS);
+		this.playerPosition.y = RandomUtil.nextFloat(rng, 
+				this.playerInitialSize + MINIMUM_DISTANCE_FROM_BORDERS, 
+				this.levelHeight - this.playerInitialSize - MINIMUM_DISTANCE_FROM_BORDERS);
+						
+		
+		final float PLAYER_EXTRA_RADIUS = 20;
+		
+		return new Circle(new Vector2(
+				this.playerPosition.x, this.playerPosition.y),
+				this.playerInitialSize + PLAYER_EXTRA_RADIUS);
+	}
 
-	private void generateRandomLevel(final Player player) {
+	private void generateRandomLevel() {
 		
 		this.levelWidth = 2000 * this.levelNumber;
 		this.levelHeight = 2000 * this.levelNumber;
@@ -210,20 +237,15 @@ public class RandomLevelGenerator {
 		// We want to ensure that things are not placed too close to each other.
 		// so we make the collision bodies of these things a little bigger than they
 		// really are.
-		final float PLAYER_EXTRA_RADIUS = 20;
 		final float PLANET_EXTRA_RADIUS = 20;
 		
 		final float POWER_UP_EXTRA_SIZE = 20;
 		
 		final float ENEMY_EXTRA_RADIUS = 20;
 		
-		final Circle circle = new Circle(new Vector2(
-				player.getInitialPosition().x, player.getInitialPosition().y),
-				player.getRadius() + PLAYER_EXTRA_RADIUS);
-		world.addToWorld(circle);
+		world.addToWorld(placeOutPlayer());
 
-		this.playerMaxSize = GameWorld.PLAYER_STARTING_SIZE * (this.levelNumber + 1);
-
+		
 		// place out entities.
 		placeOutObstacles(levelNumber * 10);
 

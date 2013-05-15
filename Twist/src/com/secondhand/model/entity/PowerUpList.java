@@ -13,13 +13,23 @@ public final class PowerUpList extends ArrayList<IPowerUp> {
 	
 	public static final String ADD_POWERUP = "addPowerUp";
 	
+	private Player player;
+	
 	private PowerUpList()  {super();}
 
 	@Override
 	public boolean add(final IPowerUp powerUp) {
+		powerUp.activatePowerUp(this.player);
 		pcs.firePropertyChange(ADD_POWERUP, null, powerUp);
-		powerUp.activatePowerUp();
 		return super.add(powerUp);
+	}
+	
+	public void setPlayer(final Player player) {
+		this.player = player;
+	}
+	
+	public Player getPlayer() {
+		return this.player;
 	}
 	
 	@Override

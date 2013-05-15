@@ -8,8 +8,8 @@ public class MirroredMovement extends PowerUp {
 
 	private final static float DURATION = 5;
 	
-	public MirroredMovement(final Vector2 position, final Player player) {
-		super(position, PowerUpType.MIRRORED_MOVEMENT, DURATION, player);
+	public MirroredMovement(final Vector2 position) {
+		super(position, PowerUpType.MIRRORED_MOVEMENT, DURATION);
 
 	}
 
@@ -19,10 +19,9 @@ public class MirroredMovement extends PowerUp {
 	}
 	
 	@Override
-	public void deactivateEffect(boolean hasAnother) {
+	public void deactivateEffect(final boolean hasAnother) {
 		player.setMirroredMovement(hasAnother);
 	}
-	
 
 	public float getR() {return 1f;}
 	public float getG() {return 0f;}

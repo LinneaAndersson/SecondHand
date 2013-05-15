@@ -28,6 +28,7 @@ public class PowerUpList extends ArrayList<IPowerUp> {
 	@Override
 	public boolean add(IPowerUp powerUp) {
 		pcs.firePropertyChange(ADD_POWERUP, null, powerUp);
+		powerUp.activatePowerUp();
 		return super.add(powerUp);
 	}
 	

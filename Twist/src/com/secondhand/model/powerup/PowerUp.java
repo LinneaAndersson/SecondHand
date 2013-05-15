@@ -61,7 +61,7 @@ public abstract class PowerUp extends RectangleEntity implements IPowerUp {
 	@Override
 	public boolean hasAnother() {
 		boolean hasAnother = false;
-		for (final IPowerUp powerUp : getPowerUps()) {
+		for (final IPowerUp powerUp : PowerUpList.getInstance()) {
 			if (powerUp.getClass() == this.getClass()) // old was DoubleScore.getClass() but this should be right?
 				hasAnother = true;
 		}
@@ -89,28 +89,23 @@ public abstract class PowerUp extends RectangleEntity implements IPowerUp {
 
 	@Override
 	public void activatePowerUp() {
-		addPowerUp();
+		this.activateEffect(player);
+		changePlayerColor();
 		eaten();
 	}
 
-	public void removePowerUp() {
+	public void resetPlayerColor() {
 		RGB[0] = DEFAULT_COLOR_VALUE;
 		RGB[1] = DEFAULT_COLOR_VALUE;
 		RGB[2] = DEFAULT_COLOR_VALUE;
 		player.setRGB(RGB);
 	}
 
-	public PowerUpList getPowerUps() {
-		// TODO Auto-generated method stub
-		return PowerUpList.getInstance();
-	}
 	
-	public void addPowerUp(){
-		this.getPowerUps().add(this);
-		this.activateEffect(player);
-		RGB[0]=this.getR();
-		RGB[1]=this.getG();
-		RGB[2]=this.getB();
+	public void changePlayerColor(){
+		RGB[0] = this.getR();
+		RGB[1] = this.getG();
+		RGB[2] = this.getB();
 		player.setRGB(RGB);
 		player.setSoundType(SoundType.POWERUP_SOUND);
 		

@@ -23,7 +23,7 @@ public abstract class CircleEntity extends Entity {
 	
 	public void setRadius(final float radius){
 
-		// TODO: throw exception if negative
+		if(radius < 0 ) throw new AssertionError();
 		this.radius = radius;
 	}
 }

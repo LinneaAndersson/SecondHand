@@ -13,6 +13,9 @@ public class PowerUpTest extends TestCase {
 		return new PowerUp(position, powerUpType, duration) {
 			@Override
 			public void activateEffect(Player player) {}
+			
+			@Override
+			public void activatePowerUp(Player player) {}
 		};
 	}
 	

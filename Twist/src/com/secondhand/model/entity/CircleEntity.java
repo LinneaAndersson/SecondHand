@@ -7,7 +7,8 @@ public abstract class CircleEntity extends Entity {
 	
 	public CircleEntity(final Vector2 position, final float radius, final boolean isEdible) {  
 		super(position, isEdible);
-		this.radius = Math.abs(radius);
+		
+		setRadius(radius);
 	}
 	
 	
@@ -21,6 +22,8 @@ public abstract class CircleEntity extends Entity {
 	}
 	
 	public void setRadius(final float radius){
+
+		// TODO: throw exception if negative
 		this.radius = radius;
 	}
 }

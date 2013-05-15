@@ -81,6 +81,7 @@ public abstract class PowerUp extends RectangleEntity implements IPowerUp {
 		eaten();
 	}
 
+	@Override
 	public void resetPlayerColor() {
 		RGB[0] = Player.DEFAULT_COLOR_VALUE;
 		RGB[1] = Player.DEFAULT_COLOR_VALUE;

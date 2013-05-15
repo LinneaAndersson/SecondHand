@@ -14,6 +14,8 @@ public interface IPowerUp {
 	
 	String getText();
 	
+	void resetPlayerColor();
+	
 	float getR();
 	float getG();
 	float getB();

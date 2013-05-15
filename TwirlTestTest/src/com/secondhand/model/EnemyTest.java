@@ -95,6 +95,7 @@ public class EnemyTest extends TestCase {
 		assertEquals(vector.x, enemyPosition.x);
 		assertEquals(vector.y, enemyPosition.y);
 
+		//Cannot have a negativ radius
 		try {
 			enemy.setRadius(-1);
 			
@@ -130,10 +131,15 @@ public class EnemyTest extends TestCase {
 		assertEquals(enemy.getDangerArea(), 5 + (rad * rad * (float) Math.PI));
 	}
 
-	// The Enemy just have a positiv speed (and 0).
+	
 	public void testSetAndGetMaxSpeed() {
 		float rad = 2.2f;
 		Enemy enemy = new Enemy(vector, rad);
+		
+		enemy.setMaxSpeed(10000f);
+		assertTrue(enemy.getMaxSpeed() == 10000f);
+		
+		// The Enemy just have a positiv speed (and 0).
 		try {
 			enemy.setMaxSpeed(-1);
 			
@@ -141,8 +147,6 @@ public class EnemyTest extends TestCase {
 		} catch (AssertionError er) {
 			assertTrue(true);
 		}
-		enemy.setMaxSpeed(10000f);
-		assertTrue(enemy.getMaxSpeed() == 10000f);
 
 	}
 

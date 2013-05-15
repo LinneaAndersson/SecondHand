@@ -95,10 +95,10 @@ public class EnemyTest extends TestCase {
 		assertEquals(vector.x, enemyPosition.x);
 		assertEquals(vector.y, enemyPosition.y);
 
-		//Cannot have a negativ radius
+		// Cannot have a negativ radius
 		try {
 			enemy.setRadius(-1);
-			
+
 			assertTrue(false);
 		} catch (AssertionError er) {
 			assertTrue(true);
@@ -131,18 +131,17 @@ public class EnemyTest extends TestCase {
 		assertEquals(enemy.getDangerArea(), 5 + (rad * rad * (float) Math.PI));
 	}
 
-	
 	public void testSetAndGetMaxSpeed() {
 		float rad = 2.2f;
 		Enemy enemy = new Enemy(vector, rad);
-		
+
 		enemy.setMaxSpeed(10000f);
 		assertTrue(enemy.getMaxSpeed() == 10000f);
-		
+
 		// The Enemy just have a positiv speed (and 0).
 		try {
 			enemy.setMaxSpeed(-1);
-			
+
 			assertTrue(false);
 		} catch (AssertionError er) {
 			assertTrue(true);
@@ -154,6 +153,8 @@ public class EnemyTest extends TestCase {
 		Vector2 vector = new Vector2(2f, 4f);
 		float rad = 3.2f;
 		Enemy enemy = new Enemy(vector, rad);
+		// A constant to multiply with when enemy will move.
+		float constant = 0.002f;
 
 		// First I will check with enemy radius bigger than the other Entities
 
@@ -169,27 +170,55 @@ public class EnemyTest extends TestCase {
 		enemy.moveEnemy(player, entityList);
 
 		// Checks the impulse-value (horizontal)
+		assertEquals(enemyPhysics.getImpulseVector().x, (entityList.get(0)
+				.getInitialPosition().x - enemy.getInitialPosition().x)
+				* constant);
+		// Checks the impulse-value (vertical)
+		assertEquals(enemyPhysics.getImpulseVector().y, (entityList.get(0)
+				.getInitialPosition().y - enemy.getInitialPosition().y)
+				* constant);
+
+		// Second case: Planet and Player are not in range for enemy to find
+		// them. So enemy dont move.
+		entityList.clear();
+		entityList.add(new Planet(new Vector2(300f, 200f), 2.0f,
+				PlanetType.DRUGS));
+		Player player1 = new Player(new Vector2(200f, 200f), 2.0f);
+		new EnemyTestPhysicsEntity(player1);
+		new EnemyTestPhysicsEntity(entityList.get(0));
+
+		// sets the impulse-value to 0,0 to see if it will change after move.
+		enemyPhysics.applyImpulse(new Vector2(0, 0), 0);
+
+		enemy.moveEnemy(player1, entityList);
+
+		// Checks the impulse-value (horizontal)
+		assertEquals(enemyPhysics.getImpulseVector().x, 0.0f);
+		// Checks the impulse-value (vertical)
+		assertEquals(enemyPhysics.getImpulseVector().y, 0.0f);
+
+		// Third case: Player is in the range for huntingArea and Planet isn't.
+		// Enemy will go for Player.
+		entityList.clear();
+		entityList
+				.add(new Planet(new Vector2(300, 200), 2.0f, PlanetType.DRUGS));
+		Player player2 = new Player(new Vector2(15f, 3f), 2.0f);
+		new EnemyTestPhysicsEntity(player2);
+		new EnemyTestPhysicsEntity(entityList.get(0));
+
+		// sets the impulse-value to 0,0 to see if it will move against Player.
+		enemyPhysics.applyImpulse(new Vector2(0, 0), 0);
+
+		enemy.moveEnemy(player2, entityList);
+
+		// Checks the impulse-value (horizontal)
 		assertEquals(enemyPhysics.getImpulseVector().x,
-				(entityList.get(0).getInitialPosition().x - enemy
-						.getInitialPosition().x) * 0.002f);
+				(player2.getInitialPosition().x - enemy.getInitialPosition().x)
+						* constant);
 		// Checks the impulse-value (vertical)
 		assertEquals(enemyPhysics.getImpulseVector().y,
-				(entityList.get(0).getInitialPosition().y - enemy
-						.getInitialPosition().y) * 0.002f);
-
-		// Second case: Enemy is closer to player, but not in the range for
-		// hunting player, i.e the game will move against planet
-		entityList.clear();
-		entityList
-				.add(new Planet(new Vector2(300, 200), 2.0f, PlanetType.DRUGS));
-		Player player1 = new Player(new Vector2(200, 200), 2.0f);
-
-		// Third case: Enemy is in the range for huntingArea but planet is
-		// closer
-		entityList.clear();
-		entityList
-				.add(new Planet(new Vector2(300, 200), 2.0f, PlanetType.DRUGS));
-		Player player2 = new Player(new Vector2(200, 200), 2.0f);
+				(player2.getInitialPosition().y - enemy.getInitialPosition().y)
+						* constant);
 
 		// fourth case: player is in the range and closer to enemy.
 		entityList.clear();

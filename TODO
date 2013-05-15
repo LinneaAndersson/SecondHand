@@ -9,11 +9,10 @@ Important things that must be done for the success of the project:
 callback method instead. - Done, but just changed the propertyChange.
 * sometimes you are not delegated to the high score scene after game over,
 rather, the game just goes on with negative lives.
-* Level change seems to be broken for now.
 * Examine if the line
 PowerUpList.getInstance().addListener(this);
 in GamePlaySceneController can possibly cause a memory leak.
-
+x
 - Documentation
 
 * We must also update the class diagram for the model(in the RAD).

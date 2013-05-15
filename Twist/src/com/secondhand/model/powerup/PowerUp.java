@@ -98,7 +98,6 @@ public abstract class PowerUp extends RectangleEntity implements IPowerUp {
 		RGB[1] = DEFAULT_COLOR_VALUE;
 		RGB[2] = DEFAULT_COLOR_VALUE;
 		player.setRGB(RGB);
-		this.getPowerUps().remove(this);
 	}
 
 	public PowerUpList getPowerUps() {

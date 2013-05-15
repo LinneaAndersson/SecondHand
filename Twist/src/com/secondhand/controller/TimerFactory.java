@@ -19,6 +19,7 @@ public final class TimerFactory {
 			public void onTimePassed(final TimerHandler pTimerHandler) {
 				if (timerPowerUp.getPowerUps().contains(timerPowerUp)){
 					MyDebug.d("in playerControll with PowerUp:" + timerPowerUp);
+					PowerUpList.getInstance().remove(timerPowerUp);
 					timerPowerUp.removePowerUp();
 				}
 			}

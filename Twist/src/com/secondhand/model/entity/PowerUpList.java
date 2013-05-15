@@ -1,12 +1,8 @@
 package com.secondhand.model.entity;
 
-import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 import java.util.ArrayList;
-
-import com.secondhand.debug.MyDebug;
-import com.secondhand.model.powerup.PowerUp;
 
 public class PowerUpList extends ArrayList<IPowerUp> {
 
@@ -36,7 +32,7 @@ public class PowerUpList extends ArrayList<IPowerUp> {
 		final boolean value = super.remove(object); // Priority: The list is
 		// empty when you remove
 		// last PowerUp
-		PowerUp powerUp = (PowerUp) object;
+		IPowerUp powerUp = (IPowerUp) object;
 		powerUp.resetPlayerColor();
 		powerUp.deactivateEffect(hasAnother(powerUp));
 		return value;

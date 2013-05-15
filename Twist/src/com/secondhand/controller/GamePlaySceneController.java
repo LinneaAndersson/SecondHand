@@ -10,8 +10,9 @@ import org.anddev.andengine.input.touch.TouchEvent;
 
 import com.secondhand.debug.MyDebug;
 import com.secondhand.model.entity.IGameWorld;
-import com.secondhand.model.entity.Player;
 import com.secondhand.model.physics.Vector2;
+import com.secondhand.model.powerup.PowerUp;
+import com.secondhand.model.powerup.PowerUpList;
 import com.secondhand.view.resource.HighScoreList;
 import com.secondhand.view.scene.AllScenes;
 import com.secondhand.view.scene.GamePlayScene;
@@ -34,6 +35,7 @@ final class GamePlaySceneController extends Entity implements PropertyChangeList
 
 		//PlayerUtil adds this Controller as a listener
 		this.gameWorld.getPlayer().addListener(this);
+		PowerUpList.getInstance().addListener(this);
 		
 		scene.setOnSceneTouchListener(new GameSceneTouchListener());
 
@@ -95,10 +97,9 @@ final class GamePlaySceneController extends Entity implements PropertyChangeList
 		final String name = event.getPropertyName();
 		MyDebug.d("property change in controller outside + name= " + name);
 		
-		if (name.equalsIgnoreCase(Player.COLOR)) {
+		if (name.equals(PowerUpList.ADD_POWERUP)) {
 			MyDebug.d("property change in controller");
-			final Player player = gameWorld.getPlayer();
-			this.sceneController.getSceneManager().registerUpdateHander(PlayerController.createTimer(player));
+			this.sceneController.getSceneManager().registerUpdateHander(TimerFactory.createTimer((PowerUp)event.getNewValue()));
 		}
 	}
 }

@@ -41,7 +41,13 @@ public abstract class PowerUp extends RectangleEntity implements IPowerUp {
 	
 	@Override
 	public float getScoreWorth() {
-		throw new IllegalStateException("cannot score points for eating powerup");
+		return 0;
+	}
+	
+	@Override
+	public float getRadius() {
+		// you won't grow when eating powerups.
+		return 0;
 	}
 	
 	@Override

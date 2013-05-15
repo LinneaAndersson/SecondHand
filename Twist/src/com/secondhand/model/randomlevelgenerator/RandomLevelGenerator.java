@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+import com.secondhand.debug.MyDebug;
 import com.secondhand.model.entity.Enemy;
 import com.secondhand.model.entity.Entity;
 import com.secondhand.model.entity.GameWorld;
@@ -43,6 +44,7 @@ public class RandomLevelGenerator {
 	
 	public RandomLevelGenerator(final Player player, final IGameWorld level) {
 		// initialize
+		MyDebug.d("next Level generate");
 		this.rng = new Random();
 		this.levelNumber = level.getLevelNumber();
 		this.level = level;

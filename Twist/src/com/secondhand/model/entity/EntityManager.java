@@ -5,6 +5,8 @@ import java.beans.PropertyChangeListener;
 import java.util.List;
 import java.util.Stack;
 
+import com.secondhand.debug.MyDebug;
+
 
 // Manages all the entities of the GameWorld
 class EntityManager implements PropertyChangeListener{
@@ -83,7 +85,6 @@ class EntityManager implements PropertyChangeListener{
 			entity.deleteBody();
 			entity.detachSelf();
 		}
-		
 		this.scheduledForDeletionEntities.clear();
 
 		this.entityList.clear();

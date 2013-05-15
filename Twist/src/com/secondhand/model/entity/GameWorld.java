@@ -4,6 +4,7 @@ import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 import java.util.List;
 
+import com.secondhand.debug.MyDebug;
 import com.secondhand.model.physics.IPhysicsWorld;
 import com.secondhand.model.physics.Vector2;
 import com.secondhand.model.randomlevelgenerator.RandomLevelGenerator;
@@ -99,7 +100,6 @@ public class GameWorld implements IGameWorld {
 		mPhysic.setWorldBounds(levelWidth, levelHeight);
 
 		this.getPlayer().setRadius(PLAYER_STARTING_SIZE);
-
 		// then notify the view of this, so that it can place out the new
 		// Entities in AndEngine for rendering.
 		support.firePropertyChange("NextLevel", false, true);

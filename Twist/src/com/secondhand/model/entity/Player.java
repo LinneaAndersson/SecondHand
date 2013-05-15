@@ -2,6 +2,7 @@ package com.secondhand.model.entity;
 
 import java.beans.PropertyChangeListener;
 
+import com.secondhand.debug.MyDebug;
 import com.secondhand.model.physics.Vector2;
 import com.secondhand.model.resource.SoundType;
 

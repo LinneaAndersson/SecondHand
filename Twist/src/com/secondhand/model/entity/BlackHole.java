@@ -74,7 +74,6 @@ public abstract class BlackHole extends CircleEntity {
 	}
 
 	public void eatEntityUtil(final Entity entity) {
-
 		if (!this.canEat(entity)) {
 			entityWasTooBigToEat(entity);
 			return;
@@ -92,10 +91,9 @@ public abstract class BlackHole extends CircleEntity {
 	}
 
 	public void eatEntity(final Entity entity) {
-
+		
 		if (entity instanceof BlackHole) {
 			final BlackHole otherBlackHole = (BlackHole) entity;
-
 			// instead of eating, you will be eaten!
 			if (otherBlackHole.canEat(this))
 				otherBlackHole.eatEntity(this);
@@ -115,10 +113,8 @@ public abstract class BlackHole extends CircleEntity {
 
 	@Override
 	public void setRadius(final float radius) {
-		
-		
-		super.setRadius(radius);
-		
+			
 		this.pcs.firePropertyChange("radius", this.getRadius(), radius);
+		super.setRadius(radius);
 	}
 }

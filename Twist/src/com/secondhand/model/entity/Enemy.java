@@ -9,6 +9,8 @@ public class Enemy extends BlackHole {
 	private static final float ENEMY_MAX_SPEED = 2;
 	private static final float MAX_SIZE = 40;
 	private static final float MIN_SIZE = 20;
+	private static final float AREA_MULTIPLIER = 40;
+	private static final float DANGER_MARGIN = 5;
 
 	private float huntingArea;
 
@@ -26,7 +28,7 @@ public class Enemy extends BlackHole {
 	}
 
 	public float getHuntingArea() {
-		return getRadius() * getRadius() * (float) Math.PI * 40;
+		return getRadius() * getRadius() * (float) Math.PI * AREA_MULTIPLIER;
 	}
 
 	public static float getMaxSize() {
@@ -38,7 +40,7 @@ public class Enemy extends BlackHole {
 	}
 
 	public float getDangerArea() {
-		return (getRadius() * getRadius() * (float) Math.PI) + 5;
+		return (getRadius() * getRadius() * (float) Math.PI) + DANGER_MARGIN;
 	}
 
 	//Sets the speed with the absolute value of maxSpeed

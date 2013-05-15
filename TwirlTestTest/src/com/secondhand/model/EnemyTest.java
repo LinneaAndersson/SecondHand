@@ -17,6 +17,7 @@ public class EnemyTest extends TestCase {
 	Vector2 vector = new Vector2(2f, 4f);
 	public float value;
 
+	//This class in a class for testing enemy-methods. It just checks value and return them.
 	private class EnemyTestPhysicsEntity implements IPhysicsEntity {
 		Entity entity;
 		public Vector2 testVector;
@@ -152,10 +153,11 @@ public class EnemyTest extends TestCase {
 		EnemyTestPhysicsEntity enemyPhysics = new EnemyTestPhysicsEntity(enemy);
 		enemy.moveEnemy(player, entityList);
 		
+		//Checks the impulse-value (horizontal) 
 		assertEquals(
 				enemyPhysics.getImpulseVector().x, (entityList.get(0).getInitialPosition().x
 						- enemy.getInitialPosition().x)* 0.002f );
-		
+		//Checks the impulse-value (vertical) 
 		assertEquals(
 				enemyPhysics.getImpulseVector().y,(entityList.get(0)
 						.getInitialPosition().y - enemy.getInitialPosition().y)*0.002f);

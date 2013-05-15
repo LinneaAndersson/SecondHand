@@ -134,9 +134,13 @@ public class EnemyTest extends TestCase {
 	public void testSetAndGetMaxSpeed() {
 		float rad = 2.2f;
 		Enemy enemy = new Enemy(vector, rad);
-		enemy.setMaxSpeed(-10f);
-		assertFalse(enemy.getMaxSpeed() == -10f);
-		assertTrue(enemy.getMaxSpeed() == 10f);
+		try {
+			enemy.setMaxSpeed(-1);
+			
+			assertTrue(false);
+		} catch (AssertionError er) {
+			assertTrue(true);
+		}
 		enemy.setMaxSpeed(10000f);
 		assertTrue(enemy.getMaxSpeed() == 10000f);
 

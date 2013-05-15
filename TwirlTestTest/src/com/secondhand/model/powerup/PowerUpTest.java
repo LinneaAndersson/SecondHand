@@ -1,6 +1,7 @@
 package com.secondhand.model.powerup;
 
 import com.secondhand.model.entity.Player;
+import com.secondhand.model.entity.PowerUpList;
 import com.secondhand.model.physics.Vector2;
 import com.secondhand.model.resource.PowerUpType;
 

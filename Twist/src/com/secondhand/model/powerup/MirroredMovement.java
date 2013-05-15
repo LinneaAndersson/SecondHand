@@ -19,8 +19,8 @@ public class MirroredMovement extends PowerUp {
 	}
 	
 	@Override
-	public void deactivateEffect() {
-		player.setMirroredMovement(super.hasAnother());
+	public void deactivateEffect(boolean hasAnother) {
+		player.setMirroredMovement(hasAnother);
 	}
 	
 

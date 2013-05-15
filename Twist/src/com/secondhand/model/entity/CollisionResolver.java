@@ -1,6 +1,5 @@
 package com.secondhand.model.entity;
 
-import com.secondhand.model.powerup.PowerUpList;
 
 
 public final class CollisionResolver {

@@ -52,8 +52,8 @@ public class RandomPowerUp extends PowerUp {
 	}
 	
 	@Override
-	public void deactivateEffect() {
-		this.randomPowerUp.deactivateEffect();
+	public void deactivateEffect(boolean hasAnother) {
+		this.randomPowerUp.deactivateEffect(hasAnother);
 	}
 
 	@Override

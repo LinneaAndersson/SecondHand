@@ -1,4 +1,4 @@
-package com.secondhand.model.powerup;
+package com.secondhand.model.entity;
 
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
@@ -6,8 +6,7 @@ import java.beans.PropertyChangeSupport;
 import java.util.ArrayList;
 
 import com.secondhand.debug.MyDebug;
-import com.secondhand.model.entity.IPowerUp;
-import com.secondhand.model.entity.Player;
+import com.secondhand.model.powerup.PowerUp;
 
 public class PowerUpList extends ArrayList<IPowerUp> {
 
@@ -39,7 +38,7 @@ public class PowerUpList extends ArrayList<IPowerUp> {
 		// last PowerUp
 		PowerUp powerUp = (PowerUp) object;
 		powerUp.resetPlayerColor();
-		powerUp.deactivateEffect();
+		powerUp.deactivateEffect(hasAnother(powerUp));
 		return value;
 	}
 
@@ -52,5 +51,14 @@ public class PowerUpList extends ArrayList<IPowerUp> {
 
 	public void addListener(PropertyChangeListener listener) {
 		pcs.addPropertyChangeListener(listener);
+	}
+	
+	public boolean hasAnother(IPowerUp powerUp) {
+		boolean hasAnother = false;
+		for (final IPowerUp otherPowerUp : this) {
+			if (otherPowerUp.getClass() == powerUp.getClass()) 
+				hasAnother = true;
+		}
+		return hasAnother;	
 	}
 }

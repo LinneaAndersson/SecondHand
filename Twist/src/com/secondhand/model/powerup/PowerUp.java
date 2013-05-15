@@ -36,12 +36,12 @@ public abstract class PowerUp extends RectangleEntity implements IPowerUp {
 	}
 	
 	@Override
-	public void deactivateEffect() { }
+	public void deactivateEffect(boolean hasAnother) {
+	}
 	
 	@Override
 	public float getScoreWorth() {
 		throw new IllegalStateException("cannot score points for eating powerup");
-
 	}
 	
 	@Override
@@ -52,16 +52,6 @@ public abstract class PowerUp extends RectangleEntity implements IPowerUp {
 	@Override
 	public String getText(){
 		return null;
-	}
-	
-	@Override
-	public boolean hasAnother() {
-		boolean hasAnother = false;
-		for (final IPowerUp powerUp : PowerUpList.getInstance()) {
-			if (powerUp.getClass() == this.getClass()) // old was DoubleScore.getClass() but this should be right?
-				hasAnother = true;
-		}
-		return hasAnother;	
 	}
 	
 	// how to color the player when the powerup is applied.

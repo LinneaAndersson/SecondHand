@@ -22,9 +22,7 @@ public interface IPowerUp {
 
 	void activatePowerUp();
 
-	void deactivateEffect();
-
-	boolean hasAnother();
+	void deactivateEffect(boolean hasAnother);
 	
 	// frequency of this powerup. Given on a scale from 1-10.
 	// where 10 is dirt common and 1 is super rare. 

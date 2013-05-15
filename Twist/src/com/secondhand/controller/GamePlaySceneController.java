@@ -10,9 +10,9 @@ import org.anddev.andengine.input.touch.TouchEvent;
 
 import com.secondhand.debug.MyDebug;
 import com.secondhand.model.entity.IGameWorld;
+import com.secondhand.model.entity.PowerUpList;
 import com.secondhand.model.physics.Vector2;
 import com.secondhand.model.powerup.PowerUp;
-import com.secondhand.model.powerup.PowerUpList;
 import com.secondhand.view.resource.HighScoreList;
 import com.secondhand.view.scene.AllScenes;
 import com.secondhand.view.scene.GamePlayScene;

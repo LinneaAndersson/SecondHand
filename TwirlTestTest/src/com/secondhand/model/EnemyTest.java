@@ -81,7 +81,7 @@ public class EnemyTest extends TestCase {
 
 	}
 
-	/*public void testMoveEnemy() {
+	public void testMoveEnemy() {
 		float rad = 2.2f;
 		Enemy enemy = new Enemy(new Vector2(500, 500), rad);
 		PhysicsWorld physicsWorld = new PhysicsWorld(new Vector2(),true);
@@ -123,5 +123,5 @@ public class EnemyTest extends TestCase {
 		Player player3 = new Player(new Vector2(200, 200), 2.0f);
 		entityList3.add(new Planet(new Vector2(300, 200), 2.0f,
 				PlanetType.DRUGS));
-	} */
+	}
 }

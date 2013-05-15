@@ -5,8 +5,8 @@ import org.anddev.andengine.engine.handler.timer.TimerHandler;
 
 import com.secondhand.debug.MyDebug;
 import com.secondhand.model.entity.Player;
+import com.secondhand.model.entity.PowerUpList;
 import com.secondhand.model.powerup.PowerUp;
-import com.secondhand.model.powerup.PowerUpList;
 
 public final class TimerFactory {
 	

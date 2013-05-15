@@ -81,7 +81,6 @@ public abstract class BlackHole extends CircleEntity {
 
 		this.increaseScore(entity.getScoreValue());
 
-		// increase the size of the rendered circle.
 		final float radiusInc = entity.getRadius() * GROWTH_FACTOR;
 		this.increaseSize(radiusInc);
 		onGrow();
@@ -99,7 +98,7 @@ public abstract class BlackHole extends CircleEntity {
 				otherBlackHole.eatEntity(this);
 			else
 				this.eatEntityUtil(otherBlackHole);
-		} else if (entity instanceof CircleEntity) {
+		} else {
 			// else, just eat the entity.
 			eatEntityUtil(entity);
 		}

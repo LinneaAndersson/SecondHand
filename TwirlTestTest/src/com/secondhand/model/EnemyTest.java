@@ -15,47 +15,69 @@ import com.secondhand.model.resource.PlanetType;
 
 public class EnemyTest extends TestCase {
 	Vector2 vector = new Vector2(2f, 4f);
-	
-	public IPhysicsEntity getPhysicsEntity(){
-		return new IPhysicsEntity(){
-			public float value;
-			public Vector2 vector;
-			@Override
-			public float getCenterX() {return 0;}
+	public float value;
 
-			@Override
-			public float getCenterY() {return 0;}
+	private class EnemyTestPhysicsEntity implements IPhysicsEntity {
+		Entity entity;
+		public Vector2 testVector;
 
-			@Override
-			public void deleteBody() {}
+		public EnemyTestPhysicsEntity(Entity entity) {
+			this.entity = entity;
+			entity.setPhysics(this);
+		}
 
-			@Override
-			public void applyImpulse(Vector2 impulsePosition, float maxSpeed) {
-				this.vector=impulsePosition;
-			}
+		@Override
+		public float getCenterX() {
+			return entity.getInitialPosition().x;
+		}
 
-			@Override
-			public void applyImpulse(Vector2 impulsePosition, Vector2 impulse) {
-			}
+		@Override
+		public float getCenterY() {
+			return entity.getInitialPosition().y;
+		}
 
-			@Override
-			public void setLinearDamping(float f) {}
+		@Override
+		public void deleteBody() {
+		}
 
-			@Override
-			public void detachSelf() {}
+		@Override
+		public void applyImpulse(Vector2 impulsePosition, float maxSpeed) {
+			testVector = impulsePosition;
+		}
 
-			@Override
-			public float computePolygonRadius(List<Vector2> polygon) {return value;}
+		@Override
+		public void applyImpulse(Vector2 impulsePosition, Vector2 impulse) {
+		}
 
-			@Override
-			public void setTransform(Vector2 position) {}
+		@Override
+		public void setLinearDamping(float f) {
+		}
 
-			@Override
-			public void stopMovment() {}
+		@Override
+		public void detachSelf() {
+		}
 
-			@Override
-			public boolean isStraightLine(Entity entity, Enemy enemy) {return false;}
-		};
+		@Override
+		public float computePolygonRadius(List<Vector2> polygon) {
+			return value;
+		}
+
+		@Override
+		public void setTransform(Vector2 position) {
+		}
+
+		@Override
+		public void stopMovment() {
+		}
+
+		@Override
+		public boolean isStraightLine(Entity entity, Enemy enemy) {
+			return true;
+		}
+
+		public Vector2 getImpulseVector() {
+			return this.testVector;
+		}
 	}
 
 	public void testConstructor() {
@@ -113,47 +135,50 @@ public class EnemyTest extends TestCase {
 	}
 
 	public void testMoveEnemy() {
-		
+		Vector2 vector = new Vector2(2f, 4f);
 		float rad = 3.2f;
-		Enemy enemy = new Enemy(new Vector2(2f, 4f), rad);
-		PhysicsWorld physicsWorld = new PhysicsWorld(new com.badlogic.gdx.math.Vector2(),true);
-		
-		/*IShape shape = new Circle(enemy.getInitialPosition().x, enemy.getInitialPosition().y,
-				enemy.getRadius());
-		Body body = PhysicsFactory.createCircleBody(physicsWorld,
-				shape.getX(), shape.getY(), enemy.getRadius(), shape.getRotation(), BodyType.DynamicBody, FixtureDefs.BLACK_HOLE_FIXTURE_DEF);
-				IPhysicsEntity physicsEntity = new MyPhysicsEntity(physicsWorld, enemy, shape, body);*/
+		Enemy enemy = new Enemy(vector, rad);
 
 		// First I will check with enemy radius bigger than the other Entities
 
 		// First case: Enemy is closer to Planet so enemy will move against
 		// planet
 		List<Entity> entityList = new ArrayList();
-		Player player = new Player(new Vector2(200, 200), 2.0f);
-		entityList
-		.add(new Planet(new Vector2(450, 500), 2.0f, PlanetType.DRUGS));
+		Player player = new Player(new Vector2(200f, 200f), 2.0f);
+		entityList.add(new Planet(new Vector2(3f, 3f), 2.0f, PlanetType.DRUGS));
+		new EnemyTestPhysicsEntity(player);
+		new EnemyTestPhysicsEntity(entityList.get(0));
 		
+		EnemyTestPhysicsEntity enemyPhysics = new EnemyTestPhysicsEntity(enemy);
 		enemy.moveEnemy(player, entityList);
-		assertFalse(enemy.getCenterX() == 200);
+		
+		assertEquals(
+				enemyPhysics.getImpulseVector().x, (entityList.get(0).getInitialPosition().x
+						- enemy.getInitialPosition().x)* 0.002f );
+		
+		assertEquals(
+				enemyPhysics.getImpulseVector().y,(entityList.get(0)
+						.getInitialPosition().y - enemy.getInitialPosition().y)*0.002f);
 
 		// Second case: Enemy is closer to player, but not in the range for
 		// hunting player, i.e the game will move against planet
-		List<Entity> entityList1 = new ArrayList();
+		entityList.clear();
+		entityList
+				.add(new Planet(new Vector2(300, 200), 2.0f, PlanetType.DRUGS));
 		Player player1 = new Player(new Vector2(200, 200), 2.0f);
-		entityList1.add(new Planet(new Vector2(300, 200), 2.0f,
-				PlanetType.DRUGS));
 
 		// Third case: Enemy is in the range for huntingArea but planet is
 		// closer
-		List<Entity> entityList2 = new ArrayList();
+		entityList.clear();
+		entityList
+				.add(new Planet(new Vector2(300, 200), 2.0f, PlanetType.DRUGS));
 		Player player2 = new Player(new Vector2(200, 200), 2.0f);
-		entityList2.add(new Planet(new Vector2(300, 200), 2.0f,
-				PlanetType.DRUGS));
 
 		// fourth case: player is in the range and closer to enemy.
-		List<Entity> entityList3 = new ArrayList();
+		entityList.clear();
+		entityList
+				.add(new Planet(new Vector2(300, 200), 2.0f, PlanetType.DRUGS));
 		Player player3 = new Player(new Vector2(200, 200), 2.0f);
-		entityList3.add(new Planet(new Vector2(300, 200), 2.0f,
-				PlanetType.DRUGS));
+
 	}
 }

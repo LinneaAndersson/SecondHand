@@ -14,6 +14,7 @@ PowerUpList.getInstance().addListener(this);
 in GamePlaySceneController can possibly cause a memory leak.
 * the camera is sometimes not properly restored before showing the
 high score list
+* Completion meter is not reset properly when going to next level.
 
 - Documentation
 

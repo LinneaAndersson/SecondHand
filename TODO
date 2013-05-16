@@ -13,7 +13,6 @@ rather, the game just goes on with negative lives.
 PowerUpList.getInstance().addListener(this);
 in GamePlaySceneController can possibly cause a memory leak.
 
-
 - Documentation
 
 * We must also update the class diagram for the model(in the RAD).

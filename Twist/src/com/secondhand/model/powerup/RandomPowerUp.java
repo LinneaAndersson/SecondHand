@@ -52,8 +52,8 @@ public class RandomPowerUp extends PowerUp {
 	}
 	
 	@Override
-	public void deactivateEffect(final boolean hasAnother) {
-		this.randomPowerUp.deactivateEffect(hasAnother);
+	public void deactivateEffect(final Player player, final boolean hasAnother) {
+		this.randomPowerUp.deactivateEffect(player, hasAnother);
 	}
 
 	@Override
@@ -66,5 +66,5 @@ public class RandomPowerUp extends PowerUp {
 	public float getB() {return this.randomPowerUp.getB();}
 
 
-	public static int getFrequency() { return 6; }
+	public static int getFrequency() { return 60000000; }
 }

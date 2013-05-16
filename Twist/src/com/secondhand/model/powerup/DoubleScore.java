@@ -21,7 +21,7 @@ public class DoubleScore extends PowerUp {
 	}
 	
 	@Override
-	public void deactivateEffect(final boolean hasAnother) {		
+	public void deactivateEffect(final Player player, final boolean hasAnother) {		
 		player.setScoreMultiplier(hasAnother ? MULT : 1);
 	}
 	

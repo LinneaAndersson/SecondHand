@@ -20,7 +20,7 @@ public class SpeedUp extends PowerUp {
 	}
 	
 	@Override
-	public void deactivateEffect(final boolean hasAnother) {
+	public void deactivateEffect(final Player player, final boolean hasAnother) {
 		if(!hasAnother)
 			player.setSpeedMultiplier(player.getSpeedMultiplier()/FACTOR);
 	}

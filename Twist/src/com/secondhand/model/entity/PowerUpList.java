@@ -35,8 +35,8 @@ public final class PowerUpList extends ArrayList<IPowerUp> {
 		// empty when you remove
 		// last PowerUp
 		final IPowerUp powerUp = (IPowerUp) object;
-		powerUp.resetPlayerColor();
-		powerUp.deactivateEffect(hasAnother(powerUp));
+		powerUp.resetPlayerColor(player);
+		powerUp.deactivateEffect(player, hasAnother(powerUp));
 		return value;
 	}
 

@@ -14,7 +14,7 @@ public interface IPowerUp {
 	
 	String getText();
 	
-	void resetPlayerColor();
+	void resetPlayerColor(final Player player);
 	
 	float getR();
 	float getG();
@@ -24,7 +24,7 @@ public interface IPowerUp {
 
 	void activatePowerUp(final Player player);
 
-	void deactivateEffect(boolean hasAnother);
+	void deactivateEffect(final Player player, boolean hasAnother);
 	
 	// frequency of this powerup. Given on a scale from 1-10.
 	// where 10 is dirt common and 1 is super rare. 

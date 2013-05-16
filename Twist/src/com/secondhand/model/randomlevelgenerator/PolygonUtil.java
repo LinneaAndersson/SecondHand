@@ -81,53 +81,31 @@ public final class PolygonUtil {
     	return 1.0f / (float)rng.nextInt();
     }
     
-    private static List<Vector2> getRandomStartingPolygon(final Random rng) {
+    private static List<Vector2> getRandomStartingPolygon() {
     	
     	
     	final List<Vector2> polygonEdges = new ArrayList<Vector2>();
-        
-    	final int choice = rng.nextInt(3);
-    	
-    	if(choice == 2) {
-    		// 6 edges
-    		polygonEdges.add(new Vector2(50,-50));
-    		polygonEdges.add(new Vector2(100,0));
-    		polygonEdges.add(new Vector2(100,100));
-    		polygonEdges.add(new Vector2(50,150));
-    		polygonEdges.add(new Vector2(0,100));
-    		polygonEdges.add(new Vector2(0,0));
-    	} else if(choice == 1) {
-    		// 7 edges
-    		polygonEdges.add(new Vector2(50,-50));
-    		polygonEdges.add(new Vector2(100,0));
-    		polygonEdges.add(new Vector2(150,50));
-    		polygonEdges.add(new Vector2(100,100));
-    		polygonEdges.add(new Vector2(50,150));
-    		polygonEdges.add(new Vector2(0,100));
-    		polygonEdges.add(new Vector2(0,0));
-    	}  else if(choice == 0) {
-    		// 8 edges
-    		polygonEdges.add(new Vector2(50,-50));
-    		polygonEdges.add(new Vector2(100,0));
-    		polygonEdges.add(new Vector2(150,50));
-    		polygonEdges.add(new Vector2(100,100));
-    		polygonEdges.add(new Vector2(50,150));
-    		polygonEdges.add(new Vector2(0,100));
-    		polygonEdges.add(new Vector2(-50,50));
-    		polygonEdges.add(new Vector2(0,0));
-    	}
-        
+    
+    	polygonEdges.add(new Vector2(50,-50)); 
+    	polygonEdges.add(new Vector2(100,0));
+    	polygonEdges.add(new Vector2(150,50)); 
+    	polygonEdges.add(new Vector2(100,100));
+    	polygonEdges.add(new Vector2(50,150));
+    	polygonEdges.add(new Vector2(0,100));
+    	polygonEdges.add(new Vector2(-50,50));
+    	polygonEdges.add(new Vector2(0,0));
+
         return polygonEdges;
     }
     
     public static List<Vector2> getRandomPolygon() {
     	
-    	final int TRANSFORMATIONS = 200;
+    	final int TRANSFORMATIONS = 300;
     	final float MAX_TRANSFORMATION = 20;
     	
     	final Random rng = new Random();
         
-    	final List<Vector2> polygonEdges = getRandomStartingPolygon(rng);
+    	final List<Vector2> polygonEdges = getRandomStartingPolygon();
     	
         for(int i = 0; i < TRANSFORMATIONS; ++i) {
         	// get a random edge point of the polygon

@@ -234,6 +234,7 @@ public class GamePlayScene extends GameScene implements PropertyChangeListener {
 		final String eventName = event.getPropertyName();
 
 		if (eventName.equals(Player.INCREASE_SCORE)) {
+			MyDebug.d("update score");
 			updateScore((Integer) event.getNewValue());
 		} else if (eventName.equals(Player.INCREASE_LIFE)) {
 			updateLives((Integer) event.getNewValue());

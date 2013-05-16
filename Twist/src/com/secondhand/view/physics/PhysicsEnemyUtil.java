@@ -26,8 +26,8 @@ public class PhysicsEnemyUtil {
 			public float reportRayFixture(final Fixture fixture,
 					final Vector2 point, final Vector2 normal,
 					final float fraction) {
-				IPhysicsObject tmp = ((IPhysicsObject) fixture.getBody().getUserData());
-				if (tmp == entity) {
+				final IPhysicsObject tmp = ((IPhysicsObject) fixture.getBody().getUserData());
+				if (tmp.equals(entity)) {
 					return 1;
 
 				} else if (enemy.getRadius() > tmp.getRadius() && tmp.isEdible()) {

@@ -32,7 +32,7 @@ public final class PowerUpFactory {
 		
 		
 		int tw = 0;
-		for(Weight weight: this.weights) {
+		for(final Weight weight: this.weights) {
 			tw += weight.weight;
 		}
 		this.totalWeight = tw;
@@ -46,7 +46,7 @@ public final class PowerUpFactory {
 		final int index = rng.nextInt(totalWeight);
 		int s = 0;
 		Weight result = null;
-		for(Weight weight: this.weights) {
+		for(final Weight weight: this.weights) {
 			s += weight.weight;
 			if (s > index) {
 				result = weight;

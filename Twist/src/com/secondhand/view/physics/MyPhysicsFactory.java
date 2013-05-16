@@ -30,11 +30,11 @@ public final class MyPhysicsFactory {
 		}
 
 		
-			Body b = PhysicsFactory.createPolygonBody(physicsWorld, polygon,
+			final Body body = PhysicsFactory.createPolygonBody(physicsWorld, polygon,
 					vertices, bodyType, fixtureDef);
 		
 		MyDebug.d("done creating polygon body");
 		
-		return b;
+		return body;
 	}	
 }

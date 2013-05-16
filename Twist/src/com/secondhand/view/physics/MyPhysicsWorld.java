@@ -6,7 +6,6 @@ import org.anddev.andengine.extension.physics.box2d.PhysicsWorld;
 
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Contact;
-import com.secondhand.model.entity.CollisionResolver;
 import com.secondhand.model.physics.ICollisionResolver;
 import com.secondhand.model.physics.IPhysicsWorld;
 

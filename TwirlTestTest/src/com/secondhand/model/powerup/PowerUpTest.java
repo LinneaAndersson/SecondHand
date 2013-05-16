@@ -9,10 +9,13 @@ import junit.framework.TestCase;
 
 public class PowerUpTest extends TestCase {
 	
-	public PowerUp getNewPowerUp(Vector2 position, PowerUpType powerUpType, float duration, Player player) {
-		return new PowerUp(position, powerUpType, duration, player) {
+	public static PowerUp getNewPowerUp(Vector2 position, PowerUpType powerUpType, float duration, Player player) {
+		return new PowerUp(position, powerUpType, duration) {
 			@Override
 			public void activateEffect(Player player) {}
+			
+			@Override
+			public void activatePowerUp(Player player) {}
 		};
 	}
 	
@@ -27,16 +30,6 @@ public class PowerUpTest extends TestCase {
 		assertEquals(powerUpType, powerUp.getPowerUpType());
 		assertEquals(duration, powerUp.getDuration());
 	}
-	
-	/*public void testHasAnother() {
-		PowerUpList powerUpList = PowerUpList.getInstance();
-		
-		// Same PowerUpType but different positions,radius etc..
-		powerUpList.add(getNewPowerUp(new Vector2(1,2), PowerUpType.DOUBLE_SCORE, 11, new Player(new Vector2(1,2), 11)));
-		powerUpList.add(getNewPowerUp(new Vector2(1,1), PowerUpType.DOUBLE_SCORE, 10, new Player(new Vector2(1,1), 10)));
-		
-		assertTrue(powerUpList.get(0).hasAnother());
-	}*/
 	
 	public void testRemovePowerUp() {
 		

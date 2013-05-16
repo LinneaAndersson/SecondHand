@@ -230,8 +230,8 @@ public class RandomLevelGenerator {
 
 	private void generateRandomLevel() {
 		
-		this.levelWidth = 2000 * this.levelNumber;
-		this.levelHeight = 2000 * this.levelNumber;
+		this.levelWidth = 1000 * this.levelNumber;
+		this.levelHeight = 1000 * this.levelNumber;
 		this.world = new World(this.levelWidth, this.levelHeight);
 		
 		// We want to ensure that things are not placed too close to each other.

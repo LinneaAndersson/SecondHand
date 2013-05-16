@@ -123,9 +123,7 @@ public class GamePlayScene extends GameScene implements PropertyChangeListener {
 		engine.getCamera().setChaseEntity(playerView.getShape());
 
 		// we want to restore the camera when returning to the menu. 
-		initialCameraPos = new Vector2(smoothCamera.getCenterX(),
-				smoothCamera.getCenterY());
-
+	
 		registerUpdateHandler(physicsWorld);
 
 		// setup the HUD
@@ -153,6 +151,9 @@ public class GamePlayScene extends GameScene implements PropertyChangeListener {
 	@Override
 	public void loadScene() {
 		super.loadScene();
+		initialCameraPos = new Vector2(smoothCamera.getCenterX(),
+				smoothCamera.getCenterY());
+
 		this.loadLevel(GameWorld.STARTING_LEVEL, Player.STARTING_LIVES, 0);
 	}
 

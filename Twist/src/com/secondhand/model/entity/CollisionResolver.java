@@ -15,6 +15,7 @@ public final class CollisionResolver {
 
 		BlackHole blackHole;
 		Entity other;
+		
 		if (entityA instanceof BlackHole) {
 			blackHole = (BlackHole) entityA;
 			if (entityB instanceof IPowerUp && entityA instanceof Player) {
@@ -30,6 +31,11 @@ public final class CollisionResolver {
 			other = entityA;
 			blackHole = (BlackHole) entityB;
 		}
+		
+		// enemies cannot eat powerups. 
+		if(other instanceof IPowerUp && blackHole instanceof Enemy)
+			return;
+		
 		blackHole.eatEntity(other);
 	}
 

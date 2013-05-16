@@ -40,7 +40,7 @@ public class PhysicsEnemyUtil {
 
 				return 0;
 			}
-		}, new Vector2(enemy.getCenterX(),enemy.getCenterY()) , new Vector2(enemy.getCenterX(),enemy.getCenterY()));
+		}, new Vector2(enemy.getCenterX(),enemy.getCenterY()) , new Vector2(entity.getCenterX(), entity.getCenterY()));
 
 		return straightLine;
 	}

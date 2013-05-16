@@ -4,6 +4,8 @@ import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 import java.util.ArrayList;
 
+import com.secondhand.debug.MyDebug;
+
 public final class PowerUpList extends ArrayList<IPowerUp> {
 
 	private static final long serialVersionUID = 1L;
@@ -35,7 +37,13 @@ public final class PowerUpList extends ArrayList<IPowerUp> {
 		// empty when you remove
 		// last PowerUp
 		final IPowerUp powerUp = (IPowerUp) object;
-		powerUp.resetPlayerColor(player);
+		MyDebug.d("deactivating powerup:" + powerUp + " another:" + hasAnother(powerUp));
+		
+		// out of powerups? then reset player color altogether. 
+		if(this.size() == 0) {
+			MyDebug.d("restoring player color");
+			powerUp.resetPlayerColor(player);
+		}
 		powerUp.deactivateEffect(player, hasAnother(powerUp));
 		return value;
 	}

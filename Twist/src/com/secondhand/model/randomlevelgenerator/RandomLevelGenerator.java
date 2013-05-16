@@ -247,18 +247,18 @@ public class RandomLevelGenerator {
 
 		
 		// place out entities.
-		placeOutObstacles(levelNumber * 10);
+		//placeOutObstacles(levelNumber * 10);
 
-		placeOutPlanets(10 * levelNumber, // number player eatable
+		/*placeOutPlanets(10 * levelNumber, // number player eatable
 
 				8 * levelNumber, // number bigger than player.
 				(GameWorld.PLAYER_STARTING_SIZE / 1.1f),
 				GameWorld.PLAYER_STARTING_SIZE * 7,
 				PLANET_EXTRA_RADIUS);
+*/
+		placeOutPowerUps(20, POWER_UP_EXTRA_SIZE);
 
-		placeOutPowerUps(10, POWER_UP_EXTRA_SIZE);
-
-		placeOutEnemies(10 * this.levelNumber,4 * this.levelNumber, ENEMY_EXTRA_RADIUS);
+		//placeOutEnemies(10 * this.levelNumber,4 * this.levelNumber, ENEMY_EXTRA_RADIUS);
 
 	}
 }

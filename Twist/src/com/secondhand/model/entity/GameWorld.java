@@ -50,7 +50,11 @@ public class GameWorld implements IGameWorld {
 	@Override
 	public void addListener(final PropertyChangeListener listener) {
 		support.addPropertyChangeListener(listener);
-		getPlayer().addListener(listener);
+	}
+	
+	@Override
+	public void removeListener(final PropertyChangeListener listener) {
+		support.removePropertyChangeListener(listener);
 	}
 	
 	@Override
@@ -104,8 +108,9 @@ public class GameWorld implements IGameWorld {
 	private void nextLevel() {
 
 		++this.levelNumber;
+		
+		this.entityManager.unregisterFromEntities();
 
-		 
 		support.firePropertyChange("NextLevel", false, true);
 		// view will now destroy the gameworld and create a new one. 
 	}
@@ -141,12 +146,6 @@ public class GameWorld implements IGameWorld {
 	}
 
 	@Override
-	public EntityManager getEntityManager() {
-		return this.entityManager;
-	}
-
-
-	@Override
 	public void updateWithTouchInput(final Vector2 v) {
 		this.getPlayer().reachToTouch(v);
 	}
@@ -156,7 +155,7 @@ public class GameWorld implements IGameWorld {
 	{
 		try
 		{
-			MyDebug.d("gameworld destroyed : " + this.toString());
+			MyDebug.i("gameworld destroyed : " + this.toString());
 		}
 		finally
 		{

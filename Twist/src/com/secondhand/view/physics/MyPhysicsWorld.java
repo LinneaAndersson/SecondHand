@@ -61,7 +61,11 @@ public class MyPhysicsWorld implements IPhysicsWorld {
 	@Override
 	public void setContactListener() {
 		physicsWorld.setContactListener(new CollisionContactListener(this));
-
+	}
+	
+	@Override
+	public void unsetContactListener() {
+		physicsWorld.setContactListener(null);
 	}
 	
 	@Override

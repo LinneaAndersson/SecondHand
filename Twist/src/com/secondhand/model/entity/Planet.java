@@ -1,5 +1,6 @@
 package com.secondhand.model.entity;
 
+import com.secondhand.debug.MyDebug;
 import com.secondhand.model.physics.Vector2;
 import com.secondhand.model.resource.PlanetType;
 
@@ -21,4 +22,18 @@ public class Planet extends CircleEntity {
 	public float getScoreWorth() {
 		return SCORE_WORTH;
 	}
+
+
+	@Override
+	protected void finalize() throws Throwable 
+	{
+		try
+		{
+			MyDebug.i("planet destroyed : " + this.toString());
+		}
+		finally
+		{
+			super.finalize();
+		}
+	}	
 }

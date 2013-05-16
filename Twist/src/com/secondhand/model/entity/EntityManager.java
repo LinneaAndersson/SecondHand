@@ -23,13 +23,14 @@ class EntityManager implements PropertyChangeListener{
 
 	public void setPlayer(final Player player) {
 		this.player = player;
-		player.addListener(this);
+		// no need to listen to player, because the player is never deleted,
+		// it is merely repositioned when eaten up.
 	}
 	
 	public void setEntityList(final List<Entity> entityList) {
 		this.entityList = entityList;
 		for(final Entity entity:entityList){
-			entity.addPropertyChangeListener(this);
+			entity.addListener(this);
 		}
 	}
 	
@@ -58,11 +59,10 @@ class EntityManager implements PropertyChangeListener{
 	public void updateEntities() {
 		// remove bodies scheduled for deletion.
 		while(!scheduledForDeletionEntities.empty()) {
-			MyDebug.d("now delete the planet");
 				final Entity entity = scheduledForDeletionEntities.pop();
-				MyDebug.d("before size: "+ this.entityList.size());
+				
+				entity.removeListener(this);
 				removeEntityFromList(entity);
-				MyDebug.d("removed size: "+ this.entityList.size());
 				if(entity instanceof Enemy)
 					removeEnemyFromList((Enemy)entity);
 				entity.deleteBody();
@@ -72,16 +72,15 @@ class EntityManager implements PropertyChangeListener{
 		this.player.moveToNeededPositionIfNecessary();
 	}
 	
-	
 	public void removeEntityFromList(final Entity entity) {
 		this.entityList.remove(entity);
 	}
 	
-	public void removeEnemyFromList(final Enemy enemy) {
+	private void removeEnemyFromList(final Enemy enemy) {
 		this.enemyList.remove(enemy);
 	}
 	
-	public void scheduleEntityForDeletion(final Entity entity) {
+	private void scheduleEntityForDeletion(final Entity entity) {
 		this.scheduledForDeletionEntities.add(entity);
 	}
 
@@ -90,7 +89,25 @@ class EntityManager implements PropertyChangeListener{
 		if(event.getPropertyName().equalsIgnoreCase("isScheduleForDeletion")){
 			scheduleEntityForDeletion((Entity) (event.getNewValue()));
 		}
-		
 	}
 	
+	// remove the property change listeners from all the entities.
+	public void unregisterFromEntities() {
+		for(Entity entity: this.entityList) {
+			entity.removeListener(this);
+		}
+	}
+	
+	@Override
+	protected void finalize() throws Throwable 
+	{
+		try
+		{
+			MyDebug.i("entitymanager destroyed : " + this.toString());
+		}
+		finally
+		{
+			super.finalize();
+		}
+	}	
 }

@@ -18,6 +18,9 @@ public interface IPhysicsWorld {
 	
 	// making this a listener of PhysicsWorld
 	void setContactListener();
+	
+	void unsetContactListener();
+		
 
 	// connect this to gameWorld
 	void setCollisionResolver(final ICollisionResolver collisionResolver);

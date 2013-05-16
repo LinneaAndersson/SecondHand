@@ -121,6 +121,7 @@ public class GamePlayScene extends GameScene implements PropertyChangeListener {
 		// we want to restore the camera when returning to the menu. 
 	
 		registerUpdateHandler(physicsWorld);
+		
 
 		// setup the HUD
 		final Player player = gameWorld.getPlayer();
@@ -134,16 +135,16 @@ public class GamePlayScene extends GameScene implements PropertyChangeListener {
 	}
 	
 	public void loadLevel(final int levelNumber, final int playerLives, final int playerScore) {
-		this.detachChildren();
 		physicsWorld = new PhysicsWorld(new Vector2(), true);
 
 		this.gameWorld = new GameWorld(new MyPhysicsWorld(physicsWorld), 
 				levelNumber,playerLives, playerScore);
 		
-		gameWorld.addListener(this);
+		gameWorld.getPlayer().addListener(this);
 		
-		setupView();
 		registerNewLevel();
+		setupView();
+		
 		engine.getCamera().setHUD(hud);		
 	}
 
@@ -211,10 +212,18 @@ public class GamePlayScene extends GameScene implements PropertyChangeListener {
 
 	public void newLevelStarted() {
 		
+		// remove the listeners and stuff
+		this.detachChildren();
+		
+		gameWorld.getPlayer().removeListener(this);
+		
+		this.unregisterUpdateHandler(this.physicsWorld);
+		
 		Sounds.getInstance().winSound.play();
 
 		this.loadLevel(gameWorld.getLevelNumber(), this.gameWorld.getPlayer().getLives(), 
 				this.gameWorld.getPlayer().getScore());
+		System.gc(); // NOPMD
 	}
 
 	public void updateScore(final int newScore) {

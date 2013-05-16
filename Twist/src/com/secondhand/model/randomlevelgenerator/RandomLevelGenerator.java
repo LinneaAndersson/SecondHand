@@ -249,7 +249,7 @@ public class RandomLevelGenerator {
 		// place out entities.
 		placeOutObstacles(levelNumber * 5);
 
-		placeOutPlanets(5 * levelNumber, // number player eatable
+		placeOutPlanets(10 * levelNumber, // number player eatable
 
 				4 * levelNumber, // number bigger than player.
 				(GameWorld.PLAYER_STARTING_SIZE / 1.1f),

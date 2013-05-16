@@ -80,10 +80,15 @@ public abstract class Entity implements IPhysicsObject{
 	protected void wasEaten() {
 		removeEntity();
 	}
-	
-	public void addPropertyChangeListener(final PropertyChangeListener listener){
-		pcs.addPropertyChangeListener(listener);
+		
+	public void addListener(final PropertyChangeListener observer) {
+		this.pcs.addPropertyChangeListener(observer);
 	}
+	
+	public void removeListener(final PropertyChangeListener observer) {
+		this.pcs.removePropertyChangeListener(observer);
+	}
+
 
 	@Override
 	 public float getCenterX() {

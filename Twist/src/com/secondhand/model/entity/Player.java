@@ -118,9 +118,6 @@ public class Player extends BlackHole {
 		return name;
 	}
 
-	public void addListener(final PropertyChangeListener observer) {
-		this.pcs.addPropertyChangeListener(observer);
-	}
 
 	// used to implement teleport, because you can't change the position inside
 	// a contact

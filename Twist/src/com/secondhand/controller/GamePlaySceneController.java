@@ -52,6 +52,20 @@ final class GamePlaySceneController extends Entity implements PropertyChangeList
 	
 		gameWorld.getPhysics().setContactListener();
 	}
+	
+	// we must unregister the listeners, elsewise the program will leak memory.
+	public void unregisterController() {
+		gamePlayScene.detachChild(this);
+		
+		this.gameWorld.removeListener(this);
+		
+		this.gameWorld.getPlayer().removeListener(this);
+		
+		this.gameWorld.getPowerUpList().removeListener(this);
+		this.gameWorld.getPowerUpList().removeListener(gamePlayScene);
+		
+		gameWorld.getPhysics().unsetContactListener();
+	}
 
 	private class GameSceneTouchListener implements IOnSceneTouchListener {
 		@Override
@@ -112,6 +126,7 @@ final class GamePlaySceneController extends Entity implements PropertyChangeList
 			MyDebug.d("property change in controller");
 			this.sceneController.getSceneManager().registerUpdateHander(TimerFactory.createTimer(gameWorld, (PowerUp)event.getNewValue()));
 		} else if (name.equals("NextLevel")) {
+			this.unregisterController();
 			this.gamePlayScene.newLevelStarted();
 			this.registerController();
 		} 

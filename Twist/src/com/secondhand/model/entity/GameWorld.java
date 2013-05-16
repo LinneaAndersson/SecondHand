@@ -105,17 +105,9 @@ public class GameWorld implements IGameWorld {
 
 		++this.levelNumber;
 
-		// destroy the entities expect for player
-//		clearLevel();
-
-//		this.mPhysic.removeWorldBounds();
-
-		// first load the new level entities:
-//		generateNewLevelEntities(this.levelNumber);
-
-		// then notify the view of this, so that it can place out the new
-		// Entities in AndEngine for rendering.
+		 
 		support.firePropertyChange("NextLevel", false, true);
+		// view will now destroy the gameworld and create a new one. 
 	}
 
 	// update game world for this frame.
@@ -127,7 +119,6 @@ public class GameWorld implements IGameWorld {
 		
 		if (checkPlayerBigEnough()) {
 			nextLevel();
-			//System.gc(); // NOPMD
 		}
 	}
 
@@ -156,11 +147,6 @@ public class GameWorld implements IGameWorld {
 		return this.entityManager;
 	}
 
-	// remove every entity(both from the physics world and andengine rendering)
-	// from the world expect for the player.
-	private void clearLevel() {
-		this.entityManager.removeAllEntitiesExpectForPlayer();
-	}
 
 	@Override
 	public void updateWithTouchInput(final Vector2 v) {

@@ -84,25 +84,6 @@ class EntityManager implements PropertyChangeListener{
 	public void scheduleEntityForDeletion(final Entity entity) {
 		this.scheduledForDeletionEntities.add(entity);
 	}
-	
-	public void removeAllEntitiesExpectForPlayer() {
-		
-		// player is not stored in entity list.
-		for(final Entity entity: this.entityList) {
-			MyDebug.d("clear all entities: " + entity);
-			MyDebug.d("scheduled for deleton: " + this.scheduledForDeletionEntities.size());
-			MyDebug.d("entity list: " + this.entityList.size());
-			
-			if(!entity.isScheduledForDeletion()) {
-				entity.detachSelf();
-				entity.deleteBody();
-			}
-		}
-		this.scheduledForDeletionEntities.clear();
-
-		this.entityList.clear();
-		this.enemyList.clear();
-	}
 
 	@Override
 	public void propertyChange(final PropertyChangeEvent event) {

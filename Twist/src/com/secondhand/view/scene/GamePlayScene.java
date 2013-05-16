@@ -112,15 +112,11 @@ public class GamePlayScene extends GameScene implements PropertyChangeListener {
 	}
 
 	private void setupView() {
-		final float width = gameWorld.getLevelWidth();
-		final float height = gameWorld.getLevelHeight();
-		this.smoothCamera.setBounds(0, width, 0, height);
 		this.smoothCamera.setBoundsEnabled(true);
 
 		final PlayerView playerView = new PlayerView(physicsWorld,
 				gameWorld.getPlayer());
 		attachChild(playerView.getShape());
-		engine.getCamera().setChaseEntity(playerView.getShape());
 
 		// we want to restore the camera when returning to the menu. 
 	
@@ -131,7 +127,10 @@ public class GamePlayScene extends GameScene implements PropertyChangeListener {
 		hud = new HUD();
 		this.scoreLivesText = new ScoreLivesText(new Vector2(10, 10),
 				player.getScore(), player.getLives(), 0f );
+
 		hud.attachChild(scoreLivesText);
+		engine.getCamera().setChaseEntity(playerView.getShape());
+
 	}
 	
 	public void loadLevel(final int levelNumber, final int playerLives, final int playerScore) {
@@ -156,6 +155,7 @@ public class GamePlayScene extends GameScene implements PropertyChangeListener {
 
 		this.loadLevel(GameWorld.STARTING_LEVEL, Player.STARTING_LIVES, 0);
 	}
+	
 
 	// reset camera before the menu is shown
 	public void resetCamera() {

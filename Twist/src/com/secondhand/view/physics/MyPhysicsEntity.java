@@ -11,10 +11,10 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.secondhand.debug.MyDebug;
 import com.secondhand.model.entity.CircleEntity;
-import com.secondhand.model.entity.Enemy;
 import com.secondhand.model.entity.Entity;
 import com.secondhand.model.entity.Player;
 import com.secondhand.model.physics.IPhysicsEntity;
+import com.secondhand.model.physics.IPhysicsObject;
 
 public class MyPhysicsEntity implements IPhysicsEntity {
 	private final Body body;
@@ -77,7 +77,7 @@ public class MyPhysicsEntity implements IPhysicsEntity {
 	}
 	
 	@Override
-	public boolean isStraightLine(final Entity entity, final Enemy enemy) {
+	public boolean isStraightLine(final IPhysicsObject entity, final IPhysicsObject enemy) {
 		return enemyUtil.straightLine(entity, enemy);
 	}
 

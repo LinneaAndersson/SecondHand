@@ -270,22 +270,20 @@ public class EnemyTest extends TestCase {
 		
 		// 1.3.2 player in range, but not straight line. No chasing!
 		enemyPhysicsNotStraightLine.applyImpulse(new Vector2(0, 0), 0);
-		assertEquals(false, enemyPhysicsNotStraightLine.isStraightLine);
 		enemyNotStraightLine.moveEnemy(playerInRangeNotStrightLine, entityList);
-	//	assertEquals(enemyPhysicsNotStraightLine.getImpulseVector().x, enemyNotStraightLine.getInitialPosition().y-playerInRangeNotStrightLine.getInitialPosition().x);
 		assertEquals(enemyPhysicsNotStraightLine.getImpulseVector().x, 0.0f);
 		assertEquals(enemyPhysicsNotStraightLine.getImpulseVector().y, 0.0f);
 
 		// 1.3.3 player in range and straight line, enemy will chase.
-		/*enemy.moveEnemy(playerInRange, entityList);
+		enemy.moveEnemy(playerInRange, entityList);
 		assertEquals(
 				enemyPhysics.getImpulseVector().x,
 				(playerInRange.getInitialPosition().x - enemy
 						.getInitialPosition().x) * enemyHuntingArea);
 		assertEquals(
 				enemyPhysics.getImpulseVector().y,
-				(playerInRange.getInitialPosition().x - enemy
-						.getInitialPosition().x) * enemyHuntingArea);*/
+				(playerInRange.getInitialPosition().y - enemy
+						.getInitialPosition().y) * enemyHuntingArea);
 
 	}
 }

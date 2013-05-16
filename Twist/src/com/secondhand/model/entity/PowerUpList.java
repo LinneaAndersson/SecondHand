@@ -7,15 +7,12 @@ import java.util.ArrayList;
 public final class PowerUpList extends ArrayList<IPowerUp> {
 
 	private static final long serialVersionUID = 1L;
-	private static PowerUpList instance;
 	
 	private final PropertyChangeSupport pcs = new PropertyChangeSupport(this);
 	
 	public static final String ADD_POWERUP = "addPowerUp";
 	
 	private Player player;
-	
-	private PowerUpList()  {super();}
 
 	@Override
 	public boolean add(final IPowerUp powerUp) {
@@ -41,13 +38,6 @@ public final class PowerUpList extends ArrayList<IPowerUp> {
 		powerUp.resetPlayerColor();
 		powerUp.deactivateEffect(hasAnother(powerUp));
 		return value;
-	}
-
-	public static PowerUpList getInstance(){
-		if(instance==null){
-			instance = new PowerUpList();
-		}
-		return instance;
 	}
 
 	public void addListener(final PropertyChangeListener listener) {

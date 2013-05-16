@@ -27,8 +27,7 @@ public class Circle extends Shape {
 	        if (proj >= seg_v.len())
 	            return seg_b;
 	        final Vector2 proj_v = new Vector2(seg_v_unit.x * proj,seg_v_unit.y * proj);
-	        final Vector2 closest = new Vector2(proj_v.x + seg_a.x, proj_v.y + seg_a.y); 
-	        return closest;
+	        return new Vector2(proj_v.x + seg_a.x, proj_v.y + seg_a.y); 
 	  }
 	
 	public boolean intersects(final Vector2 seg_a, final Vector2 seg_b) {

@@ -37,8 +37,8 @@ final class GamePlaySceneController extends Entity implements PropertyChangeList
 		this.gameWorld.getPlayer().addListener(this);
 		
 		// TODO: potential memory leak:
-		PowerUpList.getInstance().addListener(this);
-		PowerUpList.getInstance().addListener(scene);
+		gameWorld.getPowerUpList().addListener(this);
+		gameWorld.getPowerUpList().addListener(scene);
 		
 		scene.setOnSceneTouchListener(new GameSceneTouchListener());
 
@@ -102,7 +102,7 @@ final class GamePlaySceneController extends Entity implements PropertyChangeList
 		
 		if (name.equals(PowerUpList.ADD_POWERUP)) {
 			MyDebug.d("property change in controller");
-			this.sceneController.getSceneManager().registerUpdateHander(TimerFactory.createTimer((PowerUp)event.getNewValue()));
+			this.sceneController.getSceneManager().registerUpdateHander(TimerFactory.createTimer(gameWorld, (PowerUp)event.getNewValue()));
 		}
 	}
 }

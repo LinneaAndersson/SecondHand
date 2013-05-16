@@ -50,13 +50,13 @@ public final class CollisionResolver implements ICollisionResolver {
 			blackHole = (BlackHole) entityA;
 			if (entityB instanceof IPowerUp && entityA instanceof Player) {
 				final IPowerUp powerUp = (IPowerUp) entityB;
-				PowerUpList.getInstance().add(powerUp);
+				gameWorld.getPowerUpList().add(powerUp);
 			}
 			other = entityB;
 		} else {
 			if (entityA instanceof IPowerUp && entityB instanceof Player) {
 				final IPowerUp powerUp = (IPowerUp) entityA;
-				PowerUpList.getInstance().add(powerUp);
+				gameWorld.getPowerUpList().add(powerUp);
 			}
 			other = entityA;
 			blackHole = (BlackHole) entityB;

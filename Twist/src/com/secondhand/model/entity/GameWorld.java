@@ -3,7 +3,6 @@ package com.secondhand.model.entity;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 import java.util.List;
-import java.util.Random;
 
 import com.secondhand.model.physics.IPhysicsWorld;
 import com.secondhand.model.physics.Vector2;
@@ -11,12 +10,8 @@ import com.secondhand.model.randomlevelgenerator.RandomLevelGenerator;
 
 public class GameWorld implements IGameWorld {
 	
-	PowerUpList powerUpList;
-
 	private final EntityManager entityManager;
 	
-	private Random rng = new Random();
-
 	private static final int STARTING_LEVEL = 1;
 
 	public static final int PLAYER_STARTING_SIZE = 30;
@@ -29,17 +24,19 @@ public class GameWorld implements IGameWorld {
 	private int levelNumber;
 
 	private final PropertyChangeSupport support;
+	
+	private final PowerUpList powerUpList;
 
 	public GameWorld(final IPhysicsWorld physics) {
 		// reset player
-		PowerUpList.getInstance().setPlayer(null);
+		this.powerUpList = new PowerUpList();
 		this.mPhysic = physics;
 		this.mPhysic.setCollisionResolver(new CollisionResolver(this));
 		this.support = new PropertyChangeSupport(this);
 		this.entityManager = new EntityManager();
 		
 		generateNewLevelEntities(STARTING_LEVEL);
-		PowerUpList.getInstance().setPlayer(this.entityManager.getPlayer());
+		powerUpList.setPlayer(this.entityManager.getPlayer());
 	}
 
 	@Override
@@ -51,6 +48,11 @@ public class GameWorld implements IGameWorld {
 	public void addListener(final PropertyChangeListener listener) {
 		support.addPropertyChangeListener(listener);
 		getPlayer().addListener(listener);
+	}
+	
+	@Override
+	public PowerUpList getPowerUpList() {
+		return this.powerUpList;
 	}
 
 	// generate the level entities of a new level.

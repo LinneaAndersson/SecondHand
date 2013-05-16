@@ -2,7 +2,6 @@ package com.secondhand.model.physics;
 
 import java.util.Random;
 
-import com.secondhand.model.entity.IGameWorld;
 
 public interface IPhysicsWorld {
 
@@ -21,5 +20,5 @@ public interface IPhysicsWorld {
 	void setContactListener();
 
 	// connect this to gameWorld
-	void setGameWorld(final IGameWorld gameWorld);
+	void setCollisionResolver(final ICollisionResolver collisionResolver);
 }

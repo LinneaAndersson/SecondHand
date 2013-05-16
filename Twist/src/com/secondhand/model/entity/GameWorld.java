@@ -32,7 +32,7 @@ public class GameWorld implements IGameWorld {
 		// reset player
 		PowerUpList.getInstance().setPlayer(null);
 		this.mPhysic = physics;
-		this.mPhysic.setGameWorld(this);
+		this.mPhysic.setCollisionResolver(new CollisionResolver(this));
 		this.support = new PropertyChangeSupport(this);
 		this.entityManager = new EntityManager();
 		

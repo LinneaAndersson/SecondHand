@@ -1,42 +1,15 @@
 package com.secondhand.model.entity;
 
+import com.secondhand.model.physics.ICollisionResolver;
 
 
-public final class CollisionResolver {
+
+public final class CollisionResolver implements ICollisionResolver {
 
 	private final IGameWorld gameWorld;
 
 	public CollisionResolver(final IGameWorld gameWorld2) {
 		this.gameWorld = gameWorld2;
-	}
-
-	private void handleBlackHoleCollision(final Entity entityA,
-			final Entity entityB) {
-
-		BlackHole blackHole;
-		Entity other;
-		
-		if (entityA instanceof BlackHole) {
-			blackHole = (BlackHole) entityA;
-			if (entityB instanceof IPowerUp && entityA instanceof Player) {
-				final IPowerUp powerUp = (IPowerUp) entityB;
-				PowerUpList.getInstance().add(powerUp);
-			}
-			other = entityB;
-		} else {
-			if (entityA instanceof IPowerUp && entityB instanceof Player) {
-				final IPowerUp powerUp = (IPowerUp) entityA;
-				PowerUpList.getInstance().add(powerUp);
-			}
-			other = entityA;
-			blackHole = (BlackHole) entityB;
-		}
-		
-		// enemies cannot eat powerups. 
-		if(other instanceof IPowerUp && blackHole instanceof Enemy)
-			return;
-		
-		blackHole.eatEntity(other);
 	}
 
 	public void checkCollision(final Object a, final Object b) {
@@ -65,6 +38,35 @@ public final class CollisionResolver {
 		if (entityA instanceof BlackHole || entityB instanceof BlackHole) {
 			handleBlackHoleCollision(entityA, entityB);
 		}
+	}
+
+	private void handleBlackHoleCollision(final Entity entityA,
+			final Entity entityB) {
+	
+		BlackHole blackHole;
+		Entity other;
+		
+		if (entityA instanceof BlackHole) {
+			blackHole = (BlackHole) entityA;
+			if (entityB instanceof IPowerUp && entityA instanceof Player) {
+				final IPowerUp powerUp = (IPowerUp) entityB;
+				PowerUpList.getInstance().add(powerUp);
+			}
+			other = entityB;
+		} else {
+			if (entityA instanceof IPowerUp && entityB instanceof Player) {
+				final IPowerUp powerUp = (IPowerUp) entityA;
+				PowerUpList.getInstance().add(powerUp);
+			}
+			other = entityA;
+			blackHole = (BlackHole) entityB;
+		}
+		
+		// enemies cannot eat powerups. 
+		if(other instanceof IPowerUp && blackHole instanceof Enemy)
+			return;
+		
+		blackHole.eatEntity(other);
 	}
 
 }

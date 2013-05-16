@@ -81,7 +81,7 @@ public class Polygon extends Shape {
 
 	// test whether this polygon contains another polygon.
 	public boolean contains(final Polygon otherPolygon) {
-		for(Vector2 point: otherPolygon.edges) {
+		for(final Vector2 point: otherPolygon.edges) {
 			if(!this.contains(point))
 				return false;
 		}

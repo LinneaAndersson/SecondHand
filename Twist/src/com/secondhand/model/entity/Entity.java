@@ -4,10 +4,11 @@ import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 
 import com.secondhand.model.physics.IPhysicsEntity;
+import com.secondhand.model.physics.IPhysicsObject;
 import com.secondhand.model.physics.Vector2;
 
 
-public abstract class Entity {
+public abstract class Entity implements IPhysicsObject{
 
 	private boolean isEdible;
 	protected IPhysicsEntity physics;
@@ -30,6 +31,7 @@ public abstract class Entity {
 	
 	public abstract void onPhysicsAssigned();
 
+	@Override
 	public boolean isEdible() {
 		return this.isEdible;
 	}
@@ -42,8 +44,6 @@ public abstract class Entity {
 	public void setIsEdible(final boolean isEdible) {
 		this.isEdible = isEdible;
 	}
-
-	public abstract float getRadius();
 	
 	// how much every unit(pixel) of radius is worth in points.
 	public abstract float getScoreWorth();
@@ -84,10 +84,12 @@ public abstract class Entity {
 		pcs.addPropertyChangeListener(listener);
 	}
 
+	@Override
 	 public float getCenterX() {
 		 return this.physics.getCenterX();
 	}
 	 
+	 @Override
 	 public float getCenterY() {
 		return  this.physics.getCenterY();
 	}

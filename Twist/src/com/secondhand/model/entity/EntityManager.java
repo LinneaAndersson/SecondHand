@@ -26,7 +26,7 @@ class EntityManager implements PropertyChangeListener{
 	
 	public void setEntityList(final List<Entity> entityList) {
 		this.entityList = entityList;
-		for(Entity entity:entityList){
+		for(final Entity entity:entityList){
 			entity.addPropertyChangeListener(this);
 		}
 	}

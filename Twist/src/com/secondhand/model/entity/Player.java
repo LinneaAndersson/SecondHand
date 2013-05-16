@@ -2,7 +2,6 @@ package com.secondhand.model.entity;
 
 import java.beans.PropertyChangeListener;
 
-import com.secondhand.debug.MyDebug;
 import com.secondhand.model.physics.Vector2;
 import com.secondhand.model.resource.SoundType;
 
@@ -24,8 +23,6 @@ public class Player extends BlackHole {
 	private float speedMultiplier;
 
 	private Vector2 needsToMovePosition;
-
-	private SoundType soundType = null;
 
 	//For playerView to get the color of player
 	// The color will change!

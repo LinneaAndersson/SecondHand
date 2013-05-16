@@ -11,6 +11,7 @@ import com.secondhand.model.entity.Obstacle;
 import com.secondhand.model.entity.Planet;
 import com.secondhand.model.entity.Player;
 import com.secondhand.model.physics.IPhysicsEntity;
+import com.secondhand.model.physics.IPhysicsObject;
 import com.secondhand.model.physics.Vector2;
 import com.secondhand.model.powerup.RandomPowerUp;
 import com.secondhand.model.resource.PlanetType;
@@ -77,7 +78,7 @@ public class EnemyTest extends TestCase {
 		}
 
 		@Override
-		public boolean isStraightLine(Entity entity, Enemy enemy) {
+		public boolean isStraightLine(IPhysicsObject entity, IPhysicsObject enemy) {
 			return isStraightLine;
 		}
 
@@ -254,7 +255,7 @@ public class EnemyTest extends TestCase {
 		// there is straightLine then
 		// enemy will chase the eatable-entity.
 		entityList.clear();
-		entityList.add(new Obstacle(new Vector2(2f, 4f), new ArrayList()));
+		entityList.add(new Obstacle(new Vector2(2f, 2f), new ArrayList()));
 		entityList.add(new RandomPowerUp(new Vector2(4f, 4f), null));
 
 		new EnemyTestPhysicsEntity(entityList.get(0), true);
@@ -266,22 +267,23 @@ public class EnemyTest extends TestCase {
 		enemy.moveEnemy(playerOutOfRange, entityList);
 		assertEquals(enemyPhysics.getImpulseVector().x, 0.0f);
 		assertEquals(enemyPhysics.getImpulseVector().y, 0.0f);
-
+		
 		// 1.3.2 player in range, but not straight line. No chasing!
-		/*enemyNotStraightLine.moveEnemy(playerInRangeNotStrightLine, entityList);
+		enemyPhysicsNotStraightLine.applyImpulse(new Vector2(0, 0), 0);
+		enemyNotStraightLine.moveEnemy(playerInRangeNotStrightLine, entityList);
 		assertEquals(enemyPhysicsNotStraightLine.getImpulseVector().x, 0.0f);
-		assertEquals(enemyPhysicsNotStraightLine.getImpulseVector().y, 0.0f);*/
+		assertEquals(enemyPhysicsNotStraightLine.getImpulseVector().y, 0.0f);
 
 		// 1.3.3 player in range and straight line, enemy will chase.
-		/*enemy.moveEnemy(playerInRange, entityList);
+		enemy.moveEnemy(playerInRange, entityList);
 		assertEquals(
 				enemyPhysics.getImpulseVector().x,
 				(playerInRange.getInitialPosition().x - enemy
 						.getInitialPosition().x) * enemyHuntingArea);
 		assertEquals(
 				enemyPhysics.getImpulseVector().y,
-				(playerInRange.getInitialPosition().x - enemy
-						.getInitialPosition().x) * enemyHuntingArea);*/
+				(playerInRange.getInitialPosition().y - enemy
+						.getInitialPosition().y) * enemyHuntingArea);
 
 	}
 }

@@ -1,6 +1,5 @@
 package com.secondhand.model.entity;
 
-import com.secondhand.debug.MyDebug;
 import com.secondhand.model.physics.Vector2;
 
 public abstract class BlackHole extends CircleEntity {

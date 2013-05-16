@@ -66,5 +66,5 @@ public class RandomPowerUp extends PowerUp {
 	public float getB() {return this.randomPowerUp.getB();}
 
 
-	public static int getFrequency() { return 60000000; }
+	public static int getFrequency() { return 6; }
 }

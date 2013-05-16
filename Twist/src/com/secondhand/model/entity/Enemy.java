@@ -2,6 +2,7 @@ package com.secondhand.model.entity;
 
 import java.util.List;
 
+import com.secondhand.debug.MyDebug;
 import com.secondhand.model.physics.Vector2;
 
 public class Enemy extends BlackHole {
@@ -133,5 +134,18 @@ public class Enemy extends BlackHole {
 		physics.applyImpulse(new Vector2(getCenterX() - danger.getCenterX(),
 				getCenterY() - danger.getCenterY()).mul(0.02f), getMaxSpeed());
 	}
+
+	@Override
+	protected void finalize() throws Throwable 
+	{
+		try
+		{
+			MyDebug.i("enemy destroyed : " + this.toString());
+		}
+		finally
+		{
+			super.finalize();
+		}
+	}	
 
 }

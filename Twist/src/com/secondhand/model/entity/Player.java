@@ -2,6 +2,7 @@ package com.secondhand.model.entity;
 
 import java.beans.PropertyChangeListener;
 
+import com.secondhand.debug.MyDebug;
 import com.secondhand.model.physics.Vector2;
 import com.secondhand.model.resource.SoundType;
 
@@ -213,4 +214,18 @@ public class Player extends BlackHole {
 
 		this.physics.applyImpulse(force, forcePosition);
 	}
+	
+	
+	@Override
+	protected void finalize() throws Throwable 
+	{
+		try
+		{
+			MyDebug.i("player destroyed : " + this.toString());
+		}
+		finally
+		{
+			super.finalize();
+		}
+	}	
 }

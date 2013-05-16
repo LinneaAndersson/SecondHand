@@ -254,7 +254,7 @@ public class EnemyTest extends TestCase {
 		// there is straightLine then
 		// enemy will chase the eatable-entity.
 		entityList.clear();
-		entityList.add(new Obstacle(new Vector2(2f, 4f), new ArrayList()));
+		entityList.add(new Obstacle(new Vector2(2f, 2f), new ArrayList()));
 		entityList.add(new RandomPowerUp(new Vector2(4f, 4f), null));
 
 		new EnemyTestPhysicsEntity(entityList.get(0), true);
@@ -266,8 +266,9 @@ public class EnemyTest extends TestCase {
 		enemy.moveEnemy(playerOutOfRange, entityList);
 		assertEquals(enemyPhysics.getImpulseVector().x, 0.0f);
 		assertEquals(enemyPhysics.getImpulseVector().y, 0.0f);
-
+		
 		// 1.3.2 player in range, but not straight line. No chasing!
+		enemyPhysicsNotStraightLine.applyImpulse(new Vector2(0, 0), 0);
 		enemyNotStraightLine.moveEnemy(playerInRangeNotStrightLine, entityList);
 		assertEquals(enemyPhysicsNotStraightLine.getImpulseVector().x, 0.0f);
 		assertEquals(enemyPhysicsNotStraightLine.getImpulseVector().y, 0.0f);

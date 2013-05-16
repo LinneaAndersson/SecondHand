@@ -16,9 +16,10 @@ public abstract class BlackHole extends CircleEntity {
 	// but we can simply ignore the score for enemy black holes.
 	private int score;
 
-	public BlackHole(final Vector2 position, final float radius) {
+	public BlackHole(final Vector2 position, final float radius, final int score) {
 		super(position, radius, true);
 		this.position = position;
+		this.score = 0;
 
 		this.canEatInedibles = false;
 	}

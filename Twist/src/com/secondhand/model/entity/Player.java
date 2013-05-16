@@ -10,7 +10,7 @@ public class Player extends BlackHole {
 	private String name;
 
 	// starting lives for a new player.
-	private static final int STARTING_LIVES = 1;
+	public static final int STARTING_LIVES = 1;
 
 	private int lives;
 
@@ -35,8 +35,8 @@ public class Player extends BlackHole {
 	public final static String COLOR = "color";
 	public final static float DEFAULT_COLOR_VALUE = 1f;
 	// =============================================
-	public Player(final Vector2 position, final float radius, final int startingLives) {
-		super(position, radius);
+	public Player(final Vector2 position, final float radius, final int startingLives, final int score) {
+		super(position, radius, score);
 
 		this.speedMultiplier = 1;
 		this.lives = startingLives;
@@ -46,10 +46,6 @@ public class Player extends BlackHole {
 		RGB[1] = DEFAULT_COLOR_VALUE;
 		RGB[2] = DEFAULT_COLOR_VALUE;
 
-	}
-
-	public Player(final Vector2 position, final float radius) {
-		this(position, radius, STARTING_LIVES);
 	}
 
 	public int getLives() {

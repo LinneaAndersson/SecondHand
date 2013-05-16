@@ -19,29 +19,37 @@ import com.secondhand.view.scene.GamePlayScene;
 
 final class GamePlaySceneController extends Entity implements PropertyChangeListener {
 
-	private final IGameWorld gameWorld;
+	private IGameWorld gameWorld;
 	private final SceneController sceneController;
+	private final GamePlayScene gamePlayScene;
 
 	public GamePlaySceneController(final GamePlayScene scene,
 			final SceneController sceneController) {
 		super();
 		
-		final GamePlayScene gamePlayScene = scene;
-		this.sceneController = sceneController;
 
-		gameWorld = scene.getGameWorld();
+		this.gamePlayScene = scene;
+		this.sceneController = sceneController;
+		gamePlayScene.setOnSceneTouchListener(new GameSceneTouchListener());
+
+		registerController();
+	}
+	
+	// done every time the level changes.
+	public void registerController() {
+		gameWorld = gamePlayScene.getGameWorld();
 
 		gamePlayScene.attachChild(this);
+		
+		gameWorld.addListener(this);
 
 		//PlayerUtil adds this Controller as a listener
 		this.gameWorld.getPlayer().addListener(this);
 		
 		// TODO: potential memory leak:
 		gameWorld.getPowerUpList().addListener(this);
-		gameWorld.getPowerUpList().addListener(scene);
-		
-		scene.setOnSceneTouchListener(new GameSceneTouchListener());
-
+		gameWorld.getPowerUpList().addListener(gamePlayScene);
+	
 		gameWorld.getPhysics().setContactListener();
 	}
 
@@ -103,6 +111,9 @@ final class GamePlaySceneController extends Entity implements PropertyChangeList
 		if (name.equals(PowerUpList.ADD_POWERUP)) {
 			MyDebug.d("property change in controller");
 			this.sceneController.getSceneManager().registerUpdateHander(TimerFactory.createTimer(gameWorld, (PowerUp)event.getNewValue()));
-		}
+		} else if (name.equals("NextLevel")) {
+			this.gamePlayScene.newLevelStarted();
+			this.registerController();
+		} 
 	}
 }

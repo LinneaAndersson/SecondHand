@@ -22,7 +22,7 @@ public class Enemy extends BlackHole {
 	}
 
 	public Enemy(final Vector2 vector, final float radius) {
-		super(vector, radius);
+		super(vector, radius, 0);
 		huntingArea = getHuntingArea();
 		this.maxSpeed = ENEMY_MAX_SPEED;
 	}

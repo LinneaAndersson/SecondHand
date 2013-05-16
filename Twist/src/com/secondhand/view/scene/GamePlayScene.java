@@ -5,13 +5,11 @@ import java.beans.PropertyChangeListener;
 
 import org.anddev.andengine.engine.Engine;
 import org.anddev.andengine.engine.camera.hud.HUD;
-import org.anddev.andengine.engine.handler.IUpdateHandler;
 import org.anddev.andengine.extension.physics.box2d.PhysicsWorld;
 
 import android.content.Context;
 
 import com.badlogic.gdx.math.Vector2;
-import com.secondhand.controller.MainActivity;
 import com.secondhand.debug.MyDebug;
 import com.secondhand.model.entity.Enemy;
 import com.secondhand.model.entity.Entity;
@@ -61,16 +59,15 @@ public class GamePlayScene extends GameScene implements PropertyChangeListener {
 		return this.physicsWorld;
 	}
 
-	private EntityView entityView;
 	
 	public void registerNewLevel() {
-		
+
 		this.smoothCamera.setZoomFactor(1.0f);
-	
+
 		final float width = gameWorld.getLevelWidth();
 		final float height = gameWorld.getLevelHeight();
-		
-		
+
+
 		// clear the old background.
 		if(starsBackgrounds[0] != null) {
 			this.detachChild(starsBackgrounds[0]);
@@ -87,50 +84,31 @@ public class GamePlayScene extends GameScene implements PropertyChangeListener {
 
 		this.smoothCamera.setBounds(0, width, 0, height);
 
-		MyDebug.d("1");
 		for (final Entity entity : gameWorld.getEntityList()) {
 
-			MyDebug.d("next Level start attach");
+			EntityView entityView;
+			
 			entityView = null;
-			MyDebug.d("2");
 			if (entity instanceof Planet) {
-				MyDebug.d("3");
-
 				entityView = new PlanetView(physicsWorld, (Planet) entity);
 
 
 			} else if (entity instanceof Enemy) {
-				MyDebug.d("5");
-
 				entityView = new EnemyView(physicsWorld, (Enemy) entity);
-
-
 			} else if (entity instanceof Obstacle) {
-				MyDebug.d("6");
-
-
 				entityView = new ObstacleView(physicsWorld,
 						(Obstacle) entity);
-
 			} else if (entity instanceof PowerUp) {
-				MyDebug.d("7");
-
-
 				entityView = new PowerUpView(physicsWorld,
 						(PowerUp) entity);
 
 			} else {
 				MyDebug.e("invalid entity found in entityList");
-
 				System.exit(1);
 			}	
 
-			MyDebug.d("4");
-
-			MyDebug.d("next Level attach entity");
 			this.attachChild(entityView.getShape());
 		}
-		MyDebug.d("next Level attach done");
 	}
 
 	private void setupView() {
@@ -138,7 +116,6 @@ public class GamePlayScene extends GameScene implements PropertyChangeListener {
 		final float height = gameWorld.getLevelHeight();
 		this.smoothCamera.setBounds(0, width, 0, height);
 		this.smoothCamera.setBoundsEnabled(true);
-
 
 		final PlayerView playerView = new PlayerView(physicsWorld,
 				gameWorld.getPlayer());
@@ -158,20 +135,25 @@ public class GamePlayScene extends GameScene implements PropertyChangeListener {
 				player.getScore(), player.getLives(), 0f );
 		hud.attachChild(scoreLivesText);
 	}
-
-	@Override
-	public void loadScene() {
-		super.loadScene();
-
+	
+	public void loadLevel(final int levelNumber, final int playerLives, final int playerScore) {
+		this.detachChildren();
 		physicsWorld = new PhysicsWorld(new Vector2(), true);
 
-		this.gameWorld = new GameWorld(new MyPhysicsWorld(physicsWorld));
+		this.gameWorld = new GameWorld(new MyPhysicsWorld(physicsWorld), 
+				levelNumber,playerLives, playerScore);
 		
 		gameWorld.addListener(this);
 		
 		setupView();
 		registerNewLevel();
-		engine.getCamera().setHUD(hud);
+		engine.getCamera().setHUD(hud);		
+	}
+
+	@Override
+	public void loadScene() {
+		super.loadScene();
+		this.loadLevel(GameWorld.STARTING_LEVEL, Player.STARTING_LIVES, 0);
 	}
 
 	// reset camera before the menu is shown
@@ -227,31 +209,10 @@ public class GamePlayScene extends GameScene implements PropertyChangeListener {
 
 	public void newLevelStarted() {
 		
-		/*final Engine engine = MainActivity.engine;
-		engine.registerUpdateHandler(new IUpdateHandler() {
-			@Override
-			public void onUpdate(final float pSecondsElapsed) {
-				engine.unregisterUpdateHandler(this);
-				engine.runOnUpdateThread(new Runnable() {
-					@Override
-					public void run() {
-						*/
-						registerNewLevel();
-
-/*
-						System.gc(); // NOPMD
-						MyDebug.i("level registration complete");						
-					}
-				});
-			}
-
-			@Override
-			public void reset() {
-			}
-		});*/
-
 		Sounds.getInstance().winSound.play();
 
+		this.loadLevel(gameWorld.getLevelNumber(), this.gameWorld.getPlayer().getLives(), 
+				this.gameWorld.getPlayer().getScore());
 	}
 
 	public void updateScore(final int newScore) {
@@ -289,8 +250,6 @@ public class GamePlayScene extends GameScene implements PropertyChangeListener {
 			
 			this.scoreLivesText.setCompletionRatio(completion);
 			
-		} else if (eventName.equals("NextLevel")) {
-			newLevelStarted();
 		} else if (eventName.equals("PlayerWallCollision")) {
 			onPlayerWallCollision();
 		} 

@@ -268,9 +268,9 @@ public class EnemyTest extends TestCase {
 		assertEquals(enemyPhysics.getImpulseVector().y, 0.0f);
 
 		// 1.3.2 player in range, but not straight line. No chasing!
-		/*enemyNotStraightLine.moveEnemy(playerInRangeNotStrightLine, entityList);
+		enemyNotStraightLine.moveEnemy(playerInRangeNotStrightLine, entityList);
 		assertEquals(enemyPhysicsNotStraightLine.getImpulseVector().x, 0.0f);
-		assertEquals(enemyPhysicsNotStraightLine.getImpulseVector().y, 0.0f);*/
+		assertEquals(enemyPhysicsNotStraightLine.getImpulseVector().y, 0.0f);
 
 		// 1.3.3 player in range and straight line, enemy will chase.
 		/*enemy.moveEnemy(playerInRange, entityList);

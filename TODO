@@ -12,8 +12,6 @@ rather, the game just goes on with negative lives.
 * Examine if the line
 PowerUpList.getInstance().addListener(this);
 in GamePlaySceneController can possibly cause a memory leak.
-* Enemies can for some reason eat powerups now.
-
 
 
 - Documentation

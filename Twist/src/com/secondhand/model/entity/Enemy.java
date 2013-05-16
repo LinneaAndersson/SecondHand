@@ -64,11 +64,11 @@ public class Enemy extends BlackHole {
 	}
 
 	private void danger(final Entity player, final List<Entity> entityList) {
-		if (isCloseToEntity(player, getDangerArea())) {
+		if (isCloseToEntity(player, getDangerArea()) && !canEat(player)) {
 			retreatFrom(player);
 		} else {
 			for (final Entity e : entityList) {
-				if (e instanceof Enemy && isCloseToEntity(e, getDangerArea())) {
+				if (e instanceof Enemy && isCloseToEntity(e, getDangerArea()) && !canEat(e)) {
 					retreatFrom(e);
 				}
 			}

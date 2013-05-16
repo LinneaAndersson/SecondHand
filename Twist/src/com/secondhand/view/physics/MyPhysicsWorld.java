@@ -6,14 +6,13 @@ import org.anddev.andengine.extension.physics.box2d.PhysicsWorld;
 
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Contact;
-import com.secondhand.model.entity.CollisionResolver;
-import com.secondhand.model.entity.IGameWorld;
+import com.secondhand.model.physics.ICollisionResolver;
 import com.secondhand.model.physics.IPhysicsWorld;
 
 public class MyPhysicsWorld implements IPhysicsWorld {
 	private PhysicsWorld physicsWorld;
 	// TODO only enemy needs the util class
-	private CollisionResolver collisionResolver;
+	private ICollisionResolver collisionResolver;
 	private final PhysicsWorldBounds bounds;
 
 	public MyPhysicsWorld(final PhysicsWorld physicsWorld){
@@ -66,8 +65,8 @@ public class MyPhysicsWorld implements IPhysicsWorld {
 	}
 	
 	@Override
-	public void setGameWorld(final IGameWorld gameWorld) {
-		this.collisionResolver = new CollisionResolver(gameWorld);
+	public void setCollisionResolver(final ICollisionResolver collisionResolver) {
+		this.collisionResolver = collisionResolver;
 	}
 
 	

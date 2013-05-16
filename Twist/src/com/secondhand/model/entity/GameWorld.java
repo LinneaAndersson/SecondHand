@@ -67,10 +67,10 @@ public class GameWorld implements IGameWorld {
 			this.entityManager.setPlayer(player);
 		}else {
 			
-			final Player player = this.entityManager.getPlayer();
+			/*final Player player = this.entityManager.getPlayer();
 			player.setRadius(randomLevelGenerator.playerInitialSize);
 			player.setNeedsToMovePosition(randomLevelGenerator.playerPosition);
-			player.setMaxSize(randomLevelGenerator.playerMaxSize);	
+			player.setMaxSize(randomLevelGenerator.playerMaxSize);	*/
 		}
 
 		this.levelWidth = randomLevelGenerator.levelWidth;
@@ -114,9 +114,6 @@ public class GameWorld implements IGameWorld {
 		// first load the new level entities:
 		generateNewLevelEntities(this.levelNumber);
 
-		mPhysic.setWorldBounds(levelWidth, levelHeight);
-
-		this.getPlayer().setRadius(PLAYER_STARTING_SIZE);
 		// then notify the view of this, so that it can place out the new
 		// Entities in AndEngine for rendering.
 		support.firePropertyChange("NextLevel", false, true);

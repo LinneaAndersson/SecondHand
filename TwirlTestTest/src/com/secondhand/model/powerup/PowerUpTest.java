@@ -10,7 +10,7 @@ import junit.framework.TestCase;
 public class PowerUpTest extends TestCase {
 	
 	public PowerUp getNewPowerUp(Vector2 position, PowerUpType powerUpType, float duration, Player player) {
-		return new PowerUp(position, powerUpType, duration, player) {
+		return new PowerUp(position, powerUpType, duration) {
 			@Override
 			public void activateEffect(Player player) {}
 		};

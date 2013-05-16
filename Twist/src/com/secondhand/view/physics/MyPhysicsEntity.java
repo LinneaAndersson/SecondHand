@@ -2,6 +2,8 @@ package com.secondhand.view.physics;
 
 import java.util.List;
 
+import org.anddev.andengine.engine.Engine;
+import org.anddev.andengine.engine.handler.IUpdateHandler;
 import org.anddev.andengine.entity.shape.IShape;
 import org.anddev.andengine.extension.physics.box2d.PhysicsConnector;
 import org.anddev.andengine.extension.physics.box2d.PhysicsWorld;
@@ -9,12 +11,14 @@ import org.anddev.andengine.extension.physics.box2d.util.constants.PhysicsConsta
 
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
+import com.secondhand.controller.MainActivity;
 import com.secondhand.debug.MyDebug;
 import com.secondhand.model.entity.CircleEntity;
 import com.secondhand.model.entity.Entity;
 import com.secondhand.model.entity.Player;
 import com.secondhand.model.physics.IPhysicsEntity;
 import com.secondhand.model.physics.IPhysicsObject;
+import com.secondhand.view.scene.ThreadUtil;
 
 public class MyPhysicsEntity implements IPhysicsEntity {
 	private final Body body;
@@ -51,10 +55,18 @@ public class MyPhysicsEntity implements IPhysicsEntity {
 
 	@Override
 	public void deleteBody() {
-		physicsWorld.unregisterPhysicsConnector(physicsConnector);
-		physicsWorld.destroyBody(body);
+		
+		ThreadUtil.runOnUpdateThread(new ThreadUtil.Method() {
+			@Override
+			public void method() {
+				physicsWorld.unregisterPhysicsConnector(physicsConnector);
+				physicsWorld.destroyBody(body);
 
-		MyDebug.i(physicsConnector.getBody() + " destruction complete");
+				System.gc(); // NOPMD
+				MyDebug.i(physicsConnector.getBody() + " destruction complete");						
+
+			}
+		});
 	}
 
 	@Override

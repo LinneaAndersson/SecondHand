@@ -3,6 +3,7 @@ package com.secondhand.model.entity;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 
+import com.secondhand.debug.MyDebug;
 import com.secondhand.model.physics.IPhysicsEntity;
 import com.secondhand.model.physics.IPhysicsObject;
 import com.secondhand.model.physics.Vector2;
@@ -14,10 +15,13 @@ public abstract class Entity implements IPhysicsObject{
 	protected IPhysicsEntity physics;
 	protected PropertyChangeSupport pcs = new PropertyChangeSupport(this);
 	private final Vector2 initialPosition;
+	
+	private boolean scheduledForDeletion;
 
 	public Entity(final Vector2 position, final boolean isEdible) {
 		this.isEdible = isEdible;
 		this.initialPosition = position;
+		this.scheduledForDeletion = false;
 	}
 	
 	public Vector2 getInitialPosition() {
@@ -29,6 +33,10 @@ public abstract class Entity implements IPhysicsObject{
 		onPhysicsAssigned();
 	}
 	
+	public boolean isScheduledForDeletion() {
+		return this.scheduledForDeletion;
+	}
+	
 	public abstract void onPhysicsAssigned();
 
 	@Override
@@ -38,7 +46,7 @@ public abstract class Entity implements IPhysicsObject{
 	
 	public void detachSelf() {
 		physics.detachSelf();
-
+		
 	}
 
 	public void setIsEdible(final boolean isEdible) {
@@ -62,11 +70,13 @@ public abstract class Entity implements IPhysicsObject{
 
 		// we can't remove the body within a contact listener
 		scheduleBodyForDeletion();
-
+		
 		this.physics.detachSelf();
 	}
 
 	private void scheduleBodyForDeletion() {
+		MyDebug.d("now scheduled for deletion");
+		this.scheduledForDeletion = true;
 		pcs.firePropertyChange("isScheduleForDeletion", null, this);
 	}
 

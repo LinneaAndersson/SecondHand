@@ -31,6 +31,8 @@ public class MainActivity extends BaseGameActivity {
 	
 	private SceneController sceneController;
 
+	public static Engine engine;
+	
 	@Override
 	public Engine onLoadEngine() {
 		
@@ -57,6 +59,7 @@ public class MainActivity extends BaseGameActivity {
 	    // initialze scene controller. 
 	    this.sceneController = new SceneController(engine, this);
 	    
+	    MainActivity.engine = engine;
 	     return engine;	
 	}
 	

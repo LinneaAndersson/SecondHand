@@ -4,6 +4,7 @@ import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 import java.util.List;
 
+import com.secondhand.debug.MyDebug;
 import com.secondhand.model.physics.IPhysicsWorld;
 import com.secondhand.model.physics.Vector2;
 import com.secondhand.model.randomlevelgenerator.RandomLevelGenerator;
@@ -126,12 +127,13 @@ public class GameWorld implements IGameWorld {
 	// update game world for this frame.
 	@Override
 	public void updateGameWorld() {
-
+		MyDebug.d("update game world");
+		
+		this.entityManager.updateEntities();
+		
 		if (checkPlayerBigEnough()) {
 			nextLevel();
 			//System.gc(); // NOPMD
-		} else {
-			this.entityManager.updateEntities();
 		}
 	}
 

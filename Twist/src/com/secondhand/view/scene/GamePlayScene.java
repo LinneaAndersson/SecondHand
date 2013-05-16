@@ -5,11 +5,13 @@ import java.beans.PropertyChangeListener;
 
 import org.anddev.andengine.engine.Engine;
 import org.anddev.andengine.engine.camera.hud.HUD;
+import org.anddev.andengine.engine.handler.IUpdateHandler;
 import org.anddev.andengine.extension.physics.box2d.PhysicsWorld;
 
 import android.content.Context;
 
 import com.badlogic.gdx.math.Vector2;
+import com.secondhand.controller.MainActivity;
 import com.secondhand.debug.MyDebug;
 import com.secondhand.model.entity.Enemy;
 import com.secondhand.model.entity.Entity;
@@ -59,6 +61,8 @@ public class GamePlayScene extends GameScene implements PropertyChangeListener {
 		return this.physicsWorld;
 	}
 
+	private EntityView entityView;
+	
 	public void registerNewLevel() {
 		
 		this.smoothCamera.setZoomFactor(1.0f);
@@ -74,47 +78,55 @@ public class GamePlayScene extends GameScene implements PropertyChangeListener {
 			this.detachChild(starsBackgrounds[2]);
 
 		}
-		
+
 		// starry sky
 
 		attachChild(starsBackgrounds[0] =new StarsBackground(50 * this.gameWorld.getLevelNumber(), 1.5f, width, height));
 		attachChild(starsBackgrounds[1] =new StarsBackground(100 * this.gameWorld.getLevelNumber(), 1.3f, width, height));
 		attachChild(starsBackgrounds[2] =new StarsBackground(130 * this.gameWorld.getLevelNumber(), 1.0f, width, height));
-	
+
 		this.smoothCamera.setBounds(0, width, 0, height);
 
 		MyDebug.d("1");
 		for (final Entity entity : gameWorld.getEntityList()) {
-			
+
 			MyDebug.d("next Level start attach");
-			EntityView entityView = null;
+			entityView = null;
 			MyDebug.d("2");
 			if (entity instanceof Planet) {
 				MyDebug.d("3");
-				entityView = new PlanetView(this.physicsWorld, (Planet) entity);
-				
+
+				entityView = new PlanetView(physicsWorld, (Planet) entity);
+
+
 			} else if (entity instanceof Enemy) {
 				MyDebug.d("5");
-				
-				entityView = new EnemyView(this.physicsWorld, (Enemy) entity);
+
+				entityView = new EnemyView(physicsWorld, (Enemy) entity);
+
+
 			} else if (entity instanceof Obstacle) {
 				MyDebug.d("6");
-				
-				entityView = new ObstacleView(this.physicsWorld,
+
+
+				entityView = new ObstacleView(physicsWorld,
 						(Obstacle) entity);
+
 			} else if (entity instanceof PowerUp) {
 				MyDebug.d("7");
-				
-				entityView = new PowerUpView(this.physicsWorld,
+
+
+				entityView = new PowerUpView(physicsWorld,
 						(PowerUp) entity);
+
 			} else {
 				MyDebug.e("invalid entity found in entityList");
 
 				System.exit(1);
 			}	
-			
+
 			MyDebug.d("4");
-			
+
 			MyDebug.d("next Level attach entity");
 			this.attachChild(entityView.getShape());
 		}
@@ -214,9 +226,32 @@ public class GamePlayScene extends GameScene implements PropertyChangeListener {
 	}
 
 	public void newLevelStarted() {
+		
+		/*final Engine engine = MainActivity.engine;
+		engine.registerUpdateHandler(new IUpdateHandler() {
+			@Override
+			public void onUpdate(final float pSecondsElapsed) {
+				engine.unregisterUpdateHandler(this);
+				engine.runOnUpdateThread(new Runnable() {
+					@Override
+					public void run() {
+						*/
+						registerNewLevel();
+
+/*
+						System.gc(); // NOPMD
+						MyDebug.i("level registration complete");						
+					}
+				});
+			}
+
+			@Override
+			public void reset() {
+			}
+		});*/
+
 		Sounds.getInstance().winSound.play();
 
-		registerNewLevel();
 	}
 
 	public void updateScore(final int newScore) {

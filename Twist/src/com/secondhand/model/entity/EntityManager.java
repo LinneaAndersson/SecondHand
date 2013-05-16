@@ -5,6 +5,8 @@ import java.beans.PropertyChangeListener;
 import java.util.List;
 import java.util.Stack;
 
+import com.secondhand.debug.MyDebug;
+
 
 // Manages all the entities of the GameWorld
 class EntityManager implements PropertyChangeListener{
@@ -56,8 +58,11 @@ class EntityManager implements PropertyChangeListener{
 	public void updateEntities() {
 		// remove bodies scheduled for deletion.
 		while(!scheduledForDeletionEntities.empty()) {
+			MyDebug.d("now delete the planet");
 				final Entity entity = scheduledForDeletionEntities.pop();
+				MyDebug.d("before size: "+ this.entityList.size());
 				removeEntityFromList(entity);
+				MyDebug.d("removed size: "+ this.entityList.size());
 				if(entity instanceof Enemy)
 					removeEnemyFromList((Enemy)entity);
 				entity.deleteBody();
@@ -81,10 +86,17 @@ class EntityManager implements PropertyChangeListener{
 	}
 	
 	public void removeAllEntitiesExpectForPlayer() {
+		
 		// player is not stored in entity list.
 		for(final Entity entity: this.entityList) {
-			entity.deleteBody();
-			entity.detachSelf();
+			MyDebug.d("clear all entities: " + entity);
+			MyDebug.d("scheduled for deleton: " + this.scheduledForDeletionEntities.size());
+			MyDebug.d("entity list: " + this.entityList.size());
+			
+			if(!entity.isScheduledForDeletion()) {
+				entity.detachSelf();
+				entity.deleteBody();
+			}
 		}
 		this.scheduledForDeletionEntities.clear();
 

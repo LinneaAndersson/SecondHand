@@ -108,16 +108,6 @@ public class EnemyTest extends TestCase {
 		assertEquals(Enemy.getMaxSize(), 40f);
 	}
 
-	public void testIsBiggerThan() {
-		float rad = 3.2f;
-		Enemy enemy = new Enemy(vector, rad);
-
-		Player other = new Player(vector, rad - 1, 3, 0);
-		assertTrue(enemy.canEat(other));
-
-		other = new Player(vector, rad + 1, 3 ,1);
-		assertFalse(enemy.canEat(other));
-	}
 
 	public void testGetHuntingArea() {
 		float rad = 4.2f;

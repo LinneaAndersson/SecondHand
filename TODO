@@ -13,6 +13,9 @@ rather, the game just goes on with negative lives.
 high score list
 * Completion meter is not reset properly when going to next level.
 * Fix transition from game play scene back to menu.
+* The effects of the "speed up" and "speed down" powerups should
+negate each other when both are activated at the same time; at the moment they don't, so fix it.
+
 
 - Documentation
 

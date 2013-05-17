@@ -229,7 +229,6 @@ public class GamePlayScene extends GameScene implements PropertyChangeListener {
 
 		this.loadLevel(gameWorld.getLevelNumber(), this.gameWorld.getPlayer().getLives(), 
 				this.gameWorld.getPlayer().getScore());
-		System.gc(); // NOPMD
 	}
 
 	public void updateScore(final int newScore) {

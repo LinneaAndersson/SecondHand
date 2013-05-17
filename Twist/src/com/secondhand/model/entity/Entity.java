@@ -36,11 +36,6 @@ public abstract class Entity implements IPhysicsObject{
 	public boolean isEdible() {
 		return this.isEdible;
 	}
-	
-	public void detachSelf() {
-		physics.detachSelf();
-		
-	}
 
 	public void setIsEdible(final boolean isEdible) {
 		this.isEdible = isEdible;
@@ -51,20 +46,6 @@ public abstract class Entity implements IPhysicsObject{
 
 	public int getScoreValue() {
 		return (int) (this.getRadius() * this.getScoreWorth());
-	}
-
-	// remove this entity from andengine rendering and the physics world.
-	private void removeEntity() {		destroyEntity();
-	}
-
-	/* TODO: Just always use this instead of removeEntity and wasEaten?
-	 * All those two methods do is call this one. */
-	public void destroyEntity() {
-
-		// we can't remove the body within a contact listener
-		scheduleBodyForDeletion();
-		
-		this.physics.detachSelf();
 	}
 
 	private void scheduleBodyForDeletion() {
@@ -78,7 +59,11 @@ public abstract class Entity implements IPhysicsObject{
 
 	// called when this entity is eaten up.
 	protected void wasEaten() {
-		removeEntity();
+
+		// we can't remove the body within a contact listener
+		scheduleBodyForDeletion();
+		
+		this.physics.detachSelf();
 	}
 		
 	public void addListener(final PropertyChangeListener observer) {

@@ -37,4 +37,14 @@ public class EntityTest extends TestCase {
 		
 		assertEquals(RADIUS * SCORE_WORTH, entity.getScoreValue());
 	}
+	
+	public void testSetIsEdible() {
+		Vector2 position = new Vector2();
+		boolean isEdible = true;
+		
+		Entity entity = getNewEntity(position, isEdible);
+		entity.setIsEdible(false);
+		
+		assertEquals(false, entity.isEdible());
+	}
 }

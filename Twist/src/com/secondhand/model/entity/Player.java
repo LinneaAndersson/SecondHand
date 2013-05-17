@@ -1,12 +1,10 @@
 package com.secondhand.model.entity;
 
-import com.secondhand.debug.MyDebug;
 import com.secondhand.model.physics.Vector2;
 import com.secondhand.model.resource.SoundType;
 
 public class Player extends BlackHole {
 
-	private String name;
 
 	// starting lives for a new player.
 	public static final int STARTING_LIVES = 3;
@@ -116,15 +114,6 @@ public class Player extends BlackHole {
 		changeLives(+1);
 	}
 
-	public void setName(final String name) {
-		this.name = name;
-	}
-
-	public String getName() {
-		return name;
-	}
-
-
 	// used to implement teleport, because you can't change the position inside
 	// a contact
 	// listener for some retarded reason(that would be too simple, now wouldn't
@@ -218,18 +207,4 @@ public class Player extends BlackHole {
 
 		this.physics.applyImpulse(force, forcePosition);
 	}
-	
-	
-	@Override
-	protected void finalize() throws Throwable 
-	{
-		try
-		{
-			MyDebug.i("player destroyed : " + this.toString());
-		}
-		finally
-		{
-			super.finalize();
-		}
-	}	
 }

@@ -151,9 +151,9 @@ public class RandomLevelGenerator {
 					break;
 				}
 			}
-
+			
 			entityList.add(powerUpFactory.getRandomPowerUp(new Vector2(x,
-					y), gameWorld, rng));
+					y), rng));
 		}
 	}
 

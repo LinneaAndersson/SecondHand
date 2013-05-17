@@ -1,7 +1,5 @@
 package com.secondhand.model.entity;
 
-import java.beans.PropertyChangeListener;
-
 import com.secondhand.debug.MyDebug;
 import com.secondhand.model.physics.Vector2;
 import com.secondhand.model.resource.SoundType;
@@ -11,7 +9,7 @@ public class Player extends BlackHole {
 	private String name;
 
 	// starting lives for a new player.
-	public static final int STARTING_LIVES = 1;
+	public static final int STARTING_LIVES = 3;
 
 	private int lives;
 
@@ -35,6 +33,8 @@ public class Player extends BlackHole {
 	public final static String SOUND = "Sound";
 	public final static String COLOR = "color";
 	public final static float DEFAULT_COLOR_VALUE = 1f;
+	public final static String RANDOMLY_REPOSITION_PLAYER = "RandomlyRepositionPlayer";
+	
 	// =============================================
 	public Player(final Vector2 position, final float radius, final int startingLives, final int score) {
 		super(position, radius, score);
@@ -99,7 +99,13 @@ public class Player extends BlackHole {
 	// the player loses a life and is repositioned.
 	public void kill() {
 		this.loseLife();
-		this.setNeedsToMovePosition(new Vector2(50, 50));
+		
+		this.moveToRandomUnoccupiedArea();
+	}
+	
+	public void moveToRandomUnoccupiedArea() {
+	
+		pcs.firePropertyChange(Player.RANDOMLY_REPOSITION_PLAYER, null, null);
 	}
 
 	public boolean lostAllLives() {

@@ -2,8 +2,6 @@ package com.secondhand.view.physics;
 
 import java.util.List;
 
-import org.anddev.andengine.engine.Engine;
-import org.anddev.andengine.engine.handler.IUpdateHandler;
 import org.anddev.andengine.entity.shape.IShape;
 import org.anddev.andengine.extension.physics.box2d.PhysicsConnector;
 import org.anddev.andengine.extension.physics.box2d.PhysicsWorld;
@@ -11,7 +9,6 @@ import org.anddev.andengine.extension.physics.box2d.util.constants.PhysicsConsta
 
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
-import com.secondhand.controller.MainActivity;
 import com.secondhand.debug.MyDebug;
 import com.secondhand.model.entity.CircleEntity;
 import com.secondhand.model.entity.Entity;

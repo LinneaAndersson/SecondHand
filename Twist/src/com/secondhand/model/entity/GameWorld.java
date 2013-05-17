@@ -1,15 +1,17 @@
 package com.secondhand.model.entity;
 
+import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 import java.util.List;
+import java.util.Random;
 
 import com.secondhand.debug.MyDebug;
 import com.secondhand.model.physics.IPhysicsWorld;
 import com.secondhand.model.physics.Vector2;
 import com.secondhand.model.randomlevelgenerator.RandomLevelGenerator;
 
-public class GameWorld implements IGameWorld {
+public class GameWorld implements IGameWorld, PropertyChangeListener {
 	
 	private final EntityManager entityManager;
 	
@@ -40,6 +42,7 @@ public class GameWorld implements IGameWorld {
 		
 		generateNewLevelEntities(levelNumber, playerLives, playerScore);
 		powerUpList.setPlayer(this.entityManager.getPlayer());
+		getPlayer().addListener(this);
 	}
 
 	@Override
@@ -110,7 +113,8 @@ public class GameWorld implements IGameWorld {
 		++this.levelNumber;
 		
 		this.entityManager.unregisterFromEntities();
-
+		getPlayer().removeListener(this);
+		
 		support.firePropertyChange("NextLevel", false, true);
 		// view will now destroy the gameworld and create a new one. 
 	}
@@ -160,6 +164,20 @@ public class GameWorld implements IGameWorld {
 		finally
 		{
 			super.finalize();
+		}
+	}
+
+	
+	@Override
+	public void propertyChange(final PropertyChangeEvent event) {
+		final String eventName = event.getPropertyName();
+
+		final Random rng = new Random();
+		if (eventName.equals(Player.RANDOMLY_REPOSITION_PLAYER)) {
+			getPlayer().setNeedsToMovePosition(this.mPhysic.getRandomUnOccupiedArea(
+			this.getLevelWidth(),
+			this.getLevelHeight(),
+			getPlayer().getRadius(), rng));
 		}
 	}	
 	

@@ -2,7 +2,6 @@ package com.secondhand.model.physics;
 
 import java.util.Random;
 
-
 public interface IPhysicsWorld {
 
 	// Make your Entities stay on the screen

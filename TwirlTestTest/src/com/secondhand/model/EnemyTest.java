@@ -19,6 +19,7 @@ import com.secondhand.model.resource.PlanetType;
 public class EnemyTest extends TestCase {
 	Vector2 vector = new Vector2(2f, 4f);
 	public float value;
+	float rad = 3.2f;
 
 	// This class in a class for testing enemy-methods. It just checks value and
 	// return them.
@@ -31,6 +32,7 @@ public class EnemyTest extends TestCase {
 			this.entity = entity;
 			entity.setPhysics(this);
 			this.isStraightLine = isStraightLine;
+			testVector= new Vector2(0,0);
 		}
 
 		@Override
@@ -78,7 +80,8 @@ public class EnemyTest extends TestCase {
 		}
 
 		@Override
-		public boolean isStraightLine(IPhysicsObject entity, IPhysicsObject enemy) {
+		public boolean isStraightLine(IPhysicsObject entity,
+				IPhysicsObject enemy) {
 			return isStraightLine;
 		}
 
@@ -88,8 +91,6 @@ public class EnemyTest extends TestCase {
 	}
 
 	public void testConstructor() {
-		float rad = 3.2f;
-
 		Enemy enemy = new Enemy(vector, rad);
 		Vector2 enemyPosition = enemy.getInitialPosition();
 		assertEquals(rad, enemy.getRadius());
@@ -104,6 +105,16 @@ public class EnemyTest extends TestCase {
 		} catch (AssertionError er) {
 			assertTrue(true);
 		}
+	}
+
+	public void testGetMinSize() {
+		Enemy enemy = new Enemy(vector, rad);
+		assertEquals(enemy.getMinSize(), 20f);
+	}
+
+	public void testGetMaxSize() {
+		Enemy enemy = new Enemy(vector, rad);
+		assertEquals(enemy.getMaxSize(), 40f);
 	}
 
 	public void testIsBiggerThan() {
@@ -152,21 +163,24 @@ public class EnemyTest extends TestCase {
 
 	public void testMoveEnemy() {
 		Vector2 vector = new Vector2(2f, 4f);
-		float rad = 3.2f;
+		float rad = 4f;
 		Enemy enemy = new Enemy(vector, rad);
 		Enemy enemyNotStraightLine = new Enemy(vector, rad);
+		Enemy enemySmall = new Enemy(vector, 2.5f);
 
 		EnemyTestPhysicsEntity enemyPhysics = new EnemyTestPhysicsEntity(enemy,
 				true);
+		EnemyTestPhysicsEntity enemySmallPhysics = new EnemyTestPhysicsEntity(
+				enemySmall, true);
 		EnemyTestPhysicsEntity enemyPhysicsNotStraightLine = new EnemyTestPhysicsEntity(
 				enemyNotStraightLine, false);
 
 		// different Player for different case.
-		Player playerOutOfRange = new Player(new Vector2(200f, 200f), 2.0f);
-		Player playerInRangeClose = new Player(new Vector2(2f, 2f), 2.0f);
-		Player playerInRange = new Player(new Vector2(6f, 6f), 2.0f);
-		Player playerInRangeNotStrightLine = new Player(new Vector2(6f, 6f),
-				2.0f);
+		Player playerOutOfRange = new Player(new Vector2(200f, 200f), 3.0f);
+		Player playerInRangeClose = new Player(new Vector2(vector.x+1f,vector.x+1f), 3.0f);
+		Player playerInRange = new Player(new Vector2(vector.x+4f, vector.x+4f), 3.0f);
+		Player playerInRangeNotStrightLine = new Player(new Vector2(vector.x+4f, vector.x+4f),
+			3.0f);
 
 		new EnemyTestPhysicsEntity(playerOutOfRange, true);
 		new EnemyTestPhysicsEntity(playerInRangeClose, true);
@@ -267,7 +281,7 @@ public class EnemyTest extends TestCase {
 		enemy.moveEnemy(playerOutOfRange, entityList);
 		assertEquals(enemyPhysics.getImpulseVector().x, 0.0f);
 		assertEquals(enemyPhysics.getImpulseVector().y, 0.0f);
-		
+
 		// 1.3.2 player in range, but not straight line. No chasing!
 		enemyPhysicsNotStraightLine.applyImpulse(new Vector2(0, 0), 0);
 		enemyNotStraightLine.moveEnemy(playerInRangeNotStrightLine, entityList);
@@ -284,6 +298,18 @@ public class EnemyTest extends TestCase {
 				enemyPhysics.getImpulseVector().y,
 				(playerInRange.getInitialPosition().y - enemy
 						.getInitialPosition().y) * enemyHuntingArea);
+
+		// 2 Enemy is smaller than player and player is in range and straight
+		// line, enemy will retreat
+		entityList.clear();
+		enemySmallPhysics.applyImpulse(new Vector2(0, 0), 0);
+		enemySmall.moveEnemy(playerInRange, entityList);
+		assertEquals(enemySmallPhysics.getImpulseVector().x,
+				(enemySmall.getInitialPosition().x) * enemyHuntingArea
+						- playerInRange.getInitialPosition().x);
+		assertEquals(enemySmallPhysics.getImpulseVector().y,
+				(enemySmall.getInitialPosition().y) * enemyHuntingArea
+						- playerInRange.getInitialPosition().y);
 
 	}
 }

@@ -108,23 +108,21 @@ public class EnemyTest extends TestCase {
 	}
 
 	public void testGetMinSize() {
-		Enemy enemy = new Enemy(vector, rad);
-		assertEquals(enemy.getMinSize(), 20f);
+		assertEquals(Enemy.getMinSize(), 20f);
 	}
 
 	public void testGetMaxSize() {
-		Enemy enemy = new Enemy(vector, rad);
-		assertEquals(enemy.getMaxSize(), 40f);
+		assertEquals(Enemy.getMaxSize(), 40f);
 	}
 
 	public void testIsBiggerThan() {
 		float rad = 3.2f;
 		Enemy enemy = new Enemy(vector, rad);
 
-		Player other = new Player(vector, rad - 1);
+		Player other = new Player(vector, rad - 1, 3, 0);
 		assertTrue(enemy.canEat(other));
 
-		other = new Player(vector, rad + 1);
+		other = new Player(vector, rad + 1, 3 ,1);
 		assertFalse(enemy.canEat(other));
 	}
 
@@ -176,11 +174,10 @@ public class EnemyTest extends TestCase {
 				enemyNotStraightLine, false);
 
 		// different Player for different case.
-		Player playerOutOfRange = new Player(new Vector2(200f, 200f), 3.0f);
-		Player playerInRangeClose = new Player(new Vector2(vector.x+1f,vector.x+1f), 3.0f);
-		Player playerInRange = new Player(new Vector2(vector.x+4f, vector.x+4f), 3.0f);
-		Player playerInRangeNotStrightLine = new Player(new Vector2(vector.x+4f, vector.x+4f),
-			3.0f);
+		Player playerOutOfRange = new Player(new Vector2(200f, 200f), 3.0f, 3, 1);
+		Player playerInRangeClose = new Player(new Vector2(vector.x+1f,vector.x+1f), 3.0f, 3, 1);
+		Player playerInRange = new Player(new Vector2(vector.x+4f, vector.x+4f), 3.0f, 3 ,1);
+		Player playerInRangeNotStrightLine = new Player(new Vector2(vector.x+4f, vector.x+4f),3.0f, 3, 1);
 
 		new EnemyTestPhysicsEntity(playerOutOfRange, true);
 		new EnemyTestPhysicsEntity(playerInRangeClose, true);
@@ -193,7 +190,7 @@ public class EnemyTest extends TestCase {
 		// 1. I will check with enemy radius bigger than the other Entities
 
 		// 1.1 Planet is in Enemies huntingrange.
-		List<Entity> entityList = new ArrayList();
+		final List<Entity> entityList = new ArrayList();
 		entityList.add(new Planet(new Vector2(3f, 3f), 2.0f, PlanetType.DRUGS));
 		new EnemyTestPhysicsEntity(entityList.get(0), true);
 
@@ -270,7 +267,7 @@ public class EnemyTest extends TestCase {
 		// enemy will chase the eatable-entity.
 		entityList.clear();
 		entityList.add(new Obstacle(new Vector2(2f, 2f), new ArrayList()));
-		entityList.add(new RandomPowerUp(new Vector2(4f, 4f), null));
+		entityList.add(new RandomPowerUp(new Vector2(4f, 4f)));
 
 		new EnemyTestPhysicsEntity(entityList.get(0), true);
 		new EnemyTestPhysicsEntity(entityList.get(1), true);

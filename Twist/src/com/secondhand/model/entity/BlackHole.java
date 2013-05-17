@@ -9,8 +9,6 @@ public abstract class BlackHole extends CircleEntity {
 
 	private boolean canEatInedibles;
 
-	private final Vector2 position;
-
 	// I put this in BlackHole, so enemy black holes will also have scores
 	// but placing it here made coding the eating logic much more convenient.
 	// but we can simply ignore the score for enemy black holes.
@@ -18,23 +16,9 @@ public abstract class BlackHole extends CircleEntity {
 
 	public BlackHole(final Vector2 position, final float radius, final int score) {
 		super(position, radius, true);
-		this.position = position;
-		this.score = 0;
+		this.score = score;
 
-		this.canEatInedibles = false;
-	}
-	
-	@Override
-	public float getRadius(){
-		return radius;
-	}
-
-	public float getPosX() {
-		return position.y;
-	}
-
-	public float getPosY() {
-		return position.y;
+		setCanEatInedibles(false);
 	}
 
 	public boolean canEatInedibles() {

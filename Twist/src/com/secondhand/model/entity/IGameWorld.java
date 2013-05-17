@@ -10,6 +10,7 @@ import com.secondhand.model.physics.Vector2;
 public interface IGameWorld {
 	
 	void addListener(final PropertyChangeListener listener);
+	void removeListener(final PropertyChangeListener listener);
 	
 	PropertyChangeSupport getPropertyChangeSupport();
 	
@@ -25,8 +26,7 @@ public interface IGameWorld {
 	
 	List<Entity> getEntityList();
 	
-	EntityManager getEntityManager();
-	
+
 	boolean checkPlayerBigEnough();	
 	
 	boolean isGameOver();

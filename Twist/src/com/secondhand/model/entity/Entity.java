@@ -14,7 +14,7 @@ public abstract class Entity implements IPhysicsObject{
 	protected IPhysicsEntity physics;
 	protected PropertyChangeSupport pcs = new PropertyChangeSupport(this);
 	private final Vector2 initialPosition;
-
+	
 	public Entity(final Vector2 position, final boolean isEdible) {
 		this.isEdible = isEdible;
 		this.initialPosition = position;
@@ -28,6 +28,7 @@ public abstract class Entity implements IPhysicsObject{
 		this.physics = physics;
 		onPhysicsAssigned();
 	}
+
 	
 	public abstract void onPhysicsAssigned();
 
@@ -38,7 +39,7 @@ public abstract class Entity implements IPhysicsObject{
 	
 	public void detachSelf() {
 		physics.detachSelf();
-
+		
 	}
 
 	public void setIsEdible(final boolean isEdible) {
@@ -62,7 +63,7 @@ public abstract class Entity implements IPhysicsObject{
 
 		// we can't remove the body within a contact listener
 		scheduleBodyForDeletion();
-
+		
 		this.physics.detachSelf();
 	}
 
@@ -79,10 +80,15 @@ public abstract class Entity implements IPhysicsObject{
 	protected void wasEaten() {
 		removeEntity();
 	}
-	
-	public void addPropertyChangeListener(final PropertyChangeListener listener){
-		pcs.addPropertyChangeListener(listener);
+		
+	public void addListener(final PropertyChangeListener observer) {
+		this.pcs.addPropertyChangeListener(observer);
 	}
+	
+	public void removeListener(final PropertyChangeListener observer) {
+		this.pcs.removePropertyChangeListener(observer);
+	}
+
 
 	@Override
 	 public float getCenterX() {

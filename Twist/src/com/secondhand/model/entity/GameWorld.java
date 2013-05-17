@@ -1,18 +1,21 @@
 package com.secondhand.model.entity;
 
+import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 import java.util.List;
+import java.util.Random;
 
+import com.secondhand.debug.MyDebug;
 import com.secondhand.model.physics.IPhysicsWorld;
 import com.secondhand.model.physics.Vector2;
 import com.secondhand.model.randomlevelgenerator.RandomLevelGenerator;
 
-public class GameWorld implements IGameWorld {
+public class GameWorld implements IGameWorld, PropertyChangeListener {
 	
 	private final EntityManager entityManager;
 	
-	private static final int STARTING_LEVEL = 1;
+	public static final int STARTING_LEVEL = 1;
 
 	public static final int PLAYER_STARTING_SIZE = 30;
 
@@ -27,16 +30,19 @@ public class GameWorld implements IGameWorld {
 	
 	private final PowerUpList powerUpList;
 
-	public GameWorld(final IPhysicsWorld physics) {
-		// reset player
+	public GameWorld(final IPhysicsWorld physics,
+			final int levelNumber, final int playerLives, final int playerScore) {
+		
+		
 		this.powerUpList = new PowerUpList();
 		this.mPhysic = physics;
 		this.mPhysic.setCollisionResolver(new CollisionResolver(this));
 		this.support = new PropertyChangeSupport(this);
 		this.entityManager = new EntityManager();
 		
-		generateNewLevelEntities(STARTING_LEVEL);
+		generateNewLevelEntities(levelNumber, playerLives, playerScore);
 		powerUpList.setPlayer(this.entityManager.getPlayer());
+		getPlayer().addListener(this);
 	}
 
 	@Override
@@ -47,7 +53,11 @@ public class GameWorld implements IGameWorld {
 	@Override
 	public void addListener(final PropertyChangeListener listener) {
 		support.addPropertyChangeListener(listener);
-		getPlayer().addListener(listener);
+	}
+	
+	@Override
+	public void removeListener(final PropertyChangeListener listener) {
+		support.removePropertyChangeListener(listener);
 	}
 	
 	@Override
@@ -56,26 +66,18 @@ public class GameWorld implements IGameWorld {
 	}
 
 	// generate the level entities of a new level.
-	private void generateNewLevelEntities(final int levelNumber) {
+	private void generateNewLevelEntities(final int levelNumber,
+			final int playerLives, final int playerScore) {
 		this.levelNumber = levelNumber;
 			
 		final RandomLevelGenerator randomLevelGenerator =  new RandomLevelGenerator(this);
 		
-		// player hasn't yet been created
-		if(this.entityManager.getPlayer() == null) {
-			
-			// now create the new player
-			final Player player = new Player(randomLevelGenerator.playerPosition,
-					randomLevelGenerator.playerInitialSize);
-			player.setMaxSize(randomLevelGenerator.playerMaxSize);
-			this.entityManager.setPlayer(player);
-		}else {
-			
-			/*final Player player = this.entityManager.getPlayer();
-			player.setRadius(randomLevelGenerator.playerInitialSize);
-			player.setNeedsToMovePosition(randomLevelGenerator.playerPosition);
-			player.setMaxSize(randomLevelGenerator.playerMaxSize);	*/
-		}
+		// now create the new player
+		final Player player = new Player(randomLevelGenerator.playerPosition,
+				randomLevelGenerator.playerInitialSize, playerLives, playerScore);
+		player.setMaxSize(randomLevelGenerator.playerMaxSize);
+		this.entityManager.setPlayer(player);
+
 
 		this.levelWidth = randomLevelGenerator.levelWidth;
 		this.levelHeight = randomLevelGenerator.levelHeight;
@@ -109,30 +111,22 @@ public class GameWorld implements IGameWorld {
 	private void nextLevel() {
 
 		++this.levelNumber;
-
-		// destroy the entities expect for player
-		clearLevel();
-
-		this.mPhysic.removeWorldBounds();
-
-		// first load the new level entities:
-		generateNewLevelEntities(this.levelNumber);
-
-		// then notify the view of this, so that it can place out the new
-		// Entities in AndEngine for rendering.
+		
+		this.entityManager.unregisterFromEntities();
+		getPlayer().removeListener(this);
+		
 		support.firePropertyChange("NextLevel", false, true);
+		// view will now destroy the gameworld and create a new one. 
 	}
 
 	// update game world for this frame.
 	@Override
 	public void updateGameWorld() {
-
+		
 		if (checkPlayerBigEnough()) {
 			nextLevel();
-			//System.gc(); // NOPMD
-		} else {
-			this.entityManager.updateEntities();
-		}
+		} else 
+			this.entityManager.updateEntities();	
 	}
 
 	@Override
@@ -156,19 +150,35 @@ public class GameWorld implements IGameWorld {
 	}
 
 	@Override
-	public EntityManager getEntityManager() {
-		return this.entityManager;
-	}
-
-	// remove every entity(both from the physics world and andengine rendering)
-	// from the world expect for the player.
-	private void clearLevel() {
-		this.entityManager.removeAllEntitiesExpectForPlayer();
-	}
-
-	@Override
 	public void updateWithTouchInput(final Vector2 v) {
 		this.getPlayer().reachToTouch(v);
 	}
 
+	@Override
+	protected void finalize() throws Throwable 
+	{
+		try
+		{
+			MyDebug.i("gameworld destroyed : " + this.toString());
+		}
+		finally
+		{
+			super.finalize();
+		}
+	}
+
+	
+	@Override
+	public void propertyChange(final PropertyChangeEvent event) {
+		final String eventName = event.getPropertyName();
+
+		final Random rng = new Random();
+		if (eventName.equals(Player.RANDOMLY_REPOSITION_PLAYER)) {
+			getPlayer().setNeedsToMovePosition(this.mPhysic.getRandomUnOccupiedArea(
+			this.getLevelWidth(),
+			this.getLevelHeight(),
+			getPlayer().getRadius(), rng));
+		}
+	}	
+	
 }

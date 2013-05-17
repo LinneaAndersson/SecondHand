@@ -19,30 +19,52 @@ import com.secondhand.view.scene.GamePlayScene;
 
 final class GamePlaySceneController extends Entity implements PropertyChangeListener {
 
-	private final IGameWorld gameWorld;
+	private IGameWorld gameWorld;
 	private final SceneController sceneController;
+	private final GamePlayScene gamePlayScene;
 
 	public GamePlaySceneController(final GamePlayScene scene,
 			final SceneController sceneController) {
 		super();
 		
-		final GamePlayScene gamePlayScene = scene;
-		this.sceneController = sceneController;
 
-		gameWorld = scene.getGameWorld();
+		this.gamePlayScene = scene;
+		this.sceneController = sceneController;
+		gamePlayScene.setOnSceneTouchListener(new GameSceneTouchListener());
+
+		registerController();
+	}
+	
+	// done every time the level changes.
+	private void registerController() {
+		gameWorld = gamePlayScene.getGameWorld();
 
 		gamePlayScene.attachChild(this);
+		
+		gameWorld.addListener(this);
 
 		//PlayerUtil adds this Controller as a listener
 		this.gameWorld.getPlayer().addListener(this);
 		
 		// TODO: potential memory leak:
 		gameWorld.getPowerUpList().addListener(this);
-		gameWorld.getPowerUpList().addListener(scene);
-		
-		scene.setOnSceneTouchListener(new GameSceneTouchListener());
-
+		gameWorld.getPowerUpList().addListener(gamePlayScene);
+	
 		gameWorld.getPhysics().setContactListener();
+	}
+	
+	// we must unregister the listeners, elsewise the program will leak memory.
+	public void unregisterController() {
+		gamePlayScene.detachChild(this);
+		
+		this.gameWorld.removeListener(this);
+		
+		this.gameWorld.getPlayer().removeListener(this);
+		
+		this.gameWorld.getPowerUpList().removeListener(this);
+		this.gameWorld.getPowerUpList().removeListener(gamePlayScene);
+		
+		gameWorld.getPhysics().unsetContactListener();
 	}
 
 	private class GameSceneTouchListener implements IOnSceneTouchListener {
@@ -67,6 +89,8 @@ final class GamePlaySceneController extends Entity implements PropertyChangeList
 			if (!HighScoreList.getInstance().madeItToHighScoreList(
 					gameWorld.getPlayer().getScore())) {
 				// go to high score.
+				
+				this.unregisterController();
 				this.sceneController.switchScene(AllScenes.HIGH_SCORE_SCENE);
 			}
 
@@ -79,7 +103,8 @@ final class GamePlaySceneController extends Entity implements PropertyChangeList
 				InputDialogManager.showing = false;
 
 				InputDialogManager.input = null;
-
+				
+				this.unregisterController();
 				this.sceneController.switchScene(AllScenes.HIGH_SCORE_SCENE);
 
 			} else if (HighScoreList.getInstance().madeItToHighScoreList(
@@ -103,6 +128,10 @@ final class GamePlaySceneController extends Entity implements PropertyChangeList
 		if (name.equals(PowerUpList.ADD_POWERUP)) {
 			MyDebug.d("property change in controller");
 			this.sceneController.getSceneManager().registerUpdateHander(TimerFactory.createTimer(gameWorld, (PowerUp)event.getNewValue()));
-		}
+		} else if (name.equals("NextLevel")) {
+			this.unregisterController();
+			this.gamePlayScene.newLevelStarted();
+			this.registerController();
+		} 
 	}
 }

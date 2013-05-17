@@ -7,6 +7,7 @@ import org.anddev.andengine.entity.shape.IShape;
 import org.anddev.andengine.extension.physics.box2d.PhysicsWorld;
 
 import com.badlogic.gdx.physics.box2d.Body;
+import com.secondhand.debug.MyDebug;
 import com.secondhand.model.entity.Entity;
 import com.secondhand.view.physics.MyPhysicsEntity;
 
@@ -18,7 +19,7 @@ public abstract class EntityView implements PropertyChangeListener {
 	public EntityView(final PhysicsWorld physicsWorld, final Entity entity , final IShape shape,
 			final Body body){
 		this.shape=shape;
-		entity.addPropertyChangeListener(this);
+		entity.addListener(this);
 		this.body = body;
 		this.entity=entity;
 		
@@ -42,4 +43,19 @@ public abstract class EntityView implements PropertyChangeListener {
 	@Override
 	public void propertyChange(final PropertyChangeEvent event) {
 	}
+	
+
+	@Override
+	protected void finalize() throws Throwable 
+	{
+		try
+		{
+			MyDebug.i("entity view destroyed : " + this.toString());
+		}
+		finally
+		{
+			super.finalize();
+		}
+	}	
 }
+

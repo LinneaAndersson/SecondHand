@@ -23,7 +23,7 @@ public class Enemy extends BlackHole {
 	}
 
 	public Enemy(final Vector2 vector, final float radius) {
-		super(vector, radius);
+		super(vector, radius, 0);
 		huntingArea = getHuntingArea();
 		this.maxSpeed = ENEMY_MAX_SPEED;
 	}
@@ -134,5 +134,18 @@ public class Enemy extends BlackHole {
 		physics.applyImpulse(new Vector2(getCenterX() - danger.getCenterX(),
 				getCenterY() - danger.getCenterY()).mul(0.02f), getMaxSpeed());
 	}
+
+	@Override
+	protected void finalize() throws Throwable 
+	{
+		try
+		{
+			MyDebug.i("enemy destroyed : " + this.toString());
+		}
+		finally
+		{
+			super.finalize();
+		}
+	}	
 
 }

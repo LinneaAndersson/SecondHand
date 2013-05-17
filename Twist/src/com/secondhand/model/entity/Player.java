@@ -1,7 +1,6 @@
 package com.secondhand.model.entity;
 
-import java.beans.PropertyChangeListener;
-
+import com.secondhand.debug.MyDebug;
 import com.secondhand.model.physics.Vector2;
 import com.secondhand.model.resource.SoundType;
 
@@ -10,7 +9,7 @@ public class Player extends BlackHole {
 	private String name;
 
 	// starting lives for a new player.
-	private static final int STARTING_LIVES = 1;
+	public static final int STARTING_LIVES = 3;
 
 	private int lives;
 
@@ -34,9 +33,11 @@ public class Player extends BlackHole {
 	public final static String SOUND = "Sound";
 	public final static String COLOR = "color";
 	public final static float DEFAULT_COLOR_VALUE = 1f;
+	public final static String RANDOMLY_REPOSITION_PLAYER = "RandomlyRepositionPlayer";
+	
 	// =============================================
-	public Player(final Vector2 position, final float radius, final int startingLives) {
-		super(position, radius);
+	public Player(final Vector2 position, final float radius, final int startingLives, final int score) {
+		super(position, radius, score);
 
 		this.speedMultiplier = 1;
 		this.lives = startingLives;
@@ -46,10 +47,6 @@ public class Player extends BlackHole {
 		RGB[1] = DEFAULT_COLOR_VALUE;
 		RGB[2] = DEFAULT_COLOR_VALUE;
 
-	}
-
-	public Player(final Vector2 position, final float radius) {
-		this(position, radius, STARTING_LIVES);
 	}
 
 	public int getLives() {
@@ -102,7 +99,13 @@ public class Player extends BlackHole {
 	// the player loses a life and is repositioned.
 	public void kill() {
 		this.loseLife();
-		this.setNeedsToMovePosition(new Vector2(50, 50));
+		
+		this.moveToRandomUnoccupiedArea();
+	}
+	
+	public void moveToRandomUnoccupiedArea() {
+	
+		pcs.firePropertyChange(Player.RANDOMLY_REPOSITION_PLAYER, null, null);
 	}
 
 	public boolean lostAllLives() {
@@ -121,9 +124,6 @@ public class Player extends BlackHole {
 		return name;
 	}
 
-	public void addListener(final PropertyChangeListener observer) {
-		this.pcs.addPropertyChangeListener(observer);
-	}
 
 	// used to implement teleport, because you can't change the position inside
 	// a contact
@@ -217,4 +217,18 @@ public class Player extends BlackHole {
 
 		this.physics.applyImpulse(force, forcePosition);
 	}
+	
+	
+	@Override
+	protected void finalize() throws Throwable 
+	{
+		try
+		{
+			MyDebug.i("player destroyed : " + this.toString());
+		}
+		finally
+		{
+			super.finalize();
+		}
+	}	
 }

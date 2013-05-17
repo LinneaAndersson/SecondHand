@@ -33,6 +33,10 @@ public final class PowerUpFactory {
 		
 		int tw = 0;
 		for(final Weight weight: this.weights) {
+			if(weight.weight < 1 || weight.weight > 10) {
+				MyDebug.d("powerup frequency must be specified in a scale from 1 to 10");
+				System.exit(1);
+			}
 			tw += weight.weight;
 		}
 		this.totalWeight = tw;
@@ -40,7 +44,7 @@ public final class PowerUpFactory {
 	
 	
 	// used for level generation., 
-	public PowerUp getRandomPowerUp(final Vector2 position, final IGameWorld gameWorld, final Random rng) { 
+	public PowerUp getRandomPowerUp(final Vector2 position, final Random rng) { 
 		
 		// do the Weighted Random Distribution
 		final int index = rng.nextInt(totalWeight);
@@ -56,9 +60,7 @@ public final class PowerUpFactory {
 		
 		// now construct the randomized powerup:
 		
-		return result.constructPowerUp(position, gameWorld);
-		
-	
+		return result.constructPowerUp(position);
 	}
 	
 	private class Weight {
@@ -70,7 +72,7 @@ public final class PowerUpFactory {
 			this.weight = weight;
 		}
 		
-		public PowerUp constructPowerUp(final Vector2 position, final IGameWorld gameWorld) {
+		public PowerUp constructPowerUp(final Vector2 position) {
 			if(powerUp == 1) {
 				MyDebug.d("double score");
 				return new DoubleScore(position);
@@ -85,10 +87,10 @@ public final class PowerUpFactory {
 				return new MirroredMovement(position);
 			} else if(powerUp == 5) {
 				MyDebug.d("random powerup");
-				return new RandomPowerUp(position, gameWorld);
+				return new RandomPowerUp(position);
 			} else if(powerUp == 6) {
 				MyDebug.d("random teleport");
-				return new RandomTeleport(position, gameWorld);
+				return new RandomTeleport(position);
 			} else if(powerUp == 7) {
 				MyDebug.d("score up");
 				return new ScoreUp(position);

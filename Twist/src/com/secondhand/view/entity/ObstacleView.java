@@ -2,7 +2,6 @@ package com.secondhand.view.entity;
 
 import org.anddev.andengine.extension.physics.box2d.PhysicsWorld;
 
-import com.secondhand.debug.MyDebug;
 import com.secondhand.model.entity.Obstacle;
 import com.secondhand.view.opengl.TexturedPolygon;
 import com.secondhand.view.physics.FixtureDefs;
@@ -17,8 +16,6 @@ public class ObstacleView extends PolygonView {
 				obstacle.getPolygon(),
 				TextureRegions.getInstance().obstacleTexture)
 		, FixtureDefs.OBSTACLE_FIXTURE_DEF);
-		MyDebug.d("obstacle view constructor");
-		
 	}
 
 }

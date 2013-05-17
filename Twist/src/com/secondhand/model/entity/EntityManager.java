@@ -5,6 +5,8 @@ import java.beans.PropertyChangeListener;
 import java.util.List;
 import java.util.Stack;
 
+import com.secondhand.debug.MyDebug;
+
 
 // Manages all the entities of the GameWorld
 class EntityManager implements PropertyChangeListener{
@@ -21,13 +23,14 @@ class EntityManager implements PropertyChangeListener{
 
 	public void setPlayer(final Player player) {
 		this.player = player;
-		player.addListener(this);
+		// no need to listen to player, because the player is never deleted,
+		// it is merely repositioned when eaten up.
 	}
 	
 	public void setEntityList(final List<Entity> entityList) {
 		this.entityList = entityList;
 		for(final Entity entity:entityList){
-			entity.addPropertyChangeListener(this);
+			entity.addListener(this);
 		}
 	}
 	
@@ -57,6 +60,8 @@ class EntityManager implements PropertyChangeListener{
 		// remove bodies scheduled for deletion.
 		while(!scheduledForDeletionEntities.empty()) {
 				final Entity entity = scheduledForDeletionEntities.pop();
+				
+				entity.removeListener(this);
 				removeEntityFromList(entity);
 				if(entity instanceof Enemy)
 					removeEnemyFromList((Enemy)entity);
@@ -67,29 +72,16 @@ class EntityManager implements PropertyChangeListener{
 		this.player.moveToNeededPositionIfNecessary();
 	}
 	
-	
 	public void removeEntityFromList(final Entity entity) {
 		this.entityList.remove(entity);
 	}
 	
-	public void removeEnemyFromList(final Enemy enemy) {
+	private void removeEnemyFromList(final Enemy enemy) {
 		this.enemyList.remove(enemy);
 	}
 	
-	public void scheduleEntityForDeletion(final Entity entity) {
+	private void scheduleEntityForDeletion(final Entity entity) {
 		this.scheduledForDeletionEntities.add(entity);
-	}
-	
-	public void removeAllEntitiesExpectForPlayer() {
-		// player is not stored in entity list.
-		for(final Entity entity: this.entityList) {
-			entity.deleteBody();
-			entity.detachSelf();
-		}
-		this.scheduledForDeletionEntities.clear();
-
-		this.entityList.clear();
-		this.enemyList.clear();
 	}
 
 	@Override
@@ -97,7 +89,25 @@ class EntityManager implements PropertyChangeListener{
 		if(event.getPropertyName().equalsIgnoreCase("isScheduleForDeletion")){
 			scheduleEntityForDeletion((Entity) (event.getNewValue()));
 		}
-		
 	}
 	
+	// remove the property change listeners from all the entities.
+	public void unregisterFromEntities() {
+		for(Entity entity: this.entityList) {
+			entity.removeListener(this);
+		}
+	}
+	
+	@Override
+	protected void finalize() throws Throwable 
+	{
+		try
+		{
+			MyDebug.i("entitymanager destroyed : " + this.toString());
+		}
+		finally
+		{
+			super.finalize();
+		}
+	}	
 }

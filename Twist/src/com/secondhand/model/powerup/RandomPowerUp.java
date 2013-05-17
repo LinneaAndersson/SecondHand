@@ -14,8 +14,7 @@ public class RandomPowerUp extends PowerUp {
 	private static final int NUM_POWER_UPS = 10;
 
 	
-	public RandomPowerUp(final Vector2 position,
-			final  IGameWorld gameWorld) {
+	public RandomPowerUp(final Vector2 position) {
 		super(position, PowerUpType.RANDOM_POWER_UP, 0);
 
 		final Random rng = new Random();
@@ -27,7 +26,7 @@ public class RandomPowerUp extends PowerUp {
 		} else if(rand == 1) {
 			randomPowerUp =  new ExtraLife(position);
 		}else if(rand == 2) {
-			randomPowerUp =  new RandomTeleport(position, gameWorld);
+			randomPowerUp =  new RandomTeleport(position);
 		}else if(rand == 3) {
 			randomPowerUp =  new ScoreUp(position);
 		}else if(rand == 4) {

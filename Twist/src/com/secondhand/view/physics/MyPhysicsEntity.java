@@ -15,6 +15,7 @@ import com.secondhand.model.entity.Entity;
 import com.secondhand.model.entity.Player;
 import com.secondhand.model.physics.IPhysicsEntity;
 import com.secondhand.model.physics.IPhysicsObject;
+import com.secondhand.view.scene.ThreadUtil;
 
 public class MyPhysicsEntity implements IPhysicsEntity {
 	private final Body body;
@@ -51,10 +52,17 @@ public class MyPhysicsEntity implements IPhysicsEntity {
 
 	@Override
 	public void deleteBody() {
-		physicsWorld.unregisterPhysicsConnector(physicsConnector);
-		physicsWorld.destroyBody(body);
+		
+		ThreadUtil.runOnUpdateThread(new ThreadUtil.Method() {
+			@Override
+			public void method() {
+				physicsWorld.unregisterPhysicsConnector(physicsConnector);
+				physicsWorld.destroyBody(body);
 
-		MyDebug.i(physicsConnector.getBody() + " destruction complete");
+				MyDebug.i(physicsConnector.getBody() + " destruction complete");						
+
+			}
+		});
 	}
 
 	@Override

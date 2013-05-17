@@ -59,14 +59,15 @@ public class GamePlayScene extends GameScene implements PropertyChangeListener {
 		return this.physicsWorld;
 	}
 
-	public void registerNewLevel() {
-		
-		this.smoothCamera.setZoomFactor(1.0f);
 	
+	public void registerNewLevel() {
+
+		this.smoothCamera.setZoomFactor(1.0f);
+
 		final float width = gameWorld.getLevelWidth();
 		final float height = gameWorld.getLevelHeight();
-		
-		
+
+
 		// clear the old background.
 		if(starsBackgrounds[0] != null) {
 			this.detachChild(starsBackgrounds[0]);
@@ -74,93 +75,88 @@ public class GamePlayScene extends GameScene implements PropertyChangeListener {
 			this.detachChild(starsBackgrounds[2]);
 
 		}
-		
+
 		// starry sky
 
 		attachChild(starsBackgrounds[0] =new StarsBackground(50 * this.gameWorld.getLevelNumber(), 1.5f, width, height));
 		attachChild(starsBackgrounds[1] =new StarsBackground(100 * this.gameWorld.getLevelNumber(), 1.3f, width, height));
 		attachChild(starsBackgrounds[2] =new StarsBackground(130 * this.gameWorld.getLevelNumber(), 1.0f, width, height));
-	
+
 		this.smoothCamera.setBounds(0, width, 0, height);
 
-		MyDebug.d("1");
 		for (final Entity entity : gameWorld.getEntityList()) {
+
+			EntityView entityView;
 			
-			MyDebug.d("next Level start attach");
-			EntityView entityView = null;
-			MyDebug.d("2");
+			entityView = null;
 			if (entity instanceof Planet) {
-				MyDebug.d("3");
-				entityView = new PlanetView(this.physicsWorld, (Planet) entity);
-				
+				entityView = new PlanetView(physicsWorld, (Planet) entity);
+
+
 			} else if (entity instanceof Enemy) {
-				MyDebug.d("5");
-				
-				entityView = new EnemyView(this.physicsWorld, (Enemy) entity);
+				entityView = new EnemyView(physicsWorld, (Enemy) entity);
 			} else if (entity instanceof Obstacle) {
-				MyDebug.d("6");
-				
-				entityView = new ObstacleView(this.physicsWorld,
+				entityView = new ObstacleView(physicsWorld,
 						(Obstacle) entity);
 			} else if (entity instanceof PowerUp) {
-				MyDebug.d("7");
-				
-				entityView = new PowerUpView(this.physicsWorld,
+				entityView = new PowerUpView(physicsWorld,
 						(PowerUp) entity);
+
 			} else {
 				MyDebug.e("invalid entity found in entityList");
-
 				System.exit(1);
 			}	
-			
-			MyDebug.d("4");
-			
-			MyDebug.d("next Level attach entity");
+
 			this.attachChild(entityView.getShape());
 		}
-		MyDebug.d("next Level attach done");
 	}
 
 	private void setupView() {
-		final float width = gameWorld.getLevelWidth();
-		final float height = gameWorld.getLevelHeight();
-		this.smoothCamera.setBounds(0, width, 0, height);
 		this.smoothCamera.setBoundsEnabled(true);
-
 
 		final PlayerView playerView = new PlayerView(physicsWorld,
 				gameWorld.getPlayer());
 		attachChild(playerView.getShape());
-		engine.getCamera().setChaseEntity(playerView.getShape());
 
 		// we want to restore the camera when returning to the menu. 
-		initialCameraPos = new Vector2(smoothCamera.getCenterX(),
-				smoothCamera.getCenterY());
-
+	
 		registerUpdateHandler(physicsWorld);
+		
 
 		// setup the HUD
 		final Player player = gameWorld.getPlayer();
 		hud = new HUD();
 		this.scoreLivesText = new ScoreLivesText(new Vector2(10, 10),
 				player.getScore(), player.getLives(), 0f );
+
 		hud.attachChild(scoreLivesText);
+		engine.getCamera().setChaseEntity(playerView.getShape());
+
+	}
+	
+	public void loadLevel(final int levelNumber, final int playerLives, final int playerScore) {
+		physicsWorld = new PhysicsWorld(new Vector2(), true);
+
+		this.gameWorld = new GameWorld(new MyPhysicsWorld(physicsWorld), 
+				levelNumber,playerLives, playerScore);
+		
+		gameWorld.getPlayer().addListener(this);
+		
+		registerNewLevel();
+		setupView();
+		
+		engine.getCamera().setHUD(hud);		
 	}
 
 	@Override
 	public void loadScene() {
 		super.loadScene();
+		initialCameraPos = new Vector2(smoothCamera.getCenterX(),
+				smoothCamera.getCenterY());
 
-		physicsWorld = new PhysicsWorld(new Vector2(), true);
-
-		this.gameWorld = new GameWorld(new MyPhysicsWorld(physicsWorld));
-		
-		gameWorld.addListener(this);
-		
-		setupView();
-		registerNewLevel();
-		engine.getCamera().setHUD(hud);
+		this.loadLevel(GameWorld.STARTING_LEVEL, Player.STARTING_LIVES, 0);
 	}
+	
 
 	// reset camera before the menu is shown
 	public void resetCamera() {
@@ -181,13 +177,14 @@ public class GamePlayScene extends GameScene implements PropertyChangeListener {
 	@Override
 	public void onSwitchScene() {
 		super.onSwitchScene();
+		this.unregisterScene();
 		resetCamera();
-
-	}
+	}	
 
 	@Override
 	public AllScenes getParentScene() {
-		return AllScenes.MAIN_MENU_SCENE;
+		// shut down the entire app.
+		return null;
 	}
 
 	// zoom out when player grows.
@@ -213,10 +210,25 @@ public class GamePlayScene extends GameScene implements PropertyChangeListener {
 		this.hud.attachChild(new FadingNotifierText(str, cameraPosition));
 	}
 
+	// unregister all update handlers and such from the scene. 
+	public void unregisterScene() {
+		// remove the listeners and stuff
+				this.detachChildren();
+				
+				gameWorld.getPlayer().removeListener(this);
+				
+				this.unregisterUpdateHandler(this.physicsWorld);
+				
+	}
+	
 	public void newLevelStarted() {
+		
+		unregisterScene();
+		
 		Sounds.getInstance().winSound.play();
 
-		registerNewLevel();
+		this.loadLevel(gameWorld.getLevelNumber(), this.gameWorld.getPlayer().getLives(), 
+				this.gameWorld.getPlayer().getScore());
 	}
 
 	public void updateScore(final int newScore) {
@@ -237,6 +249,7 @@ public class GamePlayScene extends GameScene implements PropertyChangeListener {
 		final String eventName = event.getPropertyName();
 
 		if (eventName.equals(Player.INCREASE_SCORE)) {
+			MyDebug.d("update score");
 			updateScore((Integer) event.getNewValue());
 		} else if (eventName.equals(Player.INCREASE_LIFE)) {
 			updateLives((Integer) event.getNewValue());
@@ -254,8 +267,6 @@ public class GamePlayScene extends GameScene implements PropertyChangeListener {
 			
 			this.scoreLivesText.setCompletionRatio(completion);
 			
-		} else if (eventName.equals("NextLevel")) {
-			newLevelStarted();
 		} else if (eventName.equals("PlayerWallCollision")) {
 			onPlayerWallCollision();
 		} 

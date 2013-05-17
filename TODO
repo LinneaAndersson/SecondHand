@@ -9,9 +9,13 @@ Important things that must be done for the success of the project:
 callback method instead. - Done, but just changed the propertyChange.
 * sometimes you are not delegated to the high score scene after game over,
 rather, the game just goes on with negative lives.
-* Examine if the line
-PowerUpList.getInstance().addListener(this);
-in GamePlaySceneController can possibly cause a memory leak.
+* the camera is sometimes not properly restored before showing the
+high score list
+* Completion meter is not reset properly when going to next level.
+* Fix transition from game play scene back to menu.
+* The effects of the "speed up" and "speed down" powerups should
+negate each other when both are activated at the same time; at the moment they don't, so fix it.
+
 
 - Documentation
 
@@ -33,13 +37,5 @@ Things we can do if we have time:
 * Improve the level generation
 * Fix better textures for the following powerups: "eat obstacle",
 * "Score up", "shield", "speed
-
-=========================================================
-Things we will never do because they're fucking pointless
-* Move physics out of the MVC.
-
-
-
-
 
 

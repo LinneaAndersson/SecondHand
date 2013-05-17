@@ -52,12 +52,32 @@ public final class PowerUpList extends ArrayList<IPowerUp> {
 		pcs.addPropertyChangeListener(listener);
 	}
 	
+	public void removeListener(final PropertyChangeListener observer) {
+		this.pcs.removePropertyChangeListener(observer);
+	}
+
+	
 	public boolean hasAnother(final IPowerUp powerUp) {
 		boolean hasAnother = false;
 		for (final IPowerUp otherPowerUp : this) {
 			if (otherPowerUp.getClass() == powerUp.getClass()) 
 				hasAnother = true;
 		}
+		
 		return hasAnother;	
 	}
+	
+
+	@Override
+	protected void finalize() throws Throwable 
+	{
+		try
+		{
+			MyDebug.i("poweruplist destroyed : " + this.toString());
+		}
+		finally
+		{
+			super.finalize();
+		}
+	}	
 }

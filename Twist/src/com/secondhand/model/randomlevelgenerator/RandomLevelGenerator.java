@@ -151,9 +151,9 @@ public class RandomLevelGenerator {
 					break;
 				}
 			}
-
+			
 			entityList.add(powerUpFactory.getRandomPowerUp(new Vector2(x,
-					y), gameWorld, rng));
+					y), rng));
 		}
 	}
 
@@ -208,7 +208,7 @@ public class RandomLevelGenerator {
 		
 		this.playerInitialSize = GameWorld.PLAYER_STARTING_SIZE;
 		this.playerMaxSize = GameWorld.PLAYER_STARTING_SIZE * (this.levelNumber + 1);
-		
+			
 		final float MINIMUM_DISTANCE_FROM_BORDERS = 30;
 		
 		this.playerPosition = new Vector2();
@@ -230,8 +230,8 @@ public class RandomLevelGenerator {
 
 	private void generateRandomLevel() {
 		
-		this.levelWidth = 2000 * this.levelNumber;
-		this.levelHeight = 2000 * this.levelNumber;
+		this.levelWidth = 1500 * this.levelNumber;
+		this.levelHeight = 1500 * this.levelNumber;
 		this.world = new World(this.levelWidth, this.levelHeight);
 		
 		// We want to ensure that things are not placed too close to each other.
@@ -247,18 +247,17 @@ public class RandomLevelGenerator {
 
 		
 		// place out entities.
-		//placeOutObstacles(levelNumber * 10);
+		placeOutObstacles(levelNumber * 5);
 
-		/*placeOutPlanets(10 * levelNumber, // number player eatable
+		placeOutPlanets(10 * levelNumber, // number player eatable
 
-				8 * levelNumber, // number bigger than player.
+				4 * levelNumber, // number bigger than player.
 				(GameWorld.PLAYER_STARTING_SIZE / 1.1f),
 				GameWorld.PLAYER_STARTING_SIZE * 7,
 				PLANET_EXTRA_RADIUS);
-*/
-		placeOutPowerUps(20, POWER_UP_EXTRA_SIZE);
 
-		//placeOutEnemies(10 * this.levelNumber,4 * this.levelNumber, ENEMY_EXTRA_RADIUS);
+		placeOutPowerUps(this.levelNumber * 7, POWER_UP_EXTRA_SIZE);
 
+		placeOutEnemies(5 * this.levelNumber,4 * this.levelNumber, ENEMY_EXTRA_RADIUS);
 	}
 }

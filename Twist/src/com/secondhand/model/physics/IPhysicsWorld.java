@@ -2,7 +2,6 @@ package com.secondhand.model.physics;
 
 import java.util.Random;
 
-
 public interface IPhysicsWorld {
 
 	// Make your Entities stay on the screen
@@ -18,6 +17,9 @@ public interface IPhysicsWorld {
 	
 	// making this a listener of PhysicsWorld
 	void setContactListener();
+	
+	void unsetContactListener();
+		
 
 	// connect this to gameWorld
 	void setCollisionResolver(final ICollisionResolver collisionResolver);

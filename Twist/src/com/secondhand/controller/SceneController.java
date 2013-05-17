@@ -38,7 +38,6 @@ class SceneController {
 	
 	public void switchScene(final AllScenes scene) {
 		
-		
 		this.sceneManager.switchScene(scene);
 
 		// now register the controller for the scene.

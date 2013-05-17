@@ -36,7 +36,7 @@ final class GamePlaySceneController extends Entity implements PropertyChangeList
 	}
 	
 	// done every time the level changes.
-	public void registerController() {
+	private void registerController() {
 		gameWorld = gamePlayScene.getGameWorld();
 
 		gamePlayScene.attachChild(this);

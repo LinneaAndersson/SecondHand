@@ -9,9 +9,6 @@ Important things that must be done for the success of the project:
 callback method instead. - Done, but just changed the propertyChange.
 * sometimes you are not delegated to the high score scene after game over,
 rather, the game just goes on with negative lives.
-* Examine if the line
-PowerUpList.getInstance().addListener(this);
-in GamePlaySceneController can possibly cause a memory leak.
 * the camera is sometimes not properly restored before showing the
 high score list
 * Completion meter is not reset properly when going to next level.

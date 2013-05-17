@@ -177,8 +177,8 @@ public class GamePlayScene extends GameScene implements PropertyChangeListener {
 	@Override
 	public void onSwitchScene() {
 		super.onSwitchScene();
+		this.unregisterScene();
 		resetCamera();
-
 	}
 
 	@Override
@@ -210,14 +210,20 @@ public class GamePlayScene extends GameScene implements PropertyChangeListener {
 		this.hud.attachChild(new FadingNotifierText(str, cameraPosition));
 	}
 
+	// unregister all update handlers and such from the scene. 
+	public void unregisterScene() {
+		// remove the listeners and stuff
+				this.detachChildren();
+				
+				gameWorld.getPlayer().removeListener(this);
+				
+				this.unregisterUpdateHandler(this.physicsWorld);
+				
+	}
+	
 	public void newLevelStarted() {
 		
-		// remove the listeners and stuff
-		this.detachChildren();
-		
-		gameWorld.getPlayer().removeListener(this);
-		
-		this.unregisterUpdateHandler(this.physicsWorld);
+		unregisterScene();
 		
 		Sounds.getInstance().winSound.play();
 

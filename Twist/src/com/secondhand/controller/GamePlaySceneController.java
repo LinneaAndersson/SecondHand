@@ -89,6 +89,8 @@ final class GamePlaySceneController extends Entity implements PropertyChangeList
 			if (!HighScoreList.getInstance().madeItToHighScoreList(
 					gameWorld.getPlayer().getScore())) {
 				// go to high score.
+				
+				this.unregisterController();
 				this.sceneController.switchScene(AllScenes.HIGH_SCORE_SCENE);
 			}
 
@@ -101,7 +103,8 @@ final class GamePlaySceneController extends Entity implements PropertyChangeList
 				InputDialogManager.showing = false;
 
 				InputDialogManager.input = null;
-
+				
+				this.unregisterController();
 				this.sceneController.switchScene(AllScenes.HIGH_SCORE_SCENE);
 
 			} else if (HighScoreList.getInstance().madeItToHighScoreList(

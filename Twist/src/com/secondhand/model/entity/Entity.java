@@ -15,6 +15,8 @@ public abstract class Entity implements IPhysicsObject{
 	protected PropertyChangeSupport pcs = new PropertyChangeSupport(this);
 	private final Vector2 initialPosition;
 	
+	public final static String IS_SCHEDULED_FOR_DELETION = "isScheduleForDeletion";
+	
 	public Entity(final Vector2 position, final boolean isEdible) {
 		this.isEdible = isEdible;
 		this.initialPosition = position;
@@ -49,7 +51,7 @@ public abstract class Entity implements IPhysicsObject{
 	}
 
 	private void scheduleBodyForDeletion() {
-		pcs.firePropertyChange("isScheduleForDeletion", null, this);
+		pcs.firePropertyChange(IS_SCHEDULED_FOR_DELETION, null, this);
 	}
 
 	// only valid when the body has been scheduled for deletion.
@@ -73,7 +75,6 @@ public abstract class Entity implements IPhysicsObject{
 	public void removeListener(final PropertyChangeListener observer) {
 		this.pcs.removePropertyChangeListener(observer);
 	}
-
 
 	@Override
 	 public float getCenterX() {

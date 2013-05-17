@@ -5,8 +5,6 @@ import java.beans.PropertyChangeListener;
 import java.util.List;
 import java.util.Stack;
 
-import com.secondhand.debug.MyDebug;
-
 
 // Manages all the entities of the GameWorld
 class EntityManager implements PropertyChangeListener{
@@ -68,6 +66,7 @@ class EntityManager implements PropertyChangeListener{
 				entity.deleteBody();
 		}
 		
+		
 		moveEnemies();
 		this.player.moveToNeededPositionIfNecessary();
 	}
@@ -86,7 +85,7 @@ class EntityManager implements PropertyChangeListener{
 
 	@Override
 	public void propertyChange(final PropertyChangeEvent event) {
-		if(event.getPropertyName().equalsIgnoreCase("isScheduleForDeletion")){
+		if(event.getPropertyName().equalsIgnoreCase(Entity.IS_SCHEDULED_FOR_DELETION)){
 			scheduleEntityForDeletion((Entity) (event.getNewValue()));
 		}
 	}
@@ -98,16 +97,4 @@ class EntityManager implements PropertyChangeListener{
 		}
 	}
 	
-	@Override
-	protected void finalize() throws Throwable 
-	{
-		try
-		{
-			MyDebug.i("entitymanager destroyed : " + this.toString());
-		}
-		finally
-		{
-			super.finalize();
-		}
-	}	
 }

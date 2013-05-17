@@ -6,7 +6,6 @@ import java.beans.PropertyChangeSupport;
 import java.util.List;
 import java.util.Random;
 
-import com.secondhand.debug.MyDebug;
 import com.secondhand.model.physics.IPhysicsWorld;
 import com.secondhand.model.physics.Vector2;
 import com.secondhand.model.randomlevelgenerator.RandomLevelGenerator;
@@ -152,19 +151,6 @@ public class GameWorld implements IGameWorld, PropertyChangeListener {
 	@Override
 	public void updateWithTouchInput(final Vector2 v) {
 		this.getPlayer().reachToTouch(v);
-	}
-
-	@Override
-	protected void finalize() throws Throwable 
-	{
-		try
-		{
-			MyDebug.i("gameworld destroyed : " + this.toString());
-		}
-		finally
-		{
-			super.finalize();
-		}
 	}
 
 	

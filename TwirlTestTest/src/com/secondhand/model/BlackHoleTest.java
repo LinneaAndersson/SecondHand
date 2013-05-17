@@ -8,14 +8,15 @@ import java.util.List;
 
 import junit.framework.TestCase;
 
+import com.secondhand.debug.MyDebug;
 import com.secondhand.model.entity.BlackHole;
 import com.secondhand.model.entity.Enemy;
-import com.secondhand.model.entity.Entity;
 import com.secondhand.model.entity.Obstacle;
 import com.secondhand.model.entity.Player;
 import com.secondhand.model.physics.IPhysicsEntity;
 import com.secondhand.model.physics.IPhysicsObject;
 import com.secondhand.model.physics.Vector2;
+import com.secondhand.model.resource.SoundType;
 
 public class BlackHoleTest extends TestCase {
 	
@@ -51,7 +52,6 @@ public class BlackHoleTest extends TestCase {
 			}
 			propChangeSent = true;
 		}
-		
 	}
 	
 	public void testSetRadius() {
@@ -240,23 +240,54 @@ public class BlackHoleTest extends TestCase {
 	
 	private boolean detachSelfCalled;
 	
+	private boolean onGrowSoundPlayed;
+	private boolean scoreChangeProperlySent;
+	private int newScore;
+	
+	private class Prop2ChangeTest implements PropertyChangeListener {
+
+		@Override
+		public void propertyChange(PropertyChangeEvent event) {
+			String name = event.getPropertyName();
+			if(name.equals(Player.SOUND)) {
+				final SoundType newV = (SoundType)event.getNewValue();
+				
+				if(newV == SoundType.GROW_SOUND)
+					onGrowSoundPlayed = true;
+			} else if(name.equals(Player.INCREASE_SCORE)) {
+				final int newV = (Integer)event.getNewValue();
+				final int old = (Integer)event.getOldValue();
+				MyDebug.d("newScore: " + newScore);
+				if(old == 10 &&  newV == newScore)
+					scoreChangeProperlySent = true;
+			}
+		}
+	}
 	
 	public void testEatEntity() {	
 
 		Player other = new Player(new Vector2(), 10, 3, 10);
-
+		other.setScoreMultiplier(2);
+		other.addListener(new Prop2ChangeTest());
+		
 		Enemy enemy = new Enemy(new Vector2(), 9);
 		enemy.setPhysics(new EnemyTestPhysicsEntity());
-		
 
 		this.detachSelfCalled = false;
+		this.onGrowSoundPlayed = false;
+		this.scoreChangeProperlySent = false;
+		
+		newScore = 10 + 2*(enemy.getScoreValue());
 		
 		other.eatEntity(enemy);
 		
-		assertEquals(10 + enemy.getScoreValue(), other.getScore());
+		assertEquals(newScore, other.getScore());
 		assertTrue(this.detachSelfCalled);
+		assertTrue(this.onGrowSoundPlayed);
+		assertTrue(this.scoreChangeProperlySent);
 		
 		assertEquals(10 + enemy.getRadius() * Player.GROWTH_FACTOR, other.getRadius(), 0.0001f);
+		
 		
 	}
 	

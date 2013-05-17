@@ -5,7 +5,6 @@ import com.secondhand.model.resource.SoundType;
 
 public class Player extends BlackHole {
 
-
 	// starting lives for a new player.
 	public static final int STARTING_LIVES = 3;
 
@@ -61,8 +60,9 @@ public class Player extends BlackHole {
 
 	@Override
 	public void increaseScore(final int increase) {
+		int oldScore = this.getScore();
 		super.increaseScore((int) this.getScoreMultiplier() * increase);
-		pcs.firePropertyChange(INCREASE_SCORE, (int)0, (int)getScore());
+		pcs.firePropertyChange(INCREASE_SCORE, oldScore, (int)getScore());
 	}
 
 	public void setScoreMultiplier(final float scoreMultiplier) {

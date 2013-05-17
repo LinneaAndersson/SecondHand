@@ -5,7 +5,7 @@ import com.secondhand.model.physics.Vector2;
 public abstract class BlackHole extends CircleEntity {
 
 	// only a 1/5 of the masses of the eaten bodies is used in the growth
-	private static final float GROWTH_FACTOR = 0.2f;
+	public static final float GROWTH_FACTOR = 0.2f;
 
 	private boolean canEatInedibles;
 	
@@ -68,6 +68,9 @@ public abstract class BlackHole extends CircleEntity {
 
 		this.increaseScore(entity.getScoreValue());
 
+		// by doing this we ensure that no sound effect is played when a powerups is picked up,
+		// as they always have a radius of 0. Powerups already have their own sound effects
+		// so we don't want to play the onGrow-sfx here. 
 		if(entity.getRadius() != 0) {
 			final float radiusInc = entity.getRadius() * GROWTH_FACTOR;
 			this.increaseSize(radiusInc);
@@ -80,13 +83,15 @@ public abstract class BlackHole extends CircleEntity {
 	public void eatEntity(final Entity entity) {
 		
 		if (entity instanceof BlackHole) {
+			
+			
 			final BlackHole otherBlackHole = (BlackHole) entity;
 			// instead of eating, you will be eaten!
 			if (otherBlackHole.canEat(this))
 				otherBlackHole.eatEntity(this);
 			else
 				this.eatEntityUtil(otherBlackHole);
-		} else {
+		} else {	
 			// else, just eat the entity.
 		
 			eatEntityUtil(entity);

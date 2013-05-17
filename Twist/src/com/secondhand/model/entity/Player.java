@@ -154,6 +154,7 @@ public class Player extends BlackHole {
 
 	@Override
 	protected void onGrow() {
+		super.onGrow();
 		playSound(SoundType.GROW_SOUND);
 	}
 

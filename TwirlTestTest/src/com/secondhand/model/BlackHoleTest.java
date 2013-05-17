@@ -146,6 +146,7 @@ public class BlackHoleTest extends TestCase {
 		}
 	}
 	
+	
 	public void testCanEat() {
 		float rad = 3.2f;
 		Vector2 vector = new Vector2();
@@ -179,6 +180,85 @@ public class BlackHoleTest extends TestCase {
 		
 	}
 	
+	
+	
+	
+	
+	
+	private class EnemyTestPhysicsEntity implements IPhysicsEntity {
+
+		@Override
+		public float getCenterX() {
+			return 0;
+		}
+
+		@Override
+		public float getCenterY() {
+			return 0;
+		}
+
+		@Override
+		public void deleteBody() {
+		}
+
+		@Override
+		public void applyImpulse(Vector2 impulsePosition, float maxSpeed) {
+		}
+
+		@Override
+		public void applyImpulse(Vector2 impulsePosition, Vector2 impulse) {
+		}
+
+		@Override
+		public void setLinearDamping(float f) {
+		}
+
+		@Override
+		public void detachSelf() {
+			detachSelfCalled = true;
+		}
+
+		@Override
+		public float computePolygonRadius(List<Vector2> polygon) {
+			return 10;
+		}
+
+		@Override
+		public void setTransform(Vector2 position) {
+		}
+
+		@Override
+		public void stopMovment() {
+		}
+
+		@Override
+		public boolean isStraightLine(IPhysicsObject entity,
+				IPhysicsObject enemy) {
+			return false;
+		}
+	}
+	
+	private boolean detachSelfCalled;
+	
+	
+	public void testEatEntity() {	
+
+		Player other = new Player(new Vector2(), 10, 3, 10);
+
+		Enemy enemy = new Enemy(new Vector2(), 9);
+		enemy.setPhysics(new EnemyTestPhysicsEntity());
+		
+
+		this.detachSelfCalled = false;
+		
+		other.eatEntity(enemy);
+		
+		assertEquals(10 + enemy.getScoreValue(), other.getScore());
+		assertTrue(this.detachSelfCalled);
+		
+		assertEquals(10 + enemy.getRadius() * Player.GROWTH_FACTOR, other.getRadius(), 0.0001f);
+		
+	}
 	
 
 }

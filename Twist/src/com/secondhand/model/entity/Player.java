@@ -213,7 +213,7 @@ public class Player extends BlackHole {
 		force.x = force.x / force.len();
 		force.y = force.y / force.len();		
 
-		force.mul(this.getSpeedMultiplier() * 40);
+		force.mul(this.getSpeedMultiplier() * 60);
 
 		this.physics.applyImpulse(force, forcePosition);
 	}

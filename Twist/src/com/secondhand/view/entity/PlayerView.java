@@ -12,6 +12,8 @@ public class PlayerView extends BlackHoleView {
 
 	public PlayerView(final PhysicsWorld physicsWorld, final Player player){
 		super(physicsWorld, player);
+		
+		getBody().setLinearDamping(0.5f);
 	}
 
 	@Override

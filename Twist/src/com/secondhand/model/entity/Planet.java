@@ -18,7 +18,7 @@ public class Planet extends CircleEntity {
 	}
 	
 	@Override
-	public float getScoreWorth() {
+	protected float getScoreWorth() {
 		return SCORE_WORTH;
 	}
 }

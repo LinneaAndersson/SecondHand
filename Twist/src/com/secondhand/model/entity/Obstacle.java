@@ -13,7 +13,7 @@ public class Obstacle extends PolygonEntity {
 	}
 	
 	@Override
-	public float getScoreWorth() {
+	protected float getScoreWorth() {
 		// obstacles are hard to eat, so you should get lots of points for eating them!
 		return SCORE_WORTH;
 	}

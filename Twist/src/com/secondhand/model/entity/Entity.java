@@ -44,7 +44,7 @@ public abstract class Entity implements IPhysicsObject{
 	}
 	
 	// how much every unit(pixel) of radius is worth in points.
-	public abstract float getScoreWorth();
+	protected abstract float getScoreWorth();
 
 	public int getScoreValue() {
 		return (int) (this.getRadius() * this.getScoreWorth());

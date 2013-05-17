@@ -38,7 +38,7 @@ public abstract class PowerUp extends RectangleEntity implements IPowerUp {
 	}
 	
 	@Override
-	public float getScoreWorth() {
+	protected float getScoreWorth() {
 		return 0;
 	}
 	

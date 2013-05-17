@@ -2,8 +2,6 @@ package com.secondhand.model;
 
 import junit.framework.TestCase;
 
-import com.badlogic.gdx.math.Vector2;
-
 public class PlayerTest extends TestCase{
 /*
 	public void testConstructor() {

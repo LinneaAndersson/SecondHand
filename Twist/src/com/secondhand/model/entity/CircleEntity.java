@@ -8,9 +8,8 @@ public abstract class CircleEntity extends Entity {
 	public CircleEntity(final Vector2 position, final float radius, final boolean isEdible) {  
 		super(position, isEdible);
 		
-		setRadius(radius);
+		this.radius = radius;
 	}
-	
 	
 	@Override
 	public void onPhysicsAssigned(){
@@ -19,11 +18,5 @@ public abstract class CircleEntity extends Entity {
 	@Override 
 	public float getRadius() {
 		return this.radius;
-	}
-	
-	public void setRadius(final float radius){
-
-		if(radius < 0 ) throw new AssertionError();
-		this.radius = radius;
 	}
 }

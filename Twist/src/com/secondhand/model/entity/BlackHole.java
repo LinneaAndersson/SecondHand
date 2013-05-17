@@ -111,9 +111,10 @@ public abstract class BlackHole extends CircleEntity {
 		return 3;
 	}
 
-	@Override
 	public void setRadius(final float radius) {	
 		this.pcs.firePropertyChange("radius", this.getRadius(), radius);
-		super.setRadius(radius);
+		
+		if(radius < 0 ) throw new AssertionError();
+		this.radius = radius;
 	}
 }

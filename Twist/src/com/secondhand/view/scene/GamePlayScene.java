@@ -11,6 +11,7 @@ import android.content.Context;
 
 import com.badlogic.gdx.math.Vector2;
 import com.secondhand.debug.MyDebug;
+import com.secondhand.model.entity.BlackHole;
 import com.secondhand.model.entity.Enemy;
 import com.secondhand.model.entity.Entity;
 import com.secondhand.model.entity.GameWorld;
@@ -253,7 +254,7 @@ public class GamePlayScene extends GameScene implements PropertyChangeListener {
 			updateScore((Integer) event.getNewValue());
 		} else if (eventName.equals(Player.INCREASE_LIFE)) {
 			updateLives((Integer) event.getNewValue());
-		} else if (eventName.equals("radius")) {
+		} else if (eventName.equals(BlackHole.RADIUS)) {
 			apaptCameraToGrowingPlayer(
 					(Float) event.getNewValue(),
 					(Float) event.getOldValue());

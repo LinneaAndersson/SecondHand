@@ -8,6 +8,9 @@ public abstract class BlackHole extends CircleEntity {
 	private static final float GROWTH_FACTOR = 0.2f;
 
 	private boolean canEatInedibles;
+	
+	// radius property change event. 
+	public static final String RADIUS = "radius";
 
 	// I put this in BlackHole, so enemy black holes will also have scores
 	// but placing it here made coding the eating logic much more convenient.
@@ -33,7 +36,7 @@ public abstract class BlackHole extends CircleEntity {
 		return score;
 	}
 
-	public void increaseScore(final int increase) {
+	protected void increaseScore(final int increase) {
 		score += increase;
 	}
 
@@ -57,7 +60,7 @@ public abstract class BlackHole extends CircleEntity {
 	protected void entityWasTooBigToEat(final Entity entity) {
 	}
 
-	public void eatEntityUtil(final Entity entity) {
+	private void eatEntityUtil(final Entity entity) {
 		if (!this.canEat(entity)) {
 			entityWasTooBigToEat(entity);
 			return;
@@ -85,6 +88,7 @@ public abstract class BlackHole extends CircleEntity {
 				this.eatEntityUtil(otherBlackHole);
 		} else {
 			// else, just eat the entity.
+		
 			eatEntityUtil(entity);
 		}
 
@@ -96,9 +100,12 @@ public abstract class BlackHole extends CircleEntity {
 	}
 
 	public void setRadius(final float radius) {	
-		this.pcs.firePropertyChange("radius", this.getRadius(), radius);
 		
-		if(radius < 0 ) throw new AssertionError();
+		// sanity checking. 
+		if(radius < 0 ) 
+			throw new AssertionError();
+		
+		this.pcs.firePropertyChange(RADIUS, this.getRadius(), radius);
 		this.radius = radius;
 	}
 }

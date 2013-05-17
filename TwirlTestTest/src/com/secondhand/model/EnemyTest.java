@@ -97,14 +97,7 @@ public class EnemyTest extends TestCase {
 		assertEquals(vector.x, enemyPosition.x);
 		assertEquals(vector.y, enemyPosition.y);
 
-		// Cannot have a negativ radius
-		try {
-			enemy.setRadius(-1);
 
-			assertTrue(false);
-		} catch (AssertionError er) {
-			assertTrue(true);
-		}
 	}
 
 	public void testGetMinSize() {

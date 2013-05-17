@@ -33,7 +33,7 @@ public class BlackHoleView extends CircleView implements PropertyChangeListener{
 	@Override
 	public void propertyChange(final PropertyChangeEvent event) {
 		
-		if (event.getPropertyName().equalsIgnoreCase("radius")) {
+		if (event.getPropertyName().equalsIgnoreCase(BlackHole.RADIUS)) {
 			
 			final float newValue = (Float) event.getNewValue();
 			

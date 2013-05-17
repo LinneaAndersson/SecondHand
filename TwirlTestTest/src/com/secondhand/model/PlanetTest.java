@@ -18,5 +18,6 @@ public class PlanetTest extends TestCase{
 		assertEquals(position, planet.getInitialPosition());
 		assertEquals(radius, planet.getRadius());
 		assertEquals(planetType, planet.getPlanetType());
+		assertEquals(1 * (int)radius, planet.getScoreValue());
 	}
 }

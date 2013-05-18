@@ -301,6 +301,8 @@ public class BlackHoleTest extends TestCase {
 		//Radius should not change
 		assertEquals(10,other.getRadius(), 0.0001f);
 		
+		assertEquals(10 + enemy.getRadius() * Player.GROWTH_FACTOR, other.getRadius() + other.getIncreaseSize(), 0.0001f);
+		
 		// now make a planet bigger than the player.
 		this.onTooBigEntity = false;
 		final Planet planet = new Planet(new Vector2(), 300, PlanetType.BLOOD);

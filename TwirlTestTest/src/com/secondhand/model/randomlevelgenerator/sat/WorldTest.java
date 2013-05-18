@@ -1,15 +1,10 @@
-package com.secondhand.model.sat;
+package com.secondhand.model.randomlevelgenerator.sat;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import com.secondhand.debug.MyDebug;
 import com.secondhand.model.physics.Vector2;
-import com.secondhand.model.randomlevelgenerator.sat.Circle;
-import com.secondhand.model.randomlevelgenerator.sat.Polygon;
-import com.secondhand.model.randomlevelgenerator.sat.PolygonFactory;
-import com.secondhand.model.randomlevelgenerator.sat.World;
-
 
 
 import junit.framework.TestCase;

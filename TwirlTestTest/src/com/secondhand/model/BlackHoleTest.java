@@ -12,10 +12,12 @@ import com.secondhand.debug.MyDebug;
 import com.secondhand.model.entity.BlackHole;
 import com.secondhand.model.entity.Enemy;
 import com.secondhand.model.entity.Obstacle;
+import com.secondhand.model.entity.Planet;
 import com.secondhand.model.entity.Player;
 import com.secondhand.model.physics.IPhysicsEntity;
 import com.secondhand.model.physics.IPhysicsObject;
 import com.secondhand.model.physics.Vector2;
+import com.secondhand.model.resource.PlanetType;
 import com.secondhand.model.resource.SoundType;
 
 public class BlackHoleTest extends TestCase {
@@ -243,6 +245,7 @@ public class BlackHoleTest extends TestCase {
 	private boolean onGrowSoundPlayed;
 	private boolean scoreChangeProperlySent;
 	private int newScore;
+	private boolean onTooBigEntity;
 	
 	private class Prop2ChangeTest implements PropertyChangeListener {
 
@@ -254,12 +257,21 @@ public class BlackHoleTest extends TestCase {
 				
 				if(newV == SoundType.GROW_SOUND)
 					onGrowSoundPlayed = true;
-			} else if(name.equals(Player.INCREASE_SCORE)) {
+			} 
+			
+			if(name.equals(Player.INCREASE_SCORE)) {
 				final int newV = (Integer)event.getNewValue();
 				final int old = (Integer)event.getOldValue();
 				MyDebug.d("newScore: " + newScore);
 				if(old == 10 &&  newV == newScore)
 					scoreChangeProperlySent = true;
+			} 
+			
+			if(name.equals(Player.SOUND)) {
+				final SoundType newV = (SoundType)event.getNewValue();
+				
+				if(newV == SoundType.OBSTACLE_COLLISION_SOUND)
+					onTooBigEntity = true;
 			}
 		}
 	}
@@ -288,7 +300,21 @@ public class BlackHoleTest extends TestCase {
 		
 		assertEquals(10 + enemy.getRadius() * Player.GROWTH_FACTOR, other.getRadius(), 0.0001f);
 		
+		// now make a planet bigger than the player.
+		this.onTooBigEntity = false;
+		final Planet planet = new Planet(new Vector2(), 300, PlanetType.BLOOD);
+		planet.setPhysics(new EnemyTestPhysicsEntity());
+		other.eatEntity(planet);
+		assertTrue(this.onTooBigEntity);
 		
+		// now create a bigger enemy and ensure that it eats the player instead.
+		Enemy enemyBigger = new Enemy(new Vector2(), 300);
+		enemyBigger.setPhysics(new EnemyTestPhysicsEntity());
+
+		
+		other.eatEntity(enemyBigger);
+		// if the enemy gained enough score, then it worked. 
+		assertEquals(other.getScoreValue(), enemyBigger.getScore());
 	}
 	
 

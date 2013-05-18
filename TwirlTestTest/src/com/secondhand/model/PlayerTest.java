@@ -35,6 +35,7 @@ public class PlayerTest extends TestCase{
 			public int state;
 			
 			public boolean test1Pass;
+			public boolean test2Pass;
 
 			@Override
 			public float getCenterX() {
@@ -58,9 +59,16 @@ public class PlayerTest extends TestCase{
 			public void applyImpulse(Vector2 impulse, Vector2 impulsePosition) {
 				
 				if(state == 1) {
-					if(impulse.almostEquals(new Vector2(FORCE * -1, 0)) && 
+					if(impulse.almostEquals(new Vector2(3 * FORCE * -1, 0)) && 
 							impulsePosition.almostEquals(new Vector2(50, 0))	) {
 						this.test1Pass = true;
+					}
+				}
+				
+				if(state == 2) {
+					if(impulse.almostEquals(new Vector2(3 * FORCE, 0)) && 
+							impulsePosition.almostEquals(new Vector2(-50, 0))	) {
+						this.test2Pass = true;
 					}
 				}
 			}
@@ -99,9 +107,9 @@ public class PlayerTest extends TestCase{
 				200); // maxsize
 		PhysicsEntity physics = new PhysicsEntity();
 		player.setPhysics(physics);
+		player.setSpeedMultiplier(3);
 		
-		// with any mirrored movement is speed mutlipliers:
-		
+		// with speed mutlipliers:
 		
 		physics.state = 1;
 		physics.test1Pass = false;
@@ -109,6 +117,16 @@ public class PlayerTest extends TestCase{
 		player.reachToTouch(new Vector2(50,0));
 		
 		assertTrue(physics.test1Pass);
+		
+		// now with mirrored movement
+		physics.state = 2;
+		physics.test2Pass = false;
+		player.setMirroredMovement(true);
+		
+		player.reachToTouch(new Vector2(50,0));
+		
+		assertTrue(physics.test2Pass);
+		
 	}
 
 }

@@ -12,13 +12,10 @@ public class RandomPowerUp extends PowerUp {
 
 	private static final int NUM_POWER_UPS = 10;
 
-	
-	public RandomPowerUp(final Vector2 position) {
+	public RandomPowerUp(final Vector2 position, final Random rng) {
 		super(position, PowerUpType.RANDOM_POWER_UP, 0);
 
-		final Random rng = new Random();
 		final int rand = rng.nextInt(NUM_POWER_UPS-1);
-		
 		
 		if(rand == 0) {
 			randomPowerUp =  new EatObstacle(position);

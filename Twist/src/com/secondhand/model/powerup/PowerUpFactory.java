@@ -16,8 +16,10 @@ public final class PowerUpFactory {
 
 	private final List<Weight> weights;
 	private final int totalWeight;
+	private final Random rng;
 	
-	public PowerUpFactory() {
+	public PowerUpFactory(final Random rng) {
+		this.rng = rng;
 		weights = new ArrayList<Weight>();
 		
 		weights.add(new Weight(1, DoubleScore.getFrequency()));
@@ -45,7 +47,7 @@ public final class PowerUpFactory {
 	
 	
 	// used for level generation., 
-	public PowerUp getRandomPowerUp(final Vector2 position, final Random rng) { 
+	public PowerUp getRandomPowerUp(final Vector2 position) { 
 		
 		// do the Weighted Random Distribution
 		final int index = rng.nextInt(totalWeight);
@@ -88,7 +90,7 @@ public final class PowerUpFactory {
 				return new MirroredMovement(position);
 			} else if(powerUp == 5) {
 				MyDebug.d("random powerup");
-				return new RandomPowerUp(position);
+				return new RandomPowerUp(position, rng);
 			} else if(powerUp == 6) {
 				MyDebug.d("random teleport");
 				return new RandomTeleport(position);

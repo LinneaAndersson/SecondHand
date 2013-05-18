@@ -48,7 +48,7 @@ public class RandomLevelGenerator {
 		this.levelNumber = gameWorld.getLevelNumber();
 		this.enemyList = new ArrayList<Enemy>();
 		this.entityList = new ArrayList<Entity>();
-		this.powerUpFactory = new PowerUpFactory();
+		this.powerUpFactory = new PowerUpFactory(rng);
 		
 		generateRandomLevel();
 
@@ -150,7 +150,7 @@ public class RandomLevelGenerator {
 			}
 			
 			entityList.add(powerUpFactory.getRandomPowerUp(new Vector2(x,
-					y), rng));
+					y)));
 		}
 	}
 

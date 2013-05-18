@@ -13,7 +13,7 @@ import com.secondhand.model.entity.Player;
 import com.secondhand.model.physics.IPhysicsEntity;
 import com.secondhand.model.physics.IPhysicsObject;
 import com.secondhand.model.physics.Vector2;
-import com.secondhand.model.powerup.RandomPowerUp;
+import com.secondhand.model.powerup.ScoreUp;
 import com.secondhand.model.resource.PlanetType;
 
 public class EnemyTest extends TestCase {
@@ -250,7 +250,7 @@ public class EnemyTest extends TestCase {
 		// enemy will chase the eatable-entity.
 		entityList.clear();
 		entityList.add(new Obstacle(new Vector2(2f, 2f), new ArrayList()));
-		entityList.add(new RandomPowerUp(new Vector2(4f, 4f)));
+		entityList.add(new ScoreUp(new Vector2(4f, 4f)));
 
 		new EnemyTestPhysicsEntity(entityList.get(0), true);
 		new EnemyTestPhysicsEntity(entityList.get(1), true);

@@ -7,7 +7,7 @@ import com.secondhand.model.resource.PowerUpType;
 public class ScoreUp extends PowerUp {
 
 	private final static float DURATION = 0;
-	private final static int SCORE_BONUS = 10;
+	public final static int SCORE_BONUS = 10;
 	
 	private String text;
 	

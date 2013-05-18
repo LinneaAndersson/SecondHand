@@ -22,6 +22,7 @@ import com.secondhand.model.entity.Player;
 import com.secondhand.model.entity.PowerUpList;
 import com.secondhand.model.powerup.PowerUp;
 import com.secondhand.view.andengine.entity.FadingNotifierText;
+import com.secondhand.view.andengine.entity.RocketEmitter;
 import com.secondhand.view.andengine.entity.ScoreLivesText;
 import com.secondhand.view.entity.EnemyView;
 import com.secondhand.view.entity.EntityView;
@@ -243,6 +244,12 @@ public class GamePlayScene extends GameScene implements PropertyChangeListener {
 	public void attachRocketParticles(com.secondhand.model.physics.Vector2 touchPosition, 
 									  com.secondhand.model.physics.Vector2 playerCenterPosition) {
 		
+		final Vector2 surfacePosition = new Vector2(playerCenterPosition.x - touchPosition.x,	
+				  									playerCenterPosition.y - touchPosition.y); // Vector from player position to touch position
+		surfacePosition.mul(gameWorld.getPlayer().getRadius() / surfacePosition.len()); 	   // Length of new vector increased/decreased to length of radius
+		
+		//RocketEmitter emitter = new RocketEmitter(surfacePosition.x, surfacePosition.y,
+		//										  playerCenterPosition.x, playerCenterPosition.y);
 	}
 	
 	public void detachRocketParticles() {

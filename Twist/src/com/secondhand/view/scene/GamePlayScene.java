@@ -194,11 +194,7 @@ public class GamePlayScene extends GameScene implements PropertyChangeListener {
 	public void apaptCameraToGrowingPlayer(final float newRadius,
 			final float oldRadius) {
 		this.smoothCamera.setZoomFactor(this.smoothCamera.getZoomFactor()
-				- 0.05f * oldRadius / newRadius);
-		/*
-		 * if(this.smoothCamera.getZoomFactor() < 0.0) {
-		 * this.smoothCamera.setZoomFactor(0); }
-		 */
+				- 0.2f * (1f-oldRadius / newRadius));
 	}
 
 	public void showFadingTextNotifier(final String str, final Vector2 position) {

@@ -11,6 +11,8 @@ public abstract class BlackHole extends CircleEntity {
 	
 	// radius property change event. 
 	public static final String RADIUS = "radius";
+	
+	protected float increaseSize = 0;
 
 	// I put this in BlackHole, so enemy black holes will also have scores
 	// but placing it here made coding the eating logic much more convenient.
@@ -41,6 +43,9 @@ public abstract class BlackHole extends CircleEntity {
 	}
 
 	private void increaseSize(final float increase) {
+		if(this instanceof Player){
+			increaseSize = increase+getRadius();
+		} else
 		setRadius(getRadius() + increase);
 	}
 

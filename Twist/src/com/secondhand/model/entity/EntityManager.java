@@ -4,6 +4,7 @@ import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.ListIterator;
 import java.util.Stack;
 
 import com.secondhand.debug.MyDebug;
@@ -14,6 +15,7 @@ class EntityManager implements PropertyChangeListener{
 
 	private List<Entity> entityList;
 	private List<Enemy> enemyList;
+	private ListIterator<BlackHole> listIterator;
 	private final Stack<Entity> scheduledForDeletionEntities;
 	private final List<BlackHole> updateBlackHoleSize;
 
@@ -74,16 +76,16 @@ class EntityManager implements PropertyChangeListener{
 
 		moveEnemies();
 		this.player.moveToNeededPositionIfNecessary();
-
-		if(!updateBlackHoleSize.isEmpty()){
-			for (BlackHole blackhole:updateBlackHoleSize){
-				if(blackhole.getIncreaseSize()>0.2){
-					blackhole.setRadius(blackhole.getRadius()+0.2f);
-				} else 
-					updateBlackHoleSize.remove(blackhole);
-			}
-
+		
+		listIterator = updateBlackHoleSize.listIterator();
+		if(listIterator.hasNext()){
+			BlackHole blackHole = listIterator.next();
+			if(blackHole.getIncreaseSize() > 0.2f)
+				blackHole.setRadius(blackHole.getRadius() + 0.2f);
+			else 
+				updateBlackHoleSize.remove(blackHole);
 		}
+		
 
 	}
 

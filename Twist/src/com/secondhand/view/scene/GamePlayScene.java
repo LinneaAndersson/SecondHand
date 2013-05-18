@@ -248,8 +248,8 @@ public class GamePlayScene extends GameScene implements PropertyChangeListener {
 				  									playerCenterPosition.y - touchPosition.y); // Vector from player position to touch position
 		surfacePosition.mul(gameWorld.getPlayer().getRadius() / surfacePosition.len()); 	   // Length of new vector increased/decreased to length of radius
 		
-		//RocketEmitter emitter = new RocketEmitter(surfacePosition.x, surfacePosition.y,
-		//										  playerCenterPosition.x, playerCenterPosition.y);
+		RocketEmitter emitter = new RocketEmitter(surfacePosition.x, surfacePosition.y,
+												  playerCenterPosition.x, playerCenterPosition.y);
 	}
 	
 	public void detachRocketParticles() {

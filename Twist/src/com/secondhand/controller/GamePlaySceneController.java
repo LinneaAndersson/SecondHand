@@ -134,8 +134,8 @@ final class GamePlaySceneController extends Entity implements PropertyChangeList
 			this.gamePlayScene.newLevelStarted();
 			this.registerController();
 		} else if (name.equals(Player.MOVE)) {
-			Vector2 touchPosition = (Vector2) event.getNewValue();
-			Player player = gameWorld.getPlayer();
+			final Vector2 touchPosition = (Vector2) event.getNewValue();
+			final Player player = gameWorld.getPlayer();
 			gamePlayScene.attachRocketParticles(touchPosition, new Vector2(player.getCenterX(), player.getCenterY()));
 		}
 	}

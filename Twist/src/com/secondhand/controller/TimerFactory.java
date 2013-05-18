@@ -30,7 +30,7 @@ public final class TimerFactory {
 			private GamePlayScene timerScene = scene;
 			
 			@Override
-			public void onTimePassed(TimerHandler pTimerHandler) {
+			public void onTimePassed(final TimerHandler pTimerHandler) {
 				timerScene.detachRocketParticles();
 			}
 		});

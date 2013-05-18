@@ -177,7 +177,8 @@ public class PlayerTest extends TestCase{
 		assertEquals(2, player.getLives());
 		assertTrue(list.soundPlayed);
 		assertTrue(list.moved);
-		
 	}
+	
+	
 
 }

@@ -16,13 +16,12 @@ public class SpeedUp extends PowerUp {
 	
 	@Override
 	public void activateEffect(final Player player) {
-		player.setSpeedMultiplier(FACTOR);
+		player.setSpeedMultiplier(player.getSpeedMultiplier() * FACTOR);
 	}
 	
 	@Override
 	public void deactivateEffect(final Player player, final boolean hasAnother) {
-		if(!hasAnother)
-			player.setSpeedMultiplier(player.getSpeedMultiplier()/FACTOR);
+		player.setSpeedMultiplier(player.getSpeedMultiplier()/FACTOR);
 	}
 	
 	public float getR() {return 0f;}

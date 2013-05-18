@@ -95,7 +95,7 @@ public class PowerUpListTest extends TestCase {
 	}
 	
 	public void testHasAnother() {
-		PowerUpList powerUpList = new PowerUpList(null);
+		PowerUpList powerUpList = new PowerUpList(new Player(new Vector2(), 10, 3, 0, 0));
 		
 	
 		// Same PowerUpType but different positions,radius etc..

@@ -13,8 +13,6 @@ public class PowerUpTest extends TestCase {
 			@Override
 			public void activateEffect(Player player) {}
 			
-			@Override
-			public void activatePowerUp(Player player) {}
 			
 			@Override
 			public String getText(){
@@ -33,15 +31,45 @@ public class PowerUpTest extends TestCase {
 		assertEquals(powerUpType, powerUp.getPowerUpType());
 		assertEquals(duration, powerUp.getDuration());
 		
-		assertEquals(PowerUp.WIDTH, powerUp.getWidth());
-		assertEquals(PowerUp.WIDTH, powerUp.getHeight());
-		assertEquals(0, powerUp.getRadius());
+		assertEquals(PowerUp.WIDTH, powerUp.getWidth(), 0.001f);
+		assertEquals(PowerUp.WIDTH, powerUp.getHeight(), 0.001f);
+		assertEquals(0, powerUp.getRadius(), 0.001f);
 		assertEquals(0, powerUp.getScoreValue());
 		assertTrue(powerUp.hasText());
+	
+		assertEquals(Player.DEFAULT_COLOR_VALUE, powerUp.getR(), 0.001);
+		assertEquals(Player.DEFAULT_COLOR_VALUE, powerUp.getG(), 0.001);
+		assertEquals(Player.DEFAULT_COLOR_VALUE, powerUp.getB(), 0001f);
+		
+		
 		
 	}
 	
 	public void testAddPowerUp() {
 		
+	}
+	
+	public void testResetPlayerColor() {
+		final float[] RGB = new float[3];	
+
+		Player player = new Player(new Vector2(),3.0f, 3, 1, 0);
+
+		
+		Vector2 position = new Vector2(1,2);
+		PowerUpType powerUpType = PowerUpType.EXTRA_LIFE;
+		float duration = 5;
+		
+		
+		RGB[0] = 0.1f;
+		RGB[1] = 0.2f;
+		RGB[2] = 0.3f;
+		player.setRGB(RGB);
+	
+		PowerUp powerUp = getNewPowerUp(position, powerUpType, duration);
+		powerUp.resetPlayerColor(player);	
+		
+		assertEquals(Player.DEFAULT_COLOR_VALUE, powerUp.getR(), 0.001);
+		assertEquals(Player.DEFAULT_COLOR_VALUE, powerUp.getG(), 0.001);
+		assertEquals(Player.DEFAULT_COLOR_VALUE, powerUp.getB(), 0.001);
 	}
 }

@@ -43,12 +43,6 @@ public abstract class PowerUp extends RectangleEntity implements IPowerUp {
 	}
 	
 	@Override
-	public float getRadius() {
-		// you won't grow when eating powerups.
-		return 0;
-	}
-	
-	@Override
 	public boolean hasText(){
 		return getText() != null;
 	}
@@ -71,20 +65,13 @@ public abstract class PowerUp extends RectangleEntity implements IPowerUp {
 	
 	@Override
 	public float getB() {return Player.DEFAULT_COLOR_VALUE;}
-	
-	@Override
-	public void eaten(){
-		super.wasEaten();
-	}
 
 	@Override
 	public void activatePowerUp(final Player player) {
 		this.activateEffect(player);
 		changePlayerColor(player);
 		
-		// wait, don't we already do this somewhere else
 		player.playSound(SoundType.POWERUP_SOUND);
-		eaten();
 	}
 
 	@Override

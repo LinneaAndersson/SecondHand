@@ -4,8 +4,6 @@ import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 import java.util.ArrayList;
 
-import com.secondhand.debug.MyDebug;
-
 public final class PowerUpList extends ArrayList<IPowerUp> {
 
 	private static final long serialVersionUID = 1L;
@@ -14,7 +12,12 @@ public final class PowerUpList extends ArrayList<IPowerUp> {
 	
 	public static final String ADD_POWERUP = "addPowerUp";
 	
-	private Player player;
+	private final Player player;
+	
+	public PowerUpList(final Player player) {
+		super();
+		this.player = player;
+	}
 
 	@Override
 	public boolean add(final IPowerUp powerUp) {
@@ -23,25 +26,14 @@ public final class PowerUpList extends ArrayList<IPowerUp> {
 		return super.add(powerUp);
 	}
 	
-	public void setPlayer(final Player player) {
-		this.player = player;
-	}
-	
-	public Player getPlayer() {
-		return this.player;
-	}
-	
 	@Override
 	public boolean remove(final Object object) {
 		final boolean value = super.remove(object); // Priority: The list is
 		// empty when you remove
 		// last PowerUp
 		final IPowerUp powerUp = (IPowerUp) object;
-		MyDebug.d("deactivating powerup:" + powerUp + " another:" + hasAnother(powerUp));
-		
 		// out of powerups? then reset player color altogether. 
 		if(this.size() == 0) {
-			MyDebug.d("restoring player color");
 			powerUp.resetPlayerColor(player);
 		}
 		powerUp.deactivateEffect(player, hasAnother(powerUp));
@@ -66,18 +58,4 @@ public final class PowerUpList extends ArrayList<IPowerUp> {
 		
 		return hasAnother;	
 	}
-	
-
-	@Override
-	protected void finalize() throws Throwable 
-	{
-		try
-		{
-			MyDebug.i("poweruplist destroyed : " + this.toString());
-		}
-		finally
-		{
-			super.finalize();
-		}
-	}	
 }

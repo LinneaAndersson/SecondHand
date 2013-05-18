@@ -33,14 +33,15 @@ public class GameWorld implements IGameWorld, PropertyChangeListener {
 			final int levelNumber, final int playerLives, final int playerScore) {
 		
 		
-		this.powerUpList = new PowerUpList();
 		this.mPhysic = physics;
 		this.mPhysic.setCollisionResolver(new CollisionResolver(this));
 		this.support = new PropertyChangeSupport(this);
 		this.entityManager = new EntityManager();
 		
 		generateNewLevelEntities(levelNumber, playerLives, playerScore);
-		powerUpList.setPlayer(this.entityManager.getPlayer());
+		this.powerUpList = new PowerUpList(this.entityManager.getPlayer());
+		
+	
 		getPlayer().addListener(this);
 	}
 

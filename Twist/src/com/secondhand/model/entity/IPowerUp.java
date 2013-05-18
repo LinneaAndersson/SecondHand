@@ -20,8 +20,6 @@ public interface IPowerUp {
 	float getG();
 	float getB();
 
-	void eaten();
-
 	void activatePowerUp(final Player player);
 
 	void deactivateEffect(final Player player, boolean hasAnother);

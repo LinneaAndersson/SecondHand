@@ -71,11 +71,6 @@ public abstract class PowerUp extends RectangleEntity implements IPowerUp {
 	
 	@Override
 	public float getB() {return Player.DEFAULT_COLOR_VALUE;}
-	
-	@Override
-	public void eaten(){
-		super.wasEaten();
-	}
 
 	@Override
 	public void activatePowerUp(final Player player) {
@@ -84,7 +79,6 @@ public abstract class PowerUp extends RectangleEntity implements IPowerUp {
 		
 		// wait, don't we already do this somewhere else
 		player.playSound(SoundType.POWERUP_SOUND);
-		eaten();
 	}
 
 	@Override

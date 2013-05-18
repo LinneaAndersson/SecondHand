@@ -3,7 +3,7 @@ Important things that must be done for the success of the project:
 
 - Implementation
 
-* Write unit tests for: Player, Enemy, RandomPowerUp, PowerUpFactory,
+* Write unit tests for: Player(only repositioning remains now), Enemy, RandomPowerUp, PowerUpFactory,
 CollisionResolver, GameWorld, EntityManager.
 * We sometimes get negative lives for some reason.
 * Replace some property changes with some kind of interface or

@@ -90,12 +90,7 @@ public class Player extends BlackHole {
 		changeLives(-1);
 	}
 
-	// the player loses a life and is repositioned.
-	public void kill() {
-		this.loseLife();
-		
-		this.moveToRandomUnoccupiedArea();
-	}
+	
 	
 	public void moveToRandomUnoccupiedArea() {
 	
@@ -158,7 +153,12 @@ public class Player extends BlackHole {
 		// be entirely removed from the world when eaten, we only want to
 		// reposition the player and lose a life.
 
-		kill();
+		
+		// the player loses a life and is repositioned.
+		this.loseLife();
+			
+	
+		this.moveToRandomUnoccupiedArea();
 	}
 
 	public void playSound(final SoundType sound){

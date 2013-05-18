@@ -9,6 +9,8 @@ import com.secondhand.view.resource.loader.TextureRegionLoader;
 
 public class RocketEmitter extends ParticleSystem {
 
+	public final static float DURATION = 2;
+	
 	public RocketEmitter(final float surfaceX, final float surfaceY, final float centerX, final float centerY) {
 		super(new PointParticleEmitter(surfaceX, surfaceY), 60, 60, 100, 
 				TextureRegionLoader.getInstance().loadTextureRegion("particle.png", 256, 256));

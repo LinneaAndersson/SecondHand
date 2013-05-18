@@ -14,6 +14,7 @@ import com.secondhand.model.entity.Player;
 import com.secondhand.model.entity.PowerUpList;
 import com.secondhand.model.physics.Vector2;
 import com.secondhand.model.powerup.PowerUp;
+import com.secondhand.view.andengine.entity.RocketEmitter;
 import com.secondhand.view.resource.HighScoreList;
 import com.secondhand.view.scene.AllScenes;
 import com.secondhand.view.scene.GamePlayScene;
@@ -137,6 +138,7 @@ final class GamePlaySceneController extends Entity implements PropertyChangeList
 			final Vector2 touchPosition = (Vector2) event.getNewValue();
 			final Player player = gameWorld.getPlayer();
 			gamePlayScene.attachRocketParticles(touchPosition, new Vector2(player.getCenterX(), player.getCenterY()));
+			registerUpdateHandler(TimerFactory.createRocketTimer(gamePlayScene, RocketEmitter.DURATION));
 		}
 	}
 }

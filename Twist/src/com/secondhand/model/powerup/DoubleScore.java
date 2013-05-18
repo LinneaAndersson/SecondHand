@@ -4,7 +4,6 @@ import com.secondhand.model.entity.Player;
 import com.secondhand.model.physics.Vector2;
 import com.secondhand.model.resource.PowerUpType;
 
-// TODO: this does not yet work for the ScoreUp powerup, fix this.
 public class DoubleScore extends PowerUp {
 	
 	private final static float DURATION = 10;

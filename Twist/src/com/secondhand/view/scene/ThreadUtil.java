@@ -7,6 +7,8 @@ import com.secondhand.controller.MainActivity;
 
 public final class ThreadUtil {
 	
+	private ThreadUtil() {}
+	
 	public static void runOnUpdateThread(final Method method) {
 		final Engine engine = MainActivity.engine;
 		engine.registerUpdateHandler(new IUpdateHandler() {

@@ -36,8 +36,6 @@ public class RandomLevelGenerator {
 	public List<Entity> entityList;
 	public List<Enemy> enemyList;
 
-	private final IGameWorld gameWorld;
-
 	private World world;
 	private final Random rng;
 
@@ -48,7 +46,6 @@ public class RandomLevelGenerator {
 			
 		this.rng = new Random();
 		this.levelNumber = gameWorld.getLevelNumber();
-		this.gameWorld = gameWorld;
 		this.enemyList = new ArrayList<Enemy>();
 		this.entityList = new ArrayList<Entity>();
 		this.powerUpFactory = new PowerUpFactory();

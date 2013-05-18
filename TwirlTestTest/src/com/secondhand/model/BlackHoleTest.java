@@ -298,7 +298,8 @@ public class BlackHoleTest extends TestCase {
 		assertTrue(this.onGrowSoundPlayed);
 		assertTrue(this.scoreChangeProperlySent);
 		
-		assertEquals(10 + enemy.getRadius() * Player.GROWTH_FACTOR, other.getRadius(), 0.0001f);
+		//Radius should not change
+		assertEquals(10,other.getRadius(), 0.0001f);
 		
 		// now make a planet bigger than the player.
 		this.onTooBigEntity = false;

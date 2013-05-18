@@ -41,8 +41,6 @@ public class Enemy extends BlackHole {
 	
 	@Override
 	protected void onGrow(){
-		setRadius(getRadius()+increaseSize);
-		increaseSize=0;
 	}
 
 	public float getDangerArea() {

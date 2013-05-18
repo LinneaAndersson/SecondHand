@@ -1,5 +1,6 @@
 package com.secondhand.model.entity;
 
+import com.secondhand.debug.MyDebug;
 import com.secondhand.model.physics.Vector2;
 
 public abstract class BlackHole extends CircleEntity {
@@ -11,6 +12,7 @@ public abstract class BlackHole extends CircleEntity {
 	
 	// radius property change event. 
 	public static final String RADIUS = "radius";
+	public static final String INCREASE_SIZE = "increaseSize"; 
 	
 	protected float increaseSize = 0;
 
@@ -69,7 +71,8 @@ public abstract class BlackHole extends CircleEntity {
 		// as they always have a radius of 0. Powerups already have their own sound effects
 		// so we don't want to play the onGrow-sfx here. 
 		if(entity.getRadius() != 0) {
-			increaseSize = increaseSize + entity.getRadius() * GROWTH_FACTOR;
+			this.increaseSize =+ entity.getRadius() * GROWTH_FACTOR;
+			pcs.firePropertyChange(this.INCREASE_SIZE, null, this);
 			onGrow();
 		}
 
@@ -108,5 +111,10 @@ public abstract class BlackHole extends CircleEntity {
 		
 		this.pcs.firePropertyChange(RADIUS, this.getRadius(), radius);
 		this.radius = radius;
+		this.increaseSize = increaseSize - 0.2f;
+	}
+	
+	public float getIncreaseSize(){
+		return this.increaseSize;
 	}
 }

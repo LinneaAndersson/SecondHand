@@ -204,10 +204,4 @@ public class Player extends BlackHole {
 
 		this.physics.applyImpulse(force, forcePosition);
 	}
-	public void updateSize(){
-		if(this.increaseSize>0.3f){
-			setRadius(getRadius()+0.3f);
-			increaseSize = increaseSize-0.3f;
-		}
-	}
 }

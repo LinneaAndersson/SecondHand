@@ -26,6 +26,8 @@ public class TextureRegions {
 
 	public TextureRegion starsTexture;
 	
+	public TextureRegion rocketParticleTexture;
+	
 	private static TextureRegions instance;
 	
 	public static TextureRegions getInstance() {
@@ -74,6 +76,8 @@ public class TextureRegions {
 
 		this.enemySprite = TextureRegionLoader.getInstance().loadTextureRegion(TEXTURE_BASEPATH+"enemy.png", 256, 256,
 				TextureOptions.BILINEAR_PREMULTIPLYALPHA);
+		
+		this.rocketParticleTexture = TextureRegionLoader.getInstance().loadTextureRegion(TEXTURE_BASEPATH+"particle.png", 256, 256);
 		
 	}	
 }

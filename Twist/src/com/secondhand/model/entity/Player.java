@@ -22,7 +22,7 @@ public class Player extends BlackHole {
 
 	//For playerView to get the color of player
 	// The color will change!
-	private float[] RGB = new float[3];
+	private float[] rgb = new float[3];
 
 	// ============== EVENT-CONSTANTS ==============
 	public final static String INCREASE_SCORE = "IncreaseScore";
@@ -31,7 +31,7 @@ public class Player extends BlackHole {
 	public final static String COLOR = "color";
 	public final static float DEFAULT_COLOR_VALUE = 1f;
 	public final static String RANDOMLY_REPOSITION_PLAYER = "RandomlyRepositionPlayer";
-	
+	public final static String MOVE = "Move";
 	// =============================================
 	public Player(final Vector2 position, final float radius, final int startingLives, final int score,
 			final int maxSize) {
@@ -42,9 +42,9 @@ public class Player extends BlackHole {
 		this.setScoreMultiplier(1);
 		this.lives = startingLives;
 		this.setMirroredMovement(false);
-		RGB[0] = DEFAULT_COLOR_VALUE;
-		RGB[1] = DEFAULT_COLOR_VALUE;
-		RGB[2] = DEFAULT_COLOR_VALUE;
+		rgb[0] = DEFAULT_COLOR_VALUE;
+		rgb[1] = DEFAULT_COLOR_VALUE;
+		rgb[2] = DEFAULT_COLOR_VALUE;
 	}
 
 	public int getLives() {
@@ -57,7 +57,7 @@ public class Player extends BlackHole {
 
 	@Override
 	public void increaseScore(final int increase) {
-		int oldScore = this.getScore();
+		final int oldScore = this.getScore();
 		super.increaseScore((int) this.getScoreMultiplier() * increase);
 		pcs.firePropertyChange(INCREASE_SCORE, oldScore, (int)getScore());
 	}
@@ -90,12 +90,7 @@ public class Player extends BlackHole {
 		changeLives(-1);
 	}
 
-	// the player loses a life and is repositioned.
-	public void kill() {
-		this.loseLife();
-		
-		this.moveToRandomUnoccupiedArea();
-	}
+	
 	
 	public void moveToRandomUnoccupiedArea() {
 	
@@ -117,7 +112,6 @@ public class Player extends BlackHole {
 	// So fuck you Erin Catto.
 	// - Sincerely, Eric
 	public void setNeedsToMovePosition(final Vector2 position) {
-
 		needsToMovePosition = new Vector2(position.x, position.y);
 	}
 
@@ -129,11 +123,11 @@ public class Player extends BlackHole {
 	}
 
 	public float[] getRGB(){
-		return RGB;
+		return rgb;
 	}
 
 	public void setRGB(final float[] RGB){
-		this.RGB = RGB;
+		this.rgb = RGB;
 		pcs.firePropertyChange(COLOR, null, RGB);
 	}
 
@@ -158,7 +152,12 @@ public class Player extends BlackHole {
 		// be entirely removed from the world when eaten, we only want to
 		// reposition the player and lose a life.
 
-		kill();
+		
+		// the player loses a life and is repositioned.
+		this.loseLife();
+			
+	
+		this.moveToRandomUnoccupiedArea();
 	}
 
 	public void playSound(final SoundType sound){
@@ -175,6 +174,9 @@ public class Player extends BlackHole {
 	}
 
 	public void reachToTouch(final Vector2 touch) {
+		
+		pcs.firePropertyChange(MOVE, null, touch);
+		
 		Vector2 forcePosition;
 
 		if (this.isMirroredMovement()) {

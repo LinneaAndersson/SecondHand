@@ -231,4 +231,11 @@ public final class Vector2 { // NOPMD
 	public float lenManhattan() {
 		return Math.abs(this.x) + Math.abs(this.y);
 	}
+
+	public boolean almostEquals(final Vector2 other) {
+		final float DELTA = 0.000001f;
+		
+		return (this.x - other.x) < DELTA && (this.y - other.y) < DELTA;
+	}
+	
 }

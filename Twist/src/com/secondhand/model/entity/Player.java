@@ -31,7 +31,7 @@ public class Player extends BlackHole {
 	public final static String COLOR = "color";
 	public final static float DEFAULT_COLOR_VALUE = 1f;
 	public final static String RANDOMLY_REPOSITION_PLAYER = "RandomlyRepositionPlayer";
-	
+	public final static String MOVE = "Move";
 	// =============================================
 	public Player(final Vector2 position, final float radius, final int startingLives, final int score,
 			final int maxSize) {
@@ -112,7 +112,6 @@ public class Player extends BlackHole {
 	// So fuck you Erin Catto.
 	// - Sincerely, Eric
 	public void setNeedsToMovePosition(final Vector2 position) {
-
 		needsToMovePosition = new Vector2(position.x, position.y);
 	}
 
@@ -175,6 +174,9 @@ public class Player extends BlackHole {
 	}
 
 	public void reachToTouch(final Vector2 touch) {
+		
+		pcs.firePropertyChange(MOVE, null, touch);
+		
 		Vector2 forcePosition;
 
 		if (this.isMirroredMovement()) {

@@ -240,6 +240,11 @@ public class GamePlayScene extends GameScene implements PropertyChangeListener {
 		Sounds.getInstance().obstacleCollisionSound.play();
 	}
 
+	public void attachRocketParticles(com.secondhand.model.physics.Vector2 touchPosition, 
+									  com.secondhand.model.physics.Vector2 playerCenterPosition) {
+		
+	}
+	
 	@Override
 	public void propertyChange(final PropertyChangeEvent event) {
 

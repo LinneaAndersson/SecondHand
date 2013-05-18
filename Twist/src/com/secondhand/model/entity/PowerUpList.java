@@ -14,21 +14,18 @@ public final class PowerUpList extends ArrayList<IPowerUp> {
 	
 	public static final String ADD_POWERUP = "addPowerUp";
 	
-	private Player player;
+	private final Player player;
+	
+	public PowerUpList(final Player player) {
+		super();
+		this.player = player;
+	}
 
 	@Override
 	public boolean add(final IPowerUp powerUp) {
 		powerUp.activatePowerUp(this.player);
 		pcs.firePropertyChange(ADD_POWERUP, null, powerUp);
 		return super.add(powerUp);
-	}
-	
-	public void setPlayer(final Player player) {
-		this.player = player;
-	}
-	
-	public Player getPlayer() {
-		return this.player;
 	}
 	
 	@Override
@@ -66,18 +63,4 @@ public final class PowerUpList extends ArrayList<IPowerUp> {
 		
 		return hasAnother;	
 	}
-	
-
-	@Override
-	protected void finalize() throws Throwable 
-	{
-		try
-		{
-			MyDebug.i("poweruplist destroyed : " + this.toString());
-		}
-		finally
-		{
-			super.finalize();
-		}
-	}	
 }

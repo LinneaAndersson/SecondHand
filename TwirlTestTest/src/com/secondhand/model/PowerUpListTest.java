@@ -15,7 +15,7 @@ import junit.framework.TestCase;
 public class PowerUpListTest extends TestCase {
 	
 	public void testAdd() {
-		final PowerUpList powerUpList = new PowerUpList();
+		final PowerUpList powerUpList = new PowerUpList(null);
 		
 		class AddPowerUpListener implements PropertyChangeListener {
 			
@@ -54,7 +54,9 @@ public class PowerUpListTest extends TestCase {
 	
 	public void testRemove() {
 		
-		PowerUpList powerUpList = new PowerUpList();
+		final Player player = new Player(new Vector2(), 10, 3, 0, 0);
+		
+		final PowerUpList powerUpList = new PowerUpList(player);
 		
 		class PowerUpDeactivationTester extends PowerUp {
 			
@@ -79,9 +81,7 @@ public class PowerUpListTest extends TestCase {
 			}
 		};
 		PowerUpDeactivationTester powerUp = new PowerUpDeactivationTester();
-		Player player = new Player(new Vector2(), 10, 3, 0, 0);
 		
-		powerUpList.setPlayer(player);
 		powerUpList.add(powerUp);
 		powerUpList.remove(powerUp);
 		
@@ -93,7 +93,7 @@ public class PowerUpListTest extends TestCase {
 	}
 	
 	public void testHasAnother() {
-		PowerUpList powerUpList = new PowerUpList();
+		PowerUpList powerUpList = new PowerUpList(null);
 		
 		// Same PowerUpType but different positions,radius etc..
 		powerUpList.add(PowerUpTest.getNewPowerUp(new Vector2(1,2), PowerUpType.DOUBLE_SCORE, 11, new Player(new Vector2(1,2), 11, 3, 0, 0)));

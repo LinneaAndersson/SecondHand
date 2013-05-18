@@ -22,7 +22,7 @@ public class Player extends BlackHole {
 
 	//For playerView to get the color of player
 	// The color will change!
-	private float[] RGB = new float[3];
+	private float[] rgb = new float[3];
 
 	// ============== EVENT-CONSTANTS ==============
 	public final static String INCREASE_SCORE = "IncreaseScore";
@@ -42,9 +42,9 @@ public class Player extends BlackHole {
 		this.setScoreMultiplier(1);
 		this.lives = startingLives;
 		this.setMirroredMovement(false);
-		RGB[0] = DEFAULT_COLOR_VALUE;
-		RGB[1] = DEFAULT_COLOR_VALUE;
-		RGB[2] = DEFAULT_COLOR_VALUE;
+		rgb[0] = DEFAULT_COLOR_VALUE;
+		rgb[1] = DEFAULT_COLOR_VALUE;
+		rgb[2] = DEFAULT_COLOR_VALUE;
 	}
 
 	public int getLives() {
@@ -57,7 +57,7 @@ public class Player extends BlackHole {
 
 	@Override
 	public void increaseScore(final int increase) {
-		int oldScore = this.getScore();
+		final int oldScore = this.getScore();
 		super.increaseScore((int) this.getScoreMultiplier() * increase);
 		pcs.firePropertyChange(INCREASE_SCORE, oldScore, (int)getScore());
 	}
@@ -129,11 +129,11 @@ public class Player extends BlackHole {
 	}
 
 	public float[] getRGB(){
-		return RGB;
+		return rgb;
 	}
 
 	public void setRGB(final float[] RGB){
-		this.RGB = RGB;
+		this.rgb = RGB;
 		pcs.firePropertyChange(COLOR, null, RGB);
 	}
 

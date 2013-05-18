@@ -20,10 +20,6 @@
             <ruleset>String and StringBuffer Rules</ruleset>
         </rule>
         <rule>
-            <name>ArrayIsStoredDirectly</name>
-            <ruleset>Security Code Guidelines</ruleset>
-        </rule>
-        <rule>
             <name>AssignmentInOperand</name>
             <ruleset>Controversial Rules</ruleset>
         </rule>
@@ -458,10 +454,6 @@
         <rule>
             <name>MethodNamingConventions</name>
             <ruleset>Naming Rules</ruleset>
-        </rule>
-        <rule>
-            <name>MethodReturnsInternalArray</name>
-            <ruleset>Security Code Guidelines</ruleset>
         </rule>
         <rule>
             <name>MethodWithSameNameAsEnclosingClass</name>

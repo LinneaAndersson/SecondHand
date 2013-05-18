@@ -38,6 +38,12 @@ public class Enemy extends BlackHole {
 	public static float getMinSize() {
 		return MIN_SIZE;
 	}
+	
+	@Override
+	protected void onGrow(){
+		setRadius(getRadius()+increaseSize);
+		increaseSize=0;
+	}
 
 	public float getDangerArea() {
 		return (getRadius() * getRadius() * (float) Math.PI) + DANGER_MARGIN;

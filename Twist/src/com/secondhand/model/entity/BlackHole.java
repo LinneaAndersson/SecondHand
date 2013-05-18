@@ -42,13 +42,6 @@ public abstract class BlackHole extends CircleEntity {
 		score += increase;
 	}
 
-	private void increaseSize(final float increase) {
-		if(this instanceof Player){
-			increaseSize = increase+getRadius();
-		} else
-		setRadius(getRadius() + increase);
-	}
-
 	/**
 	 * If sizes are equal then false is returned.
 	 */
@@ -58,9 +51,8 @@ public abstract class BlackHole extends CircleEntity {
 		}
 		return this.getRadius() > entity.getRadius();
 	}
-
-	protected void onGrow() {
-	}
+	
+	protected void onGrow(){}
 
 	protected void entityWasTooBigToEat(final Entity entity) {
 	}
@@ -77,8 +69,7 @@ public abstract class BlackHole extends CircleEntity {
 		// as they always have a radius of 0. Powerups already have their own sound effects
 		// so we don't want to play the onGrow-sfx here. 
 		if(entity.getRadius() != 0) {
-			final float radiusInc = entity.getRadius() * GROWTH_FACTOR;
-			this.increaseSize(radiusInc);
+			increaseSize = increaseSize + entity.getRadius() * GROWTH_FACTOR;
 			onGrow();
 		}
 

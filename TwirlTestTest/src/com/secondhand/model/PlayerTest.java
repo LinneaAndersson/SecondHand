@@ -1,11 +1,16 @@
 package com.secondhand.model;
 
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
 import java.util.List;
 
+import com.secondhand.debug.MyDebug;
+import com.secondhand.model.entity.Enemy;
 import com.secondhand.model.entity.Player;
 import com.secondhand.model.physics.IPhysicsEntity;
 import com.secondhand.model.physics.IPhysicsObject;
 import com.secondhand.model.physics.Vector2;
+import com.secondhand.model.resource.SoundType;
 
 import junit.framework.TestCase;
 
@@ -126,6 +131,52 @@ public class PlayerTest extends TestCase{
 		player.reachToTouch(new Vector2(50,0));
 		
 		assertTrue(physics.test2Pass);
+		
+	}
+	
+	public void testWasEaten() {
+		class Listener implements PropertyChangeListener {
+			
+			public boolean soundPlayed;
+			public boolean moved;
+
+			@Override
+			public void propertyChange(PropertyChangeEvent event) {
+				// TODO Auto-generated method stub
+				String name = event.getPropertyName();
+				if(name.equals(Player.SOUND)) {
+					final SoundType newV = (SoundType)event.getNewValue();
+					
+					if(newV == SoundType.PLAYER_KILLED_SOUND)
+						soundPlayed = true;
+				}
+				
+				if(name.equals(Player.RANDOMLY_REPOSITION_PLAYER)) {
+					moved = true;
+				}
+				
+			}
+		}
+		
+		
+		
+		Player player = new Player(new Vector2(), 10, 3, // lives
+				100, // starting score
+				200); // maxsize
+		
+		Listener list = new Listener();
+		player.addListener(list);
+		
+		Enemy enemy = new Enemy(new Vector2(10,10), 100);
+		
+		list.soundPlayed = false;
+		list.moved = false;
+		
+		enemy.eatEntity(player);
+		
+		assertEquals(2, player.getLives());
+		assertTrue(list.soundPlayed);
+		assertTrue(list.moved);
 		
 	}
 

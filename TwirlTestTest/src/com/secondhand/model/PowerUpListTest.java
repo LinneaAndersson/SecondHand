@@ -41,7 +41,7 @@ public class PowerUpListTest extends TestCase {
 			
 			@Override
 			public void activatePowerUp(Player player) {
-				isActivated = true;
+				isActivated = (player == null);
 			}
 		}
 		PowerUpActivationTester powerUp = new PowerUpActivationTester();
@@ -52,11 +52,13 @@ public class PowerUpListTest extends TestCase {
 		assertTrue(powerUpList.contains(powerUp));
 	}
 	
+	Player removeTestPlayer;
+	
 	public void testRemove() {
 		
-		final Player player = new Player(new Vector2(), 10, 3, 0, 0);
+		removeTestPlayer = new Player(new Vector2(), 10, 3, 0, 0);
 		
-		final PowerUpList powerUpList = new PowerUpList(player);
+		final PowerUpList powerUpList = new PowerUpList(removeTestPlayer);
 		
 		class PowerUpDeactivationTester extends PowerUp {
 			
@@ -77,7 +79,7 @@ public class PowerUpListTest extends TestCase {
 			
 			@Override
 			public void deactivateEffect(Player player, boolean hasAnother) {
-				isDeactivated = true;
+				isDeactivated = removeTestPlayer == player;
 			}
 		};
 		PowerUpDeactivationTester powerUp = new PowerUpDeactivationTester();
@@ -87,17 +89,19 @@ public class PowerUpListTest extends TestCase {
 		
 		assertTrue(powerUpList.isEmpty());
 		assertTrue(powerUp.isDeactivated);
-		assertEquals(player.getRGB()[0], powerUp.getR());
-		assertEquals(player.getRGB()[1], powerUp.getG());
-		assertEquals(player.getRGB()[2], powerUp.getB());
+		assertEquals(removeTestPlayer.getRGB()[0], powerUp.getR());
+		assertEquals(removeTestPlayer.getRGB()[1], powerUp.getG());
+		assertEquals(removeTestPlayer.getRGB()[2], powerUp.getB());
 	}
 	
 	public void testHasAnother() {
 		PowerUpList powerUpList = new PowerUpList(null);
 		
+	
 		// Same PowerUpType but different positions,radius etc..
-		powerUpList.add(PowerUpTest.getNewPowerUp(new Vector2(1,2), PowerUpType.DOUBLE_SCORE, 11, new Player(new Vector2(1,2), 11, 3, 0, 0)));
-		powerUpList.add(PowerUpTest.getNewPowerUp(new Vector2(1,1), PowerUpType.DOUBLE_SCORE, 10, new Player(new Vector2(1,1), 10, 3, 0, 0)));
+		powerUpList.add(PowerUpTest.getNewPowerUp(new Vector2(1,2), PowerUpType.DOUBLE_SCORE, 11));
+		powerUpList.add(PowerUpTest.getNewPowerUp(new Vector2(1,1), PowerUpType.DOUBLE_SCORE, 10));
+		powerUpList.remove(0);
 		
 		assertTrue(powerUpList.hasAnother(powerUpList.get(0)));
 	}

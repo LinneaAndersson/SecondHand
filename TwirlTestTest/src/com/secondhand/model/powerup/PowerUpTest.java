@@ -9,7 +9,7 @@ import junit.framework.TestCase;
 
 public class PowerUpTest extends TestCase {
 	
-	public static PowerUp getNewPowerUp(Vector2 position, PowerUpType powerUpType, float duration, Player player) {
+	public static PowerUp getNewPowerUp(Vector2 position, PowerUpType powerUpType, float duration) {
 		return new PowerUp(position, powerUpType, duration) {
 			@Override
 			public void activateEffect(Player player) {}
@@ -24,7 +24,7 @@ public class PowerUpTest extends TestCase {
 		PowerUpType powerUpType = PowerUpType.EXTRA_LIFE;
 		float duration = 5;
 		
-		PowerUp powerUp = getNewPowerUp(position, powerUpType, duration, new Player(new Vector2(),10,3,0, 0));
+		PowerUp powerUp = getNewPowerUp(position, powerUpType, duration);
 		
 		assertEquals(position, powerUp.getInitialPosition());
 		assertEquals(powerUpType, powerUp.getPowerUpType());

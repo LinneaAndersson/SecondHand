@@ -8,8 +8,6 @@ public class BlackColor extends PowerUp {
 	
 	private final static float DURATION = 10;
 	
-	private final static float MULT = 2;
-	
 	public BlackColor(final Vector2 position) {
 		super(position, PowerUpType.DOUBLE_SCORE, DURATION);
 	}

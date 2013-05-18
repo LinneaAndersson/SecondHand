@@ -5,12 +5,13 @@ import java.util.List;
 import java.util.Random;
 
 import com.secondhand.debug.MyDebug;
-import com.secondhand.model.entity.IGameWorld;
 import com.secondhand.model.physics.Vector2;
 
 // Uses the second method described here:
 // http://www.electricmonk.nl/log/2009/12/23/weighted-random-distribution/
 // to do a Weighted Random Distribution of powerups. 
+
+// a frequency of 10 means the powerups is very common, while 1 means it's very rare.
 public final class PowerUpFactory {
 
 	private final List<Weight> weights;

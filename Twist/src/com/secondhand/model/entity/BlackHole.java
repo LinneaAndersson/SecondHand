@@ -1,6 +1,5 @@
 package com.secondhand.model.entity;
 
-import com.secondhand.debug.MyDebug;
 import com.secondhand.model.physics.Vector2;
 
 public abstract class BlackHole extends CircleEntity {
@@ -72,7 +71,7 @@ public abstract class BlackHole extends CircleEntity {
 		// so we don't want to play the onGrow-sfx here. 
 		if(entity.getRadius() != 0) {
 			this.increaseSize =+ entity.getRadius() * GROWTH_FACTOR;
-			pcs.firePropertyChange(this.INCREASE_SIZE, null, this);
+			pcs.firePropertyChange(BlackHole.INCREASE_SIZE, null, this);
 			onGrow();
 		}
 

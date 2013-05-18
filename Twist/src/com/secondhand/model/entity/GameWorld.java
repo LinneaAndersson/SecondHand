@@ -18,7 +18,7 @@ public class GameWorld implements IGameWorld, PropertyChangeListener {
 
 	public static final int PLAYER_STARTING_SIZE = 30;
 
-	private final IPhysicsWorld mPhysic;
+	private final IPhysicsWorld physicsWorld;
 
 	private int levelWidth;
 	private int levelHeight;
@@ -33,8 +33,8 @@ public class GameWorld implements IGameWorld, PropertyChangeListener {
 			final int levelNumber, final int playerLives, final int playerScore) {
 		
 		
-		this.mPhysic = physics;
-		this.mPhysic.setCollisionResolver(new CollisionResolver(this));
+		this.physicsWorld = physics;
+		this.physicsWorld.setCollisionResolver(new CollisionResolver(this));
 		this.support = new PropertyChangeSupport(this);
 		this.entityManager = new EntityManager();
 		
@@ -85,7 +85,7 @@ public class GameWorld implements IGameWorld, PropertyChangeListener {
 		this.entityManager.setEntityList(randomLevelGenerator.entityList);
 		this.entityManager.setEnemyList(randomLevelGenerator.enemyList);
 		
-		mPhysic.setWorldBounds(this.levelWidth, this.levelHeight);
+		physicsWorld.setWorldBounds(this.levelWidth, this.levelHeight);
 	}
 
 	@Override
@@ -95,7 +95,7 @@ public class GameWorld implements IGameWorld, PropertyChangeListener {
 
 	@Override
 	public IPhysicsWorld getPhysics() {
-		return mPhysic;
+		return physicsWorld;
 	}
 
 	@Override
@@ -144,8 +144,7 @@ public class GameWorld implements IGameWorld, PropertyChangeListener {
 		return this.entityManager.getEntityList();
 	}
 
-	@Override
-	public boolean checkPlayerBigEnough() {
+	private boolean checkPlayerBigEnough() {
 		return this.getPlayer().getRadius() >= this.getPlayer().getMaxSize();
 	}
 
@@ -161,7 +160,7 @@ public class GameWorld implements IGameWorld, PropertyChangeListener {
 
 		final Random rng = new Random();
 		if (eventName.equals(Player.RANDOMLY_REPOSITION_PLAYER)) {
-			getPlayer().setNeedsToMovePosition(this.mPhysic.getRandomUnOccupiedArea(
+			getPlayer().setNeedsToMovePosition(this.physicsWorld.getRandomUnOccupiedArea(
 			this.getLevelWidth(),
 			this.getLevelHeight(),
 			getPlayer().getRadius(), rng));

@@ -26,9 +26,6 @@ public interface IGameWorld {
 	
 	List<Entity> getEntityList();
 	
-
-	boolean checkPlayerBigEnough();	
-	
 	boolean isGameOver();
 	
 	void updateGameWorld();

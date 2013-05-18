@@ -15,7 +15,7 @@ public interface IPhysicsEntity {
 	/// apply impulse to world center. 
 	void applyImpulse(Vector2 impulsePosition, float maxSpeed);
 
-	void applyImpulse(Vector2 impulsePosition, Vector2 impulse);
+	void applyImpulse(Vector2 impulse, Vector2 impulsePosition);
 	
 	void setLinearDamping(float f);
 	

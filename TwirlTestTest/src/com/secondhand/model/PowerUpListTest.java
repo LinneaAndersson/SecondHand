@@ -94,13 +94,22 @@ public class PowerUpListTest extends TestCase {
 		assertEquals(removeTestPlayer.getRGB()[2], powerUp.getB());
 	}
 	
+	
+	public PowerUp getNewPowerUp(Vector2 position, PowerUpType powerUpType, float duration) {
+		return new PowerUp(position, powerUpType, duration) {
+			@Override
+			public void activateEffect(Player player) {}
+		};
+	}
+	
+	
 	public void testHasAnother() {
 		PowerUpList powerUpList = new PowerUpList(new Player(new Vector2(), 10, 3, 0, 0));
 		
 	
 		// Same PowerUpType but different positions,radius etc..
-		powerUpList.add(PowerUpTest.getNewPowerUp(new Vector2(1,2), PowerUpType.DOUBLE_SCORE, 11));
-		powerUpList.add(PowerUpTest.getNewPowerUp(new Vector2(1,1), PowerUpType.DOUBLE_SCORE, 10));
+		powerUpList.add(getNewPowerUp(new Vector2(1,2), PowerUpType.DOUBLE_SCORE, 11));
+		powerUpList.add(getNewPowerUp(new Vector2(1,1), PowerUpType.DOUBLE_SCORE, 10));
 		powerUpList.remove(0);
 		
 		assertTrue(powerUpList.hasAnother(powerUpList.get(0)));

@@ -1,25 +1,37 @@
 package com.secondhand.model.powerup;
 
-import com.badlogic.gdx.math.Vector2;
-import com.secondhand.model.entity.GameWorld;
 import com.secondhand.model.entity.Player;
+import com.secondhand.model.physics.Vector2;
+import com.secondhand.model.resource.PowerUpType;
 
 import junit.framework.TestCase;
 
 public class SpeedUpTest extends TestCase {
 
-/*	public void testActivateEffect() {
-		Vector2 position = new Vector2();
-		float radius = 10;
-		GameWorld level = new GameWorld();
-		Player player = new Player(position, radius, level);
-		SpeedUp powerUp = new SpeedUp(position, level);
+	public void testEffet() {
+		Player player = new Player(new Vector2(), 10f, 3, 0, 100);
+		SpeedUp powerup = new SpeedUp(new Vector2());
 		
-		float startSpeed = player.getMaxSpeed();
-		powerUp.activateEffect(player);
-		assertEquals(startSpeed*powerUp.getFactor(), player.getMaxSpeed());
-		powerUp.deactivateEffect(player);
-		assertEquals(startSpeed, player.getMaxSpeed());
-	}*/
+		assertEquals(10, powerup.getDuration(), 0.001);
+		assertEquals(6, SpeedUp.getFrequency());	
+		
+		assertEquals(0, powerup.getR(), 0.001);	
+		assertEquals(0, powerup.getG(), 0.001);	
+		assertEquals(1, powerup.getB(), 0.001);	
+		
+		assertEquals(PowerUpType.SPEED_UP, powerup.getPowerUpType());	
+		
+		powerup.activateEffect(player);
+		assertEquals(2, player.getSpeedMultiplier(), 0.001);
+		
+		powerup.activateEffect(player);
+		assertEquals(4, player.getSpeedMultiplier(), 0.001);
+		
+		powerup.deactivateEffect(player, true);
+		assertEquals(2, player.getSpeedMultiplier(), 0.001);
+		
+		powerup.deactivateEffect(player, true);
+		assertEquals(1, player.getSpeedMultiplier(), 0.001);
+	}
 	
 }

@@ -73,8 +73,8 @@ public class GameWorld implements IGameWorld, PropertyChangeListener {
 		
 		// now create the new player
 		final Player player = new Player(randomLevelGenerator.playerPosition,
-				randomLevelGenerator.playerInitialSize, playerLives, playerScore);
-		player.setMaxSize(randomLevelGenerator.playerMaxSize);
+				randomLevelGenerator.playerInitialSize, playerLives, playerScore, randomLevelGenerator.playerMaxSize);
+
 		this.entityManager.setPlayer(player);
 
 

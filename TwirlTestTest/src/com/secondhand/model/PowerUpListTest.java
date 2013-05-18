@@ -79,7 +79,7 @@ public class PowerUpListTest extends TestCase {
 			}
 		};
 		PowerUpDeactivationTester powerUp = new PowerUpDeactivationTester();
-		Player player = new Player(new Vector2(), 10, 3, 0);
+		Player player = new Player(new Vector2(), 10, 3, 0, 0);
 		
 		powerUpList.setPlayer(player);
 		powerUpList.add(powerUp);
@@ -96,8 +96,8 @@ public class PowerUpListTest extends TestCase {
 		PowerUpList powerUpList = new PowerUpList();
 		
 		// Same PowerUpType but different positions,radius etc..
-		powerUpList.add(PowerUpTest.getNewPowerUp(new Vector2(1,2), PowerUpType.DOUBLE_SCORE, 11, new Player(new Vector2(1,2), 11, 3, 0)));
-		powerUpList.add(PowerUpTest.getNewPowerUp(new Vector2(1,1), PowerUpType.DOUBLE_SCORE, 10, new Player(new Vector2(1,1), 10, 3, 0)));
+		powerUpList.add(PowerUpTest.getNewPowerUp(new Vector2(1,2), PowerUpType.DOUBLE_SCORE, 11, new Player(new Vector2(1,2), 11, 3, 0, 0)));
+		powerUpList.add(PowerUpTest.getNewPowerUp(new Vector2(1,1), PowerUpType.DOUBLE_SCORE, 10, new Player(new Vector2(1,1), 10, 3, 0, 0)));
 		
 		assertTrue(powerUpList.hasAnother(powerUpList.get(0)));
 	}

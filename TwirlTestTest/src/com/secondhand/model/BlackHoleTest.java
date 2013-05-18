@@ -154,10 +154,10 @@ public class BlackHoleTest extends TestCase {
 		Vector2 vector = new Vector2();
 		Enemy enemy = new Enemy(vector, rad);
 
-		Player other = new Player(vector, rad - 1, 3, 0);
+		Player other = new Player(vector, rad - 1, 3, 0, 0);
 		assertTrue(enemy.canEat(other));
 
-		other = new Player(vector, rad + 1, 3 ,1);
+		other = new Player(vector, rad + 1, 3 ,1, 0);
 		assertFalse(enemy.canEat(other));
 		
 		final ArrayList<Vector2> polygon = new ArrayList<Vector2>();
@@ -278,7 +278,7 @@ public class BlackHoleTest extends TestCase {
 	
 	public void testEatEntity() {	
 
-		Player other = new Player(new Vector2(), 10, 3, 10);
+		Player other = new Player(new Vector2(), 10, 3, 10, 0);
 		other.setScoreMultiplier(2);
 		other.addListener(new Prop2ChangeTest());
 		

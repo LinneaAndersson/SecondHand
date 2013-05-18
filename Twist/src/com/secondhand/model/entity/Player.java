@@ -12,7 +12,7 @@ public class Player extends BlackHole {
 
 	private boolean isMirroredMovement;
 
-	private int maxSize;
+	private final int maxSize;
 
 	private float scoreMultiplier;
 
@@ -33,25 +33,22 @@ public class Player extends BlackHole {
 	public final static String RANDOMLY_REPOSITION_PLAYER = "RandomlyRepositionPlayer";
 	
 	// =============================================
-	public Player(final Vector2 position, final float radius, final int startingLives, final int score) {
+	public Player(final Vector2 position, final float radius, final int startingLives, final int score,
+			final int maxSize) {
 		super(position, radius, score);
 
-		this.speedMultiplier = 1;
+		this.maxSize = maxSize;
+		this.setSpeedMultiplier(1);
+		this.setScoreMultiplier(1);
 		this.lives = startingLives;
-		this.scoreMultiplier = 1;
-		isMirroredMovement = false;
+		this.setMirroredMovement(false);
 		RGB[0] = DEFAULT_COLOR_VALUE;
 		RGB[1] = DEFAULT_COLOR_VALUE;
 		RGB[2] = DEFAULT_COLOR_VALUE;
-
 	}
 
 	public int getLives() {
 		return this.lives;
-	}
-
-	public void setMaxSize(final int size) {
-		maxSize = size;
 	}
 
 	public int getMaxSize() {
@@ -72,7 +69,6 @@ public class Player extends BlackHole {
 	public float getScoreMultiplier() {
 		return this.scoreMultiplier;
 	}
-
 
 	public void setSpeedMultiplier(final float speedMultiplier) {
 		this.speedMultiplier = speedMultiplier;

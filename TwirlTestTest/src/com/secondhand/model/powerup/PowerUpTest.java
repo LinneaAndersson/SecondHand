@@ -24,7 +24,7 @@ public class PowerUpTest extends TestCase {
 		PowerUpType powerUpType = PowerUpType.EXTRA_LIFE;
 		float duration = 5;
 		
-		PowerUp powerUp = getNewPowerUp(position, powerUpType, duration, new Player(new Vector2(),10,3,0));
+		PowerUp powerUp = getNewPowerUp(position, powerUpType, duration, new Player(new Vector2(),10,3,0, 0));
 		
 		assertEquals(position, powerUp.getInitialPosition());
 		assertEquals(powerUpType, powerUp.getPowerUpType());

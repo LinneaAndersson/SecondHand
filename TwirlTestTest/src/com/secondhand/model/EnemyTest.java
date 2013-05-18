@@ -113,7 +113,7 @@ public class EnemyTest extends TestCase {
 		float rad = 4.2f;
 		Enemy enemy = new Enemy(vector, rad);
 
-		// (r²*pi)*40 for the size*constant
+		// (r��*pi)*40 for the size*constant
 		assertEquals(enemy.getHuntingArea(), 40 * (rad * rad * (float) Math.PI));
 	}
 
@@ -157,10 +157,10 @@ public class EnemyTest extends TestCase {
 				enemyNotStraightLine, false);
 
 		// different Player for different case.
-		Player playerOutOfRange = new Player(new Vector2(200f, 200f), 3.0f, 3, 1);
-		Player playerInRangeClose = new Player(new Vector2(vector.x+1f,vector.x+1f), 3.0f, 3, 1);
-		Player playerInRange = new Player(new Vector2(vector.x+4f, vector.x+4f), 3.0f, 3 ,1);
-		Player playerInRangeNotStrightLine = new Player(new Vector2(vector.x+4f, vector.x+4f),3.0f, 3, 1);
+		Player playerOutOfRange = new Player(new Vector2(200f, 200f), 3.0f, 3, 1, 0);
+		Player playerInRangeClose = new Player(new Vector2(vector.x+1f,vector.x+1f), 3.0f, 3, 1, 0);
+		Player playerInRange = new Player(new Vector2(vector.x+4f, vector.x+4f), 3.0f, 3 ,1, 0);
+		Player playerInRangeNotStrightLine = new Player(new Vector2(vector.x+4f, vector.x+4f),3.0f, 3, 1, 0);
 
 		new EnemyTestPhysicsEntity(playerOutOfRange, true);
 		new EnemyTestPhysicsEntity(playerInRangeClose, true);

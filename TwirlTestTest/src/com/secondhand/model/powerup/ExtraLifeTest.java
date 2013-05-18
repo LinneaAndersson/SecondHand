@@ -7,8 +7,8 @@ import com.secondhand.model.entity.Player;
 import junit.framework.TestCase;
 
 public class ExtraLifeTest extends TestCase {
-
-/*	public void testActivateEffect() {
+/*
+	public void testActivateEffect() {
 		GameWorld world = new GameWorld();
 		int lives = 1;
 		Player player = new Player(new Vector2(), 10, world, lives, 0);

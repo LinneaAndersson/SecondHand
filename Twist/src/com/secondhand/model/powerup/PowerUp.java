@@ -43,12 +43,6 @@ public abstract class PowerUp extends RectangleEntity implements IPowerUp {
 	}
 	
 	@Override
-	public float getRadius() {
-		// you won't grow when eating powerups.
-		return 0;
-	}
-	
-	@Override
 	public boolean hasText(){
 		return getText() != null;
 	}

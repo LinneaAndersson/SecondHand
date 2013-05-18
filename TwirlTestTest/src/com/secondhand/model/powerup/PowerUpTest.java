@@ -1,7 +1,6 @@
 package com.secondhand.model.powerup;
 
 import com.secondhand.model.entity.Player;
-import com.secondhand.model.entity.PowerUpList;
 import com.secondhand.model.physics.Vector2;
 import com.secondhand.model.resource.PowerUpType;
 
@@ -16,22 +15,29 @@ public class PowerUpTest extends TestCase {
 			
 			@Override
 			public void activatePowerUp(Player player) {}
+			
+			@Override
+			public String getText(){
+				return "lorem ipsum";
+			}
 		};
 	}
 	
 	public void testConstructor() {
-		Vector2 position = new Vector2();
+		Vector2 position = new Vector2(1,2);
 		PowerUpType powerUpType = PowerUpType.EXTRA_LIFE;
 		float duration = 5;
 		
 		PowerUp powerUp = getNewPowerUp(position, powerUpType, duration);
 		
-		assertEquals(position, powerUp.getInitialPosition());
 		assertEquals(powerUpType, powerUp.getPowerUpType());
 		assertEquals(duration, powerUp.getDuration());
-	}
-	
-	public void testRemovePowerUp() {
+		
+		assertEquals(PowerUp.WIDTH, powerUp.getWidth());
+		assertEquals(PowerUp.WIDTH, powerUp.getHeight());
+		assertEquals(0, powerUp.getRadius());
+		assertEquals(0, powerUp.getScoreValue());
+		assertTrue(powerUp.hasText());
 		
 	}
 	

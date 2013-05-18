@@ -38,7 +38,9 @@ public class GameWorld implements IGameWorld, PropertyChangeListener {
 		this.support = new PropertyChangeSupport(this);
 		this.entityManager = new EntityManager();
 		
-		generateNewLevelEntities(levelNumber, playerLives, playerScore);
+		this.levelNumber = levelNumber;
+		
+		generateNewLevelEntities(playerLives, playerScore);
 		this.powerUpList = new PowerUpList(this.entityManager.getPlayer());
 		
 	
@@ -66,9 +68,7 @@ public class GameWorld implements IGameWorld, PropertyChangeListener {
 	}
 
 	// generate the level entities of a new level.
-	private void generateNewLevelEntities(final int levelNumber,
-			final int playerLives, final int playerScore) {
-		this.levelNumber = levelNumber;
+	private void generateNewLevelEntities(final int playerLives, final int playerScore) {
 			
 		final RandomLevelGenerator randomLevelGenerator =  new RandomLevelGenerator(this);
 		

@@ -6,6 +6,7 @@ import org.anddev.andengine.engine.handler.timer.TimerHandler;
 import com.secondhand.debug.MyDebug;
 import com.secondhand.model.entity.IGameWorld;
 import com.secondhand.model.powerup.PowerUp;
+import com.secondhand.view.scene.GamePlayScene;
 
 public final class TimerFactory {
 	
@@ -23,4 +24,16 @@ public final class TimerFactory {
 			}
 		});
 	}
+	
+	public static TimerHandler createRocketTimer(final GamePlayScene scene, final float DURATION) {
+		return new TimerHandler(DURATION, new ITimerCallback() {
+			private GamePlayScene timerScene = scene;
+			
+			@Override
+			public void onTimePassed(TimerHandler pTimerHandler) {
+				timerScene.detachRocketParticles();
+			}
+		});
+	}
+	
 }

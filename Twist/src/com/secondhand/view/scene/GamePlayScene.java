@@ -245,6 +245,10 @@ public class GamePlayScene extends GameScene implements PropertyChangeListener {
 		
 	}
 	
+	public void detachRocketParticles() {
+		
+	}
+	
 	@Override
 	public void propertyChange(final PropertyChangeEvent event) {
 

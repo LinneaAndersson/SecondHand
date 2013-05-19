@@ -60,6 +60,7 @@ public class Enemy extends BlackHole {
 
 	// player has highest chase-priority
 	public void moveEnemy(final Entity player, final List<Entity> entityList) {
+
 		danger(player, entityList);
 		if (isCloseToEntity(player, huntingArea) && canEat(player)) {
 			dangerCheck(player);

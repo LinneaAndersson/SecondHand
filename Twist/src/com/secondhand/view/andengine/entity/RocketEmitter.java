@@ -4,7 +4,6 @@ import javax.microedition.khronos.opengles.GL10;
 
 import org.anddev.andengine.entity.particle.ParticleSystem;
 import org.anddev.andengine.entity.particle.emitter.CircleOutlineParticleEmitter;
-import org.anddev.andengine.entity.particle.emitter.PointParticleEmitter;
 import org.anddev.andengine.entity.particle.initializer.AlphaInitializer;
 import org.anddev.andengine.entity.particle.initializer.ColorInitializer;
 import org.anddev.andengine.entity.particle.initializer.RotationInitializer;

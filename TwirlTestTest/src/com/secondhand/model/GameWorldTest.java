@@ -1,5 +1,8 @@
 package com.secondhand.model;
 
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
+import java.beans.PropertyChangeSupport;
 import java.util.List;
 import java.util.Random;
 
@@ -7,13 +10,14 @@ import junit.framework.TestCase;
 
 import com.secondhand.model.entity.Entity;
 import com.secondhand.model.entity.GameWorld;
+import com.secondhand.model.entity.Player;
 import com.secondhand.model.physics.ICollisionResolver;
 import com.secondhand.model.physics.IPhysicsEntity;
 import com.secondhand.model.physics.IPhysicsObject;
 import com.secondhand.model.physics.IPhysicsWorld;
 import com.secondhand.model.physics.Vector2;
 
-public class GameWorldTest extends TestCase {
+public class GameWorldTest extends TestCase implements PropertyChangeListener{
 
 	private class TestPhysicsWorld implements IPhysicsWorld {
 
@@ -33,7 +37,7 @@ public class GameWorldTest extends TestCase {
 		@Override
 		public Vector2 getRandomUnOccupiedArea(int worldWidth, int worldHeight,
 				float r, Random rng) {
-			return null;
+			return new Vector2(20, 20);
 		}
 
 		@Override
@@ -51,15 +55,15 @@ public class GameWorldTest extends TestCase {
 	}
 
 	private class TestPhysicsEntity implements IPhysicsEntity {
-
+		private Vector2 pos = new Vector2();
 		@Override
 		public float getCenterX() {
-			return 0;
+			return pos.x;
 		}
 
 		@Override
 		public float getCenterY() {
-			return 0;
+			return pos.y;
 		}
 
 		@Override
@@ -89,6 +93,7 @@ public class GameWorldTest extends TestCase {
 
 		@Override
 		public void setTransform(Vector2 position) {
+			pos = position;
 		}
 
 		@Override
@@ -106,7 +111,8 @@ public class GameWorldTest extends TestCase {
 	int lives = 1;
 	int levelNumber = 1;
 	int score = 100;
-
+	String name;
+	PropertyChangeSupport support = new PropertyChangeSupport(this);
 	public void testConstructor() {
 
 		IPhysicsWorld physics = new TestPhysicsWorld();
@@ -129,16 +135,48 @@ public class GameWorldTest extends TestCase {
 	}
 
 	public void testUpdateGameWorld() {
+		//TODO entityManager part
+		IPhysicsWorld physics = new TestPhysicsWorld();
+		GameWorld gWorld = new GameWorld(physics, levelNumber, lives, score);
+		gWorld.addListener(this);
+		for (Entity e : gWorld.getEntityList()) {
+			e.setPhysics(new TestPhysicsEntity());
+		}
+		gWorld.getPlayer().setPhysics(new TestPhysicsEntity());
+
+		// PLayer not big enough
+		gWorld.updateGameWorld();
+		assertEquals(levelNumber, gWorld.getLevelNumber());
+
+		// Player bigger than maxSize
+		gWorld.getPlayer().setRadius(gWorld.getPlayer().getMaxSize());
+		gWorld.updateGameWorld();
+		assertEquals("NextLevel", name);
+		assertEquals(levelNumber+1, gWorld.getLevelNumber());
+	}
+	
+	public void tesPpropertyChange(){
 		IPhysicsWorld physics = new TestPhysicsWorld();
 		GameWorld gWorld = new GameWorld(physics, levelNumber, lives, score);
 		for (Entity e : gWorld.getEntityList()) {
 			e.setPhysics(new TestPhysicsEntity());
 		}
+		Player player = gWorld.getPlayer();
+		player.setPhysics(new TestPhysicsEntity());
+		support.addPropertyChangeListener(gWorld);
+		support.firePropertyChange(Player.RANDOMLY_REPOSITION_PLAYER,true,false);
+		
+		assertEquals(player.getCenterX(), 20);
+		assertEquals(player.getCenterY(), 20);
+		
+		support.removePropertyChangeListener(gWorld);
+		
+		
+	}
 
-		// PLayer not big enough
-		// gWorld.updateGameWorld();
-		assertEquals(levelNumber, gWorld.getLevelNumber());
-
+	@Override
+	public void propertyChange(PropertyChangeEvent event) {
+		name = event.getPropertyName();
 	}
 
 }

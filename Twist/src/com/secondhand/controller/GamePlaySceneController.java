@@ -4,7 +4,6 @@ import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 
 import org.anddev.andengine.entity.Entity;
-import org.anddev.andengine.entity.particle.ParticleSystem;
 import org.anddev.andengine.entity.scene.Scene;
 import org.anddev.andengine.entity.scene.Scene.IOnSceneTouchListener;
 import org.anddev.andengine.input.touch.TouchEvent;
@@ -138,7 +137,7 @@ final class GamePlaySceneController extends Entity implements PropertyChangeList
 			this.registerController();
 		} else if (name.equals(Player.MOVE)) {
 			final Vector2 touchPosition = (Vector2) event.getNewValue();
-			RocketEmitter emitter = this.gamePlayScene.attachRocketEmitter(new com.badlogic.gdx.math.Vector2(touchPosition.x,touchPosition.y));
+			final RocketEmitter emitter = this.gamePlayScene.attachRocketEmitter(new com.badlogic.gdx.math.Vector2(touchPosition.x,touchPosition.y));
 			this.sceneController.getSceneManager().registerUpdateHander(TimerFactory.createRocketTimer(this.sceneController.getSceneManager(), this.gamePlayScene, emitter));
 		}
 	}

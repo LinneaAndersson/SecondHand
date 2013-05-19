@@ -2,7 +2,6 @@ package com.secondhand.controller;
 
 import org.anddev.andengine.engine.handler.timer.ITimerCallback;
 import org.anddev.andengine.engine.handler.timer.TimerHandler;
-import org.anddev.andengine.entity.particle.ParticleSystem;
 
 import com.secondhand.debug.MyDebug;
 import com.secondhand.model.entity.IGameWorld;

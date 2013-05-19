@@ -38,19 +38,20 @@ public class Enemy extends BlackHole {
 	public static float getMinSize() {
 		return MIN_SIZE;
 	}
-	
+
 	@Override
-	protected void onGrow(){
+	protected void onGrow() {
 	}
 
 	public float getDangerArea() {
 		return (getRadius() * getRadius() * (float) Math.PI) + DANGER_MARGIN;
 	}
 
-	//Cannot be negativ!!
+	// Cannot be negativ!!
 	public void setMaxSpeed(final float maxSpeed) {
-		if(maxSpeed < 0 ) throw new AssertionError();
-			this.maxSpeed = maxSpeed;
+		if (maxSpeed < 0)
+			throw new AssertionError();
+		this.maxSpeed = maxSpeed;
 	}
 
 	public float getMaxSpeed() {
@@ -72,7 +73,9 @@ public class Enemy extends BlackHole {
 			retreatFrom(player);
 		} else {
 			for (final Entity e : entityList) {
-				if (e instanceof Enemy && isCloseToEntity(e, getDangerArea()) && !canEat(e)) {
+				if (e instanceof Enemy && isCloseToEntity(e, getDangerArea())
+						&& !canEat(e)) {
+
 					retreatFrom(e);
 				}
 			}
@@ -96,12 +99,13 @@ public class Enemy extends BlackHole {
 	private Entity getHighesPriority(final List<Entity> entityList) {
 		Entity entity = null;
 		for (final Entity e : entityList) {
-			if (e instanceof CircleEntity && isCloseToEntity(e, huntingArea) && canEat(e)) {
-					if (!(entity instanceof Enemy && !(e instanceof Enemy))) {
-						entity = getSmaller(entity, e);
-					}
+			if (e instanceof CircleEntity && isCloseToEntity(e, huntingArea)
+					&& canEat(e)) {
+				if (!(entity instanceof Enemy && !(e instanceof Enemy))) {
+					entity = getSmaller(entity, e);
 				}
-			
+			}
+
 		}
 
 		return entity;

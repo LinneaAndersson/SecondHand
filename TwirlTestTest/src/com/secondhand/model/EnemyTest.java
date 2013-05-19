@@ -32,7 +32,7 @@ public class EnemyTest extends TestCase {
 			this.entity = entity;
 			entity.setPhysics(this);
 			this.isStraightLine = isStraightLine;
-			testVector= new Vector2(0,0);
+			testVector = new Vector2(0, 0);
 		}
 
 		@Override
@@ -97,7 +97,6 @@ public class EnemyTest extends TestCase {
 		assertEquals(vector.x, enemyPosition.x);
 		assertEquals(vector.y, enemyPosition.y);
 
-
 	}
 
 	public void testGetMinSize() {
@@ -107,7 +106,6 @@ public class EnemyTest extends TestCase {
 	public void testGetMaxSize() {
 		assertEquals(Enemy.getMaxSize(), 40f);
 	}
-
 
 	public void testGetHuntingArea() {
 		float rad = 4.2f;
@@ -157,10 +155,14 @@ public class EnemyTest extends TestCase {
 				enemyNotStraightLine, false);
 
 		// different Player for different case.
-		Player playerOutOfRange = new Player(new Vector2(200f, 200f), 3.0f, 3, 1, 0);
-		Player playerInRangeClose = new Player(new Vector2(vector.x+1f,vector.x+1f), 3.0f, 3, 1, 0);
-		Player playerInRange = new Player(new Vector2(vector.x+4f, vector.x+4f), 3.0f, 3 ,1, 0);
-		Player playerInRangeNotStrightLine = new Player(new Vector2(vector.x+4f, vector.x+4f),3.0f, 3, 1, 0);
+		Player playerOutOfRange = new Player(new Vector2(200f, 200f), 3.0f, 3,
+				1, 0);
+		Player playerInRangeClose = new Player(new Vector2(vector.x + 1f,
+				vector.x + 1f), 3.0f, 3, 1, 0);
+		Player playerInRange = new Player(new Vector2(vector.x + 4f,
+				vector.x + 4f), 3.0f, 3, 1, 0);
+		Player playerInRangeNotStrightLine = new Player(new Vector2(
+				vector.x + 4f, vector.x + 4f), 3.0f, 3, 1, 0);
 
 		new EnemyTestPhysicsEntity(playerOutOfRange, true);
 		new EnemyTestPhysicsEntity(playerInRangeClose, true);
@@ -170,10 +172,12 @@ public class EnemyTest extends TestCase {
 		// A constant to multiply with when enemy will move.
 		float enemyHuntingArea = 0.002f;
 
+		float enemyDangerArea = 0.02f;
+
 		// 1. I will check with enemy radius bigger than the other Entities
 
 		// 1.1 Planet is in Enemies huntingrange.
-		final List<Entity> entityList = new ArrayList();
+		final List<Entity> entityList = new ArrayList<Entity>();
 		entityList.add(new Planet(new Vector2(3f, 3f), 2.0f, PlanetType.DRUGS));
 		new EnemyTestPhysicsEntity(entityList.get(0), true);
 
@@ -284,12 +288,14 @@ public class EnemyTest extends TestCase {
 		entityList.clear();
 		enemySmallPhysics.applyImpulse(new Vector2(0, 0), 0);
 		enemySmall.moveEnemy(playerInRange, entityList);
-		assertEquals(enemySmallPhysics.getImpulseVector().x,
-				(enemySmall.getInitialPosition().x) * enemyHuntingArea
-						- playerInRange.getInitialPosition().x);
-		assertEquals(enemySmallPhysics.getImpulseVector().y,
-				(enemySmall.getInitialPosition().y) * enemyHuntingArea
-						- playerInRange.getInitialPosition().y);
+		assertEquals(
+				enemySmallPhysics.getImpulseVector().x,
+				(enemySmall.getInitialPosition().x - playerInRange
+						.getInitialPosition().x) * enemyDangerArea);
+		assertEquals(
+				enemySmallPhysics.getImpulseVector().y,
+				(enemySmall.getInitialPosition().y - playerInRange
+						.getInitialPosition().y) * enemyDangerArea);
 
 	}
 }

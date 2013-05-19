@@ -21,6 +21,7 @@ import com.secondhand.view.resource.loader.FontLoader;
 import com.secondhand.view.resource.loader.SoundLoader;
 import com.secondhand.view.resource.loader.TextureRegionLoader;
 import com.secondhand.view.scene.AllScenes;
+import com.secondhand.view.scene.ThreadUtil;
 
 public class MainActivity extends BaseGameActivity {
 
@@ -54,6 +55,7 @@ public class MainActivity extends BaseGameActivity {
 	    SoundLoader.getInstance().initialize(this, engine);
 	    TextureRegionLoader.getInstance().initialize(this, engine);
 	    LocalizationStrings.getInstance().initialize(this);
+	    ThreadUtil.getInstance().initialize(engine);
 
 	 
 	    // initialze scene controller. 

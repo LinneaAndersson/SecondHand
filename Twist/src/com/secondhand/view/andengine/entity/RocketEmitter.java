@@ -27,7 +27,7 @@ public class RocketEmitter extends ParticleSystem {
 		addParticleInitializer(new AlphaInitializer(0));
 		setBlendFunction(GL10.GL_SRC_ALPHA, GL10.GL_ONE);
 		
-		final float factor = 5;
+		final float factor = 2;
 		final float velocityX = (surfaceX - centerX) * factor;
 		final float velocityY = (surfaceY - centerY) * factor;
 		VelocityInitializer particleVelocity = new VelocityInitializer(velocityX, velocityY);

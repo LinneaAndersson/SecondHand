@@ -53,7 +53,7 @@ public class MyPhysicsEntity implements IPhysicsEntity {
 	@Override
 	public void deleteBody() {
 		
-		ThreadUtil.runOnUpdateThread(new ThreadUtil.Method() {
+		ThreadUtil.getInstance().runOnUpdateThread(new ThreadUtil.Method() {
 			@Override
 			public void method() {
 				physicsWorld.unregisterPhysicsConnector(physicsConnector);

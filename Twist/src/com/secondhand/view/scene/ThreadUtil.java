@@ -3,14 +3,22 @@ package com.secondhand.view.scene;
 import org.anddev.andengine.engine.Engine;
 import org.anddev.andengine.engine.handler.IUpdateHandler;
 
-import com.secondhand.controller.MainActivity;
-
 public final class ThreadUtil {
+	private static ThreadUtil instance = new ThreadUtil();
+	
+	private Engine engine;
 	
 	private ThreadUtil() {}
 	
-	public static void runOnUpdateThread(final Method method) {
-		final Engine engine = MainActivity.engine;
+	public static ThreadUtil getInstance() {
+		return ThreadUtil.instance;
+	}
+	
+	public void  initialize(final Engine engine) {
+		this.engine = engine;
+	}
+	
+	public void runOnUpdateThread(final Method method) {
 		engine.registerUpdateHandler(new IUpdateHandler() {
 			@Override
 			public void onUpdate(final float pSecondsElapsed) {

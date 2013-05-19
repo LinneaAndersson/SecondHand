@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.secondhand.model.physics.Vector2;
-import com.secondhand.model.randomlevelgenerator.PolygonUtil;
+import com.secondhand.model.util.PolygonUtil;
 
 
 import junit.framework.TestCase;

@@ -1,23 +1,19 @@
-package com.secondhand.model.randomlevelgenerator;
+package com.secondhand.model.entity;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-import com.secondhand.model.entity.Enemy;
-import com.secondhand.model.entity.Entity;
-import com.secondhand.model.entity.GameWorld;
-import com.secondhand.model.entity.IGameWorld;
-import com.secondhand.model.entity.Obstacle;
-import com.secondhand.model.entity.Planet;
 import com.secondhand.model.physics.Vector2;
 import com.secondhand.model.powerup.PowerUp;
 import com.secondhand.model.powerup.PowerUpFactory;
-import com.secondhand.model.randomlevelgenerator.sat.Circle;
-import com.secondhand.model.randomlevelgenerator.sat.Polygon;
-import com.secondhand.model.randomlevelgenerator.sat.PolygonFactory;
-import com.secondhand.model.randomlevelgenerator.sat.World;
 import com.secondhand.model.resource.PlanetType;
+import com.secondhand.model.util.PolygonUtil;
+import com.secondhand.model.util.RandomUtil;
+import com.secondhand.model.util.sat.Circle;
+import com.secondhand.model.util.sat.Polygon;
+import com.secondhand.model.util.sat.PolygonFactory;
+import com.secondhand.model.util.sat.World;
 
 public class RandomLevelGenerator {
 

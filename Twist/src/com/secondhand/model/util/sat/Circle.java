@@ -1,4 +1,4 @@
-package com.secondhand.model.randomlevelgenerator.sat;
+package com.secondhand.model.util.sat;
 
 import com.secondhand.model.physics.Vector2;
 

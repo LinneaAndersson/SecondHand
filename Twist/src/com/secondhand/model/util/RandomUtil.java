@@ -1,9 +1,9 @@
-package com.secondhand.model.randomlevelgenerator;
+package com.secondhand.model.util;
 
 import java.util.Random;
 
 
-final class RandomUtil {
+public final class RandomUtil {
 
 	private RandomUtil() {}
 	

@@ -5,6 +5,10 @@ import java.util.List;
 
 import com.secondhand.debug.MyDebug;
 import com.secondhand.model.physics.Vector2;
+import com.secondhand.model.util.sat.Circle;
+import com.secondhand.model.util.sat.Polygon;
+import com.secondhand.model.util.sat.PolygonFactory;
+import com.secondhand.model.util.sat.World;
 
 
 import junit.framework.TestCase;

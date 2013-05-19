@@ -8,7 +8,6 @@ import java.util.Random;
 
 import com.secondhand.model.physics.IPhysicsWorld;
 import com.secondhand.model.physics.Vector2;
-import com.secondhand.model.randomlevelgenerator.RandomLevelGenerator;
 
 public class GameWorld implements IGameWorld, PropertyChangeListener {
 

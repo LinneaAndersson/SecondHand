@@ -73,7 +73,7 @@ class EntityManager implements PropertyChangeListener{
 				removeEnemyFromList((Enemy)entity);
 			entity.deleteBody();
 		}
-
+		
 		moveEnemies();
 		this.player.moveToNeededPositionIfNecessary();
 		

@@ -15,13 +15,13 @@ import android.content.DialogInterface;
 import android.view.KeyEvent;
 import android.widget.EditText;
 
+import com.secondhand.view.physics.ThreadUtil;
 import com.secondhand.view.resource.HighScoreList;
 import com.secondhand.view.resource.LocalizationStrings;
 import com.secondhand.view.resource.loader.FontLoader;
 import com.secondhand.view.resource.loader.SoundLoader;
 import com.secondhand.view.resource.loader.TextureRegionLoader;
 import com.secondhand.view.scene.AllScenes;
-import com.secondhand.view.scene.ThreadUtil;
 
 public class MainActivity extends BaseGameActivity {
 

@@ -1,4 +1,4 @@
-package com.secondhand.view.scene;
+package com.secondhand.view.physics;
 
 import org.anddev.andengine.engine.Engine;
 import org.anddev.andengine.engine.handler.IUpdateHandler;

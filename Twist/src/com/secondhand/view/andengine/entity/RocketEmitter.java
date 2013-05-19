@@ -30,7 +30,7 @@ public class RocketEmitter extends ParticleSystem {
 		final float factor = 2;
 		final float velocityX = (surfaceX - centerX) * factor;
 		final float velocityY = (surfaceY - centerY) * factor;
-		VelocityInitializer particleVelocity = new VelocityInitializer(velocityX, velocityY);
+		final VelocityInitializer particleVelocity = new VelocityInitializer(velocityX, velocityY);
 		addParticleInitializer(particleVelocity);
 		               
 		addParticleInitializer(new RotationInitializer(0.0f, 360.0f));

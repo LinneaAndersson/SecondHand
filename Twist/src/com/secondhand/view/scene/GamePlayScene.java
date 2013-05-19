@@ -2,12 +2,9 @@ package com.secondhand.view.scene;
 
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
-import java.util.ArrayList;
-import java.util.LinkedList;
 
 import org.anddev.andengine.engine.Engine;
 import org.anddev.andengine.engine.camera.hud.HUD;
-import org.anddev.andengine.entity.particle.ParticleSystem;
 import org.anddev.andengine.extension.physics.box2d.PhysicsWorld;
 
 import android.content.Context;
@@ -244,12 +241,12 @@ public class GamePlayScene extends GameScene implements PropertyChangeListener {
 		Sounds.getInstance().obstacleCollisionSound.play();
 	}
 	
-	public RocketEmitter attachRocketEmitter(Vector2 touchPosition) {
+	public RocketEmitter attachRocketEmitter(final Vector2 touchPosition) {
 		
 		final Player player = this.gameWorld.getPlayer();
 		final com.secondhand.model.physics.Vector2 surfacePosition = player.surfacePosition(new com.secondhand.model.physics.Vector2(touchPosition.x,touchPosition.y));
 		
-		RocketEmitter emitter = new RocketEmitter(surfacePosition.x, surfacePosition.y,
+		final RocketEmitter emitter = new RocketEmitter(surfacePosition.x, surfacePosition.y,
 												  player.getCenterX(), player.getCenterY());
 		attachChild(emitter);
 		

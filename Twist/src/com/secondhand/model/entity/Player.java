@@ -206,4 +206,16 @@ public class Player extends BlackHole {
 
 		this.physics.applyImpulse(force, forcePosition);
 	}
+	
+	public Vector2 surfacePosition(final Vector2 relativePosition) {
+		final Vector2 playerCenterPosition = new Vector2(getCenterX(), getCenterY());
+		
+		final float factor = getRadius() / relativePosition.dst(playerCenterPosition);
+		
+		final float surfaceX = playerCenterPosition.x + factor * (relativePosition.x - playerCenterPosition.x); 
+		final float surfaceY = playerCenterPosition.y + factor * (relativePosition.y - playerCenterPosition.y);
+		
+		return new Vector2(surfaceX,surfaceY);
+	}
+	
 }

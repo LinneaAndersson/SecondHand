@@ -4,6 +4,7 @@ import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 
 import org.anddev.andengine.entity.Entity;
+import org.anddev.andengine.entity.particle.ParticleSystem;
 import org.anddev.andengine.entity.scene.Scene;
 import org.anddev.andengine.entity.scene.Scene.IOnSceneTouchListener;
 import org.anddev.andengine.input.touch.TouchEvent;
@@ -120,8 +121,9 @@ final class GamePlaySceneController extends Entity implements PropertyChangeList
 		} else {
 			gameWorld.updateGameWorld();
 		}
+		
 	}
-
+	
 	@Override
 	public void propertyChange(final PropertyChangeEvent event) {
 		final String name = event.getPropertyName();
@@ -129,16 +131,15 @@ final class GamePlaySceneController extends Entity implements PropertyChangeList
 		
 		if (name.equals(PowerUpList.ADD_POWERUP)) {
 			MyDebug.d("property change in controller");
-			this.sceneController.getSceneManager().registerUpdateHander(TimerFactory.createTimer(gameWorld, (PowerUp)event.getNewValue()));
+			this.sceneController.getSceneManager().registerUpdateHander(TimerFactory.createTimer(this.sceneController.getSceneManager(), gameWorld, (PowerUp)event.getNewValue()));
 		} else if (name.equals("NextLevel")) {
 			this.unregisterController();
 			this.gamePlayScene.newLevelStarted();
 			this.registerController();
 		} else if (name.equals(Player.MOVE)) {
 			final Vector2 touchPosition = (Vector2) event.getNewValue();
-			final Player player = gameWorld.getPlayer();
-			gamePlayScene.attachRocketParticles(touchPosition, new Vector2(player.getCenterX(), player.getCenterY()));
-			registerUpdateHandler(TimerFactory.createRocketTimer(gamePlayScene, RocketEmitter.DURATION));
+			RocketEmitter emitter = this.gamePlayScene.attachRocketEmitter(new com.badlogic.gdx.math.Vector2(touchPosition.x,touchPosition.y));
+			this.sceneController.getSceneManager().registerUpdateHander(TimerFactory.createRocketTimer(this.sceneController.getSceneManager(), this.gamePlayScene, emitter));
 		}
 	}
 }

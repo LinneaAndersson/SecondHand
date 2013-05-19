@@ -2,9 +2,12 @@ package com.secondhand.view.scene;
 
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
+import java.util.ArrayList;
+import java.util.LinkedList;
 
 import org.anddev.andengine.engine.Engine;
 import org.anddev.andengine.engine.camera.hud.HUD;
+import org.anddev.andengine.entity.particle.ParticleSystem;
 import org.anddev.andengine.extension.physics.box2d.PhysicsWorld;
 
 import android.content.Context;
@@ -240,20 +243,22 @@ public class GamePlayScene extends GameScene implements PropertyChangeListener {
 	public void onPlayerWallCollision() {
 		Sounds.getInstance().obstacleCollisionSound.play();
 	}
-
-	public void attachRocketParticles(com.secondhand.model.physics.Vector2 touchPosition, 
-									  com.secondhand.model.physics.Vector2 playerCenterPosition) {
+	
+	public RocketEmitter attachRocketEmitter(Vector2 touchPosition) {
 		
-		final Vector2 surfacePosition = new Vector2(playerCenterPosition.x - touchPosition.x,	
-				  									playerCenterPosition.y - touchPosition.y); // Vector from player position to touch position
-		surfacePosition.mul(gameWorld.getPlayer().getRadius() / surfacePosition.len()); 	   // Length of new vector increased/decreased to length of radius
+		final Player player = this.gameWorld.getPlayer();
+		final com.secondhand.model.physics.Vector2 surfacePosition = player.surfacePosition(new com.secondhand.model.physics.Vector2(touchPosition.x,touchPosition.y));
 		
 		RocketEmitter emitter = new RocketEmitter(surfacePosition.x, surfacePosition.y,
-												  playerCenterPosition.x, playerCenterPosition.y);
+												  player.getCenterX(), player.getCenterY());
+		attachChild(emitter);
+		
+		return emitter;
 	}
 	
-	public void detachRocketParticles() {
-		
+	public void detachRocketEmitter(final RocketEmitter emitter) {
+		emitter.setParticlesSpawnEnabled(false);
+		detachChild(emitter);
 	}
 	
 	@Override

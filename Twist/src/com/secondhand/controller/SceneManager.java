@@ -103,4 +103,8 @@ final class SceneManager {
 	public void registerUpdateHander(final IUpdateHandler updateHandler) {
 		this.engine.registerUpdateHandler(updateHandler);
 	}
+	
+	public void unregisterUpdateHandler(final IUpdateHandler updateHandler) {
+		this.engine.unregisterUpdateHandler(updateHandler);
+	}
 }

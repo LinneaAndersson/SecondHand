@@ -146,6 +146,8 @@ public class EnemyTest extends TestCase {
 		Enemy enemy = new Enemy(vector, rad);
 		Enemy enemyNotStraightLine = new Enemy(vector, rad);
 		Enemy enemySmall = new Enemy(vector, 2.5f);
+		Enemy dangerEnemy = new Enemy(new Vector2(vector.x + 4, vector.x + 4),
+				rad);
 
 		EnemyTestPhysicsEntity enemyPhysics = new EnemyTestPhysicsEntity(enemy,
 				true);
@@ -153,6 +155,9 @@ public class EnemyTest extends TestCase {
 				enemySmall, true);
 		EnemyTestPhysicsEntity enemyPhysicsNotStraightLine = new EnemyTestPhysicsEntity(
 				enemyNotStraightLine, false);
+
+		EnemyTestPhysicsEntity enemyEnemyPhysics = new EnemyTestPhysicsEntity(
+				dangerEnemy, true);
 
 		// different Player for different case.
 		Player playerOutOfRange = new Player(new Vector2(200f, 200f), 3.0f, 3,
@@ -176,11 +181,12 @@ public class EnemyTest extends TestCase {
 
 		// 1. I will check with enemy radius bigger than the other Entities
 
-		// 1.1 Planet is in Enemies huntingrange.
+		// 1.1 Planet is in Enemies huntingRange.
 		final List<Entity> entityList = new ArrayList<Entity>();
-		entityList.add(new Planet(new Vector2(3f, 3f), 2.0f, PlanetType.DRUGS));
+		entityList.add(new Planet(new Vector2(3f, 3f), 1.0f, PlanetType.DRUGS));
+		entityList.add(new Planet(new Vector2(3f, 5f), 2.0f, PlanetType.DRUGS));
 		new EnemyTestPhysicsEntity(entityList.get(0), true);
-
+		new EnemyTestPhysicsEntity(entityList.get(1), true);
 		// 1.1.1 When player is out of range, enemy will move against planet.
 		enemy.moveEnemy(playerOutOfRange, entityList);
 		// Checks the impulse-value (horizontal)
@@ -193,10 +199,9 @@ public class EnemyTest extends TestCase {
 				.getInitialPosition().y - enemy.getInitialPosition().y)
 				* enemyHuntingArea);
 
-		// 1.1.2 when player is in range and closer to enemy, enemy will move
-		// against
-		// player.
-		// sets the impulse-value to 0,0 to see if it will move against Player.
+		// 1.1.3 when player is in range and closer to enemy, enemy will move
+		// against player. sets the impulse-value to 0,0 to 
+		// see if it will move against Player.
 		enemyPhysics.applyImpulse(new Vector2(0, 0), 0);
 		enemy.moveEnemy(playerInRangeClose, entityList);
 		assertEquals(
@@ -208,7 +213,7 @@ public class EnemyTest extends TestCase {
 				(playerInRangeClose.getInitialPosition().y - enemy
 						.getInitialPosition().y) * enemyHuntingArea);
 
-		// 1.1.3 Player is in range, further away from enemy than Planet. Enemy
+		// 1.1.4 Player is in range, further away from enemy than Planet. Enemy
 		// still chase Player
 		enemyPhysics.applyImpulse(new Vector2(0, 0), 0);
 		enemy.moveEnemy(playerInRange, entityList);
@@ -227,7 +232,7 @@ public class EnemyTest extends TestCase {
 				PlanetType.DRUGS));
 		new EnemyTestPhysicsEntity(entityList.get(0), true);
 
-		// 1.2.1 Player are not in range
+		// 1.2.1 Player is not in range
 		enemyPhysics.applyImpulse(new Vector2(0, 0), 0);
 		enemy.moveEnemy(playerOutOfRange, entityList);
 		assertEquals(enemyPhysics.getImpulseVector().x, 0.0f);
@@ -235,7 +240,7 @@ public class EnemyTest extends TestCase {
 
 		// 1.2.2 Player are in range
 
-		// Third case: Player is in the range for huntingArea and Planet isn't.
+		// 1.2.3 Player is in the range for huntingArea and Planet isn't.
 		// Enemy will go for Player.
 		enemyPhysics.applyImpulse(new Vector2(0, 0), 0);
 		enemy.moveEnemy(playerInRange, entityList);
@@ -288,6 +293,7 @@ public class EnemyTest extends TestCase {
 		entityList.clear();
 		enemySmallPhysics.applyImpulse(new Vector2(0, 0), 0);
 		enemySmall.moveEnemy(playerInRange, entityList);
+		
 		assertEquals(
 				enemySmallPhysics.getImpulseVector().x,
 				(enemySmall.getInitialPosition().x - playerInRange
@@ -296,6 +302,32 @@ public class EnemyTest extends TestCase {
 				enemySmallPhysics.getImpulseVector().y,
 				(enemySmall.getInitialPosition().y - playerInRange
 						.getInitialPosition().y) * enemyDangerArea);
+
+		// 2.1 Enemy retreats from another larger close-by enemy but not from 
+		// smaller enemy out of range.
+		entityList.add(dangerEnemy);
+		entityList.add(new Enemy(new Vector2(100, 100), 2f));
+		new EnemyTestPhysicsEntity(entityList.get(1), true);
+		enemySmallPhysics.applyImpulse(new Vector2(0, 0), 0);
+		enemySmall.moveEnemy(playerOutOfRange, entityList);
+		assertEquals(
+				enemySmallPhysics.getImpulseVector().x,
+				(enemySmall.getInitialPosition().x - dangerEnemy
+						.getInitialPosition().x) * enemyDangerArea);
+		assertEquals(
+				enemySmallPhysics.getImpulseVector().y,
+				(enemySmall.getInitialPosition().y - dangerEnemy
+						.getInitialPosition().y) * enemyDangerArea);
+		
+		// 3  player out of range. two planets in range. test specific for
+		// second branch of getSmaller
+		/*entityList.clear();
+		entityList.add(new Planet(new Vector2(3f, 5f), 2.0f, PlanetType.DRUGS));
+		entityList.add(new Planet(new Vector2(3f, 3f), 1.0f, PlanetType.DRUGS));
+		enemyPhysics.applyImpulse(new Vector2(0, 0), 0);
+		enemy.moveEnemy(playerOutOfRange, entityList);
+		*/
+		
 
 	}
 }

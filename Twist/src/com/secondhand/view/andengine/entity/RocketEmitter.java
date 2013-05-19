@@ -3,6 +3,7 @@ package com.secondhand.view.andengine.entity;
 import javax.microedition.khronos.opengles.GL10;
 
 import org.anddev.andengine.entity.particle.ParticleSystem;
+import org.anddev.andengine.entity.particle.emitter.CircleOutlineParticleEmitter;
 import org.anddev.andengine.entity.particle.emitter.PointParticleEmitter;
 import org.anddev.andengine.entity.particle.initializer.AlphaInitializer;
 import org.anddev.andengine.entity.particle.initializer.ColorInitializer;
@@ -20,7 +21,7 @@ public class RocketEmitter extends ParticleSystem {
 	public final static float DURATION = 1;
 	
 	public RocketEmitter(final float surfaceX, final float surfaceY, final float centerX, final float centerY) {
-		super(new PointParticleEmitter(surfaceX, surfaceY), 60, 60, 10, 
+		super(new CircleOutlineParticleEmitter(surfaceX, surfaceY, 10), 60, 60, 10, 
 				TextureRegions.getInstance().rocketParticleTexture);
 		
 		addParticleInitializer(new ColorInitializer(1, 0, 0));

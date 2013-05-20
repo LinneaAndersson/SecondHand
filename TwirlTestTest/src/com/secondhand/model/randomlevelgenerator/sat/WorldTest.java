@@ -187,7 +187,7 @@ public class WorldTest extends TestCase {
 		world.addToWorld(circ);
 
 		Polygon rect1 = PolygonFactory.createRectangle(new Vector2(5,5), 2, 2);
-		assertFalse(world.isUnoccupied(circ));
+		assertFalse(world.isUnoccupied(rect1));
 	}
 	
 }

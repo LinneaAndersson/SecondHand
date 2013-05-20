@@ -156,7 +156,7 @@ public class EnemyTest extends TestCase {
 		EnemyTestPhysicsEntity enemyPhysicsNotStraightLine = new EnemyTestPhysicsEntity(
 				enemyNotStraightLine, false);
 
-		EnemyTestPhysicsEntity enemyEnemyPhysics = new EnemyTestPhysicsEntity(
+		new EnemyTestPhysicsEntity(
 				dangerEnemy, true);
 
 		// different Player for different case.
@@ -258,7 +258,7 @@ public class EnemyTest extends TestCase {
 		// there is straightLine then
 		// enemy will chase the eatable-entity.
 		entityList.clear();
-		entityList.add(new Obstacle(new Vector2(2f, 2f), new ArrayList()));
+		entityList.add(new Obstacle(new Vector2(2f, 2f), new ArrayList<Vector2>()));
 		entityList.add(new ScoreUp(new Vector2(4f, 4f)));
 
 		new EnemyTestPhysicsEntity(entityList.get(0), true);

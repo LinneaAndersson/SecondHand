@@ -23,7 +23,7 @@ class EntityManager implements PropertyChangeListener{
 
 	public EntityManager() {
 		this.scheduledForDeletionEntities = new Stack<Entity>();
-		this.updateBlackHoleSize = new ArrayList();
+		this.updateBlackHoleSize = new ArrayList<BlackHole>();
 	}
 
 	public void setPlayer(final Player player) {

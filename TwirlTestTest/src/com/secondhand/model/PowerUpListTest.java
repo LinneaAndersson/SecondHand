@@ -3,14 +3,13 @@ package com.secondhand.model;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 
+import junit.framework.TestCase;
+
 import com.secondhand.model.entity.Player;
 import com.secondhand.model.entity.PowerUpList;
 import com.secondhand.model.physics.Vector2;
 import com.secondhand.model.powerup.PowerUp;
-import com.secondhand.model.powerup.PowerUpTest;
 import com.secondhand.model.resource.PowerUpType;
-
-import junit.framework.TestCase;
 
 public class PowerUpListTest extends TestCase {
 	

@@ -9,9 +9,8 @@ import java.util.Stack;
 
 import com.secondhand.debug.MyDebug;
 
-
 // Manages all the entities of the GameWorld
-class EntityManager implements PropertyChangeListener{
+class EntityManager implements PropertyChangeListener {
 
 	private List<Entity> entityList;
 	private List<Enemy> enemyList;
@@ -23,7 +22,7 @@ class EntityManager implements PropertyChangeListener{
 
 	public EntityManager() {
 		this.scheduledForDeletionEntities = new Stack<Entity>();
-		this.updateBlackHoleSize = new ArrayList();
+		this.updateBlackHoleSize = new ArrayList<BlackHole>();
 	}
 
 	public void setPlayer(final Player player) {
@@ -35,7 +34,7 @@ class EntityManager implements PropertyChangeListener{
 
 	public void setEntityList(final List<Entity> entityList) {
 		this.entityList = entityList;
-		for(final Entity entity:entityList){
+		for (final Entity entity : entityList) {
 			entity.addListener(this);
 		}
 	}
@@ -54,7 +53,7 @@ class EntityManager implements PropertyChangeListener{
 
 	private void moveEnemies() {
 		// enemies are in both lists because we want them
-		// for easy access and for the posibility of attacking
+		// for easy access and for the possibility of attacking
 		// each other. it could be preferable to change it later
 		// if we can come up with a better way
 		for (final Enemy enemy : enemyList) {
@@ -64,32 +63,32 @@ class EntityManager implements PropertyChangeListener{
 
 	public void updateEntities() {
 		// remove bodies scheduled for deletion.
-		while(!scheduledForDeletionEntities.empty()) {
+		while (!scheduledForDeletionEntities.empty()) {
 			final Entity entity = scheduledForDeletionEntities.pop();
 
 			entity.removeListener(this);
 			removeEntityFromList(entity);
-			if(entity instanceof Enemy)
-				removeEnemyFromList((Enemy)entity);
+			if (entity instanceof Enemy) {
+				removeEnemyFromList((Enemy) entity);
+			}
 			entity.deleteBody();
 		}
-		
+
 		moveEnemies();
 		this.player.moveToNeededPositionIfNecessary();
-		
+
 		listIterator = updateBlackHoleSize.listIterator();
-		if(listIterator.hasNext()){
+		if (listIterator.hasNext()) {
 			BlackHole blackHole = listIterator.next();
-			if(blackHole.getIncreaseSize() > 0.2f)
+			if (blackHole.getIncreaseSize() > 0.2f)
 				blackHole.setRadius(blackHole.getRadius() + 0.2f);
-			else 
+			else
 				updateBlackHoleSize.remove(blackHole);
 		}
-		
 
 	}
 
-	public void removeEntityFromList(final Entity entity) {
+	private void removeEntityFromList(final Entity entity) {
 		this.entityList.remove(entity);
 	}
 
@@ -103,22 +102,24 @@ class EntityManager implements PropertyChangeListener{
 
 	@Override
 	public void propertyChange(final PropertyChangeEvent event) {
-		if(event.getPropertyName().equalsIgnoreCase(Entity.IS_SCHEDULED_FOR_DELETION)){
+		if (event.getPropertyName().equalsIgnoreCase(
+				Entity.IS_SCHEDULED_FOR_DELETION)) {
 			scheduleEntityForDeletion((Entity) (event.getNewValue()));
-		} else if(event.getPropertyName().equalsIgnoreCase(BlackHole.INCREASE_SIZE)){
+		} else if (event.getPropertyName().equalsIgnoreCase(
+				BlackHole.INCREASE_SIZE)) {
 			MyDebug.d("is this safe?" + event.getNewValue().getClass());
 			this.updateBlackHoleSize((BlackHole) event.getNewValue());
 		}
 	}
 
-	public void updateBlackHoleSize(BlackHole blackHole){
-		if(!updateBlackHoleSize.contains(blackHole))
-		updateBlackHoleSize.add(blackHole);
+	public void updateBlackHoleSize(BlackHole blackHole) {
+		if (!updateBlackHoleSize.contains(blackHole))
+			updateBlackHoleSize.add(blackHole);
 	}
 
 	// remove the property change listeners from all the entities.
 	public void unregisterFromEntities() {
-		for(Entity entity: this.entityList) {
+		for (Entity entity : this.entityList) {
 			entity.removeListener(this);
 		}
 	}

@@ -4,15 +4,14 @@ import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.util.List;
 
-import com.secondhand.debug.MyDebug;
+import junit.framework.TestCase;
+
 import com.secondhand.model.entity.Enemy;
 import com.secondhand.model.entity.Player;
 import com.secondhand.model.physics.IPhysicsEntity;
 import com.secondhand.model.physics.IPhysicsObject;
 import com.secondhand.model.physics.Vector2;
 import com.secondhand.model.resource.SoundType;
-
-import junit.framework.TestCase;
 
 public class PlayerTest extends TestCase{
 

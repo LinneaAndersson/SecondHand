@@ -108,11 +108,13 @@ public class GameWorldTest extends TestCase implements PropertyChangeListener{
 
 	}
 
-	int lives = 1;
-	int levelNumber = 1;
-	int score = 100;
-	String name;
-	PropertyChangeSupport support = new PropertyChangeSupport(this);
+	private int lives = 1;
+	private int levelNumber = 1;
+	private int score = 100;
+	private String name;
+	private PropertyChangeSupport support = new PropertyChangeSupport(this);
+	// TODO test that enteties are properly removed from entityList.
+	// PropertyChangeTest for entityManager
 	public void testConstructor() {
 
 		IPhysicsWorld physics = new TestPhysicsWorld();
@@ -170,6 +172,11 @@ public class GameWorldTest extends TestCase implements PropertyChangeListener{
 		assertEquals(player.getCenterY(), 20);
 		
 		support.removePropertyChangeListener(gWorld);
+		
+		
+	}
+	
+	public void testPropertyChangeInManager(){
 		
 		
 	}

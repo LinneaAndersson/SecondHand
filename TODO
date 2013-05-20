@@ -27,11 +27,11 @@ negate each other when both are activated at the same time; at the moment they d
 =================================
 Things we can do if we have time:
 
+* MirroredMovement option in menu
 * Make sure that the fading score notifiers are shown closer to the
 * actual powerups
 * Make a prettier hud.
 * make the menus look prettier.
-* Player movement with particles.
 * Make the Player grow bigger more smooth. (grow in small steps)
 * When collision, remove bodies earlier.
 * Better level transition

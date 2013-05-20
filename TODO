@@ -3,8 +3,7 @@ Important things that must be done for the success of the project:
 
 - Implementation
 
-* Write unit tests for: Player(only repositioning remains now), Enemy,
-CollisionResolver, GameWorld, EntityManager.
+* Write unit tests for: GameWorld, EntityManager.
 * We sometimes get negative lives for some reason.
 * Replace some property changes with some kind of interface or
 callback method instead. - Done, but just changed the propertyChange.
@@ -15,6 +14,7 @@ high score list
 * Completion meter is not reset properly when going to next level.
 * Fix transition from game play scene back to menu.
 * Write current level in HUD
+
 
 - Documentation
 

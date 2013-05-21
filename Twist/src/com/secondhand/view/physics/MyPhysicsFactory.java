@@ -8,7 +8,6 @@ import org.anddev.andengine.extension.physics.box2d.PhysicsWorld;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.BodyDef.BodyType;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
-import com.secondhand.debug.MyDebug;
 import com.secondhand.model.physics.Vector2;
 import com.secondhand.view.opengl.Polygon;
 
@@ -19,7 +18,6 @@ public final class MyPhysicsFactory {
 	public static Body createPolygonBody(final PhysicsWorld physicsWorld,
 			final Polygon polygon, final BodyType bodyType,
 			final FixtureDef fixtureDef) {
-		MyDebug.d("creating polygon body");
 		com.badlogic.gdx.math.Vector2 vertices[] = new com.badlogic.gdx.math.Vector2[polygon
 				.getPolygon().size()];
 		int i = 0;
@@ -32,8 +30,6 @@ public final class MyPhysicsFactory {
 		
 			final Body body = PhysicsFactory.createPolygonBody(physicsWorld, polygon,
 					vertices, bodyType, fixtureDef);
-		
-		MyDebug.d("done creating polygon body");
 		
 		return body;
 	}	

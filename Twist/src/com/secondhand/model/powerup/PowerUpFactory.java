@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-import com.secondhand.debug.MyDebug;
 import com.secondhand.model.physics.Vector2;
 
 // Uses the second method described here:
@@ -76,38 +75,37 @@ public final class PowerUpFactory {
 		
 		public PowerUp constructPowerUp(final Vector2 position) {
 			if(powerUp == 1) {
-				MyDebug.d("double score");
+				//MyDebug.d("double score");
 				return new DoubleScore(position);
 			} else if(powerUp == 2) {
-				MyDebug.d("eat obstacle");
+				//MyDebug.d("eat obstacle");
 				return new EatObstacle(position);
 			} else if(powerUp == 3) {
-				MyDebug.d("extra life");
+				//MyDebug.d("extra life");
 				return new ExtraLife(position);
 			} else if(powerUp == 4) {
-				MyDebug.d("mirrored movement");
+				//MyDebug.d("mirrored movement");
 				return new MirroredMovement(position);
 			} else if(powerUp == 5) {
-				MyDebug.d("random powerup");
+				//MyDebug.d("random powerup");
 				return new RandomPowerUp(position, rng);
 			} else if(powerUp == 6) {
-				MyDebug.d("random teleport");
+				//MyDebug.d("random teleport");
 				return new RandomTeleport(position);
 			} else if(powerUp == 7) {
-				MyDebug.d("score up");
+				//MyDebug.d("score up");
 				return new ScoreUp(position);
 			} else if(powerUp == 8) {
-				MyDebug.d("shield");
+				//MyDebug.d("shield");
 				return new Shield(position);
 			} else if(powerUp == 9) {
-				MyDebug.d("speedown");
+				//MyDebug.d("speedown");
 				return new SpeedDown(position);
 			} else if(powerUp == 10) {
-				MyDebug.d("speedup");
+				//MyDebug.d("speedup");
 				return new SpeedUp(position);
 			} 
 			else {
-				MyDebug.d("null returned!");
 				return null;
 			}
 		}

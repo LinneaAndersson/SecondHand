@@ -126,10 +126,8 @@ final class GamePlaySceneController extends Entity implements PropertyChangeList
 	@Override
 	public void propertyChange(final PropertyChangeEvent event) {
 		final String name = event.getPropertyName();
-		MyDebug.d("property change in controller outside + name= " + name);
 		
 		if (name.equals(PowerUpList.ADD_POWERUP)) {
-			MyDebug.d("property change in controller");
 			this.sceneController.getSceneManager().registerUpdateHander(TimerFactory.createTimer(this.sceneController.getSceneManager(), gameWorld, (PowerUp)event.getNewValue()));
 		} else if (name.equals("NextLevel")) {
 			this.unregisterController();

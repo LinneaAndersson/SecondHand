@@ -3,7 +3,6 @@ package com.secondhand.controller;
 import org.anddev.andengine.engine.handler.timer.ITimerCallback;
 import org.anddev.andengine.engine.handler.timer.TimerHandler;
 
-import com.secondhand.debug.MyDebug;
 import com.secondhand.model.entity.IGameWorld;
 import com.secondhand.model.powerup.PowerUp;
 import com.secondhand.view.andengine.entity.RocketEmitter;
@@ -19,7 +18,6 @@ public final class TimerFactory {
 			@Override
 			public void onTimePassed(final TimerHandler pTimerHandler) {
 				if (gameWorld.getPowerUpList().contains(timerPowerUp)){
-					MyDebug.d("in playerControll with PowerUp:" + timerPowerUp);
 					gameWorld.getPowerUpList().remove(timerPowerUp);
 				}
 				handler.unregisterUpdateHandler(pTimerHandler);

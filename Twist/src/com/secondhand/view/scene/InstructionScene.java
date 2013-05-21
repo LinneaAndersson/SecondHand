@@ -19,15 +19,19 @@ public class InstructionScene extends GameScene {
 
 	public void loadScene() {
 		super.loadScene();
-		
+
 		final Font mFont = Fonts.getInstance().menuItemFont;
+		String instructionText = "You control a black hole by touching the  \n screen. You get points when you eat \n smaller planets and black hole, \n but look up for the bigger black hole. \n There are obstacles in your way and \n powerups you can take if you want.";
 		
 		final Text instructions = new Text(100, 60, mFont, LocalizationStrings
 				.getInstance().getLocalizedString("menu_instructions"),
 				HorizontalAlign.CENTER);
+		final Text theInstruction = new Text(100, 150, mFont, instructionText);
+		
 		instructions.setScale(1.5f);
-
+		
 		this.attachChild(instructions);
+		this.attachChild(theInstruction);
 
 	}
 

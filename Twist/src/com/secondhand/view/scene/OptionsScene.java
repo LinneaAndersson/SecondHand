@@ -22,6 +22,8 @@ public class OptionsScene extends GameMenuScene {
 	@Override
 	public void loadScene() {
 		super.loadScene();
+		
+		final int menuStartX = layoutHeadline("Options");
 	
 	new MenuItem(MIRRORED_MOVEMENT_FALSE, LocalizationStrings.getInstance().getLocalizedString("menu_new_game"));
 	new MenuItem(MIRRORED_MOVEMENT_TRUE, LocalizationStrings.getInstance().getLocalizedString("menu_new_game"));

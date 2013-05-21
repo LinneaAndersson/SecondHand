@@ -68,10 +68,10 @@ public class OptionsScene extends GameMenuScene {
 			off.setColor(0.5f, 0.5f, 0.5f);
 		}
 
-		on.setPosition(100, 300);
+		on.setPosition(100, 200);
 		addMenuItem(on);
 		
-		off.setPosition(200,300);
+		off.setPosition(200,200);
 		addMenuItem(off);
 
 	}

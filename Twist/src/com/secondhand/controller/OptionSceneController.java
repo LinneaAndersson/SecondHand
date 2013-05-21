@@ -4,6 +4,7 @@ import org.anddev.andengine.entity.scene.menu.MenuScene;
 import org.anddev.andengine.entity.scene.menu.MenuScene.IOnMenuItemClickListener;
 import org.anddev.andengine.entity.scene.menu.item.IMenuItem;
 
+import com.secondhand.debug.MyDebug;
 import com.secondhand.view.scene.OptionsScene;
 
 public class OptionSceneController implements IOnMenuItemClickListener{
@@ -14,6 +15,7 @@ public class OptionSceneController implements IOnMenuItemClickListener{
 			SceneController sceneController) {
 		super();
 		this.view = optionsScene;
+		view.setOnMenuItemClickListener(this);
 		setIsMirroredMovement(false);
 	}
 

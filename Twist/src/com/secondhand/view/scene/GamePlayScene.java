@@ -22,6 +22,7 @@ import com.secondhand.model.entity.Planet;
 import com.secondhand.model.entity.Player;
 import com.secondhand.model.entity.PowerUpList;
 import com.secondhand.model.powerup.PowerUp;
+import com.secondhand.model.powerup.PowerUpFactory;
 import com.secondhand.view.andengine.entity.FadingNotifierText;
 import com.secondhand.view.andengine.entity.RocketEmitter;
 import com.secondhand.view.andengine.entity.ScoreLivesText;
@@ -142,7 +143,7 @@ public class GamePlayScene extends GameScene implements PropertyChangeListener {
 //PhysicsWorld(new Vector2(), true);
 
 		this.gameWorld = new GameWorld(new MyPhysicsWorld(physicsWorld), 
-				levelNumber,playerLives, playerScore);
+				levelNumber,playerLives, playerScore, new PowerUpFactory());
 		
 		gameWorld.getPlayer().addListener(this);
 		

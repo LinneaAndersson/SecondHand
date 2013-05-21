@@ -35,17 +35,17 @@ public class RandomLevelGenerator {
 	private World world;
 	private final Random rng;
 
-	private final PowerUpFactory powerUpFactory;
+	private final IPowerUpFactory powerUpFactory;
 	
 	
-	public RandomLevelGenerator(final IGameWorld gameWorld) {
+	public RandomLevelGenerator(final IGameWorld gameWorld, IPowerUpFactory factory) {
 			
 		this.rng = new Random();
 		this.levelNumber = gameWorld.getLevelNumber();
 		this.enemyList = new ArrayList<Enemy>();
 		this.entityList = new ArrayList<Entity>();
-		this.powerUpFactory = new PowerUpFactory(rng);
-		
+		this.powerUpFactory = factory;
+		factory.setRandom(rng);
 		generateRandomLevel();
 
 	}
@@ -145,7 +145,7 @@ public class RandomLevelGenerator {
 				}
 			}
 			
-			entityList.add(powerUpFactory.getRandomPowerUp(new Vector2(x,
+			entityList.add( (Entity) powerUpFactory.getRandomPowerUp(new Vector2(x,
 					y)));
 		}
 	}

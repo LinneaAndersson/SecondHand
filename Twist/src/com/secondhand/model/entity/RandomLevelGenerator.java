@@ -240,7 +240,7 @@ public class RandomLevelGenerator {
 
 		
 		// place out entities.
-		placeOutObstacles(levelNumber * 5);
+		placeOutObstacles(1 /*levelNumber * 5*/);
 
 		placeOutPlanets(10 * levelNumber, // number player eatable
 
@@ -251,6 +251,6 @@ public class RandomLevelGenerator {
 
 		placeOutPowerUps(this.levelNumber * 7, POWER_UP_EXTRA_SIZE);
 
-		//placeOutEnemies(5 * this.levelNumber,4 * this.levelNumber, ENEMY_EXTRA_RADIUS);
+		placeOutEnemies(5 * this.levelNumber,4 * this.levelNumber, ENEMY_EXTRA_RADIUS);
 	}
 }

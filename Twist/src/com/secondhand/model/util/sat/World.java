@@ -12,15 +12,24 @@ import com.secondhand.model.physics.Vector2;
 public class World {
 
 	private final int width;
-	private final int height;
-
+	private final int height; 
+	private boolean isBoundlessWorld;
+	
 	// the shapes in the world.
 	private final List<Shape> shapes;
 
+	public World() {
+		shapes = new ArrayList<Shape>();
+		width = 0;
+		height = 0;
+		this.isBoundlessWorld = true;
+	}
+	
 	public World(final int width, final int height) {
 		this.width = width;
 		this.height = height;
 		shapes = new ArrayList<Shape>();
+		this.isBoundlessWorld = false;
 	}
 
 	//Returns true if the
@@ -38,23 +47,26 @@ public class World {
 	}
 
 	public boolean isUnoccupied(final Shape shape) {
-		if(shape instanceof Polygon) {
-			final Polygon polygon = (Polygon)shape;
-			for(final Vector2 edge: polygon.edges) {
-				if(!isWithinWorldBounds(edge))
+
+		if(!this.isBoundlessWorld) {
+			if(shape instanceof Polygon) {
+				final Polygon polygon = (Polygon)shape;
+				for(final Vector2 edge: polygon.edges) {
+					if(!isWithinWorldBounds(edge))
+						return false;
+				}
+			}
+
+
+
+			if(shape instanceof Circle) {
+
+				final Circle circle = (Circle) shape;
+				// check if circle is in world:
+				if( circle.position.x < (circle.radius) || circle.position.x > (width - circle.radius) ||
+						circle.position.y < (circle.radius) ||  circle.position.y > (height - circle.radius))
 					return false;
 			}
-		}
-
-
-
-		if(shape instanceof Circle) {
-
-			final Circle circle = (Circle) shape;
-			// check if circle is in world:
-			if( circle.position.x < (circle.radius) || circle.position.x > (width - circle.radius) ||
-					circle.position.y < (circle.radius) ||  circle.position.y > (height - circle.radius))
-				return false;
 		}
 
 		return noIntersection(shape);

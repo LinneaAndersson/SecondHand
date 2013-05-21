@@ -14,20 +14,25 @@ public class OptionSceneController implements IOnMenuItemClickListener{
 			SceneController sceneController) {
 		super();
 		this.view = optionsScene;
-		isMirroredMovement= false;
+		setIsMirroredMovement(false);
 	}
 
 	@Override
 	public boolean onMenuItemClicked(MenuScene pMenuScene, IMenuItem pMenuItem,
 			float pMenuItemLocalX, float pMenuItemLocalY) {
 		if (pMenuItem.getID() == OptionsScene.MIRRORED_MOVEMENT_TRUE){
-			isMirroredMovement = true;
+			setIsMirroredMovement(true);
 			return true;
 		} else if (pMenuItem.getID() == OptionsScene.MIRRORED_MOVEMENT_FALSE){
-			isMirroredMovement = false;
+			setIsMirroredMovement(false);
 			return true;
 		}
 		return false;
+	}
+
+	private void setIsMirroredMovement(boolean mirroredMovement) {
+		isMirroredMovement = mirroredMovement;
+		view.setMirroredMovementColor(isMirroredMovement);
 	}
 
 }

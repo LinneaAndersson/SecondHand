@@ -15,11 +15,13 @@
     <string name="score_string">Score: </string>
     <string name="lives_string">Lives: </string>
     <string name="completion_string">Completion: </string>
+    
     <string name="menu_options">Options</string>
     <string name="menu_instructions">Instructions</string>
     <string name="off">off</string>
     <string name="on">on</string>
     <string name="mirrored_movement">Mirrored Movement:</string>
+    <string name="enemy">Enemies:</string>
     
     
 </resources>

@@ -280,7 +280,7 @@ public class GamePlayScene extends GameScene implements PropertyChangeListener {
 			final float newRadius = (Float) event.getNewValue();
 
 			final float completion =2*(
-					newRadius -GameWorld.PLAYER_STARTING_SIZE) /
+					newRadius - (float) GameWorld.PLAYER_STARTING_SIZE) /
 					(float)gameWorld.getPlayer().getMaxSize();
 
 			this.scoreLivesText.setCompletionRatio(completion);

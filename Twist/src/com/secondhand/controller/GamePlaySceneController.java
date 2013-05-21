@@ -8,7 +8,6 @@ import org.anddev.andengine.entity.scene.Scene;
 import org.anddev.andengine.entity.scene.Scene.IOnSceneTouchListener;
 import org.anddev.andengine.input.touch.TouchEvent;
 
-import com.secondhand.debug.MyDebug;
 import com.secondhand.model.entity.IGameWorld;
 import com.secondhand.model.entity.Player;
 import com.secondhand.model.entity.PowerUpList;

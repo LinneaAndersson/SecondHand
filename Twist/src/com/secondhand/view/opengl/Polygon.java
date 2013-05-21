@@ -28,9 +28,9 @@ import com.secondhand.model.util.sat.World;
  * position (pX, pY) specified in the constructor) So a point point (0,0) in the
  * polygon with position (x,y) will be placed at position (x,y) Likewise, the
  * point (10,11) in that same polygon will be at position (x+10,y+11)
- * 
+ *
  * @author erkastina
- * 
+ *
  */
 public class Polygon extends Shape {
 
@@ -53,7 +53,7 @@ public class Polygon extends Shape {
 	}
 
 	/**
-	 * 
+	 *
 	 * @param pX
 	 * @param pY
 	 * @param polygon
@@ -150,18 +150,18 @@ public class Polygon extends Shape {
 
 	@Override
 	protected boolean isCulled(final Camera pCamera) {
-		
+		/*
 		final World world = new World();
-		
-		world.addToWorld(PolygonFactory.createRectangle(new Vector2(pCamera.getMinX(), pCamera.getMinY()), 
+
+		world.addToWorld(PolygonFactory.createRectangle(new Vector2(pCamera.getMinX(), pCamera.getMinY()),
 				pCamera.getWidth(), pCamera.getHeight()));
-			
+
 		final List<Vector2> polygonPoints = new ArrayList<Vector2>();
-		
+
 		for (int i = 0; i < this.mPolygonShape.getVertexCount(); ++i) {
 			final com.badlogic.gdx.math.Vector2 v = new com.badlogic.gdx.math.Vector2(0, 0);
 			this.mPolygonShape.getVertex(i, v);
-			
+
 			final com.badlogic.gdx.math.Vector2 temp = this.mBody.getWorldPoint(v);
 			final Vector2 trueV = new Vector2(temp.x, temp.y);
 
@@ -169,17 +169,17 @@ public class Polygon extends Shape {
 					PhysicsConstants.PIXEL_TO_METER_RATIO_DEFAULT * trueV.x,
 					PhysicsConstants.PIXEL_TO_METER_RATIO_DEFAULT * trueV.y));
 		}
-		
+
 		boolean result = world.isUnoccupied(
 				new com.secondhand.model.util.sat.Polygon(new Vector2(0,0), polygonPoints));
-		
+
 		MyDebug.d("culled: " + result);
 		return result;
-		
-		/*for (int i = 0; i < this.mPolygonShape.getVertexCount(); ++i) {
+		*/
+		for (int i = 0; i < this.mPolygonShape.getVertexCount(); ++i) {
 			final com.badlogic.gdx.math.Vector2 v = new com.badlogic.gdx.math.Vector2(0, 0);
 			this.mPolygonShape.getVertex(i, v);
-			
+
 			final com.badlogic.gdx.math.Vector2 temp = this.mBody.getWorldPoint(v);
 			final Vector2 trueV = new Vector2(temp.x, temp.y);
 
@@ -191,7 +191,8 @@ public class Polygon extends Shape {
 				return false;
 			}
 		}
-		return true;*/
+		return true;
+
 	}
 
 }

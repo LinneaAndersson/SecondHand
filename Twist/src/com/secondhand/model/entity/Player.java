@@ -207,16 +207,4 @@ public class Player extends BlackHole {
 		this.physics.applyImpulse(force, forcePosition);
 	}
 	
-	public Vector2 getSurfacePosition(final Vector2 relativePosition, final boolean farSide) {
-		final Vector2 playerCenterPosition = new Vector2(getCenterX(), getCenterY());
-		
-		// Factor is negative if surfacePosition is far side of circle
-		final float factor = (farSide ? -1 : 1 ) * getRadius() / relativePosition.dst(playerCenterPosition);
-		
-		final float surfaceX = playerCenterPosition.x + factor * (relativePosition.x - playerCenterPosition.x); 
-		final float surfaceY = playerCenterPosition.y + factor * (relativePosition.y - playerCenterPosition.y);
-		
-		return new Vector2(surfaceX,surfaceY);
-	}
-	
 }

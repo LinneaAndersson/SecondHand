@@ -4,8 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-import com.secondhand.debug.MyDebug;
-import com.secondhand.model.entity.IPowerUpFactory;
 import com.secondhand.model.physics.Vector2;
 
 // Uses the second method described here:
@@ -38,8 +36,7 @@ public final class PowerUpFactory implements IPowerUpFactory {
 		int tw = 0;
 		for(final Weight weight: this.weights) {
 			if(weight.weight < 1 || weight.weight > 10) {
-				MyDebug.d("powerup frequency must be specified in a scale from 1 to 10");
-				System.exit(1);
+				throw new AssertionError("powerup frequency must be specified in a scale from 1 to 10(10 is most common, and 1 is least common");
 			}
 			tw += weight.weight;
 		}
@@ -82,38 +79,37 @@ public final class PowerUpFactory implements IPowerUpFactory {
 		
 		public PowerUp constructPowerUp(final Vector2 position) {
 			if(powerUp == 1) {
-				MyDebug.d("double score");
+				//MyDebug.d("double score");
 				return new DoubleScore(position);
 			} else if(powerUp == 2) {
-				MyDebug.d("eat obstacle");
+				//MyDebug.d("eat obstacle");
 				return new EatObstacle(position);
 			} else if(powerUp == 3) {
-				MyDebug.d("extra life");
+				//MyDebug.d("extra life");
 				return new ExtraLife(position);
 			} else if(powerUp == 4) {
-				MyDebug.d("mirrored movement");
+				//MyDebug.d("mirrored movement");
 				return new MirroredMovement(position);
 			} else if(powerUp == 5) {
-				MyDebug.d("random powerup");
+				//MyDebug.d("random powerup");
 				return new RandomPowerUp(position, rng);
 			} else if(powerUp == 6) {
-				MyDebug.d("random teleport");
+				//MyDebug.d("random teleport");
 				return new RandomTeleport(position);
 			} else if(powerUp == 7) {
-				MyDebug.d("score up");
+				//MyDebug.d("score up");
 				return new ScoreUp(position);
 			} else if(powerUp == 8) {
-				MyDebug.d("shield");
+				//MyDebug.d("shield");
 				return new Shield(position);
 			} else if(powerUp == 9) {
-				MyDebug.d("speedown");
+				//MyDebug.d("speedown");
 				return new SpeedDown(position);
 			} else if(powerUp == 10) {
-				MyDebug.d("speedup");
+				//MyDebug.d("speedup");
 				return new SpeedUp(position);
 			} 
 			else {
-				MyDebug.d("null returned!");
 				return null;
 			}
 		}

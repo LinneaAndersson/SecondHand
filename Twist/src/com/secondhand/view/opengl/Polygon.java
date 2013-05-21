@@ -1,5 +1,6 @@
 package com.secondhand.view.opengl;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.microedition.khronos.opengles.GL10;
@@ -15,7 +16,10 @@ import org.anddev.andengine.opengl.vertex.VertexBuffer;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.Fixture;
 import com.badlogic.gdx.physics.box2d.PolygonShape;
+import com.secondhand.debug.MyDebug;
 import com.secondhand.model.physics.Vector2;
+import com.secondhand.model.util.sat.PolygonFactory;
+import com.secondhand.model.util.sat.World;
 
 /**
  * A polygon class used for drawing polygons. The positioning for polygons works
@@ -146,10 +150,35 @@ public class Polygon extends Shape {
 
 	@Override
 	protected boolean isCulled(final Camera pCamera) {
+		
+		final World world = new World();
+		
+		world.addToWorld(PolygonFactory.createRectangle(new Vector2(pCamera.getMinX(), pCamera.getMinY()), 
+				pCamera.getWidth(), pCamera.getHeight()));
+			
+		final List<Vector2> polygonPoints = new ArrayList<Vector2>();
+		
 		for (int i = 0; i < this.mPolygonShape.getVertexCount(); ++i) {
 			final com.badlogic.gdx.math.Vector2 v = new com.badlogic.gdx.math.Vector2(0, 0);
 			this.mPolygonShape.getVertex(i, v);
 			
+			final com.badlogic.gdx.math.Vector2 temp = this.mBody.getWorldPoint(v);
+			final Vector2 trueV = new Vector2(temp.x, temp.y);
+
+			polygonPoints.add(new Vector2(
+					PhysicsConstants.PIXEL_TO_METER_RATIO_DEFAULT * trueV.x,
+					PhysicsConstants.PIXEL_TO_METER_RATIO_DEFAULT * trueV.y));
+		}
+		
+		boolean result = world.isUnoccupied(
+				new com.secondhand.model.util.sat.Polygon(new Vector2(0,0), polygonPoints));
+		
+		MyDebug.d("culled: " + result);
+		return result;
+		
+		/*for (int i = 0; i < this.mPolygonShape.getVertexCount(); ++i) {
+			final com.badlogic.gdx.math.Vector2 v = new com.badlogic.gdx.math.Vector2(0, 0);
+			this.mPolygonShape.getVertex(i, v);
 			
 			final com.badlogic.gdx.math.Vector2 temp = this.mBody.getWorldPoint(v);
 			final Vector2 trueV = new Vector2(temp.x, temp.y);
@@ -162,7 +191,7 @@ public class Polygon extends Shape {
 				return false;
 			}
 		}
-		return true;
+		return true;*/
 	}
 
 }

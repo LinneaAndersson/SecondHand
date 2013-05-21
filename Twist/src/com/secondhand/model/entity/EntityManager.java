@@ -7,8 +7,6 @@ import java.util.List;
 import java.util.ListIterator;
 import java.util.Stack;
 
-import com.secondhand.debug.MyDebug;
-
 // Manages all the entities of the GameWorld
 class EntityManager implements PropertyChangeListener {
 
@@ -107,7 +105,6 @@ class EntityManager implements PropertyChangeListener {
 			scheduleEntityForDeletion((Entity) (event.getNewValue()));
 		} else if (event.getPropertyName().equalsIgnoreCase(
 				BlackHole.INCREASE_SIZE)) {
-			MyDebug.d("is this safe?" + event.getNewValue().getClass());
 			this.updateBlackHoleSize((BlackHole) event.getNewValue());
 		}
 	}

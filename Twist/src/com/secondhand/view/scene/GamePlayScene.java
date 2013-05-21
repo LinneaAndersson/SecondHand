@@ -5,6 +5,7 @@ import java.beans.PropertyChangeListener;
 
 import org.anddev.andengine.engine.Engine;
 import org.anddev.andengine.engine.camera.hud.HUD;
+import org.anddev.andengine.extension.physics.box2d.FixedStepPhysicsWorld;
 import org.anddev.andengine.extension.physics.box2d.PhysicsWorld;
 
 import android.content.Context;
@@ -138,7 +139,8 @@ public class GamePlayScene extends GameScene implements PropertyChangeListener {
 	}
 	
 	public void loadLevel(final int levelNumber, final int playerLives, final int playerScore) {
-		physicsWorld = new PhysicsWorld(new Vector2(), true);
+		physicsWorld = new FixedStepPhysicsWorld(30, new Vector2(0, 0), false, 8, 1);
+//PhysicsWorld(new Vector2(), true);
 
 		this.gameWorld = new GameWorld(new MyPhysicsWorld(physicsWorld), 
 				levelNumber,playerLives, playerScore, new PowerUpFactory());

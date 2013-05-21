@@ -32,6 +32,6 @@ public class ScoreUp extends PowerUp {
 		return text;
 	}
 
-	public static int getFrequency() { return 9; }
+	public static int getFrequency() { return 7; }
 
 }

@@ -139,7 +139,7 @@ public class GamePlayScene extends GameScene implements PropertyChangeListener {
 	}
 
 	public void loadLevel(final int levelNumber, final int playerLives, final int playerScore) {
-		physicsWorld = PhysicsWorld(new Vector2(), true);
+		physicsWorld = new PhysicsWorld(new Vector2(), true);
 
 		this.gameWorld = new GameWorld(new MyPhysicsWorld(physicsWorld),
 				levelNumber,playerLives, playerScore, new PowerUpFactory());

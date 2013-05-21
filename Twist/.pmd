@@ -308,10 +308,6 @@
             <ruleset>Code Size Rules</ruleset>
         </rule>
         <rule>
-            <name>ExcessiveImports</name>
-            <ruleset>Coupling Rules</ruleset>
-        </rule>
-        <rule>
             <name>ExcessiveMethodLength</name>
             <ruleset>Code Size Rules</ruleset>
         </rule>
@@ -649,10 +645,6 @@
         </rule>
         <rule>
             <name>TooManyFields</name>
-            <ruleset>Code Size Rules</ruleset>
-        </rule>
-        <rule>
-            <name>TooManyMethods</name>
             <ruleset>Code Size Rules</ruleset>
         </rule>
         <rule>

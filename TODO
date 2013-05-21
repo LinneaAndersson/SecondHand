@@ -3,8 +3,7 @@ Important things that must be done for the success of the project:
 
 - Implementation
 
-* Write unit tests for: Player(only repositioning remains now), Enemy,
-CollisionResolver, GameWorld, EntityManager.
+* Write unit tests for: GameWorld, EntityManager.
 * We sometimes get negative lives for some reason.
 * Replace some property changes with some kind of interface or
 callback method instead. - Done, but just changed the propertyChange.
@@ -14,8 +13,7 @@ rather, the game just goes on with negative lives.
 high score list
 * Completion meter is not reset properly when going to next level.
 * Fix transition from game play scene back to menu.
-* The effects of the "speed up" and "speed down" powerups should
-negate each other when both are activated at the same time; at the moment they don't, so fix it.
+* Write current level in HUD
 
 
 - Documentation
@@ -27,11 +25,11 @@ negate each other when both are activated at the same time; at the moment they d
 =================================
 Things we can do if we have time:
 
+* MirroredMovement option in menu
 * Make sure that the fading score notifiers are shown closer to the
 * actual powerups
 * Make a prettier hud.
 * make the menus look prettier.
-* Player movement with particles.
 * Make the Player grow bigger more smooth. (grow in small steps)
 * When collision, remove bodies earlier.
 * Better level transition

@@ -20,7 +20,7 @@ public class WorldTest extends TestCase {
 			
 		World world = new World(100, 100);
 		
-		List<Vector2> edges = new ArrayList();
+		List<Vector2> edges = new ArrayList<Vector2>();
 		edges.add(new Vector2(0, 0));
 		edges.add(new Vector2(3,1));
 		edges.add(new Vector2(4,3));
@@ -31,7 +31,7 @@ public class WorldTest extends TestCase {
 		
 		assertTrue(world.isUnoccupied(polygon));
 		
-		List<Vector2> edges2 = new ArrayList();
+		List<Vector2> edges2 = new ArrayList<Vector2>();
 		edges2.add(new Vector2(0,1));
 		edges2.add(new Vector2(2,0));
 		edges2.add(new Vector2(2,1));
@@ -120,7 +120,7 @@ public class WorldTest extends TestCase {
 
 		World world = new World(100, 100);
 
-		List<Vector2> edges = new ArrayList();
+		List<Vector2> edges = new ArrayList<Vector2>();
 		edges.add(new Vector2(0, 0));
 		edges.add(new Vector2(3,1));
 		edges.add(new Vector2(4,3));
@@ -187,7 +187,7 @@ public class WorldTest extends TestCase {
 		world.addToWorld(circ);
 
 		Polygon rect1 = PolygonFactory.createRectangle(new Vector2(5,5), 2, 2);
-		assertFalse(world.isUnoccupied(circ));
+		assertFalse(world.isUnoccupied(rect1));
 	}
 	
 }

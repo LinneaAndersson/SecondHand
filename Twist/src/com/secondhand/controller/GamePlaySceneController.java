@@ -8,6 +8,7 @@ import org.anddev.andengine.entity.scene.Scene;
 import org.anddev.andengine.entity.scene.Scene.IOnSceneTouchListener;
 import org.anddev.andengine.input.touch.TouchEvent;
 
+import com.secondhand.debug.MyDebug;
 import com.secondhand.model.entity.IGameWorld;
 import com.secondhand.model.entity.Player;
 import com.secondhand.model.entity.PowerUpList;
@@ -125,8 +126,10 @@ final class GamePlaySceneController extends Entity implements PropertyChangeList
 	@Override
 	public void propertyChange(final PropertyChangeEvent event) {
 		final String name = event.getPropertyName();
+		MyDebug.d("property change in controller outside + name= " + name);
 		
 		if (name.equals(PowerUpList.ADD_POWERUP)) {
+			MyDebug.d("property change in controller");
 			this.sceneController.getSceneManager().registerUpdateHander(TimerFactory.createTimer(this.sceneController.getSceneManager(), gameWorld, (PowerUp)event.getNewValue()));
 		} else if (name.equals("NextLevel")) {
 			this.unregisterController();

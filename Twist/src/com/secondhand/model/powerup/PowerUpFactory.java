@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-import com.secondhand.debug.MyDebug;
 import com.secondhand.model.entity.IPowerUpFactory;
 import com.secondhand.model.physics.Vector2;
 

@@ -9,8 +9,10 @@ import com.secondhand.view.scene.AllScenes;
 import com.secondhand.view.scene.GamePlayScene;
 import com.secondhand.view.scene.HighScoreScene;
 import com.secondhand.view.scene.IGameScene;
+import com.secondhand.view.scene.InstructionScene;
 import com.secondhand.view.scene.LoadingScene;
 import com.secondhand.view.scene.MainMenuScene;
+import com.secondhand.view.scene.OptionsScene;
 import com.secondhand.view.scene.SettingsMenuScene;
 
 /**
@@ -27,6 +29,8 @@ final class SceneManager {
 	private final MainMenuScene mainMenuScene;
 	private final GamePlayScene gamePlayScene;
 	private final LoadingScene loadingScene;
+	private final OptionsScene optionScene;
+	private final InstructionScene instructionScene;
 
 	public SceneManager(final Engine engine, final Context context) {
 		this.engine = engine;
@@ -37,6 +41,8 @@ final class SceneManager {
 		this.settingsMenuScene = new SettingsMenuScene(this.engine, context);
 		this.gamePlayScene = new GamePlayScene(this.engine, context);
 		this.highScoreScene = new HighScoreScene(this.engine, context);
+		this.optionScene = new OptionsScene(this.engine,context);
+		this.instructionScene = new InstructionScene(this.engine,context);
 	}
 
 	public IGameScene getCurrentScene() {
@@ -59,6 +65,14 @@ final class SceneManager {
 		return this.gamePlayScene;
 	}
 	
+	public OptionsScene getOptionsScene(){
+		return this.optionScene;
+	}
+	
+	public InstructionScene getInstructionsScene(){
+		return this.instructionScene;
+	}
+	
 	public IGameScene getScene(final AllScenes sceneEnum) {
 		IGameScene scene = null;
 
@@ -73,6 +87,10 @@ final class SceneManager {
 			scene = this.gamePlayScene;
 		} else if (sceneEnum == AllScenes.HIGH_SCORE_SCENE) {
 			scene = this.highScoreScene;
+		} else if (sceneEnum == AllScenes.OPTION_SCENE){
+			scene = this.optionScene;
+		} else if (sceneEnum == AllScenes.INSTRUCTION_SCENE){
+			scene = this.instructionScene;
 		}
 
 		return scene;

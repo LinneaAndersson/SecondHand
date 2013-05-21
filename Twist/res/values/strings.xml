@@ -15,6 +15,8 @@
     <string name="score_string">Score: </string>
     <string name="lives_string">Lives: </string>
     <string name="completion_string">Completion: </string>
+    <string name="menu_options">Options</string>
+    <string name="menu_instructions">Instructions</string>
     
     
 </resources>

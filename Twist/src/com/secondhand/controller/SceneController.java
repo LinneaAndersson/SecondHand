@@ -16,32 +16,32 @@ import com.secondhand.view.scene.AllScenes;
 class SceneController {
 
 	private final SceneManager sceneManager;
-	
+
 	public SceneManager getSceneManager() {
 		return this.sceneManager;
 	}
-	
+
 	public SceneController(final Engine engine, final Context context) {
 		this.sceneManager = new SceneManager(engine, context);		
 	}
-	
+
 	private boolean isGameLoaded = false;
-	
+
 	public void setGameLoaded(final boolean isGameLoaded) {
 		this.isGameLoaded = isGameLoaded;
 	}
-	
+
 	public boolean isGameLoaded() {
 		return this.isGameLoaded;
 	}
-	
-	
+
+
 	public void switchScene(final AllScenes scene) {
-		
+
 		this.sceneManager.switchScene(scene);
 
 		// now register the controller for the scene.
-		
+
 		if(scene == AllScenes.LOADING_SCENE) {
 			new LoadingSceneController(this.sceneManager.getLoadingScene(), this,
 					AllScenes.MAIN_MENU_SCENE);	
@@ -54,27 +54,30 @@ class SceneController {
 			new HighScoreSceneController(this.sceneManager.getHighScoreScene(), this);
 		} else if (scene == AllScenes.GAME_PLAY_SCENE) {
 			new GamePlaySceneController(this.sceneManager.getGamePlayScene(), this);
+		} else if (scene == AllScenes.OPTION_SCENE) {
+			new OptionSceneController(this.sceneManager.getOptionsScene(), this);
+		}  else if (scene == AllScenes.INSTRUCTION_SCENE) {
+			new InstructionSceneController(this.sceneManager.getInstructionsScene(), this);
 		} 
-		 
-		
-				
+
+
 	}
-	
+
 	public Scene getCurrentScene() {
 		return this.sceneManager.getCurrentScene().getScene();
 	}
-	
+
 	// called from MainActivity.
 	public boolean sendOnKeyDownToCurrentScene(final int pKeyCode,
 			final KeyEvent pEvent) {
-		
+
 		if (pKeyCode == KeyEvent.KEYCODE_BACK
 				&& pEvent.getAction() == KeyEvent.ACTION_DOWN) {
-			
+
 			if(this.sceneManager.getCurrentScene().getParentScene() != null) {
 
 				this.switchScene(this.sceneManager.getCurrentScene().getParentScene());
-				
+
 				return true;
 			} else {
 				return false;

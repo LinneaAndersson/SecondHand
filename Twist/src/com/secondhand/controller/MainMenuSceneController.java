@@ -29,10 +29,10 @@ class MainMenuSceneController implements IOnMenuItemClickListener {
 			sceneController.switchScene(AllScenes.HIGH_SCORE_SCENE);
 			return true;
 		case MainMenuScene.MENU_OPTION:
-			sceneController.switchScene(AllScenes.INSTRUCTION_SCENE);
+			sceneController.switchScene(AllScenes.OPTION_SCENE);
 			return true;
 		case MainMenuScene.MENU_INSTRUCTION:
-			sceneController.switchScene(AllScenes.OPTION_SCENE);
+			sceneController.switchScene(AllScenes.INSTRUCTION_SCENE);
 			return true;
 		default:
 			return false;

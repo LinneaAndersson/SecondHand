@@ -13,7 +13,6 @@ import com.secondhand.view.scene.InstructionScene;
 import com.secondhand.view.scene.LoadingScene;
 import com.secondhand.view.scene.MainMenuScene;
 import com.secondhand.view.scene.OptionsScene;
-import com.secondhand.view.scene.SettingsMenuScene;
 
 /**
  * Is used to switch between different scenes. 
@@ -22,8 +21,6 @@ final class SceneManager {
 	private AllScenes currentSceneEnum;
 
 	private final Engine engine;
-	
-	private final IGameScene settingsMenuScene;
 	
 	private final HighScoreScene highScoreScene;
 	private final MainMenuScene mainMenuScene;
@@ -38,7 +35,6 @@ final class SceneManager {
 		// create all the scenes. 
 		this.loadingScene = new LoadingScene(this.engine, context);
 		this.mainMenuScene = new MainMenuScene(this.engine, context);
-		this.settingsMenuScene = new SettingsMenuScene(this.engine, context);
 		this.gamePlayScene = new GamePlayScene(this.engine, context);
 		this.highScoreScene = new HighScoreScene(this.engine, context);
 		this.optionScene = new OptionsScene(this.engine,context);
@@ -81,8 +77,6 @@ final class SceneManager {
 			scene = this.loadingScene;
 		} else if (sceneEnum == AllScenes.MAIN_MENU_SCENE) {
 			scene = this.mainMenuScene;
-		} else if (sceneEnum == AllScenes.SETTINGS_MENU_SCENE) {
-			scene = this.settingsMenuScene;
 		} else if (sceneEnum == AllScenes.GAME_PLAY_SCENE) {
 			scene = this.gamePlayScene;
 		} else if (sceneEnum == AllScenes.HIGH_SCORE_SCENE) {

@@ -1,8 +1,9 @@
 package com.secondhand.model.entity;
 
+import com.secondhand.model.physics.IPhysicsObject;
 import com.secondhand.model.resource.PowerUpType;
 
-public interface IPowerUp {
+public interface IPowerUp extends IPhysicsObject {
 
 	PowerUpType getPowerUpType();
 	

@@ -29,7 +29,7 @@ public class GameWorld implements IGameWorld, PropertyChangeListener {
 	private final PowerUpList powerUpList;
 
 	public GameWorld(final IPhysicsWorld physics,
-			final int levelNumber, final int playerLives, final int playerScore) {
+			final int levelNumber, final int playerLives, final int playerScore, IPowerUpFactory factory) {
 
 
 		this.physicsWorld = physics;
@@ -39,7 +39,7 @@ public class GameWorld implements IGameWorld, PropertyChangeListener {
 
 		this.levelNumber = levelNumber;
 
-		generateNewLevelEntities(playerLives, playerScore);
+		generateNewLevelEntities(playerLives, playerScore, factory);
 		this.powerUpList = new PowerUpList(this.entityManager.getPlayer());
 
 
@@ -67,9 +67,9 @@ public class GameWorld implements IGameWorld, PropertyChangeListener {
 	}
 
 	// generate the level entities of a new level.
-	private void generateNewLevelEntities(final int playerLives, final int playerScore) {
+	private void generateNewLevelEntities(final int playerLives, final int playerScore, final IPowerUpFactory factory) {
 
-		final RandomLevelGenerator randomLevelGenerator =  new RandomLevelGenerator(this);
+		final RandomLevelGenerator randomLevelGenerator =  new RandomLevelGenerator(this, factory);
 
 		// now create the new player
 		final Player player = new Player(randomLevelGenerator.playerPosition,

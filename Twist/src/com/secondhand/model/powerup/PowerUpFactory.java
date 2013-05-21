@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+import com.secondhand.model.entity.IPowerUpFactory;
 import com.secondhand.model.physics.Vector2;
 
 // Uses the second method described here:
@@ -11,14 +12,14 @@ import com.secondhand.model.physics.Vector2;
 // to do a Weighted Random Distribution of powerups. 
 
 // a frequency of 10 means the powerups is very common, while 1 means it's very rare.
-public final class PowerUpFactory {
+public final class PowerUpFactory implements IPowerUpFactory {
 
 	private final List<Weight> weights;
 	private final int totalWeight;
-	private final Random rng;
+	private Random rng;
 	
-	public PowerUpFactory(final Random rng) {
-		this.rng = rng;
+	public PowerUpFactory() {
+		
 		weights = new ArrayList<Weight>();
 		
 		weights.add(new Weight(1, DoubleScore.getFrequency()));
@@ -41,6 +42,10 @@ public final class PowerUpFactory {
 			tw += weight.weight;
 		}
 		this.totalWeight = tw;
+	}
+	
+	public void setRandom(final Random rng){
+		this.rng = rng;
 	}
 	
 	

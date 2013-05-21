@@ -143,11 +143,22 @@ public class WorldTest extends TestCase {
 		
 		World world = new World(100, 100);
 
-		Polygon rect1 = PolygonFactory.createRectangle(new Vector2(0,0), 10, 10);
-		world.addToWorld(rect1);
+		
+		Polygon rect2 = PolygonFactory.createRectangle(new Vector2(1,1), 10, 10);
 
-		Polygon rect2 = PolygonFactory.createRectangle(new Vector2(3,3), 2, 2);
-		assertFalse(world.isUnoccupied(rect2));
+		world.addToWorld(rect2);
+
+		
+		List<Vector2> pol = new ArrayList<Vector2>();
+		pol.add(new Vector2(2,3));
+		pol.add(new Vector2(4,2));
+		pol.add(new Vector2(6,4));
+		pol.add(new Vector2(7,6));
+		pol.add(new Vector2(4,5));
+		
+		Polygon poly1 = new Polygon(new Vector2(0,0), pol);
+
+		assertFalse(world.isUnoccupied(poly1));
 	}
 	
 	public void testCircleContainment() {

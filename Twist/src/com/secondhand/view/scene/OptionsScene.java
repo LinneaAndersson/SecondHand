@@ -59,8 +59,8 @@ public class OptionsScene extends GameMenuScene {
 		
 		final IMenuItem on = new TextMenuItem(menuItems.get(0).id, menuItemFont,
 				menuItems.get(0).text);
-		final IMenuItem off = new TextMenuItem(menuItems.get(0).id, menuItemFont,
-				menuItems.get(0).text);
+		final IMenuItem off = new TextMenuItem(menuItems.get(1).id, menuItemFont,
+				menuItems.get(1).text);
 
 		if(isMirroredMovement){
 			on.setColor(0.5f, 0.5f, 0.5f);

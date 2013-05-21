@@ -9,7 +9,6 @@ import org.anddev.andengine.engine.camera.Camera;
 import org.anddev.andengine.opengl.texture.region.TextureRegion;
 import org.anddev.andengine.opengl.util.GLHelper;
 
-import com.secondhand.debug.MyDebug;
 import com.secondhand.model.physics.Vector2;
 
 
@@ -43,8 +42,6 @@ public class TexturedPolygon extends Polygon {
 		this.mPolygonTextureRegionBuffer.update();
 
 		this.mTextureRegion = textureRegion;
-		
-		MyDebug.d("done in textured polygon");
 		
 	}
 

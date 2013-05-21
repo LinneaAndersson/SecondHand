@@ -107,7 +107,6 @@ class EntityManager implements PropertyChangeListener {
 			scheduleEntityForDeletion((Entity) (event.getNewValue()));
 		} else if (event.getPropertyName().equalsIgnoreCase(
 				BlackHole.INCREASE_SIZE)) {
-			MyDebug.d("is this safe?" + event.getNewValue().getClass());
 			this.updateBlackHoleSize((BlackHole) event.getNewValue());
 		}
 	}

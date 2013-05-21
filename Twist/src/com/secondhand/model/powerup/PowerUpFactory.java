@@ -37,8 +37,7 @@ public final class PowerUpFactory {
 		int tw = 0;
 		for(final Weight weight: this.weights) {
 			if(weight.weight < 1 || weight.weight > 10) {
-				MyDebug.d("powerup frequency must be specified in a scale from 1 to 10");
-				System.exit(1);
+				throw new AssertionError("powerup frequency must be specified in a scale from 1 to 10(10 is most common, and 1 is least common");
 			}
 			tw += weight.weight;
 		}

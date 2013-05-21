@@ -10,6 +10,7 @@ import com.secondhand.view.scene.OptionsScene;
 public class OptionSceneController implements IOnMenuItemClickListener{
 	private final OptionsScene view;
 	public static boolean isMirroredMovement;
+	public static boolean hasEnemies;
 
 	public OptionSceneController(OptionsScene optionsScene,
 			SceneController sceneController) {
@@ -17,7 +18,9 @@ public class OptionSceneController implements IOnMenuItemClickListener{
 		this.view = optionsScene;
 		view.setOnMenuItemClickListener(this);
 		setIsMirroredMovement(false);
+		setHasEnemies(true);
 	}
+
 
 	@Override
 	public boolean onMenuItemClicked(MenuScene pMenuScene, IMenuItem pMenuItem,
@@ -28,6 +31,10 @@ public class OptionSceneController implements IOnMenuItemClickListener{
 		} else if (pMenuItem.getID() == OptionsScene.MIRRORED_MOVEMENT_FALSE){
 			setIsMirroredMovement(false);
 			return true;
+		} else if(pMenuItem.getID() == OptionsScene.ENEMIES_TRUE){
+			setHasEnemies(true);
+		} else if(pMenuItem.getID() == OptionsScene.ENEMIES_FALSE){
+			setHasEnemies(false);
 		}
 		return false;
 	}
@@ -35,6 +42,12 @@ public class OptionSceneController implements IOnMenuItemClickListener{
 	private void setIsMirroredMovement(boolean mirroredMovement) {
 		isMirroredMovement = mirroredMovement;
 		view.setMirroredMovementColor(isMirroredMovement);
+	}
+	
+	private void setHasEnemies(boolean enemies) {
+		hasEnemies = enemies;
+		view.setHasEnemiesColor(enemies);
+		
 	}
 
 }

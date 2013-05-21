@@ -24,6 +24,8 @@ public class OptionsScene extends GameMenuScene {
 	private Text enemy;
 	public static final int MIRRORED_MOVEMENT_FALSE = 0;
 	public static final int MIRRORED_MOVEMENT_TRUE = 1;
+	public static final int ENEMIES_TRUE = 2;
+	public static final int ENEMIES_FALSE = 3;
 
 	public OptionsScene(Engine engine, Context context) {
 		super(engine, context);
@@ -51,6 +53,34 @@ public class OptionsScene extends GameMenuScene {
 		this.attachChild(options);
 		this.attachChild(mirroredMovement);
 		// make a centered menu.
+	}
+	
+	public void setHasEnemiesColor(boolean hasEnemies){
+		final List<GameMenuScene.MenuItem> menuItems = new ArrayList<GameMenuScene.MenuItem>();
+
+		menuItems.add(new MenuItem(ENEMIES_TRUE, LocalizationStrings
+				.getInstance().getLocalizedString("on")));
+		menuItems.add(new MenuItem(ENEMIES_FALSE, LocalizationStrings
+				.getInstance().getLocalizedString("off")));
+
+		final Font menuItemFont = Fonts.getInstance().menuItemFont;
+
+		final IMenuItem on = new TextMenuItem(menuItems.get(0).id,
+				menuItemFont, menuItems.get(0).text);
+		final IMenuItem off = new TextMenuItem(menuItems.get(1).id,
+				menuItemFont, menuItems.get(1).text);
+
+		if (hasEnemies) {
+			off.setColor(0.5f, 0.5f, 0.5f);
+		} else {
+			on.setColor(0.5f, 0.5f, 0.5f);
+		}
+
+		on.setPosition(100, 350);
+		addMenuItem(on);
+
+		off.setPosition(200, 350);
+		addMenuItem(off);
 	}
 
 	public void setMirroredMovementColor(boolean isMirroredMovement) {

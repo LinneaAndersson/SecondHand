@@ -47,8 +47,8 @@ public class GamePlayScene extends GameScene implements PropertyChangeListener {
 	private PhysicsWorld physicsWorld;
 
 	private Vector2 initialCameraPos;
-	
-	
+
+
 	private StarsBackground[] starsBackgrounds = new StarsBackground[3];
 
 	public GamePlayScene(final Engine engine, final Context context) {
@@ -63,7 +63,7 @@ public class GamePlayScene extends GameScene implements PropertyChangeListener {
 		return this.physicsWorld;
 	}
 
-	
+
 	public void registerNewLevel() {
 
 		this.smoothCamera.setZoomFactor(1.0f);
@@ -91,7 +91,7 @@ public class GamePlayScene extends GameScene implements PropertyChangeListener {
 		for (final Entity entity : gameWorld.getEntityList()) {
 
 			EntityView entityView;
-			
+
 			entityView = null;
 			if (entity instanceof Planet) {
 				entityView = new PlanetView(physicsWorld, (Planet) entity);
@@ -109,7 +109,7 @@ public class GamePlayScene extends GameScene implements PropertyChangeListener {
 			} else {
 				MyDebug.e("invalid entity found in entityList");
 				System.exit(1);
-			}	
+			}
 
 			this.attachChild(entityView.getShape());
 		}
@@ -122,10 +122,10 @@ public class GamePlayScene extends GameScene implements PropertyChangeListener {
 				gameWorld.getPlayer());
 		attachChild(playerView.getShape());
 
-		// we want to restore the camera when returning to the menu. 
-	
+		// we want to restore the camera when returning to the menu.
+
 		registerUpdateHandler(physicsWorld);
-		
+
 
 		// setup the HUD
 		final Player player = gameWorld.getPlayer();
@@ -137,20 +137,19 @@ public class GamePlayScene extends GameScene implements PropertyChangeListener {
 		engine.getCamera().setChaseEntity(playerView.getShape());
 
 	}
-	
-	public void loadLevel(final int levelNumber, final int playerLives, final int playerScore) {
-		physicsWorld = new FixedStepPhysicsWorld(30, new Vector2(0, 0), false, 8, 1);
-//PhysicsWorld(new Vector2(), true);
 
-		this.gameWorld = new GameWorld(new MyPhysicsWorld(physicsWorld), 
+	public void loadLevel(final int levelNumber, final int playerLives, final int playerScore) {
+		physicsWorld = new PhysicsWorld(new Vector2(), true);
+
+		this.gameWorld = new GameWorld(new MyPhysicsWorld(physicsWorld),
 				levelNumber,playerLives, playerScore, new PowerUpFactory());
-		
+
 		gameWorld.getPlayer().addListener(this);
-		
+
 		registerNewLevel();
 		setupView();
-		
-		engine.getCamera().setHUD(hud);		
+
+		engine.getCamera().setHUD(hud);
 	}
 
 	@Override
@@ -161,7 +160,7 @@ public class GamePlayScene extends GameScene implements PropertyChangeListener {
 
 		this.loadLevel(GameWorld.STARTING_LEVEL, Player.STARTING_LIVES, 0);
 	}
-	
+
 
 	// reset camera before the menu is shown
 	public void resetCamera() {
@@ -184,7 +183,7 @@ public class GamePlayScene extends GameScene implements PropertyChangeListener {
 		super.onSwitchScene();
 		this.unregisterScene();
 		resetCamera();
-	}	
+	}
 
 	@Override
 	public AllScenes getParentScene() {
@@ -211,24 +210,24 @@ public class GamePlayScene extends GameScene implements PropertyChangeListener {
 		this.hud.attachChild(new FadingNotifierText(str, cameraPosition));
 	}
 
-	// unregister all update handlers and such from the scene. 
+	// unregister all update handlers and such from the scene.
 	public void unregisterScene() {
 		// remove the listeners and stuff
 				this.detachChildren();
-				
+
 				gameWorld.getPlayer().removeListener(this);
-				
+
 				this.unregisterUpdateHandler(this.physicsWorld);
-				
+
 	}
-	
+
 	public void newLevelStarted() {
-		
+
 		unregisterScene();
-		
+
 		Sounds.getInstance().winSound.play();
 
-		this.loadLevel(gameWorld.getLevelNumber(), this.gameWorld.getPlayer().getLives(), 
+		this.loadLevel(gameWorld.getLevelNumber(), this.gameWorld.getPlayer().getLives(),
 				this.gameWorld.getPlayer().getScore());
 	}
 
@@ -243,25 +242,25 @@ public class GamePlayScene extends GameScene implements PropertyChangeListener {
 	public void onPlayerWallCollision() {
 		Sounds.getInstance().obstacleCollisionSound.play();
 	}
-	
+
 	public RocketEmitter attachRocketEmitter(final Vector2 touchPosition) {
-		
+
 		final Player player = this.gameWorld.getPlayer();
 		final com.secondhand.model.physics.Vector2 convertedTouchPosition = new com.secondhand.model.physics.Vector2(touchPosition.x,touchPosition.y);
 		final com.secondhand.model.physics.Vector2 surfacePosition = player.getSurfacePosition(convertedTouchPosition, player.isMirroredMovement());
-		
+
 		final RocketEmitter emitter = new RocketEmitter(surfacePosition.x, surfacePosition.y,
 												  player.getCenterX(), player.getCenterY());
 		attachChild(emitter);
-		
+
 		return emitter;
 	}
-	
+
 	public void detachRocketEmitter(final RocketEmitter emitter) {
 		emitter.setParticlesSpawnEnabled(false);
 		detachChild(emitter);
 	}
-	
+
 	@Override
 	public void propertyChange(final PropertyChangeEvent event) {
 
@@ -276,28 +275,28 @@ public class GamePlayScene extends GameScene implements PropertyChangeListener {
 			apaptCameraToGrowingPlayer(
 					(Float) event.getNewValue(),
 					(Float) event.getOldValue());
-			
-			
+
+
 			final float newRadius = (Float) event.getNewValue();
-			
+
 			final float completion =2*(
-					newRadius -GameWorld.PLAYER_STARTING_SIZE) / 
+					newRadius - (float) GameWorld.PLAYER_STARTING_SIZE) /
 					(float)gameWorld.getPlayer().getMaxSize();
-			
+
 			this.scoreLivesText.setCompletionRatio(completion);
-			
+
 		} else if (eventName.equals("PlayerWallCollision")) {
 			onPlayerWallCollision();
-		} 
-		
+		}
+
 		else if (eventName.equals(PowerUpList.ADD_POWERUP)) {
 			final PowerUp powerUp = (PowerUp) event.getNewValue();
 			if(powerUp.hasText()) {
 				showFadingTextNotifier(powerUp.getText(),
 						new Vector2(powerUp.getCenterX(), powerUp.getCenterY()));
 			}
-	
+
 		}
-		
+
 	}
 }

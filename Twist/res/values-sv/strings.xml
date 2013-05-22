@@ -19,5 +19,11 @@
     <string name="lives_string">Liv: </string>
     <string name="completion_string">Färdig: </string>
     
+    <string name="menu_options">Inställningar</string>
+    <string name="menu_instructions">Instruktioner</string>
+    <string name="off">av</string>
+    <string name="on">på</string>
+    <string name="mirrored_movement">Spegelvänd rörelse:</string>
+    <string name="enemy">Fiender:</string>
     
 </resources>

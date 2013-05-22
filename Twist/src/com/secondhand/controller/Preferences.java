@@ -1,5 +1,7 @@
 package com.secondhand.controller;
 
+import com.secondhand.debug.MyDebug;
+
 import android.app.Activity;
 import android.content.SharedPreferences;
 
@@ -32,6 +34,7 @@ public final class Preferences {
 	}
 	
 	public void setIsMirroredMovement(final boolean mirroredMovement) {
+		MyDebug.d("mirrored movement: " + mirroredMovement);
 		this.editor.putBoolean(MIRRORED_MOVEMENT, mirroredMovement);
 		update();
 	}

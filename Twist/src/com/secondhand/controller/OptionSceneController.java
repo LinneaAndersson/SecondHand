@@ -14,10 +14,8 @@ public class OptionSceneController implements IOnMenuItemClickListener {
 		super();
 		this.view = optionsScene;
 		view.setOnMenuItemClickListener(this);
-		setIsMirroredMovement(false);
-
+		
 		optionsScene.setHasEnemies(Preferences.getInstance().hasEnemies());
-
 		optionsScene.setMirroredMovement(Preferences.getInstance().isMirroredMovement());
 	}
 

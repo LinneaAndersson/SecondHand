@@ -2,20 +2,16 @@ package com.secondhand.view.scene;
 
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
-import java.io.IOException;
 
 import org.anddev.andengine.audio.music.Music;
-import org.anddev.andengine.audio.music.MusicFactory;
 import org.anddev.andengine.engine.Engine;
 import org.anddev.andengine.engine.camera.hud.HUD;
 import org.anddev.andengine.extension.physics.box2d.PhysicsWorld;
 
 import android.content.Context;
-import android.media.AudioManager;
 
 import com.badlogic.gdx.math.Vector2;
 import com.secondhand.controller.Preferences;
-import com.secondhand.debug.MyDebug;
 import com.secondhand.model.entity.BlackHole;
 import com.secondhand.model.entity.Enemy;
 import com.secondhand.model.entity.Entity;
@@ -117,7 +113,6 @@ public class GamePlayScene extends GameScene implements PropertyChangeListener {
 						(PowerUp) entity);
 
 			} else {
-				MyDebug.e("invalid entity found in entityList");
 				System.exit(1);
 			}
 
@@ -285,7 +280,6 @@ public class GamePlayScene extends GameScene implements PropertyChangeListener {
 		final String eventName = event.getPropertyName();
 
 		if (eventName.equals(Player.INCREASE_SCORE)) {
-			MyDebug.d("update score");
 			updateScore((Integer) event.getNewValue());
 		} else if (eventName.equals(Player.INCREASE_LIFE)) {
 			updateLives((Integer) event.getNewValue());

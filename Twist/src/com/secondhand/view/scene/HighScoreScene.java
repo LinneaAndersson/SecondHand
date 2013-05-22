@@ -23,6 +23,7 @@ public class HighScoreScene extends GameScene {
 	// index so far in the high score table.
 	private int i = 0;
 
+	
 	private boolean isEntireHighScoreListShown;
 	
 	public HighScoreScene(final Engine engine, final Context context) {

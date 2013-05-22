@@ -276,6 +276,7 @@ public class GamePlayScene extends GameScene implements PropertyChangeListener {
 					(Float) event.getOldValue());
 
 
+			
 			final float newRadius = (Float) event.getNewValue();
 
 			final float completion =2*(

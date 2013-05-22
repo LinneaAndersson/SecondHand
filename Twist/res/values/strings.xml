@@ -24,13 +24,15 @@
     <string name="enemy">Enemies:</string>
     
     <string name="game_instructions">
-        You control a black hole by touching the \n 
-        screen. You get points when you eat \n 
-        smaller planets and black hole, \n 
-        but look up for the bigger black hole. \n 
-        There are obstacles in your way and \n 
-        powerups you can take if you want.
         
+         You control a black hole by touching the \n 
+        screen; you get points when you eat \n 
+        smaller planets and other black holes, \n 
+        but look out for the bigger black holes; \n 
+        there are also obstacles blocking your path and \n 
+        powerups that you can pick up
+       
+         
          </string>
     
 </resources>

@@ -29,15 +29,15 @@
     
 
     <string name="game_instructions">
-        You control a black hole by touching the \n 
-        screen. You get points when you eat \n 
-        smaller planets and black hole, \n 
-        but look up for the bigger black hole. \n 
-        There are obstacles in your way and \n 
-        powerups you can take if you want.
-        
-         </string>
-    
+     
+       Du kontrollerar ett svart hål genom att röra \n 
+        skärmen; du får poäng när du äter \n 
+        mindre planeter och andra svarta hål, \n 
+       men se upp för de andra svarta hålen; \n 
+       det finns också hinder som är i vägen för dig och \n 
+        powerups som du kan ta
+          
+    </string>
     
     
 </resources>

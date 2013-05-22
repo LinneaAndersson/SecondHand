@@ -5,7 +5,7 @@ import java.io.IOException;
 import org.anddev.andengine.audio.music.Music;
 import org.anddev.andengine.audio.music.MusicFactory;
 
-public class MusicLoader extends Loader {
+public final class MusicLoader extends Loader {
 
 	private static MusicLoader instance = new MusicLoader();
 	

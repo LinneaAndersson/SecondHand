@@ -1,6 +1,6 @@
 ==================================================================
 Important things that must be done for the success of the project:
-
+x
 - Implementation
 
 * Write unit tests for: GameWorld, EntityManager.

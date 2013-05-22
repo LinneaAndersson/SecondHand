@@ -7,20 +7,45 @@ public final class Preferences {
 	private static Preferences instance = new Preferences();
 	
     public static final String PREFS_NAME = "app_settings.dat";
+    
+	public static final String MIRRORED_MOVEMENT = "mirroredMovement";
+	public static final String ENEMIES = "enemies";
 	
 	private Preferences() { }
 	
 	private SharedPreferences.Editor editor;
+	private SharedPreferences preferences;
 	 
 	public static Preferences getInstance() {
 		return instance;
 	}
 	
 	public void initialize(final Activity activity) {
-		editor = activity.getSharedPreferences(PREFS_NAME	, 0).edit();
+		preferences = activity.getSharedPreferences(PREFS_NAME	, 0);
+		editor = preferences.edit();
+		update();
 	}
 	
-	public SharedPreferences.Editor getEditor() {
-		return this.editor;
+	private void update() {
+		editor.commit();
+		// update model here. 
+	}
+	
+	public void setIsMirroredMovement(final boolean mirroredMovement) {
+		this.editor.putBoolean(MIRRORED_MOVEMENT, mirroredMovement);
+		update();
+	}
+	
+	public void setHasEnemies(final boolean hasEnemies) {
+		this.editor.putBoolean(ENEMIES, hasEnemies);
+		update();
+	}
+	
+	public boolean isMirroredMovement() {
+		return preferences.getBoolean(MIRRORED_MOVEMENT, false);
+	}
+
+	public boolean hasEnemies() {
+		return preferences.getBoolean(ENEMIES, true);
 	}
 }

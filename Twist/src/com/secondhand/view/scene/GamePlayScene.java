@@ -39,6 +39,7 @@ import com.secondhand.view.entity.PowerUpView;
 import com.secondhand.view.opengl.StarsBackground;
 import com.secondhand.view.physics.MyPhysicsWorld;
 import com.secondhand.view.resource.Sounds;
+import com.secondhand.view.resource.loader.MusicLoader;
 
 public class GamePlayScene extends GameScene implements PropertyChangeListener {
 
@@ -60,10 +61,8 @@ public class GamePlayScene extends GameScene implements PropertyChangeListener {
 	public GamePlayScene(final Engine engine, final Context context) {
 		super(engine, context);
 		
-		try {
-			this.music = MusicFactory.createMusicFromAsset(engine.getMusicManager(), context, "mfx/twirltheme.ogg");
-			this.music.setLooping(true);
-		} catch(final IOException e) {}
+		this.music = MusicLoader.getInstance().getMainTheme();
+		this.music.setLooping(true);
 	}
 
 	public IGameWorld getGameWorld() {

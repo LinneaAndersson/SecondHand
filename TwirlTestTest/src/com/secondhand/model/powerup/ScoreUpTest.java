@@ -13,7 +13,7 @@ public class ScoreUpTest extends TestCase {
 		ScoreUp powerup = new ScoreUp(new Vector2());
 		
 		assertEquals(0, powerup.getDuration(), 0.001);
-		assertEquals(9, ScoreUp.getFrequency());	
+		assertEquals(7, ScoreUp.getFrequency());	
 		
 		
 		assertEquals(PowerUpType.SCORE_UP, powerup.getPowerUpType());	

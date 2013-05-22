@@ -16,6 +16,7 @@ import com.secondhand.model.physics.IPhysicsEntity;
 import com.secondhand.model.physics.IPhysicsObject;
 import com.secondhand.model.physics.IPhysicsWorld;
 import com.secondhand.model.physics.Vector2;
+import com.secondhand.model.powerup.PowerUpFactory;
 
 public class GameWorldTest extends TestCase implements PropertyChangeListener{
 
@@ -119,7 +120,7 @@ public class GameWorldTest extends TestCase implements PropertyChangeListener{
 
 		IPhysicsWorld physics = new TestPhysicsWorld();
 
-		GameWorld gWorld = new GameWorld(physics, levelNumber, lives, score);
+		GameWorld gWorld = new GameWorld(physics, levelNumber, lives, score,  new PowerUpFactory());
 
 		assertEquals(levelNumber, gWorld.getLevelNumber());
 		assertEquals(score, gWorld.getPlayer().getScore());
@@ -130,7 +131,7 @@ public class GameWorldTest extends TestCase implements PropertyChangeListener{
 
 	public void testIsGameOver() {
 		IPhysicsWorld physics = new TestPhysicsWorld();
-		GameWorld gWorld = new GameWorld(physics, levelNumber, lives, score);
+		GameWorld gWorld = new GameWorld(physics, levelNumber, lives, score,  new PowerUpFactory());
 
 		assertEquals(gWorld.getPlayer().lostAllLives(), gWorld.isGameOver());
 
@@ -139,7 +140,7 @@ public class GameWorldTest extends TestCase implements PropertyChangeListener{
 	public void testUpdateGameWorld() {
 		//TODO entityManager part
 		IPhysicsWorld physics = new TestPhysicsWorld();
-		GameWorld gWorld = new GameWorld(physics, levelNumber, lives, score);
+		GameWorld gWorld = new GameWorld(physics, levelNumber, lives, score,  new PowerUpFactory());
 		gWorld.addListener(this);
 		for (Entity e : gWorld.getEntityList()) {
 			e.setPhysics(new TestPhysicsEntity());
@@ -159,7 +160,7 @@ public class GameWorldTest extends TestCase implements PropertyChangeListener{
 	
 	public void tesPpropertyChange(){
 		IPhysicsWorld physics = new TestPhysicsWorld();
-		GameWorld gWorld = new GameWorld(physics, levelNumber, lives, score);
+		GameWorld gWorld = new GameWorld(physics, levelNumber, lives, score,  new PowerUpFactory());
 		for (Entity e : gWorld.getEntityList()) {
 			e.setPhysics(new TestPhysicsEntity());
 		}

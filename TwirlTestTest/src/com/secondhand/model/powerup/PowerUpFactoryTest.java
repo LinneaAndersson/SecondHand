@@ -26,7 +26,8 @@ public class PowerUpFactoryTest extends TestCase  {
 			}
 		}
 
-		PowerUpFactory factory = new PowerUpFactory(new MockRandom());
+		PowerUpFactory factory = new PowerUpFactory();
+		factory.setRandom(new MockRandom());
 
 		Vector2 pos = new Vector2(2,2);
 		PowerUp powerup = factory.getRandomPowerUp(pos);

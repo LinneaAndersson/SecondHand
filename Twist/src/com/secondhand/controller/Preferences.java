@@ -42,6 +42,7 @@ public final class Preferences {
 		update();
 	}
 	
+	
 	public void setHasEnemies(final boolean hasEnemies) {
 		this.editor.putBoolean(ENEMIES, hasEnemies);
 		update();

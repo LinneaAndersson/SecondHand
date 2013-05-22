@@ -13,7 +13,7 @@ public class MirroredMovementTest extends TestCase {
 		MirroredMovement powerup = new MirroredMovement(new Vector2());
 		
 		assertEquals(5, powerup.getDuration(), 0.001);
-		assertEquals(8, MirroredMovement.getFrequency());	
+		assertEquals(5, MirroredMovement.getFrequency());	
 		
 		assertEquals(1, powerup.getR(), 0.001);	
 		assertEquals(0, powerup.getG(), 0.001);	

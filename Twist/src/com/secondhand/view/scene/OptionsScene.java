@@ -53,8 +53,8 @@ public class OptionsScene extends GameMenuScene {
 	public void setMirroredMovementColor(boolean isMirroredMovement){
 		final List<GameMenuScene.MenuItem> menuItems = new ArrayList<GameMenuScene.MenuItem>();
 
-		menuItems.add(new MenuItem(MIRRORED_MOVEMENT_FALSE, LocalizationStrings.getInstance().getLocalizedString("on")));
-		menuItems.add(new MenuItem(MIRRORED_MOVEMENT_TRUE, LocalizationStrings.getInstance().getLocalizedString("off")));
+		menuItems.add(new MenuItem(MIRRORED_MOVEMENT_FALSE, LocalizationStrings.getInstance().getLocalizedString("off")));
+		menuItems.add(new MenuItem(MIRRORED_MOVEMENT_TRUE, LocalizationStrings.getInstance().getLocalizedString("on")));
 
 		final Font menuItemFont = Fonts.getInstance().menuItemFont;
 		
@@ -63,9 +63,9 @@ public class OptionsScene extends GameMenuScene {
 		final IMenuItem off = new TextMenuItem(menuItems.get(0).id, menuItemFont,
 				menuItems.get(0).text);
 		if(isMirroredMovement){
-			on.setColor(0.5f, 0.5f, 0.5f);
-		} else {
 			off.setColor(0.5f, 0.5f, 0.5f);
+		} else {
+			on.setColor(0.5f, 0.5f, 0.5f);
 		}
 
 		on.setPosition(100, 200);

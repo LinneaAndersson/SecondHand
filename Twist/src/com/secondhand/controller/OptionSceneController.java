@@ -6,7 +6,7 @@ import org.anddev.andengine.entity.scene.menu.item.IMenuItem;
 
 import com.secondhand.view.scene.OptionsScene;
 
-public class OptionSceneController implements IOnMenuItemClickListener{
+public class OptionSceneController implements IOnMenuItemClickListener {
 	private final OptionsScene view;
 	public static boolean isMirroredMovement;
 	public static boolean hasEnemies;
@@ -16,27 +16,28 @@ public class OptionSceneController implements IOnMenuItemClickListener{
 		this.view = optionsScene;
 		view.setOnMenuItemClickListener(this);
 		setIsMirroredMovement(false);
-	
-		optionsScene.setHasEnemies(true);
+		setHasEnemies(true);
 
-		optionsScene.setMirroredMovement(true);
+		// optionsScene.setHasEnemies(true);
+		// optionsScene.setMirroredMovement(true);
 	}
 
 	@Override
-	public boolean onMenuItemClicked(final MenuScene pMenuScene, final IMenuItem pMenuItem,
-			final float pMenuItemLocalX, final float pMenuItemLocalY) {
-		if (pMenuItem.getID() == OptionsScene.MIRRORED_MOVEMENT_TRUE){
-			// now set in the model 
+	public boolean onMenuItemClicked(final MenuScene pMenuScene,
+			final IMenuItem pMenuItem, final float pMenuItemLocalX,
+			final float pMenuItemLocalY) {
+		if (pMenuItem.getID() == OptionsScene.MIRRORED_MOVEMENT_TRUE) {
+			// now set in the model
 			setIsMirroredMovement(true);
 			return true;
-		} else if (pMenuItem.getID() == OptionsScene.MIRRORED_MOVEMENT_FALSE){
+		} else if (pMenuItem.getID() == OptionsScene.MIRRORED_MOVEMENT_FALSE) {
 			// now set it in the model
 			setIsMirroredMovement(false);
 			return true;
-		} else if(pMenuItem.getID() == OptionsScene.ENEMIES_TRUE){
+		} else if (pMenuItem.getID() == OptionsScene.ENEMIES_TRUE) {
 			// now in the model
 			setHasEnemies(true);
-		} else if(pMenuItem.getID() == OptionsScene.ENEMIES_FALSE){
+		} else if (pMenuItem.getID() == OptionsScene.ENEMIES_FALSE) {
 			// now set in the model
 			setHasEnemies(false);
 		}
@@ -47,11 +48,11 @@ public class OptionSceneController implements IOnMenuItemClickListener{
 		isMirroredMovement = mirroredMovement;
 		view.setMirroredMovement(isMirroredMovement);
 	}
-	
+
 	private void setHasEnemies(final boolean enemies) {
 		hasEnemies = enemies;
 		view.setHasEnemies(enemies);
-		
+
 	}
 
 }

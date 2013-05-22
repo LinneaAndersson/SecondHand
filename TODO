@@ -18,8 +18,6 @@ Important things that must be done for the success of the project:
 Things we can do if we have time:
 
 * MirroredMovement option in menu
-* Make sure that the fading score notifiers are shown closer to the
-* actual powerups
 * Make a prettier hud.
 * make the menus look prettier.
 * When collision, remove bodies earlier.

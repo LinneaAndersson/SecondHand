@@ -4,20 +4,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.anddev.andengine.engine.Engine;
-import org.anddev.andengine.entity.scene.menu.MenuScene;
-import org.anddev.andengine.entity.scene.menu.MenuScene.IOnMenuItemClickListener;
 import org.anddev.andengine.entity.scene.menu.item.IMenuItem;
 import org.anddev.andengine.entity.scene.menu.item.TextMenuItem;
 import org.anddev.andengine.entity.text.Text;
 import org.anddev.andengine.opengl.font.Font;
 import org.anddev.andengine.util.HorizontalAlign;
 
-import com.secondhand.debug.MyDebug;
+import android.content.Context;
+
 import com.secondhand.view.resource.Fonts;
 import com.secondhand.view.resource.LocalizationStrings;
-import com.secondhand.view.scene.GameMenuScene.MenuItem;
-
-import android.content.Context;
 
 public class OptionsScene extends GameMenuScene {
 	private Text options;
@@ -28,7 +24,7 @@ public class OptionsScene extends GameMenuScene {
 	public static final int ENEMIES_TRUE = 2;
 	public static final int ENEMIES_FALSE = 3;
 
-	public OptionsScene(Engine engine, Context context) {
+	public OptionsScene(final Engine engine, final Context context) {
 		super(engine, context);
 
 	}
@@ -56,7 +52,7 @@ public class OptionsScene extends GameMenuScene {
 		// make a centered menu.
 	}
 	
-	public void setHasEnemiesColor(boolean hasEnemies){
+	public void setHasEnemiesColor(final boolean hasEnemies){
 		final List<GameMenuScene.MenuItem> menuItems = new ArrayList<GameMenuScene.MenuItem>();
 
 		menuItems.add(new MenuItem(ENEMIES_TRUE, LocalizationStrings
@@ -84,7 +80,7 @@ public class OptionsScene extends GameMenuScene {
 		addMenuItem(off);
 	}
 
-	public void setMirroredMovementColor(boolean isMirroredMovement) {
+	public void setMirroredMovementColor(final boolean isMirroredMovement) {
 		final List<GameMenuScene.MenuItem> menuItems = new ArrayList<GameMenuScene.MenuItem>();
 
 		menuItems.add(new MenuItem(MIRRORED_MOVEMENT_FALSE, LocalizationStrings.getInstance().getLocalizedString("off")));

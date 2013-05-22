@@ -13,7 +13,7 @@ public class World {
 
 	private final int width;
 	private final int height; 
-	private boolean isBoundlessWorld;
+	private final boolean isBoundlessWorld;
 	
 	// the shapes in the world.
 	private final List<Shape> shapes;

@@ -1,6 +1,5 @@
 package com.secondhand.view.opengl;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.microedition.khronos.opengles.GL10;
@@ -16,10 +15,7 @@ import org.anddev.andengine.opengl.vertex.VertexBuffer;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.Fixture;
 import com.badlogic.gdx.physics.box2d.PolygonShape;
-import com.secondhand.debug.MyDebug;
 import com.secondhand.model.physics.Vector2;
-import com.secondhand.model.util.sat.PolygonFactory;
-import com.secondhand.model.util.sat.World;
 
 /**
  * A polygon class used for drawing polygons. The positioning for polygons works

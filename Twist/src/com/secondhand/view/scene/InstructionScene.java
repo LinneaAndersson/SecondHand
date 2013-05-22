@@ -12,9 +12,8 @@ import android.content.Context;
 
 public class InstructionScene extends GameScene {
 
-	public InstructionScene(Engine engine, Context context) {
+	public InstructionScene(final Engine engine, final Context context) {
 		super(engine, context);
-		// TODO Auto-generated constructor stub
 	}
 
 	public void loadScene() {

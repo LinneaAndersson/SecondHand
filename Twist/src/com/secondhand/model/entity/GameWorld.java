@@ -29,7 +29,7 @@ public class GameWorld implements IGameWorld, PropertyChangeListener {
 	private final PowerUpList powerUpList;
 
 	public GameWorld(final IPhysicsWorld physics,
-			final int levelNumber, final int playerLives, final int playerScore, IPowerUpFactory factory) {
+			final int levelNumber, final int playerLives, final int playerScore, final IPowerUpFactory factory) {
 
 
 		this.physicsWorld = physics;

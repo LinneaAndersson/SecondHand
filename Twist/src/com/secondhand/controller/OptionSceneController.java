@@ -4,7 +4,6 @@ import org.anddev.andengine.entity.scene.menu.MenuScene;
 import org.anddev.andengine.entity.scene.menu.MenuScene.IOnMenuItemClickListener;
 import org.anddev.andengine.entity.scene.menu.item.IMenuItem;
 
-import com.secondhand.debug.MyDebug;
 import com.secondhand.view.scene.OptionsScene;
 
 public class OptionSceneController implements IOnMenuItemClickListener{
@@ -12,8 +11,8 @@ public class OptionSceneController implements IOnMenuItemClickListener{
 	public static boolean isMirroredMovement;
 	public static boolean hasEnemies;
 
-	public OptionSceneController(OptionsScene optionsScene,
-			SceneController sceneController) {
+	public OptionSceneController(final OptionsScene optionsScene,
+			final SceneController sceneController) {
 		super();
 		this.view = optionsScene;
 		view.setOnMenuItemClickListener(this);
@@ -21,10 +20,9 @@ public class OptionSceneController implements IOnMenuItemClickListener{
 		setHasEnemies(true);
 	}
 
-
 	@Override
-	public boolean onMenuItemClicked(MenuScene pMenuScene, IMenuItem pMenuItem,
-			float pMenuItemLocalX, float pMenuItemLocalY) {
+	public boolean onMenuItemClicked(final MenuScene pMenuScene, final IMenuItem pMenuItem,
+			final float pMenuItemLocalX, final float pMenuItemLocalY) {
 		if (pMenuItem.getID() == OptionsScene.MIRRORED_MOVEMENT_TRUE){
 			setIsMirroredMovement(true);
 			return true;

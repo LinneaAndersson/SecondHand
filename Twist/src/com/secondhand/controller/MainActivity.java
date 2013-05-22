@@ -56,7 +56,7 @@ public class MainActivity extends BaseGameActivity {
 	    TextureRegionLoader.getInstance().initialize(this, engine);
 	    LocalizationStrings.getInstance().initialize(this);
 	    ThreadUtil.getInstance().initialize(engine);
-
+	    Preferences.getInstance().initialize(this);
 	 
 	    // initialze scene controller. 
 	    this.sceneController = new SceneController(engine, this);

@@ -16,7 +16,10 @@ public class OptionSceneController implements IOnMenuItemClickListener{
 		this.view = optionsScene;
 		view.setOnMenuItemClickListener(this);
 		setIsMirroredMovement(false);
-		setHasEnemies(true);
+	
+		optionsScene.setHasEnemies(true);
+
+		optionsScene.setMirroredMovement(true);
 	}
 
 	@Override
@@ -42,12 +45,12 @@ public class OptionSceneController implements IOnMenuItemClickListener{
 
 	private void setIsMirroredMovement(final boolean mirroredMovement) {
 		isMirroredMovement = mirroredMovement;
-		view.setMirroredMovementColor(isMirroredMovement);
+		view.setMirroredMovement(isMirroredMovement);
 	}
 	
 	private void setHasEnemies(final boolean enemies) {
 		hasEnemies = enemies;
-		view.setHasEnemiesColor(enemies);
+		view.setHasEnemies(enemies);
 		
 	}
 

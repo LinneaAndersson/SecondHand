@@ -1,8 +1,5 @@
 package com.secondhand.view.scene;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import org.anddev.andengine.engine.Engine;
 import org.anddev.andengine.entity.scene.menu.item.IMenuItem;
 import org.anddev.andengine.entity.scene.menu.item.TextMenuItem;
@@ -16,14 +13,18 @@ import com.secondhand.view.resource.Fonts;
 import com.secondhand.view.resource.LocalizationStrings;
 
 public class OptionsScene extends GameMenuScene {
-	private Text options;
-	private Text mirroredMovement;
-	private Text enemy;
 	public static final int MIRRORED_MOVEMENT_FALSE = 0;
 	public static final int MIRRORED_MOVEMENT_TRUE = 1;
 	public static final int ENEMIES_TRUE = 2;
 	public static final int ENEMIES_FALSE = 3;
-
+	
+	private IMenuItem enemiesOn;
+	private IMenuItem enemiesOff;
+	
+	private IMenuItem mirroredMovementOn;
+	private IMenuItem mirroredMovementOff;
+	
+	
 	public OptionsScene(final Engine engine, final Context context) {
 		super(engine, context);
 
@@ -33,6 +34,10 @@ public class OptionsScene extends GameMenuScene {
 	public void loadScene() {
 		super.loadScene();
 
+		final Text options;
+		final Text mirroredMovement;
+		final Text enemy;
+		
 		final Font mFont = Fonts.getInstance().menuItemFont;
 
 		options = new Text(100, 60, mFont, LocalizationStrings.getInstance()
@@ -49,67 +54,57 @@ public class OptionsScene extends GameMenuScene {
 		this.attachChild(enemy);
 		this.attachChild(options);
 		this.attachChild(mirroredMovement);
-		// make a centered menu.
+		
+		layoutButtons();
 	}
 	
-	public void setHasEnemiesColor(final boolean hasEnemies){
-		final List<GameMenuScene.MenuItem> menuItems = new ArrayList<GameMenuScene.MenuItem>();
+	public void layoutButtons() {
 
-		menuItems.add(new MenuItem(ENEMIES_TRUE, LocalizationStrings
-				.getInstance().getLocalizedString("on")));
-		menuItems.add(new MenuItem(ENEMIES_FALSE, LocalizationStrings
-				.getInstance().getLocalizedString("off")));
-
+		// enemies button
 		final Font menuItemFont = Fonts.getInstance().menuItemFont;
 
-		final IMenuItem on = new TextMenuItem(menuItems.get(0).id,
-				menuItemFont, menuItems.get(0).text);
-		final IMenuItem off = new TextMenuItem(menuItems.get(1).id,
-				menuItemFont, menuItems.get(1).text);
+		enemiesOn = new TextMenuItem(ENEMIES_TRUE,
+				menuItemFont, LocalizationStrings.getInstance().getLocalizedString("on"));
+		enemiesOff = new TextMenuItem(ENEMIES_FALSE,
+				menuItemFont, LocalizationStrings.getInstance().getLocalizedString("off"));
 
+		enemiesOn.setPosition(100, 350);
+		addMenuItem(enemiesOn);
+
+		enemiesOff.setPosition(200, 350);
+		addMenuItem(enemiesOff);
+	
+	
+		mirroredMovementOn = new TextMenuItem(MIRRORED_MOVEMENT_TRUE,
+				menuItemFont, LocalizationStrings.getInstance().getLocalizedString("on"));
+		mirroredMovementOff = new TextMenuItem(MIRRORED_MOVEMENT_FALSE,
+				menuItemFont, LocalizationStrings.getInstance().getLocalizedString("off"));
+
+		mirroredMovementOn.setPosition(200, 200);
+		addMenuItem(mirroredMovementOn);
+
+		mirroredMovementOff.setPosition(100, 200);
+		addMenuItem(mirroredMovementOff);
+	}
+	
+	public void setHasEnemies(final boolean hasEnemies){	
 		if (hasEnemies) {
-			off.setColor(0.5f, 0.5f, 0.5f);
+			enemiesOff.setColor(0.5f, 0.5f, 0.5f);
+			enemiesOn.setColor(1f, 1f, 1f);
 		} else {
-			on.setColor(0.5f, 0.5f, 0.5f);
+			enemiesOn.setColor(0.5f, 0.5f, 0.5f);
+			enemiesOff.setColor(1f, 1f, 1f);
 		}
-
-		on.setPosition(100, 350);
-		addMenuItem(on);
-
-		off.setPosition(200, 350);
-		addMenuItem(off);
 	}
 
-	public void setMirroredMovementColor(final boolean isMirroredMovement) {
-		final List<GameMenuScene.MenuItem> menuItems = new ArrayList<GameMenuScene.MenuItem>();
-
-		menuItems.add(new MenuItem(MIRRORED_MOVEMENT_FALSE, LocalizationStrings.getInstance().getLocalizedString("off")));
-		menuItems.add(new MenuItem(MIRRORED_MOVEMENT_TRUE, LocalizationStrings.getInstance().getLocalizedString("on")));
-
-		menuItems.add(new MenuItem(MIRRORED_MOVEMENT_FALSE, LocalizationStrings
-				.getInstance().getLocalizedString("on")));
-		menuItems.add(new MenuItem(MIRRORED_MOVEMENT_TRUE, LocalizationStrings
-				.getInstance().getLocalizedString("off")));
-
-		final Font menuItemFont = Fonts.getInstance().menuItemFont;
-
-		final IMenuItem on = new TextMenuItem(menuItems.get(0).id,
-				menuItemFont, menuItems.get(0).text);
-		final IMenuItem off = new TextMenuItem(menuItems.get(1).id,
-				menuItemFont, menuItems.get(1).text);
-
+	public void setMirroredMovement(final boolean isMirroredMovement) {
 		if (isMirroredMovement) {
-			on.setColor(0.5f, 0.5f, 0.5f);
+			mirroredMovementOff.setColor(0.5f, 0.5f, 0.5f);
+			mirroredMovementOn.setColor(1f, 1f, 1f);
 		} else {
-			off.setColor(0.5f, 0.5f, 0.5f);
-		} 
-
-		on.setPosition(200, 200);
-		addMenuItem(on);
-
-		off.setPosition(100, 200);
-		addMenuItem(off);
-
+			mirroredMovementOn.setColor(0.5f, 0.5f, 0.5f);
+			mirroredMovementOff.setColor(1f, 1f, 1f);
+		}
 	}
 
 	@Override

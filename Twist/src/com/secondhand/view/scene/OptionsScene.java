@@ -12,6 +12,7 @@ import org.anddev.andengine.entity.text.Text;
 import org.anddev.andengine.opengl.font.Font;
 import org.anddev.andengine.util.HorizontalAlign;
 
+import com.secondhand.debug.MyDebug;
 import com.secondhand.view.resource.Fonts;
 import com.secondhand.view.resource.LocalizationStrings;
 import com.secondhand.view.scene.GameMenuScene.MenuItem;
@@ -86,6 +87,9 @@ public class OptionsScene extends GameMenuScene {
 	public void setMirroredMovementColor(boolean isMirroredMovement) {
 		final List<GameMenuScene.MenuItem> menuItems = new ArrayList<GameMenuScene.MenuItem>();
 
+		menuItems.add(new MenuItem(MIRRORED_MOVEMENT_FALSE, LocalizationStrings.getInstance().getLocalizedString("off")));
+		menuItems.add(new MenuItem(MIRRORED_MOVEMENT_TRUE, LocalizationStrings.getInstance().getLocalizedString("on")));
+
 		menuItems.add(new MenuItem(MIRRORED_MOVEMENT_FALSE, LocalizationStrings
 				.getInstance().getLocalizedString("on")));
 		menuItems.add(new MenuItem(MIRRORED_MOVEMENT_TRUE, LocalizationStrings
@@ -102,12 +106,12 @@ public class OptionsScene extends GameMenuScene {
 			on.setColor(0.5f, 0.5f, 0.5f);
 		} else {
 			off.setColor(0.5f, 0.5f, 0.5f);
-		}
+		} 
 
-		on.setPosition(100, 200);
+		on.setPosition(200, 200);
 		addMenuItem(on);
 
-		off.setPosition(200, 200);
+		off.setPosition(100, 200);
 		addMenuItem(off);
 
 	}

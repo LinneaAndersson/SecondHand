@@ -1,11 +1,9 @@
 ==================================================================
 Important things that must be done for the success of the project:
-x
+
 - Implementation
 
 * Write unit tests for: GameWorld, EntityManager.
-* the camera is sometimes not properly restored before showing the
-high score list
 * Fix transition from game play scene back to menu.
 * Write current level in HUD
 

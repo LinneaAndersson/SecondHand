@@ -238,9 +238,8 @@ public class RandomLevelGenerator {
 		
 		world.addToWorld(placeOutPlayer());
 
-		
 		// place out entities.
-		placeOutObstacles(1 /*levelNumber * 5*/);
+		placeOutObstacles(levelNumber * 5);
 
 		placeOutPlanets(10 * levelNumber, // number player eatable
 

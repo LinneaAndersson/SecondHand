@@ -6,7 +6,6 @@ import java.util.Random;
 
 import com.secondhand.model.physics.Vector2;
 import com.secondhand.model.powerup.PowerUp;
-import com.secondhand.model.powerup.PowerUpFactory;
 import com.secondhand.model.resource.PlanetType;
 import com.secondhand.model.util.PolygonUtil;
 import com.secondhand.model.util.RandomUtil;
@@ -38,7 +37,7 @@ public class RandomLevelGenerator {
 	private final IPowerUpFactory powerUpFactory;
 	
 	
-	public RandomLevelGenerator(final IGameWorld gameWorld, IPowerUpFactory factory) {
+	public RandomLevelGenerator(final IGameWorld gameWorld, final IPowerUpFactory factory) {
 			
 		this.rng = new Random();
 		this.levelNumber = gameWorld.getLevelNumber();

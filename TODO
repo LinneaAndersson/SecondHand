@@ -4,7 +4,6 @@ Important things that must be done for the success of the project:
 - Implementation
 
 * Write unit tests for: GameWorld, EntityManager.
-* We sometimes get negative lives for some reason.
 * Replace some property changes with some kind of interface or
 callback method instead. - Done, but just changed the propertyChange.
 * sometimes you are not delegated to the high score scene after game over,
@@ -36,5 +35,3 @@ Things we can do if we have time:
 * Improve the level generation
 * Fix better textures for the following powerups: "eat obstacle",
 * "Score up", "shield", "speed
-
-

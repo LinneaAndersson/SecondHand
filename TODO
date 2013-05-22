@@ -4,13 +4,10 @@ Important things that must be done for the success of the project:
 - Implementation
 
 * Write unit tests for: GameWorld, EntityManager.
-* Replace some property changes with some kind of interface or
-callback method instead. - Done, but just changed the propertyChange.
 * sometimes you are not delegated to the high score scene after game over,
 rather, the game just goes on with negative lives.
 * the camera is sometimes not properly restored before showing the
 high score list
-* Completion meter is not reset properly when going to next level.
 * Fix transition from game play scene back to menu.
 * Write current level in HUD
 

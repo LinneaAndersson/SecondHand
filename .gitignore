@@ -1,14 +1,15 @@
+
 # Package Files #
 *.class
 *.ear
 *.snapshot
 *.war
+.DS_Store
+/commands.txt
 /master
 /rad
 /tood
 TwirlTestTest/bin
+TwirlTestTest/bin/*
 Twist/bin
 Twist/gen
-.DS_Store
-
-TwirlTestTest/bin/*

@@ -13,3 +13,7 @@ TwirlTestTest/bin
 TwirlTestTest/bin/*
 Twist/bin
 Twist/gen
+
+
+
+*.prefs

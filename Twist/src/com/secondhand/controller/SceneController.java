@@ -55,7 +55,7 @@ class SceneController {
 		} else if (scene == AllScenes.GAME_PLAY_SCENE) {
 			new GamePlaySceneController(this.sceneManager.getGamePlayScene(), this);
 		} else if (scene == AllScenes.OPTION_SCENE) {
-			new OptionSceneController(this.sceneManager.getOptionsScene(), this);
+			new OptionSceneController(this.sceneManager.getOptionsScene());
 		}  else if (scene == AllScenes.INSTRUCTION_SCENE) {
 			new InstructionSceneController();
 		} 

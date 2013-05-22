@@ -21,7 +21,7 @@ public class InstructionScene extends GameScene {
 
 		final Font mFont = Fonts.getInstance().menuItemFont;
 		//TODO move into Values. both sv and en
-		final String instructionText = "You control a black hole by touching the  \n screen. You get points when you eat \n smaller planets and black hole, \n but look up for the bigger black hole. \n There are obstacles in your way and \n powerups you can take if you want.";
+		final String instructionText = LocalizationStrings.getInstance().getLocalizedString("game_instructions");
 		
 		final Text instructions = new Text(100, 60, mFont, LocalizationStrings
 				.getInstance().getLocalizedString("menu_instructions"),

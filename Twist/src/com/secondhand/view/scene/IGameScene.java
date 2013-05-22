@@ -15,6 +15,7 @@ public interface IGameScene {
 	 */
 	void loadScene();
 
+	
 	Scene getScene();
 	
 	void onSwitchScene();

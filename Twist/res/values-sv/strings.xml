@@ -26,4 +26,18 @@
     <string name="mirrored_movement">Spegelvänd rörelse:</string>
     <string name="enemy">Fiender:</string>
     
+    
+
+    <string name="game_instructions">
+        You control a black hole by touching the \n 
+        screen. You get points when you eat \n 
+        smaller planets and black hole, \n 
+        but look up for the bigger black hole. \n 
+        There are obstacles in your way and \n 
+        powerups you can take if you want.
+        
+         </string>
+    
+    
+    
 </resources>

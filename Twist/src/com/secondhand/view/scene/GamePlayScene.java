@@ -288,6 +288,7 @@ public class GamePlayScene extends GameScene implements PropertyChangeListener {
 			onPlayerWallCollision();
 		}
 
+		
 		else if (eventName.equals(PowerUpList.ADD_POWERUP)) {
 			final PowerUp powerUp = (PowerUp) event.getNewValue();
 			if(powerUp.hasText()) {

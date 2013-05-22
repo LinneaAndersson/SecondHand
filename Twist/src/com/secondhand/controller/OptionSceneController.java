@@ -17,6 +17,7 @@ public class OptionSceneController implements IOnMenuItemClickListener {
 		
 		optionsScene.setHasEnemies(Preferences.getInstance().hasEnemies());
 		optionsScene.setMirroredMovement(Preferences.getInstance().isMirroredMovement());
+		optionsScene.setMusic(Preferences.getInstance().hasMusic());
 	}
 
 
@@ -37,6 +38,10 @@ public class OptionSceneController implements IOnMenuItemClickListener {
 			setHasEnemies(true);
 		} else if (pMenuItem.getID() == OptionsScene.ENEMIES_FALSE) {
 			setHasEnemies(false);
+		} else if (pMenuItem.getID() == OptionsScene.MUSIC_ON) {
+			setHasMusic(true);
+		} else if (pMenuItem.getID() == OptionsScene.MUSIC_OFF) {
+			setHasMusic(false);
 		}
 		return false;
 	}
@@ -52,6 +57,11 @@ public class OptionSceneController implements IOnMenuItemClickListener {
 		view.setHasEnemies(enemies);
 		Preferences.getInstance().setHasEnemies(enemies);
 
+	}
+	
+	private void setHasMusic(final boolean music) {
+		view.setMusic(music);
+		Preferences.getInstance().setHasMusic(music);
 	}
 
 }

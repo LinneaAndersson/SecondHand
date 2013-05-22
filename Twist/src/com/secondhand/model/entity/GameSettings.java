@@ -6,6 +6,7 @@ public final class GameSettings {
 	
 	public boolean isMirroredMovement;
 	public boolean hasEnemies;
+	public boolean hasMusic;
 	
 	private GameSettings() { }
 	

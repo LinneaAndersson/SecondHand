@@ -38,7 +38,6 @@ public final class Preferences {
 	}
 	
 	public void setIsMirroredMovement(final boolean mirroredMovement) {
-		MyDebug.d("mirrored movement: " + mirroredMovement);
 		this.editor.putBoolean(MIRRORED_MOVEMENT, mirroredMovement);
 		update();
 	}

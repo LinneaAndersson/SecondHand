@@ -1,6 +1,7 @@
 package com.secondhand.controller;
 
 import com.secondhand.debug.MyDebug;
+import com.secondhand.model.entity.GameSettings;
 
 import android.app.Activity;
 import android.content.SharedPreferences;
@@ -30,6 +31,9 @@ public final class Preferences {
 	
 	private void update() {
 		editor.commit();
+		
+		GameSettings.getInstance().hasEnemies = this.hasEnemies();
+		GameSettings.getInstance().isMirroredMovement = this.isMirroredMovement();
 		// update model here. 
 	}
 	

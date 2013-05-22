@@ -2,14 +2,19 @@ package com.secondhand.view.scene;
 
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
+import java.io.IOException;
 
+import org.anddev.andengine.audio.music.Music;
+import org.anddev.andengine.audio.music.MusicFactory;
 import org.anddev.andengine.engine.Engine;
 import org.anddev.andengine.engine.camera.hud.HUD;
 import org.anddev.andengine.extension.physics.box2d.PhysicsWorld;
 
 import android.content.Context;
+import android.media.AudioManager;
 
 import com.badlogic.gdx.math.Vector2;
+import com.secondhand.controller.Preferences;
 import com.secondhand.debug.MyDebug;
 import com.secondhand.model.entity.BlackHole;
 import com.secondhand.model.entity.Enemy;
@@ -50,8 +55,15 @@ public class GamePlayScene extends GameScene implements PropertyChangeListener {
 
 	private StarsBackground[] starsBackgrounds = new StarsBackground[3];
 
+	private Music music;
+	
 	public GamePlayScene(final Engine engine, final Context context) {
 		super(engine, context);
+		
+		try {
+			this.music = MusicFactory.createMusicFromAsset(engine.getMusicManager(), context, "mfx/twirltheme.ogg");
+			this.music.setLooping(true);
+		} catch(final IOException e) {}
 	}
 
 	public IGameWorld getGameWorld() {
@@ -111,6 +123,14 @@ public class GamePlayScene extends GameScene implements PropertyChangeListener {
 			}
 
 			this.attachChild(entityView.getShape());
+			
+		}
+		
+		
+		if (Preferences.getInstance().hasMusic()) {
+			this.music.play();
+		} else {
+			this.music.stop();
 		}
 	}
 
@@ -134,7 +154,6 @@ public class GamePlayScene extends GameScene implements PropertyChangeListener {
 
 		hud.attachChild(scoreLivesText);
 		engine.getCamera().setChaseEntity(playerView.getShape());
-
 	}
 
 	public void loadLevel(final int levelNumber, final int playerLives, final int playerScore) {
@@ -182,6 +201,7 @@ public class GamePlayScene extends GameScene implements PropertyChangeListener {
 		super.onSwitchScene();
 		this.unregisterScene();
 		resetCamera();
+		this.music.stop();
 	}
 
 	@Override

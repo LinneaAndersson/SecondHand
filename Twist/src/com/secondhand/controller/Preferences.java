@@ -1,6 +1,5 @@
 package com.secondhand.controller;
 
-import com.secondhand.debug.MyDebug;
 import com.secondhand.model.entity.GameSettings;
 
 import android.app.Activity;

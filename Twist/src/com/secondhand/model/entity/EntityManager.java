@@ -116,7 +116,7 @@ class EntityManager implements PropertyChangeListener {
 
 	// remove the property change listeners from all the entities.
 	public void unregisterFromEntities() {
-		for (Entity entity : this.entityList) {
+		for (final Entity entity : this.entityList) {
 			entity.removeListener(this);
 		}
 	}

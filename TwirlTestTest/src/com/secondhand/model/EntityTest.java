@@ -13,34 +13,35 @@ import com.secondhand.model.physics.Vector2;
 
 import junit.framework.TestCase;
 
-public class EntityTest extends TestCase {
+public class EntityTest extends TestCase implements PropertyChangeListener {
 	
 	private final static int RADIUS = 10;
 	private final static int SCORE_WORTH = 2;
-	
+	private String name;
 	private boolean deleteBodyCalled;
 	
 	public Entity getNewEntity(Vector2 position, boolean isEdible) {
 		return new Entity(position,isEdible) {
 			@Override
-			public void onPhysicsAssigned() {}
+			public void onPhysicsAssigned() {wasEaten();}
 			@Override
 			public float getScoreWorth() { return SCORE_WORTH; }
 			@Override
 			public float getRadius() { return RADIUS; }
+			
 		};
 	}
 	
-	private class PlayerTestPhysicsEntity implements IPhysicsEntity {
+	private class EntityTestPhysicsEntity implements IPhysicsEntity {
 
 		@Override
 		public float getCenterX() {
-			return 0;
+			return 20;
 		}
 
 		@Override
 		public float getCenterY() {
-			return 0;
+			return 25;
 		}
 
 		@Override
@@ -86,11 +87,14 @@ public class EntityTest extends TestCase {
 
 	
 	public void testConstructor() {
-		Vector2 position = new Vector2();
+		Vector2 position = new Vector2(20f, 25f);
 		boolean isEdible = true;
 		
 		Entity entity = getNewEntity(position, isEdible);
+		entity.setPhysics(new EntityTestPhysicsEntity());
 		
+		assertEquals(position.x, entity.getCenterX());
+		assertEquals(position.y, entity.getCenterY());
 		assertEquals(position, entity.getInitialPosition());
 		assertEquals(isEdible, entity.isEdible());
 	}
@@ -117,7 +121,7 @@ public class EntityTest extends TestCase {
 		
 		Entity entity = getNewEntity(position, isEdible);
 		
-		entity.setPhysics(new PlayerTestPhysicsEntity());
+		entity.setPhysics(new EntityTestPhysicsEntity());
 		this.deleteBodyCalled = false;
 		entity.deleteBody();
 		assertTrue(this.deleteBodyCalled);
@@ -125,13 +129,23 @@ public class EntityTest extends TestCase {
 	
 	private boolean propertyChangeSent;
 	
-	private class PropChangeTest implements PropertyChangeListener {
-
-		@Override
-		public void propertyChange(PropertyChangeEvent event) {
-			String name = event.getPropertyName();
-			propertyChangeSent = name.equals(Entity.IS_SCHEDULED_FOR_DELETION);
-		}
+	public void testPropChange() {
+		Vector2 position = new Vector2();
+		boolean isEdible = true;
+		
+		Entity entity = getNewEntity(position, isEdible);
+		entity.addListener(this);
+		entity.setPhysics(new EntityTestPhysicsEntity());
+		
+		
+		assertEquals(Entity.IS_SCHEDULED_FOR_DELETION, name);
+		
+		entity.removeListener(this);
+		name = null;
+		
+		entity.setPhysics(new EntityTestPhysicsEntity());
+		assertNotSame(Entity.IS_SCHEDULED_FOR_DELETION, name);
+		
 		
 	}
 	/*
@@ -144,6 +158,12 @@ public class EntityTest extends TestCase {
 		propertyChangeSent = false;
 		entity.
 	}*/
+
+
+	@Override
+	public void propertyChange(PropertyChangeEvent arg0) {
+		name = arg0.getPropertyName();		
+	}
 	
 	
 }

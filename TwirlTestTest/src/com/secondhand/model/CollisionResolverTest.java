@@ -160,6 +160,11 @@ public class CollisionResolverTest extends TestCase {
 
 		}
 
+		@Override
+		public float getCompletion() {
+			return 0;
+		}
+
 	}
 
 	public void testCheckCollision() {

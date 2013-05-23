@@ -32,6 +32,8 @@ public class ScoreUpTest extends TestCase {
 		assertEquals(10 + 30, player.getScore());	
 		assertEquals("30+", powerup.getText());	
 		
+		assertEquals(10, powerup.getScoreBonus());
+		
 	}
 	
 }

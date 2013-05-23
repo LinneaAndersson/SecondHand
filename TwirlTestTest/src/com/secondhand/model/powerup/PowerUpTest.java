@@ -46,6 +46,7 @@ public class PowerUpTest extends TestCase {
 		assertEquals(0, powerUp.getRadius(), 0.001f);
 		assertEquals(0, powerUp.getScoreValue());
 		assertTrue(powerUp.hasText());
+		assertEquals("lorem ipsum", powerUp.getText());
 
 	}
 	
@@ -128,6 +129,18 @@ public class PowerUpTest extends TestCase {
 		assertEquals(0, rgb[1], 0.001);
 		assertEquals(1, rgb[2], 0.001);
 
+	}
+	
+	public void testGetText(){
+		PowerUp powerUp = 
+				new PowerUp(new Vector2(), PowerUpType.DOUBLE_SCORE, 10) {
+			@Override
+			public void activateEffect(Player player) {}
+		};
+		
+		assertFalse(powerUp.hasText());
+		assertEquals(null, powerUp.getText());
+		
 	}
 
 }

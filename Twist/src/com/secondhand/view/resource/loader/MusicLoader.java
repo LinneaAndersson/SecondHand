@@ -21,7 +21,8 @@ public final class MusicLoader extends Loader {
 	public Music getMainTheme() {
 		try {
 			return MusicFactory.createMusicFromAsset(engine.getMusicManager(), context, BASE_PATH + TWIRL_THEME_PATH);
-		} catch(final IOException e) {}
-		return null;
+		} catch(final IOException e) {
+			throw new AssertionError("could not load main theme");
+		}
 	}
 }

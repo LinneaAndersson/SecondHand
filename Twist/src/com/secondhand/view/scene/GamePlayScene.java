@@ -11,7 +11,6 @@ import org.anddev.andengine.extension.physics.box2d.PhysicsWorld;
 import android.content.Context;
 
 import com.badlogic.gdx.math.Vector2;
-import com.secondhand.debug.MyDebug;
 import com.secondhand.model.entity.BlackHole;
 import com.secondhand.model.entity.Enemy;
 import com.secondhand.model.entity.Entity;

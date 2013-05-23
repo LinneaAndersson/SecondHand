@@ -18,11 +18,14 @@ public class BlackColor extends PowerUp {
 	
 	@Override
 	public void deactivateEffect(final Player player, final boolean hasAnother) {
+		if(!hasAnother){
+			this.resetPlayerColor(player);
+		}
 	}
 	
-	public float getR() {return 1f;}
-	public float getG() {return 1f;}
-	public float getB() {return 1f;}
+	public float getR() {return 0f;}
+	public float getG() {return 0f;}
+	public float getB() {return 0f;}
 	
 	public static int getFrequency() { return 10; }
 }

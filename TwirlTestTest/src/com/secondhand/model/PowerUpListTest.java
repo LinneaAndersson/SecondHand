@@ -39,7 +39,7 @@ public class PowerUpListTest extends TestCase {
 			public void activateEffect(Player player) {	}
 			
 			@Override
-			public void activatePowerUp(Player player) {
+			public void activatePowerUp(Player player, boolean hasBlackColor) {
 				isActivated = (player == null);
 			}
 		}
@@ -72,7 +72,7 @@ public class PowerUpListTest extends TestCase {
 			public void activateEffect(Player player) {}
 			
 			@Override
-			public void activatePowerUp(Player player) {
+			public void activatePowerUp(Player player, boolean hasBlackColor) {
 				player.setRGB(new float[]{TEST_VALUE,TEST_VALUE,TEST_VALUE});
 			}
 			

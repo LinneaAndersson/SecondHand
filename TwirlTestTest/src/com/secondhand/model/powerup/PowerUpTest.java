@@ -117,7 +117,7 @@ public class PowerUpTest extends TestCase {
 		Listener listener = new Listener();
 		player.addListener(listener);
 
-		powerUp.activatePowerUp(player);
+		powerUp.activatePowerUp(player, null);
 
 
 		assertTrue(this.powerUpActivated);

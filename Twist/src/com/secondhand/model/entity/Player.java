@@ -168,7 +168,7 @@ public class Player extends BlackHole {
 	public boolean isMirroredMovement() {
 		
 		if(!this.isMirroredMovement){
-		return (GameSettings.getInstance().isMirroredMovement);
+		return GameSettings.getInstance().isMirroredMovement;
 		} else {
 			return !(GameSettings.getInstance().isMirroredMovement);
 		}

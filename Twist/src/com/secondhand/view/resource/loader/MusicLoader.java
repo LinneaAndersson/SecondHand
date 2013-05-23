@@ -12,7 +12,7 @@ public final class MusicLoader extends Loader {
 	private final static String BASE_PATH = "mfx/";
 	private final static String TWIRL_THEME_PATH = "twirltheme.ogg";
 	
-	private MusicLoader () {}
+	private MusicLoader () {super();}
 	
 	public static MusicLoader getInstance() {
 		return instance;

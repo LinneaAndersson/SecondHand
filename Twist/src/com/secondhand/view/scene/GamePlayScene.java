@@ -52,7 +52,7 @@ public class GamePlayScene extends GameScene implements PropertyChangeListener {
 
 	private StarsBackground[] starsBackgrounds = new StarsBackground[3];
 
-	private Music music;
+	private final Music music;
 	
 	public GamePlayScene(final Engine engine, final Context context) {
 		super(engine, context);

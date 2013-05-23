@@ -64,6 +64,10 @@
             <ruleset>Basic Rules</ruleset>
         </rule>
         <rule>
+            <name>AvoidDeeplyNestedIfStmts</name>
+            <ruleset>Design Rules</ruleset>
+        </rule>
+        <rule>
             <name>AvoidDollarSigns</name>
             <ruleset>Naming Rules</ruleset>
         </rule>

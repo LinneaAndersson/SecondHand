@@ -7,6 +7,7 @@ import java.util.List;
 import junit.framework.TestCase;
 
 import com.secondhand.model.entity.Enemy;
+import com.secondhand.model.entity.GameSettings;
 import com.secondhand.model.entity.Player;
 import com.secondhand.model.physics.IPhysicsEntity;
 import com.secondhand.model.physics.IPhysicsObject;
@@ -106,6 +107,7 @@ public class PlayerTest extends TestCase{
 		}
 		
 
+		GameSettings.getInstance().isMirroredMovement = false;
 		Player player = new Player(new Vector2(), 10, 3, // lives
 				100, // starting score
 				200); // maxsize
@@ -130,6 +132,29 @@ public class PlayerTest extends TestCase{
 		player.reachToTouch(new Vector2(50,0));
 		
 		assertTrue(physics.test2Pass);
+		
+		// now test mirrored movement gamesetting.
+		player.setMirroredMovement(false);
+		
+		GameSettings.getInstance().isMirroredMovement = true;
+		
+		// with speed mutlipliers:
+		
+		physics.state = 2;
+		physics.test2Pass = false;
+		
+		player.reachToTouch(new Vector2(50,0));
+		
+		assertTrue(physics.test2Pass);
+		
+		// now with mirrored movement
+		physics.state = 1;
+		physics.test1Pass = false;
+		player.setMirroredMovement(true);
+		
+		player.reachToTouch(new Vector2(50,0));
+		
+		assertTrue(physics.test1Pass);
 		
 	}
 	

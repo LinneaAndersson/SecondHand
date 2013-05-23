@@ -127,8 +127,7 @@ public class EntityTest extends TestCase implements PropertyChangeListener {
 		assertTrue(this.deleteBodyCalled);
 	}
 	
-	private boolean propertyChangeSent;
-	
+
 	public void testPropChange() {
 		Vector2 position = new Vector2();
 		boolean isEdible = true;

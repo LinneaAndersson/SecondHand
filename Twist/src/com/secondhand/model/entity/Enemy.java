@@ -3,6 +3,7 @@ package com.secondhand.model.entity;
 import java.util.List;
 import java.util.Random;
 
+import com.secondhand.debug.MyDebug;
 import com.secondhand.model.physics.Vector2;
 import com.secondhand.model.util.RandomUtil;
 
@@ -11,8 +12,8 @@ public class Enemy extends BlackHole {
 	private static final float ENEMY_MAX_SPEED = 2;
 	private static final float MAX_SIZE = 40;
 	private static final float MIN_SIZE = 20;
-	private static final float AREA_MULTIPLIER = 60;
-	private static final float DANGER_MARGIN = 5;
+	private static final float AREA_MULTIPLIER = 80;
+	private static final float DANGER_MARGIN = 0;
 
 	private float maxSpeed;
 
@@ -42,7 +43,7 @@ public class Enemy extends BlackHole {
 	}
 
 	public float getDangerArea() {
-		return (getRadius() * getRadius() * (float) Math.PI) + DANGER_MARGIN;
+		return (getRadius() * getRadius() * (float) Math.PI)+60000;
 	}
 
 	// Cannot be negativ!!
@@ -62,48 +63,43 @@ public class Enemy extends BlackHole {
 
 	// player has highest chase-priority
 	public void moveEnemy(final Entity player, final List<Entity> entityList) {
-		if (this.getVelocity() == 0) {
-			final Random rng = new Random();
-			final float randomX = RandomUtil
-					.nextFloat(rng, -maxSpeed, maxSpeed);
-			final float randomY = RandomUtil
-					.nextFloat(
-							rng,
-							-((float) Math.sqrt(maxSpeed * maxSpeed - randomX
-									* randomX)),
-							((float) Math.sqrt(maxSpeed * maxSpeed - randomX
-									* randomX)));
-			physics.applyImpulse(new Vector2(randomX, randomY), maxSpeed);
-		}
-		danger(player, entityList);
 		if (isCloseToEntity(player, getHuntingArea()) && canEat(player)) {
 			dangerCheck(player);
-		} else {
+		} else if (!danger(player,entityList)){
 			dangerCheck(getHighesPriority(entityList));
 		}
 	}
 
-	private void danger(final Entity player, final List<Entity> entityList) {
+	private boolean danger(final Entity player, final List<Entity> entityList) {
 		if (isCloseToEntity(player, getDangerArea()) && !canEat(player)) {
 			retreatFrom(player);
+			return true;
 		} else {
 			for (final Entity e : entityList) {
 				if (e instanceof Enemy && isCloseToEntity(e, getDangerArea())
 						&& !canEat(e)) {
 
 					retreatFrom(e);
+					return true;
 				}
 			}
 		}
+		return false;
 
 	}
 
 	// checks if the entity is within the specified margin
 	private boolean isCloseToEntity(final Entity entity, final float margin) {
 
+	
+		
 		final float dx = entity.getCenterX() - this.getCenterX();
 
 		final float dy = entity.getCenterY() - this.getCenterY();
+		
+		MyDebug.d("what? dx,1" + (entity.getCenterX()<20000) );
+		MyDebug.d("what? dx,2" + this.getCenterX() );
+		MyDebug.d("what?" + dy );
 
 		return dx * dx + dy * dy <= margin;
 	}
@@ -135,16 +131,31 @@ public class Enemy extends BlackHole {
 	}
 
 	private void dangerCheck(final Entity entity) {
-		if (entity != null && this.physics.isStraightLine(entity, this)) {
-			physics.applyImpulse(new Vector2(
-					entity.getCenterX() - getCenterX(), entity.getCenterY()
-							- getCenterY()).mul(0.002f), getMaxSpeed());
+		if (entity != null){
+			if (this.physics.isStraightLine(entity, this)) {
+				physics.applyImpulse(new Vector2(
+						entity.getCenterX() - getCenterX(), entity.getCenterY()
+						- getCenterY()).mul(0.002f), getMaxSpeed());
+			} 
+		} else if (physics.getVelocity()<15){
+			moveEnemyRandom();
 		}
+	}
+	
+	private void moveEnemyRandom(){
+		final Random rng = new Random();
+		final float randomX = RandomUtil
+				.nextFloat(rng, -maxSpeed*100, maxSpeed*100);
+		final float randomY = RandomUtil
+				.nextFloat(
+						rng,
+						-maxSpeed*100,maxSpeed*100);
+		physics.applyImpulse(new Vector2(randomX, randomY), maxSpeed);
 	}
 
 	public void retreatFrom(final Entity danger) {
 		physics.applyImpulse(new Vector2(getCenterX() - danger.getCenterX(),
-				getCenterY() - danger.getCenterY()).mul(0.02f), getMaxSpeed());
+				getCenterY() - danger.getCenterY()).mul(0.002f), getMaxSpeed());
 	}
 
 }

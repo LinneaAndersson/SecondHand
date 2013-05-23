@@ -136,6 +136,7 @@ public class MyPhysicsEntity implements IPhysicsEntity {
 		final float speed = velocity.add(impulse).len();
 		if (speed > maxSpeed) {
 			// Check if new velocity doesn't exceed maxSpeed!
+			MyDebug.d("its tooo big!" + speed);
 			return;
 		}
 		body.applyLinearImpulse(impulse, body.getWorldCenter());

@@ -53,7 +53,6 @@ public final class PowerUpFactory implements IPowerUpFactory {
 
 		// do the Weighted Random Distribution
 		final int index = rng.nextInt(totalWeight);
-		System.out.println("" + index);
 		int s = 0;
 		Weight result = null;
 		for (final Weight weight : this.weights) {

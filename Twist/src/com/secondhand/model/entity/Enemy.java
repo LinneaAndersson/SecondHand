@@ -25,8 +25,6 @@ public class Enemy extends BlackHole {
 		this.maxSpeed = ENEMY_MAX_SPEED;
 	}
 
-
-
 	public float getHuntingArea() {
 		return getRadius() * getRadius() * (float) Math.PI * AREA_MULTIPLIER;
 	}
@@ -54,22 +52,28 @@ public class Enemy extends BlackHole {
 		this.maxSpeed = maxSpeed;
 	}
 
+	public float getMaxSpeed() {
+		return maxSpeed;
+	}
 
-	public float getMaxSpeed() { return maxSpeed; }
-
-	private float getVelocity (){
+	private float getVelocity() {
 		return physics.getVelocity();
 	}
 
 	// player has highest chase-priority
 	public void moveEnemy(final Entity player, final List<Entity> entityList) {
-		if(this.getVelocity() == 0){
+		if (this.getVelocity() == 0) {
 			final Random rng = new Random();
-			float randomX = RandomUtil.nextFloat(rng, -maxSpeed, maxSpeed);
-			float randomY = RandomUtil.nextFloat(rng,
-					-((float)Math.sqrt(maxSpeed * maxSpeed - randomX * randomX)),
-					((float)Math.sqrt(maxSpeed * maxSpeed - randomX * randomX)));
-			physics.applyImpulse(new Vector2(randomX, randomY),maxSpeed);
+			final float randomX = RandomUtil
+					.nextFloat(rng, -maxSpeed, maxSpeed);
+			final float randomY = RandomUtil
+					.nextFloat(
+							rng,
+							-((float) Math.sqrt(maxSpeed * maxSpeed - randomX
+									* randomX)),
+							((float) Math.sqrt(maxSpeed * maxSpeed - randomX
+									* randomX)));
+			physics.applyImpulse(new Vector2(randomX, randomY), maxSpeed);
 		}
 		danger(player, entityList);
 		if (isCloseToEntity(player, getHuntingArea()) && canEat(player)) {
@@ -134,7 +138,7 @@ public class Enemy extends BlackHole {
 		if (entity != null && this.physics.isStraightLine(entity, this)) {
 			physics.applyImpulse(new Vector2(
 					entity.getCenterX() - getCenterX(), entity.getCenterY()
-					- getCenterY()).mul(0.002f), getMaxSpeed());
+							- getCenterY()).mul(0.002f), getMaxSpeed());
 		}
 	}
 

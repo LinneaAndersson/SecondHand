@@ -74,8 +74,7 @@ public abstract class BlackHole extends CircleEntity {
 			this.increaseSize =+ entity.getRadius() * GROWTH_FACTOR;
 			pcs.firePropertyChange(BlackHole.INCREASE_SIZE, null, this);
 			onGrow();
-		}MyDebug.i("Enemy: " + this + " eating "+ entity);
-
+		}
 		entity.wasEaten();
 	}
 

@@ -3,7 +3,6 @@ package com.secondhand.model.entity;
 import java.util.List;
 import java.util.Random;
 
-import com.secondhand.debug.MyDebug;
 import com.secondhand.model.physics.Vector2;
 import com.secondhand.model.util.RandomUtil;
 
@@ -43,7 +42,7 @@ public class Enemy extends BlackHole {
 	}
 
 	public float getDangerArea() {
-		return (getRadius() * getRadius() * (float) Math.PI)+10000;
+		return (getRadius() * getRadius() * (float) Math.PI)+20000;
 	}
 
 	// Cannot be negativ!!
@@ -131,7 +130,6 @@ public class Enemy extends BlackHole {
 				physics.applyImpulse(new Vector2(
 						entity.getCenterX() - getCenterX(), entity.getCenterY()
 						- getCenterY()).mul(0.002f), getMaxSpeed());
-				MyDebug.i("Enemy: move towards "+ entity);
 			} 
 		} else if (physics.getVelocity()<15){
 			moveEnemyRandom();

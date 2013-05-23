@@ -285,11 +285,8 @@ public class GamePlayScene extends GameScene implements PropertyChangeListener {
 					(Float) event.getOldValue());
 
 			
-			final float newRadius = (Float) event.getNewValue()-GameWorld.PLAYER_STARTING_SIZE;
-			final float playerMaxSize = (float) gameWorld.getPlayer().getMaxSize()-(float) GameWorld.PLAYER_STARTING_SIZE;
 			
-			final float completion = 1-(playerMaxSize-(newRadius))/(playerMaxSize);
-			this.scoreLivesText.setCompletionRatio(completion);
+			this.scoreLivesText.setCompletionRatio(gameWorld.getCompletion());
 
 		} else if (eventName.equals("PlayerWallCollision")) {
 			onPlayerWallCollision();

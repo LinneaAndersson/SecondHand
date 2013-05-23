@@ -31,7 +31,7 @@ public class EntityTest extends TestCase {
 		};
 	}
 	
-	private class PlayerTestPhysicsEntity implements IPhysicsEntity {
+	private class EntityTestPhysicsEntity implements IPhysicsEntity {
 
 		@Override
 		public float getCenterX() {
@@ -117,7 +117,7 @@ public class EntityTest extends TestCase {
 		
 		Entity entity = getNewEntity(position, isEdible);
 		
-		entity.setPhysics(new PlayerTestPhysicsEntity());
+		entity.setPhysics(new EntityTestPhysicsEntity());
 		this.deleteBodyCalled = false;
 		entity.deleteBody();
 		assertTrue(this.deleteBodyCalled);

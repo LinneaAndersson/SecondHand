@@ -69,6 +69,12 @@ public class ObstacleTest extends TestCase{
 				IPhysicsObject enemy) {
 			return false;
 		}
+
+		@Override
+		public float getVelocity() {
+			// TODO Auto-generated method stub
+			return 0;
+		}
 	}
 
 

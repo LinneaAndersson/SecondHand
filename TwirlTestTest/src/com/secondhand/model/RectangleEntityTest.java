@@ -82,6 +82,12 @@ public class RectangleEntityTest extends TestCase {
 				IPhysicsObject enemy) {
 			return false;
 		}
+
+		@Override
+		public float getVelocity() {
+			// TODO Auto-generated method stub
+			return 0;
+		}
 	}
 
 	public void testConstructor() {

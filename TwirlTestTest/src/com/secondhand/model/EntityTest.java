@@ -83,6 +83,11 @@ public class EntityTest extends TestCase implements PropertyChangeListener {
 				IPhysicsObject enemy) {
 			return false;
 		}
+
+		@Override
+		public float getVelocity() {
+			return 0;
+		}
 	}
 
 	

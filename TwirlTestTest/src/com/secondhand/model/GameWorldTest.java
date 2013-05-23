@@ -107,6 +107,12 @@ public class GameWorldTest extends TestCase implements PropertyChangeListener{
 			return true;
 		}
 
+		@Override
+		public float getVelocity() {
+			// TODO Auto-generated method stub
+			return 0;
+		}
+
 	}
 
 	private int lives = 1;

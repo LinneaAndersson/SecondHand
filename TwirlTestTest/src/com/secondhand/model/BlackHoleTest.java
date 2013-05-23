@@ -146,6 +146,12 @@ public class BlackHoleTest extends TestCase {
 				IPhysicsObject enemy) {
 			return false;
 		}
+
+		@Override
+		public float getVelocity() {
+			// TODO Auto-generated method stub
+			return 0;
+		}
 	}
 	
 	
@@ -237,6 +243,12 @@ public class BlackHoleTest extends TestCase {
 		public boolean isStraightLine(IPhysicsObject entity,
 				IPhysicsObject enemy) {
 			return false;
+		}
+
+		@Override
+		public float getVelocity() {
+			// TODO Auto-generated method stub
+			return 0;
 		}
 	}
 	

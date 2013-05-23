@@ -88,6 +88,12 @@ public class EnemyTest extends TestCase {
 		public Vector2 getImpulseVector() {
 			return this.testVector;
 		}
+
+		@Override
+		public float getVelocity() {
+			// TODO Auto-generated method stub
+			return 0;
+		}
 	}
 
 	public void testConstructor() {

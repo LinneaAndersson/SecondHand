@@ -9,7 +9,7 @@ public class BlackColor extends PowerUp {
 	private final static float DURATION = 10;
 	
 	public BlackColor(final Vector2 position) {
-		super(position, PowerUpType.DOUBLE_SCORE, DURATION);
+		super(position, PowerUpType.BLACK_COLOR, DURATION);
 	}
 
 	@Override
@@ -24,5 +24,5 @@ public class BlackColor extends PowerUp {
 	public float getG() {return 1f;}
 	public float getB() {return 1f;}
 	
-	public static int getFrequency() { return 5; }
+	public static int getFrequency() { return 10; }
 }

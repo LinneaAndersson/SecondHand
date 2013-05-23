@@ -11,7 +11,8 @@ public enum PowerUpType {
 		EXTRA_LIFE("extra_life_power_up.jpg"),
 		RANDOM_POWER_UP("random_power_up.png"),
 		DOUBLE_SCORE("double_score_power_up.png"),
-		MIRRORED_MOVEMENT("reflect_power_up.png");
+		MIRRORED_MOVEMENT("reflect_power_up.png"),
+		BLACK_COLOR("black_color_power_up.png");
 		
 		private String path; 
 		

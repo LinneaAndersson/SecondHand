@@ -1,5 +1,6 @@
 package com.secondhand.model.entity;
 
+import com.secondhand.debug.MyDebug;
 import com.secondhand.model.physics.Vector2;
 
 public abstract class BlackHole extends CircleEntity {
@@ -73,7 +74,7 @@ public abstract class BlackHole extends CircleEntity {
 			this.increaseSize =+ entity.getRadius() * GROWTH_FACTOR;
 			pcs.firePropertyChange(BlackHole.INCREASE_SIZE, null, this);
 			onGrow();
-		}
+		}MyDebug.i("Enemy: " + this + " eating "+ entity);
 
 		entity.wasEaten();
 	}

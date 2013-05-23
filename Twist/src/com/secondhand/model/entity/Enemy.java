@@ -43,7 +43,7 @@ public class Enemy extends BlackHole {
 	}
 
 	public float getDangerArea() {
-		return (getRadius() * getRadius() * (float) Math.PI)+60000;
+		return (getRadius() * getRadius() * (float) Math.PI)+10000;
 	}
 
 	// Cannot be negativ!!
@@ -74,16 +74,17 @@ public class Enemy extends BlackHole {
 		if (isCloseToEntity(player, getDangerArea()) && !canEat(player)) {
 			retreatFrom(player);
 			return true;
-		} else {
+			//TODO this part here bellow is always returning true, makes the rest 
+			//of the class not function
+		}/* else {
 			for (final Entity e : entityList) {
 				if (e instanceof Enemy && isCloseToEntity(e, getDangerArea())
 						&& !canEat(e)) {
-
 					retreatFrom(e);
 					return true;
 				}
 			}
-		}
+		}*/
 		return false;
 
 	}
@@ -91,15 +92,9 @@ public class Enemy extends BlackHole {
 	// checks if the entity is within the specified margin
 	private boolean isCloseToEntity(final Entity entity, final float margin) {
 
-	
-		
 		final float dx = entity.getCenterX() - this.getCenterX();
 
 		final float dy = entity.getCenterY() - this.getCenterY();
-		
-		MyDebug.d("what? dx,1" + (entity.getCenterX()<20000) );
-		MyDebug.d("what? dx,2" + this.getCenterX() );
-		MyDebug.d("what?" + dy );
 
 		return dx * dx + dy * dy <= margin;
 	}
@@ -136,6 +131,7 @@ public class Enemy extends BlackHole {
 				physics.applyImpulse(new Vector2(
 						entity.getCenterX() - getCenterX(), entity.getCenterY()
 						- getCenterY()).mul(0.002f), getMaxSpeed());
+				MyDebug.i("Enemy: move towards "+ entity);
 			} 
 		} else if (physics.getVelocity()<15){
 			moveEnemyRandom();

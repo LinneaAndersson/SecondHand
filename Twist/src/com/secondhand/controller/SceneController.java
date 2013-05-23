@@ -22,7 +22,7 @@ class SceneController {
 	}
 
 	public SceneController(final Engine engine, final Context context) {
-		this.sceneManager = new SceneManager(engine, context);		
+		this.sceneManager = new SceneManager(engine, context);
 	}
 
 	private boolean isGameLoaded = false;

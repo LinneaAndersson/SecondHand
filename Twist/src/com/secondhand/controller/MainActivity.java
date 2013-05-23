@@ -19,6 +19,7 @@ import com.secondhand.view.physics.ThreadUtil;
 import com.secondhand.view.resource.HighScoreList;
 import com.secondhand.view.resource.LocalizationStrings;
 import com.secondhand.view.resource.loader.FontLoader;
+import com.secondhand.view.resource.loader.MusicLoader;
 import com.secondhand.view.resource.loader.SoundLoader;
 import com.secondhand.view.resource.loader.TextureRegionLoader;
 import com.secondhand.view.scene.AllScenes;
@@ -53,6 +54,7 @@ public class MainActivity extends BaseGameActivity {
 	    HighScoreList.getInstance().initialize(this);
 	    FontLoader.getInstance().initialize(this, engine);
 	    SoundLoader.getInstance().initialize(this, engine);
+	    MusicLoader.getInstance().initialize(this, engine);
 	    TextureRegionLoader.getInstance().initialize(this, engine);
 	    LocalizationStrings.getInstance().initialize(this);
 	    ThreadUtil.getInstance().initialize(engine);

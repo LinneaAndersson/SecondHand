@@ -3,6 +3,7 @@ package com.secondhand.view.scene;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 
+import org.anddev.andengine.audio.music.Music;
 import org.anddev.andengine.engine.Engine;
 import org.anddev.andengine.engine.camera.hud.HUD;
 import org.anddev.andengine.extension.physics.box2d.PhysicsWorld;
@@ -10,7 +11,7 @@ import org.anddev.andengine.extension.physics.box2d.PhysicsWorld;
 import android.content.Context;
 
 import com.badlogic.gdx.math.Vector2;
-import com.secondhand.debug.MyDebug;
+import com.secondhand.controller.Preferences;
 import com.secondhand.model.entity.BlackHole;
 import com.secondhand.model.entity.Enemy;
 import com.secondhand.model.entity.Entity;
@@ -34,6 +35,7 @@ import com.secondhand.view.entity.PowerUpView;
 import com.secondhand.view.opengl.StarsBackground;
 import com.secondhand.view.physics.MyPhysicsWorld;
 import com.secondhand.view.resource.Sounds;
+import com.secondhand.view.resource.loader.MusicLoader;
 
 public class GamePlayScene extends GameScene implements PropertyChangeListener {
 
@@ -50,8 +52,13 @@ public class GamePlayScene extends GameScene implements PropertyChangeListener {
 
 	private StarsBackground[] starsBackgrounds = new StarsBackground[3];
 
+	private Music music;
+	
 	public GamePlayScene(final Engine engine, final Context context) {
 		super(engine, context);
+		
+		this.music = MusicLoader.getInstance().getMainTheme();
+		this.music.setLooping(true);
 	}
 
 	public IGameWorld getGameWorld() {
@@ -63,7 +70,7 @@ public class GamePlayScene extends GameScene implements PropertyChangeListener {
 	}
 
 
-	public void registerNewLevel() {
+	public void registerNewLevel(final boolean music) {
 
 		this.smoothCamera.setZoomFactor(1.0f);
 
@@ -106,11 +113,18 @@ public class GamePlayScene extends GameScene implements PropertyChangeListener {
 						(PowerUp) entity);
 
 			} else {
-				MyDebug.e("invalid entity found in entityList");
 				System.exit(1);
 			}
 
 			this.attachChild(entityView.getShape());
+			
+		}
+		
+		
+		if (music) {
+			this.music.play();
+		} else {
+			this.music.stop();
 		}
 	}
 
@@ -134,10 +148,9 @@ public class GamePlayScene extends GameScene implements PropertyChangeListener {
 
 		hud.attachChild(scoreLivesText);
 		engine.getCamera().setChaseEntity(playerView.getShape());
-
 	}
 
-	public void loadLevel(final int levelNumber, final int playerLives, final int playerScore) {
+	public void loadLevel(final int levelNumber, final int playerLives, final int playerScore, final boolean music) {
 		physicsWorld = new PhysicsWorld(new Vector2(), true);
 
 		this.gameWorld = new GameWorld(new MyPhysicsWorld(physicsWorld),
@@ -145,7 +158,7 @@ public class GamePlayScene extends GameScene implements PropertyChangeListener {
 
 		gameWorld.getPlayer().addListener(this);
 
-		registerNewLevel();
+		registerNewLevel(music);
 		setupView();
 
 		engine.getCamera().setHUD(hud);
@@ -157,7 +170,7 @@ public class GamePlayScene extends GameScene implements PropertyChangeListener {
 		initialCameraPos = new Vector2(smoothCamera.getCenterX(),
 				smoothCamera.getCenterY());
 
-		this.loadLevel(GameWorld.STARTING_LEVEL, Player.STARTING_LIVES, 0);
+		this.loadLevel(GameWorld.STARTING_LEVEL, Player.STARTING_LIVES, 0, true);
 	}
 
 
@@ -182,6 +195,7 @@ public class GamePlayScene extends GameScene implements PropertyChangeListener {
 		super.onSwitchScene();
 		this.unregisterScene();
 		resetCamera();
+		this.music.stop();
 	}
 
 	@Override
@@ -220,14 +234,14 @@ public class GamePlayScene extends GameScene implements PropertyChangeListener {
 
 	}
 
-	public void newLevelStarted() {
+	public void newLevelStarted(final boolean music) {
 
 		unregisterScene();
 
 		Sounds.getInstance().winSound.play();
 
 		this.loadLevel(gameWorld.getLevelNumber(), this.gameWorld.getPlayer().getLives(),
-				this.gameWorld.getPlayer().getScore());
+				this.gameWorld.getPlayer().getScore(), music);
 	}
 
 	public void updateScore(final int newScore) {
@@ -266,7 +280,6 @@ public class GamePlayScene extends GameScene implements PropertyChangeListener {
 		final String eventName = event.getPropertyName();
 
 		if (eventName.equals(Player.INCREASE_SCORE)) {
-			MyDebug.d("update score");
 			updateScore((Integer) event.getNewValue());
 		} else if (eventName.equals(Player.INCREASE_LIFE)) {
 			updateLives((Integer) event.getNewValue());

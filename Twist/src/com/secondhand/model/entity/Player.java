@@ -166,7 +166,12 @@ public class Player extends BlackHole {
 
 
 	public boolean isMirroredMovement() {
-		return this.isMirroredMovement;
+		
+		if(!this.isMirroredMovement){
+		return (GameSettings.getInstance().isMirroredMovement);
+		} else {
+			return !(GameSettings.getInstance().isMirroredMovement);
+		}
 	}
 
 	public void setMirroredMovement(final boolean mirrored) {
@@ -179,7 +184,7 @@ public class Player extends BlackHole {
 		
 		Vector2 forcePosition;
 
-		if (this.isMirroredMovement()) {
+		if (isMirroredMovement()) {
 			final Vector2 v1 = new Vector2(touch.x - this.getCenterX(),
 					touch.y - this.getCenterY());
 			v1.mul(-1);
@@ -195,7 +200,7 @@ public class Player extends BlackHole {
 		final Vector2 force = new Vector2((this.getCenterX() - touch.x),
 				this.getCenterY() - touch.y);
 
-		if (this.isMirroredMovement) {
+		if (isMirroredMovement()) {
 			force.mul(-1);
 		}
 

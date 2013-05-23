@@ -12,6 +12,7 @@ public final class Preferences {
     
 	public static final String MIRRORED_MOVEMENT = "mirroredMovement";
 	public static final String ENEMIES = "enemies";
+	public static final String MUSIC = "music";
 	
 	private Preferences() { }
 	
@@ -33,6 +34,7 @@ public final class Preferences {
 		
 		GameSettings.getInstance().hasEnemies = this.hasEnemies();
 		GameSettings.getInstance().isMirroredMovement = this.isMirroredMovement();
+		GameSettings.getInstance().hasMusic = this.hasMusic();
 		// update model here. 
 	}
 	
@@ -47,11 +49,20 @@ public final class Preferences {
 		update();
 	}
 	
+	public void setHasMusic(final boolean hasMusic) {
+		this.editor.putBoolean(MUSIC, hasMusic);
+		update();
+	}
+	
 	public boolean isMirroredMovement() {
 		return preferences.getBoolean(MIRRORED_MOVEMENT, false);
 	}
 
 	public boolean hasEnemies() {
 		return preferences.getBoolean(ENEMIES, true);
+	}
+	
+	public boolean hasMusic() {
+		return preferences.getBoolean(MUSIC, true);
 	}
 }

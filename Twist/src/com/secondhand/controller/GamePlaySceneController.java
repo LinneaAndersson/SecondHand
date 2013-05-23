@@ -130,7 +130,7 @@ final class GamePlaySceneController extends Entity implements PropertyChangeList
 			this.sceneController.getSceneManager().registerUpdateHander(TimerFactory.createTimer(this.sceneController.getSceneManager(), gameWorld, (PowerUp)event.getNewValue()));
 		} else if (name.equals("NextLevel")) {
 			this.unregisterController();
-			this.gamePlayScene.newLevelStarted();
+			this.gamePlayScene.newLevelStarted(Preferences.getInstance().hasMusic());
 			this.registerController();
 		} else if (name.equals(Player.MOVE)) {
 			final Vector2 touchPosition = (Vector2) event.getNewValue();

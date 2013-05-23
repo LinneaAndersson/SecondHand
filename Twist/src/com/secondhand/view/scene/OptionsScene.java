@@ -17,13 +17,18 @@ public class OptionsScene extends GameMenuScene {
 	public static final int MIRRORED_MOVEMENT_TRUE = 1;
 	public static final int ENEMIES_TRUE = 2;
 	public static final int ENEMIES_FALSE = 3;
-
+	public static final int MUSIC_ON = 4;
+	public static final int MUSIC_OFF = 5;
+	
 	private IMenuItem enemiesOn;
-	private IMenuItem enemiesOff;
-
+	private IMenuItem enemiesOff; 
+	
 	private IMenuItem mirroredMovementOn;
 	private IMenuItem mirroredMovementOff;
 
+	private IMenuItem musicOn;
+	private IMenuItem musicOff;
+	
 	public OptionsScene(final Engine engine, final Context context) {
 		super(engine, context);
 
@@ -36,6 +41,7 @@ public class OptionsScene extends GameMenuScene {
 		final Text options;
 		final Text mirroredMovement;
 		final Text enemy;
+		final Text music;
 
 		final Font mFont = Fonts.getInstance().menuItemFont;
 
@@ -47,13 +53,17 @@ public class OptionsScene extends GameMenuScene {
 				.getInstance().getLocalizedString("mirrored_movement"),
 				HorizontalAlign.CENTER);
 
-		enemy = new Text(100, 300, mFont, LocalizationStrings.getInstance()
+		enemy = new Text(100, 270, mFont, LocalizationStrings.getInstance()
 				.getLocalizedString("enemy"), HorizontalAlign.CENTER);
 
+		music = new Text(100, 390, mFont, LocalizationStrings.getInstance()
+				.getLocalizedString("music"), HorizontalAlign.CENTER);
+		
 		this.attachChild(enemy);
 		this.attachChild(options);
 		this.attachChild(mirroredMovement);
-
+		this.attachChild(music);
+		
 		layoutButtons();
 	}
 
@@ -67,10 +77,10 @@ public class OptionsScene extends GameMenuScene {
 		enemiesOff = new TextMenuItem(ENEMIES_FALSE, menuItemFont,
 				LocalizationStrings.getInstance().getLocalizedString("off"));
 
-		enemiesOn.setPosition(100, 350);
+		enemiesOn.setPosition(100, 320);
 		addMenuItem(enemiesOn);
 
-		enemiesOff.setPosition(200, 350);
+		enemiesOff.setPosition(200, 320);
 		addMenuItem(enemiesOff);
 
 		mirroredMovementOn = new TextMenuItem(MIRRORED_MOVEMENT_TRUE,
@@ -86,6 +96,17 @@ public class OptionsScene extends GameMenuScene {
 
 		mirroredMovementOff.setPosition(200, 200);
 		addMenuItem(mirroredMovementOff);
+		
+		musicOn = new TextMenuItem(MUSIC_ON, menuItemFont, 
+				LocalizationStrings.getInstance().getLocalizedString("on"));
+		musicOff = new TextMenuItem(MUSIC_OFF, menuItemFont, 
+				LocalizationStrings.getInstance().getLocalizedString("off"));
+		
+		musicOn.setPosition(100, 440);
+		addMenuItem(musicOn);
+		
+		musicOff.setPosition(200, 440);
+		addMenuItem(musicOff);
 	}
 
 	public void setHasEnemies(final boolean hasEnemies) {
@@ -108,6 +129,16 @@ public class OptionsScene extends GameMenuScene {
 		}
 	}
 
+	public void setMusic(final boolean isMusic) {
+		if (isMusic) {
+			musicOff.setColor(0.5f, 0.5f, 0.5f);
+			musicOn.setColor(1f, 1f, 1f);
+		} else {
+			musicOn.setColor(0.5f, 0.5f, 0.5f);
+			musicOff.setColor(1f, 1f, 1f);
+		}
+	}
+	
 	@Override
 	public AllScenes getParentScene() {
 		return AllScenes.MAIN_MENU_SCENE;

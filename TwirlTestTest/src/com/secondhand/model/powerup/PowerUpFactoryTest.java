@@ -34,7 +34,7 @@ public class PowerUpFactoryTest extends TestCase {
 
 		Vector2 pos;
 		PowerUp powerup;
-		for (int i = 0; i < 24; i++) {
+		for (int i = 0; i < 26; i++) {
 			pos = new Vector2(i, i);
 			powerup = factory.getRandomPowerUp(pos);
 			if(powerup != null){

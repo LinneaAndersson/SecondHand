@@ -118,7 +118,7 @@ public class EnemyTest extends TestCase {
 		Enemy enemy = new Enemy(vector, rad);
 
 		// (r��*pi)*40 for the size*constant
-		assertEquals(enemy.getHuntingArea(), 40 * (rad * rad * (float) Math.PI));
+		assertEquals(enemy.getHuntingArea(), 60 * (rad * rad * (float) Math.PI));
 	}
 
 	public void testGetDangerArea() {

@@ -9,8 +9,7 @@ import com.secondhand.model.resource.PowerUpType;
 import junit.framework.TestCase;
 
 public class RandomPowerUpTest extends TestCase {
-	class MockRandom extends Random
-	{	
+	class MockRandom extends Random {	
 		int i;
 		
 		private static final long serialVersionUID = 1L;
@@ -24,8 +23,24 @@ public class RandomPowerUpTest extends TestCase {
 			return i++;
 		}
 	}
+	
 public void testConstructor(){
-		
+	//Player player = new Player(new Vector2(), 10f, 3, 0, 100);
+	Random rng = new MockRandom(0);
+	RandomPowerUp powerup;
+	
+	float[] tmp = new float[]{5,0,0,0,4,10,10,5,10};
+	for(int i = 0; i <9; i++){
+		powerup = new RandomPowerUp(new Vector2(), rng);
+		assertEquals(tmp[i], powerup.getDuration());
+	}
+	try{
+	powerup = new RandomPowerUp(new Vector2(), rng);
+	} catch(Exception e){
+		assertEquals(NullPointerException.class, e.getClass());
+	}
+	
+	
 	}
 
 	public void testInstantPowerUp() {		

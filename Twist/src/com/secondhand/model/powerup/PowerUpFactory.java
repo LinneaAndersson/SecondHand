@@ -32,7 +32,7 @@ public final class PowerUpFactory implements IPowerUpFactory {
 		weights.add(new Weight(8, Shield.getFrequency()));
 		weights.add(new Weight(9, SpeedDown.getFrequency()));
 		weights.add(new Weight(10, SpeedUp.getFrequency()));
-
+		weights.add(new Weight(11,BlackColor.getFrequency()));
 		int tw = 0;
 		for (final Weight weight : this.weights) {
 			if (weight.weight < 1 || weight.weight > 10) {
@@ -109,6 +109,9 @@ public final class PowerUpFactory implements IPowerUpFactory {
 			} else if (powerUp == 10) {
 				// MyDebug.d("speedup");
 				return new SpeedUp(position);
+			}  else if(powerUp == 11) {
+				//MyDebug.d("random powerup");
+				return new BlackColor(position);
 			} else {
 				return null;
 			}

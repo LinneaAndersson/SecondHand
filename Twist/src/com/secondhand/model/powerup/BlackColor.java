@@ -6,10 +6,10 @@ import com.secondhand.model.resource.PowerUpType;
 
 public class BlackColor extends PowerUp {
 	
-	private final static float DURATION = 10;
+	private final static float DURATION = 5;
 	
 	public BlackColor(final Vector2 position) {
-		super(position, PowerUpType.DOUBLE_SCORE, DURATION);
+		super(position, PowerUpType.BLACK_COLOR, DURATION);
 	}
 
 	@Override
@@ -18,11 +18,14 @@ public class BlackColor extends PowerUp {
 	
 	@Override
 	public void deactivateEffect(final Player player, final boolean hasAnother) {
+		if(!hasAnother){
+			this.resetPlayerColor(player);
+		}
 	}
 	
-	public float getR() {return 1f;}
-	public float getG() {return 1f;}
-	public float getB() {return 1f;}
+	public float getR() {return 0f;}
+	public float getG() {return 0f;}
+	public float getB() {return 0f;}
 	
-	public static int getFrequency() { return 5; }
+	public static int getFrequency() { return 10; }
 }

@@ -161,4 +161,9 @@ public class MyPhysicsEntity implements IPhysicsEntity {
 		body.setLinearVelocity(0, 0);
 
 	}
+	
+	@Override
+	public float getVelocity(){
+		return this.body.getLinearVelocity().len();
+	}
 }

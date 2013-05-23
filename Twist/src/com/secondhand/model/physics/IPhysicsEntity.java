@@ -31,5 +31,7 @@ public interface IPhysicsEntity {
 	// checks if enemy has staight line to the entity
 	boolean isStraightLine(final IPhysicsObject entity, final IPhysicsObject enemy);
 
+	float getVelocity();
+
 }
 

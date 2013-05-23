@@ -21,7 +21,7 @@ public interface IPowerUp extends IPhysicsObject {
 	float getG();
 	float getB();
 
-	void activatePowerUp(final Player player);
+	void activatePowerUp(final Player player, boolean hasBlackColor);
 
 	void deactivateEffect(final Player player, boolean hasAnother);
 	

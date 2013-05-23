@@ -11,8 +11,8 @@ public enum PowerUpType {
 		SCORE_UP("score_up_power_up.png"),
 		SHIELD("shield_power_up.png"),
 		SPEED_DOWN("speed_down_power_up.png"),
-		SPEED_UP("speed_up_power_up.png");
-		
+		SPEED_UP("speed_up_power_up.png"),
+		BLACK_COLOR("black_color_power_up.png");
 		
 		private String path; 
 		

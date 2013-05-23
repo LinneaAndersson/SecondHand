@@ -6,7 +6,7 @@ import com.secondhand.model.resource.PowerUpType;
 
 public class BlackColor extends PowerUp {
 	
-	private final static float DURATION = 10;
+	private final static float DURATION = 5;
 	
 	public BlackColor(final Vector2 position) {
 		super(position, PowerUpType.BLACK_COLOR, DURATION);

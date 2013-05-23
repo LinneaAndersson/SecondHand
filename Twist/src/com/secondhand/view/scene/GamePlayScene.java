@@ -74,7 +74,7 @@ public class GamePlayScene extends GameScene implements PropertyChangeListener {
 	}
 
 
-	public void registerNewLevel() {
+	public void registerNewLevel(final boolean music) {
 
 		this.smoothCamera.setZoomFactor(1.0f);
 
@@ -126,7 +126,7 @@ public class GamePlayScene extends GameScene implements PropertyChangeListener {
 		}
 		
 		
-		if (Preferences.getInstance().hasMusic()) {
+		if (music) {
 			this.music.play();
 		} else {
 			this.music.stop();
@@ -155,7 +155,7 @@ public class GamePlayScene extends GameScene implements PropertyChangeListener {
 		engine.getCamera().setChaseEntity(playerView.getShape());
 	}
 
-	public void loadLevel(final int levelNumber, final int playerLives, final int playerScore) {
+	public void loadLevel(final int levelNumber, final int playerLives, final int playerScore, final boolean music) {
 		physicsWorld = new PhysicsWorld(new Vector2(), true);
 
 		this.gameWorld = new GameWorld(new MyPhysicsWorld(physicsWorld),
@@ -163,7 +163,7 @@ public class GamePlayScene extends GameScene implements PropertyChangeListener {
 
 		gameWorld.getPlayer().addListener(this);
 
-		registerNewLevel();
+		registerNewLevel(music);
 		setupView();
 
 		engine.getCamera().setHUD(hud);
@@ -175,7 +175,7 @@ public class GamePlayScene extends GameScene implements PropertyChangeListener {
 		initialCameraPos = new Vector2(smoothCamera.getCenterX(),
 				smoothCamera.getCenterY());
 
-		this.loadLevel(GameWorld.STARTING_LEVEL, Player.STARTING_LIVES, 0);
+		this.loadLevel(GameWorld.STARTING_LEVEL, Player.STARTING_LIVES, 0, true);
 	}
 
 
@@ -239,14 +239,14 @@ public class GamePlayScene extends GameScene implements PropertyChangeListener {
 
 	}
 
-	public void newLevelStarted() {
+	public void newLevelStarted(final boolean music) {
 
 		unregisterScene();
 
 		Sounds.getInstance().winSound.play();
 
 		this.loadLevel(gameWorld.getLevelNumber(), this.gameWorld.getPlayer().getLives(),
-				this.gameWorld.getPlayer().getScore());
+				this.gameWorld.getPlayer().getScore(), music);
 	}
 
 	public void updateScore(final int newScore) {

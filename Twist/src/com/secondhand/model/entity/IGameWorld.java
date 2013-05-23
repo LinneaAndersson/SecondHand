@@ -33,5 +33,7 @@ public interface IGameWorld {
 	void updateWithTouchInput(final Vector2 v);
 	
 	PowerUpList getPowerUpList();
+	
+	float getCompletion();
 
 }

@@ -167,5 +167,13 @@ public class GameWorld implements IGameWorld, PropertyChangeListener {
 			getPlayer().getRadius(), rng));
 		}
 	}
+	
+	@Override
+	public float getCompletion(){
+				final float newRadius = getPlayer().getRadius()-GameWorld.PLAYER_STARTING_SIZE;
+		final float playerMaxSize = (float) getPlayer().getMaxSize()-(float) GameWorld.PLAYER_STARTING_SIZE;
+		
+		return 1-(playerMaxSize-(newRadius))/(playerMaxSize);
+	}
 
 }

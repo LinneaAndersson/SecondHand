@@ -200,8 +200,7 @@ public class GamePlayScene extends GameScene implements PropertyChangeListener {
 
 	@Override
 	public AllScenes getParentScene() {
-		// shut down the entire app.
-		return null;
+		return AllScenes.MAIN_MENU_SCENE;
 	}
 
 	// zoom out when player grows.

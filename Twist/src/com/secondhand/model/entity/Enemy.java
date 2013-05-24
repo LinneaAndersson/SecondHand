@@ -3,7 +3,6 @@ package com.secondhand.model.entity;
 import java.util.List;
 import java.util.Random;
 
-import com.secondhand.debug.MyDebug;
 import com.secondhand.model.physics.Vector2;
 import com.secondhand.model.util.RandomUtil;
 
@@ -12,8 +11,8 @@ public class Enemy extends BlackHole {
 	private static final float ENEMY_MAX_SPEED = 2;
 	private static final float MAX_SIZE = 40;
 	private static final float MIN_SIZE = 20;
-	private static final float AREA_MULTIPLIER = 800000;
-	private static final float DANGER_MARGIN = 9000;
+	private static final float AREA_MULTIPLIER = 60;
+	private static final float DANGER_AREA = 9000;
 
 	private float maxSpeed;
 
@@ -27,8 +26,7 @@ public class Enemy extends BlackHole {
 	}
 
 	public float getHuntingArea() {
-		return AREA_MULTIPLIER;
-		//getRadius() * getRadius() * (float) Math.PI * AREA_MULTIPLIER;
+		return getRadius() * getRadius() * (float) Math.PI * AREA_MULTIPLIER;
 	}
 
 	public static float getMaxSize() {
@@ -44,7 +42,7 @@ public class Enemy extends BlackHole {
 	}
 
 	public float getDangerArea() {
-		return DANGER_MARGIN;
+		return DANGER_AREA;
 	}
 
 	// Cannot be negativ!!
@@ -158,9 +156,6 @@ public class Enemy extends BlackHole {
 	}
 
 	public void retreatFrom(final Entity danger) {
-		Vector2 vect = new Vector2(getCenterX() - danger.getCenterX(),
-				getCenterY() - danger.getCenterY()).mul(0.002f);
-		MyDebug.d("how much??? " + vect.len());
 		physics.applyImpulse(new Vector2(getCenterX() - danger.getCenterX(),
 				getCenterY() - danger.getCenterY()).mul(0.002f), getMaxSpeed());
 	}

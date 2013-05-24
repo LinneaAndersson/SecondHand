@@ -9,7 +9,6 @@ import org.anddev.andengine.extension.physics.box2d.util.constants.PhysicsConsta
 
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
-import com.secondhand.debug.MyDebug;
 import com.secondhand.model.entity.CircleEntity;
 import com.secondhand.model.entity.Entity;
 import com.secondhand.model.entity.Player;
@@ -56,9 +55,7 @@ public class MyPhysicsEntity implements IPhysicsEntity {
 			@Override
 			public void method() {
 				physicsWorld.unregisterPhysicsConnector(physicsConnector);
-				physicsWorld.destroyBody(body);
-
-				MyDebug.i(physicsConnector.getBody() + " destruction complete");						
+				physicsWorld.destroyBody(body);					
 
 			}
 		});
@@ -135,8 +132,7 @@ public class MyPhysicsEntity implements IPhysicsEntity {
 		final Vector2 impulse = new Vector2(force.x, force.y);
 		final float speed = velocity.add(impulse).len();
 		if (speed > maxSpeed) {
-			// Check if new velocity doesn't exceed maxSpeed!
-			MyDebug.d("its tooo big!" + speed);
+			// Check if new velocity doesn't exceed maxSpeed
 			return;
 		}
 		body.applyLinearImpulse(impulse, body.getWorldCenter());

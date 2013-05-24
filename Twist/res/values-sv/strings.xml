@@ -9,15 +9,15 @@
     <string name="menu_new_game">Nytt Spel</string>
     
     <!-- TODO: come up with a better translation for "high score" -->
-    <string name="menu_high_score">Poänglista</string>
+    <string name="menu_high_score">Topplista</string>
     
     
-    <string name="high_score_dialog_title">Du kom in på poänglistan!</string>
+    <string name="high_score_dialog_title">Du kom in på topplistan!</string>
     <string name="high_score_dialog_message">Namn:</string>
     	
     <string name="score_string">Poäng: </string>
     <string name="lives_string">Liv: </string>
-    <string name="completion_string">Färdig: </string>
+    <string name="completion_string">Avklarat: </string>
     
     <string name="menu_options">Inställningar</string>
     <string name="menu_instructions">Instruktioner</string>

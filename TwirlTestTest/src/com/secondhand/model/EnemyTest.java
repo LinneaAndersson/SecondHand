@@ -335,4 +335,43 @@ public class EnemyTest extends TestCase {
 		
 
 	}
+	
+	
+	public void testDanger(){
+		Enemy enemy = new Enemy(new Vector2(), 50);
+		Player player = new Player(new Vector2(10,10), 60,1,1,100);
+		EnemyTestPhysicsEntity pPhysics = new EnemyTestPhysicsEntity(player, true);
+		EnemyTestPhysicsEntity physics = new EnemyTestPhysicsEntity(enemy, true);
+		player.setPhysics(pPhysics);
+		enemy.setPhysics(physics);
+		
+		enemy.moveEnemy(player, null);
+		Vector2 v = new Vector2(enemy.getCenterX() - player.getCenterX(),
+				enemy.getCenterY() - player.getCenterY()).mul(0.002f);
+		assertEquals(v.x, physics.getImpulseVector().x);
+		assertEquals(v.y, physics.getImpulseVector().y);
+		
+		Player playerNoDanger = new Player(new Vector2(100,100), 60,1,1,100);
+		EnemyTestPhysicsEntity pndPhysics = new EnemyTestPhysicsEntity(playerNoDanger, true);
+		player.setPhysics(pndPhysics);
+		List<Entity> entityList = new ArrayList<Entity>();
+		
+		Enemy enemyDanger = new Enemy(new Vector2(10, 10), 60);
+		EnemyTestPhysicsEntity dphysics = new EnemyTestPhysicsEntity(enemyDanger, true);
+		enemyDanger.setPhysics(dphysics);
+		
+		entityList.add(enemyDanger);
+		entityList.add(enemy);
+		
+		enemy.moveEnemy(playerNoDanger, entityList);
+		
+		v = new Vector2(enemy.getCenterX() - enemyDanger.getCenterX(),
+				enemy.getCenterY() - enemyDanger.getCenterY()).mul(0.002f);
+		assertEquals(v.x, physics.getImpulseVector().x);
+		assertEquals(v.y, physics.getImpulseVector().y);
+	
+		enemyDanger.moveEnemy(playerNoDanger, entityList);
+		
+		
+	}
 }

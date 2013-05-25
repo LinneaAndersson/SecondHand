@@ -1,5 +1,6 @@
 package com.secondhand.model.powerup;
 
+import com.secondhand.model.entity.GameSettings;
 import com.secondhand.model.entity.Player;
 import com.secondhand.model.physics.Vector2;
 import com.secondhand.model.resource.PowerUpType;
@@ -20,6 +21,8 @@ public class MirroredMovementTest extends TestCase {
 		assertEquals(1, powerup.getB(), 0.001);	
 		
 		assertEquals(PowerUpType.MIRRORED_MOVEMENT, powerup.getPowerUpType());	
+		
+		GameSettings.getInstance().isMirroredMovement = false;
 		
 		powerup.activateEffect(player);
 		assertTrue(player.isMirroredMovement());

@@ -25,44 +25,45 @@ import com.secondhand.model.powerup.PowerUp;
 import com.secondhand.model.powerup.PowerUpFactory;
 import com.secondhand.model.resource.PlanetType;
 import com.secondhand.model.resource.PowerUpType;
- 
 
 /* This class tests not only GameWorld but also EntityManager*/
-public class GameWorldTest extends TestCase implements PropertyChangeListener{
-	private class PUp extends PowerUp{
+public class GameWorldTest extends TestCase implements PropertyChangeListener {
+	private class PUp extends PowerUp {
 
 		public PUp(Vector2 position, PowerUpType powerUpType, float duration) {
 			super(position, powerUpType, duration);
 		}
 
 		@Override
-		public void activateEffect(Player player) {}
-		
-		public void fire(String name, Entity entity){
+		public void activateEffect(Player player) {
+		}
+
+		public void fire(String name, Entity entity) {
 			pcs.firePropertyChange(name, null, entity);
 		}
-		
+
 	}
-	
-	private class SpecialTestFactory implements IPowerUpFactory{
+
+	private class SpecialTestFactory implements IPowerUpFactory {
 		PUp s = new PUp(new Vector2(), PowerUpType.SCORE_UP, 0);
-		
+
 		@Override
 		public IPowerUp getRandomPowerUp(Vector2 position) {
-			
+
 			return s;
 		}
 
 		@Override
 		public void setRandom(Random rng) {
-			
+
 		}
-		
-		public PUp getSpecialEntity(){
+
+		public PUp getSpecialEntity() {
 			return s;
 		}
-		
+
 	}
+
 	private class TestPhysicsWorld implements IPhysicsWorld {
 
 		@Override
@@ -102,6 +103,7 @@ public class GameWorldTest extends TestCase implements PropertyChangeListener{
 		private Vector2 pos = new Vector2();
 		private Vector2 impulse;
 		boolean delete = false;
+
 		@Override
 		public float getCenterX() {
 			return pos.x;
@@ -123,7 +125,7 @@ public class GameWorldTest extends TestCase implements PropertyChangeListener{
 
 		@Override
 		public void applyImpulse(Vector2 impulse, Vector2 impulsePosition) {
-			
+
 		}
 
 		@Override
@@ -166,38 +168,40 @@ public class GameWorldTest extends TestCase implements PropertyChangeListener{
 	private int score = 100;
 	private String name;
 	private PropertyChangeSupport support = new PropertyChangeSupport(this);
+
 	// TODO test that enteties are properly removed from entityList.
 	// PropertyChangeTest for entityManager
 	public void testConstructor() {
 
 		IPhysicsWorld physics = new TestPhysicsWorld();
 
-		GameWorld gWorld = new GameWorld(physics, levelNumber, lives, score,  new PowerUpFactory());
+		GameWorld gWorld = new GameWorld(physics, levelNumber, lives, score,
+				new PowerUpFactory());
 
 		assertEquals(levelNumber, gWorld.getLevelNumber());
 		assertEquals(score, gWorld.getPlayer().getScore());
 		assertEquals(lives, gWorld.getPlayer().getLives());
 		assertEquals(physics, gWorld.getPhysics());
-		
+
 		assertEquals(1500, gWorld.getLevelHeight());
 		assertEquals(1500, gWorld.getLevelWidth());
-		
-		
 
 	}
 
 	public void testIsGameOver() {
 		IPhysicsWorld physics = new TestPhysicsWorld();
-		GameWorld gWorld = new GameWorld(physics, levelNumber, lives, score,  new PowerUpFactory());
+		GameWorld gWorld = new GameWorld(physics, levelNumber, lives, score,
+				new PowerUpFactory());
 
 		assertEquals(gWorld.getPlayer().lostAllLives(), gWorld.isGameOver());
 
 	}
 
 	public void testUpdateGameWorld() {
-		//TODO entityManager part
+		// TODO entityManager part
 		IPhysicsWorld physics = new TestPhysicsWorld();
-		GameWorld gWorld = new GameWorld(physics, levelNumber, lives, score,  new PowerUpFactory());
+		GameWorld gWorld = new GameWorld(physics, levelNumber, lives, score,
+				new PowerUpFactory());
 		gWorld.addListener(this);
 		for (Entity e : gWorld.getEntityList()) {
 			e.setPhysics(new TestPhysicsEntity());
@@ -212,119 +216,125 @@ public class GameWorldTest extends TestCase implements PropertyChangeListener{
 		gWorld.getPlayer().setRadius(gWorld.getPlayer().getMaxSize());
 		gWorld.updateGameWorld();
 		assertEquals("NextLevel", name);
-		assertEquals(levelNumber+1, gWorld.getLevelNumber());
+		assertEquals(levelNumber + 1, gWorld.getLevelNumber());
 	}
-	
-	public void testPpropertyChange(){
+
+	public void testPpropertyChange() {
 		IPhysicsWorld physics = new TestPhysicsWorld();
-		GameWorld gWorld = new GameWorld(physics, levelNumber, lives, score,  new PowerUpFactory());
+		GameWorld gWorld = new GameWorld(physics, levelNumber, lives, score,
+				new PowerUpFactory());
 		for (Entity e : gWorld.getEntityList()) {
 			e.setPhysics(new TestPhysicsEntity());
 		}
 		Player player = gWorld.getPlayer();
 		player.setPhysics(new TestPhysicsEntity());
 		support.addPropertyChangeListener(gWorld);
-		support.firePropertyChange(Player.RANDOMLY_REPOSITION_PLAYER,true,false);
-		
+		support.firePropertyChange(Player.RANDOMLY_REPOSITION_PLAYER, true,
+				false);
+
 		gWorld.updateGameWorld();
-		
+
 		assertEquals(20f, player.getCenterX());
 		assertEquals(20f, player.getCenterY());
-		
+
 		support.removePropertyChangeListener(gWorld);
-		
-		
+
 	}
-	
+
 	public void testUpdateWithTouchInput() {
 		IPhysicsWorld physics = new TestPhysicsWorld();
-		GameWorld gWorld = new GameWorld(physics, levelNumber, lives, score,  new PowerUpFactory());
-		
+		GameWorld gWorld = new GameWorld(physics, levelNumber, lives, score,
+				new PowerUpFactory());
+
 		Player player = gWorld.getPlayer();
 		player.setPhysics(new TestPhysicsEntity());
-	
+
 		gWorld.updateWithTouchInput(new Vector2(20f, 20f));
-		
+
 		assertNotSame(player.getInitialPosition().x, player.getCenterX());
 		assertNotSame(player.getInitialPosition().y, player.getCenterY());
-		
+
 	}
-	
-	
-	public void testGetCompletion(){
+
+	public void testGetCompletion() {
 		IPhysicsWorld physics = new TestPhysicsWorld();
-		GameWorld gWorld = new GameWorld(physics, levelNumber, lives, score,  new PowerUpFactory());
-		
+		GameWorld gWorld = new GameWorld(physics, levelNumber, lives, score,
+				new PowerUpFactory());
+
 		Player player = gWorld.getPlayer();
 		player.setPhysics(new TestPhysicsEntity());
-		
+
 		assertEquals(0f, gWorld.getCompletion());
-		
+
 		player.setRadius(player.getMaxSize());
-		
-		assertEquals(1f, gWorld.getCompletion());		
-		
+
+		assertEquals(1f, gWorld.getCompletion());
+
 	}
-	
-	public void testManagerPropertyDeletion(){
+
+	public void testManagerPropertyDeletion() {
 		IPhysicsWorld physics = new TestPhysicsWorld();
-		SpecialTestFactory factory =  new SpecialTestFactory();
-		GameWorld gWorld = new GameWorld(physics, levelNumber, lives, score, factory);
-		
+		SpecialTestFactory factory = new SpecialTestFactory();
+		GameWorld gWorld = new GameWorld(physics, levelNumber, lives, score,
+				factory);
+
 		PUp s = factory.getSpecialEntity();
-		
+
 		Enemy enemy = new Enemy(new Vector2(), 100);
 		TestPhysicsEntity testPhysicsEnemy = new TestPhysicsEntity();
 		enemy.setPhysics(testPhysicsEnemy);
-		
+
 		Planet planet = new Planet(new Vector2(), 50, PlanetType.BLOOD);
 		TestPhysicsEntity testPhysicsPlanet = new TestPhysicsEntity();
 		planet.setPhysics(testPhysicsPlanet);
-		
+
 		// test deletion
 		s.fire(Entity.IS_SCHEDULED_FOR_DELETION, enemy);
 		s.fire(Entity.IS_SCHEDULED_FOR_DELETION, planet);
-		
+
 		gWorld.updateGameWorld();
-		
+
 		assertEquals(true, testPhysicsEnemy.delete);
-		assertEquals(true, testPhysicsPlanet.delete);		
-	
+		assertEquals(true, testPhysicsPlanet.delete);
+
 	}
-	
-	public void testManagerPropertyBlackHole(){
+
+	public void testManagerPropertyBlackHole() {
 		IPhysicsWorld physics = new TestPhysicsWorld();
-		SpecialTestFactory factory =  new SpecialTestFactory();
-		GameWorld gWorld = new GameWorld(physics, levelNumber, lives, score, factory);
-		
+		SpecialTestFactory factory = new SpecialTestFactory();
+		GameWorld gWorld = new GameWorld(physics, levelNumber, lives, score,
+				factory);
+
 		PUp s = factory.getSpecialEntity();
-		
+
 		Enemy enemy = new Enemy(new Vector2(), 100);
 		TestPhysicsEntity testPhysicsEnemy = new TestPhysicsEntity();
 		enemy.setPhysics(testPhysicsEnemy);
-		
+
 		Player player = gWorld.getPlayer();
 		TestPhysicsEntity testPhysicsPlayer = new TestPhysicsEntity();
 		player.setPhysics(testPhysicsPlayer);
-		
-		Planet planet = new Planet(new Vector2(), 50 , PlanetType.BLOOD);
+
+		Planet planet = new Planet(new Vector2(), 50, PlanetType.BLOOD);
 		TestPhysicsEntity testPhysicsPlanet = new TestPhysicsEntity();
 		planet.setPhysics(testPhysicsPlanet);
-		enemy.eatEntity(planet);
-		//s.fire(BlackHole.INCREASE_SIZE, enemy);
+
+		System.out.println("" + enemy.getIncreaseSize());
+		System.out.println("" + enemy.getRadius());
+
+		//enemy.eatEntity(planet);	
 		s.fire(BlackHole.INCREASE_SIZE, player);
 		
 		gWorld.updateGameWorld();
-		gWorld.updateGameWorld();
 		
-		
+		assertEquals((float) GameWorld.PLAYER_STARTING_SIZE, player.getRadius());
+		assertEquals(100f, enemy.getRadius());
+
 	}
 
 	@Override
 	public void propertyChange(PropertyChangeEvent event) {
 		name = event.getPropertyName();
 	}
-
-
 
 }

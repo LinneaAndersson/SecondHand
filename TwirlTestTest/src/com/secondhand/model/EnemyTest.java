@@ -91,7 +91,6 @@ public class EnemyTest extends TestCase {
 
 		@Override
 		public float getVelocity() {
-			// TODO Auto-generated method stub
 			return 0;
 		}
 	}
@@ -117,7 +116,7 @@ public class EnemyTest extends TestCase {
 		float rad = 4.2f;
 		Enemy enemy = new Enemy(vector, rad);
 
-		// (r��*pi)*40 for the size*constant
+		// (r������*pi)*40 for the size*constant
 		assertEquals(enemy.getHuntingArea(), 60 * (rad * rad * (float) Math.PI));
 	}
 

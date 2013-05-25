@@ -85,7 +85,6 @@ public class RectangleEntityTest extends TestCase {
 
 		@Override
 		public float getVelocity() {
-			// TODO Auto-generated method stub
 			return 0;
 		}
 	}

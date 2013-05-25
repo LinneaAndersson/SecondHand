@@ -20,8 +20,6 @@ public class InstructionScene extends GameScene {
 		super.loadScene();
 
 		final Font mFont = Fonts.getInstance().menuItemFont;
-		// TODO move into Values. both sv and en
-		// TODO read from file here? or use instructionController for that?
 		final Text instructions = new Text(100, 60, mFont, LocalizationStrings
 				.getInstance().getLocalizedString("menu_instructions"),
 				HorizontalAlign.CENTER);

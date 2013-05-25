@@ -47,7 +47,6 @@ final class GamePlaySceneController extends Entity implements PropertyChangeList
 		//PlayerUtil adds this Controller as a listener
 		this.gameWorld.getPlayer().addListener(this);
 		
-		// TODO: potential memory leak:
 		gameWorld.getPowerUpList().addListener(this);
 		gameWorld.getPowerUpList().addListener(gamePlayScene);
 	

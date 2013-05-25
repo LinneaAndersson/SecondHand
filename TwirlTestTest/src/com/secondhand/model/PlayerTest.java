@@ -107,7 +107,6 @@ public class PlayerTest extends TestCase{
 
 			@Override
 			public float getVelocity() {
-				// TODO Auto-generated method stub
 				return 0;
 			}
 		}
@@ -172,7 +171,6 @@ public class PlayerTest extends TestCase{
 
 			@Override
 			public void propertyChange(PropertyChangeEvent event) {
-				// TODO Auto-generated method stub
 				String name = event.getPropertyName();
 				if(name.equals(Player.SOUND)) {
 					final SoundType newV = (SoundType)event.getNewValue();

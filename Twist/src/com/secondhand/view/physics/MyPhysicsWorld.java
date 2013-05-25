@@ -11,14 +11,11 @@ import com.secondhand.model.physics.IPhysicsWorld;
 
 public class MyPhysicsWorld implements IPhysicsWorld {
 	private PhysicsWorld physicsWorld;
-	// TODO only enemy needs the util class
 	private ICollisionResolver collisionResolver;
 	private final PhysicsWorldBounds bounds;
 
 	public MyPhysicsWorld(final PhysicsWorld physicsWorld){
 
-		// TODO remove physicsWorld from constructor
-		// and put worldBoundries somewhere else
 		this.physicsWorld = physicsWorld;
 		bounds = new PhysicsWorldBounds(physicsWorld);
 		this.physicsWorld.setVelocityIterations(8);

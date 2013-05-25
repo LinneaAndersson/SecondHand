@@ -74,7 +74,6 @@ public class CollisionResolverTest extends TestCase {
 
 		@Override
 		public float getVelocity() {
-			// TODO Auto-generated method stub
 			return 0;
 		}
 	}

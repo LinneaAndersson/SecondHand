@@ -76,8 +76,6 @@ public class Enemy extends BlackHole {
 		if (isCloseToEntity(player, getDangerArea()) && !canEat(player)) {
 			retreatFrom(player);
 			return true;
-			//TODO this part here bellow is always returning true, makes the rest 
-			//of the class not function
 		} else {
 			for (final Entity e : entityList) {
 				if (e instanceof Enemy && isCloseToEntity(e, getDangerArea())

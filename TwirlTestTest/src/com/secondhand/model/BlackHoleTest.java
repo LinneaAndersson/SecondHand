@@ -149,7 +149,6 @@ public class BlackHoleTest extends TestCase {
 
 		@Override
 		public float getVelocity() {
-			// TODO Auto-generated method stub
 			return 0;
 		}
 	}
@@ -247,7 +246,6 @@ public class BlackHoleTest extends TestCase {
 
 		@Override
 		public float getVelocity() {
-			// TODO Auto-generated method stub
 			return 0;
 		}
 	}

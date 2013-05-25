@@ -42,7 +42,7 @@ public class Enemy extends BlackHole {
 	}
 
 	public float getDangerArea() {
-		return DANGER_AREA;
+		return getRadius() + DANGER_AREA;
 	}
 
 	// Cannot be negativ!!

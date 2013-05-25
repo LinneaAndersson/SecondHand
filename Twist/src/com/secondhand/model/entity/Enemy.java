@@ -13,6 +13,7 @@ public class Enemy extends BlackHole {
 	private static final float MIN_SIZE = 20;
 	private static final float AREA_MULTIPLIER = 60;
 	private static final float DANGER_AREA = 9000;
+	private static final float VELOCITY_MULTIPLIER = 0.002f;
 
 	private float maxSpeed;
 
@@ -56,17 +57,16 @@ public class Enemy extends BlackHole {
 		return maxSpeed;
 	}
 
-
 	// player has highest chase-priority
 	public void moveEnemy(final Entity player, final List<Entity> entityList) {
 		if (isCloseToEntity(player, getHuntingArea()) && canEat(player)) {
 			dangerCheck(player);
-		} else if (!danger(player,entityList)){
+		} else if (!danger(player, entityList)) {
 
 			final Entity priority = getHighesPriority(entityList);
-			if(priority != null)	
+			if (priority != null)
 				dangerCheck(priority);
-			else if (physics.getVelocity()<15)
+			else if (physics.getVelocity() < 15)
 
 				moveEnemyRandom();
 		}
@@ -95,8 +95,8 @@ public class Enemy extends BlackHole {
 		final float dx = entity.getCenterX() - this.getCenterX();
 
 		final float dy = entity.getCenterY() - this.getCenterY();
-		
-		if(entity.equals(this)){
+
+		if (entity.equals(this)) {
 			return false;
 		}
 
@@ -130,29 +130,27 @@ public class Enemy extends BlackHole {
 	}
 
 	private void dangerCheck(final Entity entity) {
-		if (entity != null){
+		if (entity != null) {
 			if (this.physics.isStraightLine(entity, this)) {
-				physics.applyImpulse(new Vector2(
-						entity.getCenterX() - getCenterX(), entity.getCenterY()
-						- getCenterY()).mul(0.002f), getMaxSpeed());
-			} 
-		} 
+				physics.applyImpulse(
+						new Vector2(entity.getCenterX() - getCenterX(), entity
+								.getCenterY() - getCenterY()).mul(0.002f),
+						getMaxSpeed());
+			}
+		}
 	}
 
-	private void moveEnemyRandom(){
+	private void moveEnemyRandom() {
 		final Random rng = new Random();
-		final float randomX = RandomUtil
-				.nextFloat(rng, -maxSpeed, maxSpeed*100);
-		final float randomY = RandomUtil
-				.nextFloat(
-						rng,
-						-maxSpeed,maxSpeed);
+		final float randomX = RandomUtil.nextFloat(rng, -maxSpeed,
+				maxSpeed * 100);
+		final float randomY = RandomUtil.nextFloat(rng, -maxSpeed, maxSpeed);
 		physics.applyImpulse(new Vector2(randomX, randomY), maxSpeed);
 	}
 
 	public void retreatFrom(final Entity danger) {
 		physics.applyImpulse(new Vector2(getCenterX() - danger.getCenterX(),
-				getCenterY() - danger.getCenterY()).mul(0.002f), getMaxSpeed());
+				getCenterY() - danger.getCenterY()).mul(this.VELOCITY_MULTIPLIER), getMaxSpeed());
 	}
 
 }

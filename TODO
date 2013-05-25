@@ -6,8 +6,6 @@ Important things that must be done for the success of the project:
 * Write unit tests for: GameWorld, EntityManager.
 * Fix transition from game play scene back to menu.
 * Write current level in HUD
-* Fix up music settings, as well as any other existing problem in the same category.
-
 
 - Documentation
 

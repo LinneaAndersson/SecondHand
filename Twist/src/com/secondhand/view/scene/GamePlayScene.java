@@ -14,6 +14,7 @@ import com.badlogic.gdx.math.Vector2;
 import com.secondhand.model.entity.BlackHole;
 import com.secondhand.model.entity.Enemy;
 import com.secondhand.model.entity.Entity;
+import com.secondhand.model.entity.GameSettings;
 import com.secondhand.model.entity.GameWorld;
 import com.secondhand.model.entity.IGameWorld;
 import com.secondhand.model.entity.Obstacle;
@@ -165,7 +166,7 @@ public class GamePlayScene extends GameScene implements PropertyChangeListener {
 		initialCameraPos = new Vector2(smoothCamera.getCenterX(),
 				smoothCamera.getCenterY());
 
-		this.loadLevel(GameWorld.STARTING_LEVEL, Player.STARTING_LIVES, 0, true);
+		this.loadLevel(GameWorld.STARTING_LEVEL, Player.STARTING_LIVES, 0, GameSettings.getInstance().hasMusic);
 	}
 
 	// reset camera before the menu is shown

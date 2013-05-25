@@ -63,6 +63,6 @@ public final class Preferences {
 	}
 	
 	public boolean hasMusic() {
-		return preferences.getBoolean(MUSIC, true);
+		return preferences.getBoolean(MUSIC, false);
 	}
 }

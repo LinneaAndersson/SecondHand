@@ -25,7 +25,7 @@ public final class PowerUpList extends ArrayList<IPowerUp> {
 		if (rgb[0] == 0 && rgb[1] == 0 && rgb[2] == 0) {
 			powerUp.activatePowerUp(this.player, true);
 		} else {
-			powerUp.activatePowerUp(this.player, this.hasAnother(powerUp));
+			powerUp.activatePowerUp(this.player, false);
 		}
 		pcs.firePropertyChange(ADD_POWERUP, null, powerUp);
 		return super.add(powerUp);

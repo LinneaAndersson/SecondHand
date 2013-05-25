@@ -14,7 +14,8 @@ import com.secondhand.model.resource.PowerUpType;
 public class PowerUpListTest extends TestCase {
 
 	public void testAdd() {
-		final PowerUpList powerUpList = new PowerUpList(new Player(new Vector2(),1,1,1,1));
+		Player p = new Player(new Vector2(),1,1,1,1);
+		final PowerUpList powerUpList = new PowerUpList(p);
 		
 		class AddPowerUpListener implements PropertyChangeListener {
 			
@@ -25,11 +26,10 @@ public class PowerUpListTest extends TestCase {
 				hasHeardChange = event.getPropertyName().equals(PowerUpList.ADD_POWERUP);
 			}
 		}
-		AddPowerUpListener listener = new AddPowerUpListener();
-		powerUpList.addListener(listener);
 		
 		class PowerUpActivationTester extends PowerUp {
 			public boolean isActivated = false;
+			public boolean blackColor;
 			
 			public PowerUpActivationTester() {
 				super(new Vector2(), PowerUpType.DOUBLE_SCORE, 10);
@@ -40,15 +40,31 @@ public class PowerUpListTest extends TestCase {
 			
 			@Override
 			public void activatePowerUp(Player player, boolean hasBlackColor) {
-				isActivated = (player != null);
+				isActivated = true;
+				blackColor = hasBlackColor;
+				
 			}
 		}
+		
+		AddPowerUpListener listener = new AddPowerUpListener();
+		powerUpList.addListener(listener);
+		
 		PowerUpActivationTester powerUp = new PowerUpActivationTester();
 		powerUpList.add(powerUp);
 		
 		assertTrue(listener.hasHeardChange);
 		assertTrue(powerUp.isActivated);
 		assertTrue(powerUpList.contains(powerUp));
+		assertFalse(powerUp.blackColor);
+		
+		p.setRGB(new float[]{0,0,0});
+		
+		PowerUpActivationTester powerUp2 = new PowerUpActivationTester();
+		powerUpList.add(powerUp2);
+		
+		assertTrue(powerUp2.blackColor);
+		
+		
 	}
 
 	Player removeTestPlayer;

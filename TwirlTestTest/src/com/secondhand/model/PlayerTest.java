@@ -20,6 +20,8 @@ public class PlayerTest extends TestCase {
 	final float FORCE = 60;
 
 	class PhysicsEntity implements IPhysicsEntity {
+		
+		public Vector2 transform;
 
 		public int state;
 
@@ -77,6 +79,8 @@ public class PlayerTest extends TestCase {
 
 		@Override
 		public void setTransform(Vector2 position) {
+			transform = position;
+			
 		}
 
 		@Override
@@ -302,6 +306,21 @@ public class PlayerTest extends TestCase {
 		assertEquals(rgb[1], 0f);
 		assertEquals(rgb[2], 0f);
 		
+		
+	}
+	
+	public void testMoveToNeddedposition(){
+		Player player = new Player(new Vector2(), 101, 3, // lives
+				1, // starting score
+				200); // maxsize
+		PhysicsEntity p = new PhysicsEntity();
+		player.setPhysics(p);
+		Vector2 v = new Vector2(25,20);
+		player.setNeedsToMovePosition(v);
+		player.moveToNeededPositionIfNecessary();
+		
+		assertEquals(25f, p.transform.x);
+		assertEquals(20f, p.transform.y);
 		
 	}
 }

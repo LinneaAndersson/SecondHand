@@ -21,7 +21,7 @@ public final class PowerUpList extends ArrayList<IPowerUp> {
 
 	@Override
 	public boolean add(final IPowerUp powerUp) {
-		float[] rgb = player.getRGB();
+		final float[] rgb = player.getRGB();
 		if (rgb[0] == 0 && rgb[1] == 0 && rgb[2] == 0) {
 			powerUp.activatePowerUp(this.player, true);
 		} else {

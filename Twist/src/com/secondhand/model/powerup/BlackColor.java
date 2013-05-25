@@ -27,5 +27,5 @@ public class BlackColor extends PowerUp {
 	public float getG() {return 0f;}
 	public float getB() {return 0f;}
 	
-	public static int getFrequency() { return 10; }
+	public static int getFrequency() { return 6; }
 }

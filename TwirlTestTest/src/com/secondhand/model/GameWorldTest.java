@@ -305,30 +305,22 @@ public class GameWorldTest extends TestCase implements PropertyChangeListener {
 		GameWorld gWorld = new GameWorld(physics, levelNumber, lives, score,
 				factory);
 
-		PUp s = factory.getSpecialEntity();
-
-		Enemy enemy = new Enemy(new Vector2(), 100);
-		TestPhysicsEntity testPhysicsEnemy = new TestPhysicsEntity();
-		enemy.setPhysics(testPhysicsEnemy);
-
 		Player player = gWorld.getPlayer();
 		TestPhysicsEntity testPhysicsPlayer = new TestPhysicsEntity();
 		player.setPhysics(testPhysicsPlayer);
 
-		Planet planet = new Planet(new Vector2(), 50, PlanetType.BLOOD);
+		Planet planet = new Planet(new Vector2(), 5, PlanetType.BLOOD);
 		TestPhysicsEntity testPhysicsPlanet = new TestPhysicsEntity();
 		planet.setPhysics(testPhysicsPlanet);
 
-		System.out.println("" + enemy.getIncreaseSize());
-		System.out.println("" + enemy.getRadius());
-
-		//enemy.eatEntity(planet);	
-		s.fire(BlackHole.INCREASE_SIZE, player);
-		
+		player.eatEntity(planet);
+		while (player.getIncreaseSize() >= 0.2f) {
+			gWorld.updateGameWorld();
+		}
 		gWorld.updateGameWorld();
 		
-		assertEquals((float) GameWorld.PLAYER_STARTING_SIZE, player.getRadius());
-		assertEquals(100f, enemy.getRadius());
+		assertEquals((planet.getRadius() * BlackHole.GROWTH_FACTOR)
+				+ GameWorld.PLAYER_STARTING_SIZE, player.getRadius(), 0.0005f);
 
 	}
 

@@ -67,7 +67,7 @@ public abstract class PowerUp extends RectangleEntity implements IPowerUp {
 	public float getB() {return Player.DEFAULT_COLOR_VALUE;}
 
 	@Override
-	public void activatePowerUp(final Player player, boolean hasBlackColor) {
+	public void activatePowerUp(final Player player, final boolean hasBlackColor) {
 		this.activateEffect(player);
 		
 		if(!hasBlackColor)

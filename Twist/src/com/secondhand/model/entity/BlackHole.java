@@ -1,10 +1,9 @@
 package com.secondhand.model.entity;
 
-import com.secondhand.debug.MyDebug;
 import com.secondhand.model.physics.Vector2;
 
 public abstract class BlackHole extends CircleEntity {
-
+	
 	// only a 1/5 of the masses of the eaten bodies is used in the growth
 	public static final float GROWTH_FACTOR = 0.2f;
 
@@ -23,7 +22,7 @@ public abstract class BlackHole extends CircleEntity {
 
 	public BlackHole(final Vector2 position, final float radius, final int score) {
 		super(position, radius, true);
-		this.score = score;
+		this.score = score;	
 
 		setCanEatInedibles(false);
 	}

@@ -4,9 +4,6 @@ import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 import java.util.ArrayList;
 
-import com.secondhand.model.physics.Vector2;
-import com.secondhand.model.powerup.BlackColor;
-
 public final class PowerUpList extends ArrayList<IPowerUp> {
 
 	private static final long serialVersionUID = 1L;

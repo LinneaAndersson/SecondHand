@@ -56,9 +56,6 @@ public class Enemy extends BlackHole {
 		return maxSpeed;
 	}
 
-	private float getVelocity() {
-		return physics.getVelocity();
-	}
 
 	// player has highest chase-priority
 	public void moveEnemy(final Entity player, final List<Entity> entityList) {
@@ -66,7 +63,7 @@ public class Enemy extends BlackHole {
 			dangerCheck(player);
 		} else if (!danger(player,entityList)){
 
-			Entity priority = getHighesPriority(entityList);
+			final Entity priority = getHighesPriority(entityList);
 			if(priority != null)	
 				dangerCheck(priority);
 			else if (physics.getVelocity()<15)

@@ -4,10 +4,23 @@ ext:External[pe]
 gw:GameWorld
 manager:EntityManager
 player:Player
+settings:GameSettings
+vector2:Vector2
 
 ext:gw.updateWithTouchInput(position)
 
 gw:player=manager.getPlayer()
 
 gw:player.reactToTouch(position)
+
+[c:clarification GameSettings.getInstance().isMirroredMovement()]
+ player:isMirroredMovement=settings.getInstance().isMirroredMovement()
+[/c]
+
+
+[c:alt Player should move towards touch]
+ player:vector2.hello()
+ --[else]
+ player:not mirrored
+[/c]
 

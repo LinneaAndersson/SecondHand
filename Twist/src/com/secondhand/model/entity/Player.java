@@ -185,15 +185,9 @@ public class Player extends BlackHole {
 		Vector2 forcePosition;
 
 		if (isMirroredMovement()) {
-			final Vector2 v1 = new Vector2(touch.x - this.getCenterX(),
-					touch.y - this.getCenterY());
-			v1.mul(-1);
-			final Vector2 v2 = new Vector2(this.getCenterX(),
-					this.getCenterY());
-			v2.add(v1);
-			forcePosition = new Vector2(v2.x, v2.y);
+			forcePosition = new Vector2(-touch.x  + 2.0f * this.getCenterX(),
+					-touch.y + 2.0f *  this.getCenterY());
 		} else {
-
 			forcePosition = new Vector2(touch.x, touch.y);
 		}
 

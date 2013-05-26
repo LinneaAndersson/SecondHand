@@ -15,10 +15,11 @@ public abstract class PowerUp extends RectangleEntity implements IPowerUp {
 	protected float duration;
 	private final PowerUpType powerUpType;
 
-	private final float[] RGB = new float[3];	
+	private final float[] RGB = new float[3];
 
-	public PowerUp (final Vector2 position, final PowerUpType powerUpType, final float duration) {
-		super(position, WIDTH, HEIGHT,true);
+	public PowerUp(final Vector2 position, final PowerUpType powerUpType,
+			final float duration) {
+		super(position, WIDTH, HEIGHT, true);
 		this.duration = duration;
 		this.powerUpType = powerUpType;
 	}
@@ -43,34 +44,41 @@ public abstract class PowerUp extends RectangleEntity implements IPowerUp {
 	}
 
 	@Override
-	public boolean hasText(){
+	public boolean hasText() {
 		return getText() != null;
 	}
 
 	@Override
-	public String getText(){
+	public String getText() {
 		return null;
 	}
 
 	// how to color the player when the powerup is applied.
 	// red, green, blue values, from 0 to 1
-	// you can ignore these values for powerups with a duration of 0. 
-	// I know that this is technically part of the view, but then we'd have to create a 
-	// separate view class for every fucking powerup, and I don't really have the energy to do that. 
+	// you can ignore these values for powerups with a duration of 0.
+	// I know that this is technically part of the view, but then we'd have to
+	// create a
+	// separate view class for every powerup.
 	@Override
-	public float getR() {return Player.DEFAULT_COLOR_VALUE;}
+	public float getR() {
+		return Player.DEFAULT_COLOR_VALUE;
+	}
 
 	@Override
-	public float getG() {return Player.DEFAULT_COLOR_VALUE;}
+	public float getG() {
+		return Player.DEFAULT_COLOR_VALUE;
+	}
 
 	@Override
-	public float getB() {return Player.DEFAULT_COLOR_VALUE;}
+	public float getB() {
+		return Player.DEFAULT_COLOR_VALUE;
+	}
 
 	@Override
 	public void activatePowerUp(final Player player, final boolean hasBlackColor) {
 		this.activateEffect(player);
-		
-		if(!hasBlackColor)
+
+		if (!hasBlackColor)
 			changePlayerColor(player);
 
 		player.playSound(SoundType.POWERUP_SOUND);
@@ -84,12 +92,11 @@ public abstract class PowerUp extends RectangleEntity implements IPowerUp {
 		player.setRGB(RGB);
 	}
 
-
-	private void changePlayerColor(final Player player){
+	private void changePlayerColor(final Player player) {
 		RGB[0] = this.getR();
 		RGB[1] = this.getG();
 		RGB[2] = this.getB();
-		player.setRGB(RGB);	
+		player.setRGB(RGB);
 	}
 
 }

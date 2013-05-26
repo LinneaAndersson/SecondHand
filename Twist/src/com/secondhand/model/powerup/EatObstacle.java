@@ -7,7 +7,7 @@ import com.secondhand.model.resource.PowerUpType;
 public class EatObstacle extends PowerUp {
 
 	public final static float DURATION = 5;
-	
+
 	public EatObstacle(final Vector2 position) {
 		super(position, PowerUpType.EAT_OBSTACLE, DURATION);
 	}
@@ -16,17 +16,26 @@ public class EatObstacle extends PowerUp {
 	public void activateEffect(final Player player) {
 		player.setCanEatInedibles(true);
 	}
-	
+
 	@Override
 	public void deactivateEffect(final Player player, final boolean hasAnother) {
 		player.setCanEatInedibles(hasAnother);
 	}
-	
-	public float getR() {return 1f;}
-	public float getG() {return 0f;}
-	public float getB() {return 0f;}
 
-	public static int getFrequency() { return 3; }
+	public float getR() {
+		return 1f;
+	}
+
+	public float getG() {
+		return 0f;
+	}
+
+	public float getB() {
+		return 0f;
+	}
+
+	public static int getFrequency() {
+		return 3;
+	}
 
 }
-

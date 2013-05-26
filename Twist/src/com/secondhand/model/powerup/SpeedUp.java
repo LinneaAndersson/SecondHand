@@ -8,27 +8,35 @@ public class SpeedUp extends PowerUp {
 
 	private final static float DURATION = 10;
 	private final static int FACTOR = 2;
-	
+
 	public SpeedUp(final Vector2 position) {
 		super(position, PowerUpType.SPEED_UP, DURATION);
-		
+
 	}
-	
+
 	@Override
 	public void activateEffect(final Player player) {
 		player.setSpeedMultiplier(player.getSpeedMultiplier() * FACTOR);
 	}
-	
+
 	@Override
 	public void deactivateEffect(final Player player, final boolean hasAnother) {
-		player.setSpeedMultiplier(player.getSpeedMultiplier()/FACTOR);
+		player.setSpeedMultiplier(player.getSpeedMultiplier() / FACTOR);
 	}
-	
-	public float getR() {return 0f;}
-	public float getG() {return 0f;}
-	public float getB() {return 1f;}
 
+	public float getR() {
+		return 0f;
+	}
 
-	// a fast player can be hard to control, so it's not that good of powerup, so it's rather common. 
-	public static int getFrequency() { return 6; }
+	public float getG() {
+		return 0f;
+	}
+
+	public float getB() {
+		return 1f;
+	}
+
+	public static int getFrequency() {
+		return 6;
+	}
 }

@@ -17,6 +17,8 @@ public class RandomTeleport extends PowerUp {
 		player.moveToRandomUnoccupiedArea();
 	}
 
-	public static int getFrequency() { return 5; }
+	public static int getFrequency() {
+		return 5;
+	}
 
 }

@@ -8,30 +8,30 @@ public class ScoreUp extends PowerUp {
 
 	private final static float DURATION = 0;
 	public final static int SCORE_BONUS = 10;
-	
+
 	private String text;
-	
+
 	public ScoreUp(final Vector2 position) {
-		super(position, PowerUpType.SCORE_UP, DURATION);	
+		super(position, PowerUpType.SCORE_UP, DURATION);
 	}
 
 	public int getScoreBonus() {
 		return SCORE_BONUS;
 	}
-	
-	
-	
+
 	@Override
 	public void activateEffect(final Player player) {
-		 text = (int)(player.getScoreMultiplier() * SCORE_BONUS) +"+";
+		text = (int) (player.getScoreMultiplier() * SCORE_BONUS) + "+";
 		player.increaseScore(SCORE_BONUS);
 	}
 
 	@Override
-	public String getText(){
+	public String getText() {
 		return text;
 	}
 
-	public static int getFrequency() { return 7; }
+	public static int getFrequency() {
+		return 7;
+	}
 
 }

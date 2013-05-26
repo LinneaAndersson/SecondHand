@@ -1,9 +1,0 @@
-AemW - Andreas Wahlström
-Erkaman - Eric Arnebäck
-chewchew - Johan Gerdin
-LinneaAndersson - Linnéa Andersson
-
-When you use gitinspector add these so that they dont show up
--x andengine -x badlogic
-
-See Twist/.pmd for the PMD settings we decided to use.

@@ -20,7 +20,10 @@ collisionResolver:blackHole.eatEntity(entity)
 [c:Else blackHole eatEntityUtil entity]
     blackHole:blackHole.eatEntityUtil(entity)
     [c:If not blackHole canEat entity]
-        blackHole:blackHole.entityWasTooBigTooEat(entity)
+        blackHole:blackHole.canEat(entity)
+    [/c]
+    [c:Then entityWasTooBigTooEat]
+        blackHole[1]:blackHole.entityWasTooBigTooEat(entity)
     [/c]
     [c:Else]
         blackHole[1]:scoreValue=entity.getScoreValue()

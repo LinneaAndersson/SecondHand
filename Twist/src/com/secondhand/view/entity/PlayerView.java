@@ -10,9 +10,9 @@ import com.secondhand.view.resource.Sounds;
 
 public class PlayerView extends BlackHoleView {
 
-	public PlayerView(final PhysicsWorld physicsWorld, final Player player){
+	public PlayerView(final PhysicsWorld physicsWorld, final Player player) {
 		super(physicsWorld, player);
-		
+
 		getBody().setLinearDamping(0.5f);
 	}
 
@@ -20,16 +20,19 @@ public class PlayerView extends BlackHoleView {
 	public void propertyChange(final PropertyChangeEvent event) {
 		super.propertyChange(event);
 		final String propertyName = event.getPropertyName();
-		
+
 		if (propertyName.equalsIgnoreCase(Player.SOUND)) {
 
-			if(Sounds.getInstance().getPlayerSound(((SoundType)event.getNewValue())) != null){
-				Sounds.getInstance().getPlayerSound((SoundType)(event.getNewValue())).play();
+			if (Sounds.getInstance().getPlayerSound(
+					((SoundType) event.getNewValue())) != null) {
+				Sounds.getInstance()
+						.getPlayerSound((SoundType) (event.getNewValue()))
+						.play();
 			}
 
-		}else if (  propertyName.equalsIgnoreCase(Player.COLOR)) {
-			
-			final Player player = (Player)event.getSource();
+		} else if (propertyName.equalsIgnoreCase(Player.COLOR)) {
+
+			final Player player = (Player) event.getSource();
 			final float[] RGB = player.getRGB();
 			this.shape.setColor(RGB[0], RGB[1], RGB[2]);
 

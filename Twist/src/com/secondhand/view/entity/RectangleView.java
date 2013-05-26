@@ -9,10 +9,12 @@ import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.secondhand.model.entity.RectangleEntity;
 
 public class RectangleView extends EntityView {
-	
-	public RectangleView(final PhysicsWorld physicsWorld, final RectangleEntity rectangleEntity , final RectangularShape rectangle,
-			final FixtureDef fixtureDef) {
-		super(physicsWorld, rectangleEntity, rectangle,
-				PhysicsFactory.createBoxBody(physicsWorld, rectangle, BodyType.DynamicBody, fixtureDef));
+
+	public RectangleView(final PhysicsWorld physicsWorld,
+			final RectangleEntity rectangleEntity,
+			final RectangularShape rectangle, final FixtureDef fixtureDef) {
+		super(physicsWorld, rectangleEntity, rectangle, PhysicsFactory
+				.createBoxBody(physicsWorld, rectangle, BodyType.DynamicBody,
+						fixtureDef));
 	}
 }

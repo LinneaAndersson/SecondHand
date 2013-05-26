@@ -29,7 +29,7 @@ public class CircleEntityTest extends TestCase {
 		
 		final Vector2 relativePosition = new Vector2(centerX + radius*2, centerY);
 		final Vector2 expectedSurfacePosition = new Vector2(centerX + radius, centerY);
-		final Vector2 surfacePosition = entity.getSurfacePosition(relativePosition, false);
+		final Vector2 surfacePosition = entity.calculateSurfacePosition(relativePosition, false);
 		assertTrue(expectedSurfacePosition.x == surfacePosition.x);
 		assertTrue(expectedSurfacePosition.y == surfacePosition.y);
 	}

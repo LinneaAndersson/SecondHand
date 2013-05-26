@@ -17,7 +17,8 @@ public abstract class CircleEntity extends Entity {
 		return this.radius;
 	}
 
-	public Vector2 getSurfacePosition(final Vector2 relativePosition,
+	/* Calculates suface position relative to a given position. */
+	public Vector2 calculateSurfacePosition(final Vector2 relativePosition,
 			final boolean farSide) {
 		final Vector2 entityCenterPosition = new Vector2(getCenterX(),
 				getCenterY());

@@ -8,26 +8,27 @@ import com.secondhand.model.powerup.PowerUp;
 import com.secondhand.view.andengine.entity.RocketEmitter;
 import com.secondhand.view.scene.GamePlayScene;
 
+/* Singleton class for creating various timers. */
 public final class TimerFactory {
 
 	private TimerFactory() {
 	}
-
+	
+	/* PowerUp timer */
 	public static TimerHandler createTimer(final SceneManager handler,
 			final IGameWorld gameWorld, final PowerUp powerUp) {
 		return new TimerHandler(powerUp.getDuration(), new ITimerCallback() {
-			private PowerUp timerPowerUp = powerUp;
-
 			@Override
 			public void onTimePassed(final TimerHandler pTimerHandler) {
-				if (gameWorld.getPowerUpList().contains(timerPowerUp)) {
-					gameWorld.getPowerUpList().remove(timerPowerUp);
+				if (gameWorld.getPowerUpList().contains(powerUp)) {
+					gameWorld.getPowerUpList().remove(powerUp);
 				}
 				handler.unregisterUpdateHandler(pTimerHandler);
 			}
 		});
 	}
 
+	/* RocketParticleSystem timer */
 	public static TimerHandler createRocketTimer(final SceneManager handler,
 			final GamePlayScene scene, final RocketEmitter emitter) {
 		return new TimerHandler(RocketEmitter.DURATION, new ITimerCallback() {

@@ -258,7 +258,7 @@ public class GamePlayScene extends GameScene implements PropertyChangeListener {
 		final com.secondhand.model.physics.Vector2 convertedTouchPosition = new com.secondhand.model.physics.Vector2(
 				touchPosition.x, touchPosition.y);
 		final com.secondhand.model.physics.Vector2 surfacePosition = player
-				.getSurfacePosition(convertedTouchPosition,
+				.calculateSurfacePosition(convertedTouchPosition,
 						player.isMirroredMovement());
 
 		final RocketEmitter emitter = new RocketEmitter(surfacePosition.x,

@@ -5,10 +5,10 @@ import org.anddev.andengine.entity.text.Text;
 import org.anddev.andengine.opengl.font.Font;
 import org.anddev.andengine.util.HorizontalAlign;
 
+import android.content.Context;
+
 import com.secondhand.view.resource.Fonts;
 import com.secondhand.view.resource.LocalizationStrings;
-
-import android.content.Context;
 
 public class InstructionScene extends GameScene {
 

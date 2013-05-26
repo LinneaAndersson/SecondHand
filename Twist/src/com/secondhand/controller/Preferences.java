@@ -1,9 +1,9 @@
 package com.secondhand.controller;
 
-import com.secondhand.model.entity.GameSettings;
-
 import android.app.Activity;
 import android.content.SharedPreferences;
+
+import com.secondhand.model.entity.GameSettings;
 
 public final class Preferences {
 	private static Preferences instance = new Preferences();

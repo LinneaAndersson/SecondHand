@@ -5,7 +5,6 @@ import java.io.IOException;
 import org.anddev.andengine.audio.sound.Sound;
 import org.anddev.andengine.audio.sound.SoundFactory;
 
-import com.secondhand.debug.MyDebug;
 import com.secondhand.model.resource.SoundType;
 
 /**
@@ -30,7 +29,6 @@ public class SoundLoader extends Loader {
     		return loadedSound;
     	} 
     	catch (final IOException e) {
-    		MyDebug.e("could not load sound \"" + sound.getPath() + "\":" + e);
     		return null;
     	}
     }

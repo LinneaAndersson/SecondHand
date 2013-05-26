@@ -6,8 +6,6 @@ import org.anddev.andengine.opengl.texture.atlas.bitmap.BitmapTextureAtlasTextur
 import org.anddev.andengine.opengl.texture.atlas.bitmap.source.AssetBitmapTextureAtlasSource;
 import org.anddev.andengine.opengl.texture.region.TextureRegion;
 
-import com.secondhand.debug.MyDebug;
-
 /**
  * Singelton class that makes loading TextureRegions much more convenient. 
  */
@@ -34,7 +32,6 @@ public class TextureRegionLoader extends Loader {
     	try {
 			Thread.sleep(1);
 		} catch (InterruptedException e) {
-			MyDebug.e(e);
 		}
     	
     	return textureRegion;

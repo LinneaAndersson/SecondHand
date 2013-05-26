@@ -8,7 +8,6 @@ import java.util.List;
 
 import junit.framework.TestCase;
 
-import com.secondhand.debug.MyDebug;
 import com.secondhand.model.entity.BlackHole;
 import com.secondhand.model.entity.Enemy;
 import com.secondhand.model.entity.Obstacle;
@@ -272,7 +271,6 @@ public class BlackHoleTest extends TestCase {
 			if(name.equals(Player.INCREASE_SCORE)) {
 				final int newV = (Integer)event.getNewValue();
 				final int old = (Integer)event.getOldValue();
-				MyDebug.d("newScore: " + newScore);
 				if(old == 10 &&  newV == newScore)
 					scoreChangeProperlySent = true;
 			} 

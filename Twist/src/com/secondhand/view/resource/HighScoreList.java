@@ -11,8 +11,6 @@ import java.util.List;
 
 import android.content.Context;
 
-import com.secondhand.debug.MyDebug;
-
 // this class actually uses the android OS to do
 // the high score file loading, so does it really belong in the model?
 public final class HighScoreList {
@@ -68,12 +66,12 @@ public final class HighScoreList {
 			}
 		}
 		catch (IOException e) {
-			MyDebug.e("could not load high score file",  e);
+			throw new AssertionError("could not load high score file");
 		} finally {
 			try {
 				writer.close();
 			} catch (IOException e) {
-				MyDebug.e("could not close high score file for writing",  e);
+				throw new AssertionError("could not close high score file for writing");
 			}
 		}
 	}
@@ -113,7 +111,7 @@ public final class HighScoreList {
 		}
 
 		catch (IOException e) {
-			MyDebug.e("could not load high score file",  e);
+			throw new AssertionError("could not load high score file");
 		}
 
 	}

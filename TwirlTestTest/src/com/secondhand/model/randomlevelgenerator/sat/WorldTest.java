@@ -3,15 +3,13 @@ package com.secondhand.model.randomlevelgenerator.sat;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.secondhand.debug.MyDebug;
+import junit.framework.TestCase;
+
 import com.secondhand.model.physics.Vector2;
 import com.secondhand.model.util.sat.Circle;
 import com.secondhand.model.util.sat.Polygon;
 import com.secondhand.model.util.sat.PolygonFactory;
 import com.secondhand.model.util.sat.World;
-
-
-import junit.framework.TestCase;
 
 public class WorldTest extends TestCase {
 
@@ -64,12 +62,8 @@ public class WorldTest extends TestCase {
 	
 	public void testCreateCircle() {
 
-		MyDebug.d("testCreateCircle");
-
 		World world = new World(100, 100);
 
-		
-		
 		// outside world bounds
 		Circle circ = new Circle(new Vector2(0.5f,0.5f), 1);
 		assertFalse(world.isUnoccupied(circ));
@@ -116,8 +110,6 @@ public class WorldTest extends TestCase {
 	// with a circle and a polygon. 
 	public void testCreateCircle2() {
 		
-		MyDebug.d("testCreateCircle2");
-
 		World world = new World(100, 100);
 
 		List<Vector2> edges = new ArrayList<Vector2>();

@@ -22,7 +22,6 @@ public final class CollisionResolver implements ICollisionResolver {
 			if (a instanceof Player || b instanceof Player) {
 				this.gameWorld.getPropertyChangeSupport().firePropertyChange(
 						"PlayerWallCollision", false, true);
-
 			}
 			return;
 		}

@@ -21,11 +21,14 @@ public abstract class CircleEntity extends Entity {
 			final boolean farSide) {
 		final Vector2 entityCenterPosition = new Vector2(getCenterX(),
 				getCenterY());
-
-		// Factor is negative if surfacePosition is far side of circle
+  
+		/* Factor is negative if surfacePosition is far side of circle */
 		final float factor = (farSide ? -1 : 1) * getRadius()
 				/ relativePosition.dst(entityCenterPosition);
 
+		/* Approximate the surface x and y values.
+		 * Entity center position plus the fraction of the distance in x and y respectively,
+		 * based on previous calculated factor. */
 		final float surfaceX = entityCenterPosition.x + factor
 				* (relativePosition.x - entityCenterPosition.x);
 		final float surfaceY = entityCenterPosition.y + factor

@@ -13,6 +13,10 @@ public final class Preferences {
 	public static final String MIRRORED_MOVEMENT = "mirroredMovement";
 	public static final String ENEMIES = "enemies";
 	public static final String MUSIC = "music";
+	
+	private static final boolean MIRRORED_MOVEMENT_DEFAULT = false;
+	private static final boolean ENEMIES_DEFAULT = true;
+	private static final boolean MUSIC_DEFAULT = true;
 
 	private Preferences() {
 	}
@@ -56,14 +60,14 @@ public final class Preferences {
 	}
 
 	public boolean isMirroredMovement() {
-		return preferences.getBoolean(MIRRORED_MOVEMENT, false);
+		return preferences.getBoolean(MIRRORED_MOVEMENT, MIRRORED_MOVEMENT_DEFAULT);
 	}
 
 	public boolean hasEnemies() {
-		return preferences.getBoolean(ENEMIES, true);
+		return preferences.getBoolean(ENEMIES, ENEMIES_DEFAULT);
 	}
 
 	public boolean hasMusic() {
-		return preferences.getBoolean(MUSIC, true);
+		return preferences.getBoolean(MUSIC, MUSIC_DEFAULT);
 	}
 }

@@ -13,3 +13,4 @@ When you use gitinspector, add these flags:
 
 See Twist/.pmd for the PMD settings we decided to use.
 
+All the documentation can be found on the documentation branch.

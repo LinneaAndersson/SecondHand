@@ -11,11 +11,11 @@ public abstract class PowerUp extends RectangleEntity implements IPowerUp {
 
 	public final static int WIDTH = 64;
 	public final static int HEIGHT = 64;
-
+	
+	private final static float SCORE_WORTH = 0;
+	
 	protected float duration;
 	private final PowerUpType powerUpType;
-
-	private final float[] RGB = new float[3];
 
 	public PowerUp(final Vector2 position, final PowerUpType powerUpType,
 			final float duration) {
@@ -40,7 +40,7 @@ public abstract class PowerUp extends RectangleEntity implements IPowerUp {
 
 	@Override
 	protected float getScoreWorth() {
-		return 0;
+		return SCORE_WORTH;
 	}
 
 	@Override
@@ -86,17 +86,17 @@ public abstract class PowerUp extends RectangleEntity implements IPowerUp {
 
 	@Override
 	public void resetPlayerColor(final Player player) {
-		RGB[0] = Player.DEFAULT_COLOR_VALUE;
-		RGB[1] = Player.DEFAULT_COLOR_VALUE;
-		RGB[2] = Player.DEFAULT_COLOR_VALUE;
-		player.setRGB(RGB);
+		player.setRGB(new float[] {
+				Player.DEFAULT_COLOR_VALUE,
+				Player.DEFAULT_COLOR_VALUE,
+				Player.DEFAULT_COLOR_VALUE });
 	}
 
 	private void changePlayerColor(final Player player) {
-		RGB[0] = this.getR();
-		RGB[1] = this.getG();
-		RGB[2] = this.getB();
-		player.setRGB(RGB);
+		player.setRGB(new float[] {
+				this.getR(),
+				this.getG(),
+				this.getB() });
 	}
 
 }

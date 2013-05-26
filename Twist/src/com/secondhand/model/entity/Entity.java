@@ -30,7 +30,8 @@ public abstract class Entity implements IPhysicsObject {
 		onPhysicsAssigned();
 	}
 
-	public void onPhysicsAssigned() {}
+	public void onPhysicsAssigned() {
+	}
 
 	@Override
 	public boolean isEdible() {

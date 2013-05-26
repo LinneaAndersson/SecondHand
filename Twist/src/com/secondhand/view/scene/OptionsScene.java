@@ -19,16 +19,16 @@ public class OptionsScene extends GameMenuScene {
 	public static final int ENEMIES_FALSE = 3;
 	public static final int MUSIC_ON = 4;
 	public static final int MUSIC_OFF = 5;
-	
+
 	private IMenuItem enemiesOn;
-	private IMenuItem enemiesOff; 
-	
+	private IMenuItem enemiesOff;
+
 	private IMenuItem mirroredMovementOn;
 	private IMenuItem mirroredMovementOff;
 
 	private IMenuItem musicOn;
 	private IMenuItem musicOff;
-	
+
 	public OptionsScene(final Engine engine, final Context context) {
 		super(engine, context);
 
@@ -58,18 +58,17 @@ public class OptionsScene extends GameMenuScene {
 
 		music = new Text(100, 390, mFont, LocalizationStrings.getInstance()
 				.getLocalizedString("music"), HorizontalAlign.CENTER);
-		
+
 		this.attachChild(enemy);
 		this.attachChild(options);
 		this.attachChild(mirroredMovement);
 		this.attachChild(music);
-		
+
 		layoutButtons();
 	}
 
 	private void layoutButtons() {
 
-		// enemies button
 		final Font menuItemFont = Fonts.getInstance().menuItemFont;
 
 		enemiesOn = new TextMenuItem(ENEMIES_TRUE, menuItemFont,
@@ -90,21 +89,20 @@ public class OptionsScene extends GameMenuScene {
 				menuItemFont, LocalizationStrings.getInstance()
 						.getLocalizedString("off"));
 
-		// look better if both on and of buttons have the same alignment
 		mirroredMovementOn.setPosition(100, 200);
 		addMenuItem(mirroredMovementOn);
 
 		mirroredMovementOff.setPosition(200, 200);
 		addMenuItem(mirroredMovementOff);
-		
-		musicOn = new TextMenuItem(MUSIC_ON, menuItemFont, 
-				LocalizationStrings.getInstance().getLocalizedString("on"));
-		musicOff = new TextMenuItem(MUSIC_OFF, menuItemFont, 
+
+		musicOn = new TextMenuItem(MUSIC_ON, menuItemFont, LocalizationStrings
+				.getInstance().getLocalizedString("on"));
+		musicOff = new TextMenuItem(MUSIC_OFF, menuItemFont,
 				LocalizationStrings.getInstance().getLocalizedString("off"));
-		
+
 		musicOn.setPosition(100, 440);
 		addMenuItem(musicOn);
-		
+
 		musicOff.setPosition(200, 440);
 		addMenuItem(musicOff);
 	}
@@ -138,7 +136,7 @@ public class OptionsScene extends GameMenuScene {
 			musicOff.setColor(1f, 1f, 1f);
 		}
 	}
-	
+
 	@Override
 	public AllScenes getParentScene() {
 		return AllScenes.MAIN_MENU_SCENE;

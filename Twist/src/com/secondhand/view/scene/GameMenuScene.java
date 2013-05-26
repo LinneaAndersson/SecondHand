@@ -15,7 +15,7 @@ import android.content.Context;
 
 import com.secondhand.view.resource.Fonts;
 
-/**
+/*
  * Base class for all menu scenes.
  */
 public abstract class GameMenuScene extends MenuScene implements IGameScene {
@@ -24,12 +24,12 @@ public abstract class GameMenuScene extends MenuScene implements IGameScene {
 	protected final Engine engine;
 	protected final Context context;
 	private boolean isLoaded;
-	
+
 	public GameMenuScene(final Engine engine, final Context context) {
 		super(engine.getCamera());
-	
+
 		// we do this to keep the API consistent
-		this.smoothCamera = (SmoothCamera)this.mCamera;
+		this.smoothCamera = (SmoothCamera) this.mCamera;
 		this.context = context;
 		this.engine = engine;
 	}
@@ -57,7 +57,7 @@ public abstract class GameMenuScene extends MenuScene implements IGameScene {
 		return (int) fontHeight + headlineSpacing * 2 - 50;
 	}
 
-	/**
+	/*
 	 * The separate menu items are laid out centered horizontally. All these
 	 * items are stacked up on each other and this stack is centered vertically.
 	 */
@@ -109,7 +109,7 @@ public abstract class GameMenuScene extends MenuScene implements IGameScene {
 		this.detachChildren();
 		this.isLoaded = true;
 	}
-	
+
 	@Override
 	public boolean isLoaded() {
 		return this.isLoaded;
@@ -119,7 +119,9 @@ public abstract class GameMenuScene extends MenuScene implements IGameScene {
 	public Scene getScene() {
 		return this;
 	}
-	
+
 	@Override
-	public void onSwitchScene() { this.isLoaded = false; }
+	public void onSwitchScene() {
+		this.isLoaded = false;
+	}
 }

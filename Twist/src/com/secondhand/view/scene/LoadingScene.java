@@ -15,9 +15,9 @@ public class LoadingScene extends GameScene {
 		super(engine, context);
 		Fonts.getInstance().load();
 	}
-	
+
 	private LoadingTextView loadingTextView;
-	
+
 	public LoadingTextView getLoadingTextView() {
 		return this.loadingTextView;
 	}
@@ -25,8 +25,8 @@ public class LoadingScene extends GameScene {
 	@Override
 	public void loadScene() {
 		super.loadScene();
-		
-		 this.loadingTextView = new LoadingTextView(this.smoothCamera);
+
+		this.loadingTextView = new LoadingTextView(this.smoothCamera);
 		// add loading text
 		this.attachChild(this.loadingTextView);
 	}
@@ -36,9 +36,7 @@ public class LoadingScene extends GameScene {
 		new AsyncTaskGameLoader().execute(new IAsyncCallback() {
 
 			public void work() {
-
 				callback.doWork();
-				
 			}
 
 			@Override
@@ -53,5 +51,4 @@ public class LoadingScene extends GameScene {
 		return null;
 	}
 
-	
 }

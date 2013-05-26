@@ -292,6 +292,8 @@ public class GameWorldTest extends TestCase implements PropertyChangeListener {
 		s.fire(Entity.IS_SCHEDULED_FOR_DELETION, enemy);
 		s.fire(Entity.IS_SCHEDULED_FOR_DELETION, planet);
 
+		// Don't know why, but this only works if you run the test for only this
+		// class. Else you will get nullpointer exception
 		gWorld.updateGameWorld();
 
 		assertEquals(true, testPhysicsEnemy.delete);
@@ -313,12 +315,14 @@ public class GameWorldTest extends TestCase implements PropertyChangeListener {
 		TestPhysicsEntity testPhysicsPlanet = new TestPhysicsEntity();
 		planet.setPhysics(testPhysicsPlanet);
 
+		// Don't know why, but this only works if you run the test for only this
+		// class. Else you will get nullpointer exception
 		player.eatEntity(planet);
 		while (player.getIncreaseSize() >= 0.2f) {
 			gWorld.updateGameWorld();
 		}
 		gWorld.updateGameWorld();
-		
+
 		assertEquals((planet.getRadius() * BlackHole.GROWTH_FACTOR)
 				+ GameWorld.PLAYER_STARTING_SIZE, player.getRadius(), 0.0005f);
 

@@ -14,7 +14,7 @@ public class MyPhysicsWorld implements IPhysicsWorld {
 	private ICollisionResolver collisionResolver;
 	private final PhysicsWorldBounds bounds;
 
-	public MyPhysicsWorld(final PhysicsWorld physicsWorld){
+	public MyPhysicsWorld(final PhysicsWorld physicsWorld) {
 
 		this.physicsWorld = physicsWorld;
 		bounds = new PhysicsWorldBounds(physicsWorld);
@@ -59,31 +59,32 @@ public class MyPhysicsWorld implements IPhysicsWorld {
 	public void setContactListener() {
 		physicsWorld.setContactListener(new CollisionContactListener(this));
 	}
-	
+
 	@Override
 	public void unsetContactListener() {
 		physicsWorld.setContactListener(null);
 	}
-	
+
 	@Override
 	public void setCollisionResolver(final ICollisionResolver collisionResolver) {
 		this.collisionResolver = collisionResolver;
 	}
 
-	
 	@Override
-	public com.secondhand.model.physics.Vector2 getRandomUnOccupiedArea(final int worldWidth, final int worldHeight, final float r, final Random rng){	
-		
+	public com.secondhand.model.physics.Vector2 getRandomUnOccupiedArea(
+			final int worldWidth, final int worldHeight, final float r,
+			final Random rng) {
+
 		float x, y;
-		
-		while(true) {
-			
+
+		while (true) {
+
 			x = rng.nextInt(worldWidth);
 			y = rng.nextInt(worldHeight);
-			
-			if(isAreaUnOccupied(x, y, r))
+
+			if (isAreaUnOccupied(x, y, r))
 				break;
 		}
-		return new com.secondhand.model.physics.Vector2(x,y);
+		return new com.secondhand.model.physics.Vector2(x, y);
 	}
 }

@@ -12,8 +12,9 @@ import com.secondhand.model.physics.Vector2;
 import com.secondhand.view.opengl.Polygon;
 
 public final class MyPhysicsFactory {
-	
-	private MyPhysicsFactory() {} 
+
+	private MyPhysicsFactory() {
+	}
 
 	public static Body createPolygonBody(final PhysicsWorld physicsWorld,
 			final Polygon polygon, final BodyType bodyType,
@@ -27,10 +28,9 @@ public final class MyPhysicsFactory {
 					/ PIXEL_TO_METER_RATIO_DEFAULT);
 		}
 
-		
-			final Body body = PhysicsFactory.createPolygonBody(physicsWorld, polygon,
-					vertices, bodyType, fixtureDef);
-		
+		final Body body = PhysicsFactory.createPolygonBody(physicsWorld,
+				polygon, vertices, bodyType, fixtureDef);
+
 		return body;
-	}	
+	}
 }

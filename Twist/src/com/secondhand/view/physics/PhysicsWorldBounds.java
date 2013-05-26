@@ -13,10 +13,9 @@ public class PhysicsWorldBounds {
 	private final PhysicsWorld physicsWorld;
 	private Body[] bodies;
 	private Shape[] worldBounds;
-	
 
-	public PhysicsWorldBounds(final PhysicsWorld physicsWorld){
-		this.physicsWorld=physicsWorld;
+	public PhysicsWorldBounds(final PhysicsWorld physicsWorld) {
+		this.physicsWorld = physicsWorld;
 	}
 
 	public void setWorldBounds(final int levelWidth, final int levelHeight) {
@@ -44,11 +43,11 @@ public class PhysicsWorldBounds {
 				BodyType.StaticBody, wallFixtureDef);
 	}
 
-	public void removeBounds (){
+	public void removeBounds() {
 		for (int i = 0; i < 4; ++i) {
 			this.physicsWorld.destroyBody(bodies[i]);
 			this.worldBounds[i].detachSelf();
 		}
-		
+
 	}
 }

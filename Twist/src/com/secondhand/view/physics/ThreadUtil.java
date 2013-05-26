@@ -5,19 +5,20 @@ import org.anddev.andengine.engine.handler.IUpdateHandler;
 
 public final class ThreadUtil {
 	private static ThreadUtil instance = new ThreadUtil();
-	
+
 	private Engine engine;
-	
-	private ThreadUtil() {}
-	
+
+	private ThreadUtil() {
+	}
+
 	public static ThreadUtil getInstance() {
 		return ThreadUtil.instance;
 	}
-	
-	public void  initialize(final Engine engine) {
+
+	public void initialize(final Engine engine) {
 		this.engine = engine;
 	}
-	
+
 	public void runOnUpdateThread(final Method method) {
 		engine.registerUpdateHandler(new IUpdateHandler() {
 			@Override
@@ -26,7 +27,7 @@ public final class ThreadUtil {
 				engine.runOnUpdateThread(new Runnable() {
 					@Override
 					public void run() {
-						
+
 						method.method();
 					}
 				});
@@ -38,7 +39,7 @@ public final class ThreadUtil {
 		});
 	}
 
-	public static abstract class Method{
+	public static abstract class Method {
 		public abstract void method();
 	}
 }

@@ -27,10 +27,10 @@ public class MyPhysicsEntity implements IPhysicsEntity {
 		this.physicsWorld = physicsWorld;
 		enemyUtil = new PhysicsEnemyUtil(physicsWorld);
 		body.setUserData(entity);
-		
-		
-		physicsConnector = new CustomPhysicsConnector(shape, entity instanceof CircleEntity,
-				body, true, !(entity instanceof Player));
+
+		physicsConnector = new CustomPhysicsConnector(shape,
+				entity instanceof CircleEntity, body, true,
+				!(entity instanceof Player));
 		physicsWorld.registerPhysicsConnector(physicsConnector);
 		this.body = body;
 		this.shape = shape;
@@ -46,16 +46,16 @@ public class MyPhysicsEntity implements IPhysicsEntity {
 	public float getCenterY() {
 		return body.getWorldCenter().y
 				* PhysicsConstants.PIXEL_TO_METER_RATIO_DEFAULT;
-	}	
+	}
 
 	@Override
 	public void deleteBody() {
-		
+
 		ThreadUtil.getInstance().runOnUpdateThread(new ThreadUtil.Method() {
 			@Override
 			public void method() {
 				physicsWorld.unregisterPhysicsConnector(physicsConnector);
-				physicsWorld.destroyBody(body);					
+				physicsWorld.destroyBody(body);
 
 			}
 		});
@@ -79,9 +79,10 @@ public class MyPhysicsEntity implements IPhysicsEntity {
 		return new Vector2(v.x * PhysicsConstants.PIXEL_TO_METER_RATIO_DEFAULT,
 				v.y * PhysicsConstants.PIXEL_TO_METER_RATIO_DEFAULT);
 	}
-	
+
 	@Override
-	public boolean isStraightLine(final IPhysicsObject entity, final IPhysicsObject enemy) {
+	public boolean isStraightLine(final IPhysicsObject entity,
+			final IPhysicsObject enemy) {
 		return enemyUtil.straightLine(entity, enemy);
 	}
 
@@ -90,8 +91,7 @@ public class MyPhysicsEntity implements IPhysicsEntity {
 			final List<com.secondhand.model.physics.Vector2> polygon) {
 
 		// we define the radius to be the maximum length between the center of
-		// mass
-		// and a vertex in the polygon.
+		// mass and a vertex in the polygon.
 
 		float maxLength = 0;
 
@@ -119,11 +119,6 @@ public class MyPhysicsEntity implements IPhysicsEntity {
 
 	}
 
-	// andEngine or box2d coordinates in? and depending on from
-	// where we call the method we could perhaps have an vector as input.
-	// We souldn't need to do much more here, all other calculations should
-	// be done in model. Entity instead of body and then somehow get body?
-	// All entities that need this function are enemies and player.
 	@Override
 	public void applyImpulse(final com.secondhand.model.physics.Vector2 force,
 			final float maxSpeed) {
@@ -140,7 +135,8 @@ public class MyPhysicsEntity implements IPhysicsEntity {
 	}
 
 	@Override
-	public void applyImpulse(final com.secondhand.model.physics.Vector2 impulse,
+	public void applyImpulse(
+			final com.secondhand.model.physics.Vector2 impulse,
 			final com.secondhand.model.physics.Vector2 impulsePosition) {
 
 		body.applyLinearImpulse(new Vector2(impulse.x
@@ -158,9 +154,9 @@ public class MyPhysicsEntity implements IPhysicsEntity {
 		body.setLinearVelocity(0, 0);
 
 	}
-	
+
 	@Override
-	public float getVelocity(){
+	public float getVelocity() {
 		return this.body.getLinearVelocity().len();
 	}
 }

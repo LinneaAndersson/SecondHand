@@ -5,6 +5,7 @@ gw:GameWorld
 manager:EntityManager
 player:Player
 settings:GameSettings
+physics:IPhsyicsEntity
 vector2:Vector2
 
 ext:gw.updateWithTouchInput(position)
@@ -17,10 +18,19 @@ gw:player.reactToTouch(position)
  player:isMirroredMovement=settings.getInstance().isMirroredMovement()
 [/c]
 
+player:centerX=physics.getCenterX()
+player:centerY=physics.getCenterY()
 
-[c:alt Player should move towards touch]
- player:vector2.hello()
- --[else]
- player:not mirrored
+player:forcePostion=vector2.newVector(calculated using forcePosition and centerX and centerY)
+
+player:force=vector2.newVector(calculated using forcePosition and centerX and centerY)
+
+[c:alt If mirrored movement, then reverse the force]
+ player:force=vector2.mul(-1)
 [/c]
 
+player:vector2.len()
+
+player:vector2.mul()
+
+player:physics.applyImpulse(force, forcePosition)

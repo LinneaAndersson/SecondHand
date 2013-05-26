@@ -21,8 +21,9 @@ public class RocketEmitter extends ParticleSystem {
 
 	public RocketEmitter(final float surfaceX, final float surfaceY,
 			final float centerX, final float centerY) {
-		super(new CircleOutlineParticleEmitter(surfaceX, surfaceY, 10), 60, 60,
-				10, TextureRegions.getInstance().rocketParticleTexture);
+		super(	new CircleOutlineParticleEmitter(surfaceX, surfaceY, 
+				(float) Math.hypot(surfaceX - centerX, surfaceY - centerY) / 3), // To make particle effect bigger as player grows 
+				60, 60, 10, TextureRegions.getInstance().rocketParticleTexture);
 
 		addParticleInitializer(new ColorInitializer(1, 0, 0));
 		addParticleInitializer(new AlphaInitializer(0));

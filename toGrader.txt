@@ -1,9 +1,15 @@
+Twist
+
 AemW - Andreas Wahlström
 Erkaman - Eric Arnebäck
 chewchew - Johan Gerdin
 LinneaAndersson - Linnéa Andersson
 
-When you use gitinspector add these so that they dont show up
+The name of the game is Twist. Twist/ is the main folder you want to
+look in. TwirlTestTest/ has all the tests.
+
+When you use gitinspector, add these flags:
 -x andengine -x badlogic
 
 See Twist/.pmd for the PMD settings we decided to use.
+

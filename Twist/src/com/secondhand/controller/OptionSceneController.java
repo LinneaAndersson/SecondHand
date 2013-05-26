@@ -8,18 +8,17 @@ import com.secondhand.view.scene.OptionsScene;
 
 public class OptionSceneController implements IOnMenuItemClickListener {
 	private final OptionsScene view;
-	
 
 	public OptionSceneController(final OptionsScene optionsScene) {
 		super();
 		this.view = optionsScene;
 		view.setOnMenuItemClickListener(this);
-		
+
 		optionsScene.setHasEnemies(Preferences.getInstance().hasEnemies());
-		optionsScene.setMirroredMovement(Preferences.getInstance().isMirroredMovement());
+		optionsScene.setMirroredMovement(Preferences.getInstance()
+				.isMirroredMovement());
 		optionsScene.setMusic(Preferences.getInstance().hasMusic());
 	}
-
 
 	@Override
 	public boolean onMenuItemClicked(final MenuScene pMenuScene,
@@ -45,10 +44,9 @@ public class OptionSceneController implements IOnMenuItemClickListener {
 		}
 		return false;
 	}
-	
 
 	private void setIsMirroredMovement(final boolean mirroredMovement) {
-		// set prefences. 
+		// set prefences.
 		view.setMirroredMovement(mirroredMovement);
 		Preferences.getInstance().setIsMirroredMovement(mirroredMovement);
 	}
@@ -58,7 +56,7 @@ public class OptionSceneController implements IOnMenuItemClickListener {
 		Preferences.getInstance().setHasEnemies(enemies);
 
 	}
-	
+
 	private void setHasMusic(final boolean music) {
 		view.setMusic(music);
 		Preferences.getInstance().setHasMusic(music);

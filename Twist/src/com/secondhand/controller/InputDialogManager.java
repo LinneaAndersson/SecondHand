@@ -1,6 +1,5 @@
 package com.secondhand.controller;
 
-
 // manages the input dialog used when entering the player name. 
 public final class InputDialogManager {
 	private static InputDialogManager instance;
@@ -20,9 +19,9 @@ public final class InputDialogManager {
 	private InputDialogManager() {
 	}
 
-	/**
+	/*
 	 * Setup this singelton class for usage.
-	 * */
+	 */
 	public void initialize(final MainActivity activity) {
 		this.activity = activity;
 	}
@@ -37,8 +36,7 @@ public final class InputDialogManager {
 		input = null;
 		activity.runOnUiThread(new Runnable() {
 			public void run() {
-				// so it's deprecated, huh? Well fuck you android!
-				activity.showDialog(MainActivity.TEXT_INPUT_DIALOG);	
+				activity.showDialog(MainActivity.TEXT_INPUT_DIALOG);
 			}
 		});
 	}

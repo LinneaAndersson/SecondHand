@@ -14,14 +14,14 @@ import com.secondhand.view.scene.LoadingScene;
 import com.secondhand.view.scene.MainMenuScene;
 import com.secondhand.view.scene.OptionsScene;
 
-/**
+/*
  * Is used to switch between different scenes. 
  */
 final class SceneManager {
 	private AllScenes currentSceneEnum;
 
 	private final Engine engine;
-	
+
 	private final HighScoreScene highScoreScene;
 	private final MainMenuScene mainMenuScene;
 	private final GamePlayScene gamePlayScene;
@@ -31,24 +31,24 @@ final class SceneManager {
 
 	public SceneManager(final Engine engine, final Context context) {
 		this.engine = engine;
-		
-		// create all the scenes. 
+
+		// create all the scenes.
 		this.loadingScene = new LoadingScene(this.engine, context);
 		this.mainMenuScene = new MainMenuScene(this.engine, context);
 		this.gamePlayScene = new GamePlayScene(this.engine, context);
 		this.highScoreScene = new HighScoreScene(this.engine, context);
-		this.optionScene = new OptionsScene(this.engine,context);
-		this.instructionScene = new InstructionScene(this.engine,context);
+		this.optionScene = new OptionsScene(this.engine, context);
+		this.instructionScene = new InstructionScene(this.engine, context);
 	}
 
 	public IGameScene getCurrentScene() {
 		return getScene(currentSceneEnum);
 	}
-	
+
 	public LoadingScene getLoadingScene() {
 		return this.loadingScene;
 	}
-	
+
 	public MainMenuScene getMainMenuScene() {
 		return this.mainMenuScene;
 	}
@@ -60,20 +60,20 @@ final class SceneManager {
 	public GamePlayScene getGamePlayScene() {
 		return this.gamePlayScene;
 	}
-	
-	public OptionsScene getOptionsScene(){
+
+	public OptionsScene getOptionsScene() {
 		return this.optionScene;
 	}
-	
-	public InstructionScene getInstructionsScene(){
+
+	public InstructionScene getInstructionsScene() {
 		return this.instructionScene;
 	}
-	
+
 	public IGameScene getScene(final AllScenes sceneEnum) {
 		IGameScene scene = null;
 
-		if (sceneEnum == AllScenes.LOADING_SCENE ||
-				sceneEnum == AllScenes.LEVEL_LOADING_SCENE) {
+		if (sceneEnum == AllScenes.LOADING_SCENE
+				|| sceneEnum == AllScenes.LEVEL_LOADING_SCENE) {
 			scene = this.loadingScene;
 		} else if (sceneEnum == AllScenes.MAIN_MENU_SCENE) {
 			scene = this.mainMenuScene;
@@ -81,9 +81,9 @@ final class SceneManager {
 			scene = this.gamePlayScene;
 		} else if (sceneEnum == AllScenes.HIGH_SCORE_SCENE) {
 			scene = this.highScoreScene;
-		} else if (sceneEnum == AllScenes.OPTION_SCENE){
+		} else if (sceneEnum == AllScenes.OPTION_SCENE) {
 			scene = this.optionScene;
-		} else if (sceneEnum == AllScenes.INSTRUCTION_SCENE){
+		} else if (sceneEnum == AllScenes.INSTRUCTION_SCENE) {
 			scene = this.instructionScene;
 		}
 
@@ -92,9 +92,9 @@ final class SceneManager {
 
 	public IGameScene setCurrentSceneEnum(final AllScenes currentSceneEnum) {
 		this.currentSceneEnum = currentSceneEnum;
-		final IGameScene currentScene = getCurrentScene();	
-		
-		if(!currentScene.isLoaded()) {
+		final IGameScene currentScene = getCurrentScene();
+
+		if (!currentScene.isLoaded()) {
 			currentScene.loadScene();
 		}
 
@@ -102,20 +102,20 @@ final class SceneManager {
 
 		return currentScene;
 	}
-		
+
 	public void switchScene(final AllScenes scene) {
-		
-		if(this.getCurrentScene() != null) {
+
+		if (this.getCurrentScene() != null) {
 			this.getCurrentScene().onSwitchScene();
 		}
-		
-		this.setCurrentSceneEnum(scene );
+
+		this.setCurrentSceneEnum(scene);
 	}
-	
+
 	public void registerUpdateHander(final IUpdateHandler updateHandler) {
 		this.engine.registerUpdateHandler(updateHandler);
 	}
-	
+
 	public void unregisterUpdateHandler(final IUpdateHandler updateHandler) {
 		this.engine.unregisterUpdateHandler(updateHandler);
 	}

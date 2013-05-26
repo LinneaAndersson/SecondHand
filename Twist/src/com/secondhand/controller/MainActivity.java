@@ -28,98 +28,101 @@ public class MainActivity extends BaseGameActivity {
 
 	public static final int CAMERA_WIDTH = 800;
 	public static final int CAMERA_HEIGHT = 480;
-	
+
 	public static final int TEXT_INPUT_DIALOG = 1;
-	
+
 	private SceneController sceneController;
 
 	public static Engine engine;
-	
+
 	@Override
 	public Engine onLoadEngine() {
-		
+
 		// configure camera
-	    final SmoothCamera camera = new SmoothCamera(0, 0, CAMERA_WIDTH, CAMERA_HEIGHT, Float.MAX_VALUE, Float.MAX_VALUE, 1.0f);
-	    
-	    // configure engine
-	    final EngineOptions engineOptions = new EngineOptions(
-	    		true, ScreenOrientation.LANDSCAPE, new RatioResolutionPolicy(CAMERA_WIDTH, CAMERA_HEIGHT), camera);
-	    engineOptions.setNeedsSound(true);
-	    engineOptions.setNeedsMusic(true);
-	    final Engine engine = new Engine(engineOptions);
-	    
-	    InputDialogManager.getInstance().initialize(this);
-	    
-	    // initialize loader classes:
-	    HighScoreList.getInstance().initialize(this);
-	    FontLoader.getInstance().initialize(this, engine);
-	    SoundLoader.getInstance().initialize(this, engine);
-	    MusicLoader.getInstance().initialize(this, engine);
-	    TextureRegionLoader.getInstance().initialize(this, engine);
-	    LocalizationStrings.getInstance().initialize(this);
-	    ThreadUtil.getInstance().initialize(engine);
-	    Preferences.getInstance().initialize(this);
-	 
-	    // initialze scene controller. 
-	    this.sceneController = new SceneController(engine, this);
-	    
-	    MainActivity.engine = engine;
-	     return engine;	
+		final SmoothCamera camera = new SmoothCamera(0, 0, CAMERA_WIDTH,
+				CAMERA_HEIGHT, Float.MAX_VALUE, Float.MAX_VALUE, 1.0f);
+
+		// configure engine
+		final EngineOptions engineOptions = new EngineOptions(true,
+				ScreenOrientation.LANDSCAPE, new RatioResolutionPolicy(
+						CAMERA_WIDTH, CAMERA_HEIGHT), camera);
+		engineOptions.setNeedsSound(true);
+		engineOptions.setNeedsMusic(true);
+		final Engine engine = new Engine(engineOptions);
+
+		InputDialogManager.getInstance().initialize(this);
+
+		// initialize loader classes:
+		HighScoreList.getInstance().initialize(this);
+		FontLoader.getInstance().initialize(this, engine);
+		SoundLoader.getInstance().initialize(this, engine);
+		MusicLoader.getInstance().initialize(this, engine);
+		TextureRegionLoader.getInstance().initialize(this, engine);
+		LocalizationStrings.getInstance().initialize(this);
+		ThreadUtil.getInstance().initialize(engine);
+		Preferences.getInstance().initialize(this);
+
+		// initialze scene controller.
+		this.sceneController = new SceneController(engine, this);
+
+		MainActivity.engine = engine;
+		return engine;
 	}
-	
+
 	@Override
 	public void onLoadResources() {
-		// not handled here, instead handled by singelton classes. 
+		// not handled here, instead handled by singelton classes.
 	}
 
 	@Override
 	public Scene onLoadScene() {
-		// the FPS logger is useful for optimizing performance.(the FPS is shown in LogCat)
+		// the FPS logger is useful for optimizing performance.(the FPS is shown
+		// in LogCat)
 		this.mEngine.registerUpdateHandler(new FPSLogger());
-	
-		this.sceneController.switchScene(AllScenes.LOADING_SCENE);	
+
+		this.sceneController.switchScene(AllScenes.LOADING_SCENE);
 		return this.sceneController.getCurrentScene();
 	}
-	
 
-	
 	@SuppressWarnings("deprecation")
-    @Override
-    protected Dialog onCreateDialog(final int pID) {
-            if (pID == TEXT_INPUT_DIALOG) {
-            	final AlertDialog.Builder alert = new AlertDialog.Builder(this);
+	@Override
+	protected Dialog onCreateDialog(final int pID) {
+		if (pID == TEXT_INPUT_DIALOG) {
+			final AlertDialog.Builder alert = new AlertDialog.Builder(this);
 
-            	alert.setTitle(LocalizationStrings.getInstance().getLocalizedString("high_score_dialog_title"));
-            	alert.setMessage(LocalizationStrings.getInstance().getLocalizedString("high_score_dialog_message"));
+			alert.setTitle(LocalizationStrings.getInstance()
+					.getLocalizedString("high_score_dialog_title"));
+			alert.setMessage(LocalizationStrings.getInstance()
+					.getLocalizedString("high_score_dialog_message"));
 
-            	// Set an EditText view to get user input 
-            	final EditText input = new EditText(this);
-            	alert.setView(input);
+			// Set an EditText view to get user input
+			final EditText input = new EditText(this);
+			alert.setView(input);
 
-            	alert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
-            	public void onClick(final DialogInterface dialog, final int whichButton) {
-            	  InputDialogManager.input = input.getText().toString();
-            	  }
-            	});
-            	
-            	return alert.create();
+			alert.setPositiveButton("Ok",
+					new DialogInterface.OnClickListener() {
+						public void onClick(final DialogInterface dialog,
+								final int whichButton) {
+							InputDialogManager.input = input.getText()
+									.toString();
+						}
+					});
 
-			} else {
-				// it's apparently deprecated, but I don't really give shit.
-				return super.onCreateDialog(pID);
-			}
-    }
+			return alert.create();
 
+		} else {
+			return super.onCreateDialog(pID);
+		}
+	}
 
 	@Override
 	public void onLoadComplete() {
-
 		// nothing
 	}
 
 	@Override
 	public boolean onKeyDown(final int pKeyCode, final KeyEvent pEvent) {
-		if(sceneController.sendOnKeyDownToCurrentScene(pKeyCode, pEvent)) {
+		if (sceneController.sendOnKeyDownToCurrentScene(pKeyCode, pEvent)) {
 			return true;
 		} else {
 			// else let AndEngine handle it.
@@ -128,16 +131,14 @@ public class MainActivity extends BaseGameActivity {
 	}
 
 	@Override
-	protected void onDestroy()
-	{
-		
-	    super.onDestroy();
-	    
-	    // ensure that the app is always shut down when exited. 
-	    // otherwise we get weird behaviour when restarting the app.
-	    if(sceneController.isGameLoaded())
+	protected void onDestroy() {
 
-	    	System.exit(0);    
+		super.onDestroy();
+
+		// ensure that the app is always shut down when exited.
+		// otherwise we get weird behaviour when restarting the app.
+		if (sceneController.isGameLoaded())
+
+			System.exit(0);
 	}
 }
-

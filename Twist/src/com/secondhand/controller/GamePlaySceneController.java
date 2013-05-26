@@ -18,7 +18,8 @@ import com.secondhand.view.resource.HighScoreList;
 import com.secondhand.view.scene.AllScenes;
 import com.secondhand.view.scene.GamePlayScene;
 
-final class GamePlaySceneController extends Entity implements PropertyChangeListener {
+final class GamePlaySceneController extends Entity implements
+		PropertyChangeListener {
 
 	private IGameWorld gameWorld;
 	private final SceneController sceneController;
@@ -27,7 +28,6 @@ final class GamePlaySceneController extends Entity implements PropertyChangeList
 	public GamePlaySceneController(final GamePlayScene scene,
 			final SceneController sceneController) {
 		super();
-		
 
 		this.gamePlayScene = scene;
 		this.sceneController = sceneController;
@@ -35,35 +35,35 @@ final class GamePlaySceneController extends Entity implements PropertyChangeList
 
 		registerController();
 	}
-	
+
 	// done every time the level changes.
 	private void registerController() {
 		gameWorld = gamePlayScene.getGameWorld();
 
 		gamePlayScene.attachChild(this);
-		
+
 		gameWorld.addListener(this);
 
-		//PlayerUtil adds this Controller as a listener
+		// PlayerUtil adds this Controller as a listener
 		this.gameWorld.getPlayer().addListener(this);
-		
+
 		gameWorld.getPowerUpList().addListener(this);
 		gameWorld.getPowerUpList().addListener(gamePlayScene);
-	
+
 		gameWorld.getPhysics().setContactListener();
 	}
-	
+
 	// we must unregister the listeners, elsewise the program will leak memory.
 	public void unregisterController() {
 		gamePlayScene.detachChild(this);
-		
+
 		this.gameWorld.removeListener(this);
-		
+
 		this.gameWorld.getPlayer().removeListener(this);
-		
+
 		this.gameWorld.getPowerUpList().removeListener(this);
 		this.gameWorld.getPowerUpList().removeListener(gamePlayScene);
-		
+
 		gameWorld.getPhysics().unsetContactListener();
 	}
 
@@ -89,7 +89,7 @@ final class GamePlaySceneController extends Entity implements PropertyChangeList
 			if (!HighScoreList.getInstance().madeItToHighScoreList(
 					gameWorld.getPlayer().getScore())) {
 				// go to high score.
-				
+
 				this.unregisterController();
 				this.sceneController.switchScene(AllScenes.HIGH_SCORE_SCENE);
 			}
@@ -98,12 +98,12 @@ final class GamePlaySceneController extends Entity implements PropertyChangeList
 
 				final HighScoreList.Entry newEntry = new HighScoreList.Entry(
 						InputDialogManager.input, gameWorld.getPlayer()
-						.getScore());
+								.getScore());
 				HighScoreList.getInstance().insertInHighScoreList(newEntry);
 				InputDialogManager.showing = false;
 
 				InputDialogManager.input = null;
-				
+
 				this.unregisterController();
 				this.sceneController.switchScene(AllScenes.HIGH_SCORE_SCENE);
 
@@ -118,23 +118,32 @@ final class GamePlaySceneController extends Entity implements PropertyChangeList
 		} else {
 			gameWorld.updateGameWorld();
 		}
-		
+
 	}
-	
+
 	@Override
 	public void propertyChange(final PropertyChangeEvent event) {
 		final String name = event.getPropertyName();
-		
+
 		if (name.equals(PowerUpList.ADD_POWERUP)) {
-			this.sceneController.getSceneManager().registerUpdateHander(TimerFactory.createTimer(this.sceneController.getSceneManager(), gameWorld, (PowerUp)event.getNewValue()));
+			this.sceneController.getSceneManager().registerUpdateHander(
+					TimerFactory.createTimer(
+							this.sceneController.getSceneManager(), gameWorld,
+							(PowerUp) event.getNewValue()));
 		} else if (name.equals("NextLevel")) {
 			this.unregisterController();
-			this.gamePlayScene.newLevelStarted(Preferences.getInstance().hasMusic());
+			this.gamePlayScene.newLevelStarted(Preferences.getInstance()
+					.hasMusic());
 			this.registerController();
 		} else if (name.equals(Player.MOVE)) {
 			final Vector2 touchPosition = (Vector2) event.getNewValue();
-			final RocketEmitter emitter = this.gamePlayScene.attachRocketEmitter(new com.badlogic.gdx.math.Vector2(touchPosition.x,touchPosition.y));
-			this.sceneController.getSceneManager().registerUpdateHander(TimerFactory.createRocketTimer(this.sceneController.getSceneManager(), this.gamePlayScene, emitter));
+			final RocketEmitter emitter = this.gamePlayScene
+					.attachRocketEmitter(new com.badlogic.gdx.math.Vector2(
+							touchPosition.x, touchPosition.y));
+			this.sceneController.getSceneManager().registerUpdateHander(
+					TimerFactory.createRocketTimer(
+							this.sceneController.getSceneManager(),
+							this.gamePlayScene, emitter));
 		}
 	}
 }

@@ -144,10 +144,16 @@ public class RandomLevelGeneratorTest extends TestCase {
 				nPowerUps++;
 			}
 		}
+		
 		assertEquals((7+5+5+14)*testGameWorld.levelNumber,rLG.entityList.size());
+		
 		assertEquals(nEnemies, testGameWorld.levelNumber*5);
+		assertEquals(nEnemies, rLG.enemyList.size());
+		
 		assertEquals(nObstacles, testGameWorld.levelNumber*5);
+		
 		assertEquals(nPlanets,14*testGameWorld.levelNumber);
+		
 		assertEquals(nPowerUps, testGameWorld.levelNumber*7);
 
 	}

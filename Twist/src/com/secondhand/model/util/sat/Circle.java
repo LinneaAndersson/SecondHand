@@ -30,6 +30,7 @@ public class Circle extends Shape {
 	        return new Vector2(proj_v.x + seg_a.x, proj_v.y + seg_a.y); 
 	  }
 	
+	  //  arguments are start and end points of the segment.
 	public boolean intersects(final Vector2 seg_a, final Vector2 seg_b) {
         final Vector2 closest = closest_point_on_seg(seg_a, seg_b);
         final Vector2 dist_v = new Vector2(this.position.x - closest.x, this.position.y - closest.y);

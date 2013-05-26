@@ -84,6 +84,8 @@ public class World {
 		else if(((shape1 instanceof Polygon) && (shape2 instanceof Circle)) ||
 				(shape1 instanceof Circle && shape2 instanceof Polygon)) {
 			
+			// polygon circle collision
+			
 				Polygon polygon = null;
 			Circle circle = null;
 
@@ -110,7 +112,7 @@ public class World {
 		        	return true;
 
 		    }
-			
+
 			return false;
 
 		} else {
@@ -147,13 +149,7 @@ public class World {
 			// do the projections overlap?
 			if (!p1.overlap(p2)) {
 				return false;
-				// also handle containment.
-				/*if (poly1.contains(poly2) || poly2.contains(poly1)) 
-					// then they intersect. 
-					return true;
-				else
-					// then we can guarantee that the shapes do not overlap
-					return false;*/
+				
 			}
 		}
 		// loop over the axes2
@@ -164,14 +160,8 @@ public class World {
 			final  Projection p2 = poly2.project(axis);
 			// do the projections overlap?
 			if (!p1.overlap(p2)) {
-				// also handle containment.
 				return false;
-				/*if (poly1.contains(poly2) || poly2.contains(poly1)) 
-					// then they intersect. 
-					return true;
-				else
-					// then we can guarantee that the shapes do not overlap
-					return false;*/
+				
 			}
 		}
 		// if we get here then we know that every axis had overlap on it

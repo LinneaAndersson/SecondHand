@@ -13,3 +13,10 @@ When you use gitinspector, add these flags:
 
 See Twist/.pmd for the PMD settings we decided to use.
 
+All the documentation can be found on the documentation branch.
+
+A version of the game you can install on your android-mobile can be
+found at SecondHand/Twirl.apk. Due to bugs in AndEninge, we cannot
+guarantee that it will work on your phone without crashing, but on
+your phones it performs well until about the third level of the game,
+where it usually crashes. We apologize for this.

@@ -11,7 +11,7 @@ import com.secondhand.model.entity.BlackHole;
 import com.secondhand.view.opengl.Circle;
 import com.secondhand.view.physics.FixtureDefs;
 
-public class BlackHoleView extends CircleView implements PropertyChangeListener {
+public class BlackHoleView extends CircleView {
 
 	public BlackHoleView(final PhysicsWorld physicsWorld,
 			final BlackHole blackHole) {

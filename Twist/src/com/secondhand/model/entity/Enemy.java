@@ -17,10 +17,6 @@ public class Enemy extends BlackHole {
 
 	private float maxSpeed;
 
-	@Override
-	public void onPhysicsAssigned() {
-	}
-
 	public Enemy(final Vector2 vector, final float radius) {
 		super(vector, radius, 0);
 		this.maxSpeed = ENEMY_MAX_SPEED;
@@ -36,10 +32,6 @@ public class Enemy extends BlackHole {
 
 	public static float getMinSize() {
 		return MIN_SIZE;
-	}
-
-	@Override
-	protected void onGrow() {
 	}
 
 	public float getDangerArea() {
@@ -60,12 +52,12 @@ public class Enemy extends BlackHole {
 	// player has highest chase-priority
 	public void moveEnemy(final Entity player, final List<Entity> entityList) {
 		if (isCloseToEntity(player, getHuntingArea()) && canEat(player)) {
-			dangerCheck(player);
+			moveTo(player);
 		} else if (!danger(player, entityList)) {
 
 			final Entity priority = getHighesPriority(entityList);
 			if (priority != null)
-				dangerCheck(priority);
+				moveTo(priority);
 			else if (physics.getVelocity() < 15)
 
 				moveEnemyRandom();
@@ -103,9 +95,8 @@ public class Enemy extends BlackHole {
 		return dx * dx + dy * dy <= margin;
 	}
 
-	// chase after smallest entity first
-	// could create many get-something and make different
-	// enemies behave different ( getClosest... )
+	// chase after smallest enemy first. if no eatable enemies close by
+	// chase smallest eatable planet
 	private Entity getHighesPriority(final List<Entity> entityList) {
 		Entity entity = null;
 		for (final Entity e : entityList) {
@@ -129,7 +120,7 @@ public class Enemy extends BlackHole {
 		}
 	}
 
-	private void dangerCheck(final Entity entity) {
+	private void moveTo(final Entity entity) {
 		if (entity != null) {
 			if (this.physics.isStraightLine(entity, this)) {
 				physics.applyImpulse(

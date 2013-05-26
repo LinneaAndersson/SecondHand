@@ -1,0 +1,17 @@
+bfs:BFS[a]
+/queue:FIFO
+someNode:Node
+node:Node
+adjList:List
+adj:Node
+
+bfs:queue.new
+bfs:someNode.setLevel(0)
+bfs:queue.insert(someNode)
+
+bfs:node=queue.remove()
+bfs:level=node.getLevel()
+bfs:adjList=node.getAdjacentNodes()
+bfs:adj=adjList.get(i)
+bfs:nodeLevel=adj.getLevel()
+bfs:queue.destroy()

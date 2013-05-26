@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Twirl</string>
+    
+    <string name="loading">Laddar Resurser</string>
+    <string name="loading_level">Laddar Nivå</string>
+    
+    <string name="menu_new_game">Nytt Spel</string>
+    
+    <string name="menu_high_score">Topplista</string>
+    
+    
+    <string name="high_score_dialog_title">Du kom in på topplistan!</string>
+    <string name="high_score_dialog_message">Namn:</string>
+    	
+    <string name="score_string">Poäng: </string>
+    <string name="lives_string">Liv: </string>
+    <string name="completion_string">Avklarat: </string>
+    
+    <string name="menu_options">Inställningar</string>
+    <string name="menu_instructions">Instruktioner</string>
+    <string name="off">av</string>
+    <string name="on">på</string>
+    <string name="mirrored_movement">Spegelvänd rörelse:</string>
+    <string name="enemy">Fiender:</string>
+    <string name="music">Musik:</string>
+    
+    
+
+    <string name="game_instructions">
+     
+       Du kontrollerar ett svart hål genom att röra \n 
+       skärmen; du får poäng när du äter \n 
+       mindre planeter och andra svarta hål, \n 
+       men se upp för de andra svarta hålen; \n 
+       det finns också hinder som är i vägen för dig \n 
+       och powerups som du kan ta
+          
+    </string>
+    
+    
+</resources>

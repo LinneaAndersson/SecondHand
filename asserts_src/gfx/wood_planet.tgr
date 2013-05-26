@@ -1,0 +1,56 @@
+Nodes 14
+68 -267
+engine.graphics.synthesis.texture.PatternCellular
+Color_Mapping 3 0.0 0.0 0.0 1.0 0.0 0.8 0.8 0.8 1.0 0.3478261 0.4 1.0 0.2 1.0 0.57004833 Cell_Type 4 Distance_ 1 PointGen 0 Seed 8 Intensity 1.0 Jitter 0.0 NumPoints 39 RandColor true Periodic true transformation 1.0 0.0 0.0 0.0 1.0 0.0 0.0 0.0 1.0 endparameters
+396 -162
+engine.graphics.synthesis.texture.PatternPerlinNoise
+Color_Mapping 4 0.4 0.4 0.0 1.0 0.22222222 0.8 0.8 0.0 1.0 0.76811594 1.0 1.0 0.8 1.0 0.90338165 1.0 1.0 1.0 1.0 1.0 ScaleX 3.0 ScaleY 3.0 ValueScale 1.0 Persistence 1.0 StartBand 1 EndBand 8 Seed 2 Periodic false transformation 1.0 0.0 0.0 0.0 1.0 0.0 0.0 0.0 1.0 endparameters
+490 56
+engine.graphics.synthesis.texture.FilterEmboss
+Strength 8.0 Angle 45.0 transformation 1.0 0.0 0.0 0.0 1.0 0.0 0.0 0.0 1.0 endparameters
+604 -83
+engine.graphics.synthesis.texture.FilterNormalMap
+Strength 1.0 transformation 1.0 0.0 0.0 0.0 1.0 0.0 0.0 0.0 1.0 endparameters
+483 -63
+engine.graphics.synthesis.texture.FilterBrightnessContrast
+Brightness -0.625 Contrast 1.875 transformation 1.0 0.0 0.0 0.0 1.0 0.0 0.0 0.0 1.0 endparameters
+172 -51
+engine.graphics.synthesis.texture.PatternPerlinNoise
+Color_Mapping 2 0.0 0.0 0.0 1.0 0.0 1.0 1.0 1.0 1.0 1.0 ScaleX 10.0 ScaleY 1.0 ValueScale 1.0 Persistence 0.5 StartBand 1 EndBand 5 Seed 5 Periodic true transformation 1.0 0.0 0.0 0.0 1.0 0.0 0.0 0.0 1.0 endparameters
+44 17
+engine.graphics.synthesis.texture.PatternPerlinNoise
+Color_Mapping 5 1.0 1.0 1.0 1.0 0.0 0.83137256 0.827451 0.827451 1.0 0.37198067 0.0 0.0 0.0 1.0 0.5458937 0.78039217 0.7764706 0.7764706 1.0 0.65700483 1.0 0.99607843 0.99607843 1.0 1.0 ScaleX 3.0 ScaleY 2.0 ValueScale 1.0 Persistence 0.5 StartBand 1 EndBand 3 Seed -1 Periodic true transformation 1.0 0.0 0.0 0.0 1.0 0.0 0.0 0.0 1.0 endparameters
+268 -38
+engine.graphics.synthesis.texture.PatternPerlinNoise
+Color_Mapping 2 0.0 0.0 0.0 1.0 0.0 1.0 1.0 1.0 1.0 1.0 ScaleX 10.0 ScaleY 1.0 ValueScale 1.0 Persistence 0.5 StartBand 1 EndBand 4 Seed 5 Periodic true transformation 1.0 0.0 0.0 0.0 1.0 0.0 0.0 0.0 1.0 endparameters
+363 -25
+engine.graphics.synthesis.texture.PatternPerlinNoise
+Color_Mapping 2 0.0 0.0 0.0 1.0 0.0 1.0 1.0 1.0 1.0 1.0 ScaleX 1.0 ScaleY 1.0 ValueScale 1.0 Persistence 0.5 StartBand 1 EndBand 8 Seed -1 Periodic true transformation 1.0 0.0 0.0 0.0 1.0 0.0 0.0 0.0 1.0 endparameters
+216 83
+engine.graphics.synthesis.texture.FilterMask
+Invert true transformation 1.0 0.0 0.0 0.0 1.0 0.0 0.0 0.0 1.0 endparameters
+350 86
+engine.graphics.synthesis.texture.PatternPerlinNoise
+Color_Mapping 5 0.4 0.4 0.4 1.0 0.0 0.8 0.6 0.0 1.0 0.19806764 1.0 0.2 0.2 1.0 0.29951692 0.4 0.4 0.4 1.0 0.7198068 1.0 1.0 1.0 1.0 1.0 ScaleX 1.0 ScaleY 1.0 ValueScale 1.0 Persistence 0.5 StartBand 1 EndBand 8 Seed -1 Periodic true transformation 1.0 0.0 0.0 0.0 1.0 0.0 0.0 0.0 1.0 endparameters
+358 218
+engine.graphics.synthesis.texture.FilterWarp
+Strength 1.0 transformation 1.0 0.0 0.0 0.0 1.0 0.0 0.0 0.0 1.0 endparameters
+234 244
+engine.graphics.synthesis.texture.FilterColorize
+Gray_to_Color_Mapping 3 0.0 0.0 0.0 1.0 0.0 0.1884058 0.1884058 0.1884058 1.0 0.42512077 1.0 1.0 1.0 1.0 1.0 transformation 1.0 0.0 0.0 0.0 1.0 0.0 0.0 0.0 1.0 endparameters
+141 242
+engine.graphics.synthesis.texture.FilterColorize
+Gray_to_Color_Mapping 6 0.38431373 0.2901961 0.19215687 1.0 0.038647342 0.34509805 0.28627452 0.21568628 1.0 0.22222222 0.4562726 0.3662669 0.23224825 1.0 0.294686 0.54168564 0.45656067 0.27983552 1.0 0.4879227 0.65882355 0.5803922 0.34509805 1.0 0.6425121 0.8509804 0.8235294 0.7647059 1.0 0.8888889 transformation 1.0 0.0 0.0 0.0 1.0 0.0 0.0 0.0 1.0 endparameters
+11
+3 2 1
+1 4 0
+4 3 0
+4 2 0
+5 9 0
+8 9 2
+7 9 1
+9 11 0
+10 11 1
+9 12 0
+9 13 0
+glpreview 13 -1 -1 -1 Object 0 Spec._Power 10.0 POM_Strength 0.0 Ambient 0.375 TexScale_U 2 TexScale_V 2 CamRotX 89.0 CamRotY 0.0 CamDist 2.1000001 endglpreview

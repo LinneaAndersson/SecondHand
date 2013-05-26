@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Twirl</string>
+    
+    <string name="loading">Loading Resources</string>
+    <string name="loading_level">Loading Level</string>
+    
+    <string name="menu_new_game">New Game</string>
+    <string name="menu_high_score">High Score</string>
+    
+    <string name="high_score_dialog_title">Made it to high score!</string>
+    <string name="high_score_dialog_message">Name:</string>
+    	
+    <string name="score_string">Score: </string>
+    <string name="lives_string">Lives: </string>
+    <string name="completion_string">Completion: </string>
+    
+    <string name="menu_options">Options</string>
+    <string name="menu_instructions">Instructions</string>
+    <string name="off">off</string>
+    <string name="on">on</string>
+    <string name="mirrored_movement">Mirrored Movement:</string>
+    <string name="enemy">Enemies:</string>
+    <string name="music">Music:</string>
+    
+    <string name="game_instructions">
+        
+        You control a black hole by touching the \n 
+        screen; you get points when you eat \n 
+        smaller planets and other black holes, \n 
+        but look out for the bigger black holes; \n 
+        there are also obstacles blocking your path \n 
+        and powerups that you can pick up
+       
+         
+         </string>
+    
+</resources>

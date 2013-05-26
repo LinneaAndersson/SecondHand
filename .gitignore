@@ -1,9 +1,21 @@
-*.class
+
 
 # Package Files #
-*.jar
-*.war
+*.class
 *.ear
+*.snapshot
+*.war
+.DS_Store
+/commands.txt
+/master
+/rad
+/tood
+TwirlTestTest/bin
+TwirlTestTest/bin/*
+Twist/bin
+Twist/gen
+*.prefs
+*.jar
 
 .DS_Store
 

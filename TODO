@@ -1,0 +1,25 @@
+==================================================================
+Important things that must be done for the success of the project:
+
+- Implementation
+
+* Write unit tests for: GameWorld, EntityManager.
+* Fix transition from game play scene back to menu.
+* Write current level in HUD
+
+- Documentation
+
+* We must also update the class diagram for the model(in the RAD).
+* Make 2 sequence diagrams(use something like graphviz)
+
+=================================
+Things we can do if we have time:
+
+* MirroredMovement option in menu
+* Make a prettier hud.
+* make the menus look prettier.
+* When collision, remove bodies earlier.
+* Better level transition
+* Improve the level generation
+* Fix better textures for the following powerups: "eat obstacle",
+* "Score up", "shield", "speed

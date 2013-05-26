@@ -1,0 +1,29 @@
+ext:Physics
+collisionResolver:CollisionResolver
+blackHole:BlackHole
+entity:Entity
+
+ext:collisionResolver.checkCollision(a, b)
+
+collisionResolver:collisionResolver.handleBlackHoleCollision(a, b)
+collisionResolver:blackHole.eatEntity(entity)
+
+[c:If entity canEat blackHole]
+    blackHole:entity.canEat(blackHole)
+[/c]
+[c:Then entity eatEntity blackHole]
+    blackHole:entity.eatEntity(blackHole)
+    entity:entity.eatEntityUtil(blackHole)
+    entity:scoreValue=blackHole.getScoreValue()
+    entity:entity.increaseScore(scoreValue)
+[/c]
+[c:Else blackHole eatEntityUtil entity]
+    blackHole:blackHole.eatEntityUtil(entity)
+    [c:If not blackHole canEat entity]
+        blackHole:blackHole.entityWasTooBigTooEat(entity)
+    [/c]
+    [c:Else]
+        blackHole[1]:scoreValue=entity.getScoreValue()
+        blackHole:blackHole.increaseScore(scoreValue)
+    [/c]
+[/c]

@@ -3,15 +3,9 @@ SecondHand
 
 Grupp 2 - TDA367
 
--Authors
+-Authors:
 
-AemW
-
-chewchew
-
-Erkaman
-
-LinneaAndersson
+AemW, chewchew, Erkaman, LinneaAndersson
 
 An application for Android.
 

@@ -7,20 +7,11 @@ import org.anddev.andengine.opengl.util.FastFloatBuffer;
 
 import com.secondhand.model.physics.Vector2;
 
-
 public class PolygonTextureRegionBuffer extends BufferObject {
-
-	// ===========================================================
-	// Fields
-	// ===========================================================
 
 	protected final float mWidth;
 	protected final float mHeight;
 	protected final List<Vector2> mVertices;
-
-	// ===========================================================
-	// Constructors
-	// ===========================================================
 
 	public PolygonTextureRegionBuffer(final List<Vector2> vertices,
 			final float width, final float height, final int pDrawType,
@@ -31,10 +22,6 @@ public class PolygonTextureRegionBuffer extends BufferObject {
 		this.mHeight = height;
 		this.mVertices = vertices;
 	}
-
-	// ===========================================================
-	// Getter & Setter
-	// ===========================================================
 
 	public synchronized void update() {
 		final int[] bufferData = this.mBufferData;

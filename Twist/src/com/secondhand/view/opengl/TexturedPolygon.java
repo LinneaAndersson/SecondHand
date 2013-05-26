@@ -11,8 +11,7 @@ import org.anddev.andengine.opengl.util.GLHelper;
 
 import com.secondhand.model.physics.Vector2;
 
-
-/**
+/*
  * This class is used when you want to apply a repeating texture on polygon. See
  * the base class for info on positioning polygons.
  * 
@@ -35,14 +34,13 @@ public class TexturedPolygon extends Polygon {
 		this.mPolygonTextureRegionBuffer = new PolygonTextureRegionBuffer(
 				super.getVertices(),
 
-				// should these be the circle sizes or the texture sizes?
 				textureRegion.getWidth(), textureRegion.getHeight(),
 				GL11.GL_STATIC_DRAW, true);
 
 		this.mPolygonTextureRegionBuffer.update();
 
 		this.mTextureRegion = textureRegion;
-		
+
 	}
 
 	public TextureRegion getTextureRegion() {

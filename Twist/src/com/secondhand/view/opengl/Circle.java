@@ -13,8 +13,7 @@ import org.anddev.andengine.opengl.vertex.VertexBuffer;
 
 import com.secondhand.model.physics.Vector2;
 
-
-/**
+/*
  * A circle class used for drawing circles.
  * 
  * @author erkastina IMPORTANT: the center position is used to position circles.
@@ -26,7 +25,7 @@ public class Circle extends Shape {
 
 	protected final CircleVertexBuffer mCircleVertexBuffer;
 
-	/**
+	/*
 	 * Culling enabled by default.
 	 */
 	public Circle(final float pX, final float pY, final float radius) {

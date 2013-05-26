@@ -7,7 +7,7 @@ import org.anddev.andengine.engine.camera.Camera;
 import org.anddev.andengine.opengl.texture.region.TextureRegion;
 import org.anddev.andengine.opengl.util.GLHelper;
 
-/**
+/*
  * This class is used when you want to apply a repeating texture on a circle.
  * 
  * @author erkastina
@@ -26,7 +26,6 @@ public class TexturedCircle extends Circle {
 		this.mPolygonTextureRegionBuffer = new PolygonTextureRegionBuffer(
 				super.getVertices(),
 
-				// should these be the circle sizes or the texture sizes?
 				textureRegion.getWidth(), textureRegion.getHeight(),
 				GL11.GL_STATIC_DRAW, true);
 

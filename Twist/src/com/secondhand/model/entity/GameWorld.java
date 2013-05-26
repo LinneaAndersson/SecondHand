@@ -28,9 +28,9 @@ public class GameWorld implements IGameWorld, PropertyChangeListener {
 
 	private final PowerUpList powerUpList;
 
-	public GameWorld(final IPhysicsWorld physics,
-			final int levelNumber, final int playerLives, final int playerScore, final IPowerUpFactory factory) {
-
+	public GameWorld(final IPhysicsWorld physics, final int levelNumber,
+			final int playerLives, final int playerScore,
+			final IPowerUpFactory factory) {
 
 		this.physicsWorld = physics;
 		this.physicsWorld.setCollisionResolver(new CollisionResolver(this));
@@ -41,7 +41,6 @@ public class GameWorld implements IGameWorld, PropertyChangeListener {
 
 		generateNewLevelEntities(playerLives, playerScore, factory);
 		this.powerUpList = new PowerUpList(this.entityManager.getPlayer());
-
 
 		getPlayer().addListener(this);
 	}
@@ -67,16 +66,18 @@ public class GameWorld implements IGameWorld, PropertyChangeListener {
 	}
 
 	// generate the level entities of a new level.
-	private void generateNewLevelEntities(final int playerLives, final int playerScore, final IPowerUpFactory factory) {
+	private void generateNewLevelEntities(final int playerLives,
+			final int playerScore, final IPowerUpFactory factory) {
 
-		final RandomLevelGenerator randomLevelGenerator =  new RandomLevelGenerator(this, factory);
+		final RandomLevelGenerator randomLevelGenerator = new RandomLevelGenerator(
+				this, factory);
 
 		// now create the new player
 		final Player player = new Player(randomLevelGenerator.playerPosition,
-				randomLevelGenerator.playerInitialSize, playerLives, playerScore, randomLevelGenerator.playerMaxSize);
+				randomLevelGenerator.playerInitialSize, playerLives,
+				playerScore, randomLevelGenerator.playerMaxSize);
 
 		this.entityManager.setPlayer(player);
-
 
 		this.levelWidth = randomLevelGenerator.levelWidth;
 		this.levelHeight = randomLevelGenerator.levelHeight;
@@ -111,8 +112,9 @@ public class GameWorld implements IGameWorld, PropertyChangeListener {
 
 		++this.levelNumber;
 
-                // if we don't unregister and remove listeners, we will get memory leaks,
-                // so do test that they are indeed unregistered.
+		// if we don't unregister and remove listeners, we will get memory
+		// leaks,
+		// so do test that they are indeed unregistered.
 		this.entityManager.unregisterFromEntities();
 		getPlayer().removeListener(this);
 
@@ -154,26 +156,27 @@ public class GameWorld implements IGameWorld, PropertyChangeListener {
 		this.getPlayer().reactToTouch(v);
 	}
 
-
 	@Override
 	public void propertyChange(final PropertyChangeEvent event) {
 		final String eventName = event.getPropertyName();
 
 		final Random rng = new Random();
 		if (eventName.equals(Player.RANDOMLY_REPOSITION_PLAYER)) {
-			getPlayer().setNeedsToMovePosition(this.physicsWorld.getRandomUnOccupiedArea(
-			this.getLevelWidth(),
-			this.getLevelHeight(),
-			getPlayer().getRadius(), rng));
+			getPlayer().setNeedsToMovePosition(
+					this.physicsWorld.getRandomUnOccupiedArea(
+							this.getLevelWidth(), this.getLevelHeight(),
+							getPlayer().getRadius(), rng));
 		}
 	}
-	
+
 	@Override
-	public float getCompletion(){
-				final float newRadius = getPlayer().getRadius()-GameWorld.PLAYER_STARTING_SIZE;
-		final float playerMaxSize = (float) getPlayer().getMaxSize()-(float) GameWorld.PLAYER_STARTING_SIZE;
-		
-		return 1-(playerMaxSize-(newRadius))/(playerMaxSize);
+	public float getCompletion() {
+		final float newRadius = getPlayer().getRadius()
+				- GameWorld.PLAYER_STARTING_SIZE;
+		final float playerMaxSize = (float) getPlayer().getMaxSize()
+				- (float) GameWorld.PLAYER_STARTING_SIZE;
+
+		return 1 - (playerMaxSize - (newRadius)) / (playerMaxSize);
 	}
 
 }

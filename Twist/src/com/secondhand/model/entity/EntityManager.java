@@ -12,7 +12,6 @@ class EntityManager implements PropertyChangeListener {
 
 	private List<Entity> entityList;
 	private List<Enemy> enemyList;
-	//private ListIterator<BlackHole> listIterator;
 	private final Stack<Entity> scheduledForDeletionEntities;
 	private final List<BlackHole> updateBlackHoleSize;
 
@@ -52,8 +51,7 @@ class EntityManager implements PropertyChangeListener {
 	private void moveEnemies() {
 		// enemies are in both lists because we want them
 		// for easy access and for the possibility of attacking
-		// each other. it could be preferable to change it later
-		// if we can come up with a better way
+		// each other.
 		for (final Enemy enemy : enemyList) {
 			enemy.moveEnemy(player, entityList);
 		}
@@ -75,7 +73,8 @@ class EntityManager implements PropertyChangeListener {
 		moveEnemies();
 		this.player.moveToNeededPositionIfNecessary();
 
-		final ListIterator<BlackHole> listIterator = updateBlackHoleSize.listIterator();
+		final ListIterator<BlackHole> listIterator = updateBlackHoleSize
+				.listIterator();
 		if (listIterator.hasNext()) {
 			final BlackHole blackHole = listIterator.next();
 			if (blackHole.getIncreaseSize() > 0.2f)

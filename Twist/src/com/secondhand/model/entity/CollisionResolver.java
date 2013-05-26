@@ -2,8 +2,6 @@ package com.secondhand.model.entity;
 
 import com.secondhand.model.physics.ICollisionResolver;
 
-
-
 public final class CollisionResolver implements ICollisionResolver {
 
 	private final IGameWorld gameWorld;
@@ -42,10 +40,10 @@ public final class CollisionResolver implements ICollisionResolver {
 
 	private void handleBlackHoleCollision(final Entity entityA,
 			final Entity entityB) {
-	
+
 		BlackHole blackHole;
 		Entity other;
-		
+
 		if (entityA instanceof BlackHole) {
 			blackHole = (BlackHole) entityA;
 			if (entityB instanceof IPowerUp && entityA instanceof Player) {
@@ -61,11 +59,11 @@ public final class CollisionResolver implements ICollisionResolver {
 			other = entityA;
 			blackHole = (BlackHole) entityB;
 		}
-		
-		// enemies cannot eat powerups. 
-		if(other instanceof IPowerUp && blackHole instanceof Enemy)
+
+		// enemies cannot eat powerups.
+		if (other instanceof IPowerUp && blackHole instanceof Enemy)
 			return;
-		
+
 		blackHole.eatEntity(other);
 	}
 

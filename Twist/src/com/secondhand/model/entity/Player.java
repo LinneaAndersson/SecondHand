@@ -20,7 +20,7 @@ public class Player extends BlackHole {
 
 	private Vector2 needsToMovePosition;
 
-	//For playerView to get the color of player
+	// For playerView to get the color of player
 	// The color will change!
 	private float[] rgb = new float[3];
 
@@ -32,9 +32,10 @@ public class Player extends BlackHole {
 	public final static float DEFAULT_COLOR_VALUE = 1f;
 	public final static String RANDOMLY_REPOSITION_PLAYER = "RandomlyRepositionPlayer";
 	public final static String MOVE = "Move";
+
 	// =============================================
-	public Player(final Vector2 position, final float radius, final int startingLives, final int score,
-			final int maxSize) {
+	public Player(final Vector2 position, final float radius,
+			final int startingLives, final int score, final int maxSize) {
 		super(position, radius, score);
 
 		this.maxSize = maxSize;
@@ -59,7 +60,7 @@ public class Player extends BlackHole {
 	public void increaseScore(final int increase) {
 		final int oldScore = this.getScore();
 		super.increaseScore((int) this.getScoreMultiplier() * increase);
-		pcs.firePropertyChange(INCREASE_SCORE, oldScore, (int)getScore());
+		pcs.firePropertyChange(INCREASE_SCORE, oldScore, (int) getScore());
 	}
 
 	public void setScoreMultiplier(final float scoreMultiplier) {
@@ -78,11 +79,10 @@ public class Player extends BlackHole {
 		return this.speedMultiplier;
 	}
 
-
 	private void changeLives(final int change) {
 		lives += change;
 
-		pcs.firePropertyChange(INCREASE_LIFE, (int)0, (int)lives);
+		pcs.firePropertyChange(INCREASE_LIFE, (int) 0, (int) lives);
 	}
 
 	// the player loses a life
@@ -90,10 +90,8 @@ public class Player extends BlackHole {
 		changeLives(-1);
 	}
 
-	
-	
 	public void moveToRandomUnoccupiedArea() {
-	
+
 		pcs.firePropertyChange(Player.RANDOMLY_REPOSITION_PLAYER, null, null);
 	}
 
@@ -105,28 +103,24 @@ public class Player extends BlackHole {
 		changeLives(+1);
 	}
 
-	// used to implement teleport, because you can't change the position inside
-	// a contact
-	// listener for some retarded reason(that would be too simple, now wouldn't
-	// it!?)
-	// So fuck you Erin Catto.
-	// - Sincerely, Eric
+	// used to implement teleport. It's done here because you can't change the
+	// position inside a contact listener.
 	public void setNeedsToMovePosition(final Vector2 position) {
 		needsToMovePosition = new Vector2(position.x, position.y);
 	}
 
 	public void moveToNeededPositionIfNecessary() {
-		if (needsToMovePosition != null) {	
+		if (needsToMovePosition != null) {
 			this.physics.setTransform(needsToMovePosition);
 			needsToMovePosition = null;
 		}
 	}
 
-	public float[] getRGB(){
+	public float[] getRGB() {
 		return rgb;
 	}
 
-	public void setRGB(final float[] RGB){
+	public void setRGB(final float[] RGB) {
 		this.rgb = RGB;
 		pcs.firePropertyChange(COLOR, null, RGB);
 	}
@@ -148,27 +142,23 @@ public class Player extends BlackHole {
 		playSound(SoundType.PLAYER_KILLED_SOUND);
 
 		// We override the default behaviour for wasEaten. We don't want the
-		// player to
-		// be entirely removed from the world when eaten, we only want to
-		// reposition the player and lose a life.
+		// player to be entirely removed from the world when eaten, we only want
+		// to reposition the player and lose a life.
 
-		
 		// the player loses a life and is repositioned.
 		this.loseLife();
-			
-	
+
 		this.moveToRandomUnoccupiedArea();
 	}
 
-	public void playSound(final SoundType sound){
+	public void playSound(final SoundType sound) {
 		pcs.firePropertyChange(SOUND, null, sound);
 	}
 
-
 	public boolean isMirroredMovement() {
-		
-		if(!this.isMirroredMovement){
-		return GameSettings.getInstance().isMirroredMovement();
+
+		if (!this.isMirroredMovement) {
+			return GameSettings.getInstance().isMirroredMovement();
 		} else {
 			return !(GameSettings.getInstance().isMirroredMovement());
 		}
@@ -179,14 +169,14 @@ public class Player extends BlackHole {
 	}
 
 	public void reactToTouch(final Vector2 touch) {
-		
+
 		pcs.firePropertyChange(MOVE, null, touch);
-		
+
 		Vector2 forcePosition;
 
 		if (isMirroredMovement()) {
-			forcePosition = new Vector2(-touch.x  + 2.0f * this.getCenterX(),
-					-touch.y + 2.0f *  this.getCenterY());
+			forcePosition = new Vector2(-touch.x + 2.0f * this.getCenterX(),
+					-touch.y + 2.0f * this.getCenterY());
 		} else {
 			forcePosition = new Vector2(touch.x, touch.y);
 		}
@@ -199,11 +189,11 @@ public class Player extends BlackHole {
 		}
 
 		force.x = force.x / force.len();
-		force.y = force.y / force.len();		
+		force.y = force.y / force.len();
 
 		force.mul(this.getSpeedMultiplier() * 60);
 
 		this.physics.applyImpulse(force, forcePosition);
 	}
-	
+
 }

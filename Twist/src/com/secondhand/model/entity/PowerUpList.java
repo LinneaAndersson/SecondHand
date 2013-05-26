@@ -33,7 +33,8 @@ public final class PowerUpList extends ArrayList<IPowerUp> {
 
 	@Override
 	public boolean remove(final Object object) {
-		final boolean value = super.remove(object); // Priority: The list is
+		final boolean value = super.remove(object);
+		// Priority: The list is
 		// empty when you remove
 		// last PowerUp
 		final IPowerUp powerUp = (IPowerUp) object;

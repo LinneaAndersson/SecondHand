@@ -1,17 +1,13 @@
-bfs:BFS[a]
-/queue:FIFO
-someNode:Node
-node:Node
-adjList:List
-adj:Node
+#![UC Move]
 
-bfs:queue.new
-bfs:someNode.setLevel(0)
-bfs:queue.insert(someNode)
+ext:External[pe]
+gw:GameWorld
+manager:EntityManager
+player:Player
 
-bfs:node=queue.remove()
-bfs:level=node.getLevel()
-bfs:adjList=node.getAdjacentNodes()
-bfs:adj=adjList.get(i)
-bfs:nodeLevel=adj.getLevel()
-bfs:queue.destroy()
+ext:gw.updateWithTouchInput(position)
+
+gw:player=manager.getPlayer()
+
+gw:player.reactToTouch(position)
+

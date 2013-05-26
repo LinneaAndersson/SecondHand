@@ -26,11 +26,20 @@ public class PowerUpFactoryTest extends TestCase {
 		PowerUpFactory factory = new PowerUpFactory();
 		factory.setRandom(new Random());
 
-		float[] nbrOfRarity = new float[11];
+		float[] totalFrequencyOfType = new float[11];
 		float[] nbrOfType = new float[11];
-		float[] frequency = new float[]{};
+		float[] frequency = new float[] { BlackColor.getFrequency(),
+				DoubleScore.getFrequency(), EatObstacle.getFrequency(),
+				ExtraLife.getFrequency(), MirroredMovement.getFrequency(),
+				RandomPowerUp.getFrequency(), RandomTeleport.getFrequency(),
+				ScoreUp.getFrequency(), Shield.getFrequency(),
+				SpeedDown.getFrequency(), SpeedUp.getFrequency() };
+
 		Vector2 pos;
 		PowerUp powerup;
+
+		// Create 1000 PowerUps and check their position. More importantly
+		// checks that the correct frequency is used.
 		for (int i = 0; i < 1000; i++) {
 			pos = new Vector2(i, i);
 			powerup = factory.getRandomPowerUp(pos);
@@ -38,47 +47,47 @@ public class PowerUpFactoryTest extends TestCase {
 				assertTrue(pos.almostEquals(powerup.getInitialPosition()));
 				switch (powerup.getPowerUpType()) {
 				case BLACK_COLOR:
-					nbrOfRarity[0] += BlackColor.getFrequency();
+					totalFrequencyOfType[0] += BlackColor.getFrequency();
 					nbrOfType[0] += 1;
 					break;
 				case DOUBLE_SCORE:
-					nbrOfRarity[1] += DoubleScore.getFrequency();
+					totalFrequencyOfType[1] += DoubleScore.getFrequency();
 					nbrOfType[1] += 1;
 					break;
 				case EAT_OBSTACLE:
-					nbrOfRarity[2] += EatObstacle.getFrequency();
+					totalFrequencyOfType[2] += EatObstacle.getFrequency();
 					nbrOfType[2] += 1;
 					break;
 				case EXTRA_LIFE:
-					nbrOfRarity[3] += ExtraLife.getFrequency();
+					totalFrequencyOfType[3] += ExtraLife.getFrequency();
 					nbrOfType[3] += 1;
 					break;
 				case MIRRORED_MOVEMENT:
-					nbrOfRarity[4] += MirroredMovement.getFrequency();
+					totalFrequencyOfType[4] += MirroredMovement.getFrequency();
 					nbrOfType[4] += 1;
 					break;
 				case RANDOM_POWER_UP:
-					nbrOfRarity[5] += RandomPowerUp.getFrequency();
+					totalFrequencyOfType[5] += RandomPowerUp.getFrequency();
 					nbrOfType[5] += 1;
 					break;
 				case RANDOM_TELEPORT:
-					nbrOfRarity[6] += RandomTeleport.getFrequency();
+					totalFrequencyOfType[6] += RandomTeleport.getFrequency();
 					nbrOfType[6] += 1;
 					break;
 				case SCORE_UP:
-					nbrOfRarity[7] += ScoreUp.getFrequency();
+					totalFrequencyOfType[7] += ScoreUp.getFrequency();
 					nbrOfType[7] += 1;
 					break;
 				case SHIELD:
-					nbrOfRarity[8] += Shield.getFrequency();
+					totalFrequencyOfType[8] += Shield.getFrequency();
 					nbrOfType[8] += 1;
 					break;
 				case SPEED_DOWN:
-					nbrOfRarity[9] += SpeedDown.getFrequency();
+					totalFrequencyOfType[9] += SpeedDown.getFrequency();
 					nbrOfType[9] += 1;
 					break;
 				case SPEED_UP:
-					nbrOfRarity[10] += SpeedUp.getFrequency();
+					totalFrequencyOfType[10] += SpeedUp.getFrequency();
 					nbrOfType[10] += 1;
 					break;
 				}
@@ -86,16 +95,7 @@ public class PowerUpFactoryTest extends TestCase {
 			}
 		}
 		for (int j = 0; j < 11; j++) {
-			System.out.println(nbrOfRarity[j]/nbrOfType[j]);
-			
+			assertEquals(frequency[j], totalFrequencyOfType[j] / nbrOfType[j]);
 		}
-	/*	for (int j = 0; j < 11; j++) {
-			System.out.print(nbrOfType[j]+"	");
-			System.out.print(nbrOfType[j]/totalnbr+ "	");
-			System.out.println(nbrOfRarity[j]/nbrOfType[j]);
-		}
-		System.out.println("Total nbr: " + totalnbr);
-		System.out.println("Total rarity: " + totalRarity);
-	*/
 	}
 }

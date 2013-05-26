@@ -13,19 +13,7 @@ public class StarsBackground extends RectangularShape {
 
 	protected final StarsVertexBuffer mStarsVertexBuffer;
 
-	// ===========================================================
-	// Constants
-	// ===========================================================
-
-	// ===========================================================
-	// Fields
-	// ===========================================================
-
 	private final float mStarsSize;
-
-	// ===========================================================
-	// Constructors
-	// ===========================================================
 
 	public StarsBackground(final int stars, final float starsSize,
 			final float width, final float height) {
@@ -49,10 +37,6 @@ public class StarsBackground extends RectangularShape {
 		this.mScaleCenterX = this.mRotationCenterX;
 		this.mScaleCenterY = this.mRotationCenterY;
 	}
-
-	// ===========================================================
-	// Methods for/from SuperClass/Interfaces
-	// ===========================================================
 
 	@Override
 	protected void onInitDraw(final GL10 pGL) {
@@ -78,7 +62,6 @@ public class StarsBackground extends RectangularShape {
 		pGL.glPointSize(mStarsSize * zoomFactor);
 		pGL.glDrawArrays(GL10.GL_POINTS, 0, this.mStarsVertexBuffer.getStars());
 
-		// TOOD: don't render the stars that are not in the camera.
 	}
 
 	@Override

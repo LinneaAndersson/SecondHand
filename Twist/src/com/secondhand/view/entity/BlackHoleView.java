@@ -11,19 +11,20 @@ import com.secondhand.model.entity.BlackHole;
 import com.secondhand.view.opengl.Circle;
 import com.secondhand.view.physics.FixtureDefs;
 
-public class BlackHoleView extends CircleView implements PropertyChangeListener{
+public class BlackHoleView extends CircleView implements PropertyChangeListener {
 
 	public BlackHoleView(final PhysicsWorld physicsWorld,
 			final BlackHole blackHole) {
-		super(physicsWorld, blackHole, 
-				new Circle(blackHole.getInitialPosition().x, blackHole.getInitialPosition().y,
-						blackHole.getRadius()),
+		super(physicsWorld, blackHole, new Circle(
+				blackHole.getInitialPosition().x,
+				blackHole.getInitialPosition().y, blackHole.getRadius()),
 				FixtureDefs.BLACK_HOLE_FIXTURE_DEF);
-		
+
 	}
+
 	protected void changeSize(final float size) {
-		final CircleShape shape = (CircleShape) this.body.getFixtureList().get(0)
-				.getShape();
+		final CircleShape shape = (CircleShape) this.body.getFixtureList()
+				.get(0).getShape();
 		shape.setRadius(size / PhysicsConstants.PIXEL_TO_METER_RATIO_DEFAULT);
 		final Circle circle = (Circle) this.shape;
 		circle.setRadius(size);
@@ -31,11 +32,11 @@ public class BlackHoleView extends CircleView implements PropertyChangeListener{
 
 	@Override
 	public void propertyChange(final PropertyChangeEvent event) {
-		
+
 		if (event.getPropertyName().equalsIgnoreCase(BlackHole.RADIUS)) {
-			
+
 			final float newValue = (Float) event.getNewValue();
-			
+
 			this.changeSize(newValue);
 		}
 	}

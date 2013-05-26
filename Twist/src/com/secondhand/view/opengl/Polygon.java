@@ -17,7 +17,7 @@ import com.badlogic.gdx.physics.box2d.Fixture;
 import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.secondhand.model.physics.Vector2;
 
-/**
+/*
  * A polygon class used for drawing polygons. The positioning for polygons works
  * as follows: All the points of the polygon(the list polygon in the
  * constructor) are positioned relatively to the position of the polygon(the
@@ -41,21 +41,17 @@ public class Polygon extends Shape {
 
 	}
 
-	/**
+	/*
 	 * Culling enabled by default.
 	 */
 	public Polygon(final float pX, final float pY, final List<Vector2> polygon) {
 		this(pX, pY, polygon, true);
 	}
 
-	/**
-	 *
-	 * @param pX
-	 * @param pY
-	 * @param polygon
-	 *            the points that define the polygon. e.g., for a square these
-	 *            points will be its four corners.
-	 * @param cullingEnabled
+	/*
+	 * 
+	 * @param polygon the points that define the polygon. e.g., for a square
+	 * these points will be its four corners.
 	 */
 	public Polygon(final float pX, final float pY, final List<Vector2> polygon,
 			final boolean cullingEnabled) {
@@ -148,10 +144,12 @@ public class Polygon extends Shape {
 	protected boolean isCulled(final Camera pCamera) {
 
 		for (int i = 0; i < this.mPolygonShape.getVertexCount(); ++i) {
-			final com.badlogic.gdx.math.Vector2 v = new com.badlogic.gdx.math.Vector2(0, 0);
+			final com.badlogic.gdx.math.Vector2 v = new com.badlogic.gdx.math.Vector2(
+					0, 0);
 			this.mPolygonShape.getVertex(i, v);
 
-			final com.badlogic.gdx.math.Vector2 temp = this.mBody.getWorldPoint(v);
+			final com.badlogic.gdx.math.Vector2 temp = this.mBody
+					.getWorldPoint(v);
 			final Vector2 trueV = new Vector2(temp.x, temp.y);
 
 			final Vector2 translatedPoint = new Vector2(

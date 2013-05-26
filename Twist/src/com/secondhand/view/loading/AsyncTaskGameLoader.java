@@ -1,10 +1,8 @@
 package com.secondhand.view.loading;
 
-
-
 import android.os.AsyncTask;
 
-/**
+/*
  * Used to perform loading on a background thread in the loading scene.
  */
 public class AsyncTaskGameLoader extends

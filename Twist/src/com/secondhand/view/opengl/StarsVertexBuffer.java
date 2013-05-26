@@ -7,19 +7,7 @@ import org.anddev.andengine.opengl.vertex.VertexBuffer;
 
 public class StarsVertexBuffer extends VertexBuffer {
 
-	// ===========================================================
-	// Constants
-	// ===========================================================
-
-	// ===========================================================
-	// Fields
-	// ===========================================================
-
 	private final int mStars;
-
-	// ===========================================================
-	// Constructors
-	// ===========================================================
 
 	public StarsVertexBuffer(final int stars, final int pDrawType,
 			final boolean pManaged) {
@@ -27,21 +15,9 @@ public class StarsVertexBuffer extends VertexBuffer {
 		this.mStars = stars;
 	}
 
-	// ===========================================================
-	// Getter & Setter
-	// ===========================================================
-
 	public int getStars() {
 		return this.mStars;
 	}
-
-	// ===========================================================
-	// Methods for/from SuperClass/Interfaces
-	// ===========================================================
-
-	// ===========================================================
-	// Methods
-	// ===========================================================
 
 	public synchronized void update(final float width, final float height) {
 
@@ -64,9 +40,5 @@ public class StarsVertexBuffer extends VertexBuffer {
 
 		super.setHardwareBufferNeedsUpdate();
 	}
-
-	// ===========================================================
-	// Inner and Anonymous Classes
-	// ===========================================================
 
 }

@@ -8,23 +8,9 @@ import org.anddev.andengine.opengl.vertex.VertexBuffer;
 
 import com.secondhand.model.physics.Vector2;
 
-
-
 public class PolygonVertexBuffer extends VertexBuffer {
 
-	// ===========================================================
-	// Constants
-	// ===========================================================
-
-	// ===========================================================
-	// Fields
-	// ===========================================================
-
 	private List<Vector2> mVertices;
-
-	// ===========================================================
-	// Constructors
-	// ===========================================================
 
 	public List<Vector2> getVertices() {
 		return this.mVertices;
@@ -39,28 +25,10 @@ public class PolygonVertexBuffer extends VertexBuffer {
 		return triangles * 3 * 2;
 	}
 
-	/**
-	 * 
-	 * @param edges
-	 * @param pDrawType
-	 * @param pManaged
-	 */
 	public PolygonVertexBuffer(final int edges, final int pDrawType,
 			final boolean pManaged) {
 		super(computeVertexCount(edges), pDrawType, pManaged);
 	}
-
-	// ===========================================================
-	// Getter & Setter
-	// ===========================================================
-
-	// ===========================================================
-	// Methods for/from SuperClass/Interfaces
-	// ===========================================================
-
-	// ===========================================================
-	// Methods
-	// ===========================================================
 
 	public synchronized void update(final List<Vector2> polygon) {
 
@@ -103,9 +71,5 @@ public class PolygonVertexBuffer extends VertexBuffer {
 
 		super.setHardwareBufferNeedsUpdate();
 	}
-
-	// ===========================================================
-	// Inner and Anonymous Classes
-	// ===========================================================
 
 }

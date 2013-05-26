@@ -3,7 +3,7 @@ package com.secondhand.model.util.sat;
 class Projection {
 
 	private final float min;
-	private final  float max;
+	private final float max;
 
 	public Projection(final float min, final float max) {
 		this.min = min;
@@ -12,6 +12,6 @@ class Projection {
 
 	public boolean overlap(final Projection other) {
 
-		return (!(other.max < this.min || this.max < other.min));  
-	}	
+		return (!(other.max < this.min || this.max < other.min));
+	}
 }

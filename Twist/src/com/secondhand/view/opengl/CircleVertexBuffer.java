@@ -9,22 +9,9 @@ import org.anddev.andengine.util.MathUtils;
 
 import com.secondhand.model.physics.Vector2;
 
-
 public class CircleVertexBuffer extends VertexBuffer {
 
-	// ===========================================================
-	// Constants
-	// ===========================================================
-
-	// ===========================================================
-	// Fields
-	// ===========================================================
-
 	private List<Vector2> mVertices;
-
-	// ===========================================================
-	// Constructors
-	// ===========================================================
 
 	private final int mSegments;
 
@@ -38,21 +25,9 @@ public class CircleVertexBuffer extends VertexBuffer {
 		this.mSegments = segments;
 	}
 
-	// ===========================================================
-	// Getter & Setter
-	// ===========================================================
-
 	public int getSegments() {
 		return this.mSegments;
 	}
-
-	// ===========================================================
-	// Methods for/from SuperClass/Interfaces
-	// ===========================================================
-
-	// ===========================================================
-	// Methods
-	// ===========================================================
 
 	public synchronized void update(final float radius) {
 
@@ -66,10 +41,8 @@ public class CircleVertexBuffer extends VertexBuffer {
 			// the right most
 			// the left most one.
 
-			final float x = (float) (Math.cos(MathUtils
-					.degToRad(360 - i)) * radius);
-			final float y = (float) (Math.sin(MathUtils
-					.degToRad(360 - i)) * radius);
+			final float x = (float) (Math.cos(MathUtils.degToRad(360 - i)) * radius);
+			final float y = (float) (Math.sin(MathUtils.degToRad(360 - i)) * radius);
 
 			vertices[count++] = Float.floatToRawIntBits(x);
 			vertices[count++] = Float.floatToRawIntBits(y);
@@ -83,9 +56,5 @@ public class CircleVertexBuffer extends VertexBuffer {
 
 		super.setHardwareBufferNeedsUpdate();
 	}
-
-	// ===========================================================
-	// Inner and Anonymous Classes
-	// ===========================================================
 
 }

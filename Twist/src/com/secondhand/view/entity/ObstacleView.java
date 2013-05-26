@@ -8,14 +8,15 @@ import com.secondhand.view.physics.FixtureDefs;
 import com.secondhand.view.resource.TextureRegions;
 
 public class ObstacleView extends PolygonView {
-	
+
 	public ObstacleView(final PhysicsWorld physicsWorld, final Obstacle obstacle) {
-		// create polygon body. 
-		
-		super(physicsWorld, obstacle,new TexturedPolygon(obstacle.getInitialPosition().x, obstacle.getInitialPosition().y,
-				obstacle.getPolygon(),
-				TextureRegions.getInstance().obstacleTexture)
-		, FixtureDefs.OBSTACLE_FIXTURE_DEF);
+		// create polygon body.
+
+		super(physicsWorld, obstacle, new TexturedPolygon(
+				obstacle.getInitialPosition().x,
+				obstacle.getInitialPosition().y, obstacle.getPolygon(),
+				TextureRegions.getInstance().obstacleTexture),
+				FixtureDefs.OBSTACLE_FIXTURE_DEF);
 	}
 
 }

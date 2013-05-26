@@ -121,7 +121,7 @@ public class PlayerTest extends TestCase {
 
 	public void testConstructor() {
 
-		GameSettings.getInstance().isMirroredMovement = false;
+		GameSettings.getInstance().setMirroredMovement(false);
 		Player player = new Player(new Vector2(), 10, 3, // lives
 				100, // starting score
 				200); // maxsize
@@ -137,7 +137,7 @@ public class PlayerTest extends TestCase {
 
 	public void testReactToTouch() {
 
-		GameSettings.getInstance().isMirroredMovement = false;
+		GameSettings.getInstance().setMirroredMovement(false);
 		Player player = new Player(new Vector2(), 10, 3, // lives
 				100, // starting score
 				200); // maxsize
@@ -166,7 +166,7 @@ public class PlayerTest extends TestCase {
 		// now test mirrored movement gamesetting.
 		player.setMirroredMovement(false);
 
-		GameSettings.getInstance().isMirroredMovement = true;
+		GameSettings.getInstance().setMirroredMovement(true);
 
 		// with speed mutlipliers:
 

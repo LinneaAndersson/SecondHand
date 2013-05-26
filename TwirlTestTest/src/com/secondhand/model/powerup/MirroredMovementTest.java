@@ -22,7 +22,7 @@ public class MirroredMovementTest extends TestCase {
 		
 		assertEquals(PowerUpType.MIRRORED_MOVEMENT, powerup.getPowerUpType());	
 		
-		GameSettings.getInstance().isMirroredMovement = false;
+		GameSettings.getInstance().setMirroredMovement(false);
 		
 		powerup.activateEffect(player);
 		assertTrue(player.isMirroredMovement());

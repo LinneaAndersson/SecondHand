@@ -151,7 +151,7 @@ public class GameWorld implements IGameWorld, PropertyChangeListener {
 
 	@Override
 	public void updateWithTouchInput(final Vector2 v) {
-		this.getPlayer().reachToTouch(v);
+		this.getPlayer().reactToTouch(v);
 	}
 
 

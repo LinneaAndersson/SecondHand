@@ -168,9 +168,9 @@ public class Player extends BlackHole {
 	public boolean isMirroredMovement() {
 		
 		if(!this.isMirroredMovement){
-		return GameSettings.getInstance().isMirroredMovement;
+		return GameSettings.getInstance().isMirroredMovement();
 		} else {
-			return !(GameSettings.getInstance().isMirroredMovement);
+			return !(GameSettings.getInstance().isMirroredMovement());
 		}
 	}
 
@@ -178,7 +178,7 @@ public class Player extends BlackHole {
 		this.isMirroredMovement = mirrored;
 	}
 
-	public void reachToTouch(final Vector2 touch) {
+	public void reactToTouch(final Vector2 touch) {
 		
 		pcs.firePropertyChange(MOVE, null, touch);
 		

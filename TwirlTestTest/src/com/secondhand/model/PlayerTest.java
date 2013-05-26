@@ -150,7 +150,7 @@ public class PlayerTest extends TestCase {
 		physics.state = 1;
 		physics.test1Pass = false;
 
-		player.reachToTouch(new Vector2(50, 0));
+		player.reactToTouch(new Vector2(50, 0));
 
 		assertTrue(physics.test1Pass);
 
@@ -159,7 +159,7 @@ public class PlayerTest extends TestCase {
 		physics.test2Pass = false;
 		player.setMirroredMovement(true);
 
-		player.reachToTouch(new Vector2(50, 0));
+		player.reactToTouch(new Vector2(50, 0));
 
 		assertTrue(physics.test2Pass);
 
@@ -173,7 +173,7 @@ public class PlayerTest extends TestCase {
 		physics.state = 2;
 		physics.test2Pass = false;
 
-		player.reachToTouch(new Vector2(50, 0));
+		player.reactToTouch(new Vector2(50, 0));
 
 		assertTrue(physics.test2Pass);
 
@@ -182,7 +182,7 @@ public class PlayerTest extends TestCase {
 		physics.test1Pass = false;
 		player.setMirroredMovement(true);
 
-		player.reachToTouch(new Vector2(50, 0));
+		player.reactToTouch(new Vector2(50, 0));
 
 		assertTrue(physics.test1Pass);
 

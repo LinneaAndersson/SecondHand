@@ -249,7 +249,7 @@ public class RandomLevelGenerator {
 
 		placeOutPowerUps(this.levelNumber * 7, POWER_UP_EXTRA_SIZE);
 
-		if(GameSettings.getInstance().hasEnemies)
+		if(GameSettings.getInstance().hasEnemies())
 			placeOutEnemies(5 * this.levelNumber,4 * this.levelNumber, ENEMY_EXTRA_RADIUS);
 	}
 }

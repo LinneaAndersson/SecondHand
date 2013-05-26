@@ -32,9 +32,9 @@ public final class Preferences {
 	private void update() {
 		editor.commit();
 		
-		GameSettings.getInstance().hasEnemies = this.hasEnemies();
-		GameSettings.getInstance().isMirroredMovement = this.isMirroredMovement();
-		GameSettings.getInstance().hasMusic = this.hasMusic();
+		GameSettings.getInstance().setHasEnemies( this.hasEnemies());
+		GameSettings.getInstance().setMirroredMovement(this.isMirroredMovement());
+		GameSettings.getInstance().setHasMusic(this.hasMusic());
 		// update model here. 
 	}
 	

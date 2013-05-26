@@ -52,7 +52,7 @@ public class GamePlayScene extends GameScene implements PropertyChangeListener {
 	private StarsBackground[] starsBackgrounds = new StarsBackground[3];
 
 	private final Music music;
-	
+
 	public GamePlayScene(final Engine engine, final Context context) {
 		super(engine, context);
 
@@ -166,7 +166,8 @@ public class GamePlayScene extends GameScene implements PropertyChangeListener {
 		initialCameraPos = new Vector2(smoothCamera.getCenterX(),
 				smoothCamera.getCenterY());
 
-		this.loadLevel(GameWorld.STARTING_LEVEL, Player.STARTING_LIVES, 0, GameSettings.getInstance().hasMusic);
+		this.loadLevel(GameWorld.STARTING_LEVEL, Player.STARTING_LIVES, 0,
+				GameSettings.getInstance().hasMusic());
 	}
 
 	// reset camera before the menu is shown
@@ -285,8 +286,6 @@ public class GamePlayScene extends GameScene implements PropertyChangeListener {
 			apaptCameraToGrowingPlayer((Float) event.getNewValue(),
 					(Float) event.getOldValue());
 
-			
-			
 			this.scoreLivesText.setCompletionRatio(gameWorld.getCompletion());
 
 		} else if (eventName.equals("PlayerWallCollision")) {

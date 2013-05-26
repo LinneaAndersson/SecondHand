@@ -190,6 +190,7 @@ public class GamePlayScene extends GameScene implements PropertyChangeListener {
 		super.onSwitchScene();
 		this.unregisterScene();
 		resetCamera();
+		gameWorld = null;
 		this.music.stop();
 	}
 

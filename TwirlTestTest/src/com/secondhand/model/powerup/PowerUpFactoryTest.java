@@ -11,18 +11,6 @@ public class PowerUpFactoryTest extends TestCase {
 
 	public void testPowerUpFactory() {
 
-		// we'll do it for the extra life powerup
-
-		class MockRandom extends Random {
-			int i = 0;
-			private static final long serialVersionUID = 1L;
-
-			public int nextInt(int n) {
-				// always double score
-				return i += 2;
-			}
-		}
-
 		PowerUpFactory factory = new PowerUpFactory();
 		factory.setRandom(new Random());
 

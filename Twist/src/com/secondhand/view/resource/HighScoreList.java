@@ -11,74 +11,68 @@ import java.util.List;
 
 import android.content.Context;
 
-// this class actually uses the android OS to do
-// the high score file loading, so does it really belong in the model?
 public final class HighScoreList {
 
 	private static HighScoreList instance;
-	
+
 	private static final String FILE_NAME = "high_score.dat";
 	private static final String DEFAULT_FILE_NAME = "highScore";
-	
-	
-	
+
 	private boolean highScoreFileExists() {
 		// check if the file is saved on the SD-card
 		return new File(context.getFilesDir() + "/" + FILE_NAME).exists();
 	}
-	
-	
+
 	private Context context;
-	
+
 	public static HighScoreList getInstance() {
-		if(instance == null) {
+		if (instance == null) {
 			instance = new HighScoreList();
 		}
 		return instance;
 	}
-	
+
 	// stored from highest to lowest position in list.
-	private List<Entry> highScoreList; 
-	
+	private List<Entry> highScoreList;
+
 	public List<Entry> getHighScoreList() {
 		return this.highScoreList;
 	}
-	
+
 	public boolean madeItToHighScoreList(final int newScore) {
-		for(int i = this.highScoreList.size() - 1; i >= 0; --i) {
+		for (int i = this.highScoreList.size() - 1; i >= 0; --i) {
 			final int score = this.highScoreList.get(i).score;
-			if(newScore > score)
+			if (newScore > score)
 				return true;
 		}
 		return false;
 	}
-	
+
 	private void updateFile() {
 		BufferedWriter writer = null;
 		try {
 			writer = new BufferedWriter(new OutputStreamWriter(
 					context.openFileOutput(FILE_NAME, Context.MODE_PRIVATE)));
 
-			
-			for(final Entry entry: this.highScoreList) {
+			for (final Entry entry : this.highScoreList) {
 				writer.write(entry.name + "\n");
 				writer.write(entry.score + "\n");
 			}
-		}
-		catch (IOException e) {
+		} catch (IOException e) {
 			throw new AssertionError("could not load high score file");
 		} finally {
 			try {
 				writer.close();
 			} catch (IOException e) {
-				throw new AssertionError("could not close high score file for writing");
+				throw new AssertionError(
+						"could not close high score file for writing");
 			}
 		}
 	}
-	
+
 	public void insertInHighScoreList(final Entry newEntry) {
-		for(int i = 0; i < highScoreList.size(); ++i) {
-			if(newEntry.score > this.highScoreList.get(i).score) {
+		for (int i = 0; i < highScoreList.size(); ++i) {
+			if (newEntry.score > this.highScoreList.get(i).score) {
 				this.highScoreList.add(i, newEntry);
 				// remove the last entry
 				this.highScoreList.remove(this.highScoreList.size() - 1);
@@ -87,24 +81,26 @@ public final class HighScoreList {
 			}
 		}
 	}
-	
+
 	private void readFile() {
 
 		BufferedReader reader;
 		try {
-			
-			if(!this.highScoreFileExists())
-				// read the default one. 
-				reader = new BufferedReader(new InputStreamReader(context.getAssets().open(DEFAULT_FILE_NAME)));
+
+			if (!this.highScoreFileExists())
+				// read the default one.
+				reader = new BufferedReader(new InputStreamReader(context
+						.getAssets().open(DEFAULT_FILE_NAME)));
 			else
-				reader = new BufferedReader(new InputStreamReader(this.context.openFileInput(FILE_NAME)));
-			
+				reader = new BufferedReader(new InputStreamReader(
+						this.context.openFileInput(FILE_NAME)));
+
 			while (true) {
 
 				final String name = reader.readLine();
-				if(name == null) 
+				if (name == null)
 					break;
-				final int score =  Integer.parseInt(reader.readLine().trim());
+				final int score = Integer.parseInt(reader.readLine().trim());
 
 				this.highScoreList.add(new Entry(name, score));
 			}
@@ -115,22 +111,22 @@ public final class HighScoreList {
 		}
 
 	}
-	
+
 	public void initialize(final Context context) {
 		this.context = context;
-		
+
 		this.highScoreList = new ArrayList<Entry>();
 
 		readFile();
 
 	}
-	
-	// entry in the high score list. 
+
+	// entry in the high score list.
 	public static class Entry {
 		public final String name;
 		public final int score;
-		
-		public Entry(final String name, final int score ) {
+
+		public Entry(final String name, final int score) {
 			this.name = name;
 			this.score = score;
 		}

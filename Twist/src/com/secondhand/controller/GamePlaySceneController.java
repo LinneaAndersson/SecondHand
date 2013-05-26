@@ -86,6 +86,7 @@ final class GamePlaySceneController extends Entity implements
 		super.onManagedUpdate(pSecondsElapsed);
 		if (gameWorld.isGameOver()) {
 
+			// if not made it to highscore, then simply go to high score list.
 			if (!HighScoreList.getInstance().madeItToHighScoreList(
 					gameWorld.getPlayer().getScore())) {
 				// go to high score.
@@ -94,6 +95,7 @@ final class GamePlaySceneController extends Entity implements
 				this.sceneController.switchScene(AllScenes.HIGH_SCORE_SCENE);
 			}
 
+			// if we have gotten name input from player(the new high score name)
 			if (InputDialogManager.input != null) {
 
 				final HighScoreList.Entry newEntry = new HighScoreList.Entry(

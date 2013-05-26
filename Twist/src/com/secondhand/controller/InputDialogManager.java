@@ -1,7 +1,7 @@
 package com.secondhand.controller;
 
 // manages the input dialog used when entering the player name. 
-public final class InputDialogManager {
+final class InputDialogManager {
 	private static InputDialogManager instance;
 
 	private MainActivity activity;
@@ -19,6 +19,7 @@ public final class InputDialogManager {
 	private InputDialogManager() {
 	}
 
+	
 	/*
 	 * Setup this singelton class for usage.
 	 */

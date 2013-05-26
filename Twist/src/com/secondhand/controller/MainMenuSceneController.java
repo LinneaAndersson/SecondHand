@@ -41,3 +41,4 @@ class MainMenuSceneController implements IOnMenuItemClickListener {
 		}
 	}
 }
+
